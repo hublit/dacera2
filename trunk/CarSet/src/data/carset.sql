@@ -139,11 +139,9 @@ CREATE TABLE IF NOT EXISTS `fc_factores_correccion` (
 --
 
 INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Ninguno', 'Sin factor de corrección');
-INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Industrial', 'Vehículo industrial');
-INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('4 x 4', 'Vehículo 4 x 4');
-INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Monovolumen', 'Vehículo monovolumen');
-INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Furgones', 'Furgón');
-INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Ida-Vuelta', 'Trayecto de ida y vuelta');
+INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Industriales y Monovolumen', 'Vehículos industriales y Monovolúmenes');
+INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Todoterreno', 'Vehículos Todoterreno');
+INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Furgonetas y Furgones', 'Furgón');
 
 -- --------------------------------------------------------
 
