@@ -606,8 +606,6 @@ public class CSEditarTarifaCliente extends JPanel
     private javax.swing.JLabel lFuMadrid;
     private javax.swing.JLabel lIncremento;
     private javax.swing.JLabel lNumero;
-    private javax.swing.JLabel lPContacto;
-    private javax.swing.JLabel lPContacto1;
     private javax.swing.JLabel lPContacto2;
     private javax.swing.JLabel lPorCiento;
     private javax.swing.JLabel lServicioFMadDestino;
