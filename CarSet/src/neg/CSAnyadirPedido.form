@@ -223,7 +223,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
                               <Component id="jButtonGuardar" min="-2" pref="121" max="-2" attributes="0"/>
-                              <EmptySpace pref="336" max="32767" attributes="0"/>
+                              <EmptySpace pref="339" max="32767" attributes="0"/>
                               <Component id="jButtonCancelar1" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -250,22 +250,12 @@
                                       <Component id="jComboBoxServicio" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="1">
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Component id="lServicioFMad" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxServicioFMad" pref="145" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Component id="lSEspecial" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxServicioEspecial" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jTextDiasCampa" min="-2" pref="39" max="-2" attributes="1"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jComboBoxServicioFMad" min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -274,6 +264,10 @@
                                       <Component id="lMatricula" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jTextMatricula" min="-2" pref="96" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                       <Component id="lMarca" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -282,6 +276,20 @@
                                       <Component id="lModelo" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jTextModelo" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="lServicioFMad1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jComboBoxServicioFMad1" pref="105" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Component id="lSEspecial" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jComboBoxServicioEspecial" min="-2" pref="132" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Component id="jTextDiasCampa" min="-2" pref="33" max="-2" attributes="1"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -472,13 +480,14 @@
                               <Component id="jComboBoxServicio" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lServicio" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBoxServicioFMad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lServicioFMad" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxServicioFMad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextDiasCampa" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboBoxServicioEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lServicioFMad1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jComboBoxServicioFMad1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lSEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -998,7 +1007,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="    * Campos obligatorios"/>
+        <Property name="text" type="java.lang.String" value="   * Campos obligatorios"/>
         <Property name="name" type="java.lang.String" value="jLabel9" noResource="true"/>
       </Properties>
     </Component>
@@ -1106,10 +1115,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lServicio">
       <Properties>
+        <Property name="font" type="java.awt.Font" noResource="true" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Servicio"/>
+        <Property name="text" type="java.lang.String" value="Servicios"/>
         <Property name="name" type="java.lang.String" value="lServicio" noResource="true"/>
       </Properties>
     </Component>
@@ -1138,7 +1150,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Servicio Fuera de Madrid"/>
+        <Property name="text" type="java.lang.String" value="F.M. Origen"/>
         <Property name="name" type="java.lang.String" value="lServicioFMad" noResource="true"/>
       </Properties>
     </Component>
@@ -1237,6 +1249,9 @@
         <Property name="selectedIndex" type="int" value="2"/>
         <Property name="name" type="java.lang.String" value="jComboBoxSoporte" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxSoporteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lEstado3">
       <Properties>
@@ -1250,7 +1265,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxEstado">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="cc" type="rgb"/>
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -1683,15 +1698,6 @@
         <Property name="name" type="java.lang.String" value="jLabel24" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel25">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="cc" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="*"/>
-        <Property name="name" type="java.lang.String" value="jLabel25" noResource="true"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lHoraRealOrigen">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1745,7 +1751,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Servicio especial"/>
+        <Property name="text" type="java.lang.String" value="Especial"/>
         <Property name="name" type="java.lang.String" value="lSEspecial" noResource="true"/>
       </Properties>
     </Component>
@@ -1758,15 +1764,24 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="10">
             <StringItem index="0" value="Selecciona"/>
-            <StringItem index="1" value="Pre_ITV"/>
-            <StringItem index="2" value="Lavado"/>
-            <StringItem index="3" value="Taller"/>
+            <StringItem index="1" value="ITV"/>
+            <StringItem index="2" value="Pre_ITV"/>
+            <StringItem index="3" value="Chequeo"/>
+            <StringItem index="4" value="Reacondicionamiento"/>
+            <StringItem index="5" value="Lavado Exterior"/>
+            <StringItem index="6" value="Lavado Interior y Exterior"/>
+            <StringItem index="7" value="Lavado Completo"/>
+            <StringItem index="8" value="Lavado Extra"/>
+            <StringItem index="9" value="Lavado Higienizado"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxServicioEspecial" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxServicioEspecialActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBoxIdaVuelta">
       <Properties>
@@ -1782,7 +1797,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="d&#xed;as campa"/>
+        <Property name="text" type="java.lang.String" value="D&#xed;as campa"/>
         <Property name="name" type="java.lang.String" value="jLabel15" noResource="true"/>
       </Properties>
     </Component>
@@ -1829,6 +1844,81 @@
           <Color blue="4" green="10" red="aa" type="rgb"/>
         </Property>
         <Property name="name" type="java.lang.String" value="jSeparator4" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lServicioFMad1">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="F.M. Destino"/>
+        <Property name="name" type="java.lang.String" value="lServicioFMad1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxServicioFMad1">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="53">
+            <StringItem index="0" value="Selecciona"/>
+            <StringItem index="1" value="&#xc1;LAVA"/>
+            <StringItem index="2" value="ALBACETE"/>
+            <StringItem index="3" value="ALICANTE"/>
+            <StringItem index="4" value="ALMER&#xed;A"/>
+            <StringItem index="5" value="ASTURIAS"/>
+            <StringItem index="6" value="&#xc1;VILA"/>
+            <StringItem index="7" value="BADAJOZ"/>
+            <StringItem index="8" value="BARCELONA"/>
+            <StringItem index="9" value="BURGOS"/>
+            <StringItem index="10" value="C&#xc1;CERES"/>
+            <StringItem index="11" value="C&#xc1;DIZ"/>
+            <StringItem index="12" value="CANTABRIA"/>
+            <StringItem index="13" value="CASTELL&#xd3;N"/>
+            <StringItem index="14" value="CEUTA"/>
+            <StringItem index="15" value="CIUDAD REAL"/>
+            <StringItem index="16" value="CORDOBA"/>
+            <StringItem index="17" value="CORU&#xd1;A, A"/>
+            <StringItem index="18" value="CUENCA"/>
+            <StringItem index="19" value="GIRONA"/>
+            <StringItem index="20" value="GRANADA"/>
+            <StringItem index="21" value="GUADALAJARA"/>
+            <StringItem index="22" value="GUIPUZCOA"/>
+            <StringItem index="23" value="HUELVA"/>
+            <StringItem index="24" value="HUESCA"/>
+            <StringItem index="25" value="ILLES BALEARS"/>
+            <StringItem index="26" value="JA&#xc9;N"/>
+            <StringItem index="27" value="LE&#xd3;N"/>
+            <StringItem index="28" value="LLEIDA"/>
+            <StringItem index="29" value="LUGO"/>
+            <StringItem index="30" value="MADRID"/>
+            <StringItem index="31" value="MALAGA"/>
+            <StringItem index="32" value="MELILLA"/>
+            <StringItem index="33" value="MURCIA"/>
+            <StringItem index="34" value="NAVARRA"/>
+            <StringItem index="35" value="OURENSE"/>
+            <StringItem index="36" value="PALENCIA"/>
+            <StringItem index="37" value="PALMAS, LAS"/>
+            <StringItem index="38" value="PONTEVEDRA"/>
+            <StringItem index="39" value="RIOJA, LA"/>
+            <StringItem index="40" value="SALAMANCA"/>
+            <StringItem index="41" value="SANTA CRUZ DE TENERIFE"/>
+            <StringItem index="42" value="SEGOVIA"/>
+            <StringItem index="43" value="SEVILLA"/>
+            <StringItem index="44" value="SORIA"/>
+            <StringItem index="45" value="TARRAGONA"/>
+            <StringItem index="46" value="TERUEL"/>
+            <StringItem index="47" value="TOLEDO"/>
+            <StringItem index="48" value="VALENCIA"/>
+            <StringItem index="49" value="VALLADOLID"/>
+            <StringItem index="50" value="VIZCAYA"/>
+            <StringItem index="51" value="ZAMORA"/>
+            <StringItem index="52" value="ZARAGOZA"/>
+          </StringArray>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="jComboBoxServicioFMad1" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
