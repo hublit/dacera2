@@ -305,6 +305,7 @@ CREATE TABLE IF NOT EXISTS `pr_proveedores` (
   `pr_incremento_ta` double default '0',
   `pr_num_cuenta` varchar(30) collate utf8_spanish_ci default NULL,
   `pr_estado` varchar(50) collate utf8_spanish_ci NOT NULL default 'Activo',
+  `pr_dia_factura` varchar(15) collate utf8_spanish_ci default NULL,
   PRIMARY KEY  (`pr_id`),
   KEY `fp_id` (`fp_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -313,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `pr_proveedores` (
 -- Volcar la base de datos para la tabla `pr_proveedores`
 --
 -- --------------------------------------------------------
-INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, fp_id, pr_num_cuenta,pr_estado) VALUES ('PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','910000000', '', '', '','30 días FF','', '1', '','Activo');
+INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES ('PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','910000000', '', '', '','30 días FF','', '1', '','Activo', '30');
 
 --
 -- Estructura de tabla para la tabla `tc_tarifas_clientes`
