@@ -69,6 +69,7 @@ public class CSEditarTarifaCliente extends JPanel
         {
             if (this.getComponents()[k] != jComboBoxServicio &&
                 this.getComponents()[k] != jComboBoxServicioFMad &&
+                this.getComponents()[k] != jComboBoxServicioFMadDestino &&
                 this.getComponents()[k] != jComboBoxSoporte)
             {
                 this.getComponents()[k].addKeyListener(l);
@@ -104,7 +105,7 @@ public class CSEditarTarifaCliente extends JPanel
         jComboBoxServicio = new javax.swing.JComboBox();
         jComboBoxSoporte = new javax.swing.JComboBox();
         lServicioFMadDestino = new javax.swing.JLabel();
-        jComboBoxServicioFMad = new javax.swing.JComboBox();
+        jComboBoxServicioFMadDestino = new javax.swing.JComboBox();
         jTextTarifa = new javax.swing.JTextField();
         lTarifa = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -121,7 +122,7 @@ public class CSEditarTarifaCliente extends JPanel
         jTextId = new javax.swing.JTextField();
         lNumero = new javax.swing.JLabel();
         jLabelO5 = new javax.swing.JLabel();
-        jComboBoxServicioFMad1 = new javax.swing.JComboBox();
+        jComboBoxServicioFMad = new javax.swing.JComboBox();
         lPContacto2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -189,16 +190,17 @@ public class CSEditarTarifaCliente extends JPanel
         lServicioFMadDestino.setText("Fuera de Madrid Destino");
         lServicioFMadDestino.setName("lServicioFMadDestino"); // NOI18N
 
-        jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMad.setEnabled(false);
-        jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
+        jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxServicioFMadDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
+        jComboBoxServicioFMadDestino.setEnabled(false);
+        jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
 
         jTextTarifa.setName("jTextTarifa"); // NOI18N
 
+        lTarifa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lTarifa.setForeground(new java.awt.Color(0, 0, 100));
-        lTarifa.setText("Tarifa");
+        lTarifa.setText("TARIFA");
         lTarifa.setName("lTarifa"); // NOI18N
 
         jSeparator1.setForeground(new java.awt.Color(170, 16, 4));
@@ -254,11 +256,11 @@ public class CSEditarTarifaCliente extends JPanel
         jLabelO5.setText("*");
         jLabelO5.setName("jLabelO5"); // NOI18N
 
-        jComboBoxServicioFMad1.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxServicioFMad1.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicioFMad1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMad1.setEnabled(false);
-        jComboBoxServicioFMad1.setName("jComboBoxServicioFMad1"); // NOI18N
+        jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
+        jComboBoxServicioFMad.setEnabled(false);
+        jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
 
         lPContacto2.setFont(new java.awt.Font("Tahoma", 1, 11));
         lPContacto2.setForeground(new java.awt.Color(170, 16, 4));
@@ -285,11 +287,11 @@ public class CSEditarTarifaCliente extends JPanel
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(706, Short.MAX_VALUE)
+                        .addContainerGap()
                         .addComponent(jLabelO6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lTarifa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(160, 160, 160)
@@ -297,11 +299,11 @@ public class CSEditarTarifaCliente extends JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addComponent(lServicioFMadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxServicioFMad1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(lServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxServicioFMad, 0, 110, Short.MAX_VALUE)))
+                        .addComponent(jComboBoxServicioFMadDestino, 0, 110, Short.MAX_VALUE)))
                 .addGap(31, 31, 31))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -393,11 +395,11 @@ public class CSEditarTarifaCliente extends JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lServicioFMadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxServicioFMad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -433,12 +435,12 @@ public class CSEditarTarifaCliente extends JPanel
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelO6)
                     .addComponent(jTextTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lTarifa)
                     .addComponent(lIncremento)
                     .addComponent(jTextIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lPorCiento))
+                    .addComponent(lPorCiento)
+                    .addComponent(lTarifa)
+                    .addComponent(jLabelO6))
                 .addGap(236, 236, 236)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -459,8 +461,10 @@ public class CSEditarTarifaCliente extends JPanel
             int fueraM=0;
             String fechaDesde = "";
             String fechaHasta = "";
+            String id = new String(jTextId.getText());
             String servicio = new String(jComboBoxServicio.getSelectedItem().toString());
             String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
+            String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
             String soporte = new String(jComboBoxSoporte.getSelectedItem().toString());
             boolean fueraMad = new Boolean(jCheckBoxFMadrid.getText());
             String incremento = new String(jTextIncremento.getText());
@@ -529,9 +533,10 @@ public class CSEditarTarifaCliente extends JPanel
                    tarifaN = tarifaN + ((tarifaN * incrementoN) / 100.0);
                 }*/
 
-                String query = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicio+"', tc_soporte='"+soporte+"', " +
-                               "tc_fecha_desde = '"+fechaDesde+"', tc_fecha_hasta='"+fechaHasta+"', " +
-                               "tc_fuera_mad='"+fueraM+"', tc_incremento='"+incremento+"', tc_tarifa="+tarifaN;
+                String query = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicio+"', tc_servicio_destino ='"+servicioFMadDestino+"', " +
+                               "tc_soporte='"+soporte+"', tc_fecha_desde = '"+fechaDesde+"', tc_fecha_hasta='"+fechaHasta+"', " +
+                               "tc_fuera_mad='"+fueraM+"', tc_incremento='"+incremento+"', tc_tarifa="+tarifaN+""+
+                               "WHERE tc_id = "+id+"";
 
                 System.out.println(query);
                 datos = new DbConnection();
@@ -564,11 +569,13 @@ public class CSEditarTarifaCliente extends JPanel
         {
             jComboBoxServicio.setEnabled(false);
             jComboBoxServicioFMad.setEnabled(true);
+            jComboBoxServicioFMadDestino.setEnabled(true);
         }
         else
         {
             jComboBoxServicio.setEnabled(true);
             jComboBoxServicioFMad.setEnabled(false);
+            jComboBoxServicioFMadDestino.setEnabled(false);
         }
 
     }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
@@ -584,7 +591,7 @@ public class CSEditarTarifaCliente extends JPanel
     private javax.swing.JCheckBox jCheckBoxFMadrid;
     private javax.swing.JComboBox jComboBoxServicio;
     private javax.swing.JComboBox jComboBoxServicioFMad;
-    private javax.swing.JComboBox jComboBoxServicioFMad1;
+    private javax.swing.JComboBox jComboBoxServicioFMadDestino;
     private javax.swing.JComboBox jComboBoxSoporte;
     private com.toedter.calendar.JDateChooser jDateDesde;
     private com.toedter.calendar.JDateChooser jDateHasta;
@@ -646,7 +653,7 @@ public class CSEditarTarifaCliente extends JPanel
                     jCheckBoxFMadrid.setEnabled(false);
                     jComboBoxServicioFMad.setSelectedItem(rs.getString("tc_servicio"));
                 }
-
+                jComboBoxServicioFMadDestino.setSelectedItem("tc_servicio_destino");
                 jComboBoxSoporte.setSelectedItem(rs.getString("tc_soporte"));
                 jDateDesde.setDate(rs.getDate("tc_fecha_desde"));
                 jDateHasta.setDate(rs.getDate("tc_fecha_hasta"));

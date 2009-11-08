@@ -68,6 +68,7 @@ public class CSEditarTarifaProveedor extends JPanel
         for (int k = 0; k < this.getComponents().length; k ++)
         {
             if (this.getComponents()[k] != jComboBoxServicio &&
+                this.getComponents()[k] != jComboBoxServicioFMadDestino &&
                 this.getComponents()[k] != jComboBoxServicioFMad &&
                 this.getComponents()[k] != jComboBoxSoporte)
             {
@@ -92,34 +93,37 @@ public class CSEditarTarifaProveedor extends JPanel
 
         jButtonModificar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        lFechaDesde = new javax.swing.JLabel();
-        lFuMadrid = new javax.swing.JLabel();
-        lServicio = new javax.swing.JLabel();
-        lSoporte = new javax.swing.JLabel();
-        jCheckBoxFMadrid = new javax.swing.JCheckBox();
-        lFechaHasta = new javax.swing.JLabel();
-        jComboBoxServicio = new javax.swing.JComboBox();
-        jComboBoxSoporte = new javax.swing.JComboBox();
-        lServicioFMad = new javax.swing.JLabel();
-        jComboBoxServicioFMad = new javax.swing.JComboBox();
-        jTextTarifa = new javax.swing.JTextField();
-        lTarifa = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jDateDesde = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
+        jTextIncremento = new javax.swing.JTextField();
         jDateHasta = new com.toedter.calendar.JDateChooser();
         lIncremento = new javax.swing.JLabel();
-        jTextIncremento = new javax.swing.JTextField();
-        jLabelO = new javax.swing.JLabel();
-        jLabelO1 = new javax.swing.JLabel();
-        jLabelO2 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        lServicioFMadOrigen = new javax.swing.JLabel();
+        jDateDesde = new com.toedter.calendar.JDateChooser();
+        jTextTarifa = new javax.swing.JTextField();
+        lTarifa = new javax.swing.JLabel();
+        lServicioFMadDestino = new javax.swing.JLabel();
+        jComboBoxServicioFMadDestino = new javax.swing.JComboBox();
         jLabelO3 = new javax.swing.JLabel();
+        jLabelO = new javax.swing.JLabel();
         jLabelO4 = new javax.swing.JLabel();
         jLabelO6 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         lPorCiento = new javax.swing.JLabel();
+        jLabelO5 = new javax.swing.JLabel();
+        jComboBoxServicioFMad = new javax.swing.JComboBox();
+        jComboBoxSoporte = new javax.swing.JComboBox();
+        lPContacto2 = new javax.swing.JLabel();
+        jCheckBoxFMadrid = new javax.swing.JCheckBox();
+        lSoporte = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        lFuMadrid = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        lFechaDesde = new javax.swing.JLabel();
+        jComboBoxServicio = new javax.swing.JComboBox();
+        lFechaHasta = new javax.swing.JLabel();
         jTextId = new javax.swing.JTextField();
         lNumero = new javax.swing.JLabel();
-        jLabelO5 = new javax.swing.JLabel();
 
         setForeground(new java.awt.Color(0, 0, 100));
         setPreferredSize(new java.awt.Dimension(550, 322));
@@ -141,21 +145,88 @@ public class CSEditarTarifaProveedor extends JPanel
             }
         });
 
-        lFechaDesde.setForeground(new java.awt.Color(0, 0, 100));
-        lFechaDesde.setText("Fecha Vigencia Desde");
-        lFechaDesde.setName("lFechaDesde"); // NOI18N
+        jSeparator1.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator1.setName("jSeparator1"); // NOI18N
 
-        lFuMadrid.setForeground(new java.awt.Color(0, 0, 100));
-        lFuMadrid.setText("Fuera de Madrid");
-        lFuMadrid.setName("lFuMadrid"); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel1.setText("* Campos obligatorios");
+        jLabel1.setName("jLabel1"); // NOI18N
 
-        lServicio.setForeground(new java.awt.Color(0, 0, 100));
-        lServicio.setText("Servicio");
-        lServicio.setName("lServicio"); // NOI18N
+        jTextIncremento.setEditable(false);
+        jTextIncremento.setName("jTextIncremento"); // NOI18N
 
-        lSoporte.setForeground(new java.awt.Color(0, 0, 100));
-        lSoporte.setText("Soporte");
-        lSoporte.setName("lSoporte"); // NOI18N
+        jDateHasta.setDateFormatString("dd-MM-yyyy");
+        jDateHasta.setName("jDateHasta"); // NOI18N
+
+        lIncremento.setForeground(new java.awt.Color(0, 0, 100));
+        lIncremento.setText("    Incremento");
+        lIncremento.setName("lIncremento"); // NOI18N
+
+        jSeparator4.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator4.setName("jSeparator4"); // NOI18N
+
+        lServicioFMadOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lServicioFMadOrigen.setText("Fuera de Madrid Origen");
+        lServicioFMadOrigen.setName("lServicioFMadOrigen"); // NOI18N
+
+        jDateDesde.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateDesde.setName("jDateDesde"); // NOI18N
+
+        jTextTarifa.setName("jTextTarifa"); // NOI18N
+
+        lTarifa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lTarifa.setForeground(new java.awt.Color(0, 0, 100));
+        lTarifa.setText("TARIFA");
+        lTarifa.setName("lTarifa"); // NOI18N
+
+        lServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lServicioFMadDestino.setText("Fuera de Madrid Destino");
+        lServicioFMadDestino.setName("lServicioFMadDestino"); // NOI18N
+
+        jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxServicioFMadDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
+        jComboBoxServicioFMadDestino.setEnabled(false);
+        jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
+
+        jLabelO3.setForeground(new java.awt.Color(204, 0, 0));
+        jLabelO3.setText("*");
+        jLabelO3.setName("jLabelO3"); // NOI18N
+
+        jLabelO.setForeground(new java.awt.Color(204, 0, 0));
+        jLabelO.setText("*");
+        jLabelO.setName("jLabelO"); // NOI18N
+
+        jLabelO4.setForeground(new java.awt.Color(204, 0, 0));
+        jLabelO4.setText("*");
+        jLabelO4.setName("jLabelO4"); // NOI18N
+
+        jLabelO6.setForeground(new java.awt.Color(204, 0, 0));
+        jLabelO6.setText("*");
+        jLabelO6.setName("jLabelO6"); // NOI18N
+
+        lPorCiento.setText("%");
+        lPorCiento.setName("lPorCiento"); // NOI18N
+
+        jLabelO5.setForeground(new java.awt.Color(204, 0, 0));
+        jLabelO5.setText("*");
+        jLabelO5.setName("jLabelO5"); // NOI18N
+
+        jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
+        jComboBoxServicioFMad.setEnabled(false);
+        jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
+
+        jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxSoporte.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Grúa", "Camión completo", "Conductor", "Tren" }));
+        jComboBoxSoporte.setName("jComboBoxSoporte"); // NOI18N
+
+        lPContacto2.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lPContacto2.setForeground(new java.awt.Color(170, 16, 4));
+        lPContacto2.setText("SERVICOS");
+        lPContacto2.setName("lPContacto2"); // NOI18N
 
         jCheckBoxFMadrid.setAlignmentX(0.5F);
         jCheckBoxFMadrid.setMaximumSize(new java.awt.Dimension(45, 45));
@@ -168,92 +239,32 @@ public class CSEditarTarifaProveedor extends JPanel
             }
         });
 
-        lFechaHasta.setForeground(new java.awt.Color(0, 0, 100));
-        lFechaHasta.setText("Fecha Vigencia Hasta");
-        lFechaHasta.setName("lFechaHasta"); // NOI18N
+        lSoporte.setForeground(new java.awt.Color(0, 0, 100));
+        lSoporte.setText("Soporte");
+        lSoporte.setName("lSoporte"); // NOI18N
+
+        jSeparator3.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator3.setName("jSeparator3"); // NOI18N
+
+        lFuMadrid.setForeground(new java.awt.Color(0, 0, 100));
+        lFuMadrid.setText("Fuera de Madrid");
+        lFuMadrid.setName("lFuMadrid"); // NOI18N
+
+        jSeparator2.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator2.setName("jSeparator2"); // NOI18N
+
+        lFechaDesde.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaDesde.setText("Fecha Vigencia Desde");
+        lFechaDesde.setName("lFechaDesde"); // NOI18N
 
         jComboBoxServicio.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicio.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Urbano", "Interurbano", "Provincial", "Urbano ITV" }));
         jComboBoxServicio.setName("jComboBoxServicio"); // NOI18N
 
-        jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxSoporte.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Grúa", "Camión completo", "Conductor", "Tren", "Custodia" }));
-        jComboBoxSoporte.setName("jComboBoxSoporte"); // NOI18N
-        jComboBoxSoporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxSoporteActionPerformed(evt);
-            }
-        });
-
-        lServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
-        lServicioFMad.setText("Servicio Fuera de Madrid");
-        lServicioFMad.setName("lServicioFMad"); // NOI18N
-
-        jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMad.setEnabled(false);
-        jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
-        jComboBoxServicioFMad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxServicioFMadActionPerformed(evt);
-            }
-        });
-
-        jTextTarifa.setName("jTextTarifa"); // NOI18N
-
-        lTarifa.setForeground(new java.awt.Color(0, 0, 100));
-        lTarifa.setText("Tarifa");
-        lTarifa.setName("lTarifa"); // NOI18N
-
-        jSeparator1.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator1.setName("jSeparator1"); // NOI18N
-
-        jDateDesde.setDateFormatString("dd-MM-yyyy"); // NOI18N
-        jDateDesde.setName("jDateDesde"); // NOI18N
-
-        jDateHasta.setDateFormatString("dd-MM-yyyy");
-        jDateHasta.setName("jDateHasta"); // NOI18N
-
-        lIncremento.setForeground(new java.awt.Color(0, 0, 100));
-        lIncremento.setText("    Incremento");
-        lIncremento.setName("lIncremento"); // NOI18N
-
-        jTextIncremento.setEditable(false);
-        jTextIncremento.setName("jTextIncremento"); // NOI18N
-
-        jLabelO.setForeground(new java.awt.Color(204, 0, 0));
-        jLabelO.setText("*");
-        jLabelO.setName("jLabelO"); // NOI18N
-
-        jLabelO1.setForeground(new java.awt.Color(204, 0, 0));
-        jLabelO1.setText("*");
-        jLabelO1.setName("jLabelO1"); // NOI18N
-
-        jLabelO2.setForeground(new java.awt.Color(204, 0, 0));
-        jLabelO2.setText("*");
-        jLabelO2.setName("jLabelO2"); // NOI18N
-
-        jLabelO3.setForeground(new java.awt.Color(204, 0, 0));
-        jLabelO3.setText("*");
-        jLabelO3.setName("jLabelO3"); // NOI18N
-
-        jLabelO4.setForeground(new java.awt.Color(204, 0, 0));
-        jLabelO4.setText("*");
-        jLabelO4.setName("jLabelO4"); // NOI18N
-
-        jLabelO6.setForeground(new java.awt.Color(204, 0, 0));
-        jLabelO6.setText("*");
-        jLabelO6.setName("jLabelO6"); // NOI18N
-
-        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel1.setText("* Campos obligatorios");
-        jLabel1.setName("jLabel1"); // NOI18N
-
-        lPorCiento.setText("%");
-        lPorCiento.setName("lPorCiento"); // NOI18N
+        lFechaHasta.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaHasta.setText("Fecha Vigencia Hasta");
+        lFechaHasta.setName("lFechaHasta"); // NOI18N
 
         jTextId.setEditable(false);
         jTextId.setEnabled(false);
@@ -262,150 +273,170 @@ public class CSEditarTarifaProveedor extends JPanel
         jTextId.setOpaque(false);
 
         lNumero.setForeground(new java.awt.Color(0, 0, 100));
-        lNumero.setText("    Número de tarifa");
+        lNumero.setText("    Número de tarifa  TC/");
         lNumero.setName("lNumero"); // NOI18N
-
-        jLabelO5.setForeground(new java.awt.Color(204, 0, 0));
-        jLabelO5.setText("*");
-        jLabelO5.setName("jLabelO5"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(530, Short.MAX_VALUE)
-                .addComponent(jLabelO2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lServicioFMad)
-                .addGap(126, 126, 126)
-                .addComponent(jLabelO, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(356, 356, 356))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButtonModificar, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)))
-                .addGap(46, 46, 46))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addContainerGap(740, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138)
+                        .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(lServicioFMadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(lServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxServicioFMadDestino, 0, 116, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lPContacto2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lNumero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
+                                .addGap(3, 3, 3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelO, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lFuMadrid)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(641, 641, 641))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
+                        .addGap(3, 3, 3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelO3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lSoporte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addComponent(jLabelO4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lFechaDesde)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(jLabelO5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(lIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lPorCiento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 511, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 525, Short.MAX_VALUE)
                         .addComponent(jLabelO6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lTarifa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lNumero)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextId))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelO3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lSoporte)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelO1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lFuMadrid)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabelO4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lFechaDesde)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                                .addComponent(jLabelO5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lServicio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(247, 247, 247)
-                                .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(54, 54, 54))
+                        .addComponent(jTextTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lNumero))
+                    .addComponent(lNumero)
+                    .addComponent(jTextId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(lPContacto2)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lServicioFMadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lFuMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelO))))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
+                                .addGap(1, 1, 1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelO2)
-                                    .addComponent(jLabelO1)
-                                    .addComponent(lFuMadrid)
-                                    .addComponent(lServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabelO3)
+                                    .addComponent(lFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelO4)
+                                    .addComponent(lSoporte)
+                                    .addComponent(jComboBoxSoporte)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabelO))))
+                                .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lFechaHasta, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                        .addComponent(jLabelO5))
-                    .addComponent(jDateHasta, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lFechaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                        .addComponent(jLabelO4)
-                        .addComponent(lSoporte)
-                        .addComponent(jLabelO3)
-                        .addComponent(jComboBoxSoporte))
-                    .addComponent(jDateDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(52, 52, 52)
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelO5)
+                                .addComponent(lFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lTarifa)
                     .addComponent(jLabelO6)
-                    .addComponent(lIncremento)
+                    .addComponent(jTextIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lPorCiento)
-                    .addComponent(jTextIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(232, 232, 232)
+                    .addComponent(lIncremento))
+                .addGap(210, 210, 210)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jButtonModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonModificar)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButtonCancelar))
-                .addGap(43, 43, 43))
+                .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -414,9 +445,11 @@ public class CSEditarTarifaProveedor extends JPanel
             int fueraM=0;
             String fechaDesde = "";
             String fechaHasta = "";
+            String id = new String(jTextId.getText());
             String servicio = new String(jComboBoxServicio.getSelectedItem().toString());
             String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
-            String soporte = new String(jComboBoxServicio.getSelectedItem().toString());
+            String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
+            String soporte = new String(jComboBoxSoporte.getSelectedItem().toString());
             boolean fueraMad = new Boolean(jCheckBoxFMadrid.getText());
             String incremento = new String(jTextIncremento.getText());
             String tarifa = new String(jTextTarifa.getText());
@@ -483,9 +516,10 @@ public class CSEditarTarifaProveedor extends JPanel
                     incremento = "0";
                 }
 
-                String query = "UPDATE tp_tarifas_proveedores SET tp_servicio ='"+servicio+"', tp_soporte='"+soporte+"', " +
-                               "tp_fecha_desde = '"+fechaDesde+"', tp_fecha_hasta='"+fechaHasta+"', " +
-                               "tp_fuera_mad='"+fueraM+"', tp_incremento='"+incremento+"', tp_tarifa='"+tarifaN+"'";
+                String query = "UPDATE tp_tarifas_proveedores SET tp_servicio ='"+servicioAux+"',tp_servicio_destino ='"+servicioFMadDestino+"', "+
+                               "tp_soporte='"+soporte+"', tp_fecha_desde = '"+fechaDesde+"', tp_fecha_hasta='"+fechaHasta+"', " +
+                               "tp_fuera_mad='"+fueraM+"', tp_incremento='"+incremento+"', tp_tarifa='"+tarifaN+"' " +
+                               "WHERE tp_id = "+id+"";
 
                 System.out.println(query);
                 datos = new DbConnection();
@@ -512,32 +546,22 @@ public class CSEditarTarifaProveedor extends JPanel
             }
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
-    private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
-        // TODO add your handling code here:
-        if (jCheckBoxFMadrid.isSelected())
-        {
-            jComboBoxServicio.setEnabled(false);
-            jComboBoxServicioFMad.setEnabled(true);
-        }
-        else
-        {
-            jComboBoxServicio.setEnabled(true);
-            jComboBoxServicioFMad.setEnabled(false);
-        }
-
-    }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
-
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.EditarTarifaProveedor.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jComboBoxServicioFMadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServicioFMadActionPerformed
+    private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxServicioFMadActionPerformed
-
-    private void jComboBoxSoporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSoporteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxSoporteActionPerformed
+        if (jCheckBoxFMadrid.isSelected()) {
+            jComboBoxServicio.setEnabled(false);
+            jComboBoxServicioFMad.setEnabled(true);
+            jComboBoxServicioFMadDestino.setEnabled(true);
+        } else {
+            jComboBoxServicio.setEnabled(true);
+            jComboBoxServicioFMad.setEnabled(false);
+            jComboBoxServicioFMadDestino.setEnabled(false);
+        }
+    }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -546,18 +570,20 @@ public class CSEditarTarifaProveedor extends JPanel
     private javax.swing.JCheckBox jCheckBoxFMadrid;
     private javax.swing.JComboBox jComboBoxServicio;
     private javax.swing.JComboBox jComboBoxServicioFMad;
+    private javax.swing.JComboBox jComboBoxServicioFMadDestino;
     private javax.swing.JComboBox jComboBoxSoporte;
     private com.toedter.calendar.JDateChooser jDateDesde;
     private com.toedter.calendar.JDateChooser jDateHasta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelO;
-    private javax.swing.JLabel jLabelO1;
-    private javax.swing.JLabel jLabelO2;
     private javax.swing.JLabel jLabelO3;
     private javax.swing.JLabel jLabelO4;
     private javax.swing.JLabel jLabelO5;
     private javax.swing.JLabel jLabelO6;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField jTextId;
     private javax.swing.JTextField jTextIncremento;
     private javax.swing.JTextField jTextTarifa;
@@ -566,9 +592,10 @@ public class CSEditarTarifaProveedor extends JPanel
     private javax.swing.JLabel lFuMadrid;
     private javax.swing.JLabel lIncremento;
     private javax.swing.JLabel lNumero;
+    private javax.swing.JLabel lPContacto2;
     private javax.swing.JLabel lPorCiento;
-    private javax.swing.JLabel lServicio;
-    private javax.swing.JLabel lServicioFMad;
+    private javax.swing.JLabel lServicioFMadDestino;
+    private javax.swing.JLabel lServicioFMadOrigen;
     private javax.swing.JLabel lSoporte;
     private javax.swing.JLabel lTarifa;
     // End of variables declaration//GEN-END:variables
@@ -605,7 +632,7 @@ public class CSEditarTarifaProveedor extends JPanel
                     jCheckBoxFMadrid.setEnabled(false);
                     jComboBoxServicioFMad.setSelectedItem(rs.getString("tp_servicio"));
                 }
-
+                jComboBoxServicioFMadDestino.setSelectedItem(rs.getString("tp_servicio_destino"));
                 jComboBoxSoporte.setSelectedItem(rs.getString("tp_soporte"));
                 jDateDesde.setDate(rs.getDate("tp_fecha_desde"));
                 jDateHasta.setDate(rs.getDate("tp_fecha_hasta"));
