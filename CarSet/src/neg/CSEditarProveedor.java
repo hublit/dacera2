@@ -149,6 +149,8 @@ public class CSEditarProveedor extends javax.swing.JPanel
         jTextEntidad = new javax.swing.JTextField();
         jTextSucursal = new javax.swing.JTextField();
         jTextDigito = new javax.swing.JTextField();
+        jTextDiasPlazo = new javax.swing.JTextField();
+        lDiasPlazo = new javax.swing.JLabel();
 
         jButtonModificar.setText("Modificar");
         jButtonModificar.setName("jButtonModificar"); // NOI18N
@@ -441,6 +443,13 @@ public class CSEditarProveedor extends javax.swing.JPanel
         jTextDigito.setEnabled(false);
         jTextDigito.setName("jTextDigito"); // NOI18N
 
+        jTextDiasPlazo.setEnabled(false);
+        jTextDiasPlazo.setName("jTextDiasPlazo"); // NOI18N
+
+        lDiasPlazo.setForeground(new java.awt.Color(0, 0, 100));
+        lDiasPlazo.setText("Días");
+        lDiasPlazo.setName("lDiasPlazo"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -465,17 +474,20 @@ public class CSEditarProveedor extends javax.swing.JPanel
                                     .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lDiasPlazo)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                                     .addComponent(lFPago)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButtonSEspeciales)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addComponent(jButtonSEspeciales)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jCheckIncremento)
@@ -484,7 +496,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButtonTarifas, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                                    .addComponent(jButtonTarifas, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(lNumCuenta)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -638,8 +650,10 @@ public class CSEditarProveedor extends javax.swing.JPanel
                     .addComponent(jTextDigito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lFPago)
-                    .addComponent(lPlazo))
+                    .addComponent(lPlazo)
+                    .addComponent(lDiasPlazo)
+                    .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lFPago))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lEstado)
@@ -661,16 +675,13 @@ public class CSEditarProveedor extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonModificar)
                         .addGap(5, 5, 5)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonCancelar)
-                            .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonCancelar)
+                        .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -701,6 +712,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
                 numCuenta = new String(entidad+"/"+sucursal+"/"+digito+"/"+jTextNumCuenta.getText());
         }
         String plazo = new String(jComboBoxFPago.getSelectedItem().toString());
+        String diasPlazo = new String(jTextDiasPlazo.getText().toString());
         String fPago = new String(Integer.valueOf(jComboBoxFPago.getSelectedIndex()+1).toString());
         String estado = new String(jComboBoxEstado.getSelectedItem().toString());
 
@@ -722,8 +734,10 @@ public class CSEditarProveedor extends javax.swing.JPanel
             ValidarFormatos(Utilidades.formatoFax(fax));
         } else if(!Utilidades.formatoCorreo(email).equals("OK")) {
             ValidarFormatos(Utilidades.formatoCorreo(email));
-        } 
-        else
+        }else if(!Utilidades.formatoNumerico(diasPlazo).equals("OK"))
+        {
+                ValidarFormatos(Utilidades.formatoNumerico(diasPlazo));
+        }else
         {
             String query = "UPDATE pr_proveedores SET pr_nombre_fiscal = '"+nombre+"', " +
                             "pr_DNI_CIF = '"+dni+"', pr_regimen = '"+regimen+"', " +
@@ -731,7 +745,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
                             "pr_cod_postal = '"+codPostal+"', pr_poblacion = '"+poblacion+"' , " +
                             "pr_provincia = '"+provincia+"', pr_telefono = '"+telefono+"', " +
                             "pr_telefono2='"+telefono2+"', pr_fax = '"+fax+"', pr_email = '"+email+"', " +
-                            "pr_plazo = '"+plazo+"', fp_id = '"+fPago+"', pr_num_cuenta = '"+numCuenta+"' " +
+                            "pr_plazo = '"+plazo+"',  cl_dias_plazo='"+diasPlazo+"', fp_id = '"+fPago+"', pr_num_cuenta = '"+numCuenta+"' " +
                             "WHERE pr_id = "+numero+"";
 
             System.out.println(query);
@@ -902,6 +916,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTextCodPostal;
     private javax.swing.JTextField jTextDNI;
+    private javax.swing.JTextField jTextDiasPlazo;
     private javax.swing.JTextField jTextDigito;
     private javax.swing.JTextField jTextDireccion;
     private javax.swing.JTextField jTextEmail;
@@ -917,6 +932,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
     private javax.swing.JTextField jTextTelefono2;
     private javax.swing.JLabel lCodPostal;
     private javax.swing.JLabel lDNI;
+    private javax.swing.JLabel lDiasPlazo;
     private javax.swing.JLabel lDireccion;
     private javax.swing.JLabel lEmail;
     private javax.swing.JLabel lEstado;
@@ -984,6 +1000,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
                 jTextFax.setText(rs.getString("pr_fax"));
                 jTextEmail.setText(rs.getString("pr_email"));
                 jComboBoxPlazo.setSelectedItem(rs.getString("pr_plazo"));
+                jTextDiasPlazo.setText(rs.getString("cl_dias_plazo"));
                 jComboBoxFPago.setSelectedIndex(rs.getInt("fp_id")-1);
                 String cuenta = rs.getString("pr_num_cuenta");
                 if(!cuenta.equals(""))
