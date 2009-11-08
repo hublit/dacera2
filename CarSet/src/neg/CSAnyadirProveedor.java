@@ -73,6 +73,7 @@ public class CSAnyadirProveedor extends JPanel
                 this.getComponents()[k] != jComboBoxRegimen &&
                 this.getComponents()[k] != jComboBoxDepartamento &&
                 this.getComponents()[k] != jComboBoxTipo &&
+                this.getComponents()[k] != jComboBoxDiaFactura &&
                 this.getComponents()[k] != jComboBoxProvincia)
             {
                 this.getComponents()[k].addKeyListener(l);
@@ -158,6 +159,8 @@ public class CSAnyadirProveedor extends JPanel
         jLabel17 = new javax.swing.JLabel();
         jTextDiasPlazo = new javax.swing.JTextField();
         lDiasPlazo = new javax.swing.JLabel();
+        jComboBoxDiaFactura = new javax.swing.JComboBox();
+        lFactura = new javax.swing.JLabel();
 
         setForeground(new java.awt.Color(0, 0, 100));
 
@@ -458,6 +461,19 @@ public class CSAnyadirProveedor extends JPanel
         lDiasPlazo.setText("Días");
         lDiasPlazo.setName("lDiasPlazo"); // NOI18N
 
+        jComboBoxDiaFactura.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxDiaFactura.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
+        jComboBoxDiaFactura.setName("jComboBoxDiaFactura"); // NOI18N
+        jComboBoxDiaFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxDiaFacturaActionPerformed(evt);
+            }
+        });
+
+        lFactura.setForeground(new java.awt.Color(0, 0, 100));
+        lFactura.setText("Día del mes para facturar");
+        lFactura.setName("lFactura"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -575,15 +591,21 @@ public class CSAnyadirProveedor extends JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lNumCuenta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextDigito, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lNumCuenta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextDigito, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lFactura)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBoxDiaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lNumero)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -671,7 +693,9 @@ public class CSAnyadirProveedor extends JPanel
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lEstado)
-                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxDiaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lFactura))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
@@ -749,6 +773,7 @@ public class CSAnyadirProveedor extends JPanel
             String diasPlazo = new String(jTextDiasPlazo.getText());
             String fPago = new String(Integer.valueOf(jComboBoxFPago.getSelectedIndex()+1).toString());
             String estado = new String(jComboBoxEstado.getSelectedItem().toString());
+            String diaFactura = new String(jComboBoxDiaFactura.getSelectedItem().toString());
             String nombreContacto = new String(jTextNombreCon.getText());
             String telefContacto = new String(jTextTelefonoCon.getText());
             String telefContacto2 = new String(jTextTelefonoCon2.getText());
@@ -828,11 +853,11 @@ public class CSAnyadirProveedor extends JPanel
             String query = "INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, " +
                                                             "pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, " +
                                                             "pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, " +
-                                                            "pr_fp_id, pr_num_cuenta,pr_estado) VALUES (" +
+                                                            "pr_fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES (" +
                                                             "'"+nombre+"', '"+dni+"', '"+regimen+"','"+tipo+"' ,'"+direccion+"', " +
                                                             "'"+codPostal+"' ,'"+poblacion+"' ,'"+provincia+"','"+telefono+"', " +
                                                             "'"+telefono2+"', '"+fax+"', '"+email+"','"+plazo+"','"+diasPlazo+"', '"+fPago+"', " +
-                                                            "'"+numCuenta+"','"+estado+"')";
+                                                            "'"+numCuenta+"','"+estado+"', '"+diaFactura+"')";
 
                 System.out.println(query);
                 datos = new DbConnection();
@@ -969,11 +994,16 @@ public class CSAnyadirProveedor extends JPanel
         }
     }//GEN-LAST:event_jComboBoxPlazoActionPerformed
 
+    private void jComboBoxDiaFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDiaFacturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxDiaFacturaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JComboBox jComboBoxDepartamento;
+    private javax.swing.JComboBox jComboBoxDiaFactura;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxFPago;
     private javax.swing.JComboBox jComboBoxPlazo;
@@ -1024,6 +1054,7 @@ public class CSAnyadirProveedor extends JPanel
     private javax.swing.JLabel lEmailCon;
     private javax.swing.JLabel lEstado;
     private javax.swing.JLabel lFPago;
+    private javax.swing.JLabel lFactura;
     private javax.swing.JLabel lFax;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lNombreCon;
@@ -1175,15 +1206,15 @@ public class CSAnyadirProveedor extends JPanel
                     String lavadoExtra = rs.getString("sp_lavado_extra");
                     String lavadoCom = rs.getString("sp_completo");
                     String lavadoHig = rs.getString("sp_higienizado");
-
+                    String idaVuelta = rs.getString("sp_ida_vuelta");
 
                     String querySe  = "INSERT INTO sp_servicios_clientes (sp_industrial, sp_todoterreno, sp_furgones, " +
                                       "sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, " +
                                       "sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, pr_id) " +
                                       "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgones + "'," +
                                       "'" + itv + "', '"+ preItv + "', '" + chequeo + "', '" + reacondicionamiento+"', " +
-                                      "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + ", " +
-                                      "'" + lavadoExtra + "', '" + lavadoCom + "', '" + lavadoHig + ",'" + idProveedor + "',) ";
+                                      "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + "', '" + lavadoExtra + "', " +
+                                      "'" + lavadoCom + "', '" + lavadoHig + ", '" + idaVuelta + ",'" + idProveedor + "')";
 
                    System.out.println(querySe);
                    rsSe = se.manipuladorDatos(querySe);

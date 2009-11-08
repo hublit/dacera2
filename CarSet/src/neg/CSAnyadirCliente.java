@@ -1149,15 +1149,15 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     String lavadoExtra = rs.getString("sc_lavado_extra");
                     String lavadoCom = rs.getString("sc_completo");
                     String lavadoHig = rs.getString("sc_higienizado");
-
+                    String idaVuelta = rs.getString("sp_ida_vuelta");
 
                     String querySe  = "INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgones, " +
                                       "sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, " +
                                       "sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, cl_id) " +
                                       "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgones + "'," +
                                       "'" + itv + "', '"+ preItv + "', '" + chequeo + "', '" + reacondicionamiento+"', " +
-                                      "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + ", " +
-                                      "'" + lavadoExtra + "', '" + lavadoCom + "', '" + lavadoHig + ",'" + idCliente + "',) ";
+                                      "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + "', '" + lavadoExtra + "', " +
+                                      "'" + lavadoCom + "', '" + lavadoHig + ", '" + idaVuelta + ", '" + idCliente + "') ";
 
                    System.out.println(querySe);
                    rsSe = se.manipuladorDatos(querySe);
