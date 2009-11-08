@@ -129,7 +129,7 @@
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="2" attributes="0">
-                                      <Component id="jTextPreItv1" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="jTextPreItv" min="-2" pref="45" max="-2" attributes="0"/>
                                       <EmptySpace pref="8" max="32767" attributes="0"/>
                                       <Component id="lEuro5" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -144,7 +144,7 @@
                                       <Component id="lEuro2" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jTextLavado1" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="jTextReacondicionamiento" min="-2" pref="45" max="-2" attributes="0"/>
                                       <EmptySpace pref="8" max="32767" attributes="0"/>
                                       <Component id="lEuro4" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -274,7 +274,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lEuro5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextPreItv1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextPreItv" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lPreItv1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -287,7 +287,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextLavado1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextReacondicionamiento" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lLavado1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -587,9 +587,9 @@
         <Property name="name" type="java.lang.String" value="lEuro5" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextPreItv1">
+    <Component class="javax.swing.JTextField" name="jTextPreItv">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jTextPreItv1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jTextPreItv" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lPreItv1">
@@ -647,9 +647,9 @@
         <Property name="name" type="java.lang.String" value="lEuro10" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextLavado1">
+    <Component class="javax.swing.JTextField" name="jTextReacondicionamiento">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jTextLavado1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jTextReacondicionamiento" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">

@@ -49,14 +49,21 @@ public class CSServicioCliente extends javax.swing.JPanel
             while (rs.next()) {
                 sc_id = rs.getString("sc_id");
                 jTextNumero.setText(sc_id);
-                jText4x4.setText(rs.getString("sc_4x4"));
                 jTextIndustrial.setText(rs.getString("sc_industrial"));
-                jTextCampa.setText(rs.getString("sc_campa"));
+                jText4x4.setText(rs.getString("sc_todoterreno"));
                 jTextFurgones.setText(rs.getString("sc_furgones"));
-                jTextIdaVuelta.setText(rs.getString("sc_ida_vuelta"));
-                jTextItv.setText(rs.getString("sc_pre_itv"));
+                jTextItv.setText(rs.getString("sc_itv"));
+                jTextPreItv.setText(rs.getString("sc_pre_itv"));
+                jTextChequeo.setText(rs.getString("sc_chequeo"));
+                jTextReacondicionamiento.setText(rs.getString("sc_reacondicionamiento"));
+                jTextCampa.setText(rs.getString("sc_campa"));
+                jTextCampaEntrada.setText(rs.getString("sc_entrada_campa"));
                 jTextLavadoEx.setText(rs.getString("sc_lavado"));
-                
+                jTextLavadoINEX.setText(rs.getString("sc_lavado_exin"));
+                jTextLavadoXtr.setText(rs.getString("sc_lavado_extra"));
+                jTextLavadoCo.setText(rs.getString("sc_completo"));
+                jTextLavadoHi.setText(rs.getString("sc_higienizado"));
+                jTextIdaVuelta.setText(rs.getString("sc_ida_vuelta"));
                 numeroFila++;
             }
             rs.close();
@@ -765,7 +772,8 @@ public class CSServicioCliente extends javax.swing.JPanel
             
             String numero = new String(jTextNumero.getText());
             String campa = new String(jTextCampa.getText());
-            String cuatroXcuatro = new String(jText4x4.getText());
+            String entradaCampa = new String(jTextCampaEntrada.getText());
+            String todoterreno = new String(jText4x4.getText());
             String furgones = new String(jTextFurgones.getText());
             String industrial = new String(jTextIndustrial.getText());
             String idaVuelta = new String(jTextIdaVuelta.getText());
@@ -785,9 +793,9 @@ public class CSServicioCliente extends javax.swing.JPanel
             {
                  ValidarFormatos(Utilidades.campoObligatorio(campa,"Campa"));
             }
-            else if (!Utilidades.campoObligatorio(cuatroXcuatro,"4x4").equals("OK"))
+            else if (!Utilidades.campoObligatorio(todoterreno,"todoterreno").equals("OK"))
             {
-                 ValidarFormatos(Utilidades.campoObligatorio(cuatroXcuatro,"4x4"));
+                 ValidarFormatos(Utilidades.campoObligatorio(todoterreno,"todoterreno"));
             }
             else if (!Utilidades.campoObligatorio(furgones,"Furgones").equals("OK"))
             {
@@ -816,10 +824,12 @@ public class CSServicioCliente extends javax.swing.JPanel
             }*/
             else
             {
-                String query = "UPDATE sc_servicios_clientes SET sc_industrial = '" + industrial + "', sc_todoterreno = '" + cuatroXcuatro + "', " +
-                               "sc_furgones = '" + furgones + "', sc_itv = '" + itv + "', scpre_itv = '" + preItv + "', " +
-                               "sc = '" + preItv + "',sc_ida_vuelta = '"+ idaVuelta + "', sc_campa= '" + campa + "', sc_pre_itv ='" + preItv+"', " +
-                                "sc_lavado = '" + lavado + "', cl_id = "+ cl_id+"  WHERE sc_id = "+ numero+"";
+                String query = "UPDATE sc_servicios_clientes SET sc_industrial = '" + industrial + "', sc_todoterreno = '" + todoterreno + "', " +
+                               "sc_furgones = '" + furgones + "', sc_itv = '" + itv + "', sc_pre_itv = '" + preItv + "', " +
+                               "sc_chequeo = '" + chequeo + "',sc_reacondicionamiento = '"+ reacondicionamiento + "', sc_campa= '" + campa + "', " +
+                               "sc_entrada_campa ='" + entradaCampa+"',sc_lavado = '"+ lavado + "', sc_lavado_exin = '"+ lavadoExIn + "', " +
+                               "sc_lavado_extra ='" + lavadoEx+"', sc_completo = '"+ lavadoCo + "', sc_higienizado = '"+ lavadoHi + "', " +
+                               "sc_ida_vuelta = '"+ idaVuelta + "', cl_id = "+ cl_id+"  WHERE sc_id = "+ numero+"";
 
                 System.out.println(query);
                 //datos = new DbConnection();

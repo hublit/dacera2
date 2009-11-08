@@ -47,14 +47,21 @@ public class CSServicioProveedor extends javax.swing.JPanel
             while (rs.next()) {
                 sp_id = rs.getString("sp_id");
                 jTextNumero.setText(sp_id);
-                jTextTodoterreno.setText(rs.getString("sp_4x4"));
                 jTextIndustrial.setText(rs.getString("sp_industrial"));
-                jTextCampa.setText(rs.getString("sp_campa"));
+                jTextTodoterreno.setText(rs.getString("sp_todoterreno"));
                 jTextFurgones.setText(rs.getString("sp_furgones"));
+                jTextItv.setText(rs.getString("sp_itv"));
+                jTextPreItv.setText(rs.getString("sp_pre_itv"));
+                jTextChequeo.setText(rs.getString("sp_chequeo"));
+                jTextReacondicionamiento.setText(rs.getString("sp_reacondicionamiento"));
+                jTextCampa.setText(rs.getString("sp_campa"));
+                jTextCampaEntrada.setText(rs.getString("sp_entrada_campa"));
+                jTextLavadoEx.setText(rs.getString("sp_lavado"));
+                jTextLavadoINEX.setText(rs.getString("sp_lavado_exin"));
+                jTextLavadoXtr.setText(rs.getString("sp_lavado_extra"));
+                jTextLavadoCo.setText(rs.getString("sp_completo"));
+                jTextLavadoHi.setText(rs.getString("sp_higienizado"));
                 jTextIdaVuelta.setText(rs.getString("sp_ida_vuelta"));
-                jTextPreItv1.setText(rs.getString("sp_pre_itv"));
-                jTextItv.setText(rs.getString("sp_ITV"));
-
                 
                 numeroFila++;
             }
@@ -128,7 +135,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
         jLabel20 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lEuro5 = new javax.swing.JLabel();
-        jTextPreItv1 = new javax.swing.JTextField();
+        jTextPreItv = new javax.swing.JTextField();
         lPreItv1 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         lIndustrial = new javax.swing.JLabel();
@@ -136,7 +143,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
         jTextLavadoHi = new javax.swing.JTextField();
         lLavadoHi = new javax.swing.JLabel();
         lEuro10 = new javax.swing.JLabel();
-        jTextLavado1 = new javax.swing.JTextField();
+        jTextReacondicionamiento = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         lLavado1 = new javax.swing.JLabel();
         lEuro6 = new javax.swing.JLabel();
@@ -276,7 +283,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
         lEuro5.setText("€");
         lEuro5.setName("lEuro5"); // NOI18N
 
-        jTextPreItv1.setName("jTextPreItv1"); // NOI18N
+        jTextPreItv.setName("jTextPreItv"); // NOI18N
 
         lPreItv1.setForeground(new java.awt.Color(0, 0, 100));
         lPreItv1.setText("Pre-ITV");
@@ -302,7 +309,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
         lEuro10.setText("€");
         lEuro10.setName("lEuro10"); // NOI18N
 
-        jTextLavado1.setName("jTextLavado1"); // NOI18N
+        jTextReacondicionamiento.setName("jTextReacondicionamiento"); // NOI18N
 
         jLabel22.setForeground(new java.awt.Color(204, 0, 0));
         jLabel22.setText("*");
@@ -521,7 +528,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
                                 .addGap(1, 1, 1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
-                                        .addComponent(jTextPreItv1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextPreItv, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                                         .addComponent(lEuro5))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -533,7 +540,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                                         .addComponent(lEuro2))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jTextLavado1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextReacondicionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                                         .addComponent(lEuro4))
                                     .addGroup(layout.createSequentialGroup()
@@ -633,7 +640,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lEuro5)
-                                    .addComponent(jTextPreItv1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextPreItv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lPreItv1)
                                     .addComponent(jLabel22))
                                 .addGap(18, 18, 18)
@@ -644,7 +651,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
                                     .addComponent(jLabel23))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextLavado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextReacondicionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lLavado1)
                                     .addComponent(jLabel21))))
                         .addGap(18, 18, 18)
@@ -717,13 +724,20 @@ public class CSServicioProveedor extends javax.swing.JPanel
             
             String numero = new String(jTextNumero.getText());
             String campa = new String(jTextCampa.getText());
-            String cuatroXcuatro = new String(jTextTodoterreno.getText());
+            String entradaCampa = new String(jTextCampaEntrada.getText());
+            String todoterreno = new String(jTextTodoterreno.getText());
             String furgones = new String(jTextFurgones.getText());
             String industrial = new String(jTextIndustrial.getText());
             String idaVuelta = new String(jTextIdaVuelta.getText());
+            String chequeo = new String(jTextChequeo.getText());
+            String reacondicionamiento = new String(jTextReacondicionamiento.getText());
             String lavado = new String(jTextLavadoEx.getText());
+            String lavadoExIn = new String(jTextLavadoINEX.getText());
+            String lavadoCo = new String(jTextLavadoCo.getText());
+            String lavadoEx = new String(jTextLavadoEx.getText());
+            String lavadoHi = new String(jTextLavadoHi.getText());
             String itv = new String(jTextItv.getText());
-            String preItv = new String(jTextPreItv1.getText());
+            String preItv = new String(jTextPreItv.getText());
             
             
             //CAMPOS OBLIGATORIOS
@@ -731,9 +745,9 @@ public class CSServicioProveedor extends javax.swing.JPanel
             {
                  ValidarFormatos(Utilidades.campoObligatorio(campa,"Campa"));
             }
-            else if (!Utilidades.campoObligatorio(cuatroXcuatro,"4x4").equals("OK"))
+            else if (!Utilidades.campoObligatorio(todoterreno,"todoterreno").equals("OK"))
             {
-                 ValidarFormatos(Utilidades.campoObligatorio(cuatroXcuatro,"4x4"));
+                 ValidarFormatos(Utilidades.campoObligatorio(todoterreno,"todoterreno"));
             }
             else if (!Utilidades.campoObligatorio(furgones,"Furgones").equals("OK"))
             {
@@ -762,10 +776,12 @@ public class CSServicioProveedor extends javax.swing.JPanel
             }*/
             else
             {
-                String query = "UPDATE sp_servicios_proveedores SET sp_industrial = '" + industrial + "', sp_4x4 = '" + cuatroXcuatro + "', " +
-                               " sp_furgones = '" + furgones + "', " +
-                               "sp_ida_vuelta = '"+ idaVuelta + "', sp_campa= '" + campa + "', sp_pre_itv ='" + preItv+"', " +
-                                "sp_lavado = '" + lavado + "', pr_id = "+ pr_id+"  WHERE sp_id = "+ numero+"";
+                String query = "UPDATE sp_servicios_proveedores SET sp_industrial = '" + industrial + "', sp_todoterreno = '" + todoterreno + "', " +
+                               "sp_furgones = '" + furgones + "', sp_itv = '" + itv + "', sp_pre_itv = '" + preItv + "', " +
+                               "sp_chequeo = '" + chequeo + "',sp_reacondicionamiento = '"+ reacondicionamiento + "', sp_campa= '" + campa + "', " +
+                               "sp_entrada_campa ='" + entradaCampa+"',sp_lavado = '"+ lavado + "', sp_lavado_exin = '"+ lavadoExIn + "', " +
+                               "sp_lavado_extra ='" + lavadoEx+"', sp_completo = '"+ lavadoCo + "', sp_higienizado = '"+ lavadoHi + "', " +
+                               "sp_ida_vuelta = '"+ idaVuelta + "', pr_id = "+ pr_id+"  WHERE sp_id = "+ numero+"";
 
                 System.out.println(query);
                 //datos = new DbConnection();
@@ -831,14 +847,14 @@ public class CSServicioProveedor extends javax.swing.JPanel
     private javax.swing.JTextField jTextIdaVuelta;
     private javax.swing.JTextField jTextIndustrial;
     private javax.swing.JTextField jTextItv;
-    private javax.swing.JTextField jTextLavado1;
     private javax.swing.JTextField jTextLavadoCo;
     private javax.swing.JTextField jTextLavadoEx;
     private javax.swing.JTextField jTextLavadoHi;
     private javax.swing.JTextField jTextLavadoINEX;
     private javax.swing.JTextField jTextLavadoXtr;
     private javax.swing.JTextField jTextNumero;
-    private javax.swing.JTextField jTextPreItv1;
+    private javax.swing.JTextField jTextPreItv;
+    private javax.swing.JTextField jTextReacondicionamiento;
     private javax.swing.JTextField jTextTodoterreno;
     private javax.swing.JLabel l4x4;
     private javax.swing.JLabel lCampa;
