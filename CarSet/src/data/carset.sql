@@ -336,11 +336,11 @@ CREATE TABLE IF NOT EXISTS `tc_tarifas_clientes` (
 --
 -- Volcar la base de datos para la tabla `tc_tarifas_clientes`
 --
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano' ,'Grúa' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano' ,'Camión completo' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano' ,'Conductor' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano' ,'Tren' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano' ,'Custodia' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Grúa' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Camión completo' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Conductor' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Tren' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Custodia' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
 
 -- --------------------------------------------------------
 
@@ -365,11 +365,11 @@ CREATE TABLE IF NOT EXISTS `tp_tarifas_proveedores` (
 --
 -- Volcar la base de datos para la tabla `tp_tarifas_proveedores`
 --
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano' ,'Grúa' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano' ,'Camión completo' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano' ,'Conductor' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano' ,'Tren' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano' ,'Custodia' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Grúa' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Camión completo' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Conductor' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Tren' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Custodia' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
 
 
 -- --------------------------------------------------------
@@ -387,12 +387,13 @@ CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
   `sc_chequeo` double default '0',
   `sc_reacondicionamiento` double default '0',
   `sc_campa` double default '0',
-  `sc_entrada_campa` int default '0',
-  `sc_lavado` int default '0',
-  `sc_lavado_extin` int default '0',
-  `sc_lavado_extra` int default '0',
-  `sc_completo` int default '0',
-  `sc_higienizado` int default '0',
+  `sc_entrada_campa` double default '0',
+  `sc_lavado` double default '0',
+  `sc_lavado_exin` double default '0',
+  `sc_lavado_extra` double default '0',
+  `sc_completo` double default '0',
+  `sc_higienizado` double default '0',
+  `sc_ida_vuelta` double default '0',
   `cl_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sc_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
@@ -400,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
 --
 -- Volcar la base de datos para la tabla `sc_servicios_cliente`
 --
-INSERT INTO sc_servicios_clientes (sc_industrial, sc_4x4, sc_monovolumen, sc_furgones, sc_ida_vuelta, sc_campa, sc_pre_itv, sc_lavado, cl_id) VALUES ('1.5','1.5','1.5','1.5','40', '60', '50', '12', '1');
+INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgones, sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_ida_vuelta, cl_id) VALUES ('1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0', '1');
 
 -- --------------------------------------------------------
 --
@@ -417,12 +418,13 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
   `sp_chequeo` double default '0',
   `sp_reacondicionamiento` double default '0',
   `sp_campa` double default '0',
-  `sp_entrada_campa` int default '0',
-  `sp_lavado` int default '0',
-  `sp_lavado_extin` int default '0',
-  `sp_lavado_extra` int default '0',
-  `sp_completo` int default '0',
-  `sc_higienizado` int default '0',
+  `sp_entrada_campa` double default '0',
+  `sp_lavado` double default '0',
+  `sp_lavado_exin` double default '0',
+  `sp_lavado_extra` double default '0',
+  `sp_completo` double default '0',
+  `sp_higienizado` double default '0',
+  `sp_ida_vuelta` double default '0',
   `pr_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sp_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
@@ -430,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
 --
 -- Volcar la base de datos para la tabla `sp_servicios_proveedor`
 --
-INSERT INTO sp_servicios_proveedores (sp_industrial, sp_4x4, sp_monovolumen, sp_furgones, sp_ida_vuelta, sp_campa, sp_pre_itv, sp_lavado, pr_id) VALUES ('1.5','1.5','1.5','1.5','40', '60', '50', '12', '1');
+INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgones, sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, cl_id) VALUES ('1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0', '1');
 
 -- --------------------------------------------------------
 --
