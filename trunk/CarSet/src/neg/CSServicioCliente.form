@@ -26,36 +26,29 @@
                                   <Component id="lFCorrecion" alignment="2" min="-2" max="-2" attributes="1"/>
                                   <Component id="jSeparator3" alignment="2" min="-2" pref="194" max="-2" attributes="1"/>
                                   <Group type="102" alignment="2" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lFurgones" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lIndustrial" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lMonovolumen" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="1">
+                                              <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="l4x4" max="32767" attributes="0"/>
+                                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="lIndustrial" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lFurgones" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="l4x4" alignment="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jTextMonovolumen" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
                                           <Component id="jText4x4" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
-                                          <Component id="jTextFurgones" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
                                           <Component id="jTextIndustrial" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
+                                          <Component id="jTextFurgones" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -118,7 +111,7 @@
                                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="2" attributes="0">
-                                                      <Component id="jTextPreItv1" min="-2" pref="45" max="-2" attributes="0"/>
+                                                      <Component id="jTextPreItv" min="-2" pref="45" max="-2" attributes="0"/>
                                                       <EmptySpace pref="8" max="32767" attributes="0"/>
                                                       <Component id="lEuro5" min="-2" max="-2" attributes="0"/>
                                                   </Group>
@@ -132,8 +125,8 @@
                                                       <EmptySpace pref="8" max="32767" attributes="0"/>
                                                       <Component id="lEuro2" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="jTextLavado1" min="-2" pref="45" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="jTextReacondicionamiento" min="-2" pref="45" max="-2" attributes="0"/>
                                                       <EmptySpace pref="8" max="32767" attributes="0"/>
                                                       <Component id="lEuro4" min="-2" max="-2" attributes="0"/>
                                                   </Group>
@@ -237,7 +230,7 @@
                       <Component id="jSeparator2" min="-2" pref="766" max="-2" attributes="1"/>
                   </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -269,15 +262,9 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextMonovolumen" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lMonovolumen" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jTextFurgones" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lFurgones" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -285,39 +272,32 @@
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Component id="jSeparator4" min="-2" pref="8" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                              <Component id="lEuro4" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lEuro1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextItv" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lItv" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lEuro5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextPreItv1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lPreItv1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lEuro6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextChequeo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lChequeo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextLavado1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lLavado1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lEuro1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextItv" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lItv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lEuro5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextPreItv" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lPreItv1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lEuro6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextChequeo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lChequeo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTextReacondicionamiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lLavado1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lEuro4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -513,32 +493,6 @@
     <Component class="javax.swing.JTextField" name="jText4x4">
       <Properties>
         <Property name="name" type="java.lang.String" value="jText4x4" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel11">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="cc" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="*"/>
-        <Property name="name" type="java.lang.String" value="jLabel11" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lMonovolumen">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="64" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="jTextIndustrial"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Monovolumen"/>
-        <Property name="name" type="java.lang.String" value="lMonovolumen" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextMonovolumen">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="jTextMonovolumen" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
@@ -796,9 +750,9 @@
         <Property name="name" type="java.lang.String" value="lEuro5" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextPreItv1">
+    <Component class="javax.swing.JTextField" name="jTextPreItv">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jTextPreItv1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jTextPreItv" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lPreItv1">
@@ -834,9 +788,9 @@
         <Property name="name" type="java.lang.String" value="lLavado1" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextLavado1">
+    <Component class="javax.swing.JTextField" name="jTextReacondicionamiento">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jTextLavado1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jTextReacondicionamiento" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
@@ -912,7 +866,7 @@
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="jTextIndustrial"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Lavado interior y exterior"/>
+        <Property name="text" type="java.lang.String" value="Lavado Interior y Exterior"/>
         <Property name="name" type="java.lang.String" value="lLavadoEx1" noResource="true"/>
       </Properties>
     </Component>
@@ -938,7 +892,7 @@
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="jTextIndustrial"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Lavado completo"/>
+        <Property name="text" type="java.lang.String" value="Lavado Completo"/>
         <Property name="name" type="java.lang.String" value="lLavadoCo" noResource="true"/>
       </Properties>
     </Component>

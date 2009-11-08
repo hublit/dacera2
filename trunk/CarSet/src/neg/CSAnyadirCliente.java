@@ -138,6 +138,8 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jLabel10 = new javax.swing.JLabel();
         lComercial = new javax.swing.JLabel();
         jComboBoxComercial = new javax.swing.JComboBox();
+        jTextDiasPlazo = new javax.swing.JTextField();
+        lDiasPlazo = new javax.swing.JLabel();
 
         lNombre.setForeground(new java.awt.Color(0, 0, 100));
         lNombre.setText("Nombre");
@@ -286,6 +288,11 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jComboBoxPlazo.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxPlazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30 días FF", "15 días FF", "45 días FF", "60 días FF", "Especial" }));
         jComboBoxPlazo.setName("jComboBoxPlazo"); // NOI18N
+        jComboBoxPlazo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPlazoActionPerformed(evt);
+            }
+        });
 
         lTelefonoCon1.setForeground(new java.awt.Color(0, 0, 100));
         lTelefonoCon1.setText("Teléfono 2");
@@ -397,6 +404,13 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jComboBoxComercial.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxComercial.setName("jComboBoxComercial"); // NOI18N
 
+        jTextDiasPlazo.setEnabled(false);
+        jTextDiasPlazo.setName("jTextDiasPlazo"); // NOI18N
+
+        lDiasPlazo.setForeground(new java.awt.Color(0, 0, 100));
+        lDiasPlazo.setText("Días");
+        lDiasPlazo.setName("lDiasPlazo"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -456,21 +470,30 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addGap(18, 18, 18)
                         .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(lPlazo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lComercial))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lDiasPlazo)
+                                .addGap(38, 38, 38)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lComercial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxComercial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lFPago)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxFPago, 0, 118, Short.MAX_VALUE))
-                            .addComponent(jComboBoxComercial, 0, 194, Short.MAX_VALUE))))
+                                .addComponent(jComboBoxFPago, 0, 138, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(10, Short.MAX_VALUE)
@@ -598,16 +621,18 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lWeb)
-                            .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lPlazo)
-                            .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lFPago))))
+                            .addComponent(jComboBoxComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lComercial))))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lEstado)
                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lComercial))
+                    .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lFPago)
+                    .addComponent(lPlazo)
+                    .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lDiasPlazo)
+                    .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -639,6 +664,9 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     .addComponent(jButtonCancelar))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBoxPlazo, jTextDiasPlazo});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
@@ -657,6 +685,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             String email = new String(jTextEmail.getText());
             String web = new String(jTextWeb.getText());
             String plazo = new String(jComboBoxPlazo.getSelectedItem().toString());
+            String diasPlazo = new String(jTextDiasPlazo.getText().toString());
             String fPago = new String(Integer.valueOf(jComboBoxFPago.getSelectedIndex()+1).toString());
             String estado = new String(jComboBoxEstado.getSelectedItem().toString());
             //Esto hay que quitarlo o no dependiendo de la persona de contacto
@@ -748,14 +777,18 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             {
                 ValidarFormatos(Utilidades.formatoCorreo(emailContacto));
             }
+            else if(!Utilidades.formatoNumerico(diasPlazo).equals("OK"))
+            {
+                ValidarFormatos(Utilidades.formatoNumerico(diasPlazo));
+            }
             else
             {
                 String query = "INSERT INTO cl_clientes (cl_nombre, cl_DNI_CIF, cl_direccion, " +
                                                          "cl_cod_postal, cl_poblacion, cl_provincia, " +
                                                          "cl_telefono, cl_telefono2, cl_fax, cl_email, " +
-                                                         "cl_web, cl_plazo, fp_id, cl_estado, co_id) VALUES (";
+                                                         "cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id) VALUES (";
                 query = query + "'"+nombre+"','"+dni+"','"+direccion+"','"+codPostal+"','"+poblacion+"','"+provincia+"','"+telefono+"'";
-                query = query + " ,'"+telefono2+"','"+fax+"','"+email+"','"+web+"','"+plazo+"','"+fPago+"','"+estado+"','"+co_id+"')";
+                query = query + " ,'"+telefono2+"','"+fax+"','"+email+"','"+web+"','"+plazo+"','"+diasPlazo+"','"+fPago+"','"+estado+"','"+co_id+"')";
                       
                 System.out.println(query);
                 //datos = new DbConnection();
@@ -884,6 +917,17 @@ public class CSAnyadirCliente extends javax.swing.JPanel
        jTextEmailCon.setText(MailConM);
     }//GEN-LAST:event_jTextEmailConFocusLost
 
+    private void jComboBoxPlazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPlazoActionPerformed
+        if (jComboBoxPlazo.getSelectedItem().equals("Especial"))
+        {
+            jTextDiasPlazo.setEnabled(true);
+        }
+        else
+        {
+            jTextDiasPlazo.setEnabled(false);
+        }
+    }//GEN-LAST:event_jComboBoxPlazoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
@@ -909,6 +953,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextCodPostal;
     private javax.swing.JTextField jTextDNI;
+    private javax.swing.JTextField jTextDiasPlazo;
     private javax.swing.JTextField jTextDireccion;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextEmailCon;
@@ -926,6 +971,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     private javax.swing.JLabel lComercial;
     private javax.swing.JLabel lDNI;
     private javax.swing.JLabel lDepartamento;
+    private javax.swing.JLabel lDiasPlazo;
     private javax.swing.JLabel lDireccion;
     private javax.swing.JLabel lEmail;
     private javax.swing.JLabel lEmailCon;
