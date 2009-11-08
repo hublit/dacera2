@@ -71,6 +71,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                 this.getComponents()[k] != jComboBoxProvinciaDestino &&
                 this.getComponents()[k] != jComboBoxServicio &&
                 this.getComponents()[k] != jComboBoxServicioFMad &&
+                this.getComponents()[k] != jComboBoxServicioFMadDestino &&
                 this.getComponents()[k] != jComboFactor &&
                 this.getComponents()[k] != jComboBoxSoporte &&
                 this.getComponents()[k] != jComboBoxEstado)
@@ -96,118 +97,122 @@ public class CSEditarPedido extends javax.swing.JPanel
         jButtonEliminar = new javax.swing.JButton();
         jCheckBoxCerrado = new javax.swing.JCheckBox();
         lCerrado = new javax.swing.JLabel();
-        lEstado3 = new javax.swing.JLabel();
-        jComboBoxEstado = new javax.swing.JComboBox();
-        lHoraRealOrigen = new javax.swing.JLabel();
-        jTextHoraRealOrigen = new javax.swing.JTextField();
-        lHoraRealDestino = new javax.swing.JLabel();
-        jTextHoraRealDestino = new javax.swing.JTextField();
-        lSolred = new javax.swing.JLabel();
-        jTextSolred = new javax.swing.JTextField();
-        lViaje = new javax.swing.JLabel();
-        jTextViaje = new javax.swing.JTextField();
-        lOrigen = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        lDireccionOrigen = new javax.swing.JLabel();
-        jTextDireccionOrigen = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        lPoblacionOrigen = new javax.swing.JLabel();
-        jTextPoblacionOrigen = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        lProvinciaOrigen = new javax.swing.JLabel();
-        jComboBoxProvinciaOrigen = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        lCodPostalOrigen = new javax.swing.JLabel();
-        jComboTipoOrigen = new javax.swing.JComboBox();
-        lNombreOrigen = new javax.swing.JLabel();
-        jTextNombreOrigen = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        lTelefonoOrigen = new javax.swing.JLabel();
         jTextTelefonoOrigen = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        lFechaOrigen = new javax.swing.JLabel();
-        jDateFechaOrigen = new com.toedter.calendar.JDateChooser();
-        lHoraOrigen = new javax.swing.JLabel();
-        jTextCodPostalOrigen = new javax.swing.JTextField();
-        jTextHoraOrigen = new javax.swing.JTextField();
-        lTipoOrigen = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        lNumero = new javax.swing.JLabel();
-        jTextNumero = new javax.swing.JTextField();
+        lTelefonoOrigen = new javax.swing.JLabel();
+        jTextDireccionOrigen = new javax.swing.JTextField();
+        lDireccionOrigen = new javax.swing.JLabel();
+        lNombreOrigen = new javax.swing.JLabel();
+        jComboBoxServicioFMadDestino = new javax.swing.JComboBox();
+        lServicioFMad1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lFecha = new javax.swing.JLabel();
-        jDateFecha = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
-        lCliente = new javax.swing.JLabel();
-        jTextCliente = new javax.swing.JTextField();
-        jToggleButtonCliente = new javax.swing.JToggleButton();
-        lDestino = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        lDireccionDestino = new javax.swing.JLabel();
-        jTextDireccionDestino = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        lPoblacionDestino = new javax.swing.JLabel();
-        jTextPoblacionDestino = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        lProvinciaDestino = new javax.swing.JLabel();
-        jComboBoxProvinciaDestino = new javax.swing.JComboBox();
-        jComboTipoDestino = new javax.swing.JComboBox();
-        lNombreDestino = new javax.swing.JLabel();
-        jTextNombreDestino = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        lTelefonoDestino = new javax.swing.JLabel();
-        jTextTelefonoDestino = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        lFechaDestino = new javax.swing.JLabel();
-        jDateFechaDestino = new com.toedter.calendar.JDateChooser();
-        lTipoDestino = new javax.swing.JLabel();
-        lHoraDestino = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        lCodPostalDestino = new javax.swing.JLabel();
-        jTextHoraDestino = new javax.swing.JTextField();
-        jTextCodPostalDestino = new javax.swing.JTextField();
-        jCheckBoxIdaVuelta = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        jComboFactor = new javax.swing.JComboBox();
+        jLabel19 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        lFuMadrid = new javax.swing.JLabel();
-        jCheckBoxFMadrid = new javax.swing.JCheckBox();
-        jLabel23 = new javax.swing.JLabel();
-        lServicio = new javax.swing.JLabel();
-        jComboBoxServicio = new javax.swing.JComboBox();
-        jLabel25 = new javax.swing.JLabel();
-        lServicioFMad = new javax.swing.JLabel();
-        jComboBoxServicioFMad = new javax.swing.JComboBox();
-        lSEspecial = new javax.swing.JLabel();
-        jComboBoxServicioEspecial = new javax.swing.JComboBox();
-        jLabel15 = new javax.swing.JLabel();
-        jTextDiasCampa = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        lMatricula = new javax.swing.JLabel();
-        jTextMatricula = new javax.swing.JTextField();
-        lMarca = new javax.swing.JLabel();
-        jTextMarca = new javax.swing.JTextField();
-        lModelo = new javax.swing.JLabel();
-        jTextModelo = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jLabel24 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lTarifaEsProv1 = new javax.swing.JLabel();
+        jTextSuplemento = new javax.swing.JTextField();
+        lTarifaCli = new javax.swing.JLabel();
+        lFuMadrid = new javax.swing.JLabel();
+        lServicio = new javax.swing.JLabel();
+        jCheckBoxFMadrid = new javax.swing.JCheckBox();
+        lServicioFMad = new javax.swing.JLabel();
+        jComboBoxServicio = new javax.swing.JComboBox();
         lSoporte = new javax.swing.JLabel();
+        jComboBoxServicioFMad = new javax.swing.JComboBox();
+        lEstado3 = new javax.swing.JLabel();
         jComboBoxSoporte = new javax.swing.JComboBox();
-        lProveedor = new javax.swing.JLabel();
-        jTextProveedor = new javax.swing.JTextField();
-        jToggleButtonProveedor = new javax.swing.JToggleButton();
+        jComboBoxEstado = new javax.swing.JComboBox();
+        jTextSolred = new javax.swing.JTextField();
+        lSolred = new javax.swing.JLabel();
+        jTextModelo = new javax.swing.JTextField();
+        lModelo = new javax.swing.JLabel();
+        lTipoOrigen = new javax.swing.JLabel();
+        lHoraOrigen = new javax.swing.JLabel();
+        lFechaOrigen = new javax.swing.JLabel();
+        lOrigen = new javax.swing.JLabel();
+        jTextViaje = new javax.swing.JTextField();
+        lViaje = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jTextDiasCampa = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        lTarifaEsCli = new javax.swing.JLabel();
-        jTextTaEsCli = new javax.swing.JTextField();
-        lTarifaEsProv = new javax.swing.JLabel();
-        jTextTaEsProv = new javax.swing.JTextField();
-        lDescripción = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        lFecha = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextDescripcion = new javax.swing.JTextPane();
-        jSeparator7 = new javax.swing.JSeparator();
-        jSeparator8 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
+        jComboFactor = new javax.swing.JComboBox();
+        jSeparator2 = new javax.swing.JSeparator();
+        lCodPostalOrigen = new javax.swing.JLabel();
+        lDestino = new javax.swing.JLabel();
+        jTextCodPostalOrigen = new javax.swing.JTextField();
+        lTarifaEsProv = new javax.swing.JLabel();
+        lNumero = new javax.swing.JLabel();
+        lTarifaEspecial = new javax.swing.JLabel();
+        jTextNumero = new javax.swing.JTextField();
+        jComboTipoOrigen = new javax.swing.JComboBox();
+        lDescripción = new javax.swing.JLabel();
+        jTextNombreOrigen = new javax.swing.JTextField();
+        lSEspecial = new javax.swing.JLabel();
+        jTextTaEsCli = new javax.swing.JTextField();
+        jComboBoxServicioEspecial = new javax.swing.JComboBox();
+        jTextTaEsProv = new javax.swing.JTextField();
+        jCheckBoxIdaVuelta = new javax.swing.JCheckBox();
+        jDateFechaOrigen = new com.toedter.calendar.JDateChooser();
+        jLabel15 = new javax.swing.JLabel();
+        jDateFecha = new com.toedter.calendar.JDateChooser();
+        jLabel13 = new javax.swing.JLabel();
+        lProvinciaDestino = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextCodPostalDestino = new javax.swing.JTextField();
+        jTextPoblacionDestino = new javax.swing.JTextField();
+        lPoblacionDestino = new javax.swing.JLabel();
+        jTextNombreDestino = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jDateFechaDestino = new com.toedter.calendar.JDateChooser();
+        jToggleButtonProveedor = new javax.swing.JToggleButton();
+        lMatricula = new javax.swing.JLabel();
+        lProveedor = new javax.swing.JLabel();
+        jTextProveedor = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextMarca = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jTextMatricula = new javax.swing.JTextField();
+        jComboTipoDestino = new javax.swing.JComboBox();
+        lMarca = new javax.swing.JLabel();
+        jTextCliente = new javax.swing.JTextField();
+        jToggleButtonCliente = new javax.swing.JToggleButton();
+        lCliente = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        lHoraRealOrigen = new javax.swing.JLabel();
+        jTextHoraRealOrigen = new javax.swing.JTextField();
+        jTextHoraRealDestino = new javax.swing.JTextField();
+        lHoraRealDestino = new javax.swing.JLabel();
+        jTextHoraOrigen = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jComboBoxProvinciaOrigen = new javax.swing.JComboBox();
+        lTipoDestino = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        lProvinciaOrigen = new javax.swing.JLabel();
+        lPoblacionOrigen = new javax.swing.JLabel();
+        jTextPoblacionOrigen = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        jTextHoraDestino = new javax.swing.JTextField();
+        jComboBoxProvinciaDestino = new javax.swing.JComboBox();
+        lNombreDestino = new javax.swing.JLabel();
+        jTextTelefonoDestino = new javax.swing.JTextField();
+        lTelefonoDestino = new javax.swing.JLabel();
+        lCodPostalDestino = new javax.swing.JLabel();
+        lHoraDestino = new javax.swing.JLabel();
+        lFechaDestino = new javax.swing.JLabel();
+        jTextDireccionDestino = new javax.swing.JTextField();
+        lDireccionDestino = new javax.swing.JLabel();
 
         jButtonModificar.setText("Modificar");
         jButtonModificar.setName("jButtonModificar"); // NOI18N
@@ -244,51 +249,11 @@ public class CSEditarPedido extends javax.swing.JPanel
         lCerrado.setText("   Cerrado");
         lCerrado.setName("lCerrado"); // NOI18N
 
-        lEstado3.setForeground(new java.awt.Color(0, 0, 100));
-        lEstado3.setText("   Estado");
-        lEstado3.setName("lEstado3"); // NOI18N
+        jTextTelefonoOrigen.setName("jTextTelefonoOrigen"); // NOI18N
 
-        jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxEstado.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Pendiente" }));
-        jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
-
-        lHoraRealOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        lHoraRealOrigen.setText("Hora Real Origen");
-        lHoraRealOrigen.setName("lHoraRealOrigen"); // NOI18N
-
-        jTextHoraRealOrigen.setName("jTextHoraRealOrigen"); // NOI18N
-
-        lHoraRealDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lHoraRealDestino.setText("Hora Real Destino");
-        lHoraRealDestino.setName("lHoraRealDestino"); // NOI18N
-
-        jTextHoraRealDestino.setName("jTextHoraRealDestino"); // NOI18N
-
-        lSolred.setForeground(new java.awt.Color(0, 0, 100));
-        lSolred.setText("Solred");
-        lSolred.setName("lSolred"); // NOI18N
-
-        jTextSolred.setName("jTextSolred"); // NOI18N
-
-        lViaje.setForeground(new java.awt.Color(0, 0, 100));
-        lViaje.setText("Viaje");
-        lViaje.setName("lViaje"); // NOI18N
-
-        jTextViaje.setName("jTextViaje"); // NOI18N
-
-        lOrigen.setFont(new java.awt.Font("Tahoma", 1, 11));
-        lOrigen.setForeground(new java.awt.Color(170, 16, 4));
-        lOrigen.setText("DATOS DEL ORIGEN");
-        lOrigen.setName("lOrigen"); // NOI18N
-
-        jLabel4.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel4.setText("*");
-        jLabel4.setName("jLabel4"); // NOI18N
-
-        lDireccionOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        lDireccionOrigen.setText("Dirección");
-        lDireccionOrigen.setName("lDireccionOrigen"); // NOI18N
+        lTelefonoOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lTelefonoOrigen.setText("Móvil");
+        lTelefonoOrigen.setName("lTelefonoOrigen"); // NOI18N
 
         jTextDireccionOrigen.setName("jTextDireccionOrigen"); // NOI18N
         jTextDireccionOrigen.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -297,255 +262,73 @@ public class CSEditarPedido extends javax.swing.JPanel
             }
         });
 
-        jLabel6.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel6.setText("*");
-        jLabel6.setName("jLabel6"); // NOI18N
-
-        lPoblacionOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        lPoblacionOrigen.setText("Población");
-        lPoblacionOrigen.setName("lPoblacionOrigen"); // NOI18N
-
-        jTextPoblacionOrigen.setName("jTextPoblacionOrigen"); // NOI18N
-        jTextPoblacionOrigen.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextPoblacionOrigenFocusLost(evt);
-            }
-        });
-
-        jLabel12.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel12.setText("*");
-        jLabel12.setName("jLabel12"); // NOI18N
-
-        lProvinciaOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        lProvinciaOrigen.setText("Provincia");
-        lProvinciaOrigen.setName("lProvinciaOrigen"); // NOI18N
-
-        jComboBoxProvinciaOrigen.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxProvinciaOrigen.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxProvinciaOrigen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxProvinciaOrigen.setName("jComboBoxProvinciaOrigen"); // NOI18N
-
-        jLabel5.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel5.setText("*");
-        jLabel5.setName("jLabel5"); // NOI18N
-
-        lCodPostalOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        lCodPostalOrigen.setText("Cód. Postal");
-        lCodPostalOrigen.setName("lCodPostalOrigen"); // NOI18N
-
-        jComboTipoOrigen.setBackground(new java.awt.Color(228, 229, 255));
-        jComboTipoOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        jComboTipoOrigen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Directivo", "Empleado", "Taller", "Particular", "Otros", " " }));
-        jComboTipoOrigen.setName("jComboTipoOrigen"); // NOI18N
+        lDireccionOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lDireccionOrigen.setText("Dirección");
+        lDireccionOrigen.setName("lDireccionOrigen"); // NOI18N
 
         lNombreOrigen.setForeground(new java.awt.Color(0, 0, 100));
         lNombreOrigen.setText("Nombre");
         lNombreOrigen.setName("lNombreOrigen"); // NOI18N
 
-        jTextNombreOrigen.setName("jTextNombreOrigen"); // NOI18N
-        jTextNombreOrigen.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextNombreOrigenFocusLost(evt);
-            }
-        });
+        jComboBoxServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxServicioFMadDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
+        jComboBoxServicioFMadDestino.setEnabled(false);
+        jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
 
-        jLabel8.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel8.setText("*");
-        jLabel8.setName("jLabel8"); // NOI18N
+        lServicioFMad1.setForeground(new java.awt.Color(0, 0, 100));
+        lServicioFMad1.setText("F.M. Destino");
+        lServicioFMad1.setName("lServicioFMad1"); // NOI18N
 
-        lTelefonoOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        lTelefonoOrigen.setText("Móvil");
-        lTelefonoOrigen.setName("lTelefonoOrigen"); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel5.setText("*");
+        jLabel5.setName("jLabel5"); // NOI18N
 
-        jTextTelefonoOrigen.setName("jTextTelefonoOrigen"); // NOI18N
-
-        jLabel19.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel19.setText("*");
-        jLabel19.setName("jLabel19"); // NOI18N
-
-        lFechaOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        lFechaOrigen.setText("Fecha");
-        lFechaOrigen.setName("lFechaOrigen"); // NOI18N
-
-        jDateFechaOrigen.setDateFormatString("dd-MM-yyyy");
-        jDateFechaOrigen.setName("jDateFechaOrigen"); // NOI18N
-
-        lHoraOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        lHoraOrigen.setText("Hora Prevista");
-        lHoraOrigen.setName("lHoraOrigen"); // NOI18N
-
-        jTextCodPostalOrigen.setName("jTextCodPostalOrigen"); // NOI18N
-
-        jTextHoraOrigen.setName("jTextHoraOrigen"); // NOI18N
-
-        lTipoOrigen.setForeground(new java.awt.Color(0, 0, 100));
-        lTipoOrigen.setText("    Tipo");
-        lTipoOrigen.setName("lTipoOrigen"); // NOI18N
-
-        jSeparator2.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator2.setName("jSeparator2"); // NOI18N
-
-        lNumero.setForeground(new java.awt.Color(0, 0, 100));
-        lNumero.setText("Número de pedido PE/");
-        lNumero.setName("lNumero"); // NOI18N
-
-        jTextNumero.setEditable(false);
-        jTextNumero.setName("jTextNumero"); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel4.setText("*");
+        jLabel4.setName("jLabel4"); // NOI18N
 
         jLabel3.setForeground(new java.awt.Color(204, 0, 0));
         jLabel3.setText("*");
         jLabel3.setName("jLabel3"); // NOI18N
 
-        lFecha.setForeground(new java.awt.Color(0, 0, 100));
-        lFecha.setText("Fecha");
-        lFecha.setName("lFecha"); // NOI18N
-
-        jDateFecha.setDateFormatString("dd-MM-yyyy"); // NOI18N
-        jDateFecha.setName("jDateFecha"); // NOI18N
-
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setText("*");
         jLabel2.setName("jLabel2"); // NOI18N
 
-        lCliente.setForeground(new java.awt.Color(0, 0, 100));
-        lCliente.setText("Cliente");
-        lCliente.setName("lCliente"); // NOI18N
-
-        jTextCliente.setEditable(false);
-        jTextCliente.setName("jTextCliente"); // NOI18N
-
-        jToggleButtonCliente.setText("Buscar Cliente");
-        jToggleButtonCliente.setName("jToggleButtonCliente"); // NOI18N
-        jToggleButtonCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonClienteActionPerformed(evt);
-            }
-        });
-
-        lDestino.setFont(new java.awt.Font("Tahoma", 1, 11));
-        lDestino.setForeground(new java.awt.Color(170, 16, 4));
-        lDestino.setText("DATOS DEL DESTINO");
-        lDestino.setName("lDestino"); // NOI18N
-
-        jLabel10.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel10.setText("*");
-        jLabel10.setName("jLabel10"); // NOI18N
-
-        lDireccionDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lDireccionDestino.setText("Dirección");
-        lDireccionDestino.setName("lDireccionDestino"); // NOI18N
-
-        jTextDireccionDestino.setName("jTextDireccionDestino"); // NOI18N
-        jTextDireccionDestino.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextDireccionDestinoFocusLost(evt);
-            }
-        });
-
-        jLabel7.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel7.setText("*");
-        jLabel7.setName("jLabel7"); // NOI18N
-
-        lPoblacionDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lPoblacionDestino.setText("Población");
-        lPoblacionDestino.setName("lPoblacionDestino"); // NOI18N
-
-        jTextPoblacionDestino.setName("jTextPoblacionDestino"); // NOI18N
-        jTextPoblacionDestino.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextPoblacionDestinoFocusLost(evt);
-            }
-        });
-
-        jLabel13.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel13.setText("*");
-        jLabel13.setName("jLabel13"); // NOI18N
-
-        lProvinciaDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lProvinciaDestino.setText("Provincia");
-        lProvinciaDestino.setName("lProvinciaDestino"); // NOI18N
-
-        jComboBoxProvinciaDestino.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxProvinciaDestino.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxProvinciaDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxProvinciaDestino.setName("jComboBoxProvinciaDestino"); // NOI18N
-
-        jComboTipoDestino.setBackground(new java.awt.Color(228, 229, 255));
-        jComboTipoDestino.setForeground(new java.awt.Color(0, 0, 100));
-        jComboTipoDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Directivo", "Empleado", "Taller", "Particular", "Otros", " " }));
-        jComboTipoDestino.setName("jComboTipoDestino"); // NOI18N
-
-        lNombreDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lNombreDestino.setText("Nombre");
-        lNombreDestino.setName("lNombreDestino"); // NOI18N
-
-        jTextNombreDestino.setName("jTextNombreDestino"); // NOI18N
-        jTextNombreDestino.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextNombreDestinoFocusLost(evt);
-            }
-        });
-
-        jLabel14.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel14.setText("*");
-        jLabel14.setName("jLabel14"); // NOI18N
-
-        lTelefonoDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lTelefonoDestino.setText("Móvil");
-        lTelefonoDestino.setName("lTelefonoDestino"); // NOI18N
-
-        jTextTelefonoDestino.setName("jTextTelefonoDestino"); // NOI18N
-
-        jLabel20.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel20.setText("*");
-        jLabel20.setName("jLabel20"); // NOI18N
-
-        lFechaDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lFechaDestino.setText("Fecha");
-        lFechaDestino.setName("lFechaDestino"); // NOI18N
-
-        jDateFechaDestino.setDateFormatString("dd-MM-yyyy");
-        jDateFechaDestino.setName("jDateFechaDestino"); // NOI18N
-
-        lTipoDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lTipoDestino.setText("    Tipo");
-        lTipoDestino.setName("lTipoDestino"); // NOI18N
-
-        lHoraDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lHoraDestino.setText("Hora Prevista");
-        lHoraDestino.setName("lHoraDestino"); // NOI18N
-
-        jLabel11.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel11.setText("*");
-        jLabel11.setName("jLabel11"); // NOI18N
-
-        lCodPostalDestino.setForeground(new java.awt.Color(0, 0, 100));
-        lCodPostalDestino.setText("Cód. Postal");
-        lCodPostalDestino.setName("lCodPostalDestino"); // NOI18N
-
-        jTextHoraDestino.setName("jTextHoraDestino"); // NOI18N
-
-        jTextCodPostalDestino.setName("jTextCodPostalDestino"); // NOI18N
-
-        jCheckBoxIdaVuelta.setForeground(new java.awt.Color(0, 0, 100));
-        jCheckBoxIdaVuelta.setText("Ida y Vuelta");
-        jCheckBoxIdaVuelta.setName("jCheckBoxIdaVuelta"); // NOI18N
-
-        jLabel1.setForeground(new java.awt.Color(0, 0, 100));
-        jLabel1.setText("Factor de corrección");
-        jLabel1.setName("jLabel1"); // NOI18N
-
-        jComboFactor.setBackground(new java.awt.Color(228, 229, 255));
-        jComboFactor.setForeground(new java.awt.Color(0, 0, 100));
-        jComboFactor.setName("jComboFactor"); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel19.setText("*");
+        jLabel19.setName("jLabel19"); // NOI18N
 
         jLabel18.setForeground(new java.awt.Color(204, 0, 0));
         jLabel18.setText("*");
         jLabel18.setName("jLabel18"); // NOI18N
 
+        jLabel16.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel16.setText("*");
+        jLabel16.setName("jLabel16"); // NOI18N
+
+        jLabel8.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel8.setText("*");
+        jLabel8.setName("jLabel8"); // NOI18N
+
+        lTarifaEsProv1.setForeground(new java.awt.Color(0, 0, 100));
+        lTarifaEsProv1.setText("Suplemento");
+        lTarifaEsProv1.setName("lTarifaEsProv1"); // NOI18N
+
+        jTextSuplemento.setName("jTextSuplemento"); // NOI18N
+
+        lTarifaCli.setForeground(new java.awt.Color(0, 0, 100));
+        lTarifaCli.setText("Cliente");
+        lTarifaCli.setName("lTarifaCli"); // NOI18N
+
         lFuMadrid.setForeground(new java.awt.Color(0, 0, 100));
         lFuMadrid.setText("Fuera de Madrid");
         lFuMadrid.setName("lFuMadrid"); // NOI18N
+
+        lServicio.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lServicio.setForeground(new java.awt.Color(0, 0, 100));
+        lServicio.setText("SERVICIOS");
+        lServicio.setName("lServicio"); // NOI18N
 
         jCheckBoxFMadrid.setAlignmentX(0.5F);
         jCheckBoxFMadrid.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -559,76 +342,54 @@ public class CSEditarPedido extends javax.swing.JPanel
             }
         });
 
-        jLabel23.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel23.setText("*");
-        jLabel23.setName("jLabel23"); // NOI18N
-
-        lServicio.setForeground(new java.awt.Color(0, 0, 100));
-        lServicio.setText("Servicio");
-        lServicio.setName("lServicio"); // NOI18N
+        lServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
+        lServicioFMad.setText("F.M. Origen");
+        lServicioFMad.setName("lServicioFMad"); // NOI18N
 
         jComboBoxServicio.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicio.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Urbano", "Interurbano", "Provincial", "Urbano ITV", "Especial" }));
         jComboBoxServicio.setName("jComboBoxServicio"); // NOI18N
 
-        jLabel25.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel25.setText("*");
-        jLabel25.setName("jLabel25"); // NOI18N
-
-        lServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
-        lServicioFMad.setText("Servicio Fuera de Madrid");
-        lServicioFMad.setName("lServicioFMad"); // NOI18N
+        lSoporte.setForeground(new java.awt.Color(0, 0, 100));
+        lSoporte.setText("Soporte");
+        lSoporte.setName("lSoporte"); // NOI18N
 
         jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
         jComboBoxServicioFMad.setEnabled(false);
         jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
 
-        lSEspecial.setForeground(new java.awt.Color(0, 0, 100));
-        lSEspecial.setText("Servicio especial");
-        lSEspecial.setName("lSEspecial"); // NOI18N
+        lEstado3.setForeground(new java.awt.Color(0, 0, 100));
+        lEstado3.setText("   Estado");
+        lEstado3.setName("lEstado3"); // NOI18N
 
-        jComboBoxServicioEspecial.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxServicioEspecial.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Pre_ITV", "Lavado", "Taller" }));
-        jComboBoxServicioEspecial.setName("jComboBoxServicioEspecial"); // NOI18N
-
-        jLabel15.setForeground(new java.awt.Color(0, 0, 100));
-        jLabel15.setText("días campa");
-        jLabel15.setName("jLabel15"); // NOI18N
-
-        jTextDiasCampa.setName("jTextDiasCampa"); // NOI18N
-
-        jLabel16.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel16.setText("*");
-        jLabel16.setName("jLabel16"); // NOI18N
-
-        lMatricula.setForeground(new java.awt.Color(0, 0, 100));
-        lMatricula.setText("Matrícula");
-        lMatricula.setName("lMatricula"); // NOI18N
-
-        jTextMatricula.setName("jTextMatricula"); // NOI18N
-        jTextMatricula.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextMatriculaFocusLost(evt);
+        jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxSoporte.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Grúa", "Camión completo", "Conductor", "Tren", "Custodia" }));
+        jComboBoxSoporte.setSelectedIndex(2);
+        jComboBoxSoporte.setName("jComboBoxSoporte"); // NOI18N
+        jComboBoxSoporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSoporteActionPerformed(evt);
             }
         });
 
-        lMarca.setForeground(new java.awt.Color(0, 0, 100));
-        lMarca.setText("Marca");
-        lMarca.setName("lMarca"); // NOI18N
-
-        jTextMarca.setName("jTextMarca"); // NOI18N
-        jTextMarca.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextMarcaFocusLost(evt);
+        jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxEstado.setForeground(new java.awt.Color(51, 51, 51));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Pendiente" }));
+        jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
+        jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstadoActionPerformed(evt);
             }
         });
 
-        lModelo.setForeground(new java.awt.Color(0, 0, 100));
-        lModelo.setText("Modelo");
-        lModelo.setName("lModelo"); // NOI18N
+        jTextSolred.setName("jTextSolred"); // NOI18N
+
+        lSolred.setForeground(new java.awt.Color(0, 0, 100));
+        lSolred.setText("Solred");
+        lSolred.setName("lSolred"); // NOI18N
 
         jTextModelo.setName("jTextModelo"); // NOI18N
         jTextModelo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -637,59 +398,57 @@ public class CSEditarPedido extends javax.swing.JPanel
             }
         });
 
+        lModelo.setForeground(new java.awt.Color(0, 0, 100));
+        lModelo.setText("Modelo");
+        lModelo.setName("lModelo"); // NOI18N
+
+        lTipoOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lTipoOrigen.setText("    Tipo");
+        lTipoOrigen.setName("lTipoOrigen"); // NOI18N
+
+        lHoraOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lHoraOrigen.setText("Hora Prevista");
+        lHoraOrigen.setName("lHoraOrigen"); // NOI18N
+
+        lFechaOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaOrigen.setText("Fecha");
+        lFechaOrigen.setName("lFechaOrigen"); // NOI18N
+
+        lOrigen.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lOrigen.setForeground(new java.awt.Color(170, 16, 4));
+        lOrigen.setText("DATOS DEL ORIGEN");
+        lOrigen.setName("lOrigen"); // NOI18N
+
+        jTextViaje.setName("jTextViaje"); // NOI18N
+
+        lViaje.setForeground(new java.awt.Color(0, 0, 100));
+        lViaje.setText("Viaje");
+        lViaje.setName("lViaje"); // NOI18N
+
         jSeparator5.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator5.setName("jSeparator5"); // NOI18N
 
-        jSeparator3.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator3.setName("jSeparator3"); // NOI18N
+        jTextDiasCampa.setName("jTextDiasCampa"); // NOI18N
 
-        jLabel24.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel24.setText("*");
-        jLabel24.setName("jLabel24"); // NOI18N
-
-        lSoporte.setForeground(new java.awt.Color(0, 0, 100));
-        lSoporte.setText("Soporte");
-        lSoporte.setName("lSoporte"); // NOI18N
-
-        jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxSoporte.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Grúa", "Camión completo", "Conductor", "Tren", "Custodia" }));
-        jComboBoxSoporte.setSelectedIndex(2);
-        jComboBoxSoporte.setName("jComboBoxSoporte"); // NOI18N
-
-        lProveedor.setForeground(new java.awt.Color(0, 0, 100));
-        lProveedor.setText("Proveedor");
-        lProveedor.setName("lProveedor"); // NOI18N
-
-        jTextProveedor.setEditable(false);
-        jTextProveedor.setName("jTextProveedor"); // NOI18N
-
-        jToggleButtonProveedor.setText("Buscar Proveedor");
-        jToggleButtonProveedor.setName("jToggleButtonProveedor"); // NOI18N
-        jToggleButtonProveedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonProveedorActionPerformed(evt);
-            }
-        });
+        jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator7.setName("jSeparator7"); // NOI18N
 
         jSeparator6.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator6.setName("jSeparator6"); // NOI18N
 
-        lTarifaEsCli.setForeground(new java.awt.Color(0, 0, 100));
-        lTarifaEsCli.setText("   Tarifa especial Cliente");
-        lTarifaEsCli.setName("lTarifaEsCli"); // NOI18N
+        jSeparator4.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator4.setName("jSeparator4"); // NOI18N
 
-        jTextTaEsCli.setName("jTextTaEsCli"); // NOI18N
+        jSeparator8.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator8.setName("jSeparator8"); // NOI18N
 
-        lTarifaEsProv.setForeground(new java.awt.Color(0, 0, 100));
-        lTarifaEsProv.setText("Tarifa especial Proveedor");
-        lTarifaEsProv.setName("lTarifaEsProv"); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 100));
+        jLabel1.setText("Factor de corrección");
+        jLabel1.setName("jLabel1"); // NOI18N
 
-        jTextTaEsProv.setName("jTextTaEsProv"); // NOI18N
-
-        lDescripción.setForeground(new java.awt.Color(0, 0, 100));
-        lDescripción.setText("Descripción");
-        lDescripción.setName("lDescripción"); // NOI18N
+        lFecha.setForeground(new java.awt.Color(0, 0, 100));
+        lFecha.setText("Fecha");
+        lFecha.setName("lFecha"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -701,14 +460,323 @@ public class CSEditarPedido extends javax.swing.JPanel
         });
         jScrollPane1.setViewportView(jTextDescripcion);
 
-        jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator7.setName("jSeparator7"); // NOI18N
+        jComboFactor.setBackground(new java.awt.Color(228, 229, 255));
+        jComboFactor.setForeground(new java.awt.Color(0, 0, 100));
+        jComboFactor.setName("jComboFactor"); // NOI18N
 
-        jSeparator8.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator8.setName("jSeparator8"); // NOI18N
+        jSeparator2.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator2.setName("jSeparator2"); // NOI18N
 
-        jSeparator4.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator4.setName("jSeparator4"); // NOI18N
+        lCodPostalOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lCodPostalOrigen.setText("Cód. Postal");
+        lCodPostalOrigen.setName("lCodPostalOrigen"); // NOI18N
+
+        lDestino.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lDestino.setForeground(new java.awt.Color(170, 16, 4));
+        lDestino.setText("DATOS DEL DESTINO");
+        lDestino.setName("lDestino"); // NOI18N
+
+        jTextCodPostalOrigen.setName("jTextCodPostalOrigen"); // NOI18N
+        jTextCodPostalOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextCodPostalOrigenActionPerformed(evt);
+            }
+        });
+
+        lTarifaEsProv.setForeground(new java.awt.Color(0, 0, 100));
+        lTarifaEsProv.setText("Proveedor");
+        lTarifaEsProv.setName("lTarifaEsProv"); // NOI18N
+
+        lNumero.setForeground(new java.awt.Color(0, 0, 100));
+        lNumero.setText("Número de pedido PE/");
+        lNumero.setName("lNumero"); // NOI18N
+
+        lTarifaEspecial.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lTarifaEspecial.setForeground(new java.awt.Color(170, 16, 4));
+        lTarifaEspecial.setText("  TARIFA ESPECIAL ");
+        lTarifaEspecial.setName("lTarifaEspecial"); // NOI18N
+
+        jTextNumero.setEditable(false);
+        jTextNumero.setName("jTextNumero"); // NOI18N
+
+        jComboTipoOrigen.setBackground(new java.awt.Color(228, 229, 255));
+        jComboTipoOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        jComboTipoOrigen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Directivo", "Empleado", "Taller", "Particular", "Otros", " " }));
+        jComboTipoOrigen.setName("jComboTipoOrigen"); // NOI18N
+
+        lDescripción.setForeground(new java.awt.Color(0, 0, 100));
+        lDescripción.setText("Descripción");
+        lDescripción.setName("lDescripción"); // NOI18N
+
+        jTextNombreOrigen.setName("jTextNombreOrigen"); // NOI18N
+        jTextNombreOrigen.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextNombreOrigenFocusLost(evt);
+            }
+        });
+
+        lSEspecial.setForeground(new java.awt.Color(0, 0, 100));
+        lSEspecial.setText("Especial");
+        lSEspecial.setName("lSEspecial"); // NOI18N
+
+        jTextTaEsCli.setName("jTextTaEsCli"); // NOI18N
+        jTextTaEsCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextTaEsCliActionPerformed(evt);
+            }
+        });
+
+        jComboBoxServicioEspecial.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxServicioEspecial.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxServicioEspecial.setMaximumRowCount(10);
+        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ITV", "Pre_ITV", "Chequeo", "Reacondicionamiento", "Lavado Exterior", "Lavado Interior y Exterior", "Lavado Completo", "Lavado Extra", "Lavado Higienizado" }));
+        jComboBoxServicioEspecial.setName("jComboBoxServicioEspecial"); // NOI18N
+        jComboBoxServicioEspecial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxServicioEspecialActionPerformed(evt);
+            }
+        });
+
+        jTextTaEsProv.setName("jTextTaEsProv"); // NOI18N
+
+        jCheckBoxIdaVuelta.setForeground(new java.awt.Color(0, 0, 100));
+        jCheckBoxIdaVuelta.setText(" Ida y Vuelta");
+        jCheckBoxIdaVuelta.setName("jCheckBoxIdaVuelta"); // NOI18N
+
+        jDateFechaOrigen.setDateFormatString("dd-MM-yyyy");
+        jDateFechaOrigen.setName("jDateFechaOrigen"); // NOI18N
+
+        jLabel15.setForeground(new java.awt.Color(0, 0, 100));
+        jLabel15.setText("Días campa");
+        jLabel15.setName("jLabel15"); // NOI18N
+
+        jDateFecha.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFecha.setName("jDateFecha"); // NOI18N
+
+        jLabel13.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel13.setText("*");
+        jLabel13.setName("jLabel13"); // NOI18N
+
+        lProvinciaDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lProvinciaDestino.setText("Provincia");
+        lProvinciaDestino.setName("lProvinciaDestino"); // NOI18N
+
+        jLabel7.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel7.setText("*");
+        jLabel7.setName("jLabel7"); // NOI18N
+
+        jTextCodPostalDestino.setName("jTextCodPostalDestino"); // NOI18N
+        jTextCodPostalDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextCodPostalDestinoActionPerformed(evt);
+            }
+        });
+
+        jTextPoblacionDestino.setName("jTextPoblacionDestino"); // NOI18N
+        jTextPoblacionDestino.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextPoblacionDestinoFocusLost(evt);
+            }
+        });
+
+        lPoblacionDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lPoblacionDestino.setText("Población");
+        lPoblacionDestino.setName("lPoblacionDestino"); // NOI18N
+
+        jTextNombreDestino.setName("jTextNombreDestino"); // NOI18N
+        jTextNombreDestino.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextNombreDestinoFocusLost(evt);
+            }
+        });
+
+        jLabel10.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel10.setText("*");
+        jLabel10.setName("jLabel10"); // NOI18N
+
+        jLabel20.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel20.setText("*");
+        jLabel20.setName("jLabel20"); // NOI18N
+
+        jDateFechaDestino.setDateFormatString("dd-MM-yyyy");
+        jDateFechaDestino.setName("jDateFechaDestino"); // NOI18N
+
+        jToggleButtonProveedor.setText("Buscar Proveedor");
+        jToggleButtonProveedor.setName("jToggleButtonProveedor"); // NOI18N
+        jToggleButtonProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonProveedorActionPerformed(evt);
+            }
+        });
+
+        lMatricula.setForeground(new java.awt.Color(0, 0, 100));
+        lMatricula.setText("Matrícula");
+        lMatricula.setName("lMatricula"); // NOI18N
+
+        lProveedor.setForeground(new java.awt.Color(0, 0, 100));
+        lProveedor.setText("Proveedor");
+        lProveedor.setName("lProveedor"); // NOI18N
+
+        jTextProveedor.setEditable(false);
+        jTextProveedor.setName("jTextProveedor"); // NOI18N
+        jTextProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextProveedorActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel11.setText("*");
+        jLabel11.setName("jLabel11"); // NOI18N
+
+        jTextMarca.setName("jTextMarca"); // NOI18N
+        jTextMarca.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextMarcaFocusLost(evt);
+            }
+        });
+
+        jLabel23.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel23.setText("*");
+        jLabel23.setName("jLabel23"); // NOI18N
+
+        jTextMatricula.setName("jTextMatricula"); // NOI18N
+        jTextMatricula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextMatriculaFocusLost(evt);
+            }
+        });
+
+        jComboTipoDestino.setBackground(new java.awt.Color(228, 229, 255));
+        jComboTipoDestino.setForeground(new java.awt.Color(0, 0, 100));
+        jComboTipoDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Directivo", "Empleado", "Taller", "Particular", "Otros", " " }));
+        jComboTipoDestino.setName("jComboTipoDestino"); // NOI18N
+
+        lMarca.setForeground(new java.awt.Color(0, 0, 100));
+        lMarca.setText("Marca");
+        lMarca.setName("lMarca"); // NOI18N
+
+        jTextCliente.setEditable(false);
+        jTextCliente.setName("jTextCliente"); // NOI18N
+
+        jToggleButtonCliente.setText("Buscar Cliente");
+        jToggleButtonCliente.setName("jToggleButtonCliente"); // NOI18N
+        jToggleButtonCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonClienteActionPerformed(evt);
+            }
+        });
+
+        lCliente.setForeground(new java.awt.Color(0, 0, 100));
+        lCliente.setText("Cliente");
+        lCliente.setName("lCliente"); // NOI18N
+
+        jLabel24.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel24.setText("*");
+        jLabel24.setName("jLabel24"); // NOI18N
+
+        lHoraRealOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lHoraRealOrigen.setText("Hora Real Origen");
+        lHoraRealOrigen.setName("lHoraRealOrigen"); // NOI18N
+
+        jTextHoraRealOrigen.setName("jTextHoraRealOrigen"); // NOI18N
+        jTextHoraRealOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextHoraRealOrigenActionPerformed(evt);
+            }
+        });
+
+        jTextHoraRealDestino.setName("jTextHoraRealDestino"); // NOI18N
+        jTextHoraRealDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextHoraRealDestinoActionPerformed(evt);
+            }
+        });
+
+        lHoraRealDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lHoraRealDestino.setText("Hora Real Destino");
+        lHoraRealDestino.setName("lHoraRealDestino"); // NOI18N
+
+        jTextHoraOrigen.setName("jTextHoraOrigen"); // NOI18N
+
+        jLabel14.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel14.setText("*");
+        jLabel14.setName("jLabel14"); // NOI18N
+
+        jComboBoxProvinciaOrigen.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxProvinciaOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxProvinciaOrigen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
+        jComboBoxProvinciaOrigen.setName("jComboBoxProvinciaOrigen"); // NOI18N
+
+        lTipoDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lTipoDestino.setText("    Tipo");
+        lTipoDestino.setName("lTipoDestino"); // NOI18N
+
+        jLabel12.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel12.setText("*");
+        jLabel12.setName("jLabel12"); // NOI18N
+
+        lProvinciaOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lProvinciaOrigen.setText("Provincia");
+        lProvinciaOrigen.setName("lProvinciaOrigen"); // NOI18N
+
+        lPoblacionOrigen.setForeground(new java.awt.Color(0, 0, 100));
+        lPoblacionOrigen.setText("Población");
+        lPoblacionOrigen.setName("lPoblacionOrigen"); // NOI18N
+
+        jTextPoblacionOrigen.setName("jTextPoblacionOrigen"); // NOI18N
+        jTextPoblacionOrigen.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextPoblacionOrigenFocusLost(evt);
+            }
+        });
+
+        jSeparator3.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator3.setName("jSeparator3"); // NOI18N
+
+        jLabel6.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel6.setText("*");
+        jLabel6.setName("jLabel6"); // NOI18N
+
+        jTextHoraDestino.setName("jTextHoraDestino"); // NOI18N
+
+        jComboBoxProvinciaDestino.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxProvinciaDestino.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxProvinciaDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
+        jComboBoxProvinciaDestino.setName("jComboBoxProvinciaDestino"); // NOI18N
+
+        lNombreDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lNombreDestino.setText("Nombre");
+        lNombreDestino.setName("lNombreDestino"); // NOI18N
+
+        jTextTelefonoDestino.setName("jTextTelefonoDestino"); // NOI18N
+
+        lTelefonoDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lTelefonoDestino.setText("Móvil");
+        lTelefonoDestino.setName("lTelefonoDestino"); // NOI18N
+
+        lCodPostalDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lCodPostalDestino.setText("Cód. Postal");
+        lCodPostalDestino.setName("lCodPostalDestino"); // NOI18N
+
+        lHoraDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lHoraDestino.setText("Hora Prevista");
+        lHoraDestino.setName("lHoraDestino"); // NOI18N
+
+        lFechaDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaDestino.setText("Fecha");
+        lFechaDestino.setName("lFechaDestino"); // NOI18N
+
+        jTextDireccionDestino.setName("jTextDireccionDestino"); // NOI18N
+        jTextDireccionDestino.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextDireccionDestinoFocusLost(evt);
+            }
+        });
+
+        lDireccionDestino.setForeground(new java.awt.Color(0, 0, 100));
+        lDireccionDestino.setText("Dirección");
+        lDireccionDestino.setName("lDireccionDestino"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -717,260 +785,9 @@ public class CSEditarPedido extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lEstado3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(lHoraRealOrigen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
-                        .addComponent(lHoraRealDestino)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextHoraRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
-                        .addComponent(lSolred)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextSolred, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                        .addComponent(lViaje)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lOrigen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 877, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lDireccionOrigen)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lPoblacionOrigen)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextPoblacionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lProvinciaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxProvinciaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lCodPostalOrigen))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jComboTipoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lNombreOrigen)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextNombreOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addGap(2, 2, 2)
-                                .addComponent(lTelefonoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(jTextTelefonoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel19)
-                                .addGap(4, 4, 4)
-                                .addComponent(lFechaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateFechaOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                .addGap(22, 22, 22)
-                                .addComponent(lHoraOrigen)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextCodPostalOrigen)
-                            .addComponent(jTextHoraOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lTipoOrigen)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lNumero)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lDestino)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lDireccionDestino)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lPoblacionDestino)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextPoblacionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                        .addComponent(jLabel13)
-                                        .addGap(2, 2, 2)
-                                        .addComponent(lProvinciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBoxProvinciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(3, 3, 3))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(49, 49, 49)
-                                        .addComponent(jComboTipoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(19, 19, 19)
-                                        .addComponent(lNombreDestino)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextNombreDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lTelefonoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextTelefonoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel20)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lFechaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jDateFechaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(14, 14, 14))))
-                            .addComponent(lTipoDestino))
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lHoraDestino)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lCodPostalDestino)
-                                .addGap(4, 4, 4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextHoraDestino)
-                            .addComponent(jTextCodPostalDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBoxIdaVuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
-                                .addGap(10, 10, 10)
-                                .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lFuMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lServicio)
-                                .addGap(16, 16, 16)
-                                .addComponent(jComboBoxServicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel25)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lServicioFMad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxServicioFMad, 0, 152, Short.MAX_VALUE)
-                                .addGap(37, 37, 37)
-                                .addComponent(lSEspecial)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lMatricula)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(lMarca)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lModelo)
-                                .addGap(10, 10, 10)
-                                .addComponent(jTextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 979, Short.MAX_VALUE)
-                        .addGap(4, 4, 4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 979, Short.MAX_VALUE)
-                        .addGap(4, 4, 4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lSoporte)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxSoporte, 0, 258, Short.MAX_VALUE)
-                        .addGap(68, 68, 68)
-                        .addComponent(lProveedor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(jToggleButtonProveedor)
-                        .addGap(5, 5, 5))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 979, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lTarifaEsCli, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextTaEsCli, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(lTarifaEsProv)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(lDescripción)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 979, Short.MAX_VALUE)
-                        .addGap(4, 4, 4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(lCerrado)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBoxCerrado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -979,16 +796,289 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                                 .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 979, Short.MAX_VALUE))
-                        .addGap(4, 4, 4))
-                    .addComponent(jLabel9))
-                .addContainerGap())
+                                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4))
+                            .addComponent(jLabel9))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(lEstado3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(90, 90, 90)
+                                .addComponent(lHoraRealOrigen)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(87, 87, 87)
+                                .addComponent(lHoraRealDestino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextHoraRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(88, 88, 88)
+                                .addComponent(lSolred)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextSolred, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                                .addComponent(lViaje)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lOrigen)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 870, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lDireccionOrigen)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lPoblacionOrigen)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextPoblacionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lProvinciaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxProvinciaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lCodPostalOrigen))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(49, 49, 49)
+                                        .addComponent(jComboTipoOrigen, 0, 93, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lNombreOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextNombreOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+                                        .addGap(2, 2, 2)
+                                        .addComponent(lTelefonoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jTextTelefonoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(lFechaOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jDateFechaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(lHoraOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextCodPostalOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                                    .addComponent(jTextHoraOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lTipoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(944, 944, 944))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lNumero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lDestino)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel10)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lDireccionDestino)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel7)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lPoblacionDestino)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextPoblacionDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel13)
+                                                .addGap(2, 2, 2)
+                                                .addComponent(lProvinciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jComboBoxProvinciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addGap(49, 49, 49)
+                                                .addComponent(jComboTipoDestino, 0, 94, Short.MAX_VALUE)
+                                                .addGap(19, 19, 19)
+                                                .addComponent(lNombreDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextNombreDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lTelefonoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextTelefonoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 9, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lFechaDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jDateFechaDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                                .addGap(14, 14, 14))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lTipoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                                        .addGap(821, 821, 821)))
+                                .addGap(4, 4, 4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(lHoraDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lCodPostalDestino)
+                                        .addGap(4, 4, 4)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextCodPostalDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                                    .addComponent(jTextHoraDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCheckBoxIdaVuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel1)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lFuMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel23)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lServicio)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBoxServicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lServicioFMad)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxServicioFMad, 0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lMatricula)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addComponent(lMarca)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lModelo)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jTextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(lServicioFMad1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxServicioFMadDestino, 0, 105, Short.MAX_VALUE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(lSEspecial)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel15)
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                                .addGap(4, 4, 4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                                .addGap(4, 4, 4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lSoporte)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxSoporte, 0, 251, Short.MAX_VALUE)
+                                .addGap(68, 68, 68)
+                                .addComponent(lProveedor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(jToggleButtonProveedor)
+                                .addGap(5, 5, 5))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(lTarifaEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lTarifaCli)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextTaEsCli, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lTarifaEsProv)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                                .addComponent(lTarifaEsProv1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lDescripción)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                                .addGap(4, 4, 4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                                .addGap(4, 4, 4)))
+                        .addGap(7, 7, 7))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -1024,134 +1114,140 @@ public class CSEditarPedido extends javax.swing.JPanel
                         .addComponent(jTextPoblacionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lTipoOrigen)
-                            .addComponent(jComboTipoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lNombreOrigen)
-                            .addComponent(jTextNombreOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lTelefonoOrigen)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextTelefonoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lFechaOrigen)
-                            .addComponent(jLabel19))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextHoraOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lHoraOrigen)))
-                    .addComponent(jDateFechaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lDestino)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lDireccionDestino)
-                        .addComponent(jTextCodPostalDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextPoblacionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11)
-                        .addComponent(lCodPostalDestino)
-                        .addComponent(lPoblacionDestino)
-                        .addComponent(jLabel7)
-                        .addComponent(jComboBoxProvinciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lProvinciaDestino)
-                        .addComponent(jLabel13)))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lTipoDestino)
-                        .addComponent(lNombreDestino)
-                        .addComponent(jTextNombreDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboTipoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lTelefonoDestino)
-                        .addComponent(jTextTelefonoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel14)
-                        .addComponent(jLabel20)
-                        .addComponent(lFechaDestino))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextHoraDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lHoraDestino))
-                    .addComponent(jDateFechaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lFuMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel18))
+                    .addComponent(jDateFechaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel23)
-                                .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel25)
-                                .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel15)
-                                .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lSEspecial)))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel16)
-                        .addComponent(lMatricula)
-                        .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lMarca)
-                        .addComponent(jCheckBoxIdaVuelta)
-                        .addComponent(jTextMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lModelo)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jToggleButtonProveedor))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lSoporte)
-                        .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lProveedor))
-                    .addComponent(jLabel24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lTarifaEsCli)
-                            .addComponent(jTextTaEsCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lDescripción)
-                            .addComponent(lTarifaEsProv)))
-                    .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lTipoOrigen)
+                                .addComponent(jComboTipoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lNombreOrigen)
+                                .addComponent(jTextNombreOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lTelefonoOrigen)
+                                .addComponent(jLabel8)
+                                .addComponent(jTextTelefonoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lFechaOrigen)
+                                .addComponent(jLabel19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextHoraOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lHoraOrigen)))
+                        .addGap(13, 13, 13)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lEstado3)
-                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lViaje)
-                    .addComponent(jTextViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lHoraRealOrigen)
-                    .addComponent(jTextHoraRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lHoraRealDestino)
-                    .addComponent(jTextSolred, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lSolred))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lDestino)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lDireccionDestino)
+                                .addComponent(jTextCodPostalDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextPoblacionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel11)
+                                .addComponent(lCodPostalDestino)
+                                .addComponent(lPoblacionDestino)
+                                .addComponent(jLabel7)
+                                .addComponent(lProvinciaDestino)
+                                .addComponent(jLabel13)
+                                .addComponent(jComboBoxProvinciaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lTipoDestino)
+                                .addComponent(lNombreDestino)
+                                .addComponent(jTextNombreDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboTipoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lTelefonoDestino)
+                                .addComponent(jTextTelefonoDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel20)
+                                .addComponent(lFechaDestino)
+                                .addComponent(jLabel14))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextHoraDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lHoraDestino))
+                            .addComponent(jDateFechaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lFuMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel23)
+                                        .addComponent(lServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lServicioFMad1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lSEspecial)
+                                        .addComponent(jLabel15)))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel16)
+                                .addComponent(lMatricula)
+                                .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lMarca)
+                                .addComponent(jCheckBoxIdaVuelta)
+                                .addComponent(jTextMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lModelo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jToggleButtonProveedor))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lSoporte)
+                                .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lProveedor))
+                            .addComponent(jLabel24))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lTarifaEspecial)
+                                    .addComponent(jTextTaEsCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lTarifaEsProv)
+                                    .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lDescripción)
+                                    .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lTarifaEsProv1)
+                                    .addComponent(lTarifaCli)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lEstado3)
+                            .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lViaje)
+                            .addComponent(jTextViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lHoraRealOrigen)
+                            .addComponent(jTextHoraRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lHoraRealDestino)
+                            .addComponent(jTextSolred, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lSolred))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
@@ -1185,6 +1281,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         double viajeN=0;
         double taescliN=0;
         double taesproN=0;
+        double suplementoN = 0;
         int proveedorID=0;
 
         String numero = new String(jTextNumero.getText());
@@ -1244,6 +1341,11 @@ public class CSEditarPedido extends javax.swing.JPanel
         {
             taesproN=Double.valueOf(tarifaProveedor).doubleValue();
         }
+        String suplemento=new String(jTextSuplemento.getText());
+        if(!suplemento.equals(""))
+        {
+            suplementoN=Double.valueOf(suplemento).doubleValue();
+        }
         String direccionOrigen=new String(jTextDireccionOrigen.getText());
         String poblacionOrigen=new String(jTextPoblacionOrigen.getText());
         String provinciaOrigen=new String(jComboBoxProvinciaOrigen.getSelectedItem().toString());
@@ -1263,6 +1365,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         boolean fueraMad = new Boolean(jCheckBoxFMadrid.getText());
         String servicio=new String(jComboBoxServicio.getSelectedItem().toString());
         String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
+        String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
         String soporte=new String(jComboBoxSoporte.getSelectedItem().toString());
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
         String horarealOrigen=new String(jTextHoraRealOrigen.getText());
@@ -1359,12 +1462,14 @@ public class CSEditarPedido extends javax.swing.JPanel
         else
         {
               String servicioAux="";
+              String servicioDestino = "";
               if(!fueraMad){
                   fueraM=0;
                   servicioAux=servicio;
               }else{
                   fueraM=1;
                   servicioAux=servicioFMad;
+                  servicioDestino = servicioDestino;
               }
               if(!cerrado)
                   cerradoN=1;
@@ -1375,8 +1480,6 @@ public class CSEditarPedido extends javax.swing.JPanel
               else
                   idaVueltaN=0;
 
-
-
                String query = "UPDATE pe_pedidos SET pe_fecha = '"+fecha2+"', " +
                             "pe_descripcion = '"+descripcion+"', pe_direccion_origen = '"+direccionOrigen+"', " +
                             "pe_poblacion_origen = '"+poblacionOrigen+"', pe_provincia_origen = '"+provinciaOrigen+"', " +
@@ -1386,10 +1489,11 @@ public class CSEditarPedido extends javax.swing.JPanel
                             "pe_provincia_destino='"+provinciaDestino+"', pe_cp_destino = '"+codigoPDestino+"', pe_fecha_destino = '"+fechaDestino+"', " +
                             "pe_hora_destino='"+horaDestino+"', pe_tipo_destino = '"+tipoDestino+"', pe_nombre_destino = '"+nombreDestino+"', " +
                             "pe_telefono_destino='"+telefonoDestino+"', pe_fuera_mad = '"+fueraM+"', pe_servicio = '"+servicioAux+"', " +
-                            "pe_soporte='"+soporte+"',pe_dias_campa='"+diasCampa+"',pe_ida_vuelta='"+idaVueltaN+"',pe_servicio_especial='"+servicioEspecial+"'," +
-                            "pe_ve_matricula='"+matricula+"', pe_ve_marca = '"+marca+"', pe_ve_modelo = '"+modelo+"', " +
-                            "pe_solred='"+solredN+"', pe_viaje = '"+viajeN+"', pe_ta_es_cliente = '"+taescliN+"', " +
-                            "pe_ta_es_proveedor = '"+taesproN+"', fc_id = '"+factor+"', pe_estado = '"+estado+"' , pe_activo = '"+cerradoN+"'," +
+                            "pe_servicio_destino = '"+servicioDestino+"',pe_soporte='"+soporte+"',pe_dias_campa='"+diasCampa+"', " +
+                            "pe_ida_vuelta='"+idaVueltaN+"',pe_servicio_especial='"+servicioEspecial+"', pe_ve_matricula='"+matricula+"', " +
+                            "pe_ve_marca = '"+marca+"', pe_ve_modelo = '"+modelo+"', pe_solred='"+solredN+"', pe_viaje = '"+viajeN+"', " +
+                            "pe_ta_es_cliente = '"+taescliN+"', pe_ta_es_proveedor = '"+taesproN+"', pe_suplemento= '"+suplemento+"', " +
+                            "fc_id = '"+factor+"', pe_estado = '"+estado+"' , pe_activo = '"+cerradoN+"', " +
                             "pe_hora_real_origen = '"+horarealOrigen+"', pe_hora_real_destino='"+horarealDestino+"' WHERE pe_num = "+numero+"";
 
                 System.out.println(query);
@@ -1469,38 +1573,57 @@ public class CSEditarPedido extends javax.swing.JPanel
         jTextDireccionOrigen.setText(DireccionOrigenM);
 }//GEN-LAST:event_jTextDireccionOrigenFocusLost
 
-    private void jTextPoblacionOrigenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextPoblacionOrigenFocusLost
-        String PoblacionOrigenM = jTextPoblacionOrigen.getText().toUpperCase();
-        jTextPoblacionOrigen.setText(PoblacionOrigenM);
-}//GEN-LAST:event_jTextPoblacionOrigenFocusLost
+    private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
+        // TODO add your handling code here:
+        if (jCheckBoxFMadrid.isSelected()) {
+            jComboBoxServicio.setEnabled(false);
+            jComboBoxServicioFMad.setEnabled(true);
+            jComboBoxServicioFMadDestino.setEnabled(true);
+        } else {
+            jComboBoxServicio.setEnabled(true);
+            jComboBoxServicioFMad.setEnabled(false);
+            jComboBoxServicioFMadDestino.setEnabled(false);
+        }
+}//GEN-LAST:event_jCheckBoxFMadridActionPerformed
+
+    private void jComboBoxSoporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSoporteActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jComboBoxSoporteActionPerformed
+
+    private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jComboBoxEstadoActionPerformed
+
+    private void jTextModeloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextModeloFocusLost
+        String ModeloM = jTextModelo.getText().toUpperCase();
+        jTextModelo.setText(ModeloM);
+}//GEN-LAST:event_jTextModeloFocusLost
+
+    private void jTextDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDescripcionFocusLost
+        String DescripcionM = jTextDescripcion.getText().toUpperCase();
+        jTextDescripcion.setText(DescripcionM);
+}//GEN-LAST:event_jTextDescripcionFocusLost
+
+    private void jTextCodPostalOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCodPostalOrigenActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jTextCodPostalOrigenActionPerformed
 
     private void jTextNombreOrigenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextNombreOrigenFocusLost
         String NombreOrigenM = jTextNombreOrigen.getText().toUpperCase();
         jTextNombreOrigen.setText(NombreOrigenM);
 }//GEN-LAST:event_jTextNombreOrigenFocusLost
 
-    private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
+    private void jTextTaEsCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTaEsCliActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jTextTaEsCliActionPerformed
 
-        System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
+    private void jComboBoxServicioEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServicioEspecialActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jComboBoxServicioEspecialActionPerformed
 
-        String query="select cl_id,cl_nombre,cl_DNI_CIF from cl_clientes order by cl_id";
-
-        CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
-        // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
-        CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
-        // establecer tama�o de marco interno en el tama�o de su contenido
-        CSDesktop.BuscaCliente.pack();
-        // adjuntar marco interno al escritorio y mostrarlo
-        CSDesktop.elEscritorio.add( CSDesktop.BuscaCliente );
-        CSDesktop.BuscaCliente.setLocation(150, 50);
-        CSDesktop.BuscaCliente.setVisible( true );
-    }//GEN-LAST:event_jToggleButtonClienteActionPerformed
-
-    private void jTextDireccionDestinoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDireccionDestinoFocusLost
-        String DireccionDestinoM = jTextDireccionDestino.getText().toUpperCase();
-        jTextDireccionDestino.setText(DireccionDestinoM);
-}//GEN-LAST:event_jTextDireccionDestinoFocusLost
+    private void jTextCodPostalDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCodPostalDestinoActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jTextCodPostalDestinoActionPerformed
 
     private void jTextPoblacionDestinoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextPoblacionDestinoFocusLost
         String PoblacionDestinoM = jTextPoblacionDestino.getText().toUpperCase();
@@ -1511,32 +1634,6 @@ public class CSEditarPedido extends javax.swing.JPanel
         String NombreDestinoM = jTextNombreDestino.getText().toUpperCase();
         jTextNombreDestino.setText(NombreDestinoM);
 }//GEN-LAST:event_jTextNombreDestinoFocusLost
-
-    private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
-        // TODO add your handling code here:
-        if (jCheckBoxFMadrid.isSelected()) {
-            jComboBoxServicio.setEnabled(false);
-            jComboBoxServicioFMad.setEnabled(true);
-        } else {
-            jComboBoxServicio.setEnabled(true);
-            jComboBoxServicioFMad.setEnabled(false);
-        }
-}//GEN-LAST:event_jCheckBoxFMadridActionPerformed
-
-    private void jTextMatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextMatriculaFocusLost
-        String MatriculaM = jTextMatricula.getText().toUpperCase();
-        jTextMatricula.setText(MatriculaM);
-}//GEN-LAST:event_jTextMatriculaFocusLost
-
-    private void jTextMarcaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextMarcaFocusLost
-        String MarcaM = jTextMarca.getText().toUpperCase();
-        jTextMarca.setText(MarcaM);
-}//GEN-LAST:event_jTextMarcaFocusLost
-
-    private void jTextModeloFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextModeloFocusLost
-        String ModeloM = jTextModelo.getText().toUpperCase();
-        jTextModelo.setText(ModeloM);
-}//GEN-LAST:event_jTextModeloFocusLost
 
     private void jToggleButtonProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonProveedorActionPerformed
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
@@ -1556,10 +1653,55 @@ public class CSEditarPedido extends javax.swing.JPanel
 
     }//GEN-LAST:event_jToggleButtonProveedorActionPerformed
 
-    private void jTextDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDescripcionFocusLost
-        String DescripcionM = jTextDescripcion.getText().toUpperCase();
-        jTextDescripcion.setText(DescripcionM);
-}//GEN-LAST:event_jTextDescripcionFocusLost
+    private void jTextProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextProveedorActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jTextProveedorActionPerformed
+
+    private void jTextMarcaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextMarcaFocusLost
+        String MarcaM = jTextMarca.getText().toUpperCase();
+        jTextMarca.setText(MarcaM);
+}//GEN-LAST:event_jTextMarcaFocusLost
+
+    private void jTextMatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextMatriculaFocusLost
+        String MatriculaM = jTextMatricula.getText().toUpperCase();
+        jTextMatricula.setText(MatriculaM);
+}//GEN-LAST:event_jTextMatriculaFocusLost
+
+    private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
+
+        System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
+
+        String query="select cl_id,cl_nombre,cl_DNI_CIF from cl_clientes order by cl_id";
+
+        CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
+        // adjuntar panel al panel de contenido del marco interno
+        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
+        CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
+        // establecer tama�o de marco interno en el tama�o de su contenido
+        CSDesktop.BuscaCliente.pack();
+        // adjuntar marco interno al escritorio y mostrarlo
+        CSDesktop.elEscritorio.add( CSDesktop.BuscaCliente );
+        CSDesktop.BuscaCliente.setLocation(150, 50);
+        CSDesktop.BuscaCliente.setVisible( true );
+    }//GEN-LAST:event_jToggleButtonClienteActionPerformed
+
+    private void jTextHoraRealOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextHoraRealOrigenActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jTextHoraRealOrigenActionPerformed
+
+    private void jTextHoraRealDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextHoraRealDestinoActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jTextHoraRealDestinoActionPerformed
+
+    private void jTextPoblacionOrigenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextPoblacionOrigenFocusLost
+        String PoblacionOrigenM = jTextPoblacionOrigen.getText().toUpperCase();
+        jTextPoblacionOrigen.setText(PoblacionOrigenM);
+}//GEN-LAST:event_jTextPoblacionOrigenFocusLost
+
+    private void jTextDireccionDestinoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDireccionDestinoFocusLost
+        String DireccionDestinoM = jTextDireccionDestino.getText().toUpperCase();
+        jTextDireccionDestino.setText(DireccionDestinoM);
+}//GEN-LAST:event_jTextDireccionDestinoFocusLost
  public Dimension getPreferredSize()
    {
       return new Dimension( 1060,650 );
@@ -1578,6 +1720,7 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JComboBox jComboBoxServicio;
     private javax.swing.JComboBox jComboBoxServicioEspecial;
     private javax.swing.JComboBox jComboBoxServicioFMad;
+    private javax.swing.JComboBox jComboBoxServicioFMadDestino;
     private javax.swing.JComboBox jComboBoxSoporte;
     private javax.swing.JComboBox jComboFactor;
     private javax.swing.JComboBox jComboTipoDestino;
@@ -1599,7 +1742,6 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1636,6 +1778,7 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JTextField jTextPoblacionOrigen;
     private javax.swing.JTextField jTextProveedor;
     private javax.swing.JTextField jTextSolred;
+    private javax.swing.JTextField jTextSuplemento;
     private javax.swing.JTextField jTextTaEsCli;
     private javax.swing.JTextField jTextTaEsProv;
     private javax.swing.JTextField jTextTelefonoDestino;
@@ -1675,10 +1818,13 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JLabel lSEspecial;
     private javax.swing.JLabel lServicio;
     private javax.swing.JLabel lServicioFMad;
+    private javax.swing.JLabel lServicioFMad1;
     private javax.swing.JLabel lSolred;
     private javax.swing.JLabel lSoporte;
-    private javax.swing.JLabel lTarifaEsCli;
+    private javax.swing.JLabel lTarifaCli;
     private javax.swing.JLabel lTarifaEsProv;
+    private javax.swing.JLabel lTarifaEsProv1;
+    private javax.swing.JLabel lTarifaEspecial;
     private javax.swing.JLabel lTelefonoDestino;
     private javax.swing.JLabel lTelefonoOrigen;
     private javax.swing.JLabel lTipoDestino;
@@ -1705,8 +1851,6 @@ public class CSEditarPedido extends javax.swing.JPanel
         {
             while(rs.next())
             {
-
-                
                 String fecha=rs.getString("pe_fecha");
                 String [] temp = null;
                     temp = fecha.split("\\-");
@@ -1763,6 +1907,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                     jComboBoxServicio.setSelectedItem(rs.getString("pe_servicio"));
                     jComboBoxServicio.setEnabled(true);
                     jComboBoxServicioFMad.setEnabled(false);
+                    jComboBoxServicioFMadDestino.setEnabled(false);
                 }
                 else
                 {
@@ -1779,6 +1924,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                 jTextViaje.setText(String.valueOf(rs.getInt("pe_viaje")));
                 jTextTaEsCli.setText(String.valueOf(rs.getDouble("pe_ta_es_cliente")));
                 jTextTaEsProv.setText(String.valueOf(rs.getDouble("pe_ta_es_proveedor")));
+                jTextSuplemento.setText(String.valueOf(rs.getDouble("pe_suplemento")));
                 jComboFactor.setSelectedIndex(rs.getInt("fc_id"));
                 jComboBoxEstado.setSelectedItem(rs.getString("pe_estado"));
                 jTextHoraRealOrigen.setText(rs.getString("pe_hora_real_origen"));

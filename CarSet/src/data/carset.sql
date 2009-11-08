@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `cl_clientes` (
   `cl_email` varchar(50) collate utf8_spanish_ci default NULL,
   `cl_web` varchar(50) collate utf8_spanish_ci default NULL,
   `cl_plazo` varchar(30) collate utf8_spanish_ci default NULL,
+  `cl_dias_plazo` int(3) NOT NULL default '0',
   `fp_id` int(3) NOT NULL default '0',
   `cl_incremento_ta` double default '0',
   `cl_estado` varchar(30) collate utf8_spanish_ci NOT NULL default 'Activo',
@@ -74,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `cl_clientes` (
 --
 -- Volcar la base de datos para la tabla `cp_contactos_proveedor`
 --
-INSERT INTO cl_clientes (cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, cl_poblacion, cl_provincia, cl_telefono, cl_telefono2, cl_fax, cl_email, cl_web, cl_plazo, fp_id, cl_estado, co_id) VALUES ('PLANTILLA','00000000L','NINGUNA','00000','NINGUNA','MADRID','910000000' ,'','','','','30 días FF','1','Activo','1');
+INSERT INTO cl_clientes (cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, cl_poblacion, cl_provincia, cl_telefono, cl_telefono2, cl_fax, cl_email, cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id) VALUES ('PLANTILLA','00000000L','NINGUNA','00000','NINGUNA','MADRID','910000000' ,'','','','','30 días FF', '0','1','Activo','1');
 
 -- --------------------------------------------------------
 
@@ -205,7 +206,6 @@ CREATE TABLE IF NOT EXISTS `pc_pedidos_clientes` (
 -- Volcar la base de datos para la tabla `pc_pedidos_clientes`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -236,6 +236,7 @@ CREATE TABLE IF NOT EXISTS `pe_pedidos` (
   `pe_telefono_destino` varchar(15) collate utf8_spanish_ci NOT NULL default '',
   `pe_fuera_mad` tinyint(1) NOT NULL default '0',
   `pe_servicio` varchar(100) collate utf8_spanish_ci NOT NULL default '',
+  `pe_servicio_destino` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `pe_servicio_especial` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `pe_dias_campa` int(5) default '0',
   `pe_ida_vuelta` tinyint(1) NOT NULL default '0',
@@ -249,6 +250,7 @@ CREATE TABLE IF NOT EXISTS `pe_pedidos` (
   `pe_viaje` double default '0',
   `pe_ta_es_cliente` double default NULL,
   `pe_ta_es_proveedor` double default NULL,
+  `pe_suplemento` double default NULL,
   `fc_id` int(10) NOT NULL default '0',
   `pe_estado` varchar(30) collate utf8_spanish_ci NOT NULL default 'Activo',
   `pe_activo` tinyint(1) NOT NULL default '0',
@@ -277,7 +279,6 @@ CREATE TABLE IF NOT EXISTS `pp_pedidos_proveedores` (
 -- Volcar la base de datos para la tabla `pp_pedidos_proveedores`
 --
 
-
 -- --------------------------------------------------------
 
 --
@@ -299,6 +300,7 @@ CREATE TABLE IF NOT EXISTS `pr_proveedores` (
   `pr_fax` varchar(15) collate utf8_spanish_ci default NULL,
   `pr_email` varchar(50) collate utf8_spanish_ci default NULL,
   `pr_plazo` varchar(50) collate utf8_spanish_ci default NULL,
+  `pr_dias_plazo` int(3) NOT NULL default '0',
   `fp_id` int(3) NOT NULL default '0',
   `pr_incremento_ta` double default '0',
   `pr_num_cuenta` varchar(30) collate utf8_spanish_ci default NULL,
@@ -311,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `pr_proveedores` (
 -- Volcar la base de datos para la tabla `pr_proveedores`
 --
 -- --------------------------------------------------------
-INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, fp_id, pr_num_cuenta,pr_estado) VALUES ('PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','910000000', '', '', '','30 días FF', '1', '','Activo');
+INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, fp_id, pr_num_cuenta,pr_estado) VALUES ('PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','910000000', '', '', '','30 días FF','', '1', '','Activo');
 
 --
 -- Estructura de tabla para la tabla `tc_tarifas_clientes`
@@ -376,13 +378,19 @@ INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_soporte, tp_fecha_desde, tp_
 CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
   `sc_id` int(5) NOT NULL auto_increment,
   `sc_industrial` double default '0',
-  `sc_4x4` double default '0',
-  `sc_monovolumen` double default '0',
+  `sc_todoterreno` double default '0',
   `sc_furgones` double default '0',
-  `sc_ida_vuelta` tinyint(1) NOT NULL default '0',
+  `sc_itv` double default '0',
+  `sc_pre_itv` double default '0',
+  `sc_chequeo` double default '0',
+  `sc_reacondicionamiento` double default '0',
   `sc_campa` double default '0',
-  `sc_pre_itv` int default '0',
+  `sc_entrada_campa` int default '0',
   `sc_lavado` int default '0',
+  `sc_lavado_extin` int default '0',
+  `sc_lavado_extra` int default '0',
+  `sc_completo` int default '0',
+  `sc_higienizado` int default '0',
   `cl_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sc_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
@@ -400,13 +408,19 @@ INSERT INTO sc_servicios_clientes (sc_industrial, sc_4x4, sc_monovolumen, sc_fur
 CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
   `sp_id` int(5) NOT NULL auto_increment,
   `sp_industrial` double default '0',
-  `sp_4x4` double default '0',
-  `sp_monovolumen` double default '0',
+  `sp_todoterreno` double default '0',
   `sp_furgones` double default '0',
-  `sp_ida_vuelta` tinyint(1) NOT NULL default '0',
+  `sp_itv` double default '0',
+  `sp_pre_itv` double default '0',
+  `sp_chequeo` double default '0',
+  `sp_reacondicionamiento` double default '0',
   `sp_campa` double default '0',
-  `sp_pre_itv` int default '0',
+  `sp_entrada_campa` int default '0',
   `sp_lavado` int default '0',
+  `sp_lavado_extin` int default '0',
+  `sp_lavado_extra` int default '0',
+  `sp_completo` int default '0',
+  `sc_higienizado` int default '0',
   `pr_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sp_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;

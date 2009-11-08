@@ -127,20 +127,24 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lEstado" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jComboBoxEstado" pref="118" max="32767" attributes="1"/>
+                              <Component id="jComboBoxEstado" pref="156" max="32767" attributes="1"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="lPlazo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jComboBoxPlazo" min="-2" pref="113" max="-2" attributes="0"/>
+                              <Component id="jComboBoxPlazo" min="-2" pref="92" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jTextDiasPlazo" min="-2" pref="29" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lDiasPlazo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="lFPago" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jComboBoxFPago" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lNumCuenta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jTextEntidad" min="-2" pref="36" max="-2" attributes="0"/>
@@ -233,8 +237,6 @@
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lFPago" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxFPago" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lNumCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextEntidad" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextSucursal" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -242,6 +244,10 @@
                   <Component id="jTextNumCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lPlazo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBoxPlazo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxFPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lFPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lDiasPlazo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextDiasPlazo" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -774,6 +780,9 @@
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxPlazo" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxPlazoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lTelefono2">
       <Properties>
@@ -944,6 +953,21 @@
         </Property>
         <Property name="text" type="java.lang.String" value="*"/>
         <Property name="name" type="java.lang.String" value="jLabel17" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextDiasPlazo">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="jTextDiasPlazo" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lDiasPlazo">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="D&#xed;as"/>
+        <Property name="name" type="java.lang.String" value="lDiasPlazo" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
