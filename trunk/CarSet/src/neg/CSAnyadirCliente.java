@@ -1086,16 +1086,17 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
                     String fueraMad = rs.getString("tc_fuera_mad");
                     String servicio = rs.getString("tc_servicio");
+                    String servicioDestino = rs.getString("tp_servicio_destino");
                     String soporte = rs.getString("tc_soporte");
                     Date fechaDesde = rs.getDate("tc_fecha_desde");
                     Date fechaHasta = rs.getDate("tc_fecha_hasta");
                     String incremento = rs.getString("tc_incremento");
                     String tarifa = rs.getString("tc_tarifa");
 
-                   String queryTc  = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_soporte, tc_fecha_desde, tc_fecha_hasta, " +
-                                                   "tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " +
-                                                   "VALUES ('" + servicio + "' ,'" + soporte + "' ,'" + fechaDesde + "', '" + fechaHasta + "'," +
-                                                   "'" + fueraMad + "', " + incremento + ", " + tarifa + ", " + idCliente+") ";
+                   String queryTc  = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino tc_soporte, tc_fecha_desde, "+
+                                     "tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " +
+                                     "VALUES ('" + servicio + "' ,'" + soporte + "' ,'" + fechaDesde + "', '" + fechaHasta + "'," +
+                                     "'" + fueraMad + "', " + incremento + ", " + tarifa + ", " + idCliente+") ";
                                                    
 
                    System.out.println(queryTc);
@@ -1133,22 +1134,30 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             {
                    DbConnection se = new DbConnection();
                    boolean rsSe = true;
-                   int tc_id = 1;
 
                     String industrial = rs.getString("sc_industrial");
-                    String cuatroxcuatro = rs.getString("sc_4x4");
-                    String monovolumen = rs.getString("sc_monovolumen");
+                    String todoterreno = rs.getString("sc_todoterreno");
                     String furgones = rs.getString("sc_furgones");
-                    String idayvuelta = rs.getString("sc_ida_vuelta");
-                    String campa = rs.getString("sc_campa");
+                    String itv = rs.getString("sc_itv");
                     String preItv = rs.getString("sc_pre_itv");
+                    String chequeo = rs.getString("sc_chequeo");
+                    String reacondicionamiento = rs.getString("sc_reacondicionamiento");
+                    String campa = rs.getString("sc_campa");
+                    String entradaCampa = rs.getString("sc_entrada_campa");
                     String lavado = rs.getString("sc_lavado");
+                    String lavadoExIn = rs.getString("sc_lavado_exin");
+                    String lavadoExtra = rs.getString("sc_lavado_extra");
+                    String lavadoCom = rs.getString("sc_completo");
+                    String lavadoHig = rs.getString("sc_higienizado");
 
-                    String querySe  = "INSERT INTO sc_servicios_clientes (sc_industrial, sc_4x4, sc_monovolumen, sc_furgones, " +
-                                      "sc_ida_vuelta, sc_campa, sc_pre_itv, sc_lavado, cl_id) " +
-                                      "VALUES ('" + industrial + "' ,'" + cuatroxcuatro + "' ,'" + monovolumen + "'," +
-                                      "'" + furgones + "', '"+ idayvuelta + "', '" + campa + "', '" + preItv+"', " +
-                                      "'" + lavado + "', "+ idCliente+") ";
+
+                    String querySe  = "INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgones, " +
+                                      "sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, " +
+                                      "sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, cl_id) " +
+                                      "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgones + "'," +
+                                      "'" + itv + "', '"+ preItv + "', '" + chequeo + "', '" + reacondicionamiento+"', " +
+                                      "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + ", " +
+                                      "'" + lavadoExtra + "', '" + lavadoCom + "', '" + lavadoHig + ",'" + idCliente + "',) ";
 
                    System.out.println(querySe);
                    rsSe = se.manipuladorDatos(querySe);
