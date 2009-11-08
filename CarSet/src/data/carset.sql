@@ -322,6 +322,7 @@ INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, p
 CREATE TABLE IF NOT EXISTS `tc_tarifas_clientes` (
   `tc_id` int(5) NOT NULL auto_increment,
   `tc_servicio` varchar(100) collate utf8_spanish_ci NOT NULL default '',
+  `tc_servicio_destino` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tc_soporte` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tc_fecha_desde` date NOT NULL default '0000-00-00',
   `tc_fecha_hasta` date NOT NULL default '0000-00-00',
@@ -350,6 +351,7 @@ INSERT INTO tc_tarifas_clientes (tc_servicio, tc_soporte, tc_fecha_desde, tc_fec
 CREATE TABLE IF NOT EXISTS `tp_tarifas_proveedores` (
   `tp_id` int(5) NOT NULL auto_increment,
   `tp_servicio` varchar(100) collate utf8_spanish_ci NOT NULL default '',
+  `tp_servicio_destino` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tp_soporte` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tp_fecha_desde` date NOT NULL default '0000-00-00',
   `tp_fecha_hasta` date NOT NULL default '0000-00-00',
