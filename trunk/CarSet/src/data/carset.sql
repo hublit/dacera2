@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `dp_departamentos` (
 --
 -- Volcar la base de datos para la tabla `dp_departamentos`
 --
-INSERT INTO dp_departamentos (dp_nombre, dp_descripcion) VALUES ('Selecciona', 'Seleccionar opción');
+INSERT INTO dp_departamentos (dp_nombre, dp_descripcion) VALUES ('Selecciona', 'Seleccionar');
 INSERT INTO dp_departamentos (dp_nombre, dp_descripcion) VALUES ('RRHH', 'Recursos Humanos');
 INSERT INTO dp_departamentos (dp_nombre, dp_descripcion) VALUES ('Compras', 'Departamento de Compras');
 INSERT INTO dp_departamentos (dp_nombre, dp_descripcion) VALUES ('Marketing', 'Departamento de Marketing');
@@ -314,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `pr_proveedores` (
 -- Volcar la base de datos para la tabla `pr_proveedores`
 --
 -- --------------------------------------------------------
-INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES ('PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','910000000', '', '', '','30 días FF','', '1', '','Activo', '30');
+INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES ('PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','910000000', '', '', '','30 días FF','', '1', '','Activo', '0');
 
 --
 -- Estructura de tabla para la tabla `tc_tarifas_clientes`
@@ -433,7 +433,7 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
 --
 -- Volcar la base de datos para la tabla `sp_servicios_proveedor`
 --
-INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgones, sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, cl_id) VALUES ('1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0', '1');
+INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgones, sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, pr_id) VALUES ('1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0', '1');
 
 -- --------------------------------------------------------
 --
