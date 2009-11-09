@@ -36,6 +36,7 @@ public class CSContactoCliente extends javax.swing.JPanel
     /** Creates new form ABContactosCliente */
     public CSContactoCliente() throws SQLException
     {
+        CSDesktop.menuContactoCliente.setEnabled(false);
         initComponents();
         getDepartamentoContacto();
 
@@ -297,6 +298,7 @@ public class CSContactoCliente extends javax.swing.JPanel
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
         CSDesktop.NuevoContactoCliente.dispose();
+        CSDesktop.menuContactoCliente.setEnabled(true);
         
         }
 }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -350,6 +352,7 @@ public class CSContactoCliente extends javax.swing.JPanel
                 JOptionPane.showMessageDialog(null,mensaje);
                 jButtonGuardar.setEnabled(true);
                 CSDesktop.NuevoContactoCliente.dispose();
+                CSDesktop.menuContactoCliente.setEnabled(true);
 
             }
          }

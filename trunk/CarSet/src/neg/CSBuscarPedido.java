@@ -39,6 +39,8 @@ public class CSBuscarPedido extends javax.swing.JPanel {
     private DbConnection datos;
     /** Creates new form ABBuscarPedido */
     public CSBuscarPedido() {
+
+        CSDesktop.menuBuscarPedido.setEnabled(false);
         initComponents();
         limitacionesCampos();
 
@@ -911,6 +913,7 @@ public class CSBuscarPedido extends javax.swing.JPanel {
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
        CSDesktop.BuscarPedido.dispose();
+       CSDesktop.menuBuscarPedido.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextDireccionOrigen1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDireccionOrigen1FocusLost

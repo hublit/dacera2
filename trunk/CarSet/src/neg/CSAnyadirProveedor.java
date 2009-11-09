@@ -41,6 +41,7 @@ public class CSAnyadirProveedor extends JPanel
     /** Creates new form ABAnyadirProveedores */
     public CSAnyadirProveedor() throws SQLException
     {
+        CSDesktop.menuNuevoProveedor.setEnabled(false);
         this.setLayout(new GridBagLayout());
         initComponents();
         limitacionesCampos();
@@ -911,6 +912,7 @@ public class CSAnyadirProveedor extends JPanel
                     JOptionPane.showMessageDialog(null,mensaje);
                     jButtonGuardar.setEnabled(true);
                     CSDesktop.NuevoProveedor.dispose();
+                    CSDesktop.menuNuevoProveedor.setEnabled(true);
 
                     /*int confirmado = JOptionPane.showConfirmDialog(this,"Los datos se han guardado correctamente.¿Quiere crear una tarifa para este proveedor?");
 
@@ -945,7 +947,8 @@ public class CSAnyadirProveedor extends JPanel
       return new Dimension( 850,600 );
    }
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-               CSDesktop.NuevoProveedor.dispose();   
+               CSDesktop.NuevoProveedor.dispose();
+               CSDesktop.menuNuevoProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextNombreFocusLost

@@ -165,37 +165,27 @@
               <Component id="jSeparator3" min="-2" pref="12" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="1" pref="1" max="1" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lFechaDesde" alignment="3" min="-2" pref="19" max="-2" attributes="1"/>
-                                          <Component id="jLabelO4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxSoporte" alignment="3" max="32767" attributes="1"/>
-                                          <Component id="jLabelO3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jDateDesde" min="-2" max="-2" attributes="1"/>
-                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelO7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lFechaHasta" alignment="3" min="-2" pref="19" max="-2" attributes="1"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                          </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="1" pref="1" max="1" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lFechaDesde" alignment="3" min="-2" pref="19" max="-2" attributes="1"/>
+                          <Component id="jLabelO4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxSoporte" alignment="3" max="32767" attributes="1"/>
+                          <Component id="jLabelO3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jDateDesde" min="-2" max="-2" attributes="1"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelO7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lFechaHasta" alignment="3" min="-2" pref="19" max="-2" attributes="1"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>

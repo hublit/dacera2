@@ -29,7 +29,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     /** Creates new form ABAnyadirCliente */
     public CSAnyadirCliente() throws SQLException
     {
-        
+        CSDesktop.menuNuevoCliente.setEnabled(false);
         datos = new DbConnection();
         initComponents();
         getFPagoClientes();
@@ -840,6 +840,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     JOptionPane.showMessageDialog(null,mensaje);
                     jButtonGuardar.setEnabled(true);
                     CSDesktop.NuevoCliente.dispose();
+                    CSDesktop.menuNuevoCliente.setEnabled(true);
                     
                     
                     /**int confirmado = JOptionPane.showConfirmDialog(this,"Los datos se han guardado correctamente.¿Quiere crear una tarifa para este cliente?");
@@ -872,7 +873,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
             {
                CSDesktop.NuevoCliente.dispose();
-              
+               CSDesktop.menuNuevoCliente.setEnabled(true);              
             }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 

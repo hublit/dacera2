@@ -48,6 +48,7 @@ public class CSAnyadirPedido extends JPanel
     /** Creates new form ABAnyadirProveedores */
     public CSAnyadirPedido() throws SQLException
     {
+        CSDesktop.menuNuevoPedido.setEnabled(false);
         this.setLayout(new GridBagLayout());
         Date hoy = new Date();
         initComponents();
@@ -1575,6 +1576,7 @@ public class CSAnyadirPedido extends JPanel
                     else
                     {
                         CSDesktop.NuevoPedido.dispose();
+                        CSDesktop.menuNuevoPedido.setEnabled(true);
                         
                     }
 
@@ -1628,6 +1630,7 @@ public class CSAnyadirPedido extends JPanel
     private void jButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar1ActionPerformed
         {
             CSDesktop.NuevoPedido.dispose();
+            CSDesktop.menuNuevoPedido.setEnabled(true);
             
         }
 }//GEN-LAST:event_jButtonCancelar1ActionPerformed
