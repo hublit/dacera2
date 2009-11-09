@@ -80,7 +80,16 @@ public class CSDesktop extends JFrame
   public static JMenu menuTarifa;
   public static JMenu menuAyuda;
   public static JMenuBar barra;
-  public static JDialog prueba;
+  public static JMenuItem menuNuevoCliente;
+  public static JMenuItem menuBuscarCliente;
+  public static JMenuItem menuContactoCliente;
+  public static JMenuItem menuNuevoProveedor;
+  public static JMenuItem menuBuscarProveedor;
+  public static JMenuItem menuContactoProveedor;
+  public static JMenuItem menuNuevoPedido;
+  public static JMenuItem menuBuscarPedido;
+  public static JMenuItem menuTarifaCliente;
+  public static JMenuItem menuTarifaProveedor;
   public CSDesktop()
   {
       elEscritorio = new DesktopConFondo("/images/fondo_desktop.jpg");
@@ -114,10 +123,10 @@ public class CSDesktop extends JFrame
 
       menuClientes.setMnemonic( 'C' );
 
-      JMenuItem elementoNCliente = new JMenuItem( "Nuevo Cliente" );
-      elementoNCliente.setMnemonic( 'n' );
-      menuClientes.add( elementoNCliente );
-      elementoNCliente.addActionListener(
+      menuNuevoCliente = new JMenuItem( "Nuevo Cliente" );
+      menuNuevoCliente.setMnemonic( 'n' );
+      menuClientes.add( menuNuevoCliente );
+      menuNuevoCliente.addActionListener(
          new ActionListener() {          
             public void actionPerformed( ActionEvent evento ) {
                NuevoCliente = new JInternalFrame("Nuevo Cliente", true,false,false,true );
@@ -142,10 +151,10 @@ public class CSDesktop extends JFrame
             }
          }); 
 
-      JMenuItem elementoBCliente = new JMenuItem( "Buscar Cliente" );
-      elementoBCliente.setMnemonic( 'b' );
-      menuClientes.add( elementoBCliente );
-      elementoBCliente.addActionListener(
+      menuNuevoProveedor = new JMenuItem( "Buscar Cliente" );
+      menuNuevoProveedor.setMnemonic( 'b' );
+      menuClientes.add( menuNuevoProveedor );
+      menuNuevoProveedor.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
 
@@ -176,10 +185,10 @@ public class CSDesktop extends JFrame
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
 
-      JMenuItem elementoNContactoCliente = new JMenuItem( "Nuevo Contacto de Cliente" );
-      elementoNContactoCliente.setMnemonic( 'n' );
-      menuClientes.add( elementoNContactoCliente );
-      elementoNContactoCliente.addActionListener(
+      menuContactoCliente = new JMenuItem( "Nuevo Contacto de Cliente" );
+      menuContactoCliente.setMnemonic( 'n' );
+      menuClientes.add( menuContactoCliente );
+      menuContactoCliente.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
                NuevoContactoCliente= new JInternalFrame("Nuevo Contacto Cliente", true,false,false,true );
@@ -205,10 +214,10 @@ public class CSDesktop extends JFrame
       
       menuProveedores.setMnemonic( 'r' );
 
-      JMenuItem elementoNProveedores = new JMenuItem( "Nuevo Proveedor" );
-      elementoNProveedores.setMnemonic( 'n' );
-      menuProveedores.add( elementoNProveedores );
-       elementoNProveedores.addActionListener(
+      menuNuevoProveedor = new JMenuItem( "Nuevo Proveedor" );
+      menuNuevoProveedor.setMnemonic( 'n' );
+      menuProveedores.add( menuNuevoProveedor );
+      menuNuevoProveedor.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
 
@@ -239,10 +248,10 @@ public class CSDesktop extends JFrame
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
 
-       JMenuItem elementoBProveedores = new JMenuItem( "Buscar Proveedor" );
-      elementoBProveedores.setMnemonic( 'n' );
-      menuProveedores.add( elementoBProveedores );
-       elementoBProveedores.addActionListener(
+      menuBuscarProveedor = new JMenuItem( "Buscar Proveedor" );
+      menuBuscarProveedor.setMnemonic( 'n' );
+      menuProveedores.add( menuBuscarProveedor );
+      menuBuscarProveedor.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
 
@@ -267,10 +276,12 @@ public class CSDesktop extends JFrame
             }
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
-      JMenuItem elementoNContactoProveedor = new JMenuItem( "Nuevo Contacto de Proveedor" );
-      elementoNContactoProveedor.setMnemonic( 'c' );
-      menuProveedores.add( elementoNContactoProveedor );
-      elementoNContactoProveedor.addActionListener(
+
+
+      menuContactoProveedor = new JMenuItem( "Nuevo Contacto de Proveedor" );
+      menuContactoProveedor.setMnemonic( 'c' );
+      menuProveedores.add( menuContactoProveedor );
+      menuContactoProveedor.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
                NuevoContactoProveedor= new JInternalFrame("Nuevo Contacto Proveedor", true,false,false,true );
@@ -296,10 +307,10 @@ public class CSDesktop extends JFrame
        
       menuPedidos.setMnemonic( 'P' );
 
-      JMenuItem elementoNPedido = new JMenuItem( "Nuevo Pedido" );
-      elementoNCliente.setMnemonic( 'p' );
-      menuPedidos.add( elementoNPedido );
-      elementoNPedido.addActionListener(
+      menuNuevoPedido = new JMenuItem( "Nuevo Pedido" );
+      menuNuevoPedido.setMnemonic( 'p' );
+      menuPedidos.add( menuNuevoPedido );
+      menuNuevoPedido.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
 
@@ -327,10 +338,10 @@ public class CSDesktop extends JFrame
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
 
-      JMenuItem elementoBPedido = new JMenuItem( "Buscar Pedido" );
-      elementoNCliente.setMnemonic( 'b' );
-      menuPedidos.add( elementoBPedido );
-      elementoBPedido.addActionListener(
+      menuBuscarPedido = new JMenuItem( "Buscar Pedido" );
+      menuBuscarPedido.setMnemonic( 'b' );
+      menuPedidos.add( menuBuscarPedido );
+      menuBuscarPedido.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
 
@@ -359,10 +370,10 @@ public class CSDesktop extends JFrame
      
       menuTarifa.setMnemonic( 'T' );
 
-      JMenuItem elementoTCliente = new JMenuItem( "Tarifa Cliente" );
-      elementoTCliente.setMnemonic( 'p' );
-      menuTarifa.add( elementoTCliente );
-      elementoTCliente.addActionListener(
+      menuTarifaCliente = new JMenuItem( "Tarifa Cliente" );
+      menuTarifaCliente.setMnemonic( 'p' );
+      menuTarifa.add( menuTarifaCliente );
+      menuTarifaCliente.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
 
@@ -393,10 +404,10 @@ public class CSDesktop extends JFrame
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
 
-      JMenuItem elementoTProveedor = new JMenuItem( "Tarifa Proveedor" );
-      elementoTProveedor.setMnemonic( 'b' );
-      menuTarifa.add( elementoTProveedor );
-      elementoTProveedor.addActionListener(
+      menuTarifaProveedor = new JMenuItem( "Tarifa Proveedor" );
+      menuTarifaProveedor.setMnemonic( 'b' );
+      menuTarifa.add( menuTarifaProveedor );
+      menuTarifaProveedor.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
 

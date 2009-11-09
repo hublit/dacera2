@@ -31,6 +31,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
     /** Creates new form ABBuscarCliente */
     public CSBuscarCliente() throws SQLException
     {
+        CSDesktop.menuBuscarCliente.setEnabled(false);
         initComponents();
         getComercial();
         limitacionesCampos();
@@ -498,7 +499,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
             CSDesktop.BuscarCliente.dispose();
-           
+            CSDesktop.menuBuscarCliente.setEnabled(true);
         }
 }//GEN-LAST:event_jButtonCancelarActionPerformed
 

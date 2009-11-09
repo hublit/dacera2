@@ -44,6 +44,7 @@ public class CSAnyadirTarifaCliente extends JPanel
     
     public CSAnyadirTarifaCliente() throws ParseException
     {
+        CSDesktop.menuTarifaCliente.setEnabled(false);
         this.setLayout(new GridBagLayout());
         Date hoy = new Date();
         initComponents();
@@ -572,6 +573,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                     JOptionPane.showMessageDialog(null, mensaje);
                     jButtonGuardar.setEnabled(true);
                     CSDesktop.TarifaCliente.dispose();
+                    CSDesktop.menuTarifaCliente.setEnabled(true);
                 }
             }
         } catch (SQLException ex) {
@@ -581,6 +583,7 @@ public class CSAnyadirTarifaCliente extends JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.TarifaCliente.dispose();
+        CSDesktop.menuTarifaCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed

@@ -26,6 +26,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
     /** Creates new form ABBuscarProveedores */
     public CSBuscarProveedor()
     {
+        CSDesktop.menuBuscarProveedor.setEnabled(false);
         initComponents();
         limitacionesCampos();
 
@@ -489,9 +490,8 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
 }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-
         CSDesktop.BuscarProveedor.dispose();
-        
+        CSDesktop.menuBuscarProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextNombreFocusLost

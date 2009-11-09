@@ -36,6 +36,7 @@ public class CSContactoProveedor extends javax.swing.JPanel
     /** Creates new form ABContactosProveedor */
     public CSContactoProveedor() throws SQLException
     {
+        CSDesktop.menuContactoProveedor.setEnabled(false);
         initComponents();
         getDepartamentoContacto();
 
@@ -302,6 +303,7 @@ public class CSContactoProveedor extends javax.swing.JPanel
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
         CSDesktop.NuevoContactoProveedor.dispose();
+         CSDesktop.menuContactoProveedor.setEnabled(true);
         }
 }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -354,6 +356,7 @@ public class CSContactoProveedor extends javax.swing.JPanel
                 JOptionPane.showMessageDialog(null,mensaje);
                 jButtonGuardar.setEnabled(true);
                 CSDesktop.NuevoContactoProveedor.dispose();
+                 CSDesktop.menuContactoProveedor.setEnabled(true);
 
             }
          }
