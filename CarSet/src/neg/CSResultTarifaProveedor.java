@@ -47,8 +47,8 @@ public class CSResultTarifaProveedor extends javax.swing.JPanel {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                for (int k = 0; k < 9; k++) {
-                    if (k == 0 || k == 1 || k == 2 || k == 3 || k == 7) {
+                for (int k = 0; k < 10; k++) {
+                    if (k == 0 || k == 1 || k == 3 || k == 4 || k == 8) {
                         datosFila[j] = rs.getObject(k + 1);
                         System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         j++;

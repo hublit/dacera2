@@ -197,6 +197,11 @@ public class CSEditarProveedor extends javax.swing.JPanel
         jComboBoxPlazo.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxPlazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30 días FF", "15 días FF", "45 días FF", "60 días FF", "Especial" }));
         jComboBoxPlazo.setName("jComboBoxPlazo"); // NOI18N
+        jComboBoxPlazo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPlazoActionPerformed(evt);
+            }
+        });
 
         lPlazo.setForeground(new java.awt.Color(0, 0, 100));
         lPlazo.setText("   Plazo");
@@ -884,6 +889,17 @@ public class CSEditarProveedor extends javax.swing.JPanel
         }
 }//GEN-LAST:event_jButtonSEspecialesActionPerformed
 
+    private void jComboBoxPlazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPlazoActionPerformed
+        if (jComboBoxPlazo.getSelectedItem().equals("Especial"))
+        {
+            jTextDiasPlazo.setEnabled(true);
+        }
+        else
+        {
+            jTextDiasPlazo.setEnabled(false);
+        }
+    }//GEN-LAST:event_jComboBoxPlazoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
@@ -1000,7 +1016,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
                 jTextFax.setText(rs.getString("pr_fax"));
                 jTextEmail.setText(rs.getString("pr_email"));
                 jComboBoxPlazo.setSelectedItem(rs.getString("pr_plazo"));
-                jTextDiasPlazo.setText(rs.getString("cl_dias_plazo"));
+                jTextDiasPlazo.setText(rs.getString("pr_dias_plazo"));
                 jComboBoxFPago.setSelectedIndex(rs.getInt("fp_id")-1);
                 String cuenta = rs.getString("pr_num_cuenta");
                 if(!cuenta.equals(""))

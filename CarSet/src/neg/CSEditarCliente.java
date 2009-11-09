@@ -261,6 +261,11 @@ public class CSEditarCliente extends javax.swing.JPanel
         jComboBoxPlazo.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxPlazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30 días FF", "15 días FF", "45 días FF", "60 días FF", "Especial" }));
         jComboBoxPlazo.setName("jComboBoxPlazo"); // NOI18N
+        jComboBoxPlazo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPlazoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setText("*");
@@ -852,6 +857,17 @@ public class CSEditarCliente extends javax.swing.JPanel
        String WebM = jTextWeb.getText().toUpperCase();
        jTextWeb.setText(WebM);
     }//GEN-LAST:event_jTextWebFocusLost
+
+    private void jComboBoxPlazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPlazoActionPerformed
+        if (jComboBoxPlazo.getSelectedItem().equals("Especial"))
+        {
+            jTextDiasPlazo.setEnabled(true);
+        }
+        else
+        {
+            jTextDiasPlazo.setEnabled(false);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPlazoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
