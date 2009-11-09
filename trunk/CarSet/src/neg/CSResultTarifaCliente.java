@@ -49,9 +49,9 @@ public class CSResultTarifaCliente extends javax.swing.JPanel {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                for (int k = 0; k < 9; k++) {
-                    if (k == 0 || k == 1 || k == 2 || k == 3 || k == 7) {
-                         if(k==3)
+                for (int k = 0; k < 10; k++) {
+                    if (k == 0 || k == 1 || k == 3 || k == 4 || k == 8) {
+                         if(k==4)
                         {
                              String fecha=(rs.getObject(k+1)).toString();
                              String [] temp = null;
