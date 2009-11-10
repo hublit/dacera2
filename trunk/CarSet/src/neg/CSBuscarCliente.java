@@ -73,7 +73,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lComercial = new javax.swing.JLabel();
+        lComercial1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lNombre = new javax.swing.JLabel();
         jTextNombre = new javax.swing.JTextField();
@@ -101,9 +101,9 @@ public class CSBuscarCliente extends javax.swing.JPanel
         lComercial = new javax.swing.JLabel();
         jComboBoxComercial = new javax.swing.JComboBox();
 
-        lComercial.setForeground(new java.awt.Color(0, 0, 100));
-        lComercial.setText("Comercial");
-        lComercial.setName("lComercial"); // NOI18N
+        lComercial1.setForeground(new java.awt.Color(0, 0, 100));
+        lComercial1.setText("Comercial");
+        lComercial1.setName("lComercial"); // NOI18N
 
         jPanel1.setName("jPanel1"); // NOI18N
 
@@ -194,7 +194,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
         lNombreCon.setName("lNombreCon"); // NOI18N
 
         jComboBoxProvincia.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxProvincia.setForeground(new java.awt.Color(51, 51, 51));
+        jComboBoxProvincia.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxProvincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
         jComboBoxProvincia.setName("jComboBoxProvincia"); // NOI18N
 
@@ -547,6 +547,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
     private javax.swing.JTextField jTextPoblacion;
     private javax.swing.JLabel lCodPostal;
     private javax.swing.JLabel lComercial;
+    private javax.swing.JLabel lComercial1;
     private javax.swing.JLabel lDNI;
     private javax.swing.JLabel lDireccion;
     private javax.swing.JLabel lEstado;
