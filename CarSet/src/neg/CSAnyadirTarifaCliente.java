@@ -489,9 +489,19 @@ public class CSAnyadirTarifaCliente extends JPanel
                 Logger.getLogger(CSAnyadirTarifaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+
+            String servicioAux = "";
+            if (fueraMad) {
+                fueraM = 0;
+                servicioAux = servicio;
+            } else {
+                fueraM = 1;
+                servicioAux = servicioFMad;
+            }
+
             //Comprobamos si la tarifa existe para ese cliente
             int ta = 0;
-            ta = getTarifaCliente(idCliente, soporte, servicio);
+            ta = getTarifaCliente(idCliente, soporte, servicioAux, servicioFMadDestino);
             if (ta != 0) {
                 jButtonGuardar.setEnabled(false);
                 JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Ya existe una tarifa con el Soporte y Servicio seleccionado para ese cliente.</FONT></HTML>");
@@ -516,14 +526,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                  ValidarFormatos(Utilidades.campoObligatorio(tarifa,"Tarifa"));
 
             } else {
-                String servicioAux = "";
-                if (fueraMad) {
-                    fueraM = 0;
-                    servicioAux = servicio;
-                } else {
-                    fueraM = 1;
-                    servicioAux = servicioFMad;
-                }
+
                 String query = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, " +
                                "tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " + "VALUES (";
                 if (!servicioAux.equals("")) {
@@ -532,7 +535,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                     JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio.</FONT></HTML>");
                 }
 
-                    query = query + "'" + servicioFMadDestino + "'";
+                    query = query + " ,'" + servicioFMadDestino + "'";
 
                 if (!soporte.equals("")) {
                     query = query + " ,'" + soporte + "'";
@@ -685,17 +688,17 @@ public class CSAnyadirTarifaCliente extends JPanel
      * @return
      * @throws SQLException
      */
-    private int getTarifaCliente(int cliente, String soporte, String servicio) throws SQLException
+    private int getTarifaCliente(int cliente, String soporte, String servicio, String servicio_destino) throws SQLException
     {
         datos = new DbConnection();
         int tarifa = 0;
         tarifa = datos.numeroFilas("SELECT tc_id FROM tc_tarifas_clientes " +
-                                    "WHERE tc_servicio='"+servicio+"' AND tc_soporte='"+soporte+"'" +
-                                    "AND cl_id = '"+cliente+"'");
+                                    "WHERE tc_servicio='"+servicio+"' AND tc_servicio_destino='"+servicio_destino+"' " +
+                                    "AND tc_soporte='"+soporte+"' AND cl_id = '"+cliente+"'");
 
         System.out.println("SELECT tc_id FROM tc_tarifas_clientes " +
-                                    "WHERE tc_servicio='"+servicio+"' AND tc_soporte='"+soporte+"'" +
-                                    "AND cl_id = '"+cliente+"'");
+                                    "WHERE tc_servicio='"+servicio+"' AND tc_servicio_destino='"+servicio+"' " +
+                                    "AND tc_soporte='"+soporte+"' AND cl_id = '"+cliente+"'");
         return tarifa;
     }
 
