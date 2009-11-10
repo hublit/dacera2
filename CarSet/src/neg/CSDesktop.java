@@ -151,10 +151,10 @@ public class CSDesktop extends JFrame
             }
          }); 
 
-      menuNuevoProveedor = new JMenuItem( "Buscar Cliente" );
-      menuNuevoProveedor.setMnemonic( 'b' );
-      menuClientes.add( menuNuevoProveedor );
-      menuNuevoProveedor.addActionListener(
+      menuBuscarCliente = new JMenuItem( "Buscar Cliente" );
+      menuBuscarCliente.setMnemonic( 'b' );
+      menuClientes.add( menuBuscarCliente );
+      menuBuscarCliente.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
 
