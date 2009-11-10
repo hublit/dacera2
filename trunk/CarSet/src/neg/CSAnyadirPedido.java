@@ -1296,6 +1296,7 @@ public class CSAnyadirPedido extends JPanel
         double viajeN=0;
         double taescliN=0;
         double taesproN=0;
+        double suplementoN = 0;
         //String fecha = new String(jDate.getDate().toString());
 
         Calendar fechaCalendar = jDateFecha.getCalendar();
@@ -1372,6 +1373,11 @@ public class CSAnyadirPedido extends JPanel
         String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
         String servicioEspecial=new String(jComboBoxServicioEspecial.getSelectedItem().toString());
         String soporte=new String(jComboBoxSoporte.getSelectedItem().toString());
+        String suplemento=new String(jTextSuplemento.getText().toString());
+        if(!suplemento.equals(""))
+        {
+            suplementoN=Double.valueOf(suplemento).doubleValue();
+        }
         String diasCampa = new String(jTextDiasCampa.getText());
         if(!diasCampa.equals(""))
         {
@@ -1500,7 +1506,7 @@ public class CSAnyadirPedido extends JPanel
                                                          "pe_nombre_destino,pe_telefono_destino, pe_fuera_mad,pe_servicio,pe_servicio_destino, " +
                                                          "pe_servicio_especial,pe_dias_campa,pe_ida_vuelta,pe_soporte, pe_ve_matricula, " +
                                                          "pe_ve_marca,pe_ve_modelo,pe_hora_real_origen,pe_hora_real_destino, " +
-                                                         "pe_solred, pe_viaje,pe_ta_es_cliente,pe_ta_es_proveedor,pe_soporte, " +
+                                                         "pe_solred, pe_viaje,pe_ta_es_cliente,pe_ta_es_proveedor,pe_suplemento, " +
                                                          "fc_id, pe_estado,pe_activo) VALUES (";
 
               query = query + "'"+fecha2+"','"+descripcion+"','"+direccionOrigen+"','"+poblacionOrigen+"','"+provinciaOrigen+"','"+codigoPOrigen+"','"+fechaOrigen+"','"+horaOrigen+"'";
@@ -1508,7 +1514,7 @@ public class CSAnyadirPedido extends JPanel
               query = query + ", '"+fechaDestino+"','"+horaDestino+"','"+tipoDestino+"','"+nombreDestino+"','"+telefonoDestino+"','"+fueraM+"'";
               query = query + " ,'"+servicioAux+"','"+servicioDestino+"','"+servicioEspecial+"','"+diasCampaN+"','"+idaVueltaN+"','"+soporte+"','"+matricula+"'";
               query = query + ",'"+marca+"','"+modelo+"','"+horaRealOrigen+"','"+horaRealDestino+"','"+solredN+"','"+viajeN+"'";
-              query = query + " ,'"+taescliN+"','"+taesproN+"','"+soporte+"','"+factor+"','"+estado+"','"+cerradoN+"')";
+              query = query + " ,'"+taescliN+"','"+taesproN+"','"+suplementoN+"','"+factor+"','"+estado+"','"+cerradoN+"')";
 
 
                System.out.println(query);

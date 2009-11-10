@@ -1492,7 +1492,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                             "pe_servicio_destino = '"+servicioDestino+"',pe_soporte='"+soporte+"',pe_dias_campa='"+diasCampa+"', " +
                             "pe_ida_vuelta='"+idaVueltaN+"',pe_servicio_especial='"+servicioEspecial+"', pe_ve_matricula='"+matricula+"', " +
                             "pe_ve_marca = '"+marca+"', pe_ve_modelo = '"+modelo+"', pe_solred='"+solredN+"', pe_viaje = '"+viajeN+"', " +
-                            "pe_ta_es_cliente = '"+taescliN+"', pe_ta_es_proveedor = '"+taesproN+"', pe_suplemento= '"+suplemento+"', " +
+                            "pe_ta_es_cliente = '"+taescliN+"', pe_ta_es_proveedor = '"+taesproN+"', pe_suplemento= '"+suplementoN+"', " +
                             "fc_id = '"+factor+"', pe_estado = '"+estado+"' , pe_activo = '"+cerradoN+"', " +
                             "pe_hora_real_origen = '"+horarealOrigen+"', pe_hora_real_destino='"+horarealDestino+"' WHERE pe_num = "+numero+"";
 
