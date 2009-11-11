@@ -1916,8 +1916,10 @@ public class CSEditarPedido extends javax.swing.JPanel
                 {
                     jCheckBoxFMadrid.setSelected(true);
                     jComboBoxServicioFMad.setSelectedItem(rs.getString("pe_servicio"));
-                    jComboBoxServicioFMad.setEnabled(false);
-                    jComboBoxServicio.setEnabled(true);
+                    jComboBoxServicioFMad.setEnabled(true);
+                    jComboBoxServicioFMadDestino.setSelectedItem(rs.getString("pe_servicio_destino"));
+                    jComboBoxServicioFMadDestino.setEnabled(true);
+                    jComboBoxServicio.setEnabled(false);
                 }
                 jComboBoxSoporte.setSelectedItem(rs.getString("pe_soporte"));                             
                 jTextMatricula.setText(rs.getString("pe_ve_matricula"));
