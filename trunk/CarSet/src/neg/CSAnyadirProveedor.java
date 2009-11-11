@@ -1216,7 +1216,7 @@ public class CSAnyadirProveedor extends JPanel
                     String lavadoHig = rs.getString("sp_higienizado");
                     String idaVuelta = rs.getString("sp_ida_vuelta");
 
-                    String querySe  = "INSERT INTO sp_servicios_clientes (sp_industrial, sp_todoterreno, sp_furgones, " +
+                    String querySe  = "INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgones, " +
                                       "sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, " +
                                       "sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, pr_id) " +
                                       "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgones + "'," +
