@@ -43,6 +43,8 @@ public class CSEditarTarifaProveedor extends JPanel
     
     public CSEditarTarifaProveedor(int tarifa)
     {
+        CSDesktop.ABResultTarifasProveedor.setVisible(false);
+        CSDesktop.EditarProveedor.setVisible(false);
         datos = new DbConnection();
         this.setLayout(new GridBagLayout());
         initComponents();
@@ -533,6 +535,8 @@ public class CSEditarTarifaProveedor extends JPanel
                     JOptionPane.showMessageDialog(null,mensaje);
                     jButtonModificar.setEnabled(true);
                     CSDesktop.EditarTarifaProveedor.dispose();
+                    CSDesktop.ABResultTarifasProveedor.dispose();
+                    CSDesktop.EditarProveedor.setVisible(true);
 
                 }
 
@@ -541,6 +545,8 @@ public class CSEditarTarifaProveedor extends JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.EditarTarifaProveedor.dispose();
+        CSDesktop.ABResultTarifasProveedor.setVisible(true);
+        CSDesktop.EditarProveedor.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed

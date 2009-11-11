@@ -23,6 +23,8 @@ import java.sql.SQLException;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 
 /**
  *
@@ -39,6 +41,36 @@ public class CSContactoCliente extends javax.swing.JPanel
         CSDesktop.menuContactoCliente.setEnabled(false);
         initComponents();
         getDepartamentoContacto();
+
+         CSDesktop.NuevoContactoCliente.addInternalFrameListener(new InternalFrameListener() {
+
+            public void internalFrameOpened(InternalFrameEvent e) {
+            }
+
+            public void internalFrameClosing(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameClosed(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameIconified(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameDeiconified(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameActivated(InternalFrameEvent e) {
+               
+            }
+
+            public void internalFrameDeactivated(InternalFrameEvent e) {
+                 CSDesktop.BuscaCliente.moveToFront();
+            }
+        });
 
         KeyListener l = new KeyListener()
         {

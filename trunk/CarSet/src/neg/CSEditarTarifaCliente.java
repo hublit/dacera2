@@ -11,6 +11,7 @@
 
 package neg;
 
+import javax.swing.event.InternalFrameEvent;
 import utils.Utilidades;
 import data.Cliente;
 import data.DbConnection;
@@ -32,6 +33,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.InternalFrameListener;
 
 /**
  *
@@ -43,6 +45,8 @@ public class CSEditarTarifaCliente extends JPanel
     
     public CSEditarTarifaCliente(int tarifa)
     {
+        CSDesktop.ABResultTarifasCliente.setVisible(false);
+        CSDesktop.EditarCliente.setVisible(false);
         datos = new DbConnection();
         this.setLayout(new GridBagLayout());
         initComponents();
@@ -555,6 +559,8 @@ public class CSEditarTarifaCliente extends JPanel
                     JOptionPane.showMessageDialog(null,mensaje);
                     jButtonModificar.setEnabled(true);
                     CSDesktop.EditarTarifaCliente.dispose();
+                    CSDesktop.ABResultTarifasCliente.dispose();
+                    CSDesktop.EditarCliente.setVisible(true);
 
                 }
 
@@ -580,6 +586,8 @@ public class CSEditarTarifaCliente extends JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.EditarTarifaCliente.dispose();
+        CSDesktop.ABResultTarifasCliente.setVisible(true);
+        CSDesktop.EditarCliente.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 

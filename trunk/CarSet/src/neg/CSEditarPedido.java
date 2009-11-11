@@ -1529,6 +1529,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                     jButtonModificar.setEnabled(true);
                     CSDesktop.EditarPedido.dispose();
                     CSDesktop.ResultPedido.dispose();
+                    CSDesktop.menuBuscarPedido.setEnabled(true);
                     
                 }
     }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -1558,6 +1559,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                     jButtonModificar.setEnabled(true);
                     CSDesktop.EditarPedido.dispose();
                     CSDesktop.ResultPedido.dispose();
+                    CSDesktop.menuBuscarPedido.setEnabled(true);
                     
             }
         }
@@ -1565,6 +1567,7 @@ public class CSEditarPedido extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
        CSDesktop.EditarPedido.dispose();
+       CSDesktop.ResultPedido.setVisible(true);
        
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
