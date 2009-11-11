@@ -495,63 +495,65 @@ public class CSEditarTarifaCliente extends JPanel
                   fueraM = 1;
                   servicioAux = servicioFMad;
                   servicioDestinoAux = servicioFMadDestino;
-System.out.println("AAAAAAAAAAAAAAAAAAAAA"+servicioAux);
-                  if (servicioAux.equals("Selecciona") || servicioDestinoAux.equals("Selecciona"))
-                  {
-                       JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio Origen y Destino.</FONT></HTML>");
-                  }
                 }
+                  if (!Utilidades.campoObligatorioCombo(servicioAux,"Servicio Origen").equals("OK"))
+                 {
+                    ValidarFormatos(Utilidades.campoObligatorioCombo(servicioAux,"Servicio Origen"));
+                 }
+                  else if (!Utilidades.campoObligatorioCombo(servicioDestinoAux,"Servicio Destino").equals("OK"))
+                 {
+                    ValidarFormatos(Utilidades.campoObligatorioCombo(servicioDestinoAux,"Servicio Destino"));
+                 }
+                  else if (!Utilidades.campoObligatorio(tarifa,"Tarifa").equals("OK"))
+                 {
+                    ValidarFormatos(Utilidades.campoObligatorio(tarifa,"Tarifa"));
+                 }
+                 else if (tarifa.equals("") && !Utilidades.validarNumericoDecimal(tarifa).equals("OK"))
+                 {
+                    jButtonModificar.setEnabled(false);
+                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>El valor de la Tarifa tiene que ser numérico</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                        jButtonModificar.setEnabled(true);
+                 }
+                 else
+                 {
+                    double tarifaN = Double.valueOf(tarifa).doubleValue();
 
-                if (servicio.equals(""))
-                {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio.</FONT></HTML>");
-                }
+                    //System.out.println("Incremento:"+Double.parseDouble("0."+incremento));
+                    if (incremento.trim().equals("") || !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
+                    {
+                        incremento = "0";
+                    }
 
-                if (soporte.equals(""))
-                {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Soporte.</FONT></HTML>");
-                }
-                if (tarifa.equals("") && !Utilidades.validarNumericoDecimal(tarifa).equals("OK"))
-                {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe rellenar el campo tarifa con un valor en €.</FONT></HTML>");
-                }
-                double tarifaN = Double.valueOf(tarifa).doubleValue();
-
-                //System.out.println("Incremento:"+Double.parseDouble("0."+incremento));
-                if (incremento.trim().equals("") || !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
-                {
-                    incremento = "0";
-                }
-
-                String query = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicioAux+"', tc_servicio_destino ='"+servicioDestinoAux+"', " +
+                    String query = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicioAux+"', tc_servicio_destino ='"+servicioDestinoAux+"', " +
                                "tc_soporte='"+soporte+"', tc_fecha_desde = '"+fechaDesde+"', tc_fecha_hasta='"+fechaHasta+"', " +
                                "tc_fuera_mad='"+fueraM+"', tc_incremento='"+incremento+"', tc_tarifa="+tarifaN+""+
                                "WHERE tc_id = "+id+"";
 
-                System.out.println(query);
-                datos = new DbConnection();
-                boolean rs = datos.manipuladorDatos(query);
-                System.out.println(rs);
-                if(rs)
-                {
-                    jButtonModificar.setEnabled(false);
-                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-                    JOptionPane.showMessageDialog(null,errorFields);
-                    jButtonModificar.setEnabled(true);
-                    //this.setVisible(true);
-                }
-                else
-                {
-                    jButtonModificar.setEnabled(false);
-                    JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
-                    JOptionPane.showMessageDialog(null,mensaje);
-                    jButtonModificar.setEnabled(true);
-                    CSDesktop.EditarTarifaCliente.dispose();
-                    CSDesktop.ABResultTarifasCliente.dispose();
-                    CSDesktop.EditarCliente.setVisible(true);
-                    
-                }
+                    System.out.println(query);
+                    datos = new DbConnection();
+                    boolean rs = datos.manipuladorDatos(query);
+                    System.out.println(rs);
+                    if(rs)
+                    {
+                        jButtonModificar.setEnabled(false);
+                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                        jButtonModificar.setEnabled(true);
+                        //this.setVisible(true);
+                    }
+                    else
+                    {
+                        jButtonModificar.setEnabled(false);
+                        JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,mensaje);
+                        jButtonModificar.setEnabled(true);
+                        CSDesktop.EditarTarifaCliente.dispose();
+                        CSDesktop.ABResultTarifasCliente.dispose();
+                        CSDesktop.EditarCliente.setVisible(true);
+                    }
 
+                }
             }
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
@@ -692,6 +694,14 @@ System.out.println("AAAAAAAAAAAAAAAAAAAAA"+servicioAux);
             valor = rs.getInt("cl_id");
         }
         return valor;
+    }
+
+     public void ValidarFormatos(String accion)
+    {
+         jButtonModificar.setEnabled(false);
+         JLabel errorFields = new JLabel(accion);
+         JOptionPane.showMessageDialog(null,errorFields);
+         jButtonModificar.setEnabled(true);
     }
 
 }

@@ -490,64 +490,64 @@ public class CSEditarTarifaProveedor extends JPanel
                   servicioAux = servicioFMad;
                   servicioDestinoAux = servicioFMadDestino;
                 }
-                if (servicioAux.equals("Selecciona"))
-                {
-                    
-                }
+                
+                 if (!Utilidades.campoObligatorioCombo(servicioAux,"Servicio Origen").equals("OK"))
+                 {
+                    ValidarFormatos(Utilidades.campoObligatorioCombo(servicioAux,"Servicio Origen"));
+                 }
+                  else if (!Utilidades.campoObligatorioCombo(servicioDestinoAux,"Servicio Destino").equals("OK"))
+                 {
+                    ValidarFormatos(Utilidades.campoObligatorioCombo(servicioDestinoAux,"Servicio Destino"));
+                 }
+                  else if (!Utilidades.campoObligatorio(tarifa,"Tarifa").equals("OK"))
+                 {
+                    ValidarFormatos(Utilidades.campoObligatorio(tarifa,"Tarifa"));
+                 }
+                 else if (tarifa.equals("") && !Utilidades.validarNumericoDecimal(tarifa).equals("OK"))
+                 {
+                    jButtonModificar.setEnabled(false);
+                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>El valor de la Tarifa tiene que ser numérico</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                        jButtonModificar.setEnabled(true);
+                 }
+                 else
+                 {
+                    double tarifaN = Double.valueOf(tarifa).doubleValue();
 
-                if (servicio.equals(""))
-                {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio.</FONT></HTML>");
-                }
-                if (soporte.equals(""))
-                {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Soporte.</FONT></HTML>");
-                }
-                if (incremento.equals("") && !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
-                {
-                    incremento = "0";
-                }
-                if (tarifa.equals("") && !Utilidades.validarNumericoDecimal(tarifa).equals("OK"))
-                {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe rellenar el campo tarifa con un valor en €.</FONT></HTML>");
-                }
-                double tarifaN = Double.valueOf(tarifa).doubleValue();
+                    if (incremento.trim().equals("") || !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
+                    {
+                        incremento = "0";
+                    }
 
-                if (incremento.trim().equals("") || !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
-                {
-                    incremento = "0";
-                }
-
-                String query = "UPDATE tp_tarifas_proveedores SET tp_servicio ='"+servicioAux+"',tp_servicio_destino ='"+servicioFMadDestino+"', "+
+                    String query = "UPDATE tp_tarifas_proveedores SET tp_servicio ='"+servicioAux+"',tp_servicio_destino ='"+servicioDestinoAux+"', "+
                                "tp_soporte='"+soporte+"', tp_fecha_desde = '"+fechaDesde+"', tp_fecha_hasta='"+fechaHasta+"', " +
                                "tp_fuera_mad='"+fueraM+"', tp_incremento='"+incremento+"', tp_tarifa='"+tarifaN+"' " +
                                "WHERE tp_id = "+id+"";
 
-                System.out.println(query);
-                datos = new DbConnection();
-                boolean rs = datos.manipuladorDatos(query);
-                System.out.println(rs);
-                if(rs)
-                {
-                    jButtonModificar.setEnabled(false);
-                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-                    JOptionPane.showMessageDialog(null,errorFields);
-                    jButtonModificar.setEnabled(true);
-                    //this.setVisible(true);
+                    System.out.println(query);
+                    datos = new DbConnection();
+                    boolean rs = datos.manipuladorDatos(query);
+                    System.out.println(rs);
+                    if(rs)
+                    {
+                        jButtonModificar.setEnabled(false);
+                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                        jButtonModificar.setEnabled(true);
+                        //this.setVisible(true);
+                    }
+                    else
+                    {
+                        jButtonModificar.setEnabled(false);
+                        JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,mensaje);
+                        jButtonModificar.setEnabled(true);
+                        CSDesktop.EditarTarifaProveedor.dispose();
+                        CSDesktop.ABResultTarifasProveedor.dispose();
+                        CSDesktop.EditarProveedor.setVisible(true);
+                    }
+
                 }
-                else
-                {
-                    jButtonModificar.setEnabled(false);
-                    JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
-                    JOptionPane.showMessageDialog(null,mensaje);
-                    jButtonModificar.setEnabled(true);
-                    CSDesktop.EditarTarifaProveedor.dispose();
-                    CSDesktop.ABResultTarifasProveedor.dispose();
-                    CSDesktop.EditarProveedor.setVisible(true);
-
-
-                }
-
             }
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
@@ -665,6 +665,14 @@ public class CSEditarTarifaProveedor extends JPanel
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>No se han encontrado Tarifas para este proveedor, con los parámetros de búsqueda seleccionados.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
         }
+    }
+
+    public void ValidarFormatos(String accion)
+    {
+         jButtonModificar.setEnabled(false);
+         JLabel errorFields = new JLabel(accion);
+         JOptionPane.showMessageDialog(null,errorFields);
+         jButtonModificar.setEnabled(true);
     }
 
 }

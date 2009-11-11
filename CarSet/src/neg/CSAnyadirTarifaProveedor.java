@@ -415,12 +415,11 @@ public class CSAnyadirTarifaProveedor extends JPanel
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(17, 17, 17))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jDateHasta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelO7)
-                                    .addComponent(lFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(lFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
@@ -496,6 +495,12 @@ public class CSAnyadirTarifaProveedor extends JPanel
                 fueraM = 1;
                 servicioAux = servicioFMad;
             }
+
+            String servicioFMadDestinoAux="";
+            if(!servicioFMadDestino.equals("Selecciona"))
+            {
+                servicioFMadDestinoAux=servicioFMadDestino;
+            }
             //Comprobamos si la tarifa existe para ese proveedor
             int ta = 0;
             ta = getTarifaProveedor(idProveedor, soporte, servicioAux, servicioFMadDestino);
@@ -523,7 +528,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
                     JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio.</FONT></HTML>");
                 }
 
-                query = query + " ,'" + servicioFMadDestino + "'";
+                query = query + " ,'" + servicioFMadDestinoAux + "'";
 
                 if (!soporte.equals("")) {
                     query = query + " ,'" + soporte + "'";
