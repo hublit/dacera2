@@ -636,6 +636,7 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
         String servicio=new String(jComboBoxServicio.getSelectedItem().toString());
         String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
+        String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
         String soporte=new String(jComboBoxSoporte.getSelectedItem().toString());
         String vehiculo=new String(jComboVehiculo.getSelectedItem().toString());
         String matricula=new String(jTextMatricula.getText());
@@ -813,15 +814,30 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         }
         else
         {
-            if (and)
+             if (and)
+                {
+                    query = query + " AND pe_fuera_mad=1 ";
+                }
+                 else
+                 {
+                      query = query + " pe_fuera_mad=1 ";
+                      and = true;
+                 }
+
+            if (!servicioFMad.equals("Selecciona"))
             {
-                query = query + " AND pe_fuera_mad=1 AND pe_servicio='"+servicioFMad+"'";
+                
+                    query = query + " AND pe_servicio='"+servicioFMad+"'";
+               
             }
-             else
+
+             if (!servicioFMadDestino.equals("Selecciona"))
              {
-                  query = query + " pe_fuera_mad=1 AND pe_servicio='"+servicioFMad+"'";
-                  and = true;
-             }
+               
+                    query = query + " AND pe_servicio_destino='"+servicioFMadDestino+"'";
+               
+            }
+
         }
         if(soporte.equals(""))
         {
