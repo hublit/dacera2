@@ -772,6 +772,11 @@ public class CSAnyadirProveedor extends JPanel
             }
             String plazo = new String(jComboBoxPlazo.getSelectedItem().toString());
             String diasPlazo = new String(jTextDiasPlazo.getText());
+            int dPlazo = 0;
+            if (!diasPlazo.equals(""))
+            {
+                dPlazo = Integer.valueOf(diasPlazo);
+            }
             String fPago = new String(Integer.valueOf(jComboBoxFPago.getSelectedIndex()+1).toString());
             String estado = new String(jComboBoxEstado.getSelectedItem().toString());
             String diaFactura = new String(jComboBoxDiaFactura.getSelectedItem().toString());
@@ -854,10 +859,10 @@ public class CSAnyadirProveedor extends JPanel
             String query = "INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, " +
                                                             "pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, " +
                                                             "pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, " +
-                                                            "pr_fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES (" +
+                                                            "fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES (" +
                                                             "'"+nombre+"', '"+dni+"', '"+regimen+"','"+tipo+"' ,'"+direccion+"', " +
                                                             "'"+codPostal+"' ,'"+poblacion+"' ,'"+provincia+"','"+telefono+"', " +
-                                                            "'"+telefono2+"', '"+fax+"', '"+email+"','"+plazo+"','"+diasPlazo+"', '"+fPago+"', " +
+                                                            "'"+telefono2+"', '"+fax+"', '"+email+"','"+plazo+"','"+dPlazo+"', '"+fPago+"', " +
                                                             "'"+numCuenta+"','"+estado+"', '"+diaFactura+"')";
 
                 System.out.println(query);
@@ -1154,9 +1159,9 @@ public class CSAnyadirProveedor extends JPanel
                     String incremento = rs.getString("tp_incremento");
                     String tarifa = rs.getString("tp_tarifa");
 
-                   String queryTp  = "INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_desgtino, tp_soporte, tp_fecha_desde, " +
+                   String queryTp  = "INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, " +
                                      "tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) " +
-                                     "VALUES ('" + servicio + "' ,'" + soporte + "' ,'" + fechaDesde + "', '" + fechaHasta + "'," +
+                                     "VALUES ('" + servicio + "', '" + servicioDestino + "' ,'" + soporte + "' ,'" + fechaDesde + "', '" + fechaHasta + "'," +
                                      "" + fueraMad + ", " + incremento + ", " + tarifa + ", " + idProveedor+") ";
 
                    System.out.println(queryTp);
@@ -1213,11 +1218,11 @@ public class CSAnyadirProveedor extends JPanel
 
                     String querySe  = "INSERT INTO sp_servicios_clientes (sp_industrial, sp_todoterreno, sp_furgones, " +
                                       "sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, " +
-                                      "sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, pr_id) " +
+                                      "sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, pr_id) " +
                                       "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgones + "'," +
                                       "'" + itv + "', '"+ preItv + "', '" + chequeo + "', '" + reacondicionamiento+"', " +
                                       "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + "', '" + lavadoExtra + "', " +
-                                      "'" + lavadoCom + "', '" + lavadoHig + ", '" + idaVuelta + ",'" + idProveedor + "')";
+                                      "'" + lavadoCom + "', '" + lavadoHig + "', '" + idaVuelta + "', '" + idProveedor + "')";
 
                    System.out.println(querySe);
                    rsSe = se.manipuladorDatos(querySe);
