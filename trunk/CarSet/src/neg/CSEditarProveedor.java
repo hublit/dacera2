@@ -872,6 +872,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
         int pr_id = new Integer(Integer.parseInt(jTextNumero.getText()));
         String queryTarifa = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = '"+pr_id+"'";
         CSResultTarifaProveedor resultBuscarProveedor = new CSResultTarifaProveedor(queryTarifa);
+        CSDesktop.EditarProveedor.setVisible(false);
 }//GEN-LAST:event_jButtonTarifasActionPerformed
 
     private void jCheckIncrementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckIncrementoActionPerformed
@@ -912,6 +913,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
             int pr_id = new Integer(Integer.parseInt(jTextNumero.getText()));
             String querySE = "SELECT * FROM sp_servicios_proveedores WHERE pr_id = '"+pr_id+"'";
             CSServicioProveedor serviciosProveedor = new CSServicioProveedor(querySE, pr_id);
+            CSDesktop.EditarProveedor.setVisible(false);
 
         } catch (SQLException ex) {
             Logger.getLogger(CSServicioProveedor.class.getName()).log(Level.SEVERE, null, ex);

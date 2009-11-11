@@ -445,7 +445,7 @@ public class CSEditarTarifaProveedor extends JPanel
             String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
             String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
             String soporte = new String(jComboBoxSoporte.getSelectedItem().toString());
-            boolean fueraMad = new Boolean(jCheckBoxFMadrid.getText());
+            boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
             String incremento = new String(jTextIncremento.getText());
             String tarifa = new String(jTextTarifa.getText());
 
@@ -477,7 +477,9 @@ public class CSEditarTarifaProveedor extends JPanel
             else
             {
                 String servicioAux = "";
-                if(fueraMad)
+                String servicioDestinoAux = "";
+
+                if(!fueraMad)
                 {
                   fueraM = 0;
                   servicioAux =servicio;
@@ -486,6 +488,11 @@ public class CSEditarTarifaProveedor extends JPanel
                 {
                   fueraM=1;
                   servicioAux = servicioFMad;
+                  servicioDestinoAux = servicioFMadDestino;
+                }
+                if (servicioAux.equals("Selecciona"))
+                {
+                    
                 }
 
                 if (servicio.equals(""))
@@ -538,6 +545,7 @@ public class CSEditarTarifaProveedor extends JPanel
                     CSDesktop.ABResultTarifasProveedor.dispose();
                     CSDesktop.EditarProveedor.setVisible(true);
 
+
                 }
 
             }
@@ -546,7 +554,7 @@ public class CSEditarTarifaProveedor extends JPanel
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.EditarTarifaProveedor.dispose();
         CSDesktop.ABResultTarifasProveedor.setVisible(true);
-        CSDesktop.EditarProveedor.setVisible(true);
+        
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
@@ -621,14 +629,19 @@ public class CSEditarTarifaProveedor extends JPanel
             {
                 tp_id=rs.getString("tp_id");
                 jTextId.setText(rs.getString("tp_id"));
-                if (rs.getString("tc_fuera_mad").equals(0))
+                if (rs.getInt("tp_fuera_mad") == 0)
                 {
-
                     jCheckBoxFMadrid.setSelected(false);
+                    jComboBoxServicio.setEnabled(true);
+                    jComboBoxServicioFMad.setEnabled(false);
+                    jComboBoxServicioFMadDestino.setEnabled(false);
                 }
                 else
                 {
                     jCheckBoxFMadrid.setSelected(true);
+                    jComboBoxServicio.setEnabled(false);
+                    jComboBoxServicioFMad.setEnabled(true);
+                    jComboBoxServicioFMadDestino.setEnabled(true);
                 }
                 jComboBoxServicioFMad.setSelectedItem(rs.getString("tp_servicio"));
                 jComboBoxServicio.setSelectedItem(rs.getString("tp_servicio"));

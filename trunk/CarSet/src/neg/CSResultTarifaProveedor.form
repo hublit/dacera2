@@ -70,7 +70,7 @@
               </Table>
             </Property>
             <Property name="cellSelectionEnabled" type="boolean" value="true"/>
-            <Property name="gridColor" type="java.awt.Color" noResource="true" editor="org.netbeans.beaninfo.editors.ColorEditor">
+            <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="name" type="java.lang.String" value="tablaTarifas" noResource="true"/>

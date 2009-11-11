@@ -41,36 +41,7 @@ public class CSResultTarifaCliente extends javax.swing.JPanel {
     public CSResultTarifaCliente(String query) {
 
 
-        CSDesktop.EditarCliente.addInternalFrameListener(new InternalFrameListener() {
-
-            public void internalFrameOpened(InternalFrameEvent e) {
-
-            }
-
-            public void internalFrameClosing(InternalFrameEvent e) {
-
-            }
-            public void internalFrameClosed(InternalFrameEvent e) {
-
-            }
-
-            public void internalFrameIconified(InternalFrameEvent e) {
-               
-            }
-
-            public void internalFrameDeiconified(InternalFrameEvent e) {
-                
-            }
-
-            public void internalFrameActivated(InternalFrameEvent e) {
-                CSDesktop.ABResultTarifasCliente.moveToFront();
-            }
-
-            public void internalFrameDeactivated(InternalFrameEvent e) {
-                
-            }
-        });
-
+        CSDesktop.EditarCliente.setVisible(false);
 
         DbConnection datos = new DbConnection();
         TablaModelo modelo = new TablaModelo();
@@ -262,6 +233,7 @@ public class CSResultTarifaCliente extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CSDesktop.ABResultTarifasCliente.dispose();
+        CSDesktop.EditarCliente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

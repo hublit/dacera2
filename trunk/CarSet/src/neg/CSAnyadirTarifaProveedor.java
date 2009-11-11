@@ -460,7 +460,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
             String servicioFMad = new String(jComboBoxServicioFMad.getSelectedItem().toString());
             String servicioFMadDestino = new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
             String soporte = new String(jComboBoxSoporte.getSelectedItem().toString());
-            boolean fueraMad = new Boolean(jCheckBoxFMadrid.getText());
+            boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
             String incremento = "";
             String tarifa = new String(jTextTarifa.getText());
             String proveedor = new String(jTextProveedor.getText());
@@ -489,7 +489,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
             }
 
             String servicioAux = "";
-            if (fueraMad) {
+            if (!fueraMad) {
                 fueraM = 0;
                 servicioAux = servicio;
             } else {
