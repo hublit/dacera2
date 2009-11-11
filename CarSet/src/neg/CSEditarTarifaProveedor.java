@@ -621,16 +621,17 @@ public class CSEditarTarifaProveedor extends JPanel
             {
                 tp_id=rs.getString("tp_id");
                 jTextId.setText(rs.getString("tp_id"));
-                if (rs.getString("tp_fuera_mad").equals(0))
+                if (rs.getString("tc_fuera_mad").equals(0))
                 {
-                    jCheckBoxFMadrid.setEnabled(true);
-                    jComboBoxServicio.setSelectedItem(rs.getString("tp_servicio"));
+
+                    jCheckBoxFMadrid.setSelected(false);
                 }
                 else
                 {
-                    jCheckBoxFMadrid.setEnabled(false);
-                    jComboBoxServicioFMad.setSelectedItem(rs.getString("tp_servicio"));
+                    jCheckBoxFMadrid.setSelected(true);
                 }
+                jComboBoxServicioFMad.setSelectedItem(rs.getString("tp_servicio"));
+                jComboBoxServicio.setSelectedItem(rs.getString("tp_servicio"));
                 jComboBoxServicioFMadDestino.setSelectedItem(rs.getString("tp_servicio_destino"));
                 jComboBoxSoporte.setSelectedItem(rs.getString("tp_soporte"));
                 jDateDesde.setDate(rs.getDate("tp_fecha_desde"));
