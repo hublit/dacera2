@@ -23,10 +23,7 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jButtonCancelar" alignment="1" min="-2" pref="96" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -54,42 +51,44 @@
                               <Component id="jComboBoxEstado" min="-2" pref="122" max="-2" attributes="1"/>
                               <EmptySpace pref="761" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jSeparator6" alignment="0" max="32767" attributes="1"/>
-                              <Component id="jSeparator1" alignment="0" max="32767" attributes="1"/>
-                              <Component id="jSeparator5" alignment="0" max="32767" attributes="1"/>
-                              <Group type="102" alignment="0" attributes="1">
-                                  <Component id="lFuMadrid" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jCheckBoxFMadrid" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Component id="lServicio" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxServicio" min="-2" pref="149" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lServicioFMad" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxServicioFMad" min="-2" pref="135" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Component id="lSoporte" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxSoporte" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lVehiculo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jComboVehiculo" min="-2" pref="99" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="lMatricula" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextMatricula" min="-2" pref="87" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                  <Component id="lProveedor" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextProveedor" min="-2" pref="340" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jToggleButtonProveedor" min="-2" pref="164" max="-2" attributes="0"/>
-                              </Group>
+                          <Component id="jSeparator6" alignment="0" pref="920" max="32767" attributes="1"/>
+                          <Component id="jSeparator1" alignment="0" pref="920" max="32767" attributes="1"/>
+                          <Component id="jSeparator5" alignment="0" pref="920" max="32767" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="1">
+                              <Component id="lFuMadrid" min="-2" pref="107" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jCheckBoxFMadrid" min="-2" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lServicio" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jComboBoxServicio" min="-2" pref="131" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lServicioFMad" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jComboBoxServicioFMad" min="-2" pref="105" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lServicioFMad1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jComboBoxServicioFMadDestino" pref="110" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lSoporte" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jComboBoxSoporte" min="-2" pref="135" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lVehiculo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jComboVehiculo" min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="lMatricula" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jTextMatricula" min="-2" pref="87" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <Component id="lProveedor" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jTextProveedor" min="-2" pref="340" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jToggleButtonProveedor" min="-2" pref="164" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -209,12 +208,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="4" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBoxSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lServicio" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jComboBoxServicio" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lServicioFMad" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jComboBoxServicioFMad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lServicioFMad1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="jComboBoxServicioFMadDestino" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jCheckBoxFMadrid" alignment="0" min="-2" pref="24" max="-2" attributes="1"/>
@@ -826,20 +827,32 @@
         <Property name="name" type="java.lang.String" value="jComboBoxSoporte" noResource="true"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="lFechaFin">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Fecha fin"/>
+        <Property name="name" type="java.lang.String" value="lFechaFin" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaFin">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jDateFechaFin" noResource="true"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="lServicioFMad">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Servicio Fuera de Madrid"/>
+        <Property name="text" type="java.lang.String" value="F.M. Origen"/>
         <Property name="name" type="java.lang.String" value="lServicioFMad" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxServicioFMad">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="e5" red="e4" type="rgb"/>
-        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
@@ -904,19 +917,79 @@
         <Property name="name" type="java.lang.String" value="jComboBoxServicioFMad" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lFechaFin">
+    <Component class="javax.swing.JLabel" name="lServicioFMad1">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Fecha fin"/>
-        <Property name="name" type="java.lang.String" value="lFechaFin" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="F.M. Destino"/>
+        <Property name="name" type="java.lang.String" value="lServicioFMad1" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaFin">
+    <Component class="javax.swing.JComboBox" name="jComboBoxServicioFMadDestino">
       <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy" noResource="true"/>
-        <Property name="name" type="java.lang.String" value="jDateFechaFin" noResource="true"/>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="53">
+            <StringItem index="0" value="Selecciona"/>
+            <StringItem index="1" value="&#xc1;LAVA"/>
+            <StringItem index="2" value="ALBACETE"/>
+            <StringItem index="3" value="ALICANTE"/>
+            <StringItem index="4" value="ALMER&#xed;A"/>
+            <StringItem index="5" value="ASTURIAS"/>
+            <StringItem index="6" value="&#xc1;VILA"/>
+            <StringItem index="7" value="BADAJOZ"/>
+            <StringItem index="8" value="BARCELONA"/>
+            <StringItem index="9" value="BURGOS"/>
+            <StringItem index="10" value="C&#xc1;CERES"/>
+            <StringItem index="11" value="C&#xc1;DIZ"/>
+            <StringItem index="12" value="CANTABRIA"/>
+            <StringItem index="13" value="CASTELL&#xd3;N"/>
+            <StringItem index="14" value="CEUTA"/>
+            <StringItem index="15" value="CIUDAD REAL"/>
+            <StringItem index="16" value="CORDOBA"/>
+            <StringItem index="17" value="CORU&#xd1;A, A"/>
+            <StringItem index="18" value="CUENCA"/>
+            <StringItem index="19" value="GIRONA"/>
+            <StringItem index="20" value="GRANADA"/>
+            <StringItem index="21" value="GUADALAJARA"/>
+            <StringItem index="22" value="GUIPUZCOA"/>
+            <StringItem index="23" value="HUELVA"/>
+            <StringItem index="24" value="HUESCA"/>
+            <StringItem index="25" value="ILLES BALEARS"/>
+            <StringItem index="26" value="JA&#xc9;N"/>
+            <StringItem index="27" value="LE&#xd3;N"/>
+            <StringItem index="28" value="LLEIDA"/>
+            <StringItem index="29" value="LUGO"/>
+            <StringItem index="30" value="MADRID"/>
+            <StringItem index="31" value="MALAGA"/>
+            <StringItem index="32" value="MELILLA"/>
+            <StringItem index="33" value="MURCIA"/>
+            <StringItem index="34" value="NAVARRA"/>
+            <StringItem index="35" value="OURENSE"/>
+            <StringItem index="36" value="PALENCIA"/>
+            <StringItem index="37" value="PALMAS, LAS"/>
+            <StringItem index="38" value="PONTEVEDRA"/>
+            <StringItem index="39" value="RIOJA, LA"/>
+            <StringItem index="40" value="SALAMANCA"/>
+            <StringItem index="41" value="SANTA CRUZ DE TENERIFE"/>
+            <StringItem index="42" value="SEGOVIA"/>
+            <StringItem index="43" value="SEVILLA"/>
+            <StringItem index="44" value="SORIA"/>
+            <StringItem index="45" value="TARRAGONA"/>
+            <StringItem index="46" value="TERUEL"/>
+            <StringItem index="47" value="TOLEDO"/>
+            <StringItem index="48" value="VALENCIA"/>
+            <StringItem index="49" value="VALLADOLID"/>
+            <StringItem index="50" value="VIZCAYA"/>
+            <StringItem index="51" value="ZAMORA"/>
+            <StringItem index="52" value="ZARAGOZA"/>
+          </StringArray>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="jComboBoxServicioFMadDestino" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
