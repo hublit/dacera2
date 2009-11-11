@@ -26,7 +26,9 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
 /**
@@ -72,15 +74,14 @@ public class CSResultTarifaProveedor extends javax.swing.JPanel {
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = datos.select(query);
         System.out.println("Tarifas: "+query);
-        modelo.setColumnIdentifiers(new String[] {"NUMERO","SERVICIO", "SOPORTE", "FECHA DESDE", "TARIFA"});
-
+        modelo.setColumnIdentifiers(new String[] {"NUMERO", "SERVICIO", "SERVICIO DESTINO", "SOPORTE", "FECHA DESDE", "TARIFA"});
         int numeroFila = 0;
         try {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
                 for (int k = 0; k < 10; k++) {
-                    if (k == 0 || k == 1 || k == 3 || k == 4 || k == 8) {
+                    if (k == 0 || k == 1 || k == 2 || k == 3 || k == 4 || k == 8) {
                         datosFila[j] = rs.getObject(k + 1);
                         System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         j++;
@@ -118,15 +119,23 @@ public class CSResultTarifaProveedor extends javax.swing.JPanel {
         initComponents();
         tablaTarifas.setModel(modelo);
         TableColumn columna = tablaTarifas.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(50);
+        columna.setPreferredWidth(100);
         TableColumn columna1 = tablaTarifas.getColumnModel().getColumn(1);
-        columna1.setPreferredWidth(300);
+        columna1.setPreferredWidth(200);
         TableColumn columna2 = tablaTarifas.getColumnModel().getColumn(2);
-        columna2.setPreferredWidth(100);
+        columna2.setPreferredWidth(200);
         TableColumn columna3 = tablaTarifas.getColumnModel().getColumn(3);
-        columna3.setPreferredWidth(100);
+        columna3.setPreferredWidth(200);
         TableColumn columna4 = tablaTarifas.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(250);
+        columna4.setPreferredWidth(200);
+        TableColumn columna5 = tablaTarifas.getColumnModel().getColumn(5);
+        columna4.setPreferredWidth(200);
+
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaTarifas.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaTarifas.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaTarifas.getColumnModel().getColumn(5).setCellRenderer(tcr);
 
         tablaTarifas.addMouseListener(new MouseAdapter()
         {
@@ -163,7 +172,7 @@ public class CSResultTarifaProveedor extends javax.swing.JPanel {
 
      public Dimension getPreferredSize()
    {
-      return new Dimension( 700,500 );
+      return new Dimension( 850,600 );
    }
 
     /** This method is called from within the constructor to
@@ -193,9 +202,12 @@ public class CSResultTarifaProveedor extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaTarifas.setCellSelectionEnabled(true);
+        tablaTarifas.setGridColor(new java.awt.Color(204, 204, 255));
         tablaTarifas.setName("tablaTarifas"); // NOI18N
         jScrollPane1.setViewportView(tablaTarifas);
 
+        jButton1.setForeground(new java.awt.Color(204, 0, 0));
         jButton1.setText("Cerrar");
         jButton1.setName("jButton1"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -209,20 +221,20 @@ public class CSResultTarifaProveedor extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(308, 308, 308)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(366, 366, 366))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap())
