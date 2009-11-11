@@ -1707,7 +1707,7 @@ public class CSEditarPedido extends javax.swing.JPanel
 }//GEN-LAST:event_jTextDireccionDestinoFocusLost
  public Dimension getPreferredSize()
    {
-      return new Dimension( 1060,650 );
+      return new Dimension( 1100,650 );
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
