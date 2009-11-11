@@ -809,6 +809,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
                 datos.cerrarConexion();
                 CSDesktop.EditarProveedor.dispose();
                 CSDesktop.ResultProveedor.dispose();
+                CSDesktop.menuBuscarProveedor.setEnabled(true);
             }
         }
 }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -817,6 +818,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
         //Cerramos la conexión antes de cerrar la ventana
         datos.cerrarConexion();
         CSDesktop.EditarProveedor.dispose();
+        CSDesktop.ResultProveedor.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
@@ -844,6 +846,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
                     jButtonModificar.setEnabled(true);
                     CSDesktop.EditarProveedor.dispose();
                     CSDesktop.ResultProveedor.dispose();
+                    CSDesktop.menuBuscarProveedor.setEnabled(true);
             }
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed

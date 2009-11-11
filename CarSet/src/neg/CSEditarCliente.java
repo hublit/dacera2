@@ -715,6 +715,7 @@ public class CSEditarCliente extends javax.swing.JPanel
                 jButtonModificar.setEnabled(true);
                 CSDesktop.EditarCliente.dispose();
                 CSDesktop.ResultCliente.dispose();
+                CSDesktop.menuBuscarCliente.setEnabled(true);
             }
         }
 }//GEN-LAST:event_EliminarActionPerformed
@@ -786,7 +787,7 @@ public class CSEditarCliente extends javax.swing.JPanel
                     "cl_poblacion='"+poblacion+"',cl_provincia='"+provincia+"'," +
                     "cl_telefono='"+telefono+"',cl_telefono2='"+telefono2+"', " +
                     "cl_fax='"+fax+"',cl_email='"+email+"', cl_web='"+web+"',cl_plazo='"+plazo+"',  cl_dias_plazo='"+diasPlazo+"'," +
-                    "fp_id='"+fPago+"', cl_estado='"+estado+"' co_id='"+co_id+"' " +
+                    "fp_id='"+fPago+"', cl_estado='"+estado+"', co_id='"+co_id+"' " +
                     "WHERE cl_id='"+numero+"'";
 
                 System.out.println(query);
@@ -811,6 +812,7 @@ public class CSEditarCliente extends javax.swing.JPanel
                     datos.cerrarConexion();
                     CSDesktop.EditarCliente.dispose();
                     CSDesktop.ResultCliente.dispose();
+                    CSDesktop.menuBuscarCliente.setEnabled(true);
                 }
         }
         }

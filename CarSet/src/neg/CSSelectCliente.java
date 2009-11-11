@@ -35,49 +35,7 @@ public class CSSelectCliente extends javax.swing.JPanel {
     private JTextField jTextCli;
     private int cliID=0;
     /** Creates new form BuscaClientesPanel */
-    public CSSelectCliente(String query,JTextField jTextC) {
-
-        CSDesktop.BuscaCliente.addInternalFrameListener(new InternalFrameListener() {
-
-            public void internalFrameOpened(InternalFrameEvent e) {
-               
-               
-            }
-
-            public void internalFrameClosing(InternalFrameEvent e) {
-
-            }
-
-            public void internalFrameClosed(InternalFrameEvent e) {
-               
-            }
-
-            public void internalFrameIconified(InternalFrameEvent e) {
-
-            }
-
-            public void internalFrameDeiconified(InternalFrameEvent e) {
-
-            }
-
-            public void internalFrameActivated(InternalFrameEvent e) {
-                 System.out.println("HOLA1");
-            }
-
-            public void internalFrameDeactivated(InternalFrameEvent e) {
-                 System.out.println("HOLA2");
-                try {
-                   
-                    CSDesktop.BuscaCliente.setSelected(false);
-                   
-                } catch (PropertyVetoException ex) {
-                    Logger.getLogger(CSSelectCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-
-            
-        });
-
+    public CSSelectCliente(String query,JTextField jTextC) {      
 
         DbConnection datos = new DbConnection();
         TablaModelo modelo = new TablaModelo();

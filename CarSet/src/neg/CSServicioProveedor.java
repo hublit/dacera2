@@ -21,6 +21,8 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 
 /**
  *
@@ -81,6 +83,34 @@ public class CSServicioProveedor extends javax.swing.JPanel
            (pantalla.height - ventana.height) / 2);
         CSDesktop.ServicioProveedor.setVisible( true );
 
+         CSDesktop.EditarProveedor.addInternalFrameListener(new InternalFrameListener() {
+
+            public void internalFrameOpened(InternalFrameEvent e) {
+            }
+
+            public void internalFrameClosing(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameClosed(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameIconified(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameDeiconified(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameActivated(InternalFrameEvent e) {
+                CSDesktop.ServicioProveedor.moveToFront();
+            }
+
+            public void internalFrameDeactivated(InternalFrameEvent e) {
+            }
+        });
 
         KeyListener l = new KeyListener()
         {

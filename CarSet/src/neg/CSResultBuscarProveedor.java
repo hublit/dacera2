@@ -153,6 +153,7 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel {
                     (pantalla.width - ventana.width) / 2,
                     (pantalla.height - ventana.height) / 2);
                CSDesktop.EditarProveedor.setVisible( true );
+               CSDesktop.ResultProveedor.setVisible(false);
 
             System.out.println(tablaProveedores.getValueAt(fila,columna));
          }
@@ -231,6 +232,7 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CSDesktop.ResultProveedor.dispose();
+        CSDesktop.menuBuscarProveedor.setEnabled(true);
 }//GEN-LAST:event_jButton1ActionPerformed
 
 

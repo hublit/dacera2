@@ -177,6 +177,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
                     (pantalla.width - ventana.width) / 2,
                     (pantalla.height - ventana.height) / 2);
                CSDesktop.EditarPedido.setVisible( true );
+               CSDesktop.ResultPedido.setVisible(false);
 
             System.out.println(jTable1.getValueAt(fila,columna));
          }
@@ -258,6 +259,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
        CSDesktop.ResultPedido.dispose();
+       CSDesktop.menuBuscarPedido.setEnabled(true);
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
 

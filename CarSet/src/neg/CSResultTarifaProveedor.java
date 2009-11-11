@@ -11,6 +11,7 @@
 
 package neg;
 
+import javax.swing.event.InternalFrameListener;
 import utils.TablaModelo;
 import data.DbConnection;
 import java.awt.BorderLayout;
@@ -25,6 +26,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.TableColumn;
 
 /**
@@ -35,6 +37,36 @@ public class CSResultTarifaProveedor extends javax.swing.JPanel {
 
     /** Creates new form ABResultC */
     public CSResultTarifaProveedor(String query) {
+
+         CSDesktop.EditarProveedor.addInternalFrameListener(new InternalFrameListener() {
+
+            public void internalFrameOpened(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameClosing(InternalFrameEvent e) {
+
+            }
+            public void internalFrameClosed(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameIconified(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameDeiconified(InternalFrameEvent e) {
+
+            }
+
+            public void internalFrameActivated(InternalFrameEvent e) {
+                CSDesktop.ABResultTarifasProveedor.moveToFront();
+            }
+
+            public void internalFrameDeactivated(InternalFrameEvent e) {
+
+            }
+        });
 
         DbConnection datos = new DbConnection();
         TablaModelo modelo = new TablaModelo();
