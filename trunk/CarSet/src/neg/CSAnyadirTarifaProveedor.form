@@ -174,12 +174,11 @@
                               <Component id="jDateDesde" min="-2" max="-2" attributes="1"/>
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="jDateHasta" alignment="1" min="-2" max="-2" attributes="1"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabelO7" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lFechaHasta" alignment="3" min="-2" pref="19" max="-2" attributes="1"/>
-                                  <Component id="jDateHasta" alignment="1" min="-2" max="-2" attributes="1"/>
                               </Group>
                           </Group>
                       </Group>

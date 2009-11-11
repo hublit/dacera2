@@ -495,7 +495,14 @@ public class CSAnyadirTarifaCliente extends JPanel
             } else {
                 fueraM = 1;
                 servicioAux = servicioFMad;
+
             }
+            String servicioFMadDestinoAux="";
+            if(!servicioFMadDestino.equals("Selecciona"))
+            {
+                servicioFMadDestinoAux=servicioFMadDestino;
+            }
+
 
             //Comprobamos si la tarifa existe para ese cliente
             int ta = 0;
@@ -533,7 +540,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                     JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio.</FONT></HTML>");
                 }
 
-                    query = query + " ,'" + servicioFMadDestino + "'";
+                    query = query + " ,'" + servicioFMadDestinoAux + "'";
 
                 if (!soporte.equals("")) {
                     query = query + " ,'" + soporte + "'";

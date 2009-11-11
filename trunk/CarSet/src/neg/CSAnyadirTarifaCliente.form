@@ -58,20 +58,20 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButtonCancelar" alignment="1" min="-2" pref="96" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace pref="326" max="32767" attributes="0"/>
+                                      <EmptySpace pref="316" max="32767" attributes="0"/>
                                       <Component id="jButtonGuardar" min="-2" pref="95" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="646" max="-2" attributes="0"/>
+                                      <EmptySpace pref="636" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSeparator1" pref="779" max="32767" attributes="0"/>
+                              <Component id="jSeparator1" pref="769" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -128,14 +128,13 @@
                           </Group>
                           <Component id="lPContacto2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="1" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator4" pref="779" max="32767" attributes="1"/>
+              <Component id="jSeparator4" pref="769" max="32767" attributes="1"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
