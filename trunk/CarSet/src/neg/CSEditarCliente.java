@@ -752,7 +752,7 @@ public class CSEditarCliente extends javax.swing.JPanel
             String fax = new String(jTextFax.getText());
             String email = new String(jTextEmail.getText());
             String web = new String(jTextWeb.getText());
-            String plazo = new String(jComboBoxFPago.getSelectedItem().toString());
+            String plazo = new String(jComboBoxPlazo.getSelectedItem().toString());
             String diasPlazo = new String(jTextDiasPlazo.getText().toString());
             String fPago = new String(Integer.valueOf(jComboBoxFPago.getSelectedIndex()+1).toString());
             String estado = new String(jComboBoxEstado.getSelectedItem().toString());
