@@ -688,6 +688,7 @@ public class CSEditarCliente extends javax.swing.JPanel
         int cl_id = new Integer(Integer.parseInt(jTextNumero.getText()));
         String queryTarifa = "SELECT * FROM tc_tarifas_clientes t WHERE cl_id = '"+cl_id+"'";
         CSResultTarifaCliente resultBuscarCliente = new CSResultTarifaCliente(queryTarifa);
+        CSDesktop.EditarCliente.setVisible(false);
 }//GEN-LAST:event_jButtonTarifasActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
@@ -823,6 +824,7 @@ public class CSEditarCliente extends javax.swing.JPanel
             int cl_id = new Integer(Integer.parseInt(jTextNumero.getText()));
             String querySE = "SELECT * FROM sc_servicios_clientes WHERE cl_id = '"+cl_id+"'";            
             CSServicioCliente serviciosCliente = new CSServicioCliente(querySE, cl_id);
+            CSDesktop.EditarCliente.setVisible(false);
             
             
         } catch (SQLException ex) {

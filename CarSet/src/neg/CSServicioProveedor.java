@@ -834,6 +834,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
                     JOptionPane.showMessageDialog(null, mensaje);
                     jButtonModificar.setEnabled(true);
                     CSDesktop.ServicioProveedor.dispose();
+                    CSDesktop.EditarProveedor.setVisible(true);
                 }
             }
     }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -846,6 +847,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
             {
                CSDesktop.EditarProveedor.setEnabled(true);
                CSDesktop.ServicioProveedor.dispose();
+               CSDesktop.EditarProveedor.setVisible(true);
             }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 

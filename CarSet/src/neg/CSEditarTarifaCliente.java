@@ -452,7 +452,7 @@ public class CSEditarTarifaCliente extends JPanel
             String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
             String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
             String soporte = new String(jComboBoxSoporte.getSelectedItem().toString());
-            boolean fueraMad = new Boolean(jCheckBoxFMadrid.getText());
+            boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
             String incremento = new String(jTextIncremento.getText());
             String tarifa = new String(jTextTarifa.getText());
            
@@ -483,21 +483,30 @@ public class CSEditarTarifaCliente extends JPanel
             else
             {
                 String servicioAux = "";
-                if(fueraMad)
+                String servicioDestinoAux = "";
+
+                if(!fueraMad)
                 {
                   fueraM = 0;
-                  servicioAux =servicio;
+                  servicioAux = servicio;
                 }
                 else
                 {
-                  fueraM=1;
+                  fueraM = 1;
                   servicioAux = servicioFMad;
+                  servicioDestinoAux = servicioFMadDestino;
+System.out.println("AAAAAAAAAAAAAAAAAAAAA"+servicioAux);
+                  if (servicioAux.equals("Selecciona") || servicioDestinoAux.equals("Selecciona"))
+                  {
+                       JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio Origen y Destino.</FONT></HTML>");
+                  }
                 }
 
                 if (servicio.equals(""))
                 {
                     JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio.</FONT></HTML>");
                 }
+
                 if (soporte.equals(""))
                 {
                     JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Soporte.</FONT></HTML>");
@@ -513,13 +522,8 @@ public class CSEditarTarifaCliente extends JPanel
                 {
                     incremento = "0";
                 }
-                /*else
-                {
-                   double incrementoN = Double.valueOf(incremento).doubleValue();
-                   tarifaN = tarifaN + ((tarifaN * incrementoN) / 100.0);
-                }*/
 
-                String query = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicio+"', tc_servicio_destino ='"+servicioFMadDestino+"', " +
+                String query = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicioAux+"', tc_servicio_destino ='"+servicioDestinoAux+"', " +
                                "tc_soporte='"+soporte+"', tc_fecha_desde = '"+fechaDesde+"', tc_fecha_hasta='"+fechaHasta+"', " +
                                "tc_fuera_mad='"+fueraM+"', tc_incremento='"+incremento+"', tc_tarifa="+tarifaN+""+
                                "WHERE tc_id = "+id+"";
@@ -545,7 +549,7 @@ public class CSEditarTarifaCliente extends JPanel
                     CSDesktop.EditarTarifaCliente.dispose();
                     CSDesktop.ABResultTarifasCliente.dispose();
                     CSDesktop.EditarCliente.setVisible(true);
-
+                    
                 }
 
             }
@@ -571,7 +575,7 @@ public class CSEditarTarifaCliente extends JPanel
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.EditarTarifaCliente.dispose();
         CSDesktop.ABResultTarifasCliente.setVisible(true);
-        CSDesktop.EditarCliente.setVisible(true);
+        
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 
@@ -633,9 +637,9 @@ public class CSEditarTarifaCliente extends JPanel
             {
                 tc_id=rs.getString("tc_id");
                 jTextId.setText(rs.getString("tc_id"));
-                if (rs.getString("tc_fuera_mad").equals(0))
+                System.out.println("fuera de madrid: "+rs.getString("tc_fuera_mad"));
+                if (rs.getInt("tc_fuera_mad") == 0)
                 {
-
                     jCheckBoxFMadrid.setSelected(false);
                     jComboBoxServicio.setEnabled(true);
                     jComboBoxServicioFMad.setEnabled(false);

@@ -459,7 +459,7 @@ public class CSAnyadirTarifaCliente extends JPanel
             String servicioFMad = new String(jComboBoxServicioFMad.getSelectedItem().toString());
             String servicioFMadDestino = new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
             String soporte = new String(jComboBoxSoporte.getSelectedItem().toString());
-            boolean fueraMad = new Boolean(jCheckBoxFMadrid.getText());
+            boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
             String incremento = "";
             String tarifa = new String(jTextTarifa.getText());
             String cliente = new String(jTextCliente.getText());
@@ -488,7 +488,8 @@ public class CSAnyadirTarifaCliente extends JPanel
 
 
             String servicioAux = "";
-            if (fueraMad) {
+
+            if (!fueraMad) {
                 fueraM = 0;
                 servicioAux = servicio;
             } else {
@@ -540,6 +541,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                     JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Soporte.</FONT></HTML>");
                 }
                 query = query + " ,'" + fechaDesde + "','" + fechaHasta + "','" + fueraM + "'";
+
                 if (!incremento.equals("") && Utilidades.validarNumericoDecimal(incremento).equals("OK")) {
                     query = query + " , " + incremento + "";
                 } else {

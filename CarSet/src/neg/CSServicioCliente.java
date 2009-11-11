@@ -82,34 +82,7 @@ public class CSServicioCliente extends javax.swing.JPanel
            (pantalla.height - ventana.height) / 2);
         CSDesktop.ServicioCliente.setVisible( true );
 
-         CSDesktop.EditarCliente.addInternalFrameListener(new InternalFrameListener() {
-
-            public void internalFrameOpened(InternalFrameEvent e) {
-            }
-
-            public void internalFrameClosing(InternalFrameEvent e) {
-
-            }
-
-            public void internalFrameClosed(InternalFrameEvent e) {
-
-            }
-
-            public void internalFrameIconified(InternalFrameEvent e) {
-
-            }
-
-            public void internalFrameDeiconified(InternalFrameEvent e) {
-
-            }
-
-            public void internalFrameActivated(InternalFrameEvent e) {
-                CSDesktop.ServicioCliente.moveToFront();
-            }
-
-            public void internalFrameDeactivated(InternalFrameEvent e) {
-            }
-        });
+         
 
         KeyListener l = new KeyListener()
         {
@@ -849,6 +822,7 @@ public class CSServicioCliente extends javax.swing.JPanel
                     JOptionPane.showMessageDialog(null, mensaje);
                     jButtonModificar.setEnabled(true);
                     CSDesktop.ServicioCliente.dispose();
+                    CSDesktop.EditarCliente.setVisible(true);
                 }
             }
     }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -861,6 +835,7 @@ public class CSServicioCliente extends javax.swing.JPanel
             {
                CSDesktop.EditarCliente.setEnabled(true);
                CSDesktop.ServicioCliente.dispose();
+               CSDesktop.EditarCliente.setVisible(true);
             }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
