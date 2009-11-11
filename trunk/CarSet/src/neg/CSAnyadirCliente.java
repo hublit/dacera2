@@ -686,6 +686,11 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             String web = new String(jTextWeb.getText());
             String plazo = new String(jComboBoxPlazo.getSelectedItem().toString());
             String diasPlazo = new String(jTextDiasPlazo.getText().toString());
+            int dPlazo = 0;
+            if (!diasPlazo.equals(""))
+            {
+                dPlazo = Integer.valueOf(diasPlazo);
+            }
             String fPago = new String(Integer.valueOf(jComboBoxFPago.getSelectedIndex()+1).toString());
             String estado = new String(jComboBoxEstado.getSelectedItem().toString());
             //Esto hay que quitarlo o no dependiendo de la persona de contacto
@@ -788,7 +793,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                                                          "cl_telefono, cl_telefono2, cl_fax, cl_email, " +
                                                          "cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id) VALUES (";
                 query = query + "'"+nombre+"','"+dni+"','"+direccion+"','"+codPostal+"','"+poblacion+"','"+provincia+"','"+telefono+"'";
-                query = query + " ,'"+telefono2+"','"+fax+"','"+email+"','"+web+"','"+plazo+"','"+diasPlazo+"','"+fPago+"','"+estado+"','"+co_id+"')";
+                query = query + " ,'"+telefono2+"','"+fax+"','"+email+"','"+web+"','"+plazo+"','"+dPlazo+"','"+fPago+"','"+estado+"','"+co_id+"')";
                       
                 System.out.println(query);
                 //datos = new DbConnection();
@@ -1087,16 +1092,16 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
                     String fueraMad = rs.getString("tc_fuera_mad");
                     String servicio = rs.getString("tc_servicio");
-                    String servicioDestino = rs.getString("tp_servicio_destino");
+                    String servicioDestino = rs.getString("tc_servicio_destino");
                     String soporte = rs.getString("tc_soporte");
                     Date fechaDesde = rs.getDate("tc_fecha_desde");
                     Date fechaHasta = rs.getDate("tc_fecha_hasta");
                     String incremento = rs.getString("tc_incremento");
                     String tarifa = rs.getString("tc_tarifa");
 
-                   String queryTc  = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino tc_soporte, tc_fecha_desde, "+
+                   String queryTc  = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, "+
                                      "tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " +
-                                     "VALUES ('" + servicio + "' ,'" + soporte + "' ,'" + fechaDesde + "', '" + fechaHasta + "'," +
+                                     "VALUES ('" + servicio + "', '" + servicioDestino + "' ,'" + soporte + "' ,'" + fechaDesde + "', '" + fechaHasta + "'," +
                                      "'" + fueraMad + "', " + incremento + ", " + tarifa + ", " + idCliente+") ";
                                                    
 
@@ -1150,15 +1155,15 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     String lavadoExtra = rs.getString("sc_lavado_extra");
                     String lavadoCom = rs.getString("sc_completo");
                     String lavadoHig = rs.getString("sc_higienizado");
-                    String idaVuelta = rs.getString("sp_ida_vuelta");
+                    String idaVuelta = rs.getString("sc_ida_vuelta");
 
                     String querySe  = "INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgones, " +
                                       "sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, " +
-                                      "sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, cl_id) " +
+                                      "sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_ida_vuelta, cl_id) " +
                                       "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgones + "'," +
                                       "'" + itv + "', '"+ preItv + "', '" + chequeo + "', '" + reacondicionamiento+"', " +
                                       "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + "', '" + lavadoExtra + "', " +
-                                      "'" + lavadoCom + "', '" + lavadoHig + ", '" + idaVuelta + ", '" + idCliente + "') ";
+                                      "'" + lavadoCom + "', '" + lavadoHig + "', '" + idaVuelta + "', '" + idCliente + "') ";
 
                    System.out.println(querySe);
                    rsSe = se.manipuladorDatos(querySe);
