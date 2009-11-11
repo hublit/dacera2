@@ -1487,7 +1487,7 @@ public class CSAnyadirPedido extends JPanel
               }else{
                   fueraM=1;
                   servicioAux=servicioFMad;
-                  servicioDestino = servicioDestino;
+                  servicioDestino = servicioFMadDestino;
               }
               if(!cerrado)
                   cerradoN=0;
