@@ -189,7 +189,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
 
      public Dimension getPreferredSize()
    {
-      return new Dimension( 1000,500 );
+      return new Dimension( 1100,650 );
     }
 
     /** This method is called from within the constructor to
@@ -218,6 +218,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setGridColor(new java.awt.Color(204, 204, 255));
         jTable1.setName("jTable1"); // NOI18N
         jScrollPane1.setViewportView(jTable1);
 
@@ -238,9 +239,9 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(465, 465, 465)
+                        .addGap(511, 511, 511)
                         .addComponent(jButtonCerrar)))
                 .addContainerGap())
         );
@@ -248,7 +249,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCerrar)
                 .addContainerGap())
