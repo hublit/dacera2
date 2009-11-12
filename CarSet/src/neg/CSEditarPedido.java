@@ -366,8 +366,7 @@ public class CSEditarPedido extends javax.swing.JPanel
 
         jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxSoporte.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Grúa", "Camión completo", "Conductor", "Tren", "Custodia" }));
-        jComboBoxSoporte.setSelectedIndex(2);
+        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Grúa", "Camión completo", "Conductor", "Tren", "Custodia" }));
         jComboBoxSoporte.setName("jComboBoxSoporte"); // NOI18N
         jComboBoxSoporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -528,8 +527,8 @@ public class CSEditarPedido extends javax.swing.JPanel
 
         jComboBoxServicioEspecial.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioEspecial.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicioEspecial.setMaximumRowCount(10);
-        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ITV", "Pre_ITV", "Chequeo", "Reacondicionamiento", "Lavado Exterior", "Lavado Interior y Exterior", "Lavado Completo", "Lavado Extra", "Lavado Higienizado" }));
+        jComboBoxServicioEspecial.setMaximumRowCount(11);
+        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urgente", "ITV", "Pre_ITV", "Chequeo", "Reacondicionamiento", "Lavado Exterior", "Lavado Interior y Exterior", "Lavado Completo", "Lavado Extra", "Lavado Higienizado" }));
         jComboBoxServicioEspecial.setName("jComboBoxServicioEspecial"); // NOI18N
         jComboBoxServicioEspecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1256,12 +1255,9 @@ public class CSEditarPedido extends javax.swing.JPanel
                             .addComponent(jButtonEliminar)
                             .addComponent(jButtonCancelar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(lCerrado))
-                            .addComponent(jCheckBoxCerrado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(7, 7, 7)
+                        .addComponent(lCerrado))
+                    .addComponent(jCheckBoxCerrado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(jLabel9)
                 .addGap(8, 8, 8))
