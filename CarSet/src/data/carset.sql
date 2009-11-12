@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `co_comerciales` (
 INSERT INTO co_comerciales (co_nombre) VALUES ('Selecciona');
 INSERT INTO co_comerciales (co_nombre) VALUES ('Sergio Cortés');
 INSERT INTO co_comerciales (co_nombre) VALUES ('Jose Luis Cubillo');
+INSERT INTO co_comerciales (co_nombre) VALUES ('Raúl Sánchez');
 -- --------------------------------------------------------
 
 --
@@ -50,12 +51,17 @@ INSERT INTO co_comerciales (co_nombre) VALUES ('Jose Luis Cubillo');
 
 CREATE TABLE IF NOT EXISTS `cl_clientes` (
   `cl_id` int(10) NOT NULL auto_increment,
+  `cl_fecha` date NOT NULL default '0000-00-00',
   `cl_nombre` varchar(50) collate utf8_spanish_ci NOT NULL default '',
   `cl_DNI_CIF` varchar(10) collate utf8_spanish_ci NOT NULL default '',
   `cl_direccion` varchar(255) collate utf8_spanish_ci default NULL,
   `cl_cod_postal` varchar(5) collate utf8_spanish_ci default NULL,
   `cl_poblacion` varchar(80) collate utf8_spanish_ci default NULL,
   `cl_provincia` varchar(50) collate utf8_spanish_ci default NULL,
+  `cl_direccion_fiscal` varchar(255) collate utf8_spanish_ci default NULL,
+  `cl_cod_postal_fiscal` varchar(5) collate utf8_spanish_ci default NULL,
+  `cl_poblacion_fiscal` varchar(80) collate utf8_spanish_ci default NULL,
+  `cl_provincia_fiscal` varchar(50) collate utf8_spanish_ci default NULL,
   `cl_telefono` varchar(15) collate utf8_spanish_ci NOT NULL default '',
   `cl_telefono2` varchar(15) collate utf8_spanish_ci NOT NULL default '',
   `cl_fax` varchar(15) collate utf8_spanish_ci default NULL,
@@ -65,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `cl_clientes` (
   `cl_dias_plazo` int(3) NOT NULL default '0',
   `fp_id` int(3) NOT NULL default '0',
   `cl_incremento_ta` double default '0',
+  `cl_num_cuenta` varchar(30) collate utf8_spanish_ci default NULL,
   `cl_estado` varchar(30) collate utf8_spanish_ci NOT NULL default 'Activo',
   `co_id` int(5) NOT NULL default '0',
   PRIMARY KEY  (`cl_id`),
@@ -142,7 +149,8 @@ CREATE TABLE IF NOT EXISTS `fc_factores_correccion` (
 INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Ninguno', 'Sin factor de corrección');
 INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Industriales y Monovolumen', 'Vehículos industriales y Monovolúmenes');
 INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Todoterreno', 'Vehículos Todoterreno');
-INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Furgonetas y Furgones', 'Furgón');
+INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Furgonetas', 'Furgonetas');
+INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Furgones', 'Furgones');
 
 -- --------------------------------------------------------
 
@@ -164,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `fp_forma_pago` (
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Cheque', 'Pago por cheque');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Transferencia', 'Pago por transferencia');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Pagaré', 'Pagaré bancario');
-INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Confirming', 'Confirming');
+INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Recivo Domiciliado', 'Recivo Domiciliado');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Efectivo', 'Pago en efectivo');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Tarjeta', 'Pago por tarjeta');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Otros', 'Otros medios de pago');
@@ -287,6 +295,7 @@ CREATE TABLE IF NOT EXISTS `pp_pedidos_proveedores` (
 
 CREATE TABLE IF NOT EXISTS `pr_proveedores` (
   `pr_id` int(10) NOT NULL auto_increment,
+  `pr_fecha` date NOT NULL default '0000-00-00',
   `pr_nombre_fiscal` varchar(50) collate utf8_spanish_ci NOT NULL default '',
   `pr_DNI_CIF` varchar(15) collate utf8_spanish_ci NOT NULL default '',
   `pr_regimen` varchar(50) collate utf8_spanish_ci NOT NULL default '',
@@ -295,6 +304,10 @@ CREATE TABLE IF NOT EXISTS `pr_proveedores` (
   `pr_cod_postal` varchar(5) collate utf8_spanish_ci default NULL,
   `pr_poblacion` varchar(50) collate utf8_spanish_ci default NULL,
   `pr_provincia` varchar(30) collate utf8_spanish_ci default NULL,
+  `pr_direccion_fiscal` varchar(255) collate utf8_spanish_ci default NULL,
+  `pr_cod_postal_fiscal` varchar(5) collate utf8_spanish_ci default NULL,
+  `pr_poblacion_fiscal` varchar(80) collate utf8_spanish_ci default NULL,
+  `pr_provincia_fiscal` varchar(50) collate utf8_spanish_ci default NULL,
   `pr_telefono` varchar(15) collate utf8_spanish_ci NOT NULL default '',
   `pr_telefono2` varchar(15) collate utf8_spanish_ci NOT NULL default '',
   `pr_fax` varchar(15) collate utf8_spanish_ci default NULL,
@@ -395,6 +408,7 @@ CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
   `sc_completo` double default '0',
   `sc_higienizado` double default '0',
   `sc_ida_vuelta` double default '0',
+  `sc_urgente` double default '0',
   `cl_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sc_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
@@ -426,6 +440,7 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
   `sp_completo` double default '0',
   `sp_higienizado` double default '0',
   `sp_ida_vuelta` double default '0',
+  `sp_urgente` double default '0',
   `pr_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sp_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
