@@ -6,7 +6,7 @@
 
 package neg;
 
-import java.sql.Date;
+import java.util.Date;
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
 import data.DbConnection;
@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.awt.Dimension;
-import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -33,9 +33,11 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     {
         CSDesktop.menuNuevoCliente.setEnabled(false);
         datos = new DbConnection();
-        //Date hoy = new Date();
+        Date hoy = new Date();
+
         initComponents();
-        //jDateChooserAlta.setDate(hoy);
+
+        jDateChooserAlta.setDate(hoy);
         getFPagoClientes();
         getDepartamentoContacto();
         getComercial();
@@ -136,8 +138,6 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         lComercial = new javax.swing.JLabel();
         jComboBoxComercial = new javax.swing.JComboBox();
         lPContacto1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         lDireccion1 = new javax.swing.JLabel();
         lCodPostalFiscal = new javax.swing.JLabel();
         jTextDireccionFiscal = new javax.swing.JTextField();
@@ -145,9 +145,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         lPoblacionFiscal = new javax.swing.JLabel();
         jTextPoblacionFiscal = new javax.swing.JTextField();
         lProvinciaFiscal = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jComboBoxProvinciaFiscal = new javax.swing.JComboBox();
-        lDireccionFiscal = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jTextEntidad = new javax.swing.JTextField();
         jTextSucursal = new javax.swing.JTextField();
@@ -165,6 +163,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jTextDiasPlazo = new javax.swing.JTextField();
         jDateChooserAlta = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         lNombre.setForeground(new java.awt.Color(0, 0, 100));
         lNombre.setText("Nombre");
@@ -399,14 +398,6 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         lPContacto1.setText("DOMICILIO FISCAL");
         lPContacto1.setName("lPContacto1"); // NOI18N
 
-        jLabel11.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel11.setText("*");
-        jLabel11.setName("jLabel11"); // NOI18N
-
-        jLabel12.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel12.setText("*");
-        jLabel12.setName("jLabel12"); // NOI18N
-
         lDireccion1.setForeground(new java.awt.Color(0, 0, 100));
         lDireccion1.setText("Dirección");
         lDireccion1.setName("lDireccion1"); // NOI18N
@@ -440,18 +431,10 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         lProvinciaFiscal.setText("Provincia");
         lProvinciaFiscal.setName("lProvinciaFiscal"); // NOI18N
 
-        jLabel13.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel13.setText("*");
-        jLabel13.setName("jLabel13"); // NOI18N
-
         jComboBoxProvinciaFiscal.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxProvinciaFiscal.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxProvinciaFiscal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
         jComboBoxProvinciaFiscal.setName("jComboBoxProvinciaFiscal"); // NOI18N
-
-        lDireccionFiscal.setForeground(new java.awt.Color(204, 0, 0));
-        lDireccionFiscal.setText("*");
-        lDireccionFiscal.setName("lDireccionFiscal"); // NOI18N
 
         jSeparator3.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator3.setName("jSeparator3"); // NOI18N
@@ -519,11 +502,16 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jTextDiasPlazo.setEnabled(false);
         jTextDiasPlazo.setName("jTextDiasPlazo"); // NOI18N
 
+        jDateChooserAlta.setDateFormatString("dd-MM-yyyy");
         jDateChooserAlta.setName("jDateChooserAlta"); // NOI18N
 
         jLabel14.setForeground(new java.awt.Color(204, 0, 0));
         jLabel14.setText("*");
         jLabel14.setName("jLabel14"); // NOI18N
+
+        jLabel11.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel11.setText("*");
+        jLabel11.setName("jLabel11"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -539,46 +527,38 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addComponent(jTextNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lDNI)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addComponent(jTextDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(211, 211, 211)
                 .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
                 .addComponent(jButtonCancelar)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lDireccionFiscal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lPoblacionFiscal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextPoblacionFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(16, 16, 16)
                         .addComponent(lProvinciaFiscal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxProvinciaFiscal, 0, 144, Short.MAX_VALUE))
+                        .addComponent(jComboBoxProvinciaFiscal, 0, 158, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lDireccion1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextDireccionFiscal, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12)
-                        .addGap(4, 4, 4)
+                        .addComponent(jTextDireccionFiscal, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                        .addGap(20, 20, 20)
                         .addComponent(lCodPostalFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextCodPostalFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -586,10 +566,10 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lPContacto1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 620, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 634, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -607,7 +587,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addGap(16, 16, 16)
                         .addComponent(lEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
+                        .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -619,11 +599,11 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lComercial)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxComercial, 0, 110, Short.MAX_VALUE)))
+                        .addComponent(jComboBoxComercial, 0, 124, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,12 +615,6 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addComponent(lEstado)))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
-                        .addComponent(lFactura)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooserAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBoxPlazo, 0, 88, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -653,7 +627,19 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lNumCuenta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(289, 289, 289)
+                        .addComponent(jLabel11)
+                        .addGap(6, 6, 6)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lFactura)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDateChooserAlta, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -673,7 +659,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lNombreCon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextNombreCon, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+                        .addComponent(jTextNombreCon, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lDepartamento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -693,8 +679,8 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addGap(4, 4, 4)
                         .addComponent(lEmailCon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextEmailCon, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE))
+                        .addComponent(jTextEmailCon, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -710,13 +696,13 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lProvincia)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxProvincia, 0, 150, Short.MAX_VALUE))
+                        .addComponent(jComboBoxProvincia, 0, 164, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lDireccion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                        .addComponent(jTextDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -792,14 +778,15 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lEstado)
                         .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lFactura))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lFactura)
+                        .addComponent(jLabel11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jDateChooserAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -807,19 +794,15 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextDireccionFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lDireccionFiscal)
                     .addComponent(jTextCodPostalFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lDireccion1)
-                    .addComponent(lCodPostalFiscal)
-                    .addComponent(jLabel12))
+                    .addComponent(lCodPostalFiscal))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextPoblacionFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
                     .addComponent(lPoblacionFiscal)
                     .addComponent(jComboBoxProvinciaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lProvinciaFiscal)
-                    .addComponent(jLabel11))
+                    .addComponent(lProvinciaFiscal))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
@@ -855,7 +838,9 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
  
             System.out.println("\nBoton Guardar de Añadir Clientes.");
-            
+
+            String fecha2="";
+            String numCuenta="";
             String nombre = new String(jTextNombre.getText());
             String dni = new String(jTextDNI.getText());
             String direccion = new String(jTextDireccion.getText());
@@ -876,6 +861,26 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             }
             String fPago = new String(Integer.valueOf(jComboBoxFPago.getSelectedIndex()+1).toString());
             String estado = new String(jComboBoxEstado.getSelectedItem().toString());
+            String direccionFiscal = new String(jTextDireccionFiscal.getText());
+            String poblacionFiscal = new String(jTextPoblacionFiscal.getText());
+            String provinciaFiscal = new String(jComboBoxProvinciaFiscal.getSelectedItem().toString());
+            String codPostalFiscal = new String(jTextCodPostalFiscal.getText());
+
+            Calendar fechaCalendar = jDateChooserAlta.getCalendar();
+
+            if (fechaCalendar!=null)
+            {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fecha2=formatoDeFecha.format(fecha);
+            }
+             String entidad = new String(jTextEntidad.getText());
+            String sucursal = new String(jTextSucursal.getText());
+            String digito = new String(jTextDigito.getText());
+            if (!entidad.equals(""))
+            {
+                numCuenta = new String(entidad+"/"+sucursal+"/"+digito+"/"+jTextNumCuenta.getText());
+            }
             //Esto hay que quitarlo o no dependiendo de la persona de contacto
             String nombreContacto = new String(jTextNombreCon.getText());
             String telefContacto = new String(jTextTelefonoCon.getText());
@@ -883,8 +888,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             String emailContacto = new String(jTextEmailCon.getText());
             String fDepartamento = new String(Integer.valueOf(jComboBoxDepartamento.getSelectedIndex()+1).toString());
             String departamento = new String(jComboBoxDepartamento.getSelectedItem().toString());
-            String  co_id = new String(Integer.valueOf(jComboBoxComercial.getSelectedIndex()+1).toString());
-            String comercial = new String(jComboBoxComercial.getSelectedItem().toString());
+            String  co_id = new String(Integer.valueOf(jComboBoxComercial.getSelectedIndex()+1).toString());            
 
             //CAMPOS OBLIGATORIOS
             if (!Utilidades.campoObligatorio(nombre,"Nombre").equals("OK"))
@@ -953,6 +957,10 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             {
                 ValidarFormatos(Utilidades.formatoCorreo(email));
             }
+            else if(!Utilidades.formatoCodPostal(codPostalFiscal).equals("OK"))
+            {
+                ValidarFormatos(Utilidades.formatoCodPostal(codPostalFiscal));
+            }
              else if(!Utilidades.formatoTelefono9(telefContacto).equals("OK"))
             {
                 ValidarFormatos(Utilidades.formatoTelefono9(telefContacto));
@@ -974,9 +982,11 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 String query = "INSERT INTO cl_clientes (cl_nombre, cl_DNI_CIF, cl_direccion, " +
                                                          "cl_cod_postal, cl_poblacion, cl_provincia, " +
                                                          "cl_telefono, cl_telefono2, cl_fax, cl_email, " +
-                                                         "cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id) VALUES (";
+                                                         "cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id,cl_direccion_fiscal,cl_cod_postal_fiscal, " +
+                                                         "cl_poblacion_fiscal,cl_provincia_fiscal,cl_fecha,cl_num_cuenta) VALUES (";
                 query = query + "'"+nombre+"','"+dni+"','"+direccion+"','"+codPostal+"','"+poblacion+"','"+provincia+"','"+telefono+"'";
-                query = query + " ,'"+telefono2+"','"+fax+"','"+email+"','"+web+"','"+plazo+"','"+dPlazo+"','"+fPago+"','"+estado+"','"+co_id+"')";
+                query = query + " ,'"+telefono2+"','"+fax+"','"+email+"','"+web+"','"+plazo+"','"+dPlazo+"','"+fPago+"','"+estado+"'";
+                query = query + " ,'"+co_id+"','"+direccionFiscal+"','"+codPostalFiscal+"','"+poblacionFiscal+"','"+provinciaFiscal+"','"+fecha2+"','"+numCuenta+"')";
                       
                 System.out.println(query);
                 //datos = new DbConnection();
@@ -1028,41 +1038,15 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     JOptionPane.showMessageDialog(null,mensaje);
                     jButtonGuardar.setEnabled(true);
                     CSDesktop.NuevoCliente.dispose();
-                    CSDesktop.menuNuevoCliente.setEnabled(true);
-                    
-                    
-                    /**int confirmado = JOptionPane.showConfirmDialog(this,"Los datos se han guardado correctamente.¿Quiere crear una tarifa para este cliente?");
-
-                    if (JOptionPane.OK_OPTION == confirmado)
-                    {
-                        CSDesktop.TarifaCliente = new JInternalFrame("Tarifa Cliente", true, true, true, true );
-                        // adjuntar panel al panel de contenido del marco interno
-                        CSAnyadirTarifaCliente panel = new CSAnyadirTarifaCliente();
-                        CSDesktop.TarifaCliente.getContentPane().add( panel,BorderLayout.CENTER);
-                        // establecer tama�o de marco interno en el tama�o de su contenido
-                        CSDesktop.TarifaCliente.pack();
-                        // adjuntar marco interno al escritorio y mostrarlo
-                        CSDesktop.elEscritorio.add( CSDesktop.TarifaCliente );
-
-                        Dimension pantalla = CSDesktop.elEscritorio.getSize();
-                        Dimension ventana = CSDesktop.TarifaCliente.getSize();
-                        CSDesktop.TarifaCliente.setLocation(
-                        (pantalla.width - ventana.width) / 2,
-                        (pantalla.height - ventana.height) / 2);
-                        CSDesktop.TarifaCliente.setVisible(true);
-                    }
-
-                        CSDesktop.NuevoCliente.dispose();
-                     */
+                    CSDesktop.menuNuevoCliente.setEnabled(true);                                                           
                 }
             }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-            {
-               CSDesktop.NuevoCliente.dispose();
-               CSDesktop.menuNuevoCliente.setEnabled(true);              
-            }
+            
+       CSDesktop.NuevoCliente.dispose();
+       CSDesktop.menuNuevoCliente.setEnabled(true);                          
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextNombreFocusLost
@@ -1107,11 +1091,13 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     }//GEN-LAST:event_jTextEmailConFocusLost
 
     private void jTextDireccionFiscalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDireccionFiscalFocusLost
-        // TODO add your handling code here:
+        String DireccionFiscalConM = jTextDireccionFiscal.getText().toUpperCase();
+        jTextDireccionFiscal.setText(DireccionFiscalConM);
     }//GEN-LAST:event_jTextDireccionFiscalFocusLost
 
     private void jTextPoblacionFiscalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextPoblacionFiscalFocusLost
-        // TODO add your handling code here:
+        String PoblacionFiscalConM = jTextPoblacionFiscal.getText().toUpperCase();
+        jTextPoblacionFiscal.setText(PoblacionFiscalConM);
     }//GEN-LAST:event_jTextPoblacionFiscalFocusLost
 
     private void jComboBoxPlazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPlazoActionPerformed
@@ -1155,8 +1141,6 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -1200,7 +1184,6 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     private javax.swing.JLabel lDiasPlazo;
     private javax.swing.JLabel lDireccion;
     private javax.swing.JLabel lDireccion1;
-    private javax.swing.JLabel lDireccionFiscal;
     private javax.swing.JLabel lEmail;
     private javax.swing.JLabel lEmailCon;
     private javax.swing.JLabel lEstado;
@@ -1437,6 +1420,22 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jTextEmail.setDocument(limitadorEmail);
         LimitadorDeDocumento limitadorWeb= new LimitadorDeDocumento(50);
         jTextWeb.setDocument(limitadorWeb);
+
+        //Parte Domicilio Fiscal
+        LimitadorDeDocumento limitadorDireccionFiscal= new LimitadorDeDocumento(255);
+        jTextDireccionFiscal.setDocument(limitadorDireccionFiscal);
+        LimitadorDeDocumento limitadorCodPostalFiscal= new LimitadorDeDocumento(5);
+        jTextCodPostalFiscal.setDocument(limitadorCodPostalFiscal);
+        LimitadorDeDocumento limitadorPoblacionFiscal= new LimitadorDeDocumento(80);
+        jTextPoblacionFiscal.setDocument(limitadorPoblacionFiscal);
+        LimitadorDeDocumento limitadorEntidad= new LimitadorDeDocumento(4);
+        jTextEntidad.setDocument(limitadorEntidad);
+        LimitadorDeDocumento limitadorSucursal= new LimitadorDeDocumento(4);
+        jTextSucursal.setDocument(limitadorSucursal);
+        LimitadorDeDocumento limitadorDigito= new LimitadorDeDocumento(2);
+        jTextDigito.setDocument(limitadorDigito);
+        LimitadorDeDocumento limitadorNumC= new LimitadorDeDocumento(10);
+        jTextNumCuenta.setDocument(limitadorNumC);
 
         //Parte de Persona de Contacto
         LimitadorDeDocumento limitadorNombreContacto= new LimitadorDeDocumento(50);
