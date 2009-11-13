@@ -395,6 +395,7 @@ CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
   `sc_id` int(5) NOT NULL auto_increment,
   `sc_industrial` double default '0',
   `sc_todoterreno` double default '0',
+  `sc_furgonetas` double default '0',
   `sc_furgones` double default '0',
   `sc_itv` double default '0',
   `sc_pre_itv` double default '0',
@@ -409,6 +410,7 @@ CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
   `sc_higienizado` double default '0',
   `sc_ida_vuelta` double default '0',
   `sc_urgente` double default '0',
+  `sc_suplemento` double default '0',
   `cl_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sc_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
@@ -416,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
 --
 -- Volcar la base de datos para la tabla `sc_servicios_cliente`
 --
-INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgones, sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_ida_vuelta, cl_id) VALUES ('1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0', '1');
+INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgonetas, sc_furgones, sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_ida_vuelta, sc_suplemento, cl_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0','0', '1');
 
 -- --------------------------------------------------------
 --
@@ -427,6 +429,7 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
   `sp_id` int(5) NOT NULL auto_increment,
   `sp_industrial` double default '0',
   `sp_todoterreno` double default '0',
+  `sp_furgonetas` double default '0',
   `sp_furgones` double default '0',
   `sp_itv` double default '0',
   `sp_pre_itv` double default '0',
@@ -448,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
 --
 -- Volcar la base de datos para la tabla `sp_servicios_proveedor`
 --
-INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgones, sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, pr_id) VALUES ('1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0', '1');
+INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgonetas, sp_furgones, sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, pr_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0', '1');
 
 -- --------------------------------------------------------
 --
