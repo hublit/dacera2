@@ -171,7 +171,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lCampaEntrada1" min="-2" pref="62" max="-2" attributes="0"/>
+                                      <Component id="lUrgente" min="-2" pref="62" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
@@ -187,6 +187,11 @@
                                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="lIdaVuelta" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lSuplemento" min="-2" pref="62" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="12" max="32767" attributes="0"/>
@@ -206,10 +211,16 @@
                                       <EmptySpace pref="13" max="32767" attributes="0"/>
                                       <Component id="lEuro" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextCampaEntrada1" min="-2" pref="45" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jTextUrgente" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
+                                          <Component id="jTextSuplemento" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace pref="8" max="32767" attributes="0"/>
-                                      <Component id="ltantoxciento1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lEuro11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ltantoxciento1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -351,40 +362,51 @@
                           <Component id="lEuro10" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="37" pref="37" max="37" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lIdaVuelta" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextIdaVuelta" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ltantoxciento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="37" pref="37" max="37" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lIdaVuelta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextIdaVuelta" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ltantoxciento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lCampa" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextCampa" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lEuro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lCampaEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextCampaEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lEuro3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTextUrgente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lUrgente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ltantoxciento1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lFCorrecion2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jSeparator5" min="-2" pref="6" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lCampa" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextCampa" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lEuro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextSuplemento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lSuplemento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lEuro11" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lCampaEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextCampaEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lEuro3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextCampaEntrada1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lCampaEntrada1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ltantoxciento1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lFCorrecion2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator5" min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
@@ -1040,9 +1062,9 @@
         <Property name="name" type="java.lang.String" value="lFurgones" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextCampaEntrada1">
+    <Component class="javax.swing.JTextField" name="jTextUrgente">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jTextCampaEntrada1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jTextUrgente" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel28">
@@ -1054,7 +1076,7 @@
         <Property name="name" type="java.lang.String" value="jLabel28" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lCampaEntrada1">
+    <Component class="javax.swing.JLabel" name="lUrgente">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
@@ -1063,7 +1085,7 @@
           <ComponentRef name="jTextIndustrial"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Urgente"/>
-        <Property name="name" type="java.lang.String" value="lCampaEntrada1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="lUrgente" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="ltantoxciento1">
@@ -1073,6 +1095,41 @@
         </Property>
         <Property name="text" type="java.lang.String" value="%"/>
         <Property name="name" type="java.lang.String" value="ltantoxciento1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextSuplemento">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jTextSuplemento" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel29">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="*"/>
+        <Property name="name" type="java.lang.String" value="jLabel29" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lSuplemento">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="jTextIndustrial"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Suplemento"/>
+        <Property name="name" type="java.lang.String" value="lSuplemento" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lEuro11">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="&#x20ac;"/>
+        <Property name="name" type="java.lang.String" value="lEuro11" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

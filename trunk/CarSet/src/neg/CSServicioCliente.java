@@ -51,7 +51,8 @@ public class CSServicioCliente extends javax.swing.JPanel
                 jTextNumero.setText(sc_id);
                 jTextIndustrial.setText(rs.getString("sc_industrial"));
                 jText4x4.setText(rs.getString("sc_todoterreno"));
-                jTextFurgonetas.setText(rs.getString("sc_furgones"));
+                jTextFurgonetas.setText(rs.getString("sc_furgonetas"));
+                jTextFurgones.setText(rs.getString("sc_furgones"));
                 jTextItv.setText(rs.getString("sc_itv"));
                 jTextPreItv.setText(rs.getString("sc_pre_itv"));
                 jTextChequeo.setText(rs.getString("sc_chequeo"));
@@ -64,6 +65,8 @@ public class CSServicioCliente extends javax.swing.JPanel
                 jTextLavadoCo.setText(rs.getString("sc_completo"));
                 jTextLavadoHi.setText(rs.getString("sc_higienizado"));
                 jTextIdaVuelta.setText(rs.getString("sc_ida_vuelta"));
+                jTextUrgente.setText(rs.getString("sc_urgente"));
+                jTextSuplemento.setText(rs.getString("sc_suplemento"));
                 numeroFila++;
             }
             rs.close();
@@ -83,7 +86,6 @@ public class CSServicioCliente extends javax.swing.JPanel
         CSDesktop.ServicioCliente.setVisible( true );
 
          
-
         KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}
@@ -185,10 +187,14 @@ public class CSServicioCliente extends javax.swing.JPanel
         jTextFurgones = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         lFurgones = new javax.swing.JLabel();
-        jTextCampaEntrada1 = new javax.swing.JTextField();
+        jTextUrgente = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        lCampaEntrada1 = new javax.swing.JLabel();
+        lUrgente = new javax.swing.JLabel();
         ltantoxciento1 = new javax.swing.JLabel();
+        jTextSuplemento = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        lSuplemento = new javax.swing.JLabel();
+        lEuro11 = new javax.swing.JLabel();
 
         lIndustrial.setForeground(new java.awt.Color(0, 0, 100));
         lIndustrial.setLabelFor(jTextIndustrial);
@@ -470,20 +476,35 @@ public class CSServicioCliente extends javax.swing.JPanel
         lFurgones.setText("Furgones");
         lFurgones.setName("lFurgones"); // NOI18N
 
-        jTextCampaEntrada1.setName("jTextCampaEntrada1"); // NOI18N
+        jTextUrgente.setName("jTextUrgente"); // NOI18N
 
         jLabel28.setForeground(new java.awt.Color(204, 0, 0));
         jLabel28.setText("*");
         jLabel28.setName("jLabel28"); // NOI18N
 
-        lCampaEntrada1.setForeground(new java.awt.Color(0, 0, 100));
-        lCampaEntrada1.setLabelFor(jTextIndustrial);
-        lCampaEntrada1.setText("Urgente");
-        lCampaEntrada1.setName("lCampaEntrada1"); // NOI18N
+        lUrgente.setForeground(new java.awt.Color(0, 0, 100));
+        lUrgente.setLabelFor(jTextIndustrial);
+        lUrgente.setText("Urgente");
+        lUrgente.setName("lUrgente"); // NOI18N
 
         ltantoxciento1.setForeground(new java.awt.Color(0, 0, 100));
         ltantoxciento1.setText("%");
         ltantoxciento1.setName("ltantoxciento1"); // NOI18N
+
+        jTextSuplemento.setName("jTextSuplemento"); // NOI18N
+
+        jLabel29.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel29.setText("*");
+        jLabel29.setName("jLabel29"); // NOI18N
+
+        lSuplemento.setForeground(new java.awt.Color(0, 0, 100));
+        lSuplemento.setLabelFor(jTextIndustrial);
+        lSuplemento.setText("Suplemento");
+        lSuplemento.setName("lSuplemento"); // NOI18N
+
+        lEuro11.setForeground(new java.awt.Color(0, 0, 100));
+        lEuro11.setText("€");
+        lEuro11.setName("lEuro11"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -610,7 +631,7 @@ public class CSServicioCliente extends javax.swing.JPanel
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel28)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lCampaEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lUrgente, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel20)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -622,7 +643,11 @@ public class CSServicioCliente extends javax.swing.JPanel
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel19)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lIdaVuelta)))
+                                        .addComponent(lIdaVuelta))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel29)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -637,10 +662,14 @@ public class CSServicioCliente extends javax.swing.JPanel
                                         .addComponent(jTextCampa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                                         .addComponent(lEuro))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextCampaEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextUrgente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                                        .addComponent(ltantoxciento1))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lEuro11)
+                                            .addComponent(ltantoxciento1)))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -754,34 +783,42 @@ public class CSServicioCliente extends javax.swing.JPanel
                             .addComponent(jTextLavadoHi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lEuro10)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lIdaVuelta)
-                            .addComponent(jLabel19)
-                            .addComponent(jTextIdaVuelta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ltantoxciento))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lIdaVuelta)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jTextIdaVuelta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ltantoxciento))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel17)
+                                    .addComponent(lCampa)
+                                    .addComponent(jTextCampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lEuro))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(lCampaEntrada)
+                                    .addComponent(jTextCampaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lEuro3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextUrgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel28)
+                                    .addComponent(lUrgente)
+                                    .addComponent(ltantoxciento1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lFCorrecion2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(lCampa)
-                            .addComponent(jTextCampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lEuro))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(lCampaEntrada)
-                            .addComponent(jTextCampaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lEuro3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextCampaEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28)
-                            .addComponent(lCampaEntrada1)
-                            .addComponent(ltantoxciento1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lFCorrecion2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29)
+                            .addComponent(lSuplemento)
+                            .addComponent(lEuro11))))
                 .addGap(63, 63, 63)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -802,7 +839,8 @@ public class CSServicioCliente extends javax.swing.JPanel
             String campa = new String(jTextCampa.getText());
             String entradaCampa = new String(jTextCampaEntrada.getText());
             String todoterreno = new String(jText4x4.getText());
-            String furgones = new String(jTextFurgonetas.getText());
+            String furgonetas = new String(jTextFurgonetas.getText());
+            String furgones = new String(jTextFurgones.getText());
             String industrial = new String(jTextIndustrial.getText());
             String idaVuelta = new String(jTextIdaVuelta.getText());
             String chequeo = new String(jTextChequeo.getText());
@@ -814,7 +852,8 @@ public class CSServicioCliente extends javax.swing.JPanel
             String lavadoHi = new String(jTextLavadoHi.getText());
             String itv = new String(jTextItv.getText());
             String preItv = new String(jTextPreItv.getText());
-
+            String urgente = new String(jTextUrgente.getText());
+            String suplemento = new String(jTextSuplemento.getText());
             
             //CAMPOS OBLIGATORIOS
             if (!Utilidades.campoObligatorio(campa,"Campa").equals("OK"))
@@ -828,6 +867,10 @@ public class CSServicioCliente extends javax.swing.JPanel
             else if (!Utilidades.campoObligatorio(furgones,"Furgones").equals("OK"))
             {
                  ValidarFormatos(Utilidades.campoObligatorio(furgones,"Furgones"));
+            }
+            else if (!Utilidades.campoObligatorio(furgonetas,"Furgonetas").equals("OK"))
+            {
+                 ValidarFormatos(Utilidades.campoObligatorio(furgonetas,"Furgonetas"));
             }
             else if (!Utilidades.campoObligatorio(industrial,"Industrial").equals("OK"))
             {
@@ -843,7 +886,15 @@ public class CSServicioCliente extends javax.swing.JPanel
             }
             else if (!Utilidades.campoObligatorio(preItv,"Pre-ITV").equals("OK"))
             {
-                 ValidarFormatos(Utilidades.campoObligatorio(preItv,"pRE-itv"));
+                 ValidarFormatos(Utilidades.campoObligatorio(preItv,"Pre-itv"));
+            }
+            else if (!Utilidades.campoObligatorio(urgente,"Urgente").equals("OK"))
+            {
+                 ValidarFormatos(Utilidades.campoObligatorio(urgente,"Urgente"));
+            }
+            else if (!Utilidades.campoObligatorio(suplemento,"Suplemento").equals("OK"))
+            {
+                 ValidarFormatos(Utilidades.campoObligatorio(suplemento,"Suplemento"));
             }
 
             //VALIDACION DE FORMATOS
@@ -853,14 +904,14 @@ public class CSServicioCliente extends javax.swing.JPanel
             else
             {
                 String query = "UPDATE sc_servicios_clientes SET sc_industrial = '" + industrial + "', sc_todoterreno = '" + todoterreno + "', " +
-                               "sc_furgones = '" + furgones + "', sc_itv = '" + itv + "', sc_pre_itv = '" + preItv + "', " +
+                               "sc_furgonetas = '" + furgonetas + "', sc_furgones = '" + furgones + "', sc_itv = '" + itv + "', sc_pre_itv = '" + preItv + "', " +
                                "sc_chequeo = '" + chequeo + "',sc_reacondicionamiento = '"+ reacondicionamiento + "', sc_campa= '" + campa + "', " +
                                "sc_entrada_campa ='" + entradaCampa+"',sc_lavado = '"+ lavado + "', sc_lavado_exin = '"+ lavadoExIn + "', " +
                                "sc_lavado_extra ='" + lavadoEx+"', sc_completo = '"+ lavadoCo + "', sc_higienizado = '"+ lavadoHi + "', " +
-                               "sc_ida_vuelta = '"+ idaVuelta + "', cl_id = "+ cl_id+"  WHERE sc_id = "+ numero+"";
+                               "sc_ida_vuelta = '"+ idaVuelta + "', sc_urgente = '"+ urgente + "', sc_suplemento = '"+ suplemento + "', cl_id = "+ cl_id+"  " +
+                               "WHERE sc_id = "+ numero+"";
 
                 System.out.println(query);
-                //datos = new DbConnection();
                 boolean rs = datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs)
@@ -914,6 +965,7 @@ public class CSServicioCliente extends javax.swing.JPanel
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator2;
@@ -923,7 +975,6 @@ public class CSServicioCliente extends javax.swing.JPanel
     private javax.swing.JTextField jText4x4;
     private javax.swing.JTextField jTextCampa;
     private javax.swing.JTextField jTextCampaEntrada;
-    private javax.swing.JTextField jTextCampaEntrada1;
     private javax.swing.JTextField jTextChequeo;
     private javax.swing.JTextField jTextFurgones;
     private javax.swing.JTextField jTextFurgonetas;
@@ -938,14 +989,16 @@ public class CSServicioCliente extends javax.swing.JPanel
     private javax.swing.JTextField jTextNumero;
     private javax.swing.JTextField jTextPreItv;
     private javax.swing.JTextField jTextReacondicionamiento;
+    private javax.swing.JTextField jTextSuplemento;
+    private javax.swing.JTextField jTextUrgente;
     private javax.swing.JLabel l4x4;
     private javax.swing.JLabel lCampa;
     private javax.swing.JLabel lCampaEntrada;
-    private javax.swing.JLabel lCampaEntrada1;
     private javax.swing.JLabel lChequeo;
     private javax.swing.JLabel lEuro;
     private javax.swing.JLabel lEuro1;
     private javax.swing.JLabel lEuro10;
+    private javax.swing.JLabel lEuro11;
     private javax.swing.JLabel lEuro2;
     private javax.swing.JLabel lEuro3;
     private javax.swing.JLabel lEuro4;
@@ -970,6 +1023,8 @@ public class CSServicioCliente extends javax.swing.JPanel
     private javax.swing.JLabel lLavadoXtr;
     private javax.swing.JLabel lNumero;
     private javax.swing.JLabel lPreItv1;
+    private javax.swing.JLabel lSuplemento;
+    private javax.swing.JLabel lUrgente;
     private javax.swing.JLabel ltantoxciento;
     private javax.swing.JLabel ltantoxciento1;
     // End of variables declaration//GEN-END:variables
