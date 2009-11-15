@@ -11,16 +11,16 @@
 
 package neg;
 
-import java.sql.Date;
 import utils.LimitadorDeDocumento;
 import data.DbConnection;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,9 +43,11 @@ public class CSAnyadirProveedor extends JPanel
     {
         CSDesktop.menuNuevoProveedor.setEnabled(false);
         this.setLayout(new GridBagLayout());
-        initComponents();
-        limitacionesCampos();
 
+        Date hoy = new Date();
+        initComponents();
+        jDateChooserAlta.setDate(hoy);
+        limitacionesCampos();
         getFPagoProveedores();
         getDepartamentoContacto();
 
@@ -75,6 +77,7 @@ public class CSAnyadirProveedor extends JPanel
                 this.getComponents()[k] != jComboBoxDepartamento &&
                 this.getComponents()[k] != jComboBoxTipo &&
                 this.getComponents()[k] != jComboBoxDiaFactura &&
+                this.getComponents()[k] != jComboBoxProvinciaFiscal &&
                 this.getComponents()[k] != jComboBoxProvincia)
             {
                 this.getComponents()[k].addKeyListener(l);
@@ -105,7 +108,6 @@ public class CSAnyadirProveedor extends JPanel
         jTextNumCuenta = new javax.swing.JTextField();
         lFPago = new javax.swing.JLabel();
         jComboBoxFPago = new javax.swing.JComboBox();
-        jSeparator1 = new javax.swing.JSeparator();
         jButtonGuardar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jButtonCancelar = new javax.swing.JButton();
@@ -130,7 +132,6 @@ public class CSAnyadirProveedor extends JPanel
         jTextNombreCon = new javax.swing.JTextField();
         jComboBoxDepartamento = new javax.swing.JComboBox();
         lDepartamento = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
         lNumero = new javax.swing.JLabel();
         jTextNumero = new javax.swing.JTextField();
         jComboBoxProvincia = new javax.swing.JComboBox();
@@ -153,15 +154,29 @@ public class CSAnyadirProveedor extends JPanel
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jTextDiasPlazo = new javax.swing.JTextField();
         lDiasPlazo = new javax.swing.JLabel();
         jComboBoxDiaFactura = new javax.swing.JComboBox();
         lFactura = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lPContacto1 = new javax.swing.JLabel();
+        lDireccion1 = new javax.swing.JLabel();
+        jTextCodPostalFiscal = new javax.swing.JTextField();
+        lCodPostalFiscal = new javax.swing.JLabel();
+        jTextDireccionFiscal = new javax.swing.JTextField();
+        lPoblacionFiscal = new javax.swing.JLabel();
+        jTextPoblacionFiscal = new javax.swing.JTextField();
+        lProvinciaFiscal = new javax.swing.JLabel();
+        jComboBoxProvinciaFiscal = new javax.swing.JComboBox();
+        jLabel18 = new javax.swing.JLabel();
+        lFactura1 = new javax.swing.JLabel();
+        jDateChooserAlta = new com.toedter.calendar.JDateChooser();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setForeground(new java.awt.Color(0, 0, 100));
 
@@ -191,6 +206,11 @@ public class CSAnyadirProveedor extends JPanel
         lFax.setName("lFax"); // NOI18N
 
         jTextFax.setName("jTextFax"); // NOI18N
+        jTextFax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFaxActionPerformed(evt);
+            }
+        });
 
         lEmail.setForeground(new java.awt.Color(0, 0, 100));
         lEmail.setText("Email");
@@ -222,8 +242,6 @@ public class CSAnyadirProveedor extends JPanel
                 jComboBoxFPagoActionPerformed(evt);
             }
         });
-
-        jSeparator1.setName("jSeparator1"); // NOI18N
 
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.setName("jButtonGuardar"); // NOI18N
@@ -321,7 +339,7 @@ public class CSAnyadirProveedor extends JPanel
 
         lPContacto.setFont(new java.awt.Font("Tahoma", 1, 11));
         lPContacto.setForeground(new java.awt.Color(170, 16, 4));
-        lPContacto.setText("PERSONAS DE CONTACTO");
+        lPContacto.setText("PERSONA DE CONTACTO");
         lPContacto.setName("lPContacto"); // NOI18N
 
         lNombreCon.setForeground(new java.awt.Color(0, 0, 100));
@@ -343,11 +361,8 @@ public class CSAnyadirProveedor extends JPanel
         lDepartamento.setText("Departamento");
         lDepartamento.setName("lDepartamento"); // NOI18N
 
-        jSeparator3.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator3.setName("jSeparator3"); // NOI18N
-
         lNumero.setForeground(new java.awt.Color(0, 0, 100));
-        lNumero.setText("    Núm. Proveedor PR/");
+        lNumero.setText("   Núm. Proveedor PR/");
         lNumero.setName("lNumero"); // NOI18N
 
         jTextNumero.setEditable(false);
@@ -369,7 +384,7 @@ public class CSAnyadirProveedor extends JPanel
         jTextDigito.setName("jTextDigito"); // NOI18N
 
         lPlazo.setForeground(new java.awt.Color(0, 0, 100));
-        lPlazo.setText("   Plazo");
+        lPlazo.setText("    Plazo");
         lPlazo.setName("lPlazo"); // NOI18N
 
         jComboBoxPlazo.setBackground(new java.awt.Color(228, 229, 255));
@@ -389,7 +404,7 @@ public class CSAnyadirProveedor extends JPanel
         jTextTelefono2.setName("jTextTelefono2"); // NOI18N
 
         lEstado.setForeground(new java.awt.Color(0, 0, 100));
-        lEstado.setText("    Estado");
+        lEstado.setText("   Estado");
         lEstado.setName("lEstado"); // NOI18N
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
@@ -435,10 +450,6 @@ public class CSAnyadirProveedor extends JPanel
         jLabel12.setText("*");
         jLabel12.setName("jLabel12"); // NOI18N
 
-        jLabel13.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel13.setText("*");
-        jLabel13.setName("jLabel13"); // NOI18N
-
         jLabel14.setForeground(new java.awt.Color(204, 0, 0));
         jLabel14.setText("*");
         jLabel14.setName("jLabel14"); // NOI18N
@@ -446,10 +457,6 @@ public class CSAnyadirProveedor extends JPanel
         jLabel15.setForeground(new java.awt.Color(204, 0, 0));
         jLabel15.setText("*");
         jLabel15.setName("jLabel15"); // NOI18N
-
-        jLabel16.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel16.setText("*");
-        jLabel16.setName("jLabel16"); // NOI18N
 
         jLabel17.setForeground(new java.awt.Color(204, 0, 0));
         jLabel17.setText("*");
@@ -475,27 +482,238 @@ public class CSAnyadirProveedor extends JPanel
         lFactura.setText("Día del mes para facturar");
         lFactura.setName("lFactura"); // NOI18N
 
+        jSeparator1.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator1.setName("jSeparator1"); // NOI18N
+
+        lPContacto1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lPContacto1.setForeground(new java.awt.Color(170, 16, 4));
+        lPContacto1.setText("DOMICILIO FISCAL");
+        lPContacto1.setName("lPContacto1"); // NOI18N
+
+        lDireccion1.setForeground(new java.awt.Color(0, 0, 100));
+        lDireccion1.setText("  Dirección");
+        lDireccion1.setName("lDireccion1"); // NOI18N
+
+        jTextCodPostalFiscal.setName("jTextCodPostalFiscal"); // NOI18N
+
+        lCodPostalFiscal.setForeground(new java.awt.Color(0, 0, 100));
+        lCodPostalFiscal.setText("Código Postal");
+        lCodPostalFiscal.setName("lCodPostalFiscal"); // NOI18N
+
+        jTextDireccionFiscal.setName("jTextDireccionFiscal"); // NOI18N
+        jTextDireccionFiscal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextDireccionFiscalFocusLost(evt);
+            }
+        });
+
+        lPoblacionFiscal.setForeground(new java.awt.Color(0, 0, 100));
+        lPoblacionFiscal.setText("  Población");
+        lPoblacionFiscal.setName("lPoblacionFiscal"); // NOI18N
+
+        jTextPoblacionFiscal.setName("jTextPoblacionFiscal"); // NOI18N
+        jTextPoblacionFiscal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextPoblacionFiscalFocusLost(evt);
+            }
+        });
+
+        lProvinciaFiscal.setForeground(new java.awt.Color(0, 0, 100));
+        lProvinciaFiscal.setText("Provincia");
+        lProvinciaFiscal.setName("lProvinciaFiscal"); // NOI18N
+
+        jComboBoxProvinciaFiscal.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxProvinciaFiscal.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxProvinciaFiscal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
+        jComboBoxProvinciaFiscal.setName("jComboBoxProvinciaFiscal"); // NOI18N
+
+        jLabel18.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel18.setText("*");
+        jLabel18.setName("jLabel18"); // NOI18N
+
+        lFactura1.setForeground(new java.awt.Color(0, 0, 100));
+        lFactura1.setText("Fecha Alta Cliente");
+        lFactura1.setName("lFactura1"); // NOI18N
+
+        jDateChooserAlta.setDateFormatString("dd-MM-yyyy");
+        jDateChooserAlta.setName("jDateChooserAlta"); // NOI18N
+
+        jLabel13.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel13.setText("*");
+        jLabel13.setName("jLabel13"); // NOI18N
+
+        jLabel16.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel16.setText("*");
+        jLabel16.setName("jLabel16"); // NOI18N
+
+        jSeparator3.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator3.setName("jSeparator3"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lPContacto)
+                .addContainerGap(624, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lPContacto1)
+                .addContainerGap(650, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lPlazo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lEstado)
+                        .addGap(27, 27, 27)
+                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lFactura1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooserAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108)
+                        .addComponent(lFactura)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxDiaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(23, 23, 23)
+                .addComponent(lNumero)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lDNI)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lRegimen))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lPoblacion))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lTelefono)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextPoblacion, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lProvincia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lCodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextCodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBoxRegimen, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lTipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lDireccion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lDiasPlazo)
+                                .addGap(20, 20, 20)
+                                .addComponent(lFPago)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxFPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lTelefono2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lFax)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFax, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lEmail)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(lNumCuenta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jTextDigito, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(31, 31, 31))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel6)
+                .addContainerGap(748, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 534, Short.MAX_VALUE)
-                        .addComponent(jButtonCancelar))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lPContacto)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lTelefonoCon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lNombreCon)
+                                    .addComponent(lTelefonoCon)))
+                            .addComponent(lPoblacionFiscal)
+                            .addComponent(lDireccion1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextTelefonoCon, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lTelefonoCon2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextTelefonoCon2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -504,132 +722,30 @@ public class CSAnyadirProveedor extends JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lEmailCon)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextEmailCon, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
+                                .addComponent(jTextEmailCon, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lNombreCon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextNombreCon, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                                .addComponent(jTextNombreCon, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lDepartamento)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
-                        .addGap(3, 3, 3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lPoblacion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextPoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lProvincia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxProvincia, 0, 142, Short.MAX_VALUE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lCodPostal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextCodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lRegimen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxRegimen, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lTipo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lDireccion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lTelefono)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lTelefono2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lFax)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFax, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lEmail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(lEstado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxEstado, 0, 156, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(lPlazo)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lDiasPlazo)))
-                        .addGap(20, 20, 20)
-                        .addComponent(lFPago)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jComboBoxDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lNumCuenta)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextDigito, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextPoblacionFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lProvinciaFiscal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxProvinciaFiscal, 0, 157, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lFactura)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxDiaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lNumero)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lNombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lDNI)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE))
-                .addGap(25, 25, 25))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(343, Short.MAX_VALUE)
-                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(325, 325, 325))
+                                .addComponent(jTextDireccionFiscal, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lCodPostalFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextCodPostalFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(34, 34, 34))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextCodPostal, jTextCodPostalFiscal});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -639,94 +755,112 @@ public class CSAnyadirProveedor extends JPanel
                     .addComponent(jTextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lNumero)
                     .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
                     .addComponent(lDNI)
-                    .addComponent(jLabel9))
-                .addGap(39, 39, 39)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8)
+                    .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lRegimen)
                     .addComponent(jComboBoxRegimen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lTipo)
                     .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lDireccion)
-                    .addComponent(jLabel10)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel12))
-                .addGap(35, 35, 35)
+                    .addComponent(jLabel12)
+                    .addComponent(lRegimen)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lPoblacion)
                     .addComponent(jTextPoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextCodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lCodPostal)
+                    .addComponent(lPoblacion)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel15)
+                    .addComponent(jComboBoxProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lProvincia)
-                    .addComponent(jLabel14))
-                .addGap(37, 37, 37)
+                    .addComponent(jLabel14)
+                    .addComponent(lCodPostal)
+                    .addComponent(jLabel15))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lTelefono)
-                    .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lTelefono2)
                     .addComponent(jTextTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lFax)
                     .addComponent(jTextFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lEmail)
+                    .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lTelefono)
                     .addComponent(jLabel16))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lNumCuenta)
-                    .addComponent(jTextEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextDigito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lPlazo)
-                    .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextDigito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lNumCuenta)
                     .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lFPago)
+                    .addComponent(jComboBoxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lDiasPlazo)
-                    .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lEstado)
-                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxDiaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lFactura))
+                    .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lFPago)
+                    .addComponent(lPlazo))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lFactura1)
+                        .addComponent(jLabel18)
+                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lFactura)
+                        .addComponent(jComboBoxDiaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lEstado))
+                    .addComponent(jDateChooserAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lPContacto1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextDireccionFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lDireccion1)
+                    .addComponent(jTextCodPostalFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lCodPostalFiscal))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextPoblacionFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxProvinciaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lProvinciaFiscal)
+                    .addComponent(lPoblacionFiscal))
+                .addGap(23, 23, 23)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lPContacto)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lNombreCon)
-                    .addComponent(jLabel6)
                     .addComponent(jTextNombreCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lDepartamento)
                     .addComponent(jComboBoxDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lDepartamento))
-                .addGap(32, 32, 32)
+                    .addComponent(jLabel6)
+                    .addComponent(lNombreCon))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lTelefonoCon)
                     .addComponent(jLabel7)
                     .addComponent(jTextTelefonoCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextEmailCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lTelefonoCon2)
                     .addComponent(jTextTelefonoCon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lEmailCon)
-                    .addComponent(jLabel17))
+                    .addComponent(jLabel17)
+                    .addComponent(jTextEmailCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonGuardar)
-                .addGap(9, 9, 9)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(jButtonCancelar))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonGuardar)
+                        .addComponent(jButtonCancelar)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -750,6 +884,7 @@ public class CSAnyadirProveedor extends JPanel
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
 
+            String fecha2="";
             String numCuenta="";
             String nombre = new String(jTextNombre.getText());
             String dni = new String(jTextDNI.getText());
@@ -786,6 +921,19 @@ public class CSAnyadirProveedor extends JPanel
             String emailContacto = new String(jTextEmailCon.getText());
             String fDepartamento = new String(Integer.valueOf(jComboBoxDepartamento.getSelectedIndex()+1).toString());
             String departamento = new String(jComboBoxDepartamento.getSelectedItem().toString());
+            String direccionFiscal = new String(jTextDireccionFiscal.getText());
+            String poblacionFiscal = new String(jTextPoblacionFiscal.getText());
+            String provinciaFiscal = new String(jComboBoxProvinciaFiscal.getSelectedItem().toString());
+            String codPostalFiscal = new String(jTextCodPostalFiscal.getText());
+
+            Calendar fechaCalendar = jDateChooserAlta.getCalendar();
+
+            if (fechaCalendar!=null)
+            {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fecha2=formatoDeFecha.format(fecha);
+            }
 
             if (!Utilidades.campoObligatorio(nombre,"nombre").equals("OK"))
             {
@@ -853,17 +1001,22 @@ public class CSAnyadirProveedor extends JPanel
             {
                 ValidarFormatos(Utilidades.formatoNumerico(diasPlazo));
             }
-
+            else if(!Utilidades.formatoCodPostal(codPostalFiscal).equals("OK"))
+            {
+                ValidarFormatos(Utilidades.formatoCodPostal(codPostalFiscal));
+            }
             else
             {
-            String query = "INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, " +
-                                                            "pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, " +
-                                                            "pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, " +
-                                                            "fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES (" +
-                                                            "'"+nombre+"', '"+dni+"', '"+regimen+"','"+tipo+"' ,'"+direccion+"', " +
-                                                            "'"+codPostal+"' ,'"+poblacion+"' ,'"+provincia+"','"+telefono+"', " +
-                                                            "'"+telefono2+"', '"+fax+"', '"+email+"','"+plazo+"','"+dPlazo+"', '"+fPago+"', " +
-                                                            "'"+numCuenta+"','"+estado+"', '"+diaFactura+"')";
+            String query = "INSERT INTO pr_proveedores (pr_fecha, pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, " +
+                                                        "pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, " +
+                                                        "pr_direccion_fiscal, pr_cod_postal_fiscal, pr_poblacion_fiscal, pr_provincia_fiscal" +
+                                                        "pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, " +
+                                                        "fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES (" +
+                                                        "'"+fecha2+"','"+nombre+"', '"+dni+"', '"+regimen+"','"+tipo+"' ,'"+direccion+"', " +
+                                                        "'"+codPostal+"' ,'"+poblacion+"' ,'"+provincia+"', '"+direccionFiscal+"', " +
+                                                        "'"+codPostalFiscal+"', '"+poblacionFiscal+"', '"+provinciaFiscal+"','"+telefono+"', " +
+                                                        "'"+telefono2+"', '"+fax+"', '"+email+"','"+plazo+"','"+dPlazo+"', '"+fPago+"', " +
+                                                        "'"+numCuenta+"','"+estado+"', '"+diaFactura+"')";
 
                 System.out.println(query);
                 datos = new DbConnection();
@@ -1006,6 +1159,20 @@ public class CSAnyadirProveedor extends JPanel
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxDiaFacturaActionPerformed
 
+    private void jTextFaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFaxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFaxActionPerformed
+
+    private void jTextDireccionFiscalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDireccionFiscalFocusLost
+        String DireccionFiscalConM = jTextDireccionFiscal.getText().toUpperCase();
+        jTextDireccionFiscal.setText(DireccionFiscalConM);
+}//GEN-LAST:event_jTextDireccionFiscalFocusLost
+
+    private void jTextPoblacionFiscalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextPoblacionFiscalFocusLost
+        String PoblacionFiscalConM = jTextPoblacionFiscal.getText().toUpperCase();
+        jTextPoblacionFiscal.setText(PoblacionFiscalConM);
+}//GEN-LAST:event_jTextPoblacionFiscalFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
@@ -1016,8 +1183,10 @@ public class CSAnyadirProveedor extends JPanel
     private javax.swing.JComboBox jComboBoxFPago;
     private javax.swing.JComboBox jComboBoxPlazo;
     private javax.swing.JComboBox jComboBoxProvincia;
+    private javax.swing.JComboBox jComboBoxProvinciaFiscal;
     private javax.swing.JComboBox jComboBoxRegimen;
     private javax.swing.JComboBox jComboBoxTipo;
+    private com.toedter.calendar.JDateChooser jDateChooserAlta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1027,6 +1196,7 @@ public class CSAnyadirProveedor extends JPanel
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1035,10 +1205,12 @@ public class CSAnyadirProveedor extends JPanel
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTextCodPostal;
+    private javax.swing.JTextField jTextCodPostalFiscal;
     private javax.swing.JTextField jTextDNI;
     private javax.swing.JTextField jTextDiasPlazo;
     private javax.swing.JTextField jTextDigito;
     private javax.swing.JTextField jTextDireccion;
+    private javax.swing.JTextField jTextDireccionFiscal;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextEmailCon;
     private javax.swing.JTextField jTextEntidad;
@@ -1048,30 +1220,37 @@ public class CSAnyadirProveedor extends JPanel
     private javax.swing.JTextField jTextNumCuenta;
     private javax.swing.JTextField jTextNumero;
     private javax.swing.JTextField jTextPoblacion;
+    private javax.swing.JTextField jTextPoblacionFiscal;
     private javax.swing.JTextField jTextSucursal;
     private javax.swing.JTextField jTextTelefono;
     private javax.swing.JTextField jTextTelefono2;
     private javax.swing.JTextField jTextTelefonoCon;
     private javax.swing.JTextField jTextTelefonoCon2;
     private javax.swing.JLabel lCodPostal;
+    private javax.swing.JLabel lCodPostalFiscal;
     private javax.swing.JLabel lDNI;
     private javax.swing.JLabel lDepartamento;
     private javax.swing.JLabel lDiasPlazo;
     private javax.swing.JLabel lDireccion;
+    private javax.swing.JLabel lDireccion1;
     private javax.swing.JLabel lEmail;
     private javax.swing.JLabel lEmailCon;
     private javax.swing.JLabel lEstado;
     private javax.swing.JLabel lFPago;
     private javax.swing.JLabel lFactura;
+    private javax.swing.JLabel lFactura1;
     private javax.swing.JLabel lFax;
     private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lNombreCon;
     private javax.swing.JLabel lNumCuenta;
     private javax.swing.JLabel lNumero;
     private javax.swing.JLabel lPContacto;
+    private javax.swing.JLabel lPContacto1;
     private javax.swing.JLabel lPlazo;
     private javax.swing.JLabel lPoblacion;
+    private javax.swing.JLabel lPoblacionFiscal;
     private javax.swing.JLabel lProvincia;
+    private javax.swing.JLabel lProvinciaFiscal;
     private javax.swing.JLabel lRegimen;
     private javax.swing.JLabel lTelefono;
     private javax.swing.JLabel lTelefono2;
@@ -1202,6 +1381,7 @@ public class CSAnyadirProveedor extends JPanel
 
                     String industrial = rs.getString("sp_industrial");
                     String todoterreno = rs.getString("sp_todoterreno");
+                    String furgonetas = rs.getString("sp_furgonetas");
                     String furgones = rs.getString("sp_furgones");
                     String itv = rs.getString("sp_itv");
                     String preItv = rs.getString("sp_pre_itv");
@@ -1215,14 +1395,15 @@ public class CSAnyadirProveedor extends JPanel
                     String lavadoCom = rs.getString("sp_completo");
                     String lavadoHig = rs.getString("sp_higienizado");
                     String idaVuelta = rs.getString("sp_ida_vuelta");
+                    String urgente = rs.getString("sp_urgente");
 
-                    String querySe  = "INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgones, " +
+                    String querySe  = "INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgonetas, sp_furgones, " +
                                       "sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, " +
-                                      "sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, pr_id) " +
-                                      "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgones + "'," +
+                                      "sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, sp_urgente, pr_id) " +
+                                      "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgonetas + "' ,'" + furgones + "'," +
                                       "'" + itv + "', '"+ preItv + "', '" + chequeo + "', '" + reacondicionamiento+"', " +
                                       "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + "', '" + lavadoExtra + "', " +
-                                      "'" + lavadoCom + "', '" + lavadoHig + "', '" + idaVuelta + "', '" + idProveedor + "')";
+                                      "'" + lavadoCom + "', '" + lavadoHig + "', '" + idaVuelta + "' ,'" + urgente + "', '" + idProveedor + "')";
 
                    System.out.println(querySe);
                    rsSe = se.manipuladorDatos(querySe);

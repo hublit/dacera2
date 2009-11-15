@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `fp_forma_pago` (
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Cheque', 'Pago por cheque');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Transferencia', 'Pago por transferencia');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Pagaré', 'Pagaré bancario');
-INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Recivo Domiciliado', 'Recivo Domiciliado');
+INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Recibo Domiciliado', 'Recibo Domiciliado');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Efectivo', 'Pago en efectivo');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Tarjeta', 'Pago por tarjeta');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Otros', 'Otros medios de pago');
