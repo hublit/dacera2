@@ -270,9 +270,9 @@ public class CSEditarPedido extends javax.swing.JPanel
         lNombreOrigen.setText("Nombre");
         lNombreOrigen.setName("lNombreOrigen"); // NOI18N
 
+        jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMadDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMadDestino.setEnabled(false);
         jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
 
         lServicioFMad1.setForeground(new java.awt.Color(0, 0, 100));
@@ -355,9 +355,9 @@ public class CSEditarPedido extends javax.swing.JPanel
         lSoporte.setText("Soporte");
         lSoporte.setName("lSoporte"); // NOI18N
 
+        jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMad.setEnabled(false);
         jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
 
         lEstado3.setForeground(new java.awt.Color(0, 0, 100));
@@ -1377,7 +1377,18 @@ public class CSEditarPedido extends javax.swing.JPanel
         String servicioEspecial = new String(jComboBoxServicioEspecial.getSelectedItem().toString());
         boolean idaVuelta= new Boolean(jCheckBoxIdaVuelta.getText());
 
+        if(tipoOrigen.equals("Selecciona"))
+            tipoOrigen="";
 
+        if(tipoDestino.equals("Selecciona"))
+            tipoDestino="";
+
+        if(servicioEspecial.equals("Selecciona"))
+            servicioEspecial="";
+
+        if(soporte.equals("Selecciona"))
+            soporte="";
+        
         if (!Utilidades.campoObligatorio(fecha2,"Fecha").equals("OK"))
         {
             ValidarFormatos(Utilidades.campoObligatorio(fecha2,"Fecha"));
@@ -1484,8 +1495,8 @@ public class CSEditarPedido extends javax.swing.JPanel
                             "pe_telefono_origen='"+telefonoOrigen+"', pe_direccion_destino = '"+direccionDestino+"', pe_poblacion_destino = '"+poblacionDestino+"', " +
                             "pe_provincia_destino='"+provinciaDestino+"', pe_cp_destino = '"+codigoPDestino+"', pe_fecha_destino = '"+fechaDestino+"', " +
                             "pe_hora_destino='"+horaDestino+"', pe_tipo_destino = '"+tipoDestino+"', pe_nombre_destino = '"+nombreDestino+"', " +
-                            "pe_telefono_destino='"+telefonoDestino+"', pe_fuera_mad = '"+fueraM+"', pe_servicio = '"+servicioAux+"', " +
-                            "pe_servicio_destino = '"+servicioDestino+"',pe_soporte='"+soporte+"',pe_dias_campa='"+diasCampa+"', " +
+                            "pe_telefono_destino='"+telefonoDestino+"', pe_fuera_mad = '"+fueraM+"', pe_servicio = '"+servicio+"', pe_servicio_origen = '"+servicioFMad+"', " +
+                            "pe_servicio_destino = '"+servicioFMadDestino+"',pe_soporte='"+soporte+"',pe_dias_campa='"+diasCampa+"', " +
                             "pe_ida_vuelta='"+idaVueltaN+"',pe_servicio_especial='"+servicioEspecial+"', pe_ve_matricula='"+matricula+"', " +
                             "pe_ve_marca = '"+marca+"', pe_ve_modelo = '"+modelo+"', pe_solred='"+solredN+"', pe_viaje = '"+viajeN+"', " +
                             "pe_ta_es_cliente = '"+taescliN+"', pe_ta_es_proveedor = '"+taesproN+"', pe_suplemento= '"+suplementoN+"', " +

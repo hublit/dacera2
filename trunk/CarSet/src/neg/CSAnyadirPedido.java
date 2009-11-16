@@ -520,9 +520,9 @@ public class CSAnyadirPedido extends JPanel
         lServicioFMad.setText("F.M. Origen");
         lServicioFMad.setName("lServicioFMad"); // NOI18N
 
+        jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMad.setEnabled(false);
         jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
 
         lSoporte.setForeground(new java.awt.Color(0, 0, 100));
@@ -771,9 +771,9 @@ public class CSAnyadirPedido extends JPanel
         lServicioFMad1.setText("F.M. Destino");
         lServicioFMad1.setName("lServicioFMad1"); // NOI18N
 
+        jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMadDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMadDestino.setEnabled(false);
         jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
 
         lTarifaCli.setForeground(new java.awt.Color(0, 0, 100));
@@ -1399,6 +1399,9 @@ public class CSAnyadirPedido extends JPanel
         if(servicioEspecial.equals("Selecciona"))
             servicioEspecial="";
 
+        if(soporte.equals("Selecciona"))
+            soporte="";
+
         if (!Utilidades.campoObligatorio(fecha2,"Fecha").equals("OK"))
         {
             ValidarFormatos(Utilidades.campoObligatorio(fecha2,"Fecha"));
@@ -1475,7 +1478,6 @@ public class CSAnyadirPedido extends JPanel
         {
              ValidarFormatos(Utilidades.formatoTelefono9(telefonoDestino));
         }       
-
         else
         {
               String servicioAux="";
@@ -1502,8 +1504,9 @@ public class CSAnyadirPedido extends JPanel
                                                          "pe_hora_origen,pe_tipo_origen,pe_nombre_origen, pe_telefono_origen, " +
                                                          "pe_direccion_destino, pe_poblacion_destino, pe_provincia_destino, " +
                                                          "pe_cp_destino, pe_fecha_destino, pe_hora_destino, pe_tipo_destino, " +
-                                                         "pe_nombre_destino,pe_telefono_destino, pe_fuera_mad,pe_servicio,pe_servicio_destino, " +
-                                                         "pe_servicio_especial,pe_dias_campa,pe_ida_vuelta,pe_soporte, pe_ve_matricula, " +
+                                                         "pe_nombre_destino,pe_telefono_destino, pe_fuera_mad, pe_servicio, " +
+                                                         "pe_servicio_origen, pe_servicio_destino, pe_servicio_especial, " +
+                                                         "pe_dias_campa,pe_ida_vuelta,pe_soporte, pe_ve_matricula, " +
                                                          "pe_ve_marca,pe_ve_modelo,pe_hora_real_origen,pe_hora_real_destino, " +
                                                          "pe_solred, pe_viaje,pe_ta_es_cliente,pe_ta_es_proveedor,pe_suplemento, " +
                                                          "fc_id, pe_estado,pe_activo) VALUES (";
@@ -1511,7 +1514,7 @@ public class CSAnyadirPedido extends JPanel
               query = query + "'"+fecha2+"','"+descripcion+"','"+direccionOrigen+"','"+poblacionOrigen+"','"+provinciaOrigen+"','"+codigoPOrigen+"','"+fechaOrigen+"','"+horaOrigen+"'";
               query = query + " ,'"+tipoOrigen+"','"+nombreOrigen+"','"+telefonoOrigen+"','"+direccionDestino+"','"+poblacionDestino+"','"+provinciaDestino+"','"+codigoPDestino+"'";
               query = query + ", '"+fechaDestino+"','"+horaDestino+"','"+tipoDestino+"','"+nombreDestino+"','"+telefonoDestino+"','"+fueraM+"'";
-              query = query + " ,'"+servicioAux+"','"+servicioDestino+"','"+servicioEspecial+"','"+diasCampaN+"','"+idaVueltaN+"','"+soporte+"','"+matricula+"'";
+              query = query + " ,'"+servicio+"','"+servicioFMad+"','"+servicioFMadDestino+"','"+servicioEspecial+"','"+diasCampaN+"','"+idaVueltaN+"','"+soporte+"','"+matricula+"'";
               query = query + ",'"+marca+"','"+modelo+"','"+horaRealOrigen+"','"+horaRealDestino+"','"+solredN+"','"+viajeN+"'";
               query = query + " ,'"+taescliN+"','"+taesproN+"','"+suplementoN+"','"+factor+"','"+estado+"','"+cerradoN+"')";
 
@@ -1576,15 +1579,12 @@ public class CSAnyadirPedido extends JPanel
                         jTextMarca.setText("");
                         jTextModelo.setText("");
                         jComboFactor.setSelectedItem("Ninguno");
-
                     }
                     else
                     {
                         CSDesktop.NuevoPedido.dispose();
                         CSDesktop.menuNuevoPedido.setEnabled(true);
-                        
                     }
-
                 }
         }
 
@@ -1646,7 +1646,7 @@ public class CSAnyadirPedido extends JPanel
 
     private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
         // TODO add your handling code here:
-        if (jCheckBoxFMadrid.isSelected()) {
+        /*if (jCheckBoxFMadrid.isSelected()) {
             jComboBoxServicio.setEnabled(false);
             jComboBoxServicioFMad.setEnabled(true);
             jComboBoxServicioFMadDestino.setEnabled(true);
@@ -1654,7 +1654,7 @@ public class CSAnyadirPedido extends JPanel
             jComboBoxServicio.setEnabled(true);
             jComboBoxServicioFMad.setEnabled(false);
             jComboBoxServicioFMadDestino.setEnabled(false);
-        }
+        }*/
     }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
 
     private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
@@ -1919,9 +1919,9 @@ public class CSAnyadirPedido extends JPanel
         {
             valor = rs.getString("fc_nombre");
 
-                jComboFactor.addItem(valor);
-                jComboFactor.setSelectedIndex(0);            
-                j++;
+            jComboFactor.addItem(valor);
+            jComboFactor.setSelectedIndex(0);
+            j++;
         }
      }
 

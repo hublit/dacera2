@@ -99,9 +99,9 @@
                                       <EmptySpace min="141" pref="141" max="141" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="lServicioFMadDestino" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jComboBoxServicioFMadDestino" min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jSeparator3" alignment="1" min="-2" pref="772" max="-2" attributes="1"/>
@@ -154,8 +154,8 @@
                           <Component id="jComboBoxServicioFMad" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lServicioFMadOrigen" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jComboBoxServicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lServicioFMadDestino" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jComboBoxServicioFMadDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lServicioFMadDestino" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jCheckBoxFMadrid" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
@@ -417,7 +417,6 @@
             <StringItem index="52" value="ZARAGOZA"/>
           </StringArray>
         </Property>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="jComboBoxServicioFMadDestino" noResource="true"/>
       </Properties>
     </Component>
@@ -531,7 +530,6 @@
             <StringItem index="52" value="ZARAGOZA"/>
           </StringArray>
         </Property>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="jComboBoxServicioFMad" noResource="true"/>
       </Properties>
     </Component>
@@ -636,11 +634,12 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Urbano"/>
-            <StringItem index="1" value="Interurbano"/>
-            <StringItem index="2" value="Provincial"/>
-            <StringItem index="3" value="Urbano ITV"/>
+          <StringArray count="5">
+            <StringItem index="0" value="Selecciona"/>
+            <StringItem index="1" value="Urbano"/>
+            <StringItem index="2" value="Interurbano"/>
+            <StringItem index="3" value="Provincial"/>
+            <StringItem index="4" value="Urbano ITV"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxServicio" noResource="true"/>

@@ -90,7 +90,7 @@ public class CSAnyadirTarifaCliente extends JPanel
     */
     public Dimension getPreferredSize()
     {
-      return new Dimension( 826,605 );
+      return new Dimension( 826,620 );
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -207,7 +207,6 @@ public class CSAnyadirTarifaCliente extends JPanel
         jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMadDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMadDestino.setEnabled(false);
         jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
 
         jLabelO3.setForeground(new java.awt.Color(204, 0, 0));
@@ -233,7 +232,6 @@ public class CSAnyadirTarifaCliente extends JPanel
         jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMad.setEnabled(false);
         jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
 
         jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
@@ -277,7 +275,7 @@ public class CSAnyadirTarifaCliente extends JPanel
 
         jComboBoxServicio.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicio.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Urbano", "Interurbano", "Provincial", "Urbano ITV" }));
+        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urbano", "Interurbano", "Provincial", "Urbano ITV" }));
         jComboBoxServicio.setName("jComboBoxServicio"); // NOI18N
 
         lFechaHasta.setForeground(new java.awt.Color(0, 0, 100));
@@ -317,16 +315,16 @@ public class CSAnyadirTarifaCliente extends JPanel
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
                                         .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(330, 330, 330))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(38, 38, 38)
                                         .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 646, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 636, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)))
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)))
                         .addGap(25, 25, 25))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -348,9 +346,9 @@ public class CSAnyadirTarifaCliente extends JPanel
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lServicioFMadOrigen)
                                         .addGap(141, 141, 141)))
-                                .addGap(55, 55, 55)
+                                .addGap(41, 41, 41)
                                 .addComponent(lServicioFMadDestino)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jComboBoxServicioFMadDestino, 0, 0, Short.MAX_VALUE))
                             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -373,12 +371,11 @@ public class CSAnyadirTarifaCliente extends JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(9, 9, 9))
-                            .addComponent(lPContacto2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)))
+                            .addComponent(lPContacto2))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
@@ -396,8 +393,8 @@ public class CSAnyadirTarifaCliente extends JPanel
                             .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lServicioFMadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -486,7 +483,6 @@ public class CSAnyadirTarifaCliente extends JPanel
                 Logger.getLogger(CSAnyadirTarifaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-
             String servicioAux = "";
 
             if (!fueraMad) {
@@ -495,24 +491,24 @@ public class CSAnyadirTarifaCliente extends JPanel
             } else {
                 fueraM = 1;
                 servicioAux = servicioFMad;
-
             }
+
             String servicioFMadDestinoAux="";
             if(!servicioFMadDestino.equals("Selecciona"))
             {
                 servicioFMadDestinoAux=servicioFMadDestino;
             }
 
-
             //Comprobamos si la tarifa existe para ese cliente
             int ta = 0;
-            ta = getTarifaCliente(idCliente, soporte, servicioAux, servicioFMadDestino);
+            ta = getTarifaCliente(idCliente, soporte, servicio, servicioFMad, servicioFMadDestino);
             if (ta != 0) {
                 jButtonGuardar.setEnabled(false);
                 JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Ya existe una tarifa con el Soporte y Servicio seleccionado para ese cliente.</FONT></HTML>");
                 JOptionPane.showMessageDialog(null, errorFields);
                 jButtonGuardar.setEnabled(true);
             }
+
           //CAMPOS OBLIGATORIOS
             else if (!Utilidades.campoObligatorio(soporte,"Soporte").equals("OK"))
             {
@@ -531,41 +527,33 @@ public class CSAnyadirTarifaCliente extends JPanel
                  ValidarFormatos(Utilidades.campoObligatorio(tarifa,"Tarifa"));
 
             } else {
+                
+                if(servicio.equals("Selecciona"))
+                    servicio = "";
 
-                String query = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, " +
-                               "tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " + "VALUES (";
-                if (!servicioAux.equals("")) {
-                    query = query + "'" + servicioAux + "'";
-                } else {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio.</FONT></HTML>");
+                if(servicioFMad.equals("Selecciona"))
+                    servicioFMad = "";
+                
+                if(servicioFMadDestino.equals("Selecciona"))
+                    servicioFMadDestino = "";
+                
+                if (incremento.equals("") && !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
+                {
+                    incremento =  "0";
+                }
+                
+                double tarifaN = 0;
+                if (!tarifa.equals("") && Utilidades.validarNumericoDecimal(tarifa).equals("OK"))
+                {
+                    tarifaN = Double.valueOf(tarifa).doubleValue();
                 }
 
-                    query = query + " ,'" + servicioFMadDestinoAux + "'";
+                String query = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, " +
+                               "tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " + 
+                               "VALUES ('" + servicio + "', '" + servicioFMad + "', '" + servicioFMadDestino + "', " +
+                               "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "','" + fueraM + "', " +
+                               ""+ incremento + ", "+ tarifaN + ", "+ idCliente+"";
 
-                if (!soporte.equals("")) {
-                    query = query + " ,'" + soporte + "'";
-                } else {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Soporte.</FONT></HTML>");
-                }
-                query = query + " ,'" + fechaDesde + "','" + fechaHasta + "','" + fueraM + "'";
-
-                if (!incremento.equals("") && Utilidades.validarNumericoDecimal(incremento).equals("OK")) {
-                    query = query + " , " + incremento + "";
-                } else {
-                    query = query + " , 0";
-                }
-                if (!tarifa.equals("") && Utilidades.validarNumericoDecimal(tarifa).equals("OK")) {
-                    double tarifaN = Double.valueOf(tarifa).doubleValue();
-                    query = query + " , " + tarifaN + "";
-                } else {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe rellenar el campo tarifa con un valor en €.</FONT></HTML>");
-                }
-                if (!cliente.equals("")) {
-                    query = query + " , " + idCliente + ")";
-                } else {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar algún Cliente.</FONT></HTML>");
-                }
-                System.out.print(query);
                 System.out.println(query);
                 datos = new DbConnection();
                 boolean rs = datos.manipuladorDatos(query);
@@ -616,7 +604,7 @@ public class CSAnyadirTarifaCliente extends JPanel
 
     private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
         // TODO add your handling code here:
-        if (jCheckBoxFMadrid.isSelected()) {
+        /**if (jCheckBoxFMadrid.isSelected()) {
             jComboBoxServicio.setEnabled(false);
             jComboBoxServicioFMad.setEnabled(true);
             jComboBoxServicioFMadDestino.setEnabled(true);
@@ -624,7 +612,7 @@ public class CSAnyadirTarifaCliente extends JPanel
             jComboBoxServicio.setEnabled(true);
             jComboBoxServicioFMad.setEnabled(false);
             jComboBoxServicioFMadDestino.setEnabled(false);
-        }
+        }*/
     }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
 
 
@@ -694,17 +682,19 @@ public class CSAnyadirTarifaCliente extends JPanel
      * @return
      * @throws SQLException
      */
-    private int getTarifaCliente(int cliente, String soporte, String servicio, String servicio_destino) throws SQLException
+    private int getTarifaCliente(int cliente, String soporte, String servicio, String servicio_origen, String servicio_destino) throws SQLException
     {
         datos = new DbConnection();
         int tarifa = 0;
-        tarifa = datos.numeroFilas("SELECT tc_id FROM tc_tarifas_clientes " +
-                                    "WHERE tc_servicio='"+servicio+"' AND tc_servicio_destino='"+servicio_destino+"' " +
-                                    "AND tc_soporte='"+soporte+"' AND cl_id = '"+cliente+"'");
+        tarifa = datos.numeroFilas("SELECT tc_id FROM tc_tarifas_clientes WHERE " +
+                                   "tc_servicio='"+servicio+"' AND tc_servicio_origen='"+servicio_origen+"' " +
+                                   "AND tc_servicio_destino='"+servicio_destino+"' " +
+                                   "AND tc_soporte='"+soporte+"' AND cl_id = '"+cliente+"'");
 
-        System.out.println("SELECT tc_id FROM tc_tarifas_clientes " +
-                                    "WHERE tc_servicio='"+servicio+"' AND tc_servicio_destino='"+servicio+"' " +
-                                    "AND tc_soporte='"+soporte+"' AND cl_id = '"+cliente+"'");
+        System.out.println("SELECT tc_id FROM tc_tarifas_clientes WHERE " +
+                                   "tc_servicio='"+servicio+"' AND tc_servicio_origen='"+servicio_origen+"' " +
+                                   "AND tc_servicio_destino='"+servicio_destino+"' " +
+                                   "AND tc_soporte='"+soporte+"' AND cl_id = '"+cliente+"'");
         return tarifa;
     }
 
