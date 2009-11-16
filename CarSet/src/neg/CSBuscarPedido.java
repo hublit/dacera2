@@ -270,7 +270,7 @@ public class CSBuscarPedido extends javax.swing.JPanel {
 
         jComboBoxServicio.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicio.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Urbano", "Interurbano", "Provincial", "Urbano ITV", "Especial" }));
+        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urbano", "Interurbano", "Provincial", "Urbano ITV", "Especial" }));
         jComboBoxServicio.setName("jComboBoxServicio"); // NOI18N
 
         lDireccionDestino1.setForeground(new java.awt.Color(0, 0, 100));
@@ -804,13 +804,19 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         {
             if (and)
             {
-                query = query + " AND pe_fuera_mad=0 AND pe_servicio='"+servicio+"'";
+                query = query + " AND pe_fuera_mad=0 ";
             }
              else
              {
-                  query = query + " pe_fuera_mad=0 AND pe_servicio='"+servicio+"'";
+                  query = query + " pe_fuera_mad=0 ";
                   and = true;
              }
+
+            if (!servicio.equals("Selecciona"))
+            {
+                    query = query + " AND pe_servicio='"+servicio+"'";
+            }
+
         }
         else
         {

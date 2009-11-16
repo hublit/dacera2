@@ -47,16 +47,16 @@ public class CSResultTarifaCliente extends javax.swing.JPanel {
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = datos.select(query);
         System.out.println("Tarifas: "+query);
-        modelo.setColumnIdentifiers(new String[] {"NUM", "SERVICIO", "SERVICIO DESTINO", "SOPORTE", "FECHA DESDE", "TARIFA"});
+        modelo.setColumnIdentifiers(new String[] {"NUM", "SERVICIO", "SERVICIO ORIGEN", "SERVICIO DESTINO", "SOPORTE", "FECHA DESDE", "TARIFA"});
 
         int numeroFila = 0;
         try {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                for (int k = 0; k < 10; k++) {
-                    if (k == 0 || k == 1 || k == 2 || k == 3 || k == 4 || k == 8) {
-                         if(k==4)
+                for (int k = 0; k < 11; k++) {
+                    if (k == 0 || k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k == 9) {
+                         if(k==5)
                         {
                              String fecha=(rs.getObject(k+1)).toString();
                              String [] temp = null;
@@ -118,7 +118,9 @@ public class CSResultTarifaCliente extends javax.swing.JPanel {
         TableColumn columna4 = tablaClientes.getColumnModel().getColumn(4);
         columna4.setPreferredWidth(200);
         TableColumn columna5 = tablaClientes.getColumnModel().getColumn(5);
-        columna4.setPreferredWidth(200);
+        columna5.setPreferredWidth(200);
+        TableColumn columna6 = tablaClientes.getColumnModel().getColumn(6);
+        columna6.setPreferredWidth(100);
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
