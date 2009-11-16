@@ -50,8 +50,8 @@ public class CSResultBuscarCliente extends javax.swing.JPanel {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                for (int k = 0; k < 15; k++) {
-                    if (k==0 ||k == 1 || k == 2 || k == 7 || k == 10) {
+                for (int k = 0; k < 24; k++) {
+                    if (k==0 ||k == 2 || k == 3 || k == 12 || k == 15) {
                         datosFila[j] = rs.getObject(k + 1);
                         System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         j++;
