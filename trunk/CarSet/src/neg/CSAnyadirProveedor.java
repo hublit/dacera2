@@ -1009,7 +1009,7 @@ public class CSAnyadirProveedor extends JPanel
             {
             String query = "INSERT INTO pr_proveedores (pr_fecha, pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, " +
                                                         "pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, " +
-                                                        "pr_direccion_fiscal, pr_cod_postal_fiscal, pr_poblacion_fiscal, pr_provincia_fiscal" +
+                                                        "pr_direccion_fiscal, pr_cod_postal_fiscal, pr_poblacion_fiscal, pr_provincia_fiscal, " +
                                                         "pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, " +
                                                         "fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES (" +
                                                         "'"+fecha2+"','"+nombre+"', '"+dni+"', '"+regimen+"','"+tipo+"' ,'"+direccion+"', " +
@@ -1449,5 +1449,7 @@ public class CSAnyadirProveedor extends JPanel
         jTextDigito.setDocument(limitadorDigito);
         LimitadorDeDocumento limitadorNumC= new LimitadorDeDocumento(10);
         jTextNumCuenta.setDocument(limitadorNumC);
+        LimitadorDeDocumento limitadorCPFiscal= new LimitadorDeDocumento(5);
+        jTextCodPostal.setDocument(limitadorCPFiscal);
      }
 }
