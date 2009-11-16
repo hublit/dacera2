@@ -66,14 +66,13 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                for (int k = 0; k < 17; k++) {
-                    if (k==0 ||k == 1 || k == 2 || k == 9 || k == 12) {
+                for (int k = 0; k < 24; k++)
+                {
+                    if (k==0 ||k == 2 || k == 3 || k == 14 || k == 17)
+                    {
                         datosFila[j] = rs.getObject(k + 1);
                         System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         j++;
-                    } else {
-                        //datosFila[k] = rs.getObject(k + 1);
-                        //System.out.println("No Dato"+k+" "+rs.getObject(k + 1));
                     }
                 }
                 modelo.addRow(datosFila);
