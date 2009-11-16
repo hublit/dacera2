@@ -198,7 +198,6 @@ public class CSAnyadirTarifaProveedor extends JPanel
         jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMadDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMadDestino.setEnabled(false);
         jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
 
         jLabelO4.setForeground(new java.awt.Color(204, 0, 0));
@@ -220,7 +219,6 @@ public class CSAnyadirTarifaProveedor extends JPanel
         jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMad.setEnabled(false);
         jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
 
         jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
@@ -503,55 +501,56 @@ public class CSAnyadirTarifaProveedor extends JPanel
             }
             //Comprobamos si la tarifa existe para ese proveedor
             int ta = 0;
-            ta = getTarifaProveedor(idProveedor, soporte, servicioAux, servicioFMadDestino);
+            ta = getTarifaProveedor(idProveedor, soporte, servicio, servicioFMad, servicioFMadDestino);
 
             if (ta != 0) {
                 jButtonGuardar.setEnabled(false);
                 JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Ya existe una tarifa con el Soporte y Servicio seleccionado para ese proveedor.</FONT></HTML>");
                 JOptionPane.showMessageDialog(null, errorFields);
                 jButtonGuardar.setEnabled(true);
-            } else if (!Utilidades.campoObligatorio(soporte, "Soporte").equals("OK")) {
+            } else if (!Utilidades.campoObligatorio(soporte, "Soporte").equals("OK"))
+            {
                 ValidarFormatos(Utilidades.campoObligatorio(soporte, "Soporte"));
-            } else if (!Utilidades.campoObligatorio(fechaDesde, "Fecha Desde").equals("OK")) {
+            } 
+            else if (!Utilidades.campoObligatorio(fechaDesde, "Fecha Desde").equals("OK"))
+            {
                 ValidarFormatos(Utilidades.campoObligatorio(fechaDesde, "Fecha Desde"));
-            } else if (!Utilidades.campoObligatorio(proveedor, "Proveedor").equals("OK")) {
+            } 
+            else if (!Utilidades.campoObligatorio(proveedor, "Proveedor").equals("OK"))
+            {
                 ValidarFormatos(Utilidades.campoObligatorio(proveedor, "Proveedor"));
-            } else if (!Utilidades.campoObligatorio(tarifa, "Tarifa").equals("OK")) {
+            } 
+            else if (!Utilidades.campoObligatorio(tarifa, "Tarifa").equals("OK"))
+            {
                 ValidarFormatos(Utilidades.campoObligatorio(tarifa, "Tarifa"));
-            } else {
+            } 
+            else
+            {
+                if(servicio.equals("Selecciona"))
+                    servicio = "";
 
-                String query = "INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, " +
-                               "tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) " + "VALUES (";
-                if (!servicio.equals("")) {
-                    query = query + "'" + servicioAux + "'";
-                } else {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Servicio.</FONT></HTML>");
+                if(servicioFMad.equals("Selecciona"))
+                    servicioFMad = "";
+
+                if(servicioFMadDestino.equals("Selecciona"))
+                    servicioFMadDestino = "";
+
+                if (incremento.equals("") && !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
+                {
+                    incremento =  "0";
                 }
 
-                query = query + " ,'" + servicioFMadDestinoAux + "'";
+                double tarifaN = 0;
+                if (!tarifa.equals("") && Utilidades.validarNumericoDecimal(tarifa).equals("OK"))
+                {
+                    tarifaN = Double.valueOf(tarifa).doubleValue();
+                }
+                String query = "INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, " +
+                               "tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) " +
+                               "VALUES ('" + servicio + "', '" + servicioFMad + "', '" + servicioFMadDestino + "', " +
+                               "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "','" + fueraM + "', " +
+                               ""+ incremento + ", "+ tarifaN + ", "+ idProveedor+"" ;
 
-                if (!soporte.equals("")) {
-                    query = query + " ,'" + soporte + "'";
-                } else {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe asignar valor al campo Soporte.</FONT></HTML>");
-                }
-                query = query + " ,'" + fechaDesde + "','" + fechaHasta + "','" + fueraM + "'";
-                if (!incremento.equals("") && Utilidades.validarNumericoDecimal(incremento).equals("OK")) {
-                    query = query + " , " + incremento + "";
-                } else {
-                    query = query + " , 0";
-                }
-                if (!tarifa.equals("") && Utilidades.validarNumericoDecimal(tarifa).equals("OK")) {
-                    double tarifaN = Double.valueOf(tarifa).doubleValue();
-                    query = query + " , " + tarifaN + "";
-                } else {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe rellenar el campo tarifa con un valor en €.</FONT></HTML>");
-                }
-                if (!proveedor.equals("")) {
-                    query = query + " , " + idProveedor + ")";
-                } else {
-                    JLabel errorFields1 = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar algún Proveedor.</FONT></HTML>");
-                }
                 System.out.print(query);
                 datos = new DbConnection();
                 boolean rs = datos.manipuladorDatos(query);
@@ -682,16 +681,18 @@ public class CSAnyadirTarifaProveedor extends JPanel
      * @return
      * @throws SQLException
      */
-    private int getTarifaProveedor(int proveedor, String soporte, String servicio, String servicio_destino) throws SQLException
+    private int getTarifaProveedor(int proveedor, String soporte, String servicio, String servicio_origen, String servicio_destino) throws SQLException
     {
         datos = new DbConnection();
         int tarifa = 0;
         tarifa = datos.numeroFilas("SELECT tp_id FROM tp_tarifas_proveedores " +
-                                    "WHERE tp_servicio='"+servicio+"' AND tp_servicio_destino='"+servicio_destino+"' " +
-                                    "AND tp_soporte='"+soporte+"' AND pr_id = '"+proveedor+"'");
+                                   "tp_servicio='"+servicio+"' AND tp_servicio_origen='"+servicio_origen+"' " +
+                                   "AND tp_servicio_destino='"+servicio_destino+"' " +
+                                   "AND tp_soporte='"+soporte+"' AND pr_id = '"+proveedor+"'");
 
         System.out.println("SELECT tp_id FROM tp_tarifas_proveedores " +
-                                    "WHERE tp_servicio='"+servicio+"' AND tp_servicio_destino='"+servicio_destino+"' " +
+                                   "tp_servicio='"+servicio+"' AND tp_servicio_origen='"+servicio_origen+"' " +
+                                   "AND tp_servicio_destino='"+servicio_destino+"' " +
                                     "AND tp_soporte='"+soporte+"' AND pr_id = '"+proveedor+"'");
         return tarifa;
     }

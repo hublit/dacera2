@@ -514,15 +514,24 @@ public class CSEditarTarifaProveedor extends JPanel
                  {
                     double tarifaN = Double.valueOf(tarifa).doubleValue();
 
+                    if(servicio.equals("Selecciona"))
+                        servicio = "";
+
+                    if(servicioFMad.equals("Selecciona"))
+                        servicioFMad = "";
+
+                    if(servicioFMadDestino.equals("Selecciona"))
+                        servicioFMadDestino = "";
+
                     if (incremento.trim().equals("") || !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
                     {
                         incremento = "0";
                     }
 
-                    String query = "UPDATE tp_tarifas_proveedores SET tp_servicio ='"+servicioAux+"',tp_servicio_destino ='"+servicioDestinoAux+"', "+
-                               "tp_soporte='"+soporte+"', tp_fecha_desde = '"+fechaDesde+"', tp_fecha_hasta='"+fechaHasta+"', " +
-                               "tp_fuera_mad='"+fueraM+"', tp_incremento='"+incremento+"', tp_tarifa='"+tarifaN+"' " +
-                               "WHERE tp_id = "+id+"";
+                    String query = "UPDATE tp_tarifas_proveedores SET tp_servicio ='"+servicio+"', tp_servicio_origen ='"+servicioFMad+"', " +
+                                   "tp_servicio_destino ='"+servicioFMadDestino+"',tp_soporte='"+soporte+"', tp_fecha_desde = '"+fechaDesde+"', " +
+                                   "tp_fecha_hasta='"+fechaHasta+"', tp_fuera_mad='"+fueraM+"', tp_incremento='"+incremento+"', tp_tarifa="+tarifaN+""+
+                                   "WHERE tp_id = "+id+"";
 
                     System.out.println(query);
                     datos = new DbConnection();
@@ -546,7 +555,6 @@ public class CSEditarTarifaProveedor extends JPanel
                         CSDesktop.ABResultTarifasProveedor.dispose();
                         CSDesktop.EditarProveedor.setVisible(true);
                     }
-
                 }
             }
     }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -559,7 +567,7 @@ public class CSEditarTarifaProveedor extends JPanel
 
     private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
         // TODO add your handling code here:
-        if (jCheckBoxFMadrid.isSelected()) {
+        /*if (jCheckBoxFMadrid.isSelected()) {
             jComboBoxServicio.setEnabled(false);
             jComboBoxServicioFMad.setEnabled(true);
             jComboBoxServicioFMadDestino.setEnabled(true);
@@ -567,7 +575,7 @@ public class CSEditarTarifaProveedor extends JPanel
             jComboBoxServicio.setEnabled(true);
             jComboBoxServicioFMad.setEnabled(false);
             jComboBoxServicioFMadDestino.setEnabled(false);
-        }
+        }*/
     }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
 
 
@@ -632,16 +640,16 @@ public class CSEditarTarifaProveedor extends JPanel
                 if (rs.getInt("tp_fuera_mad") == 0)
                 {
                     jCheckBoxFMadrid.setSelected(false);
-                    jComboBoxServicio.setEnabled(true);
-                    jComboBoxServicioFMad.setEnabled(false);
-                    jComboBoxServicioFMadDestino.setEnabled(false);
+                    //jComboBoxServicio.setEnabled(true);
+                    //jComboBoxServicioFMad.setEnabled(false);
+                    //jComboBoxServicioFMadDestino.setEnabled(false);
                 }
                 else
                 {
                     jCheckBoxFMadrid.setSelected(true);
-                    jComboBoxServicio.setEnabled(false);
-                    jComboBoxServicioFMad.setEnabled(true);
-                    jComboBoxServicioFMadDestino.setEnabled(true);
+                    //jComboBoxServicio.setEnabled(false);
+                    //jComboBoxServicioFMad.setEnabled(true);
+                    //jComboBoxServicioFMadDestino.setEnabled(true);
                 }
                 jComboBoxServicioFMad.setSelectedItem(rs.getString("tp_servicio"));
                 jComboBoxServicio.setSelectedItem(rs.getString("tp_servicio"));

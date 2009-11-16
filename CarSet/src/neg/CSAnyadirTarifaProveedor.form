@@ -395,7 +395,6 @@
             <StringItem index="52" value="ZARAGOZA"/>
           </StringArray>
         </Property>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="jComboBoxServicioFMadDestino" noResource="true"/>
       </Properties>
     </Component>
@@ -500,7 +499,6 @@
             <StringItem index="52" value="ZARAGOZA"/>
           </StringArray>
         </Property>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="jComboBoxServicioFMad" noResource="true"/>
       </Properties>
     </Component>

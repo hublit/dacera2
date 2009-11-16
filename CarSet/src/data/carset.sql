@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `cl_clientes` (
 --
 -- Volcar la base de datos para la tabla `cp_contactos_proveedor`
 --
-INSERT INTO cl_clientes (cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, cl_poblacion, cl_provincia, cl_telefono, cl_telefono2, cl_fax, cl_email, cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id) VALUES ('PLANTILLA','00000000L','NINGUNA','00000','NINGUNA','MADRID','910000000' ,'','','','','30 días FF', '0','1','Activo','1');
+INSERT INTO cl_clientes (cl_fecha, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, cl_poblacion, cl_provincia, cl_telefono, cl_telefono2, cl_fax, cl_email, cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id) VALUES ('000-00-00', 'PLANTILLA','00000000L','NINGUNA','00000','NINGUNA','MADRID','910000000' ,'','','','','30 días FF', '0','1','Activo','1');
 
 -- --------------------------------------------------------
 
@@ -169,10 +169,11 @@ CREATE TABLE IF NOT EXISTS `fp_forma_pago` (
 --
 -- Volcar la base de datos para la tabla `fp_forma_pago`
 --
-INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Cheque', 'Pago por cheque');
-INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Transferencia', 'Pago por transferencia');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Pagaré', 'Pagaré bancario');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Recibo Domiciliado', 'Recibo Domiciliado');
+INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Transferencia', 'Pago por transferencia');
+INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Confirming', 'Confirming');
+INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Cheque', 'Pago por cheque');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Efectivo', 'Pago en efectivo');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Tarjeta', 'Pago por tarjeta');
 INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Otros', 'Otros medios de pago');
@@ -244,6 +245,7 @@ CREATE TABLE IF NOT EXISTS `pe_pedidos` (
   `pe_telefono_destino` varchar(15) collate utf8_spanish_ci NOT NULL default '',
   `pe_fuera_mad` tinyint(1) NOT NULL default '0',
   `pe_servicio` varchar(100) collate utf8_spanish_ci NOT NULL default '',
+  `pe_servicio_origen` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `pe_servicio_destino` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `pe_servicio_especial` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `pe_dias_campa` int(5) default '0',
@@ -327,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `pr_proveedores` (
 -- Volcar la base de datos para la tabla `pr_proveedores`
 --
 -- --------------------------------------------------------
-INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES ('PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','910000000', '', '', '','30 días FF','', '1', '','Activo', '0');
+INSERT INTO pr_proveedores (pr_fecha, pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES ('000-00-00', 'PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','910000000', '', '', '','30 días FF','', '1', '','Activo', '0');
 
 --
 -- Estructura de tabla para la tabla `tc_tarifas_clientes`
@@ -336,6 +338,7 @@ INSERT INTO pr_proveedores (pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, p
 CREATE TABLE IF NOT EXISTS `tc_tarifas_clientes` (
   `tc_id` int(5) NOT NULL auto_increment,
   `tc_servicio` varchar(100) collate utf8_spanish_ci NOT NULL default '',
+  `tc_servicio_origen` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tc_servicio_destino` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tc_soporte` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tc_fecha_desde` date NOT NULL default '0000-00-00',
@@ -350,11 +353,11 @@ CREATE TABLE IF NOT EXISTS `tc_tarifas_clientes` (
 --
 -- Volcar la base de datos para la tabla `tc_tarifas_clientes`
 --
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Grúa' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Camión completo' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Conductor' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Tren' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '' ,'Custodia' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', 'MADRID', 'MADRID','Grúa' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', 'MADRID', 'MADRID', 'Camión completo' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', 'MADRID', 'MADRID', 'Conductor' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', 'MADRID', 'MADRID', 'Tren' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
+INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', 'MADRID', 'MADRID', 'Custodia' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
 
 -- --------------------------------------------------------
 
@@ -365,6 +368,7 @@ INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, t
 CREATE TABLE IF NOT EXISTS `tp_tarifas_proveedores` (
   `tp_id` int(5) NOT NULL auto_increment,
   `tp_servicio` varchar(100) collate utf8_spanish_ci NOT NULL default '',
+  `tp_servicio_origen` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tp_servicio_destino` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tp_soporte` varchar(100) collate utf8_spanish_ci NOT NULL default '',
   `tp_fecha_desde` date NOT NULL default '0000-00-00',
@@ -379,11 +383,11 @@ CREATE TABLE IF NOT EXISTS `tp_tarifas_proveedores` (
 --
 -- Volcar la base de datos para la tabla `tp_tarifas_proveedores`
 --
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Grúa' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Camión completo' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Conductor' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Tren' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '' ,'Custodia' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', 'MADRID', 'MADRID', 'Grúa' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', 'MADRID', 'MADRID', 'Camión completo' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', 'MADRID', 'MADRID','Conductor' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', 'MADRID', 'MADRID','Tren' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', 'MADRID', 'MADRID','Custodia' ,'2009-11-03','2050-01-01','1' , 0 , 70.0 , 0);
 
 
 -- --------------------------------------------------------
