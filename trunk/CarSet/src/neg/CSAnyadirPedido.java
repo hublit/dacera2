@@ -513,7 +513,7 @@ public class CSAnyadirPedido extends JPanel
 
         jComboBoxServicio.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicio.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Urbano", "Interurbano", "Provincial", "Urbano ITV", "Especial" }));
+        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urbano", "Interurbano", "Provincial", "Urbano ITV", "Especial" }));
         jComboBoxServicio.setName("jComboBoxServicio"); // NOI18N
 
         lServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
@@ -1396,6 +1396,18 @@ public class CSAnyadirPedido extends JPanel
         if(tipoDestino.equals("Selecciona"))
             tipoDestino="";
 
+        if(servicio.equals("Selecciona"))
+            servicio="";
+
+        if(servicioFMad.equals("Selecciona"))
+            servicioFMad="";
+        
+        if(servicioFMadDestino.equals("Selecciona"))
+            servicioFMadDestino="";
+        
+        if(soporte.equals("Selecciona"))
+            soporte="";
+
         if(servicioEspecial.equals("Selecciona"))
             servicioEspecial="";
 
@@ -1405,6 +1417,15 @@ public class CSAnyadirPedido extends JPanel
         if (!Utilidades.campoObligatorio(fecha2,"Fecha").equals("OK"))
         {
             ValidarFormatos(Utilidades.campoObligatorio(fecha2,"Fecha"));
+        }
+        else if (!Utilidades.campoObligatorio(servicio,"Servicio").equals("OK") && 
+                 !Utilidades.campoObligatorio(servicioFMad,"ServicioFMad").equals("OK"))
+        {
+            ValidarFormatos(Utilidades.campoObligatorio(servicio,"servicio"));
+        }
+        else if (!Utilidades.campoObligatorio(soporte,"Soporte").equals("OK"))
+        {
+            ValidarFormatos(Utilidades.campoObligatorio(soporte,"Soporte"));
         }
         else if (!Utilidades.campoObligatorio(cliente,"Cliente").equals("OK"))
         {

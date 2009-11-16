@@ -1386,12 +1386,30 @@ public class CSEditarPedido extends javax.swing.JPanel
         if(servicioEspecial.equals("Selecciona"))
             servicioEspecial="";
 
+        if(servicio.equals("Selecciona"))
+            servicio="";
+
+        if(servicioFMad.equals("Selecciona"))
+            servicioFMad="";
+
+        if(servicioFMadDestino.equals("Selecciona"))
+            servicioFMadDestino="";
+
         if(soporte.equals("Selecciona"))
             soporte="";
         
         if (!Utilidades.campoObligatorio(fecha2,"Fecha").equals("OK"))
         {
             ValidarFormatos(Utilidades.campoObligatorio(fecha2,"Fecha"));
+        }
+        else if (!Utilidades.campoObligatorio(servicio,"Servicio").equals("OK") &&
+                 !Utilidades.campoObligatorio(servicioFMad,"ServicioFMad").equals("OK"))
+        {
+            ValidarFormatos(Utilidades.campoObligatorio(servicio,"servicio"));
+        }
+        else if (!Utilidades.campoObligatorio(soporte,"Soporte").equals("OK"))
+        {
+            ValidarFormatos(Utilidades.campoObligatorio(soporte,"Soporte"));
         }
         else if (!Utilidades.campoObligatorio(cliente,"Cliente").equals("OK"))
         {
@@ -1914,20 +1932,23 @@ public class CSEditarPedido extends javax.swing.JPanel
                 if(rs.getInt("pe_fuera_mad")==0)
                 {
                     jCheckBoxFMadrid.setSelected(false);
-                    jComboBoxServicio.setSelectedItem(rs.getString("pe_servicio"));
-                    jComboBoxServicio.setEnabled(true);
-                    jComboBoxServicioFMad.setEnabled(false);
-                    jComboBoxServicioFMadDestino.setEnabled(false);
+                
+                    //jComboBoxServicio.setEnabled(true);
+                    //jComboBoxServicioFMad.setEnabled(false);
+                    //jComboBoxServicioFMadDestino.setEnabled(false);
                 }
                 else
                 {
                     jCheckBoxFMadrid.setSelected(true);
-                    jComboBoxServicioFMad.setSelectedItem(rs.getString("pe_servicio"));
-                    jComboBoxServicioFMad.setEnabled(true);
-                    jComboBoxServicioFMadDestino.setSelectedItem(rs.getString("pe_servicio_destino"));
-                    jComboBoxServicioFMadDestino.setEnabled(true);
-                    jComboBoxServicio.setEnabled(false);
+
+                    //jComboBoxServicioFMad.setEnabled(true);
+                    //jComboBoxServicioFMadDestino.setEnabled(true);
+                    //jComboBoxServicio.setEnabled(false);
                 }
+
+                jComboBoxServicio.setSelectedItem(rs.getString("pe_servicio"));
+                jComboBoxServicioFMad.setSelectedItem(rs.getString("pe_servicio_origen"));
+                jComboBoxServicioFMadDestino.setSelectedItem(rs.getString("pe_servicio_destino"));
                 jComboBoxSoporte.setSelectedItem(rs.getString("pe_soporte"));                             
                 jTextMatricula.setText(rs.getString("pe_ve_matricula"));
                 jTextMarca.setText(rs.getString("pe_ve_marca"));

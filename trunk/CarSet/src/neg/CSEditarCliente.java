@@ -1179,7 +1179,7 @@ public class CSEditarCliente extends javax.swing.JPanel
                 cl_id=rs.getString("cl_id");
                 jTextNumero.setText(rs.getString("cl_id"));
 
-                String fecha = new String(rs.getDate("cl_fecha").toString());
+                String fecha = rs.getString("cl_fecha");
                 System.out.println("Fechaaaaaaaaaaaaaaaaaaaaaa"+fecha);
                 String [] temp = null;
                     temp = fecha.split("\\-");

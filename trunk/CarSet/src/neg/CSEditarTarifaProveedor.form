@@ -44,7 +44,7 @@
                               <Component id="jTextId" min="-2" pref="51" max="-2" attributes="1"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jSeparator4" pref="787" max="32767" attributes="1"/>
+                              <Component id="jSeparator4" pref="822" max="32767" attributes="1"/>
                               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -53,7 +53,7 @@
                               <Component id="lSoporte" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jComboBoxSoporte" min="-2" pref="115" max="-2" attributes="0"/>
-                              <EmptySpace pref="80" max="32767" attributes="0"/>
+                              <EmptySpace pref="115" max="32767" attributes="0"/>
                               <Component id="jLabelO4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lFechaDesde" min="-2" max="-2" attributes="0"/>
@@ -73,7 +73,7 @@
                               <Component id="jTextIncremento" min="-2" pref="47" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lPorCiento" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="533" max="32767" attributes="0"/>
+                              <EmptySpace pref="568" max="32767" attributes="0"/>
                               <Component id="jLabelO6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lTarifa" min="-2" max="-2" attributes="0"/>
@@ -81,14 +81,14 @@
                               <Component id="jTextTarifa" min="-2" pref="45" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jSeparator2" pref="790" max="32767" attributes="1"/>
+                              <Component id="jSeparator2" pref="825" max="32767" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jSeparator3" pref="783" max="32767" attributes="1"/>
+                                      <Component id="jSeparator3" pref="818" max="32767" attributes="1"/>
                                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -104,7 +104,7 @@
                                       <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
                                       <Component id="lServicioFMadDestino" min="-2" pref="62" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jComboBoxServicioFMadDestino" pref="124" max="32767" attributes="0"/>
+                                      <Component id="jComboBoxServicioFMadDestino" pref="159" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -117,14 +117,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="597" max="32767" attributes="0"/>
+                              <EmptySpace pref="632" max="32767" attributes="0"/>
                               <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jSeparator1" alignment="0" pref="798" max="32767" attributes="0"/>
+                          <Component id="jSeparator1" alignment="0" pref="833" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -384,7 +384,6 @@
             <StringItem index="52" value="ZARAGOZA"/>
           </StringArray>
         </Property>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="jComboBoxServicioFMadDestino" noResource="true"/>
       </Properties>
     </Component>
@@ -504,7 +503,6 @@
             <StringItem index="52" value="ZARAGOZA"/>
           </StringArray>
         </Property>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="jComboBoxServicioFMad" noResource="true"/>
       </Properties>
     </Component>
