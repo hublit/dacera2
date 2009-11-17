@@ -372,18 +372,18 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         lServicioFMad.setText("F.M. Origen");
         lServicioFMad.setName("lServicioFMad"); // NOI18N
 
+        jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMad.setEnabled(false);
         jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
 
         lServicioFMad1.setForeground(new java.awt.Color(0, 0, 100));
         lServicioFMad1.setText("F.M. Destino");
         lServicioFMad1.setName("lServicioFMad1"); // NOI18N
 
+        jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMadDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERíA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CORDOBA", "CORUÑA, A", "CUENCA", "GIRONA", "GRANADA", "GUADALAJARA", "GUIPUZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MALAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PALMAS, LAS", "PONTEVEDRA", "RIOJA, LA", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA" }));
-        jComboBoxServicioFMadDestino.setEnabled(false);
         jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

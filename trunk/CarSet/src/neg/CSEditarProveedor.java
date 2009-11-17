@@ -907,6 +907,8 @@ public class CSEditarProveedor extends javax.swing.JPanel
             ValidarFormatos(Utilidades.campoObligatorio(telefono,"telefono"));
         } else if (!Utilidades.campoObligatorioCombo(provincia,"Provincia").equals("OK")){
             ValidarFormatos(Utilidades.campoObligatorioCombo(provincia,"Provincia"));
+        }else if(!Utilidades.formatoCodPostal(codPostalFiscal).equals("OK")) {
+            ValidarFormatos(Utilidades.formatoCodPostal(codPostalFiscal));
         }else if(!Utilidades.formatoCodPostal(codPostal).equals("OK")) {
             ValidarFormatos(Utilidades.formatoCodPostal(codPostal));
         } else if(!Utilidades.formatoTelefono9(telefono).equals("OK")) {
