@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `cl_clientes` (
 --
 -- Volcar la base de datos para la tabla `cp_contactos_proveedor`
 --
-INSERT INTO cl_clientes (cl_fecha, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, cl_poblacion, cl_provincia, cl_telefono, cl_telefono2, cl_fax, cl_email, cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_num_cuenta, cl_estado, co_id) VALUES ('2009-10-01', 'PLANTILLA','00000000L','NINGUNA','00000','NINGUNA','MADRID','910000000' ,'','','','','30 días FF', '0','1','','Activo','1');
+INSERT INTO cl_clientes (cl_fecha, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, cl_poblacion, cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, cl_poblacion_fiscal, cl_provincia_fiscal, cl_telefono, cl_telefono2, cl_fax, cl_email, cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_num_cuenta, cl_estado, co_id) VALUES ('2009-10-01', 'PLANTILLA','00000000L','NINGUNA','00000','NINGUNA','MADRID','NINGUNA' ,'00000','NINGUNA','MADRID','910000000','910000000','','','','30 días FF', '0','1','','Activo','1');
 
 -- --------------------------------------------------------
 
@@ -329,7 +329,8 @@ CREATE TABLE IF NOT EXISTS `pr_proveedores` (
 -- Volcar la base de datos para la tabla `pr_proveedores`
 --
 -- --------------------------------------------------------
-INSERT INTO pr_proveedores (pr_fecha, pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES ('2009-10-01', 'PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','910000000', '', '', '','30 días FF','', '1', '','Activo', '0');
+INSERT INTO pr_proveedores (pr_fecha, pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, pr_tipo, pr_direccion, pr_cod_postal, pr_poblacion, pr_provincia, pr_direccion_fiscal, pr_cod_postal_fiscal, pr_poblacion_fiscal, pr_provincia_fiscal, pr_telefono, pr_telefono2, pr_fax, pr_email, pr_plazo, pr_dias_plazo, fp_id, pr_num_cuenta, pr_estado, pr_dia_factura) VALUES ('2009-10-01', 'PLANTILLA', '000000L', 'Empresa','Gruero' ,'NINGUNA', '00000' ,'NINGUNA' ,'MADRID','','','','MADRID','910000000', '', '', '','30 días FF','', '1', '','Activo', '0');
+
 
 --
 -- Estructura de tabla para la tabla `tc_tarifas_clientes`
