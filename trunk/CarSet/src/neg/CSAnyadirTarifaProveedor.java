@@ -192,7 +192,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
 
         jComboBoxServicio.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicio.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Urbano", "Interurbano", "Provincial", "Urbano ITV" }));
+        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urbano", "Interurbano", "Provincial", "Urbano ITV" }));
         jComboBoxServicio.setName("jComboBoxServicio"); // NOI18N
 
         jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
@@ -499,6 +499,16 @@ public class CSAnyadirTarifaProveedor extends JPanel
             {
                 servicioFMadDestinoAux=servicioFMadDestino;
             }
+
+            if(servicio.equals("Selecciona"))
+                servicio = "";
+
+            if(servicioFMad.equals("Selecciona"))
+                servicioFMad = "";
+
+            if(servicioFMadDestino.equals("Selecciona"))
+                servicioFMadDestino = "";
+
             //Comprobamos si la tarifa existe para ese proveedor
             int ta = 0;
             ta = getTarifaProveedor(idProveedor, soporte, servicio, servicioFMad, servicioFMadDestino);
@@ -508,6 +518,12 @@ public class CSAnyadirTarifaProveedor extends JPanel
                 JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Ya existe una tarifa con el Soporte y Servicio seleccionado para ese proveedor.</FONT></HTML>");
                 JOptionPane.showMessageDialog(null, errorFields);
                 jButtonGuardar.setEnabled(true);
+            }
+          //CAMPOS OBLIGATORIOS
+            else if (!Utilidades.campoObligatorio(servicio,"Servicio").equals("OK") &&
+                 !Utilidades.campoObligatorio(servicioFMad,"ServicioFMad").equals("OK"))
+            {
+                ValidarFormatos(Utilidades.campoObligatorio(servicio,"servicio"));
             } else if (!Utilidades.campoObligatorio(soporte, "Soporte").equals("OK"))
             {
                 ValidarFormatos(Utilidades.campoObligatorio(soporte, "Soporte"));
@@ -526,18 +542,10 @@ public class CSAnyadirTarifaProveedor extends JPanel
             } 
             else
             {
-                if(servicio.equals("Selecciona"))
-                    servicio = "";
-
-                if(servicioFMad.equals("Selecciona"))
-                    servicioFMad = "";
-
-                if(servicioFMadDestino.equals("Selecciona"))
-                    servicioFMadDestino = "";
-
-                if (incremento.equals("") && !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
+                double incrementoN = 0;
+                if (!incremento.equals("") && Utilidades.validarNumericoDecimal(incremento).equals("OK"))
                 {
-                    incremento =  "0";
+                    incrementoN =  Double.valueOf(incremento).doubleValue();
                 }
 
                 double tarifaN = 0;
@@ -549,7 +557,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
                                "tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) " +
                                "VALUES ('" + servicio + "', '" + servicioFMad + "', '" + servicioFMadDestino + "', " +
                                "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "','" + fueraM + "', " +
-                               ""+ incremento + ", "+ tarifaN + ", "+ idProveedor+"" ;
+                               ""+ incrementoN + ", "+ tarifaN + ", "+ idProveedor+")" ;
 
                 System.out.print(query);
                 datos = new DbConnection();
@@ -609,7 +617,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
 
     private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
         // TODO add your handling code here:
-        if (jCheckBoxFMadrid.isSelected()) {
+        /*if (jCheckBoxFMadrid.isSelected()) {
             jComboBoxServicio.setEnabled(false);
             jComboBoxServicioFMad.setEnabled(true);
             jComboBoxServicioFMadDestino.setEnabled(true);
@@ -617,7 +625,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
             jComboBoxServicio.setEnabled(true);
             jComboBoxServicioFMad.setEnabled(false);
             jComboBoxServicioFMadDestino.setEnabled(false);
-        }
+        }*/
 }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
 
 
@@ -685,12 +693,12 @@ public class CSAnyadirTarifaProveedor extends JPanel
     {
         datos = new DbConnection();
         int tarifa = 0;
-        tarifa = datos.numeroFilas("SELECT tp_id FROM tp_tarifas_proveedores " +
+        tarifa = datos.numeroFilas("SELECT tp_id FROM tp_tarifas_proveedores WHERE " +
                                    "tp_servicio='"+servicio+"' AND tp_servicio_origen='"+servicio_origen+"' " +
                                    "AND tp_servicio_destino='"+servicio_destino+"' " +
                                    "AND tp_soporte='"+soporte+"' AND pr_id = '"+proveedor+"'");
 
-        System.out.println("SELECT tp_id FROM tp_tarifas_proveedores " +
+        System.out.println("SELECT tp_id FROM tp_tarifas_proveedores WHERE " +
                                    "tp_servicio='"+servicio+"' AND tp_servicio_origen='"+servicio_origen+"' " +
                                    "AND tp_servicio_destino='"+servicio_destino+"' " +
                                     "AND tp_soporte='"+soporte+"' AND pr_id = '"+proveedor+"'");

@@ -966,8 +966,8 @@ public class CSEditarCliente extends javax.swing.JPanel
                                "cl_provincia='"+provincia+"', cl_direccion_fiscal = '"+direccionFiscal+"', " +
                                "cl_cod_postal_fiscal='"+codPostalFiscal+"', cl_poblacion_fiscal= '"+poblacionFiscal+"', " +
                                "cl_provincia_fiscal='"+provinciaFiscal+"', cl_telefono='"+telefono+"',cl_telefono2='"+telefono2+"', " +
-                               "cl_fax='"+fax+"',cl_email='"+email+"', cl_web='"+web+"',cl_plazo='"+plazo+"',  cl_dias_plazo='"+diasPlazo+"'," +
-                               "fp_id='"+fPago+"', cl_estado='"+estado+"', co_id='"+co_id+"' " +
+                               "cl_fax='"+fax+"',cl_email='"+email+"', cl_web='"+web+"',cl_plazo='"+plazo+"', cl_dias_plazo='"+diasPlazo+"'," +
+                               "fp_id='"+fPago+"', cl_num_cuenta='"+numCuenta+"', cl_estado='"+estado+"', co_id='"+co_id+"' " +
                                "WHERE cl_id='"+numero+"'";
 
                 System.out.println(query);
@@ -1263,7 +1263,6 @@ public class CSEditarCliente extends javax.swing.JPanel
                 //jComboBoxFPago.setSelectedIndex(index);
                 j++;
         }
-
      }
 
     /**

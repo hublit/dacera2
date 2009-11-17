@@ -131,57 +131,52 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jTextItv" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="jTextItv" pref="45" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                       <Component id="lEuro1" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="2" attributes="0">
+                                      <Component id="jTextPreItv" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Component id="lEuro5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jTextChequeo" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Component id="lEuro6" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="2" attributes="0">
-                                              <Component id="jTextPreItv" min="-2" pref="45" max="-2" attributes="0"/>
-                                              <EmptySpace pref="8" max="32767" attributes="0"/>
-                                              <Component id="lEuro5" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jTextChequeo" min="-2" pref="45" max="-2" attributes="0"/>
-                                              <EmptySpace pref="8" max="32767" attributes="0"/>
-                                              <Component id="lEuro6" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jTextLavadoEx" min="-2" pref="45" max="-2" attributes="0"/>
-                                              <EmptySpace pref="8" max="32767" attributes="0"/>
-                                              <Component id="lEuro2" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jTextReacondicionamiento" min="-2" pref="45" max="-2" attributes="0"/>
-                                              <EmptySpace pref="8" max="32767" attributes="0"/>
-                                              <Component id="lEuro4" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jTextLavadoINEX" min="-2" pref="45" max="-2" attributes="0"/>
-                                              <EmptySpace pref="8" max="32767" attributes="0"/>
-                                              <Component id="lEuro7" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jTextLavadoCo" min="-2" pref="45" max="-2" attributes="0"/>
-                                              <EmptySpace pref="8" max="32767" attributes="0"/>
-                                              <Component id="lEuro8" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jTextLavadoXtr" min="-2" pref="45" max="-2" attributes="0"/>
-                                              <EmptySpace pref="8" max="32767" attributes="0"/>
-                                              <Component id="lEuro9" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jTextLavadoHi" min="-2" pref="45" max="-2" attributes="0"/>
-                                              <EmptySpace pref="8" max="32767" attributes="0"/>
-                                              <Component id="lEuro10" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="jTextLavadoEx" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Component id="lEuro2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTextReacondicionamiento" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Component id="lEuro4" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTextLavadoINEX" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Component id="lEuro7" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTextLavadoCo" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Component id="lEuro8" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTextLavadoXtr" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Component id="lEuro9" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jTextLavadoHi" min="-2" pref="45" max="-2" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                                      <Component id="lEuro10" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
