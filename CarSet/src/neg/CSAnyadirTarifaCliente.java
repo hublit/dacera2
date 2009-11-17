@@ -499,6 +499,15 @@ public class CSAnyadirTarifaCliente extends JPanel
                 servicioFMadDestinoAux=servicioFMadDestino;
             }
 
+            if(servicio.equals("Selecciona"))
+                servicio = "";
+
+            if(servicioFMad.equals("Selecciona"))
+                servicioFMad = "";
+
+            if(servicioFMadDestino.equals("Selecciona"))
+                servicioFMadDestino = "";
+
             //Comprobamos si la tarifa existe para ese cliente
             int ta = 0;
             ta = getTarifaCliente(idCliente, soporte, servicio, servicioFMad, servicioFMadDestino);
@@ -508,8 +517,12 @@ public class CSAnyadirTarifaCliente extends JPanel
                 JOptionPane.showMessageDialog(null, errorFields);
                 jButtonGuardar.setEnabled(true);
             }
-
           //CAMPOS OBLIGATORIOS
+            else if (!Utilidades.campoObligatorio(servicio,"Servicio").equals("OK") &&
+                 !Utilidades.campoObligatorio(servicioFMad,"ServicioFMad").equals("OK"))
+            {
+                ValidarFormatos(Utilidades.campoObligatorio(servicio,"servicio"));
+            }
             else if (!Utilidades.campoObligatorio(soporte,"Soporte").equals("OK"))
             {
                  ValidarFormatos(Utilidades.campoObligatorio(soporte,"Soporte"));
@@ -526,20 +539,13 @@ public class CSAnyadirTarifaCliente extends JPanel
             {
                  ValidarFormatos(Utilidades.campoObligatorio(tarifa,"Tarifa"));
 
-            } else {
-                
-                if(servicio.equals("Selecciona"))
-                    servicio = "";
-
-                if(servicioFMad.equals("Selecciona"))
-                    servicioFMad = "";
-                
-                if(servicioFMadDestino.equals("Selecciona"))
-                    servicioFMadDestino = "";
-                
-                if (incremento.equals("") && !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
+            } 
+            else
+            {
+                double incrementoN = 0;
+                if (!incremento.equals("") && Utilidades.validarNumericoDecimal(incremento).equals("OK"))
                 {
-                    incremento =  "0";
+                    incrementoN =  Double.valueOf(incremento).doubleValue();
                 }
                 
                 double tarifaN = 0;
@@ -552,7 +558,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                                "tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " + 
                                "VALUES ('" + servicio + "', '" + servicioFMad + "', '" + servicioFMadDestino + "', " +
                                "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "','" + fueraM + "', " +
-                               ""+ incremento + ", "+ tarifaN + ", "+ idCliente+"";
+                               ""+ incrementoN + ", "+ tarifaN + ", "+ idCliente+")";
 
                 System.out.println(query);
                 datos = new DbConnection();
