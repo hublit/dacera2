@@ -195,6 +195,10 @@ public class CSServicioCliente extends javax.swing.JPanel
         jLabel29 = new javax.swing.JLabel();
         lSuplemento = new javax.swing.JLabel();
         lEuro11 = new javax.swing.JLabel();
+        jTextOtros = new javax.swing.JTextField();
+        lEuro12 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        lOtros = new javax.swing.JLabel();
 
         lIndustrial.setForeground(new java.awt.Color(0, 0, 100));
         lIndustrial.setLabelFor(jTextIndustrial);
@@ -506,6 +510,21 @@ public class CSServicioCliente extends javax.swing.JPanel
         lEuro11.setText("€");
         lEuro11.setName("lEuro11"); // NOI18N
 
+        jTextOtros.setName("jTextOtros"); // NOI18N
+
+        lEuro12.setForeground(new java.awt.Color(0, 0, 100));
+        lEuro12.setText("€");
+        lEuro12.setName("lEuro12"); // NOI18N
+
+        jLabel30.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel30.setText("*");
+        jLabel30.setName("jLabel30"); // NOI18N
+
+        lOtros.setForeground(new java.awt.Color(0, 0, 100));
+        lOtros.setLabelFor(jTextIndustrial);
+        lOtros.setText("Otros");
+        lOtros.setName("lOtros"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -655,7 +674,11 @@ public class CSServicioCliente extends javax.swing.JPanel
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel29)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(lSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel30)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lOtros, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
@@ -673,9 +696,11 @@ public class CSServicioCliente extends javax.swing.JPanel
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jTextUrgente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jTextOtros, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lEuro12)
                                                     .addComponent(lEuro11)
                                                     .addComponent(ltantoxciento1)))))))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
@@ -755,7 +780,13 @@ public class CSServicioCliente extends javax.swing.JPanel
                             .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel29)
                             .addComponent(lSuplemento)
-                            .addComponent(lEuro11)))
+                            .addComponent(lEuro11))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextOtros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lEuro12)
+                            .addComponent(jLabel30)
+                            .addComponent(lOtros)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lFCorrecion1)
                         .addGap(4, 4, 4)
@@ -962,6 +993,7 @@ public class CSServicioCliente extends javax.swing.JPanel
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator2;
@@ -983,6 +1015,7 @@ public class CSServicioCliente extends javax.swing.JPanel
     private javax.swing.JTextField jTextLavadoINEX;
     private javax.swing.JTextField jTextLavadoXtr;
     private javax.swing.JTextField jTextNumero;
+    private javax.swing.JTextField jTextOtros;
     private javax.swing.JTextField jTextPreItv;
     private javax.swing.JTextField jTextReacondicionamiento;
     private javax.swing.JTextField jTextSuplemento;
@@ -995,6 +1028,7 @@ public class CSServicioCliente extends javax.swing.JPanel
     private javax.swing.JLabel lEuro1;
     private javax.swing.JLabel lEuro10;
     private javax.swing.JLabel lEuro11;
+    private javax.swing.JLabel lEuro12;
     private javax.swing.JLabel lEuro2;
     private javax.swing.JLabel lEuro3;
     private javax.swing.JLabel lEuro4;
@@ -1018,6 +1052,7 @@ public class CSServicioCliente extends javax.swing.JPanel
     private javax.swing.JLabel lLavadoHi;
     private javax.swing.JLabel lLavadoXtr;
     private javax.swing.JLabel lNumero;
+    private javax.swing.JLabel lOtros;
     private javax.swing.JLabel lPreItv1;
     private javax.swing.JLabel lSuplemento;
     private javax.swing.JLabel lUrgente;
