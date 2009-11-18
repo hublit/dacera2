@@ -365,8 +365,8 @@ public class CSContactoCliente extends javax.swing.JPanel
             Cliente cliente2=new Cliente();
             clienteID=cliente2.getClienteID(cliente);
             String query = "INSERT INTO cc_contactos_cliente (cc_nombre, cc_telefono, cc_telefono2, cc_email, cl_id, dp_id) "+
-                              "VALUES ('"+nombre+"','"+telefono+"','"+telefono2+"','"+email+"', "+
-                              "'"+clienteID+"', '"+fDepartamento+"')";
+                           "VALUES ('"+nombre+"','"+telefono+"','"+telefono2+"','"+email+"', "+
+                           "'"+clienteID+"', '"+fDepartamento+"')";
             System.out.println(query);
             boolean rs = datos.manipuladorDatos(query);
             System.out.println(query);
