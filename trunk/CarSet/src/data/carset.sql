@@ -113,12 +113,12 @@ INSERT INTO dp_departamentos (dp_nombre, dp_descripcion) VALUES ('Otros', 'Depar
 -- Estructura de tabla para la tabla `fa_facturas`
 --
 
-CREATE TABLE IF NOT EXISTS `fa_facturas` (
+CREATE TABLE IF NOT EXISTS `fa_factura_cliente` (
   `fa_id` int(8) NOT NULL auto_increment,
   `fa_fecha` date NOT NULL default '0000-00-00',
   `fa_mes` varchar(15) collate utf8_spanish_ci NOT NULL default '',
   `fa_anyo` varchar(15) collate utf8_spanish_ci NOT NULL default '',
-  `pe_num` varchar(25) collate utf8_spanish_ci NOT NULL default '',
+  `cl_id` int(10) NOT NULL,
   `fa_fecha_pago` date default NULL,
   `fa_pagado` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`fa_id`)
