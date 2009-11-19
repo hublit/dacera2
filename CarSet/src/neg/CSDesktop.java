@@ -74,10 +74,12 @@ public class CSDesktop extends JFrame
   public static JInternalFrame BuscaProveedor;
   public static JInternalFrame ServicioCliente;
   public static JInternalFrame ServicioProveedor;
+  public static JInternalFrame FacturaCliente;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
   public static JMenu menuPedidos;
   public static JMenu menuTarifa;
+  public static JMenu menuFactura;
   public static JMenu menuAyuda;
   public static JMenuBar barra;
   public static JMenuItem menuNuevoCliente;
@@ -90,6 +92,8 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuBuscarPedido;
   public static JMenuItem menuTarifaCliente;
   public static JMenuItem menuTarifaProveedor;
+  public static JMenuItem menuFacturaCliente;
+
   public CSDesktop()
   {
       elEscritorio = new DesktopConFondo("/images/fondo_desktop.jpg");
@@ -119,6 +123,7 @@ public class CSDesktop extends JFrame
       menuProveedores = new JMenu( "Proveedores" );
       menuPedidos = new JMenu( "Pedidos" );
       menuTarifa = new JMenu( "Tarifas" );
+      menuFactura = new JMenu( "Facturas" );
       menuAyuda = new JMenu( "Ayuda" );
 
       menuClientes.setMnemonic( 'C' );
@@ -438,7 +443,30 @@ public class CSDesktop extends JFrame
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
 
-      
+      menuFactura.setMnemonic( 'F' );
+
+      menuFacturaCliente = new JMenuItem( "Factura Cliente" );
+      menuFacturaCliente.setMnemonic( 'f' );
+      menuFactura.add( menuFacturaCliente );
+      menuFacturaCliente.addActionListener(
+         new ActionListener() { 
+            public void actionPerformed( ActionEvent evento ) {
+               FacturaCliente = new JInternalFrame("Factura Cliente", true,false,false,true );
+
+               CSFacturaCliente panel = null;
+               panel = new CSFacturaCliente();
+               FacturaCliente.getContentPane().add( panel,BorderLayout.CENTER);
+               FacturaCliente.pack();
+               elEscritorio.add( FacturaCliente );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = FacturaCliente.getSize();
+               FacturaCliente.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               FacturaCliente.setVisible( true );
+            }
+         });
+
       menuAyuda.setMnemonic( 'A' );
 
       //establecer elemento de men� Acerca de...
@@ -469,6 +497,7 @@ public class CSDesktop extends JFrame
       barra.add( menuProveedores );
       barra.add( menuPedidos );
       barra.add( menuTarifa );
+      barra.add( menuFactura );
       barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
