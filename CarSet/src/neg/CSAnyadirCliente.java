@@ -1110,7 +1110,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 }//GEN-LAST:event_jComboBoxPlazoActionPerformed
 
     private void jComboBoxFPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFPagoActionPerformed
-        if (jComboBoxFPago.getSelectedItem().equals("Transferencia")) {
+        if (jComboBoxFPago.getSelectedItem().equals("Recibo Domiciliado")) {
             jTextDigito.setEnabled(true);
             jTextEntidad.setEnabled(true);
             jTextSucursal.setEnabled(true);
