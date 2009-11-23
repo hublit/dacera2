@@ -124,6 +124,7 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
         lNumContacto = new javax.swing.JLabel();
         jTextNumContacto = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jButtonEliminar = new javax.swing.JButton();
 
         jTextTelefonoCon.setName("jTextTelefonoCon"); // NOI18N
 
@@ -215,6 +216,14 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
         jLabel8.setText("*");
         jLabel8.setName("jLabel8"); // NOI18N
 
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.setName("jButtonEliminar"); // NOI18N
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -262,7 +271,9 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 576, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 470, Short.MAX_VALUE)
+                        .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -297,7 +308,8 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButtonCancelar))
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -371,9 +383,35 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
        jTextEmailCon.setText(MailM);
     }//GEN-LAST:event_jTextEmailConFocusLost
 
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres eliminar el contacto?");
+
+        if (JOptionPane.OK_OPTION == confirmado)
+        {
+            int cc_id = Integer.parseInt(jTextNumContacto.getText());
+            String query="DELETE from cc_contactos_cliente where cc_id="+cc_id;
+
+            boolean rs=datos.manipuladorDatos(query);
+            if(rs) {
+                jButtonModificar.setEnabled(false);
+                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al eleiminar el contacto en la base de datos</FONT></HTML>");
+                JOptionPane.showMessageDialog(null,errorFields);
+                jButtonModificar.setEnabled(true);
+            } else {
+                jButtonModificar.setEnabled(false);
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han borrado correctamente.</FONT></HTML>");
+                JOptionPane.showMessageDialog(null,mensaje);
+                jButtonModificar.setEnabled(true);
+                CSDesktop.EditarContactoCliente.dispose();
+                CSDesktop.menuBuscarCliente.setEnabled(true);
+            }
+        }
+}//GEN-LAST:event_jButtonEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JComboBox jComboBoxDepartamento;
     private javax.swing.JLabel jLabel1;
@@ -411,14 +449,14 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
         System.out.println("Query con:"+query);
         ResultSet rs = datos.select(query);
         int numeroFila = 0;
-        int cl_id = 0;
+        int cc_id = 0;
 
         try
         {
             while(rs.next())
             {
-                cl_id = rs.getInt("cl_id");
-                jTextNumContacto.setText(Integer.toString(cl_id));
+                cc_id = rs.getInt("cc_id");
+                jTextNumContacto.setText(Integer.toString(cc_id));
                 jTextNombreCon.setText(rs.getString("cc_nombre"));
                 jTextTelefonoCon.setText(rs.getString("cc_telefono"));
                 jTextTelefonoCon2.setText(rs.getString("cc_telefono2"));
