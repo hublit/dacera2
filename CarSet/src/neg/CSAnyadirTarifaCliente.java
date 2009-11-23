@@ -325,10 +325,10 @@ public class CSAnyadirTarifaCliente extends JPanel
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonGenerar)
                                 .addGap(18, 18, 18)
@@ -337,7 +337,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                                 .addComponent(jTextIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lPorCiento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
@@ -345,9 +345,9 @@ public class CSAnyadirTarifaCliente extends JPanel
                                         .addGap(330, 330, 330))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 558, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 524, Short.MAX_VALUE)
                                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -359,7 +359,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                         .addComponent(lCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 557, Short.MAX_VALUE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 523, Short.MAX_VALUE)
                                                         .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(lFuMadrid)
@@ -378,7 +378,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                                                         .addGap(45, 45, 45)
                                                         .addComponent(lServicioFMadDestino)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jComboBoxServicioFMadDestino, 0, 141, Short.MAX_VALUE))
+                                                        .addComponent(jComboBoxServicioFMadDestino, 0, 107, Short.MAX_VALUE))
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(lSoporte)
                                                         .addGap(18, 18, 18)
@@ -389,7 +389,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                                                         .addComponent(lFechaDesde)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                         .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(jLabelO7)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(lFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,13 +402,13 @@ public class CSAnyadirTarifaCliente extends JPanel
                                                         .addComponent(lTarifa)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(jTextTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE))
+                                            .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGap(4, 4, 4))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(59, 59, 59)
                                 .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 763, Short.MAX_VALUE))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE))
                         .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
@@ -662,7 +662,7 @@ public class CSAnyadirTarifaCliente extends JPanel
     }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
 
     private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
-
+System.out.println("Vamos yaaaaaaaaaaaaaaaaaaaaaaaa");
         String incremento = "";
         double incrementoN = 0;
         if (!incremento.equals("") && Utilidades.validarNumericoDecimal(incremento).equals("OK"))
@@ -698,15 +698,27 @@ public class CSAnyadirTarifaCliente extends JPanel
                    String servicioFMadDestino = rs.getString("tc_servicio_destino");
                    String soporte = rs.getString("tc_soporte");
                    //Poner fecha actual
+
+                   String nueva = "2050-01-01";
+                   SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+                   Date d = null;
+                   try {
+                       d = sdf.parse(nueva);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(CSAnyadirTarifaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+
                    Date fechaActual = new Date();
+                   String fechaA = "2009-11-23";
                    Date fechaDesde = rs.getDate("tc_fecha_desde");
-                   Date fechaHasta = new Date("2050-01-01");
+                   Date fechaHasta = rs.getDate("tc_fecha_hasta");
                    String tarifa = rs.getString("tc_tarifa");
                    String fueraM = rs.getString("tc_fuera_mad");
 
                    String queryUP = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicio+"', tc_servicio_origen ='"+servicioFMad+"', " +
                                     "tc_servicio_destino ='"+servicioFMadDestino+"',tc_soporte='"+soporte+"', tc_fecha_desde = '"+fechaDesde+"', " +
-                                    "tc_fecha_hasta='"+fechaHasta+"', tc_fuera_mad='"+fueraM+"', tc_incremento='"+incremento+"', tc_tarifa="+tarifa+""+
+                                    "tc_fecha_hasta='"+fechaA+"', tc_fuera_mad='"+fueraM+"', tc_incremento='"+incremento+"', tc_tarifa="+tarifa+" "+
                                     "WHERE tc_id = "+tc_id+"";
 
                     System.out.println(queryUP);
@@ -727,7 +739,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                    String queryTc = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, " +
                                     "tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " +
                                     "VALUES ('" + servicio + "', '" + servicioFMad + "', '" + servicioFMadDestino + "', " +
-                                    "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "','" + fueraM + "', " +
+                                    "'" + soporte + "', '" + fechaActual + "','" + d + "','" + fueraM + "', " +
                                     ""+ incrementoN + ", "+ tarifaN + ", "+ idCliente+")";
 
                    System.out.println(queryTc);

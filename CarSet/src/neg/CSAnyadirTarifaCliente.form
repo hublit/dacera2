@@ -33,10 +33,10 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jSeparator3" alignment="1" pref="763" max="32767" attributes="1"/>
+                          <Component id="jSeparator3" alignment="1" pref="729" max="32767" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="299" max="-2" attributes="0"/>
+                              <EmptySpace pref="265" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButtonGenerar" min="-2" max="-2" attributes="0"/>
@@ -46,7 +46,7 @@
                               <Component id="jTextIncremento" min="-2" pref="39" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lPorCiento" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="462" max="-2" attributes="0"/>
+                              <EmptySpace pref="428" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -56,10 +56,10 @@
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="558" max="32767" attributes="0"/>
+                                      <EmptySpace pref="524" max="32767" attributes="0"/>
                                       <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jSeparator1" alignment="1" pref="759" max="32767" attributes="0"/>
+                                  <Component id="jSeparator1" alignment="1" pref="725" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
@@ -72,7 +72,7 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Component id="lCliente" min="-2" pref="41" max="-2" attributes="0"/>
-                                                      <EmptySpace pref="557" max="32767" attributes="0"/>
+                                                      <EmptySpace pref="523" max="32767" attributes="0"/>
                                                       <Component id="jToggleButtonCliente" min="-2" pref="149" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
@@ -95,7 +95,7 @@
                                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                                       <Component id="lServicioFMadDestino" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jComboBoxServicioFMadDestino" pref="141" max="32767" attributes="0"/>
+                                                      <Component id="jComboBoxServicioFMadDestino" pref="107" max="32767" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="lSoporte" min="-2" max="-2" attributes="0"/>
@@ -107,7 +107,7 @@
                                                       <Component id="lFechaDesde" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="jDateDesde" min="-2" pref="111" max="-2" attributes="0"/>
-                                                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
                                                       <Component id="jLabelO7" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="lFechaHasta" min="-2" pref="114" max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
                                                   </Group>
                                               </Group>
                                           </Group>
-                                          <Component id="jSeparator4" alignment="1" pref="759" max="32767" attributes="1"/>
+                                          <Component id="jSeparator4" alignment="1" pref="725" max="32767" attributes="1"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -135,7 +135,7 @@
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                               <Component id="jTextCliente" min="-2" pref="543" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jSeparator2" alignment="1" pref="763" max="32767" attributes="1"/>
+                          <Component id="jSeparator2" alignment="1" pref="729" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
