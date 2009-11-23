@@ -23,6 +23,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,6 +45,7 @@ public class CSAnyadirTarifaCliente extends JPanel
     
     public CSAnyadirTarifaCliente() throws ParseException
     {
+        datos = new DbConnection();
         CSDesktop.menuTarifaCliente.setEnabled(false);
         this.setLayout(new GridBagLayout());
         Date hoy = new Date();
@@ -522,12 +524,7 @@ public class CSAnyadirTarifaCliente extends JPanel
             int idCliente = 0;
             Cliente cl = new Cliente();
             idCliente = cl.getClienteID(cliente);
-            try {
-                idCliente = this.getIdCliente(cliente);
-            } catch (SQLException ex) {
-                Logger.getLogger(CSAnyadirTarifaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+            
             String servicioAux = "";
 
             if (!fueraMad) {
@@ -662,33 +659,34 @@ public class CSAnyadirTarifaCliente extends JPanel
     }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
 
     private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
-System.out.println("Vamos yaaaaaaaaaaaaaaaaaaaaaaaa");
-        String incremento = "";
+
+        String cliente = new String(jTextCliente.getText());
+        String incremento = new String(jTextIncremento.getText());
         double incrementoN = 0;
         if (!incremento.equals("") && Utilidades.validarNumericoDecimal(incremento).equals("OK"))
         {
             incrementoN =  Double.valueOf(incremento).doubleValue();
         }
+        else if (!Utilidades.campoObligatorio(cliente,"Cliente").equals("OK"))
+        {
+            ValidarFormatos(Utilidades.campoObligatorio(cliente,"Cliente"));
+        }
         
-        String cliente = new String(jTextCliente.getText());
         int idCliente = 0;
         Cliente cl = new Cliente();
         idCliente = cl.getClienteID(cliente);
-        try {
-            idCliente = this.getIdCliente(cliente);
-        } catch (SQLException ex) {
-            Logger.getLogger(CSAnyadirTarifaCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = '"+idCliente+"'";
+        System.out.println("texto: "+cliente+"---Id: "+idCliente+"--query: "+query);
         ResultSet rs = datos.select(query);
 
         String tc_id="";
         try {
 
+            DbConnection da = new DbConnection();
             while (rs.next())
             {
-                   DbConnection da = new DbConnection();
+                   boolean rsUp = true;
                    boolean rsTc = true;
 
                    tc_id = rs.getString("tc_id");
@@ -711,21 +709,24 @@ System.out.println("Vamos yaaaaaaaaaaaaaaaaaaaaaaaa");
 
                    Date fechaActual = new Date();
                    String fechaA = "2009-11-23";
+                   DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+               
+
                    Date fechaDesde = rs.getDate("tc_fecha_desde");
                    Date fechaHasta = rs.getDate("tc_fecha_hasta");
                    String tarifa = rs.getString("tc_tarifa");
                    String fueraM = rs.getString("tc_fuera_mad");
 
-                   String queryUP = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicio+"', tc_servicio_origen ='"+servicioFMad+"', " +
+                   String queryUp = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicio+"', tc_servicio_origen ='"+servicioFMad+"', " +
                                     "tc_servicio_destino ='"+servicioFMadDestino+"',tc_soporte='"+soporte+"', tc_fecha_desde = '"+fechaDesde+"', " +
-                                    "tc_fecha_hasta='"+fechaA+"', tc_fuera_mad='"+fueraM+"', tc_incremento='"+incremento+"', tc_tarifa="+tarifa+" "+
-                                    "WHERE tc_id = "+tc_id+"";
+                                    "tc_fecha_hasta='"+fechaA+"', tc_fuera_mad='"+fueraM+"', tc_incremento='"+incrementoN+"', tc_tarifa="+tarifa+" "+
+                                    "WHERE tc_id = "+tc_id+" AND cl_id = "+idCliente+" AND tc_fecha_hasta='2050-01-01'";
 
-                    System.out.println(queryUP);
+                    System.out.println(queryUp);
 
-                    boolean rsUP = datos.manipuladorDatos(queryUP);
-                    System.out.println(rsUP);
-                    if(rsUP)
+                    rsUp = datos.manipuladorDatos(queryUp);
+                    System.out.println(rsUp);
+                    if(rsUp)
                     {
                         jButtonGuardar.setEnabled(false);
                         JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar las tarifas en la base de datos</FONT></HTML>");
@@ -739,7 +740,7 @@ System.out.println("Vamos yaaaaaaaaaaaaaaaaaaaaaaaa");
                    String queryTc = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, " +
                                     "tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " +
                                     "VALUES ('" + servicio + "', '" + servicioFMad + "', '" + servicioFMadDestino + "', " +
-                                    "'" + soporte + "', '" + fechaActual + "','" + d + "','" + fueraM + "', " +
+                                    "'" + soporte + "', '" + fechaA + "','" + nueva + "','" + fueraM + "', " +
                                     ""+ incrementoN + ", "+ tarifaN + ", "+ idCliente+")";
 
                    System.out.println(queryTc);
@@ -751,8 +752,8 @@ System.out.println("Vamos yaaaaaaaaaaaaaaaaaaaaaaaa");
                         JOptionPane.showMessageDialog(null,errorFields);
                         jButtonGuardar.setEnabled(true);
                    }
-                   da.cerrarConexion();
             }
+            da.cerrarConexion();
             rs.close();
         }
         catch (SQLException ex)
@@ -812,24 +813,6 @@ System.out.println("Vamos yaaaaaaaaaaaaaaaaaaaaaaaa");
          JLabel errorFields = new JLabel(accion);
          JOptionPane.showMessageDialog(null,errorFields);
          jButtonGuardar.setEnabled(true);
-    }
-
-     /**
-     * Función para sacar el id del cliente de la bd
-     * @return
-     * @throws SQLException
-     */
-    private int getIdCliente(String cliente) throws SQLException
-    {
-        datos = new DbConnection();
-        ResultSet rs = datos.select("SELECT cl_id FROM cl_clientes WHERE cl_nombre = '"+cliente+"'");
-
-        int valor = 0;
-        while(rs.next())
-        {
-            valor = rs.getInt("cl_id");
-        }
-        return valor;
     }
 
     /**
