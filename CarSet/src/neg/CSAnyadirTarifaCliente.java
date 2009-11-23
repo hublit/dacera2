@@ -696,9 +696,10 @@ public class CSAnyadirTarifaCliente extends JPanel
                     String soporte = rs.getString("tc_soporte");
                     
                     //Poner fecha actual
+                    Date fechaActual = new Date();
                     Date fechaDesde = rs.getDate("tc_fecha_desde");
                     //poner 2050-01-01
-                    Date fechaHasta = rs.getDate("tc_fecha_hasta");
+                    Date fechaHasta = new Date("2050-01-01");
 
                     String tarifa = rs.getString("tc_tarifa");
                     double tarifaN = Double.valueOf(tarifa).doubleValue();
@@ -706,7 +707,7 @@ public class CSAnyadirTarifaCliente extends JPanel
 
                     String queryTc = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, "+
                                      "tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " +
-                                     "VALUES ('" + servicio + "', '" + servicioDestino + "' ,'" + soporte + "' ,'" + fechaDesde + "', '" + fechaHasta + "'," +
+                                     "VALUES ('" + servicio + "', '" + servicioDestino + "' ,'" + soporte + "' ,'" + fechaActual + "', '" + fechaHasta + "'," +
                                      "'" + fueraMad + "', " + incrementoN + ", " + tarifaN + ", " + idCliente+") ";
 
                    System.out.println(queryTc);
@@ -819,5 +820,4 @@ public class CSAnyadirTarifaCliente extends JPanel
                                    "AND tc_soporte='"+soporte+"' AND cl_id = '"+cliente+"'");
         return tarifa;
     }
-
 }
