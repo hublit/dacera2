@@ -68,7 +68,7 @@ public class CSContactoCliente extends javax.swing.JPanel
             }
 
             public void internalFrameDeactivated(InternalFrameEvent e) {
-                 CSDesktop.BuscaCliente.moveToFront();
+                 CSDesktop.NuevoContactoCliente.moveToFront();
             }
         });
 

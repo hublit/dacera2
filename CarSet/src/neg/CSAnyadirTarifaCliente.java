@@ -681,8 +681,9 @@ public class CSAnyadirTarifaCliente extends JPanel
         }
 
         String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = '"+idCliente+"'";
-
         ResultSet rs = datos.select(query);
+
+        String tc_id="";
         try {
 
             while (rs.next())
@@ -690,25 +691,44 @@ public class CSAnyadirTarifaCliente extends JPanel
                    DbConnection da = new DbConnection();
                    boolean rsTc = true;
 
-                    String fueraMad = rs.getString("tc_fuera_mad");
-                    String servicio = rs.getString("tc_servicio");
-                    String servicioDestino = rs.getString("tc_servicio_destino");
-                    String soporte = rs.getString("tc_soporte");
-                    
-                    //Poner fecha actual
-                    Date fechaActual = new Date();
-                    Date fechaDesde = rs.getDate("tc_fecha_desde");
-                    //poner 2050-01-01
-                    Date fechaHasta = new Date("2050-01-01");
+                   tc_id = rs.getString("tc_id");
+                   String fueraMad = rs.getString("tc_fuera_mad");
+                   String servicio = rs.getString("tc_servicio");
+                   String servicioFMad = rs.getString("tc_servicio_origen");
+                   String servicioFMadDestino = rs.getString("tc_servicio_destino");
+                   String soporte = rs.getString("tc_soporte");
+                   //Poner fecha actual
+                   Date fechaActual = new Date();
+                   Date fechaDesde = rs.getDate("tc_fecha_desde");
+                   Date fechaHasta = new Date("2050-01-01");
+                   String tarifa = rs.getString("tc_tarifa");
+                   String fueraM = rs.getString("tc_fuera_mad");
 
-                    String tarifa = rs.getString("tc_tarifa");
-                    double tarifaN = Double.valueOf(tarifa).doubleValue();
-                    tarifaN = tarifaN + ((tarifaN * incrementoN) / 100.0);
+                   String queryUP = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicio+"', tc_servicio_origen ='"+servicioFMad+"', " +
+                                    "tc_servicio_destino ='"+servicioFMadDestino+"',tc_soporte='"+soporte+"', tc_fecha_desde = '"+fechaDesde+"', " +
+                                    "tc_fecha_hasta='"+fechaHasta+"', tc_fuera_mad='"+fueraM+"', tc_incremento='"+incremento+"', tc_tarifa="+tarifa+""+
+                                    "WHERE tc_id = "+tc_id+"";
 
-                    String queryTc = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, "+
-                                     "tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " +
-                                     "VALUES ('" + servicio + "', '" + servicioDestino + "' ,'" + soporte + "' ,'" + fechaActual + "', '" + fechaHasta + "'," +
-                                     "'" + fueraMad + "', " + incrementoN + ", " + tarifaN + ", " + idCliente+") ";
+                    System.out.println(queryUP);
+
+                    boolean rsUP = datos.manipuladorDatos(queryUP);
+                    System.out.println(rsUP);
+                    if(rsUP)
+                    {
+                        jButtonGuardar.setEnabled(false);
+                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar las tarifas en la base de datos</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                        jButtonGuardar.setEnabled(true);
+                    }
+
+                   double tarifaN = Double.valueOf(tarifa).doubleValue();
+                   tarifaN = tarifaN + ((tarifaN * incrementoN) / 100.0);
+
+                   String queryTc = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, " +
+                                    "tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " +
+                                    "VALUES ('" + servicio + "', '" + servicioFMad + "', '" + servicioFMadDestino + "', " +
+                                    "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "','" + fueraM + "', " +
+                                    ""+ incrementoN + ", "+ tarifaN + ", "+ idCliente+")";
 
                    System.out.println(queryTc);
                    rsTc = da.manipuladorDatos(queryTc);
