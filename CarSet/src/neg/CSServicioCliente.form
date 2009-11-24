@@ -201,11 +201,6 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="lSuplemento" min="-2" pref="75" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lOtros" min="-2" pref="75" max="-2" attributes="0"/>
-                                          </Group>
                                       </Group>
                                       <EmptySpace pref="12" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -228,11 +223,9 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jTextUrgente" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
                                                   <Component id="jTextSuplemento" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
-                                                  <Component id="jTextOtros" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace pref="8" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lEuro12" min="-2" max="-2" attributes="0"/>
                                                   <Component id="lEuro11" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="ltantoxciento1" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
@@ -338,13 +331,6 @@
                           <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lSuplemento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lEuro11" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextOtros" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lEuro12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lOtros" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -1139,41 +1125,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x20ac;"/>
         <Property name="name" type="java.lang.String" value="lEuro11" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextOtros">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="jTextOtros" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lEuro12">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="64" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x20ac;"/>
-        <Property name="name" type="java.lang.String" value="lEuro12" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel30">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="cc" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="*"/>
-        <Property name="name" type="java.lang.String" value="jLabel30" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lOtros">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="64" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="jTextIndustrial"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Otros"/>
-        <Property name="name" type="java.lang.String" value="lOtros" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
