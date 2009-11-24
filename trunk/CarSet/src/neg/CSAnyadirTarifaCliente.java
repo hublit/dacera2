@@ -698,32 +698,20 @@ public class CSAnyadirTarifaCliente extends JPanel
                    //Poner fecha actual
 
                    String nueva = "2050-01-01";
-                   //SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-                   //Date d = new Date();
-                   /*try {
-                       d = sdf.parse(nueva);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(CSAnyadirTarifaCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
-
-                    Date fecha = new Date();
+                   Date fecha = new Date();
                  
-                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-                String fecha2=formatoDeFecha.format(fecha);
-
-                  // Date fechaActual = new Date();
-                   //String fechaA = "2009-11-23";
-                   //DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                   //fechaActual=formatter.format(fechaA);
+                   SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                   String fecha2=formatoDeFecha.format(fecha);
 
                    Date fechaDesde = rs.getDate("tc_fecha_desde");
                    Date fechaHasta = rs.getDate("tc_fecha_hasta");
+                   String incrementoBd = rs.getString("tc_incremento");
                    String tarifa = rs.getString("tc_tarifa");
                    String fueraM = rs.getString("tc_fuera_mad");
 
                    String queryUp = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicio+"', tc_servicio_origen ='"+servicioFMad+"', " +
                                     "tc_servicio_destino ='"+servicioFMadDestino+"',tc_soporte='"+soporte+"', tc_fecha_desde = '"+fechaDesde+"', " +
-                                    "tc_fecha_hasta='"+fecha2+"', tc_fuera_mad='"+fueraM+"', tc_incremento='"+incrementoN+"', tc_tarifa="+tarifa+" "+
+                                    "tc_fecha_hasta='"+fecha2+"', tc_fuera_mad='"+fueraM+"', tc_incremento='"+incrementoBd+"', tc_tarifa="+tarifa+" "+
                                     "WHERE tc_id = "+tc_id+" AND cl_id = "+idCliente+" AND tc_fecha_hasta='2050-01-01'";
 
                     System.out.println(queryUp);
@@ -756,6 +744,9 @@ public class CSAnyadirTarifaCliente extends JPanel
                         JOptionPane.showMessageDialog(null,errorFields);
                         jButtonGuardar.setEnabled(true);
                    }
+                   CSDesktop.TarifaCliente.dispose();
+                   CSDesktop.menuTarifaCliente.setEnabled(true);
+
             }
             da.cerrarConexion();
             rs.close();

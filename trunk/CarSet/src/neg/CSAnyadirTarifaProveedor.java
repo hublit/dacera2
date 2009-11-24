@@ -23,6 +23,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,7 +41,7 @@ import javax.swing.JPanel;
  */
 public class CSAnyadirTarifaProveedor extends JPanel
 {
-    DbConnection datos;
+    DbConnection datos = new DbConnection();
     /** Creates new form ABAnyadirProveedores */
     public CSAnyadirTarifaProveedor() throws ParseException
     {
@@ -131,6 +132,11 @@ public class CSAnyadirTarifaProveedor extends JPanel
         jLabelO6 = new javax.swing.JLabel();
         lTarifa = new javax.swing.JLabel();
         jTextTarifa = new javax.swing.JTextField();
+        lPorCiento = new javax.swing.JLabel();
+        jTextIncremento = new javax.swing.JTextField();
+        lIncremento = new javax.swing.JLabel();
+        jButtonGenerar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setForeground(new java.awt.Color(0, 0, 100));
 
@@ -284,6 +290,32 @@ public class CSAnyadirTarifaProveedor extends JPanel
 
         jTextTarifa.setName("jTextTarifa"); // NOI18N
 
+        lPorCiento.setText("%");
+        lPorCiento.setName("lPorCiento"); // NOI18N
+
+        jTextIncremento.setName("jTextIncremento"); // NOI18N
+        jTextIncremento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextIncrementoActionPerformed(evt);
+            }
+        });
+
+        lIncremento.setForeground(new java.awt.Color(0, 0, 100));
+        lIncremento.setText("    Incremento");
+        lIncremento.setName("lIncremento"); // NOI18N
+
+        jButtonGenerar.setText("Generar nuevas Tarifas");
+        jButtonGenerar.setName("jButtonGenerar"); // NOI18N
+        jButtonGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setForeground(new java.awt.Color(0, 0, 100));
+        jLabel2.setText("Se generan nuevas Tarifas, incrementando el % a las actuales, guardando estas como inactivas ");
+        jLabel2.setName("jLabel2"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -341,7 +373,17 @@ public class CSAnyadirTarifaProveedor extends JPanel
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 552, Short.MAX_VALUE)
                                             .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(14, 14, 14))
-                                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)))))
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
+                                        .addComponent(jLabel2)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jButtonGenerar)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(lIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jTextIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lPorCiento)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 461, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(13, 13, 13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -377,7 +419,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,18 +473,27 @@ public class CSAnyadirTarifaProveedor extends JPanel
                             .addComponent(jLabelO6)
                             .addComponent(jTextTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lTarifa))
-                        .addGap(154, 154, 154)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonGuardar)
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonCancelar)
-                            .addComponent(jLabel1)))
+                        .addGap(88, 88, 88))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(lPContacto2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 492, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(347, 347, 347)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGenerar)
+                    .addComponent(lPorCiento)
+                    .addComponent(lIncremento)
+                    .addComponent(jTextIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonGuardar)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jLabel1))
                 .addGap(42, 42, 42))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -560,7 +611,6 @@ public class CSAnyadirTarifaProveedor extends JPanel
                                ""+ incrementoN + ", "+ tarifaN + ", "+ idProveedor+")" ;
 
                 System.out.print(query);
-                datos = new DbConnection();
                 boolean rs = datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if (rs) {
@@ -628,9 +678,113 @@ public class CSAnyadirTarifaProveedor extends JPanel
         }*/
 }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
 
+    private void jTextIncrementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIncrementoActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jTextIncrementoActionPerformed
+
+    private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
+
+        String proveedor = new String(jTextProveedor.getText());
+        String incremento = new String(jTextIncremento.getText());
+        double incrementoN = 0;
+        if (!incremento.equals("") && Utilidades.validarNumericoDecimal(incremento).equals("OK"))
+        {
+            incrementoN =  Double.valueOf(incremento).doubleValue();
+        }
+        else if (!Utilidades.campoObligatorio(proveedor,"Proveedor").equals("OK"))
+        {
+            ValidarFormatos(Utilidades.campoObligatorio(proveedor,"Proveedor"));
+        }
+
+        int idProveedor = 0;
+        Proveedor pr = new Proveedor();
+        idProveedor = pr.getProveedorID(proveedor);
+
+        String query = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = '"+idProveedor+"'";
+System.out.println(query);
+        ResultSet rs = datos.select(query);
+        String tp_id="";
+
+        try {
+            DbConnection da = new DbConnection();
+            while (rs.next()) {
+                boolean rsUp = true;
+                boolean rsTp = true;
+
+                tp_id = rs.getString("tp_id");
+                String fueraMad = rs.getString("tp_fuera_mad");
+                String servicio = rs.getString("tp_servicio");
+                String servicioFMad = rs.getString("tp_servicio_origen");
+                String servicioFMadDestino = rs.getString("tp_servicio_destino");
+                String soporte = rs.getString("tp_soporte");
+                
+                String fechaActiva = "2050-01-01";
+                Date fecha = new Date();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaActual = formatoDeFecha.format(fecha);
+
+                Date fechaDesde = rs.getDate("tp_fecha_desde");
+                Date fechaHasta = rs.getDate("tp_fecha_hasta");
+                String incrementoBd = rs.getString("tp_incremento");
+                String tarifa = rs.getString("tp_tarifa");
+                String fueraM = rs.getString("tp_fuera_mad");
+
+                /*String queryUp = "UPDATE tp_tarifas_proveedores SET tp_servicio ='"+servicio+"', tp_servicio_origen ='"+servicioFMad+"', " +
+                                 "tp_servicio_destino ='"+servicioFMadDestino+"',tp_soporte='"+soporte+"', tp_fecha_desde = '"+fechaDesde+"', " +
+                                 "tp_fecha_hasta='"+fecha2+"', tp_fuera_mad='"+fueraM+"', tp_incremento='"+incrementoBd+"', tp_tarifa="+tarifa+" "+
+                                 "WHERE tp_id = "+tp_id+" AND pr_id = "+idProveedor+" AND tp_fecha_hasta='2050-01-01'";
+                */
+                String queryUp = "UPDATE tp_tarifas_proveedores SET tp_fecha_hasta='"+fechaActual+"' " +
+                                 "WHERE tp_id = "+tp_id+"";
+
+                System.out.println(queryUp);
+
+                rsUp = da.manipuladorDatos(queryUp);
+                System.out.println(rsUp);
+                if(rsUp) {
+                    jButtonGuardar.setEnabled(false);
+                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar las tarifas en la base de datos</FONT></HTML>");
+                    JOptionPane.showMessageDialog(null,errorFields);
+                    jButtonGuardar.setEnabled(true);
+                }
+
+                double tarifaN = Double.valueOf(tarifa).doubleValue();
+                tarifaN = tarifaN + ((tarifaN * incrementoN) / 100.0);
+
+                //NumberFormat l_nf = NumberFormat.getInstance();
+                //l_nf.setMaximumFractionDigits(2);  // 2 decimales como mucho y como poco
+                //l_nf.setMinimumFractionDigits(2);
+                //l_nf.format(tarifaN);
+
+                String queryTp = "INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, " +
+                                 "tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) " +
+                                 "VALUES ('" + servicio + "', '" + servicioFMad + "', '" + servicioFMadDestino + "', " +
+                                 "'" + soporte + "', '" + fechaActual + "','" + fechaActiva + "','" + fueraM + "', " +
+                                 ""+ incrementoN + ", "+ tarifaN + ", "+ idProveedor+")";
+
+                System.out.println(queryTp);
+                rsTp = da.manipuladorDatos(queryTp);
+                if(rsTp) {
+                    jButtonGuardar.setEnabled(false);
+                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar las tarifas en la base de datos</FONT></HTML>");
+                    JOptionPane.showMessageDialog(null,errorFields);
+                    jButtonGuardar.setEnabled(true);
+                }
+                CSDesktop.TarifaProveedor.dispose();
+                CSDesktop.menuTarifaProveedor.setEnabled(true);
+
+            }
+            da.cerrarConexion();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CSEditarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}//GEN-LAST:event_jButtonGenerarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonGenerar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JCheckBox jCheckBoxFMadrid;
     private javax.swing.JComboBox jComboBoxServicio;
@@ -641,6 +795,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
     private com.toedter.calendar.JDateChooser jDateHasta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelO;
     private javax.swing.JLabel jLabelO3;
     private javax.swing.JLabel jLabelO4;
@@ -650,13 +805,16 @@ public class CSAnyadirTarifaProveedor extends JPanel
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTextField jTextIncremento;
     private javax.swing.JTextField jTextProveedor;
     private javax.swing.JTextField jTextTarifa;
     private javax.swing.JToggleButton jToggleButtonProveedor;
     private javax.swing.JLabel lFechaDesde;
     private javax.swing.JLabel lFechaHasta;
     private javax.swing.JLabel lFuMadrid;
+    private javax.swing.JLabel lIncremento;
     private javax.swing.JLabel lPContacto2;
+    private javax.swing.JLabel lPorCiento;
     private javax.swing.JLabel lProveedor;
     private javax.swing.JLabel lServicioFMadDestino;
     private javax.swing.JLabel lServicioFMadOrigen;

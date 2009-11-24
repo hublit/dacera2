@@ -358,7 +358,6 @@ INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_de
 INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '', '', 'Camión completo' ,'2009-11-03','2050-01-01', 0 , 0 , 70.0 , 1);
 INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '', '', 'Conductor' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
 INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '', '', 'Tren' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
-INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) VALUES ('Urbano', '', '', 'Custodia' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
 
 -- --------------------------------------------------------
 
@@ -388,7 +387,6 @@ INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio
 INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '', 'Camión completo' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
 INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Conductor' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
 INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Tren' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
-INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Custodia' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
 
 
 -- --------------------------------------------------------
