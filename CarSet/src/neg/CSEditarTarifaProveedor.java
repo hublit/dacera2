@@ -40,7 +40,8 @@ import javax.swing.JPanel;
 public class CSEditarTarifaProveedor extends JPanel
 {
     DbConnection datos;
-    
+    static int pr_id = 0;
+
     public CSEditarTarifaProveedor(int tarifa)
     {
         CSDesktop.ABResultTarifasProveedor.setVisible(false);
@@ -462,6 +463,12 @@ public class CSEditarTarifaProveedor extends JPanel
                 fechaHasta = formatoDeFecha.format(fecha);
             }
 
+            String fechaActiva = "2050-01-01";
+            Date fecha2 = new Date();
+
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaActual =formatoDeFecha.format(fecha2);
+
             if(servicio.equals("Selecciona"))
                 servicio = "";
 
@@ -496,15 +503,6 @@ public class CSEditarTarifaProveedor extends JPanel
                   servicioDestinoAux = servicioFMadDestino;
                 }
                 
-                 /*if (!Utilidades.campoObligatorioCombo(servicioAux,"Servicio Origen").equals("OK"))
-                 {
-                    ValidarFormatos(Utilidades.campoObligatorioCombo(servicioAux,"Servicio Origen"));
-                 }
-                  else if (!Utilidades.campoObligatorioCombo(servicioDestinoAux,"Servicio Destino").equals("OK"))
-                 {
-                    ValidarFormatos(Utilidades.campoObligatorioCombo(servicioDestinoAux,"Servicio Destino"));
-                 }
-                  else*/
                 if (!Utilidades.campoObligatorio(tarifa,"Tarifa").equals("OK"))
                  {
                     ValidarFormatos(Utilidades.campoObligatorio(tarifa,"Tarifa"));
@@ -525,9 +523,7 @@ public class CSEditarTarifaProveedor extends JPanel
                         incremento = "0";
                     }
 
-                    String query = "UPDATE tp_tarifas_proveedores SET tp_servicio ='"+servicio+"', tp_servicio_origen ='"+servicioFMad+"', " +
-                                   "tp_servicio_destino ='"+servicioFMadDestino+"',tp_soporte='"+soporte+"', tp_fecha_desde = '"+fechaDesde+"', " +
-                                   "tp_fecha_hasta='"+fechaHasta+"', tp_fuera_mad='"+fueraM+"', tp_incremento='"+incremento+"', tp_tarifa="+tarifaN+""+
+                    String query = "UPDATE tp_tarifas_proveedores SET tp_fecha_hasta='"+fechaActual+"' " +
                                    "WHERE tp_id = "+id+"";
 
                     System.out.println(query);
@@ -544,13 +540,31 @@ public class CSEditarTarifaProveedor extends JPanel
                     }
                     else
                     {
-                        jButtonModificar.setEnabled(false);
-                        JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
-                        JOptionPane.showMessageDialog(null,mensaje);
-                        jButtonModificar.setEnabled(true);
-                        CSDesktop.EditarTarifaProveedor.dispose();
-                        CSDesktop.ABResultTarifasProveedor.dispose();
-                        CSDesktop.EditarProveedor.setVisible(true);
+                        String queryTp = "INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, " +
+                        "tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) " +
+                        "VALUES ('" + servicio + "', '" + servicioFMad + "', '" + servicioFMadDestino + "', " +
+                        "'" + soporte + "', '" + fechaActual + "','" + fechaActiva + "','" + fueraM + "', " +
+                        ""+ incremento + ", "+ tarifaN + ", "+ pr_id+")";
+
+                        System.out.println(queryTp);
+                        boolean rsTp = datos.manipuladorDatos(queryTp);
+                        if(rsTp)
+                        {
+                            jButtonModificar.setEnabled(false);
+                            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar las tarifas en la base de datos</FONT></HTML>");
+                            JOptionPane.showMessageDialog(null,errorFields);
+                            jButtonModificar.setEnabled(true);
+                        }
+                        else
+                        {
+                            jButtonModificar.setEnabled(false);
+                            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
+                            JOptionPane.showMessageDialog(null,mensaje);
+                            jButtonModificar.setEnabled(true);
+                            CSDesktop.EditarTarifaProveedor.dispose();
+                            CSDesktop.ABResultTarifasProveedor.dispose();
+                            CSDesktop.EditarProveedor.setVisible(true);
+                        }
                     }
                 }
             }
@@ -648,14 +662,15 @@ public class CSEditarTarifaProveedor extends JPanel
                     //jComboBoxServicioFMad.setEnabled(true);
                     //jComboBoxServicioFMadDestino.setEnabled(true);
                 }
-                jComboBoxServicioFMad.setSelectedItem(rs.getString("tp_servicio"));
-                jComboBoxServicio.setSelectedItem(rs.getString("tp_servicio_origen"));
+                jComboBoxServicio.setSelectedItem(rs.getString("tp_servicio"));
+                jComboBoxServicioFMad.setSelectedItem(rs.getString("tp_servicio_origen"));
                 jComboBoxServicioFMadDestino.setSelectedItem(rs.getString("tp_servicio_destino"));
                 jComboBoxSoporte.setSelectedItem(rs.getString("tp_soporte"));
                 jDateDesde.setDate(rs.getDate("tp_fecha_desde"));
                 jDateHasta.setDate(rs.getDate("tp_fecha_hasta"));
                 jTextIncremento.setText(rs.getString("tp_incremento"));
                 jTextTarifa.setText(rs.getString("tp_tarifa"));
+                pr_id = rs.getInt("pr_id");
                 numeroFila++;
             }
             rs.close();
