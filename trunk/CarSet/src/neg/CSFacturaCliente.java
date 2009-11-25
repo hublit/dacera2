@@ -17,13 +17,17 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import utils.Utilidades;
+import neg.PruebaCesar;
 
 /**
  *
@@ -268,6 +272,14 @@ public class CSFacturaCliente extends javax.swing.JPanel {
 
 
             System.out.println(query);
+            try {
+                PruebaCesar.lanzar();
+                //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
         }
