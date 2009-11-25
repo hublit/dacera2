@@ -75,6 +75,7 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ServicioCliente;
   public static JInternalFrame ServicioProveedor;
   public static JInternalFrame FacturaCliente;
+  public static JInternalFrame NuevaFactura;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
   public static JMenu menuPedidos;
