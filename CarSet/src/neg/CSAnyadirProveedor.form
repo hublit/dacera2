@@ -24,12 +24,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="22" pref="22" max="22" attributes="0"/>
               <Component id="lPContacto" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="624" max="32767" attributes="0"/>
+              <EmptySpace pref="628" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="22" pref="22" max="22" attributes="0"/>
               <Component id="lPContacto1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="650" max="32767" attributes="0"/>
+              <EmptySpace pref="654" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="21" pref="21" max="21" attributes="0"/>
@@ -39,19 +39,20 @@
                       <Component id="lEstado" min="-2" max="-2" attributes="1"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jComboBoxEstado" min="-2" pref="83" max="-2" attributes="1"/>
-                      <EmptySpace pref="91" max="32767" attributes="0"/>
+                      <EmptySpace pref="69" max="32767" attributes="0"/>
                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lFactura1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jDateChooserAlta" min="-2" pref="102" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                       <Component id="lFactura" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxDiaFactura" min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="23" pref="23" max="23" attributes="0"/>
@@ -70,7 +71,7 @@
               <Component id="lDNI" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextDNI" min="-2" pref="71" max="-2" attributes="0"/>
-              <EmptySpace min="31" pref="31" max="31" attributes="0"/>
+              <EmptySpace min="35" pref="35" max="35" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
@@ -170,12 +171,12 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="31" pref="31" max="31" attributes="0"/>
+              <EmptySpace min="35" pref="35" max="35" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="22" pref="22" max="22" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="748" max="32767" attributes="0"/>
+              <EmptySpace pref="752" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -242,7 +243,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -311,18 +312,18 @@
                   <Component id="lPlazo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="lFactura1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lFactura1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lFactura" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBoxDiaFactura" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jDateChooserAlta" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jDateChooserAlta" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="5" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lPContacto1" min="-2" max="-2" attributes="0"/>
@@ -373,7 +374,7 @@
                       <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace pref="38" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -1242,7 +1243,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Fecha Alta Cliente"/>
+        <Property name="text" type="java.lang.String" value="Fecha Alta Proveedor"/>
         <Property name="name" type="java.lang.String" value="lFactura1" noResource="true"/>
       </Properties>
     </Component>
