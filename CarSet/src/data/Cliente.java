@@ -8,7 +8,7 @@ package data;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import data.BeanCliente;
 /**
  *
  * @author lito
@@ -141,6 +141,41 @@ public class Cliente
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
        return cliente;
+   }
+
+   /**
+    * Método para sacar los datos necesarios del cliente en la factura
+    * @param clienteID
+    * @return
+    */
+   public void getDatosFacturaCliente(int clienteID)
+   {
+       BeanCliente bCliente = null;
+
+       ResultSet rsCl = cn.select("SELECT cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, cl_poblacion, " +
+                                  "cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, cl_poblacion_fiscal " +
+                                  "FROM cl_clientes WHERE cl_id = "+clienteID);
+        try
+        {
+            while (rsCl.next())
+            {
+                bCliente.setNombre(rsCl.getString("cl_nombre"));
+                bCliente.setDNI_CIF(rsCl.getString("cl_DNI_CIF"));
+                bCliente.setDireccion(rsCl.getString("cl_direccion"));
+                bCliente.setCod_postal(rsCl.getString("cl_cod_postal"));
+                bCliente.setPoblacion(rsCl.getString("cl_poblacion"));
+                bCliente.setPoblacion(rsCl.getString("cl_provincia"));
+                bCliente.setDireccion_fiscal(rsCl.getString("cl_direccion_fiscal"));
+                bCliente.setCod_postal_fiscal(rsCl.getString("cl_cod_postal_fiscal"));
+                bCliente.setPoblacion_fiscal(rsCl.getString("cl_poblacion_fiscal"));
+            }
+            rsCl.close();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       //return cliente;
    }
 
 }
