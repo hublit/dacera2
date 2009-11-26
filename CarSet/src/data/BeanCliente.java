@@ -16,6 +16,7 @@ public class BeanCliente
     private String direccion_fiscal;
     private String cod_postal_fiscal;
     private String poblacion_fiscal;
+    private String provincia_fiscal;
 
 	/**
 	 * @return cod_postal
@@ -159,5 +160,18 @@ public class BeanCliente
 	public void setProvincia(String p_provincia)
 	{
 		provincia = p_provincia;
+	}
+
+        public String getProvinciaFiscal()
+	{
+		return provincia_fiscal;
+	}
+
+	/**
+	 * @param p_provincia provincia a establecer
+	 */
+	public void setProvinciaFiscal(String p_provincia)
+	{
+		provincia_fiscal = p_provincia;
 	}
 }
