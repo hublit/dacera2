@@ -148,9 +148,9 @@ public class Cliente
     * @param clienteID
     * @return
     */
-   public void getDatosFacturaCliente(int clienteID)
+   public BeanCliente getDatosFacturaCliente(int clienteID)
    {
-       BeanCliente bCliente = null;
+       BeanCliente bCliente = new BeanCliente();
 
        ResultSet rsCl = cn.select("SELECT cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, cl_poblacion, " +
                                   "cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, cl_poblacion_fiscal " +
@@ -168,6 +168,7 @@ public class Cliente
                 bCliente.setDireccion_fiscal(rsCl.getString("cl_direccion_fiscal"));
                 bCliente.setCod_postal_fiscal(rsCl.getString("cl_cod_postal_fiscal"));
                 bCliente.setPoblacion_fiscal(rsCl.getString("cl_poblacion_fiscal"));
+                bCliente.setProvinciaFiscal(rsCl.getString("cl_provincia_fiscal"));
             }
             rsCl.close();
         }
@@ -175,7 +176,7 @@ public class Cliente
         {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-       //return cliente;
+       return bCliente;
    }
 
 }
