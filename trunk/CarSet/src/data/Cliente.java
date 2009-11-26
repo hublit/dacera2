@@ -73,11 +73,12 @@ public class Cliente
 
 
    /**
-    * Método que comprueba si existe un cliente por el nombre
+    * Método que comprueba si existe un cliente por el nombre y CIF
     * @param nombre
+    * @param nif
     * @return boolean cliente
     */
-   public boolean isCliente(String nombre)
+   public boolean isCliente(String nombre, String nif)
    {
       boolean cliente = false;
       String estCodigo = "";
@@ -86,7 +87,7 @@ public class Cliente
       {
          ResultSet rsCl = cn.select("SELECT cl_id, cl_nombre " +
                                     "FROM cl_clientes " +
-                                    "WHERE cl_nombre = '"+nombre+"'");
+                                    "WHERE cl_nombre = '"+nombre+"' AND cl_DNI_CIF = '"+nif+"'");
 
          int i = 0;
          while(rsCl.next())
