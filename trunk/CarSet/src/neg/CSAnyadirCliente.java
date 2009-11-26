@@ -1355,6 +1355,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     String industrial = rs.getString("sc_industrial");
                     String todoterreno = rs.getString("sc_todoterreno");
                     String furgones = rs.getString("sc_furgones");
+                    String furgonetas = rs.getString("sc_furgonetas");
                     String itv = rs.getString("sc_itv");
                     String preItv = rs.getString("sc_pre_itv");
                     String chequeo = rs.getString("sc_chequeo");
@@ -1365,16 +1366,31 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     String lavadoExIn = rs.getString("sc_lavado_exin");
                     String lavadoExtra = rs.getString("sc_lavado_extra");
                     String lavadoCom = rs.getString("sc_completo");
-                    String lavadoHig = rs.getString("sc_higienizado");
+                    String lavadoHi = rs.getString("sc_higienizado");
+                    String lavadoIE4 = rs.getString("sc_int_ext_cuatro");
+                    String lavadoIntegral4 = rs.getString("sc_integral_cuatro");
+                    String lavadoIEIndustrial = rs.getString("sc_int_ext_industrial");
+                    String lavadoLavadoIntInd = rs.getString("sc_integral_industrial");
+                    String lavadoLimpiezaPega = rs.getString("sc_limpieza_pegatinas");
+                    String lavadoLimpIntPega = rs.getString("sc_interior_pegatinas");
                     String idaVuelta = rs.getString("sc_ida_vuelta");
+                    String urgente = rs.getString("sc_urgente");
+                    String suplemento = rs.getString("sc_suplemento");
+                    String repostaje = rs.getString("sc_repostaje");
+                    String mOMecanicaChapa = rs.getString("sc_mo_mecanica_chapa");
 
-                    String querySe  = "INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgones, " +
-                                      "sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, " +
-                                      "sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_ida_vuelta, cl_id) " +
-                                      "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgones + "'," +
-                                      "'" + itv + "', '"+ preItv + "', '" + chequeo + "', '" + reacondicionamiento+"', " +
-                                      "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + "', '" + lavadoExtra + "', " +
-                                      "'" + lavadoCom + "', '" + lavadoHig + "', '" + idaVuelta + "', '" + idCliente + "') ";
+                    String querySe  = "INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgonetas, " +
+                                      "sc_furgones, sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, " +
+                                      "sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_int_ext_cuatro, " +
+                                      "sc_integral_cuatro, sc_int_ext_industrial, sc_integral_industrial, sc_limpieza_pegatinas, " +
+                                      "sc_interior_pegatinas, sc_ida_vuelta, sc_suplemento, sc_repostaje, sc_mo_mecanica_chapa, cl_id) " +
+                                      "VALUES ('" + industrial + "', '" + todoterreno + "', '" + furgonetas + "', '" + furgones + "', " +
+                                      "'" + itv + "', '" + preItv + "', '" + chequeo + "', '"+ reacondicionamiento + "', '" + campa + "', " +
+                                      "'" + entradaCampa+"', '"+ lavado + "', '"+ lavadoExIn + "', '" + lavadoExtra+"', '"+ lavadoCom + "', " +
+                                      "'"+ lavadoHi + "', '" + lavadoIE4+"', '" + lavadoIntegral4+"', '" + lavadoIEIndustrial+"', " +
+                                      "'" + lavadoLavadoIntInd+"', '" + lavadoLavadoIntInd+"', '" + lavadoLavadoIntInd+"', '"+ idaVuelta + "', " +
+                                      "'"+ urgente + "', '"+ suplemento + "', '"+ repostaje + "', '"+ mOMecanicaChapa + "', " +
+                                      "'" + idCliente + "') ";
 
                    System.out.println(querySe);
                    rsSe = se.manipuladorDatos(querySe);
