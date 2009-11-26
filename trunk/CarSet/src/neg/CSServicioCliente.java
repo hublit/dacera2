@@ -1043,7 +1043,7 @@ public class CSServicioCliente extends javax.swing.JPanel
             String lavado = new String(jTextLavadoEx.getText());
             String lavadoExIn = new String(jTextLavadoINEX.getText());
             String lavadoCo = new String(jTextLavadoCo.getText());
-            String lavadoEx = new String(jTextLavadoEx.getText());
+            String lavadoEx = new String(jTextLavadoXtr.getText());
             String lavadoHi = new String(jTextLavadoHi.getText());
             String lavadoIE4 = new String(jTextLavadoIE4.getText());
             String lavadoIntegral4 = new String(jTextLavadoIntegral4x4.getText());
@@ -1155,8 +1155,8 @@ public class CSServicioCliente extends javax.swing.JPanel
                                "sc_entrada_campa ='" + entradaCampa+"',sc_lavado = '"+ lavado + "', sc_lavado_exin = '"+ lavadoExIn + "', " +
                                "sc_lavado_extra ='" + lavadoEx+"', sc_completo = '"+ lavadoCo + "', sc_higienizado = '"+ lavadoHi + "', " +
                                "sc_int_ext_cuatro = '" + lavadoIE4+"', sc_integral_cuatro = '" + lavadoIntegral4+"', sc_int_ext_industrial = '" + lavadoIEIndustrial+"', " +
-                               "sc_integral_industrial = '" + lavadoLavadoIntInd+"', sc_limpieza_pegatinas= '" + lavadoLavadoIntInd+"', " +
-                               "sc_interior_pegatinas = '" + lavadoLavadoIntInd+"', sc_ida_vuelta = '"+ idaVuelta + "', " +
+                               "sc_integral_industrial = '" + lavadoLavadoIntInd+"', sc_limpieza_pegatinas= '" + lavadoLimpiezaPega+"', " +
+                               "sc_interior_pegatinas = '" + lavadoLimpIntPega+"', sc_ida_vuelta = '"+ idaVuelta + "', " +
                                "sc_urgente = '"+ urgente + "', sc_suplemento = '"+ suplemento + "', sc_repostaje = '"+ repostaje + "', " +
                                "sc_mo_mecanica_chapa = '"+ mOMecanicaChapa + "', cl_id = "+ cl_id+"  " +
                                "WHERE sc_id = "+ sc_id+"";
