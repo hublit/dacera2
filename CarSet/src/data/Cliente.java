@@ -165,7 +165,7 @@ public class Cliente
                 bCliente.setDireccion(rsCl.getString("cl_direccion"));
                 bCliente.setCod_postal(rsCl.getString("cl_cod_postal"));
                 bCliente.setPoblacion(rsCl.getString("cl_poblacion"));
-                bCliente.setPoblacion(rsCl.getString("cl_provincia"));
+                bCliente.setProvincia(rsCl.getString("cl_provincia"));
                 bCliente.setDireccion_fiscal(rsCl.getString("cl_direccion_fiscal"));
                 bCliente.setCod_postal_fiscal(rsCl.getString("cl_cod_postal_fiscal"));
                 bCliente.setPoblacion_fiscal(rsCl.getString("cl_poblacion_fiscal"));
