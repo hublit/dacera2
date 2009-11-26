@@ -161,7 +161,10 @@ public class BeanCliente
 	{
 		provincia = p_provincia;
 	}
-
+        
+	/**
+	 * @return provincia fiscal
+	 */
         public String getProvinciaFiscal()
 	{
 		return provincia_fiscal;
