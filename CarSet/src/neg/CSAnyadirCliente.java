@@ -6,6 +6,7 @@
 
 package neg;
 
+import data.Cliente;
 import java.util.Date;
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
@@ -840,6 +841,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
  
             System.out.println("\nBoton Guardar de Añadir Clientes.");
 
+            Cliente client = new Cliente();
             String fecha2="";
             String numCuenta="";
             String nombre = new String(jTextNombre.getText());
@@ -977,6 +979,13 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             else if(!Utilidades.formatoNumerico(diasPlazo).equals("OK"))
             {
                 ValidarFormatos(Utilidades.formatoNumerico(diasPlazo));
+            }
+            else if(client.isCliente(nombre, dni))
+            {
+                    jButtonGuardar.setEnabled(false);
+                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Ya existe un Cliente con ese nombre y NIF</FONT></HTML>");
+                    JOptionPane.showMessageDialog(null,errorFields);
+                    jButtonGuardar.setEnabled(true);
             }
             else
             {
@@ -1383,12 +1392,12 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                                       "sc_furgones, sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, " +
                                       "sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_int_ext_cuatro, " +
                                       "sc_integral_cuatro, sc_int_ext_industrial, sc_integral_industrial, sc_limpieza_pegatinas, " +
-                                      "sc_interior_pegatinas, sc_ida_vuelta, sc_suplemento, sc_repostaje, sc_mo_mecanica_chapa, cl_id) " +
+                                      "sc_interior_pegatinas, sc_ida_vuelta, sc_urgente, sc_suplemento, sc_repostaje, sc_mo_mecanica_chapa, cl_id) " +
                                       "VALUES ('" + industrial + "', '" + todoterreno + "', '" + furgonetas + "', '" + furgones + "', " +
                                       "'" + itv + "', '" + preItv + "', '" + chequeo + "', '"+ reacondicionamiento + "', '" + campa + "', " +
                                       "'" + entradaCampa+"', '"+ lavado + "', '"+ lavadoExIn + "', '" + lavadoExtra+"', '"+ lavadoCom + "', " +
                                       "'"+ lavadoHi + "', '" + lavadoIE4+"', '" + lavadoIntegral4+"', '" + lavadoIEIndustrial+"', " +
-                                      "'" + lavadoLavadoIntInd+"', '" + lavadoLavadoIntInd+"', '" + lavadoLavadoIntInd+"', '"+ idaVuelta + "', " +
+                                      "'" + lavadoLavadoIntInd+"', '" + lavadoLimpiezaPega+"', '" + lavadoLimpIntPega+"', '"+ idaVuelta + "', " +
                                       "'"+ urgente + "', '"+ suplemento + "', '"+ repostaje + "', '"+ mOMecanicaChapa + "', " +
                                       "'" + idCliente + "') ";
 
