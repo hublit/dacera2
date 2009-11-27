@@ -1382,8 +1382,8 @@ public class CSAnyadirProveedor extends JPanel
 
                     String industrial = rs.getString("sp_industrial");
                     String todoterreno = rs.getString("sp_todoterreno");
-                    String furgonetas = rs.getString("sp_furgonetas");
                     String furgones = rs.getString("sp_furgones");
+                    String furgonetas = rs.getString("sp_furgonetas");
                     String itv = rs.getString("sp_itv");
                     String preItv = rs.getString("sp_pre_itv");
                     String chequeo = rs.getString("sp_chequeo");
@@ -1394,17 +1394,31 @@ public class CSAnyadirProveedor extends JPanel
                     String lavadoExIn = rs.getString("sp_lavado_exin");
                     String lavadoExtra = rs.getString("sp_lavado_extra");
                     String lavadoCom = rs.getString("sp_completo");
-                    String lavadoHig = rs.getString("sp_higienizado");
+                    String lavadoHi = rs.getString("sp_higienizado");
+                    String lavadoIE4 = rs.getString("sp_int_ext_cuatro");
+                    String lavadoIntegral4 = rs.getString("sp_integral_cuatro");
+                    String lavadoIEIndustrial = rs.getString("sp_int_ext_industrial");
+                    String lavadoLavadoIntInd = rs.getString("sp_integral_industrial");
+                    String lavadoLimpiezaPega = rs.getString("sp_limpieza_pegatinas");
+                    String lavadoLimpIntPega = rs.getString("sp_interior_pegatinas");
                     String idaVuelta = rs.getString("sp_ida_vuelta");
                     String urgente = rs.getString("sp_urgente");
+                    String suplemento = rs.getString("sp_suplemento");
+                    String repostaje = rs.getString("sp_repostaje");
+                    String mOMecanicaChapa = rs.getString("sp_mo_mecanica_chapa");
 
-                    String querySe  = "INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgonetas, sp_furgones, " +
-                                      "sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, " +
-                                      "sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_ida_vuelta, sp_urgente, pr_id) " +
-                                      "VALUES ('" + industrial + "' ,'" + todoterreno + "' ,'" + furgonetas + "' ,'" + furgones + "'," +
-                                      "'" + itv + "', '"+ preItv + "', '" + chequeo + "', '" + reacondicionamiento+"', " +
-                                      "'" + campa + "', "+ entradaCampa+", '" + lavado + "', '" + lavadoExIn + "', '" + lavadoExtra + "', " +
-                                      "'" + lavadoCom + "', '" + lavadoHig + "', '" + idaVuelta + "' ,'" + urgente + "', '" + idProveedor + "')";
+                    String querySe  = "INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgonetas, " +
+                                      "sp_furgones, sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, " +
+                                      "sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_int_ext_cuatro, " +
+                                      "sp_integral_cuatro, sp_int_ext_industrial, sp_integral_industrial, sp_limpieza_pegatinas, " +
+                                      "sp_interior_pegatinas, sp_ida_vuelta, sp_suplemento, sp_repostaje, sp_mo_mecanica_chapa, pr_id) " +
+                                      "VALUES ('" + industrial + "', '" + todoterreno + "', '" + furgonetas + "', '" + furgones + "', " +
+                                      "'" + itv + "', '" + preItv + "', '" + chequeo + "', '"+ reacondicionamiento + "', '" + campa + "', " +
+                                      "'" + entradaCampa+"', '"+ lavado + "', '"+ lavadoExIn + "', '" + lavadoExtra+"', '"+ lavadoCom + "', " +
+                                      "'"+ lavadoHi + "', '" + lavadoIE4+"', '" + lavadoIntegral4+"', '" + lavadoIEIndustrial+"', " +
+                                      "'" + lavadoLavadoIntInd+"', '" + lavadoLavadoIntInd+"', '" + lavadoLavadoIntInd+"', '"+ idaVuelta + "', " +
+                                      "'"+ urgente + "', '"+ suplemento + "', '"+ repostaje + "', '"+ mOMecanicaChapa + "', " +
+                                      "'" + idProveedor + "') ";
 
                    System.out.println(querySe);
                    rsSe = se.manipuladorDatos(querySe);
