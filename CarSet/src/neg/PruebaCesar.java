@@ -85,6 +85,7 @@ public class PruebaCesar {
         String soporte=otro.getSoporte();
         String factor=otro.getFactor();
         String numCampa=otro.getDiasCampa();
+        servicioEspecial = otro.getServicioEspecial();
         
         if(numCampa.equals("0"))
         {
@@ -111,6 +112,8 @@ public class PruebaCesar {
             {
                 finalServicio="MADRID" + servicio;
             }
+
+            //TARIFA
             if(otro.getTarifaEsCliente().equals("0"))
             {
                 importeTraslado=otro.getTarifa();
@@ -118,13 +121,6 @@ public class PruebaCesar {
             else
             {
                 importeTraslado=otro.getTarifaEsCliente();
-            }
-
-
-            if(!otro.getSuplemento().equals("0"))
-            {
-                labelSuplemento="SUPLEMENTO";
-                ServicioSuplemento=otro.getDescripcion();
             }
 
              //LINEA DE FACTOR DE CORRECCION
@@ -135,6 +131,38 @@ public class PruebaCesar {
 
                  labelFactor="FACTOR DE CORRECCION";
                  //double valor= Double.parseDouble(importeTraslado) -(Double.parseDouble(importeTraslado) * importeFactorNum);
+            }
+            
+            //SERVICIOS ESPECIALES
+            String campoServicio = "";
+            
+            if (servicioEspecial.equals("Urgente"))
+            {
+                campoServicio = "sc_urgente"; 
+            }
+            else if(servicioEspecial.equals("ITV"))
+            {
+                campoServicio = "sc_itv";
+            }
+            else if(servicioEspecial.equals("Pre_ITV"))
+            {
+                campoServicio = "sc_pre_itv";
+            }
+            else if(servicioEspecial.equals("Chequeo"))
+            {
+                campoServicio = "sc_chequeo";
+            }
+            else if(servicioEspecial.equals("Reacondicionamiento"))
+            {
+                campoServicio = "sc_reacondicionamiento";
+            }
+
+
+            //SUPLEMENTO
+            if(!otro.getSuplemento().equals("0"))
+            {
+                labelSuplemento="SUPLEMENTO";
+                ServicioSuplemento=otro.getDescripcion();
             }
         }
         else
