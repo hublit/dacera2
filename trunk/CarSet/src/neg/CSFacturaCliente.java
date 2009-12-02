@@ -362,7 +362,7 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                     nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
                     nueva.setSuplemento(rs.getString("pe_suplemento"));
                     nueva.setDescripcion(rs.getString("pe_descripcion"));
-                    nueva.setTarifa(rs.getString("tc_tarifa"));
+                    //nueva.setTarifa(rs.getString("tc_tarifa"));
 
                     lista.add(nueva);
                     }
