@@ -383,10 +383,10 @@ CREATE TABLE IF NOT EXISTS `tp_tarifas_proveedores` (
 --
 -- Volcar la base de datos para la tabla `tp_tarifas_proveedores`
 --
---INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '', 'Grúa' ,'2009-11-03','2050-01-01',  0, 0 , 70.0 , 1);
---INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '', 'Camión completo' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
---INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Conductor' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
---INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Tren' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
+-- INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '', 'Grúa' ,'2009-11-03','2050-01-01',  0, 0 , 70.0 , 1);
+-- INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '', 'Camión completo' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
+-- INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Conductor' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
+-- INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Tren' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
 
 
 -- --------------------------------------------------------
@@ -539,3 +539,32 @@ CREATE TABLE IF NOT EXISTS `cp_contactos_proveedor` (
 --
 -- --------------------------------------------------------
 INSERT INTO cp_contactos_proveedor (cp_nombre, cp_telefono, cp_telefono2, cp_email, pr_id, dp_id) VALUES ('NINGUNO','910000000','','EMAIL@CONTACTOPLANTILLA.ES', '1', '7');
+
+
+CREATE TABLE IF NOT EXISTS `fa_facturas_aux` (
+  `fa_num` int(10) NOT NULL,
+  `fa_fecha` date NOT NULL,
+  `fa_marca` varchar(50) collate utf8_spanish_ci NOT NULL default '',
+  `fa_modelo` varchar(50) collate utf8_spanish_ci NOT NULL default '',
+  `fa_matricula` varchar(10) collate utf8_spanish_ci default NULL,
+  `fa_factor` varchar(50) collate utf8_spanish_ci default NULL,
+  `fa_soporte` varchar(80) collate utf8_spanish_ci default NULL,
+  `fa_traslado` varchar(50) collate utf8_spanish_ci default NULL,
+  `fa_texto_traslado` varchar(100) collate utf8_spanish_ci default NULL,
+  `fa_importe_traslado` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_factor_correccion` varchar(80) collate utf8_spanish_ci default NULL,
+  `fa_texto_factor_correccion` varchar(50) collate utf8_spanish_ci default NULL,
+  `fa_importe_factor_correccion` varchar(15) collate utf8_spanish_ci NOT NULL default '',
+  `fa_suplemento` varchar(15) collate utf8_spanish_ci NOT NULL default '',
+  `fa_texto_suplemento` varchar(15) collate utf8_spanish_ci default NULL,
+  `fa_importe_suplemento` varchar(50) collate utf8_spanish_ci default NULL,
+  `fa_servicio_adicional` varchar(50) collate utf8_spanish_ci default NULL,
+  `fa_texto_servicio_adicional` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_importe_servicio_adicional` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_campa` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_texto_campa` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_importe_campa` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_campa2` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_texto_campa2` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_importe_campa2` varchar(30) collate utf8_spanish_ci default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
