@@ -733,8 +733,8 @@ public class CSAnyadirPedido extends JPanel
 
         jComboBoxServicioEspecial.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioEspecial.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicioEspecial.setMaximumRowCount(11);
-        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urgente", "ITV", "Pre_ITV", "Chequeo", "Reacondicionamiento", "Lavado Exterior", "Lavado Interior y Exterior", "Lavado Completo", "Lavado Extra", "Lavado Higienizado", "Otros" }));
+        jComboBoxServicioEspecial.setMaximumRowCount(20);
+        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urgente", "ITV", "Pre_ITV", "Chequeo", "Reacondicionamiento", "Lavado Exterior", "L. Interior y Exterior", "Lavado Integral", "Lavado Extra", "Lavado Higienizado", "L. Interior y Exterior4x4", "Lavado Integral 4x4", "L. Interior y Ext. Indust.", "Lavado Integral Indust.", "Limpieza + Pegatinas", "Limpieza Integral+Peg.", "Repostaje", "M. obra Mecánic/Chapa", "Otros" }));
         jComboBoxServicioEspecial.setName("jComboBoxServicioEspecial"); // NOI18N
         jComboBoxServicioEspecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
