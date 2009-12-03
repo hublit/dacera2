@@ -295,7 +295,9 @@ public class CSFacturaCliente extends javax.swing.JPanel {
         BeanCliente beanCliente = new BeanCliente();
        
         clienteID = oCliente.getClienteID(cliente);
-         beanCliente=oCliente.getDatosFacturaCliente(clienteID);
+        beanCliente = oCliente.getDatosFacturaCliente(clienteID);
+        beanCliente.setCl_id(String.valueOf(clienteID));
+        
         Calendar fechaCalendar = jDateFecha.getCalendar();
         //String fecha = ConvertirFechaString(fechaCalendar);
         if (fechaCalendar!=null)
@@ -338,11 +340,11 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                              "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
                              "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";*/
 
-         
+
             ResultSet rs = datos.select(query);
             try {
                 while (rs.next()) {
-                    FacturasCesar nueva=new FacturasCesar();
+                    FacturasCesar nueva = new FacturasCesar();
 
                     nueva.setNumPedido(rs.getLong("pe_num"));
                     nueva.setFecha(rs.getString("pe_fecha"));

@@ -24,7 +24,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport; 
 import net.sf.jasperreports.view.JasperViewer;
 import utils.Utilidades;
-
+import data.*;
 
 /** 
  * 
@@ -32,26 +32,22 @@ import utils.Utilidades;
  */ 
 public class PruebaCesar {
 
-    DbConnection datos = new DbConnection();
-   
+    static DbConnection datos = new DbConnection();   
    
     /** 
      * @param args the command line arguments 
      */ 
     //public static void lanzar(String query,String fechaFactura,BeanCliente beanCliente,int flag) throws ClassNotFoundException, SQLException {
-    public static void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura) throws ClassNotFoundException, SQLException, JRException {
-        // TODO code application logic here 
-
-
+    public static void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura) throws ClassNotFoundException, SQLException, JRException
+    {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
-
-     DbConnection datosDel = new DbConnection();
-     String queryDel="DELETE FROM fa_facturas_aux";
-     boolean resDel=datosDel.manipuladorDatos(queryDel);
+     String queryDel = "DELETE FROM fa_facturas_aux";
+     boolean resDel=datos.manipuladorDatos(queryDel);
 
      double importeTotal=0;
+     String cl_id = beanCliente.getCl_id();
 
-     for(int i=0;i<lista.size();i++)
+     for(int i = 0; i < lista.size(); i++)
      {
         String factorTexto="";
         String finalServicio="";
@@ -89,8 +85,6 @@ public class PruebaCesar {
         
         if(numCampa.equals("0"))
         {
-
-
             //LINEA DE TRASLADO
             String servicio=otro.getServicio();
             String origen=otro.getProvinciaOrigen();
@@ -156,7 +150,61 @@ public class PruebaCesar {
             {
                 campoServicio = "sc_reacondicionamiento";
             }
+            else if(servicioEspecial.equals("Lavado Exterior"))
+            {
+                campoServicio = "sc_lavado";
+            }
+            else if(servicioEspecial.equals("L. Interior y Exterior"))
+            {
+                campoServicio = "sc_lavado_exin";
+            }
+            else if(servicioEspecial.equals("Lavado Extra"))
+            {
+                campoServicio = "sc_lavado_extra";
+            }
+            else if(servicioEspecial.equals("Lavado Integral"))
+            {
+                campoServicio = "sc_completo";
+            }
+            else if(servicioEspecial.equals("Lavado Higienizado"))
+            {
+                campoServicio = "sc_higienizado";
+            }
+            else if(servicioEspecial.equals("L. Interior y Exterior4x4"))
+            {
+                campoServicio = "sc_int_ext_cuatro";
+            }
+            else if(servicioEspecial.equals("Lavado Integral 4x4"))
+            {
+                campoServicio = "sc_integral_cuatro";
+            }
+            else if(servicioEspecial.equals("L. Interior y Ext. Indust."))
+            {
+                campoServicio = "sc_int_ext_industrial";
+            }
+            else if(servicioEspecial.equals("Lavado Integral Indust."))
+            {
+                campoServicio = "sc_integral_industrial";
+            }
+            else if(servicioEspecial.equals("Limpieza + Pegatinas"))
+            {
+                campoServicio = "sc_limpieza_pegatinas";
+            }
+            else if(servicioEspecial.equals("Limpieza Integral+Peg."))
+            {
+                campoServicio = "sc_interior_pegatinas";
+            }
+            else if(servicioEspecial.equals("Repostaje"))
+            {
+                campoServicio = "sc_repostaje";
+            }
+            else if(servicioEspecial.equals("M. obra Mecánic/Chapa"))
+            {
+                campoServicio = "sc_mo_mecanica_chapa";
+            }
 
+           String querySe = "SELECT '"+campoServicio+"' FROM sc_servicios_clientes WHERE cl_id = '"+cl_id+"'";
+System.out.println(querySe);
 
             //SUPLEMENTO
             if(!otro.getSuplemento().equals("0"))
@@ -174,7 +222,7 @@ public class PruebaCesar {
             finalCampa2=otro.getDiasCampa()+ " DIAS";
         }
 
-        //LINEA DE SERVICIO ESPECIAL
+        //LINEA DE SERVICIO ESPECIAL OTROS
         if(!otro.getServicioEspecial().equals(""))
         {
             if(otro.getServicioEspecial().equals("Otros"))
@@ -198,7 +246,6 @@ public class PruebaCesar {
 
         importeTotal=0;
      }
-
      
     JasperReport jasperReport = null;
     JasperPrint jasperPrint; 
@@ -208,18 +255,15 @@ public class PruebaCesar {
     String provinciaFiscal="";
     String codPostalFiscal="";
 
-
      //FacturaXML nueva=new FacturaXML(query);
     try 
     { 
         Class.forName("com.mysql.jdbc.Driver"); 
-        con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","rcortes");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
             //1-Compilamos el archivo XML y lo cargamos en memoria 
-      jasperReport = JasperCompileManager.compileReport(
-          "c:\\report1.jrxml");
+      jasperReport = JasperCompileManager.compileReport("src\\data\\report1.jrxml");
 
      /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
-
 
       if(beanCliente.getDireccion_fiscal().equals(""))
       {
@@ -236,12 +280,10 @@ public class PruebaCesar {
           codPostalFiscal=beanCliente.getCod_postal_fiscal();
       }
 
-
       String [] tempOrigen = null;
       tempOrigen = fechaFactura.split("\\/");                    
                     String diaO=tempOrigen[2];
-                    String nuevaO=diaO.substring(2,4);
-                
+                    String nuevaO=diaO.substring(2,4);                
 
       Map pars = new HashMap();
         pars.put("FechaFactura", fechaFactura);
@@ -273,8 +315,7 @@ public class PruebaCesar {
 
         //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
         //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-        jasperPrint = JasperFillManager.fillReport(
-          "c:\\report1.jasper", pars, con);
+        jasperPrint = JasperFillManager.fillReport("c:\\report1.jasper", pars, con);
 
                //3-Exportamos el reporte a pdf y lo guardamos en disco 
       //JasperExportManager.exportReportToPdfFile(
@@ -292,17 +333,12 @@ public class PruebaCesar {
         CSDesktop.NuevaFactura.setSize(pantalla);
         CSDesktop.NuevaFactura.setVisible(true);
 
-        
-
-
       /*JasperViewer hola=new JasperViewer(jasperPrint, false);
       CSDesktop.NuevaFactura = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
      //CSDesktop.NuevaFactura.getContentPane().add( hola, BorderLayout.CENTER );
       CSDesktop.NuevaFactura.pack();
       CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
       CSDesktop.NuevaFactura.setVisible( true );*/
-
-
 
       //JasperViewer.viewReport(jasperPrint, false);*/
     }
@@ -314,17 +350,15 @@ public class PruebaCesar {
 
   private static String obtenerFactor(String factor) throws SQLException
   {
-      DbConnection datos3 = new DbConnection();
-      String factorAux="";
+      String factorAux = "";
+      int factorInt = Integer.parseInt(factor);
 
-      int factorInt=Integer.parseInt(factor);
-
-      String queryFactor="select fc_descripcion from fc_factores_correccion where fc_id="+factorInt;
-      ResultSet rs3=datos3.select(queryFactor);
+      String queryFactor = "select fc_descripcion from fc_factores_correccion where fc_id="+factorInt;
+      ResultSet rs3 = datos.select(queryFactor);
 
       while(rs3.next())
       {
-          factorAux=rs3.getString("fc_descripcion");
+          factorAux = rs3.getString("fc_descripcion");
       }
       return factorAux;
   }
