@@ -153,7 +153,7 @@ public class Cliente
    {
        BeanCliente bCliente = new BeanCliente();
 
-       ResultSet rsCl = cn.select("SELECT cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, " +
+       ResultSet rsCl = cn.select("SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, " +
                                   "cl_poblacion, cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, " +
                                   "cl_poblacion_fiscal, cl_provincia_fiscal " +
                                   "FROM cl_clientes WHERE cl_id = "+clienteID);
