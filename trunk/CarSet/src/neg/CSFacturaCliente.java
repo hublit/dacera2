@@ -323,22 +323,22 @@ public class CSFacturaCliente extends javax.swing.JPanel {
         else
         {
             
-            String query="select * from pe_pedidos";
+            //String query="select * from pe_pedidos";
 
-            /*String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio, " +
-                             "pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " +
-                             "pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_modelo, " +
-                             "pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento, pe.pe_descripcion, " +
-                             "tc.tc_tarifa, sc_todoterreno, sc_entrada_campa, sc_campa " +
-                             "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
-                             "WHERE pe.pe_num = pc.pe_num " +
-                             "AND tc.tc_servicio = pe.pe_servicio " +
-                             "AND tc.cl_id = pc.cl_id " +
-                             "AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
-                             "AND tc.tc_servicio_destino = pe.pe_servicio_destino " +
-                             "AND tc.tc_soporte = pe.pe_soporte " +
-                             "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
-                             "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";*/
+            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
+                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
+                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
+                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento, " +
+                           "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " +
+                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
+                           "WHERE pe.pe_num = pc.pe_num " +
+                           "AND tc.tc_servicio = pe.pe_servicio " +
+                           "AND tc.cl_id = pc.cl_id " +
+                           "AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
+                           "AND tc.tc_servicio_destino = pe.pe_servicio_destino " +
+                           "AND tc.tc_soporte = pe.pe_soporte " +
+                           "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
+                           "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";
 
 
             ResultSet rs = datos.select(query);
@@ -364,7 +364,7 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                     nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
                     nueva.setSuplemento(rs.getString("pe_suplemento"));
                     nueva.setDescripcion(rs.getString("pe_descripcion"));
-                    //nueva.setTarifa(rs.getString("tc_tarifa"));
+                    nueva.setTarifa(rs.getString("tc_tarifa"));
 
                     lista.add(nueva);
                     }

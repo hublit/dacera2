@@ -25,15 +25,15 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 import utils.Utilidades;
 import data.*;
+import java.text.DecimalFormat;
 
 /** 
  * 
  * @author Administrador 
  */ 
-public class PruebaCesar {
-
-    static DbConnection datos = new DbConnection();   
-   
+public class PruebaCesar
+{
+    static DbConnection datos = new DbConnection();     
     /** 
      * @param args the command line arguments 
      */ 
@@ -42,9 +42,11 @@ public class PruebaCesar {
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fa_facturas_aux";
-     boolean resDel=datos.manipuladorDatos(queryDel);
+     boolean resDel = datos.manipuladorDatos(queryDel);
 
-     double importeTotal=0;
+     String importeTotal = "";
+     String importeTotalIva = "";
+     String importeIva = "";
      String cl_id = beanCliente.getCl_id();
 
      for(int i = 0; i < lista.size(); i++)
@@ -66,8 +68,16 @@ public class PruebaCesar {
         String importeTraslado="";
         String importeFactor="";
         String importeSuplemento="";
+        String importeServicioEs = "";
         String importeCampa="";
         String importeCampa2="";
+        double importeTarifa = 0;
+        double importeServicio = 0;
+        double importeFc = 0;
+        double importeSup = 0;
+        double total = 0;
+        double iva = 0;
+        double totalIva = 0;
 
         FacturasCesar otro = (FacturasCesar)lista.get(i);
 
@@ -86,9 +96,9 @@ public class PruebaCesar {
         if(numCampa.equals("0"))
         {
             //LINEA DE TRASLADO
-            String servicio=otro.getServicio();
-            String origen=otro.getProvinciaOrigen();
-            String destino=otro.getProvinciaDestino();
+            String servicio = otro.getServicio();
+            String origen = otro.getProvinciaOrigen();
+            String destino = otro.getProvinciaDestino();
 
             if((!origen.equals("Selecciona")) && (!destino.equals("Selecciona")))
             {
@@ -110,21 +120,27 @@ public class PruebaCesar {
             //TARIFA
             if(otro.getTarifaEsCliente().equals("0"))
             {
-                importeTraslado=otro.getTarifa();
+                importeTraslado = otro.getTarifa();
             }
             else
             {
-                importeTraslado=otro.getTarifaEsCliente();
+                importeTraslado = otro.getTarifaEsCliente();
             }
+            importeTarifa = Double.parseDouble(importeTraslado);
 
              //LINEA DE FACTOR DE CORRECCION
-            factorTexto=obtenerFactor(factor);
+            ArrayList factorTarifa = obtenerFactor(factor, cl_id);
 
-            if(!factorTexto.equals("TURISMO"))
+            if(!factorTexto.equals("TURISMO") && importeTraslado != null)
             {
-
-                 labelFactor="FACTOR DE CORRECCION";
-                 //double valor= Double.parseDouble(importeTraslado) -(Double.parseDouble(importeTraslado) * importeFactorNum);
+                 labelFactor = "FACTOR DE CORRECCION";
+                 DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
+                 double ft = Double.parseDouble(factorTarifa.get(0).toString());
+                 importeFc = ((importeTarifa * ft) - importeTarifa);
+                 importeFactor = Double.toString(importeFc);
+                 factorTexto = factorTarifa.get(1).toString();
+                 //double dd2dec = new Double(df2.format(valor F)).doubleValue();
+                 //System.out.println("Valor factor de corrección"+dd2dec);
             }
             
             //SERVICIOS ESPECIALES
@@ -203,23 +219,30 @@ public class PruebaCesar {
                 campoServicio = "sc_mo_mecanica_chapa";
             }
 
-           String querySe = "SELECT '"+campoServicio+"' FROM sc_servicios_clientes WHERE cl_id = '"+cl_id+"'";
-System.out.println(querySe);
+           String querySe = "SELECT "+campoServicio+" FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
+
+           ResultSet rsSe = datos.select(querySe);
+           while (rsSe.next())
+           {
+            importeServicioEs = rsSe.getString(campoServicio);
+           }
+           importeServicio = Integer.parseInt(importeServicioEs);
 
             //SUPLEMENTO
             if(!otro.getSuplemento().equals("0"))
             {
                 labelSuplemento="SUPLEMENTO";
-                ServicioSuplemento=otro.getDescripcion();
+                ServicioSuplemento = otro.getDescripcion();
+                importeSup = Integer.parseInt(importeSuplemento);
             }
         }
         else
         {
-            soporte="CAMPA";
-            labelCampa="CAMPA";
-            labelCampa2="CAMPA";
-            finalCampa="ENTRADA";
-            finalCampa2=otro.getDiasCampa()+ " DIAS";
+            soporte = "CAMPA";
+            labelCampa = "CAMPA";
+            labelCampa2 = "CAMPA";
+            finalCampa = "ENTRADA";
+            finalCampa2 = otro.getDiasCampa()+ " DIAS";
         }
 
         //LINEA DE SERVICIO ESPECIAL OTROS
@@ -236,15 +259,35 @@ System.out.println(querySe);
             labelServicioEspecial="SERVICIO ESPECIAL";
         }
 
+        //TOTAL
+        total = importeTarifa + importeFc + importeServicio + importeSup;
+        importeTotal = Double.toString(total);
+
+        //IVA
+        iva = ((total * 16) / 100.0);
+        importeIva = Double.toString(iva);
+
+        //TOTAL IVA
+        totalIva = total + iva;
+        importeTotalIva = Double.toString(totalIva);
+
         String query = "INSERT INTO fa_facturas_aux (fa_num, fa_fecha, fa_marca, fa_modelo, " +
-                                                         "fa_matricula,fa_factor,fa_soporte,fa_traslado,fa_texto_traslado,fa_importe_traslado,fa_factor_correccion,fa_texto_factor_correccion,fa_importe_factor_correccion,fa_suplemento,fa_texto_suplemento,fa_importe_suplemento,fa_servicio_adicional,fa_texto_servicio_adicional,fa_importe_servicio_adicional,fa_campa,fa_texto_campa,fa_importe_campa,fa_campa2,fa_texto_campa2,fa_importe_campa2) VALUES (";
-        query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"','"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTraslado+"','"+labelFactor+"','"+factorTexto+"','"+""+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+""+"','"+labelServicioEspecial+"','"+servicioEspecial+"','"+""+"','"+labelCampa+"','"+finalCampa+"','"+""+"','"+labelCampa2+"','"+finalCampa2+"','"+""+"')";
+                                                    "fa_matricula, fa_factor, fa_soporte, fa_traslado, " +
+                                                    "fa_texto_traslado, fa_importe_traslado, fa_factor_correccion, " +
+                                                    "fa_texto_factor_correccion, fa_importe_factor_correccion, " +
+                                                    "fa_suplemento, fa_texto_suplemento, fa_importe_suplemento, " +
+                                                    "fa_servicio_adicional, fa_texto_servicio_adicional, " +
+                                                    "fa_importe_servicio_adicional, fa_campa,fa_texto_campa, fa_importe_campa, " +
+                                                    "fa_campa2, fa_texto_campa2, fa_importe_campa2, fa_importe_total) " +
+                                                    "VALUES (";
+        query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
+                        "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTraslado+"','"+labelFactor+"'," +
+                        "'"+factorTexto+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+""+"'," +
+                        "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioEs+"','"+labelCampa+"','"+finalCampa+"'," +
+                        "'"+""+"','"+labelCampa2+"','"+finalCampa2+"','"+""+"','"+importeTotal+"')";
 
         System.out.println(query);
-        DbConnection datos2 = new DbConnection();
-        boolean rs3 = datos2.manipuladorDatos(query);
-
-        importeTotal=0;
+        boolean rs3 = datos.manipuladorDatos(query);
      }
      
     JasperReport jasperReport = null;
@@ -260,8 +303,8 @@ System.out.println(querySe);
     { 
         Class.forName("com.mysql.jdbc.Driver"); 
         con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
-            //1-Compilamos el archivo XML y lo cargamos en memoria 
-      jasperReport = JasperCompileManager.compileReport("src\\data\\report1.jrxml");
+        //1-Compilamos el archivo XML y lo cargamos en memoria 
+        jasperReport = JasperCompileManager.compileReport("src\\data\\report1.jrxml");
 
      /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
 
@@ -300,6 +343,9 @@ System.out.println(querySe);
         pars.put("Query","SELECT * FROM pe_pedidos;");
         pars.put("Blanco","");
         pars.put("Factor","Turismo");
+        pars.put("IVA","16%");
+        pars.put("ImporteIVA", importeIva);
+        pars.put("ImporteTotalIVA", importeTotalIva);
         /*if(flag==1)
             pars.put("NumFactura","");
         else
@@ -315,7 +361,7 @@ System.out.println(querySe);
 
         //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
         //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-        jasperPrint = JasperFillManager.fillReport("c:\\report1.jasper", pars, con);
+        jasperPrint = JasperFillManager.fillReport("src\\data\\report1.jasper", pars, con);
 
                //3-Exportamos el reporte a pdf y lo guardamos en disco 
       //JasperExportManager.exportReportToPdfFile(
@@ -348,18 +394,52 @@ System.out.println(querySe);
     }
   }
 
-  private static String obtenerFactor(String factor) throws SQLException
+  /**
+   * Función para recuperar el valor y texto del factor de corrección del pedido seleccionado
+   * @param factor
+   * @param cliente
+   * @return
+   * @throws SQLException
+   */
+  private static ArrayList obtenerFactor(String factor, String cliente) throws SQLException
   {
-      String factorAux = "";
+      ArrayList factorSel = new ArrayList();
       int factorInt = Integer.parseInt(factor);
+      String campo = "";
+      String descripcion = "";
 
-      String queryFactor = "select fc_descripcion from fc_factores_correccion where fc_id="+factorInt;
+      switch(factorInt)
+      {
+          case 0 :
+              descripcion = "TURISMO";
+          break;
+          case 1 : 
+              campo = "sc_industrial";
+              descripcion = "INDUSTRIAL";
+          break;
+          case 2 : 
+              campo = "sc_todoterreno";
+              descripcion = "TODOTERRENO";
+          break;
+          case 3 : 
+              campo = "sc_furgonetas";
+              descripcion = "FURGONETAS";
+          break;
+          case 4 : 
+              campo = "sc_furgones";
+              descripcion = "FURGONES";
+          break;
+      }
+
+      String queryFactor = "SELECT "+campo+" FROM sc_servicios_clientes WHERE cl_id="+cliente;
       ResultSet rs3 = datos.select(queryFactor);
 
       while(rs3.next())
       {
-          factorAux = rs3.getString("fc_descripcion");
+          factorSel.add(rs3.getDouble(campo));
+          factorSel.add(descripcion);
       }
-      return factorAux;
+      return factorSel;
   }
+
 }
