@@ -980,25 +980,18 @@
 	<summary>
 		<band height="149">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="29" width="509" height="20" backcolor="#999999"/>
+				<reportElement mode="Opaque" x="0" y="29" width="475" height="20" backcolor="#999999"/>
+				<box>
+					<pen lineWidth="1.0" lineColor="#999999"/>
+					<topPen lineWidth="1.0" lineColor="#999999"/>
+					<leftPen lineWidth="1.0" lineColor="#999999"/>
+					<bottomPen lineWidth="1.0" lineColor="#999999"/>
+					<rightPen lineWidth="1.0" lineColor="#999999"/>
+				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="275" y="82" width="99" height="20"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana"/>
-				</textElement>
-				<text><![CDATA[Static text]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="474" y="82" width="80" height="20"/>
@@ -1095,7 +1088,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{ImporteIVA} + " € "]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="509" y="29" width="46" height="20"/>
+				<reportElement x="475" y="29" width="80" height="20"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -1111,6 +1104,17 @@
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{ImporteTotalIVA} + " €"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="275" y="82" width="99" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_total} + " € "]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
