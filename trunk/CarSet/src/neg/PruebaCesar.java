@@ -219,15 +219,18 @@ public class PruebaCesar
                 campoServicio = "sc_mo_mecanica_chapa";
             }
 
-           String querySe = "SELECT "+campoServicio+" FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
-
-           ResultSet rsSe = datos.select(querySe);
-           while (rsSe.next())
+           if (!campoServicio.equals(""))
            {
-            importeServicioEs = rsSe.getString(campoServicio);
-           }
-           importeServicio = Integer.parseInt(importeServicioEs);
+               String querySe = "SELECT "+campoServicio+" FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
 
+               ResultSet rsSe = datos.select(querySe);
+               while (rsSe.next())
+               {
+                importeServicioEs = rsSe.getString(campoServicio);
+               }
+
+               importeServicio = Integer.parseInt(importeServicioEs);
+           }
             //SUPLEMENTO
             if(!otro.getSuplemento().equals("0"))
             {
@@ -431,13 +434,16 @@ public class PruebaCesar
           break;
       }
 
-      String queryFactor = "SELECT "+campo+" FROM sc_servicios_clientes WHERE cl_id="+cliente;
-      ResultSet rs3 = datos.select(queryFactor);
-
-      while(rs3.next())
+      if (!campo.equals(""))
       {
-          factorSel.add(rs3.getDouble(campo));
-          factorSel.add(descripcion);
+          String queryFactor = "SELECT "+campo+" FROM sc_servicios_clientes WHERE cl_id="+cliente;
+          ResultSet rs3 = datos.select(queryFactor);
+
+          while(rs3.next())
+          {
+              factorSel.add(rs3.getDouble(campo));
+              factorSel.add(descripcion);
+          }
       }
       return factorSel;
   }
