@@ -1377,59 +1377,74 @@ public class CSAnyadirProveedor extends JPanel
 
             while (rs.next())
             {
-                   DbConnection se = new DbConnection();
-                   boolean rsSe = true;
+                DbConnection se = new DbConnection();
+                boolean rsSe = true;
 
-                    String industrial = rs.getString("sp_industrial");
-                    String todoterreno = rs.getString("sp_todoterreno");
-                    String furgones = rs.getString("sp_furgones");
-                    String furgonetas = rs.getString("sp_furgonetas");
-                    String itv = rs.getString("sp_itv");
-                    String preItv = rs.getString("sp_pre_itv");
-                    String chequeo = rs.getString("sp_chequeo");
-                    String reacondicionamiento = rs.getString("sp_reacondicionamiento");
-                    String campa = rs.getString("sp_campa");
-                    String entradaCampa = rs.getString("sp_entrada_campa");
-                    String lavado = rs.getString("sp_lavado");
-                    String lavadoExIn = rs.getString("sp_lavado_exin");
-                    String lavadoExtra = rs.getString("sp_lavado_extra");
-                    String lavadoCom = rs.getString("sp_completo");
-                    String lavadoHi = rs.getString("sp_higienizado");
-                    String lavadoIE4 = rs.getString("sp_int_ext_cuatro");
-                    String lavadoIntegral4 = rs.getString("sp_integral_cuatro");
-                    String lavadoIEIndustrial = rs.getString("sp_int_ext_industrial");
-                    String lavadoLavadoIntInd = rs.getString("sp_integral_industrial");
-                    String lavadoLimpiezaPega = rs.getString("sp_limpieza_pegatinas");
-                    String lavadoLimpIntPega = rs.getString("sp_interior_pegatinas");
-                    String idaVuelta = rs.getString("sp_ida_vuelta");
-                    String urgente = rs.getString("sp_urgente");
-                    String suplemento = rs.getString("sp_suplemento");
-                    String repostaje = rs.getString("sp_repostaje");
-                    String mOMecanicaChapa = rs.getString("sp_mo_mecanica_chapa");
+                String todoterreno = rs.getString("sp_todoterreno");
+                String industrial = rs.getString("sp_industrial");
+                String furgonetas = rs.getString("sp_furgonetas");
+                String furgones = rs.getString("sp_furgones");
+                String lavadoEx = rs.getString("sp_lavado_exterior");
+                String lavadoExIn = rs.getString("sp_lavado_exin");
+                String lavadoInt = rs.getString("sp_lavado_integral");
+                String lavadoIE4 = rs.getString("sp_int_ext_cuatro");
+                String lavadoIntegral4 = rs.getString("sp_integral_cuatro");
+                String lavadoIEIndustrial = rs.getString("sp_int_ext_industrial");
+                String lavadoIntInd = rs.getString("sp_integral_industrial");
+                String desrotularPegaFacil = rs.getString("sp_desrotular_peg_facil");
+                String desrotularPegaNormal = rs.getString("sp_desrotular_peg_normal");
+                String desrotularPegaDificil = rs.getString("sp_desrotular_peg_dificil");
+                String rotularPegaFacil = rs.getString("sp_rotular_peg_facil");
+                String rotularPegaNormal = rs.getString("sp_rotular_peg_normal");
+                String rotularPegaDificil = rs.getString("sp_rotular_peg_dificil");
+                String lavadoDomEx = rs.getString("sp_ldom_exterior");
+                String lavadoDomExIn = rs.getString("sp_ldom_exin");
+                String lavadoDomInt = rs.getString("sp_ldom_integral");
+                String lavadoDomIE4 = rs.getString("sp_ldom_int_ext_cuatro");
+                String lavadoDomIntegral4 = rs.getString("sp_ldom_integral_cuatro");
+                String lavadoDomIEIndustrial = rs.getString("sp_ldom_int_ext_industrial");
+                String lavadoDomIntInd = rs.getString("sp_ldom_integral_industrial");
+                String itv = rs.getString("sp_itv");
+                String preItv = rs.getString("sp_pre_itv");
+                String itvPreItv = rs.getString("sp_itv_pre_itv");
+                String idaVuelta = rs.getString("sp_ida_vuelta");
+                String entradaCampa = rs.getString("sp_entrada_campa");
+                String campa = rs.getString("sp_campa");
+                String peritacion = rs.getString("sp_peritacion");
+                String mOMecanicaChapa = rs.getString("sp_mo_mecanica_chapa");
+                String chequeo = rs.getString("sp_chequeo");
+                String repostaje = rs.getString("sp_repostaje");
+                String suplemento = rs.getString("sp_suplemento");
+                String urgente = rs.getString("sp_urgente");
 
-                    String querySe  = "INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgonetas, " +
-                                      "sp_furgones, sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, " +
-                                      "sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_int_ext_cuatro, " +
-                                      "sp_integral_cuatro, sp_int_ext_industrial, sp_integral_industrial, sp_limpieza_pegatinas, " +
-                                      "sp_interior_pegatinas, sp_ida_vuelta, sp_suplemento, sp_repostaje, sp_mo_mecanica_chapa, pr_id) " +
-                                      "VALUES ('" + industrial + "', '" + todoterreno + "', '" + furgonetas + "', '" + furgones + "', " +
-                                      "'" + itv + "', '" + preItv + "', '" + chequeo + "', '"+ reacondicionamiento + "', '" + campa + "', " +
-                                      "'" + entradaCampa+"', '"+ lavado + "', '"+ lavadoExIn + "', '" + lavadoExtra+"', '"+ lavadoCom + "', " +
-                                      "'"+ lavadoHi + "', '" + lavadoIE4+"', '" + lavadoIntegral4+"', '" + lavadoIEIndustrial+"', " +
-                                      "'" + lavadoLavadoIntInd+"', '" + lavadoLavadoIntInd+"', '" + lavadoLavadoIntInd+"', '"+ idaVuelta + "', " +
-                                      "'"+ urgente + "', '"+ suplemento + "', '"+ repostaje + "', '"+ mOMecanicaChapa + "', " +
-                                      "'" + idProveedor + "') ";
 
-                   System.out.println(querySe);
-                   rsSe = se.manipuladorDatos(querySe);
-                   if(rsSe)
-                   {
-                        jButtonGuardar.setEnabled(false);
-                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar los servicios especiales en la base de datos</FONT></HTML>");
-                        JOptionPane.showMessageDialog(null,errorFields);
-                        jButtonGuardar.setEnabled(true);
-                   }
-                   se.cerrarConexion();
+                String querySe  = "INSERT INTO sp_servicios_proveedores (sp_todoterreno, sp_industrial, sp_furgonetas, sp_furgones, " +
+                "sp_lavado_exterior, sp_lavado_exin, sp_lavado_integral, sp_int_ext_cuatro', sp_integral_cuatro, " +
+                "sp_int_ext_industrial, sp_integral_industrial, sp_desrotular_peg_facil, sp_desrotular_peg_normal, " +
+                "sp_desrotular_peg_dificil, sp_rotular_peg_facil, sp_rotular_peg_normal, sp_rotular_peg_dificil, " +
+                "sp_ldom_exterior, sp_ldom_exin, sp_ldom_integral, sp_ldom_int_ext_cuatro, sp_ldom_integral_cuatro, " +
+                "sp_ldom_int_ext_industrial, sp_ldom_integral_industrial, sp_itv, sp_pre_itv, sp_itv_pre_itv, " +
+                "sp_ida_vuelta, sp_entrada_campa, sp_campa, sp_peritacion, sp_mo_mecanica_chapa, sp_chequeo, " +
+                "sp_repostaje, sp_suplemento, sp_urgente, cl_id) " +
+                "VALUES ('"+todoterreno+"', '"+industrial+"', '"+furgonetas+"', '"+furgones+"', '"+lavadoEx+"', " +
+                "'"+lavadoExIn+"', '"+lavadoInt+"', '"+lavadoDomIE4+"', '"+lavadoIntegral4+"', '"+lavadoIEIndustrial+"', " +
+                "'"+lavadoIntInd+"', '"+desrotularPegaFacil+"', '"+desrotularPegaNormal+"', '"+desrotularPegaDificil+"', " +
+                "'"+rotularPegaFacil+"', '"+rotularPegaNormal+"', '"+rotularPegaDificil+"', '"+lavadoDomEx+"', " +
+                "'"+lavadoDomExIn+"', '"+lavadoDomInt+"', '"+lavadoDomIE4+"', '"+lavadoDomIntegral4+"', '"+lavadoDomIEIndustrial+"', " +
+                "'"+lavadoDomIntInd+"', '"+itv+"', '"+preItv+"', '"+itvPreItv+"', '"+idaVuelta+"', '"+entradaCampa+"', " +
+                "'"+campa+"', '"+peritacion+"', '"+mOMecanicaChapa+"', '"+chequeo+"', '"+repostaje+"', '"+suplemento+"', " +
+                "'"+urgente+"', '"+ idProveedor+"') ";
+
+                System.out.println(querySe);
+                rsSe = se.manipuladorDatos(querySe);
+                if(rsSe)
+                {
+                    jButtonGuardar.setEnabled(false);
+                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar los servicios especiales en la base de datos</FONT></HTML>");
+                    JOptionPane.showMessageDialog(null,errorFields);
+                    jButtonGuardar.setEnabled(true);
+                }
+                se.cerrarConexion();
             }
             rs.close();
         }

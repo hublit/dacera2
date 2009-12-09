@@ -366,7 +366,7 @@ public class CSEditarPedido extends javax.swing.JPanel
 
         jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxSoporte.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Grúa", "Camión completo", "Conductor", "Tren", "Custodia" }));
+        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Grúa", "Camión completo", "Conductor", "Tren", "Custodia", "Transportes pesados" }));
         jComboBoxSoporte.setName("jComboBoxSoporte"); // NOI18N
         jComboBoxSoporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

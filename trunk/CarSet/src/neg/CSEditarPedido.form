@@ -1017,13 +1017,14 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
+          <StringArray count="7">
             <StringItem index="0" value="Selecciona"/>
             <StringItem index="1" value="Gr&#xfa;a"/>
             <StringItem index="2" value="Cami&#xf3;n completo"/>
             <StringItem index="3" value="Conductor"/>
             <StringItem index="4" value="Tren"/>
             <StringItem index="5" value="Custodia"/>
+            <StringItem index="6" value="Transportes pesados"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxSoporte" noResource="true"/>
