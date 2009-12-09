@@ -25,7 +25,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Estructura de tabla para la tabla `co_comerciales`
 --
-
 CREATE TABLE IF NOT EXISTS `co_comerciales` (
   `co_id` int(5) NOT NULL auto_increment,
   `co_nombre` varchar(50) collate utf8_spanish_ci NOT NULL default '',
@@ -48,7 +47,6 @@ INSERT INTO co_comerciales (co_nombre) VALUES ('Raúl Sánchez');
 --
 -- Estructura de tabla para la tabla `cl_clientes`
 --
-
 CREATE TABLE IF NOT EXISTS `cl_clientes` (
   `cl_id` int(10) NOT NULL auto_increment,
   `cl_fecha` date NOT NULL default '0000-00-00',
@@ -89,7 +87,6 @@ INSERT INTO cl_clientes (cl_fecha, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_p
 --
 -- Estructura de tabla para la tabla `dp_departamentos`
 --
-
 CREATE TABLE IF NOT EXISTS `dp_departamentos` (
   `dp_id` int(10) NOT NULL auto_increment,
   `dp_nombre` varchar(50) collate utf8_spanish_ci NOT NULL default '',
@@ -112,7 +109,6 @@ INSERT INTO dp_departamentos (dp_nombre, dp_descripcion) VALUES ('Otros', 'Depar
 --
 -- Estructura de tabla para la tabla `fa_facturas`
 --
-
 CREATE TABLE IF NOT EXISTS `fa_factura_cliente` (
   `fa_id` int(8) NOT NULL auto_increment,
   `fa_fecha` date NOT NULL default '0000-00-00',
@@ -134,7 +130,6 @@ CREATE TABLE IF NOT EXISTS `fa_factura_cliente` (
 --
 -- Estructura de tabla para la tabla `fc_factores_correccion`
 --
-
 CREATE TABLE IF NOT EXISTS `fc_factores_correccion` (
   `fc_id` int(10) NOT NULL auto_increment,
   `fc_nombre` varchar(50) collate utf8_spanish_ci NOT NULL default '',
@@ -157,7 +152,6 @@ INSERT INTO `fc_factores_correccion` (`fc_nombre`, `fc_descripcion`) VALUES('Fur
 --
 -- Estructura de tabla para la tabla `fp_forma_pago`
 --
-
 CREATE TABLE IF NOT EXISTS `fp_forma_pago` (
   `fp_id` int(3) NOT NULL auto_increment,
   `fp_tipo` varchar(50) collate utf8_spanish_ci NOT NULL default '',
@@ -183,7 +177,6 @@ INSERT INTO `fp_forma_pago` (`fp_tipo`, `fp_descripcion`) VALUES('Otros', 'Otros
 --
 -- Estructura de tabla para la tabla `gr_grupos`
 --
-
 CREATE TABLE IF NOT EXISTS `gr_grupos` (
   `gr_id` int(3) NOT NULL auto_increment,
   `gr_nombre` varchar(50) collate utf8_spanish_ci NOT NULL default '',
@@ -204,7 +197,6 @@ INSERT INTO `gr_grupos` (`gr_nombre`, `gr_descripcion`) VALUES('Trabajadores', '
 --
 -- Estructura de tabla para la tabla `pc_pedidos_clientes`
 --
-
 CREATE TABLE IF NOT EXISTS `pc_pedidos_clientes` (
   `pe_num` int(10) NOT NULL,
   `cl_id` int(10) NOT NULL,
@@ -220,7 +212,6 @@ CREATE TABLE IF NOT EXISTS `pc_pedidos_clientes` (
 --
 -- Estructura de tabla para la tabla `pe_pedidos`
 --
-
 CREATE TABLE IF NOT EXISTS `pe_pedidos` (
   `pe_num` int(10) NOT NULL auto_increment,
   `pe_fecha` date NOT NULL default '0000-00-00',
@@ -278,7 +269,6 @@ CREATE TABLE IF NOT EXISTS `pe_pedidos` (
 --
 -- Estructura de tabla para la tabla `pp_pedidos_proveedores`
 --
-
 CREATE TABLE IF NOT EXISTS `pp_pedidos_proveedores` (
   `pe_num` int(10) NOT NULL,
   `pr_id` int(10) NOT NULL,
@@ -294,7 +284,6 @@ CREATE TABLE IF NOT EXISTS `pp_pedidos_proveedores` (
 --
 -- Estructura de tabla para la tabla `pr_proveedores`
 --
-
 CREATE TABLE IF NOT EXISTS `pr_proveedores` (
   `pr_id` int(10) NOT NULL auto_increment,
   `pr_fecha` date NOT NULL default '0000-00-00',
@@ -335,7 +324,6 @@ INSERT INTO pr_proveedores (pr_fecha, pr_nombre_fiscal, pr_DNI_CIF, pr_regimen, 
 --
 -- Estructura de tabla para la tabla `tc_tarifas_clientes`
 --
-
 CREATE TABLE IF NOT EXISTS `tc_tarifas_clientes` (
   `tc_id` int(5) NOT NULL auto_increment,
   `tc_servicio` varchar(100) collate utf8_spanish_ci NOT NULL default '',
@@ -364,7 +352,6 @@ INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_de
 --
 -- Estructura de tabla para la tabla `tp_tarifas_proveedores`
 --
-
 CREATE TABLE IF NOT EXISTS `tp_tarifas_proveedores` (
   `tp_id` int(5) NOT NULL auto_increment,
   `tp_servicio` varchar(100) collate utf8_spanish_ci NOT NULL default '',
@@ -393,35 +380,44 @@ CREATE TABLE IF NOT EXISTS `tp_tarifas_proveedores` (
 --
 -- Estructura de tabla para la tabla `sc_servicios_clientes`
 --
-
 CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
   `sc_id` int(5) NOT NULL auto_increment,
-  `sc_industrial` double default '0',
   `sc_todoterreno` double default '0',
+  `sc_industrial` double default '0',
   `sc_furgonetas` double default '0',
   `sc_furgones` double default '0',
-  `sc_itv` double default '0',
-  `sc_pre_itv` double default '0',
-  `sc_chequeo` double default '0',
-  `sc_reacondicionamiento` double default '0',
-  `sc_campa` double default '0',
-  `sc_entrada_campa` double default '0',
-  `sc_lavado` double default '0',
+  `sc_lavado_exterior` double default '0',
   `sc_lavado_exin` double default '0',
-  `sc_lavado_extra` double default '0',
-  `sc_completo` double default '0',
-  `sc_higienizado` double default '0',
+  `sc_lavado_integral` double default '0',
   `sc_int_ext_cuatro` double default '0',
   `sc_integral_cuatro` double default '0',
   `sc_int_ext_industrial` double default '0',
   `sc_integral_industrial` double default '0',
-  `sc_limpieza_pegatinas` double default '0',
-  `sc_interior_pegatinas` double default '0',
+  `sc_desrotular_peg_facil` double default '0',
+  `sc_desrotular_peg_normal` double default '0',
+  `sc_desrotular_peg_dificil` double default '0',
+  `sc_rotular_peg_facil` double default '0',
+  `sc_rotular_peg_normal` double default '0',
+  `sc_rotular_peg_dificil` double default '0',
+  `sc_ldom_exterior` double default '0',
+  `sc_ldom_exin` double default '0',
+  `sc_ldom_integral` double default '0',
+  `sc_ldom_int_ext_cuatro` double default '0',
+  `sc_ldom_integral_cuatro` double default '0',
+  `sc_ldom_int_ext_industrial` double default '0',
+  `sc_ldom_integral_industrial` double default '0',
+  `sc_itv` double default '0',
+  `sc_pre_itv` double default '0',
+  `sc_itv_pre_itv` double default '0',
   `sc_ida_vuelta` double default '0',
-  `sc_urgente` double default '0',
-  `sc_suplemento` double default '0',
-  `sc_repostaje` double default '0',
+  `sc_entrada_campa` double default '0',
+  `sc_campa` double default '0',
+  `sc_peritacion` double default '0'
   `sc_mo_mecanica_chapa` double default '0',
+  `sc_chequeo` double default '0',
+  `sc_repostaje` double default '0',
+  `sc_suplemento` double default '0',
+  `sc_urgente` double default '0',
   `cl_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sc_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
@@ -435,34 +431,44 @@ INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgonetas,
 --
 -- Estructura de tabla para la tabla `sp_servicios_proveedor`
 --
-
 CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
   `sp_id` int(5) NOT NULL auto_increment,
-  `sp_industrial` double default '0',
   `sp_todoterreno` double default '0',
+  `sp_industrial` double default '0',
   `sp_furgonetas` double default '0',
   `sp_furgones` double default '0',
-  `sp_itv` double default '0',
-  `sp_pre_itv` double default '0',
-  `sp_chequeo` double default '0',
-  `sp_reacondicionamiento` double default '0',
-  `sp_campa` double default '0',
-  `sp_entrada_campa` double default '0',
-  `sp_lavado` double default '0',
+  `sp_lavado_exterior` double default '0',
   `sp_lavado_exin` double default '0',
-  `sp_lavado_extra` double default '0',
-  `sp_completo` double default '0',
-  `sp_higienizado` double default '0',
+  `sp_lavado_integral` double default '0',
   `sp_int_ext_cuatro` double default '0',
   `sp_integral_cuatro` double default '0',
   `sp_int_ext_industrial` double default '0',
   `sp_integral_industrial` double default '0',
-  `sp_limpieza_pegatinas` double default '0',
-  `sp_interior_pegatinas` double default '0',
+  `sp_desrotular_peg_facil` double default '0',
+  `sp_desrotular_peg_normal` double default '0',
+  `sp_desrotular_peg_dificil` double default '0',
+  `sp_rotular_peg_facil` double default '0',
+  `sp_rotular_peg_normal` double default '0',
+  `sp_rotular_peg_dificil` double default '0',
+  `sp_ldom_exterior` double default '0',
+  `sp_ldom_exin` double default '0',
+  `sp_ldom_integral` double default '0',
+  `sp_ldom_int_ext_cuatro` double default '0',
+  `sp_ldom_integral_cuatro` double default '0',
+  `sp_ldom_int_ext_industrial` double default '0',
+  `sp_ldom_integral_industrial` double default '0',
+  `sp_itv` double default '0',
+  `sp_pre_itv` double default '0',
+  `sp_itv_pre_itv` double default '0',
   `sp_ida_vuelta` double default '0',
-  `sp_urgente` double default '0',
-  `sp_repostaje` double default '0',
+  `sp_entrada_campa` double default '0',
+  `sp_campa` double default '0',
+  `sp_peritacion` double default '0'
   `sp_mo_mecanica_chapa` double default '0',
+  `sp_chequeo` double default '0',
+  `sp_repostaje` double default '0',
+  `sp_suplemento` double default '0',
+  `sc_urgente` double default '0',
   `pr_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sp_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
@@ -476,7 +482,6 @@ INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgonet
 --
 -- Estructura de tabla para la tabla `usr_usuarios`
 --
-
 CREATE TABLE IF NOT EXISTS `usr_usuarios` (
   `usr_id` int(3) NOT NULL auto_increment,
   `usr_nombre` varchar(50) collate utf8_spanish_ci default NULL,
@@ -501,7 +506,6 @@ INSERT INTO `usr_usuarios` (`usr_nombre`, `usr_password`, `gr_id`, `usr_email`) 
 --
 -- Estructura de tabla para la tabla `cc_contactos_clientes`
 --
-
 CREATE TABLE IF NOT EXISTS `cc_contactos_cliente` (
   `cc_id` int(5) NOT NULL auto_increment,
   `cc_nombre` varchar(50) collate utf8_spanish_ci NOT NULL default '',
@@ -522,7 +526,6 @@ INSERT INTO cc_contactos_cliente (cc_nombre, cc_telefono, cc_telefono2, cc_email
 --
 -- Estructura de tabla para la tabla `cl_clientes`
 --
-
 CREATE TABLE IF NOT EXISTS `cp_contactos_proveedor` (
   `cp_id` int(5) NOT NULL auto_increment,
   `cp_nombre` varchar(50) collate utf8_spanish_ci NOT NULL default '',
