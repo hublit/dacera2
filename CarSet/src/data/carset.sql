@@ -468,7 +468,7 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
   `sp_chequeo` double default '0',
   `sp_repostaje` double default '0',
   `sp_suplemento` double default '0',
-  `sc_urgente` double default '0',
+  `sp_urgente` double default '0',
   `pr_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`sp_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
@@ -476,7 +476,7 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
 --
 -- Volcar la base de datos para la tabla `sp_servicios_proveedor`
 --
-INSERT INTO sp_servicios_proveedores (sp_todoterreno,sp_industrial,sp_furgonetas,sp_furgones,sp_lavado_exterior,sp_lavado_exin,sp_lavado_integral,sp_int_ext_cuatro,sp_integral_cuatro,sp_int_ext_industrial,sp_integral_industrial,sp_desrotular_peg_facil,sp_desrotular_peg_normal,sp_desrotular_peg_dificil,sp_rotular_peg_facil,sp_rotular_peg_normal,sp_rotular_peg_dificil,sp_ldom_exterior,sp_ldom_exin,sp_ldom_integral,sp_ldom_int_ext_cuatro,sp_ldom_integral_cuatro,sp_ldom_int_ext_industrial,sp_ldom_integral_industrial,sp_itv,sp_pre_itv,sp_itv_pre_itv,sp_ida_vuelta,sp_entrada_campa,sp_campa,sp_peritacion,sp_mo_mecanica_chapa,sp_chequeo,sp_repostaje,sp_suplemento,sp_urgente, cl_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0','0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO sp_servicios_proveedores (sp_todoterreno,sp_industrial,sp_furgonetas,sp_furgones,sp_lavado_exterior,sp_lavado_exin,sp_lavado_integral,sp_int_ext_cuatro,sp_integral_cuatro,sp_int_ext_industrial,sp_integral_industrial,sp_desrotular_peg_facil,sp_desrotular_peg_normal,sp_desrotular_peg_dificil,sp_rotular_peg_facil,sp_rotular_peg_normal,sp_rotular_peg_dificil,sp_ldom_exterior,sp_ldom_exin,sp_ldom_integral,sp_ldom_int_ext_cuatro,sp_ldom_integral_cuatro,sp_ldom_int_ext_industrial,sp_ldom_integral_industrial,sp_itv,sp_pre_itv,sp_itv_pre_itv,sp_ida_vuelta,sp_entrada_campa,sp_campa,sp_peritacion,sp_mo_mecanica_chapa,sp_chequeo,sp_repostaje,sp_suplemento,sp_urgente, pr_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0','0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 
 -- --------------------------------------------------------
 --
