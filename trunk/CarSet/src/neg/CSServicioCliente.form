@@ -198,24 +198,26 @@
                       </Group>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextLavadoInt" alignment="1" pref="43" max="32767" attributes="1"/>
-                          <Component id="jTextLavadoINEX" alignment="0" pref="43" max="32767" attributes="1"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextDesrotularPegFacil" alignment="1" pref="43" max="32767" attributes="1"/>
-                          <Component id="jTextDesrotularPegNormal" alignment="0" pref="43" max="32767" attributes="1"/>
+                          <Component id="jTextLavadoInEx4" alignment="1" pref="43" max="32767" attributes="1"/>
+                          <Component id="jTextLavadoINEX" alignment="1" pref="43" max="32767" attributes="1"/>
+                          <Component id="jTextLavadoInt" alignment="0" pref="43" max="32767" attributes="1"/>
                       </Group>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jTextLavadoInExInd" alignment="1" max="32767" attributes="1"/>
                       <Component id="jTextLavadoInt4" alignment="1" pref="44" max="32767" attributes="1"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jTextDesrotularPegFacil" pref="43" max="32767" attributes="1"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jTextDesrotularPegNormal" pref="43" max="32767" attributes="1"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -388,11 +390,6 @@
               <Component id="jTextLavadoIntInd" pref="44" max="32767" attributes="1"/>
               <EmptySpace pref="282" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="2" attributes="0">
-              <EmptySpace min="424" pref="424" max="424" attributes="0"/>
-              <Component id="jTextLavadoInEx4" pref="44" max="32767" attributes="1"/>
-              <EmptySpace min="282" pref="282" max="282" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="424" max="32767" attributes="0"/>
               <Component id="jTextLavadoEx" pref="44" max="32767" attributes="1"/>
@@ -537,8 +534,8 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="1"/>
                                           <Component id="lEuro7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextLavadoINEX" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lLavadoInEx" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTextLavadoINEX" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -551,10 +548,10 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lLavadoInEx4" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="1"/>
-                                          <Component id="jTextLavadoInEx4" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lEuro9" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lIdaVuelta" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTextLavadoInEx4" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">

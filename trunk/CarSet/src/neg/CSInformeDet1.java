@@ -232,11 +232,24 @@ public class CSInformeDet1 extends javax.swing.JPanel {
             System.out.println(fechaIni);
             System.out.println(fechaFin);
 
-            String query="select pe_num,pe_fecha,pe_ve_matricula,pe_direccion_origen,pe_cp_origen " +
+            /*String query="select pe_num,pe_fecha,pe_ve_matricula,pe_direccion_origen,pe_cp_origen " +
                     "pe_fecha_origen,pe_hora_origen,pe_nombre_origen,pe_direccion_destino_pe_cp_destino" +
                     "pe_fecha_destino,pe_hora_destino,pe_nombre_destino where pe_fecha BETWEEN '"+fechaIni+"' " +
-                    "AND '"+fechaFin+"' AND cl_id = "+clienteID+" ORDER BY pe_num DESC";
+                    "AND '"+fechaFin+"' AND cl_id = "+clienteID+" ORDER BY pe_num DESC";*/
 
+            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
+                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
+                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, " +
+                           "pe.pe_ta_es_cliente, pe.pe_suplemento, tc.tc_tarifa " +
+                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
+                           "WHERE pe.pe_num = pc.pe_num " +
+                           "AND tc.tc_servicio = pe.pe_servicio " +
+                           "AND tc.cl_id = pc.cl_id " +
+                           "AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
+                           "AND tc.tc_servicio_destino = pe.pe_servicio_destino " +
+                           "AND tc.tc_soporte = pe.pe_soporte " +
+                           "AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"' " +
+                           "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";
 
             Map pars = new HashMap();
             pars.put("Cliente", cliente);
