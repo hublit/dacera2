@@ -13,6 +13,7 @@ package neg;
 
 import utils.LimitadorDeDocumento;
 import data.DbConnection;
+import data.Proveedor;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
@@ -883,8 +884,9 @@ public class CSAnyadirProveedor extends JPanel
     }//GEN-LAST:event_jComboBoxFPagoActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
-
+        
+            System.out.println("\nButton Añadir Cliente");
+            Proveedor proveedor = new Proveedor();
             String fecha2="";
             String numCuenta="";
             String nombre = new String(jTextNombre.getText());
@@ -1005,6 +1007,13 @@ public class CSAnyadirProveedor extends JPanel
             else if(!Utilidades.formatoCodPostal(codPostalFiscal).equals("OK"))
             {
                 ValidarFormatos(Utilidades.formatoCodPostal(codPostalFiscal));
+            }
+            else if(proveedor.isProveedor(nombre, dni))
+            {
+                    jButtonGuardar.setEnabled(false);
+                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Ya existe un Proveedor con ese nombre y NIF</FONT></HTML>");
+                    JOptionPane.showMessageDialog(null,errorFields);
+                    jButtonGuardar.setEnabled(true);
             }
             else
             {
