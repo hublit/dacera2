@@ -11,13 +11,24 @@
 
 package neg;
 
+import com.mysql.jdbc.Connection;
 import data.Cliente;
 import java.awt.BorderLayout;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import utils.Utilidades;
 
 /**
@@ -222,7 +233,9 @@ public class CSInformeDet1 extends javax.swing.JPanel {
             System.out.println(fechaFin);
 
             String query="select pe_num,pe_fecha,pe_ve_matricula,pe_direccion_origen,pe_cp_origen " +
-                    "pe_fecha_origen";
+                    "pe_fecha_origen,pe_hora_origen,pe_nombre_origen,pe_direccion_destino_pe_cp_destino" +
+                    "pe_fecha_destino,pe_hora_destino,pe_nombre_destino where pe_fecha BETWEEN '"+fechaIni+"' " +
+                    "AND '"+fechaFin+"' AND cl_id = "+clienteID+" ORDER BY pe_num DESC";
 
 
             Map pars = new HashMap();
@@ -230,6 +243,40 @@ public class CSInformeDet1 extends javax.swing.JPanel {
             pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
             pars.put("Query", query);
 
+             JasperReport jasperReport = null;
+             JasperPrint jasperPrint;
+             Connection con = null;
+
+             try
+            {
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //1-Compilamos el archivo XML y lo cargamos en memoria
+                 jasperReport = JasperCompileManager.compileReport("src\\data\\Informe.jrxml");
+
+                /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
+                //JasperFillManager.fillReportToFile("c:\\report1.jasper", pars, new JREmptyDataSource());
+
+                //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
+                //2-Llenamos el reporte con la informaci�n y par�metros necesarios
+                jasperPrint = JasperFillManager.fillReport("src\\data\\Informe.jasper", pars, con);
+
+               //3-Exportamos el reporte a pdf y lo guardamos en disco
+               JasperExportManager.exportReportToPdfFile(
+               jasperPrint, "c:/holaMundo.pdf");
+             }
+             catch (JRException e)
+             {
+                e.printStackTrace();
+             }
         }
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
