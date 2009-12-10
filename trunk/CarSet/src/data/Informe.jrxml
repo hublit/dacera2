@@ -2,8 +2,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Informe" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<parameter name="Cliente" class="java.lang.String"/>
 	<parameter name="Mes" class="java.lang.String"/>
+	<parameter name="Query" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select * from pe_pedidos]]>
+		<![CDATA[!P{Query}]]>
 	</queryString>
 	<field name="pe_num" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -135,12 +136,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="106" splitType="Stretch">
-			<image>
-				<reportElement x="59" y="12" width="154" height="64"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Documents and Settings\\depr102\\Mis documentos\\NetBeansProjects\\CarSet\\src\\images\\logo_carset_200.jpg"]]></imageExpression>
-			</image>
-		</band>
+		<band height="106" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="93" splitType="Stretch">
@@ -663,12 +659,7 @@
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="80" splitType="Stretch">
-			<image>
-				<reportElement x="362" y="0" width="186" height="80"/>
-				<imageExpression class="java.lang.String"><![CDATA["C:\\Documents and Settings\\depr102\\Mis documentos\\NetBeansProjects\\CarSet\\src\\images\\Firma.JPG"]]></imageExpression>
-			</image>
-		</band>
+		<band height="80" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
