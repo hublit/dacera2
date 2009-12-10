@@ -73,11 +73,11 @@ public class Proveedor
 
 
    /**
-    * Método que comprueba si existe un proveedor por el nombre
+    * Método que comprueba si existe un proveedor por el nombre y DNI
     * @param nombre
-    * @return boolean cliente
+    * @return boolean proveedor
     */
-   public boolean isProveedor(String nombre)
+   public boolean isProveedor(String nombre, String nif)
    {
       boolean proveedor = false;
       String estCodigo = "";
@@ -86,7 +86,7 @@ public class Proveedor
       {
          ResultSet rsCl = cn.select("SELECT pr_id, pr_nombre_fiscal " +
                                     "FROM pr_proveedor " +
-                                    "WHERE pr_nombre_fiscal = '"+nombre+"'");
+                                    "WHERE pr_nombre_fiscal = '"+nombre+"' AND pr_DNI_CIF = '"+nif+"'");
 
          int i = 0;
          while(rsCl.next())
