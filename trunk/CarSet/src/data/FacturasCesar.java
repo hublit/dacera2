@@ -28,6 +28,8 @@ public class FacturasCesar {
     private String modelo;
     private String tarifaEsCliente;
     private String tarifaEsProveedor;
+
+
     private String suplemento;
     private String descripcion;
     private String tarifa;
@@ -186,6 +188,10 @@ public class FacturasCesar {
 
     public String getTarifaEsCliente() {
         return tarifaEsCliente;
+    }
+
+     public String getTarifaEsProveedor() {
+        return tarifaEsProveedor;
     }
 
 
