@@ -113,9 +113,9 @@
 				<imageExpression class="java.lang.String"><![CDATA["src/images/logo_carset_200.jpg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="297" y="0" width="188" height="52"/>
+				<reportElement x="297" y="0" width="212" height="52"/>
 				<textElement>
-					<font fontName="Verdana" size="36" isBold="true" isUnderline="true" pdfFontName="Courier"/>
+					<font fontName="Arial Black" size="36" isBold="false" isUnderline="true" pdfFontName="Courier"/>
 				</textElement>
 				<text><![CDATA[FACTURA]]></text>
 			</staticText>
@@ -383,7 +383,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="7"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Vehiculo : "+ $F{fa_marca} +" "+ $F{fa_modelo} + " (" + $F{fa_matricula} + " ) -- " + $F{fa_factor}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_marca} +" "+ $F{fa_modelo} + " (" + $F{fa_matricula} + " ) -- " + $F{fa_factor}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="391" y="0" width="83" height="20"/>
@@ -882,7 +882,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_traslado}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_traslado} + "  "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="474" y="40" width="81" height="20" isRemoveLineWhenBlank="true"/>
@@ -896,7 +896,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_factor_correccion}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_factor_correccion} + "  "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="474" y="60" width="81" height="20" isRemoveLineWhenBlank="true"/>
@@ -910,7 +910,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_suplemento}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_suplemento} + "  "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="474" y="80" width="81" height="20" isRemoveLineWhenBlank="true"/>
@@ -924,7 +924,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_campa}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_campa} + "  "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="474" y="100" width="81" height="20" isRemoveLineWhenBlank="true"/>
@@ -938,7 +938,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_campa2}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_campa2} + "  "]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="474" y="120" width="81" height="20" isRemoveLineWhenBlank="true"/>
@@ -952,7 +952,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_servicio_adicional}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fa_importe_servicio_adicional} + "  "]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
