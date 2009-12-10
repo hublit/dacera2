@@ -412,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
   `sc_ida_vuelta` double default '0',
   `sc_entrada_campa` double default '0',
   `sc_campa` double default '0',
-  `sc_peritacion` double default '0'
+  `sc_peritacion` double default '0',
   `sc_mo_mecanica_chapa` double default '0',
   `sc_chequeo` double default '0',
   `sc_repostaje` double default '0',
@@ -425,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
 --
 -- Volcar la base de datos para la tabla `sc_servicios_cliente`
 --
-INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgonetas, sc_furgones, sc_itv, sc_pre_itv, sc_chequeo, sc_reacondicionamiento, sc_campa, sc_entrada_campa, sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_int_ext_cuatro, sc_integral_cuatro, sc_int_ext_industrial, sc_integral_industrial, sc_limpieza_pegatinas, sc_interior_pegatinas, sc_ida_vuelta, sc_suplemento, sc_repostaje, sc_mo_mecanica_chapa, cl_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0','0', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgonetas, sc_furgones, sc_itv, sc_pre_itv, sc_chequeo, sc_campa, sc_entrada_campa, sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_int_ext_cuatro, sc_integral_cuatro, sc_int_ext_industrial, sc_integral_industrial, sc_limpieza_pegatinas, sc_interior_pegatinas, sc_ida_vuelta, sc_suplemento, sc_repostaje, sc_mo_mecanica_chapa, cl_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0','0', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 
 -- --------------------------------------------------------
 --
@@ -463,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
   `sp_ida_vuelta` double default '0',
   `sp_entrada_campa` double default '0',
   `sp_campa` double default '0',
-  `sp_peritacion` double default '0'
+  `sp_peritacion` double default '0',
   `sp_mo_mecanica_chapa` double default '0',
   `sp_chequeo` double default '0',
   `sp_repostaje` double default '0',
