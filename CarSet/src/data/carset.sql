@@ -425,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `sc_servicios_clientes` (
 --
 -- Volcar la base de datos para la tabla `sc_servicios_cliente`
 --
-INSERT INTO sc_servicios_clientes (sc_industrial, sc_todoterreno, sc_furgonetas, sc_furgones, sc_itv, sc_pre_itv, sc_chequeo, sc_campa, sc_entrada_campa, sc_lavado, sc_lavado_exin, sc_lavado_extra, sc_completo, sc_higienizado, sc_int_ext_cuatro, sc_integral_cuatro, sc_int_ext_industrial, sc_integral_industrial, sc_limpieza_pegatinas, sc_interior_pegatinas, sc_ida_vuelta, sc_suplemento, sc_repostaje, sc_mo_mecanica_chapa, cl_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0','0', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO sc_servicios_clientes (sc_todoterreno,sc_industrial,sc_furgonetas,sc_furgones,sc_lavado_exterior,sc_lavado_exin,sc_lavado_integral,sc_int_ext_cuatro,sc_integral_cuatro,sc_int_ext_industrial,sc_integral_industrial,sc_desrotular_peg_facil,sc_desrotular_peg_normal,sc_desrotular_peg_dificil,sc_rotular_peg_facil,sc_rotular_peg_normal,sc_rotular_peg_dificil,sc_ldom_exterior,sc_ldom_exin,sc_ldom_integral,sc_ldom_int_ext_cuatro,sc_ldom_integral_cuatro,sc_ldom_int_ext_industrial,sc_ldom_integral_industrial,sc_itv,sc_pre_itv,sc_itv_pre_itv,sc_ida_vuelta,sc_entrada_campa,sc_campa,sc_peritacion,sc_mo_mecanica_chapa,sc_chequeo,sc_repostaje,sc_suplemento,sc_urgente, cl_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0','0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 
 -- --------------------------------------------------------
 --
@@ -476,7 +476,7 @@ CREATE TABLE IF NOT EXISTS `sp_servicios_proveedores` (
 --
 -- Volcar la base de datos para la tabla `sp_servicios_proveedor`
 --
-INSERT INTO sp_servicios_proveedores (sp_industrial, sp_todoterreno, sp_furgonetas, sp_furgones, sp_itv, sp_pre_itv, sp_chequeo, sp_reacondicionamiento, sp_campa, sp_entrada_campa, sp_lavado, sp_lavado_exin, sp_lavado_extra, sp_completo, sp_higienizado, sp_int_ext_cuatro, sp_integral_cuatro, sp_int_ext_industrial, sp_integral_industrial, sp_limpieza_pegatinas, sp_interior_pegatinas, sp_ida_vuelta, sp_repostaje, sp_mo_mecanica_chapa, pr_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0','0', '0', '0', '0', '0', '0', '0', '0', '1');
+INSERT INTO sp_servicios_proveedores (sp_todoterreno,sp_industrial,sp_furgonetas,sp_furgones,sp_lavado_exterior,sp_lavado_exin,sp_lavado_integral,sp_int_ext_cuatro,sp_integral_cuatro,sp_int_ext_industrial,sp_integral_industrial,sp_desrotular_peg_facil,sp_desrotular_peg_normal,sp_desrotular_peg_dificil,sp_rotular_peg_facil,sp_rotular_peg_normal,sp_rotular_peg_dificil,sp_ldom_exterior,sp_ldom_exin,sp_ldom_integral,sp_ldom_int_ext_cuatro,sp_ldom_integral_cuatro,sp_ldom_int_ext_industrial,sp_ldom_integral_industrial,sp_itv,sp_pre_itv,sp_itv_pre_itv,sp_ida_vuelta,sp_entrada_campa,sp_campa,sp_peritacion,sp_mo_mecanica_chapa,sp_chequeo,sp_repostaje,sp_suplemento,sp_urgente, cl_id) VALUES ('1.5', '1.5', '1.5', '1.5', '0', '0', '0', '0', '0', '0', '0','0', '0', '0','0','0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 
 -- --------------------------------------------------------
 --
