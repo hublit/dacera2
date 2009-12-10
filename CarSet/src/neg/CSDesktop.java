@@ -75,12 +75,14 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ServicioCliente;
   public static JInternalFrame ServicioProveedor;
   public static JInternalFrame FacturaCliente;
+  public static JInternalFrame InformeDetallado1;
   public static JInternalFrame NuevaFactura;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
   public static JMenu menuPedidos;
   public static JMenu menuTarifa;
   public static JMenu menuFactura;
+  public static JMenu menuInforme;
   public static JMenu menuAyuda;
   public static JMenuBar barra;
   public static JMenuItem menuNuevoCliente;
@@ -94,6 +96,8 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuTarifaCliente;
   public static JMenuItem menuTarifaProveedor;
   public static JMenuItem menuFacturaCliente;
+  public static JMenuItem menuInformeDetallado1;
+  public static JMenuItem menuInformeDetallado2;
 
   public CSDesktop()
   {
@@ -125,6 +129,7 @@ public class CSDesktop extends JFrame
       menuPedidos = new JMenu( "Pedidos" );
       menuTarifa = new JMenu( "Tarifas" );
       menuFactura = new JMenu( "Facturas" );
+      menuInforme = new JMenu("Informes");
       menuAyuda = new JMenu( "Ayuda" );
 
       menuClientes.setMnemonic( 'C' );
@@ -468,6 +473,28 @@ public class CSDesktop extends JFrame
             }
          });
 
+      menuInforme.setMnemonic( 'I' );
+
+      menuInformeDetallado1 = new JMenuItem( "Informe Detallado 1" );
+      menuInformeDetallado1.setMnemonic( 'w' );
+      menuInforme.add( menuInformeDetallado1 );
+      menuInformeDetallado1.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeDetallado1 = new JInternalFrame("Informe Detallado 1", true,false,false,true );
+               CSInformeDet1 panel = panel = new CSInformeDet1();
+               InformeDetallado1.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeDetallado1.pack();
+               elEscritorio.add( InformeDetallado1 );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeDetallado1.getSize();
+               InformeDetallado1.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeDetallado1.setVisible( true );
+            }
+         });
+
       menuAyuda.setMnemonic( 'A' );
 
       //establecer elemento de men� Acerca de...
@@ -499,6 +526,7 @@ public class CSDesktop extends JFrame
       barra.add( menuPedidos );
       barra.add( menuTarifa );
       barra.add( menuFactura );
+      barra.add( menuInforme );
       barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
