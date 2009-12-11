@@ -570,5 +570,8 @@ CREATE TABLE IF NOT EXISTS `fa_facturas_aux` (
   `fa_campa2` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_texto_campa2` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_importe_campa2` varchar(30) collate utf8_spanish_ci default NULL,
+ `fa_label_ida` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_texto_ida` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_importe_ida` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_importe_total` varchar(30) collate utf8_spanish_ci default NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
