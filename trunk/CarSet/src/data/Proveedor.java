@@ -85,7 +85,7 @@ public class Proveedor
       try
       {
          ResultSet rsCl = cn.select("SELECT pr_id, pr_nombre_fiscal " +
-                                    "FROM pr_proveedor " +
+                                    "FROM pr_proveedores " +
                                     "WHERE pr_nombre_fiscal = '"+nombre+"' AND pr_DNI_CIF = '"+nif+"'");
 
          int i = 0;
