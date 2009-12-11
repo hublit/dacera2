@@ -44,6 +44,9 @@ public class PruebaCesar
      String queryDel = "DELETE FROM fa_facturas_aux";
      boolean resDel = datos.manipuladorDatos(queryDel);
 
+     double total=0;
+      double iva = 0;
+        double totalIva = 0;
      String importeTotal = "";
      String importeTotalIva = "";
      String importeIva = "";
@@ -71,13 +74,24 @@ public class PruebaCesar
         String importeServicioEs = "";
         String importeCampa="";
         String importeCampa2="";
+        String importeCampaAux="";
+        String importeCampa2Aux="";
+        String labelIda="";
+        String textoIda="";
+        String importeIda="";
+        String IdaVuelta="";
+        String factorTexto2="";
+        String importeTotalAux="";
         double importeTarifa = 0;
         double importeServicio = 0;
         double importeFc = 0;
         double importeSup = 0;
-        double total = 0;
-        double iva = 0;
-        double totalIva = 0;
+        double totalAux = 0;       
+        double IdaVueltaP=0;
+        double IdaVuelta2=0;
+        double importeCampa4=0;
+        double importeCampa5=0;
+
 
         FacturasCesar otro = (FacturasCesar)lista.get(i);
 
@@ -128,27 +142,49 @@ public class PruebaCesar
             }
             importeTarifa = Double.parseDouble(importeTraslado);
 
+            //SI TIENE IDA Y VUELTA
+            if(otro.getIdaVuelta().equals("1"))
+            {
+               String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
+
+               ResultSet rsIv = datos.select(queryIv);
+               while (rsIv.next())
+               {
+                  IdaVuelta = rsIv.getString("sc_ida_vuelta");
+               }
+
+                labelIda="DESCUENTO";
+                textoIda="IDA-VUELTA ("+IdaVuelta+"%)";
+
+                IdaVueltaP=Double.parseDouble(IdaVuelta);
+
+                IdaVuelta2=(importeTarifa*IdaVueltaP)/100;
+
+                importeIda="- " + String.valueOf(IdaVuelta2);
+            }
+
              //LINEA DE FACTOR DE CORRECCION
             ArrayList factorTarifa = obtenerFactor(factor, cl_id);
+            factorTexto = factorTarifa.get(0).toString();
 
             if(!factorTexto.equals("TURISMO") && importeTraslado != null)
             {
                  labelFactor = "FACTOR DE CORRECCION";
                  DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
-                 double ft = Double.parseDouble(factorTarifa.get(0).toString());
+                 double ft = Double.parseDouble(factorTarifa.get(1).toString());
                  importeFc = ((importeTarifa * ft) - importeTarifa);
                  importeFactor = Double.toString(importeFc);
-                 factorTexto = factorTarifa.get(1).toString();
+                 factorTexto2=factorTarifa.get(0).toString();
                  //double dd2dec = new Double(df2.format(valor F)).doubleValue();
                  //System.out.println("Valor factor de corrección"+dd2dec);
             }
             
             //SERVICIOS ESPECIALES
             String campoServicio = "";
-            
+
             if (servicioEspecial.equals("Urgente"))
             {
-                campoServicio = "sc_urgente"; 
+                campoServicio = "sc_urgente";
             }
             else if(servicioEspecial.equals("ITV"))
             {
@@ -158,67 +194,106 @@ public class PruebaCesar
             {
                 campoServicio = "sc_pre_itv";
             }
+            else if(servicioEspecial.equals("ITV + Pre_ITV"))
+            {
+                campoServicio = "sc_itv_pre_itv";
+            }
+            else if(servicioEspecial.equals("Peritación"))
+            {
+                campoServicio = "sc_peritacion";
+            }
+            else if(servicioEspecial.equals("M.obra Mecá./Chapa"))
+            {
+                campoServicio = "sc_mo_mecanica_chapa";
+            }
             else if(servicioEspecial.equals("Chequeo"))
             {
                 campoServicio = "sc_chequeo";
-            }
-            else if(servicioEspecial.equals("Reacondicionamiento"))
-            {
-                campoServicio = "sc_reacondicionamiento";
-            }
-            else if(servicioEspecial.equals("Lavado Exterior"))
-            {
-                campoServicio = "sc_lavado";
-            }
-            else if(servicioEspecial.equals("L. Interior y Exterior"))
-            {
-                campoServicio = "sc_lavado_exin";
-            }
-            else if(servicioEspecial.equals("Lavado Extra"))
-            {
-                campoServicio = "sc_lavado_extra";
-            }
-            else if(servicioEspecial.equals("Lavado Integral"))
-            {
-                campoServicio = "sc_completo";
-            }
-            else if(servicioEspecial.equals("Lavado Higienizado"))
-            {
-                campoServicio = "sc_higienizado";
-            }
-            else if(servicioEspecial.equals("L. Interior y Exterior4x4"))
-            {
-                campoServicio = "sc_int_ext_cuatro";
-            }
-            else if(servicioEspecial.equals("Lavado Integral 4x4"))
-            {
-                campoServicio = "sc_integral_cuatro";
-            }
-            else if(servicioEspecial.equals("L. Interior y Ext. Indust."))
-            {
-                campoServicio = "sc_int_ext_industrial";
-            }
-            else if(servicioEspecial.equals("Lavado Integral Indust."))
-            {
-                campoServicio = "sc_integral_industrial";
-            }
-            else if(servicioEspecial.equals("Limpieza + Pegatinas"))
-            {
-                campoServicio = "sc_limpieza_pegatinas";
-            }
-            else if(servicioEspecial.equals("Limpieza Integral+Peg."))
-            {
-                campoServicio = "sc_interior_pegatinas";
             }
             else if(servicioEspecial.equals("Repostaje"))
             {
                 campoServicio = "sc_repostaje";
             }
-            else if(servicioEspecial.equals("M. obra Mecánic/Chapa"))
+            else if(servicioEspecial.equals("LD Exterior"))
             {
-                campoServicio = "sc_mo_mecanica_chapa";
+                campoServicio = "sc_ldom_exterior";
             }
-
+            else if(servicioEspecial.equals("LD Interior y Exterior"))
+            {
+                campoServicio = "sc_ldom_exin";
+            }
+            else if(servicioEspecial.equals("LD Integral"))
+            {
+                campoServicio = "sc_ldom_integral";
+            }
+            else if(servicioEspecial.equals("LD Inte./Exte. 4x4"))
+            {
+                campoServicio = "sc_ldom_int_ext_cuatro";
+            }
+            else if(servicioEspecial.equals("LD Integral 4x4"))
+            {
+                campoServicio = "sc_ldom_integral_cuatro";
+            }
+            else if(servicioEspecial.equals("LD Inte./Exte. Indust."))
+            {
+                campoServicio = "sc_ldom_int_ext_industrial";
+            }
+            else if(servicioEspecial.equals("LD Integral Indust."))
+            {
+                campoServicio = "sc_ldom_integral_industrial";
+            }
+            else if(servicioEspecial.equals("LC Exterior"))
+            {
+                campoServicio = "sc_lavado_exterior";
+            }
+            else if(servicioEspecial.equals("LC Interior y Exterior"))
+            {
+                campoServicio = "sc_lavado_exin";
+            }
+            else if(servicioEspecial.equals("LC Integral"))
+            {
+                campoServicio = "sc_lavado_integral";
+            }
+            else if(servicioEspecial.equals("LC Inte./Exte. 4x4"))
+            {
+                campoServicio = "sc_int_ext_cuatro";
+            }
+            else if(servicioEspecial.equals("LC Integral 4x4"))
+            {
+                campoServicio = "sc_integral_cuatro";
+            }
+            else if(servicioEspecial.equals("LC Inte./Ext. Indust."))
+            {
+                campoServicio = "sc_int_ext_industrial";
+            }
+            else if(servicioEspecial.equals("LC Integral Industrial"))
+            {
+                campoServicio = "sc_integral_industrial";
+            }
+            else if(servicioEspecial.equals("Desrotu. peg. fácil"))
+            {
+                campoServicio = "sc_desrotular_peg_facil";
+            }
+            else if(servicioEspecial.equals("Desrotu. peg. normal"))
+            {
+                campoServicio = "sc_desrotular_peg_normal";
+            }
+            else if(servicioEspecial.equals("Desrotu. peg. difícil"))
+            {
+                campoServicio = "sc_desrotular_peg_dificil";
+            }
+            else if(servicioEspecial.equals("Rotular peg. fácil"))
+            {
+                campoServicio = "sc_rotular_peg_facil";
+            }
+            else if(servicioEspecial.equals("Rotular peg. normal"))
+            {
+                campoServicio = "sc_rotular_peg_normal";
+            }
+            else if(servicioEspecial.equals("Rotular peg. difícil"))
+            {
+                campoServicio = "sc_rotular_peg_dificil";
+            }
            if (!campoServicio.equals(""))
            {
                String querySe = "SELECT "+campoServicio+" FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
@@ -241,11 +316,28 @@ public class PruebaCesar
         }
         else
         {
+             String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
+
+               ResultSet rsCampa = datos.select(queryCampa);
+               while (rsCampa.next())
+               {
+                  importeCampaAux = rsCampa.getString("sc_entrada_campa");
+                  importeCampa2Aux = rsCampa.getString("sc_campa");
+               }
+
             soporte = "CAMPA";
             labelCampa = "CAMPA";
             labelCampa2 = "CAMPA";
             finalCampa = "ENTRADA";
-            finalCampa2 = otro.getDiasCampa()+ " DIAS";
+            finalCampa2 = otro.getDiasCampa()+ " DIAS * " + importeCampa2Aux;
+            importeCampa=importeCampaAux;
+
+            importeCampa4=Double.parseDouble(importeCampa);
+            importeCampa5=(Double.parseDouble(otro.getDiasCampa()))*(Double.parseDouble(importeCampa2Aux));
+
+            importeCampa2=String.valueOf(importeCampa5);
+
+
         }
 
         //LINEA DE SERVICIO ESPECIAL OTROS
@@ -263,16 +355,10 @@ public class PruebaCesar
         }
 
         //TOTAL
-        total = importeTarifa + importeFc + importeServicio + importeSup;
-        importeTotal = Double.toString(total);
+        totalAux = importeTarifa - IdaVuelta2 + importeFc + importeServicio + importeSup + importeCampa4 + importeCampa5;
+        importeTotalAux = Double.toString(totalAux);
 
-        //IVA
-        iva = ((total * 16) / 100.0);
-        importeIva = Double.toString(iva);
-
-        //TOTAL IVA
-        totalIva = total + iva;
-        importeTotalIva = Double.toString(totalIva);
+        
 
         String query = "INSERT INTO fa_facturas_aux (fa_num, fa_fecha, fa_marca, fa_modelo, " +
                                                     "fa_matricula, fa_factor, fa_soporte, fa_traslado, " +
@@ -281,18 +367,28 @@ public class PruebaCesar
                                                     "fa_suplemento, fa_texto_suplemento, fa_importe_suplemento, " +
                                                     "fa_servicio_adicional, fa_texto_servicio_adicional, " +
                                                     "fa_importe_servicio_adicional, fa_campa,fa_texto_campa, fa_importe_campa, " +
-                                                    "fa_campa2, fa_texto_campa2, fa_importe_campa2, fa_importe_total) " +
+                                                    "fa_campa2, fa_texto_campa2, fa_importe_campa2,fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total) " +
                                                     "VALUES (";
         query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
                         "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTraslado+"','"+labelFactor+"'," +
-                        "'"+factorTexto+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+""+"'," +
+                        "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+""+"'," +
                         "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioEs+"','"+labelCampa+"','"+finalCampa+"'," +
-                        "'"+""+"','"+labelCampa2+"','"+finalCampa2+"','"+""+"','"+importeTotal+"')";
+                        "'"+importeCampa+"','"+labelCampa2+"','"+finalCampa2+"','"+importeCampa2+"','"+labelIda+"','"+textoIda+"','"+importeIda+"','"+importeTotalAux+"')";
 
         System.out.println(query);
         boolean rs3 = datos.manipuladorDatos(query);
+
+        total=total + totalAux;
      }
-     
+
+    //IVA
+        iva = ((total * 16) / 100.0);
+        importeIva = Double.toString(iva);
+
+        //TOTAL IVA
+        totalIva = total + iva;
+        importeTotalIva = Double.toString(totalIva);
+
     JasperReport jasperReport = null;
     JasperPrint jasperPrint; 
     Connection con = null;
@@ -304,8 +400,9 @@ public class PruebaCesar
      //FacturaXML nueva=new FacturaXML(query);
     try 
     { 
-        Class.forName("com.mysql.jdbc.Driver"); 
-        con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","rcortes");
+        //con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
         //1-Compilamos el archivo XML y lo cargamos en memoria 
         jasperReport = JasperCompileManager.compileReport("src\\data\\report1.jrxml");
 
@@ -346,6 +443,7 @@ public class PruebaCesar
         pars.put("Query","SELECT * FROM pe_pedidos;");
         pars.put("Blanco","");
         pars.put("Factor","Turismo");
+        pars.put("ImporteTotal",String.valueOf(total));
         pars.put("IVA","16%");
         pars.put("ImporteIVA", importeIva);
         pars.put("ImporteTotalIVA", importeTotalIva);
@@ -381,6 +479,10 @@ public class PruebaCesar
         Dimension pantalla = CSDesktop.elEscritorio.getSize();
         CSDesktop.NuevaFactura.setSize(pantalla);
         CSDesktop.NuevaFactura.setVisible(true);
+
+         //3-Exportamos el reporte a pdf y lo guardamos en disco
+              JasperExportManager.exportReportToPdfFile(
+               jasperPrint, "c:/Factura.pdf");
 
       /*JasperViewer hola=new JasperViewer(jasperPrint, false);
       CSDesktop.NuevaFactura = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
@@ -433,7 +535,7 @@ public class PruebaCesar
               descripcion = "FURGONES";
           break;
       }
-
+       factorSel.add(descripcion);
       if (!campo.equals(""))
       {
           String queryFactor = "SELECT "+campo+" FROM sc_servicios_clientes WHERE cl_id="+cliente;
@@ -442,9 +544,10 @@ public class PruebaCesar
           while(rs3.next())
           {
               factorSel.add(rs3.getDouble(campo));
-              factorSel.add(descripcion);
+             
           }
       }
+     
       return factorSel;
   }
 

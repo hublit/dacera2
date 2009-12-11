@@ -14,6 +14,7 @@ package neg;
 import com.mysql.jdbc.Connection;
 import data.Cliente;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -227,17 +228,19 @@ public class CSInformeDet1 extends javax.swing.JPanel {
                 anyoIni=anyo;
             }
             
-            fechaIni="26/"+mesIni+"/"+anyoIni;
-            fechaFin="24/"+mes+"/"+anyo;
+            fechaIni=anyoIni+"-"+mesIni+"-26";
+            fechaFin=anyo+"-"+mes+"-24";
             System.out.println(fechaIni);
             System.out.println(fechaFin);
 
-            /*String query="select pe_num,pe_fecha,pe_ve_matricula,pe_direccion_origen,pe_cp_origen " +
-                    "pe_fecha_origen,pe_hora_origen,pe_nombre_origen,pe_direccion_destino_pe_cp_destino" +
-                    "pe_fecha_destino,pe_hora_destino,pe_nombre_destino where pe_fecha BETWEEN '"+fechaIni+"' " +
-                    "AND '"+fechaFin+"' AND cl_id = "+clienteID+" ORDER BY pe_num DESC";*/
+            String query="select pe.pe_num,pe.pe_fecha,pe.pe_ve_matricula,pe.pe_direccion_origen,pe.pe_cp_origen, " +
+                    "pe.pe_fecha_origen,pe.pe_hora_origen,pe.pe_nombre_origen,pe.pe_direccion_destino, pe.pe_cp_destino, " +
+                    "pe.pe_fecha_destino,pe.pe_hora_destino,pe.pe_nombre_destino FROM pe_pedidos pe, pc_pedidos_clientes pc " +
+                    "WHERE pe.pe_num = pc.pe_num AND pe.pe_fecha BETWEEN '"+fechaIni+"' " +
+                    "AND '"+fechaFin+"' AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";
 
-            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
+             System.out.println(query);
+            /*String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
                            "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                            "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, " +
                            "pe.pe_ta_es_cliente, pe.pe_suplemento, tc.tc_tarifa " +
@@ -249,7 +252,7 @@ public class CSInformeDet1 extends javax.swing.JPanel {
                            "AND tc.tc_servicio_destino = pe.pe_servicio_destino " +
                            "AND tc.tc_soporte = pe.pe_soporte " +
                            "AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"' " +
-                           "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";
+                           "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";*/
 
             Map pars = new HashMap();
             pars.put("Cliente", cliente);
@@ -268,7 +271,8 @@ public class CSInformeDet1 extends javax.swing.JPanel {
                     Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 try {
-                    con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
+                   // con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
+                    con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/carset","root","rcortes");
                 } catch (SQLException ex) {
                     Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -283,8 +287,19 @@ public class CSInformeDet1 extends javax.swing.JPanel {
                 jasperPrint = JasperFillManager.fillReport("src\\data\\Informe.jasper", pars, con);
 
                //3-Exportamos el reporte a pdf y lo guardamos en disco
-               JasperExportManager.exportReportToPdfFile(
-               jasperPrint, "c:/holaMundo.pdf");
+               //JasperExportManager.exportReportToPdfFile(
+               //jasperPrint, "c:/holaMundo.pdf");
+
+               JRViewer jrViewer = new JRViewer(jasperPrint);
+        CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
+        CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+        //CSDesktop.NuevaFactura.add(jrViewer);
+        CSDesktop.NuevaFactura.pack();
+
+        CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
+        Dimension pantalla = CSDesktop.elEscritorio.getSize();
+        CSDesktop.NuevaFactura.setSize(pantalla);
+        CSDesktop.NuevaFactura.setVisible(true);
              }
              catch (JRException e)
              {

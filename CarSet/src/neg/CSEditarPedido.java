@@ -1358,7 +1358,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         String tipoDestino=new String(jComboTipoDestino.getSelectedItem().toString());
         String nombreDestino=new String(jTextNombreDestino.getText());
         String telefonoDestino=new String(jTextTelefonoDestino.getText());
-        boolean fueraMad = new Boolean(jCheckBoxFMadrid.getText());
+        boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
         String servicio=new String(jComboBoxServicio.getSelectedItem().toString());
         String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
         String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
@@ -1366,7 +1366,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
         String horarealOrigen=new String(jTextHoraRealOrigen.getText());
         String horarealDestino=new String(jTextHoraRealDestino.getText());
-        boolean cerrado = new Boolean(jCheckBoxCerrado.getText());
+        boolean cerrado = new Boolean(jCheckBoxCerrado.isSelected());
         String diasCampa = new String(jTextDiasCampa.getText());
         if(!diasCampa.equals(""))
         {
@@ -1375,7 +1375,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         else
             diasCampaN=0;
         String servicioEspecial = new String(jComboBoxServicioEspecial.getSelectedItem().toString());
-        boolean idaVuelta= new Boolean(jCheckBoxIdaVuelta.getText());
+        boolean idaVuelta= new Boolean(jCheckBoxIdaVuelta.isSelected());
 
         if(tipoOrigen.equals("Selecciona"))
             tipoOrigen="";
@@ -1500,10 +1500,11 @@ public class CSEditarPedido extends javax.swing.JPanel
                   cerradoN=1;
               else
                   cerradoN=0;
+
               if(!idaVuelta)
-                  idaVueltaN=1;
-              else
                   idaVueltaN=0;
+              else
+                  idaVueltaN=1;
 
                String query = "UPDATE pe_pedidos SET pe_fecha = '"+fecha2+"', " +
                             "pe_descripcion = '"+descripcion+"', pe_direccion_origen = '"+direccionOrigen+"', " +
