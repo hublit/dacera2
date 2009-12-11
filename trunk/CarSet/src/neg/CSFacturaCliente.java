@@ -159,6 +159,7 @@ public class CSFacturaCliente extends javax.swing.JPanel {
         jSeparator7.setName("jSeparator7"); // NOI18N
 
         jButtonPrev.setText("Previsualizar");
+        jButtonPrev.setEnabled(false);
         jButtonPrev.setName("jButtonPrev"); // NOI18N
         jButtonPrev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,19 +185,15 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(720, Short.MAX_VALUE)
-                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(199, 199, 199)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(264, 264, 264)
                 .addComponent(jButtonPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
-                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(218, 218, 218))
+                .addGap(52, 52, 52)
+                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(253, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,6 +222,10 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
                         .addGap(191, 191, 191))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(364, 364, 364)
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(366, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,16 +260,13 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                     .addComponent(jDateFechaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jButtonCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonGenerar)
-                            .addComponent(jButtonPrev))))
-                .addGap(58, 58, 58))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGenerar)
+                    .addComponent(jButtonPrev))
+                .addGap(33, 33, 33)
+                .addComponent(jButtonCancelar)
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -332,13 +330,15 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                            "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " +
                            "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
                            "WHERE pe.pe_num = pc.pe_num " +
+                           "AND sc.cl_id = pc.cl_id " +
+                           "AND tc.tc_fecha_hasta = '2050-01-01' " +
                            "AND tc.tc_servicio = pe.pe_servicio " +
                            "AND tc.cl_id = pc.cl_id " +
                            "AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
                            "AND tc.tc_servicio_destino = pe.pe_servicio_destino " +
                            "AND tc.tc_soporte = pe.pe_soporte " +
                            "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
-                           "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";
+                           "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
 
 
             ResultSet rs = datos.select(query);
@@ -365,6 +365,7 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                     nueva.setSuplemento(rs.getString("pe_suplemento"));
                     nueva.setDescripcion(rs.getString("pe_descripcion"));
                     nueva.setTarifa(rs.getString("tc_tarifa"));
+                    nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
 
                     lista.add(nueva);
                     }

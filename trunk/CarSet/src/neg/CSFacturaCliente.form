@@ -25,21 +25,16 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="720" max="32767" attributes="0"/>
-              <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
-              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Component id="jSeparator7" pref="792" max="32767" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
               <Component id="jButtonPrev" min="-2" pref="124" max="-2" attributes="0"/>
-              <EmptySpace pref="180" max="32767" attributes="0"/>
-              <Component id="jButtonGenerar" min="-2" pref="105" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+              <Component id="jButtonGenerar" min="-2" pref="133" max="-2" attributes="0"/>
+              <EmptySpace pref="253" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="24" pref="24" max="24" attributes="0"/>
@@ -75,6 +70,11 @@
                       <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
                   </Group>
               </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="364" max="-2" attributes="0"/>
+              <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
+              <EmptySpace pref="366" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,20 +120,14 @@
               </Group>
               <EmptySpace pref="52" max="32767" attributes="0"/>
               <Component id="jSeparator6" min="-2" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonGenerar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonPrev" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonGenerar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonPrev" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -253,6 +247,7 @@
     <Component class="javax.swing.JButton" name="jButtonPrev">
       <Properties>
         <Property name="text" type="java.lang.String" value="Previsualizar"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="jButtonPrev" noResource="true"/>
       </Properties>
       <Events>
