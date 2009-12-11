@@ -1373,27 +1373,41 @@
         </Property>
         <Property name="maximumRowCount" type="int" value="20"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="20">
-            <StringItem index="0" value="Selecciona"/>
-            <StringItem index="1" value="Urgente"/>
-            <StringItem index="2" value="ITV"/>
-            <StringItem index="3" value="Pre_ITV"/>
-            <StringItem index="4" value="Chequeo"/>
-            <StringItem index="5" value="Reacondicionamiento"/>
-            <StringItem index="6" value="Lavado Exterior"/>
-            <StringItem index="7" value="L. Interior y Exterior"/>
-            <StringItem index="8" value="Lavado Integral"/>
-            <StringItem index="9" value="Lavado Extra"/>
-            <StringItem index="10" value="Lavado Higienizado"/>
-            <StringItem index="11" value="L. Interior y Exterior4x4"/>
-            <StringItem index="12" value="Lavado Integral 4x4"/>
-            <StringItem index="13" value="L. Interior y Ext. Indust."/>
-            <StringItem index="14" value="Lavado Integral Indust."/>
-            <StringItem index="15" value="Limpieza + Pegatinas"/>
-            <StringItem index="16" value="Limpieza Integral+Peg."/>
-            <StringItem index="17" value="Repostaje"/>
-            <StringItem index="18" value="M. obra Mec&#xe1;nic/Chapa"/>
-            <StringItem index="19" value="Otros"/>
+          <StringArray count="34">
+            <StringItem index="0" value="Urgente"/>
+            <StringItem index="1" value="ITV"/>
+            <StringItem index="2" value="Pre_ITV"/>
+            <StringItem index="3" value="ITV + Pre_ITV"/>
+            <StringItem index="4" value="Peritaci&#xf3;n"/>
+            <StringItem index="5" value="M.obra Mec&#xe1;./Chapa"/>
+            <StringItem index="6" value="Chequeo"/>
+            <StringItem index="7" value="Repostaje"/>
+            <StringItem index="8" value=" "/>
+            <StringItem index="9" value="LAVADO DOMICILIO"/>
+            <StringItem index="10" value="LD Exterior"/>
+            <StringItem index="11" value="LD Interior y Exterior"/>
+            <StringItem index="12" value="LD Integral"/>
+            <StringItem index="13" value="LD Inte./Exte. 4x4"/>
+            <StringItem index="14" value="LD Integral 4x4"/>
+            <StringItem index="15" value="LD Inte./Exte. Indust."/>
+            <StringItem index="16" value="LD Integral Indust."/>
+            <StringItem index="17" value=" "/>
+            <StringItem index="18" value="LAVADO CAMPA"/>
+            <StringItem index="19" value="LC Exterior"/>
+            <StringItem index="20" value="LC Interior y Exterior"/>
+            <StringItem index="21" value="LC Integral"/>
+            <StringItem index="22" value="LC Inte./Exte. 4x4"/>
+            <StringItem index="23" value="LC Integral 4x4"/>
+            <StringItem index="24" value="LC Inte./Ext. Indust."/>
+            <StringItem index="25" value="LC Integral Industrial"/>
+            <StringItem index="26" value=" "/>
+            <StringItem index="27" value="Desrotu. peg. f&#xe1;cil"/>
+            <StringItem index="28" value="Desrotu. peg. normal"/>
+            <StringItem index="29" value="Desrotu. peg. dif&#xed;cil"/>
+            <StringItem index="30" value="Rotular peg. f&#xe1;cil"/>
+            <StringItem index="31" value="Rotular peg. normal"/>
+            <StringItem index="32" value="Rotular peg. dif&#xed;cil"/>
+            <StringItem index="33" value="Otros"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxServicioEspecial" noResource="true"/>
