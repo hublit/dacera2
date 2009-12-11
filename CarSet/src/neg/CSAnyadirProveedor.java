@@ -1428,7 +1428,7 @@ public class CSAnyadirProveedor extends JPanel
 
 
                 String querySe  = "INSERT INTO sp_servicios_proveedores (sp_todoterreno, sp_industrial, sp_furgonetas, sp_furgones, " +
-                "sp_lavado_exterior, sp_lavado_exin, sp_lavado_integral, sp_int_ext_cuatro', sp_integral_cuatro, " +
+                "sp_lavado_exterior, sp_lavado_exin, sp_lavado_integral, sp_int_ext_cuatro, sp_integral_cuatro, " +
                 "sp_int_ext_industrial, sp_integral_industrial, sp_desrotular_peg_facil, sp_desrotular_peg_normal, " +
                 "sp_desrotular_peg_dificil, sp_rotular_peg_facil, sp_rotular_peg_normal, sp_rotular_peg_dificil, " +
                 "sp_ldom_exterior, sp_ldom_exin, sp_ldom_integral, sp_ldom_int_ext_cuatro, sp_ldom_integral_cuatro, " +
