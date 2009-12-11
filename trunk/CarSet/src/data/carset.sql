@@ -370,10 +370,10 @@ CREATE TABLE IF NOT EXISTS `tp_tarifas_proveedores` (
 --
 -- Volcar la base de datos para la tabla `tp_tarifas_proveedores`
 --
--- INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '', 'Grúa' ,'2009-11-03','2050-01-01',  0, 0 , 70.0 , 1);
--- INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '', 'Camión completo' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
--- INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Conductor' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
--- INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Tren' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '', 'Grúa' ,'2009-11-03','2050-01-01',  0, 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '', 'Camión completo' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Conductor' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
+INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) VALUES ('Urbano', '', '','Tren' ,'2009-11-03','2050-01-01', 0, 0 , 70.0 , 1);
 
 
 -- --------------------------------------------------------
@@ -545,7 +545,7 @@ INSERT INTO cp_contactos_proveedor (cp_nombre, cp_telefono, cp_telefono2, cp_ema
 
 
 CREATE TABLE IF NOT EXISTS `fa_facturas_aux` (
-  `fa_num` int(10) NOT NULL,
+  `fa_num` varchar(20) collate utf8_spanish_ci NOT NULL default '',
   `fa_fecha` date NOT NULL,
   `fa_marca` varchar(50) collate utf8_spanish_ci NOT NULL default '',
   `fa_modelo` varchar(50) collate utf8_spanish_ci NOT NULL default '',
@@ -570,7 +570,7 @@ CREATE TABLE IF NOT EXISTS `fa_facturas_aux` (
   `fa_campa2` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_texto_campa2` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_importe_campa2` varchar(30) collate utf8_spanish_ci default NULL,
- `fa_label_ida` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_label_ida` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_texto_ida` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_importe_ida` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_importe_total` varchar(30) collate utf8_spanish_ci default NULL
