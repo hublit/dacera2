@@ -1400,7 +1400,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
 
                 String querySe  = "INSERT INTO sc_servicios_clientes (sc_todoterreno, sc_industrial, sc_furgonetas, sc_furgones, " +
-                "sc_lavado_exterior, sc_lavado_exin, sc_lavado_integral, sc_int_ext_cuatro', sc_integral_cuatro, " +
+                "sc_lavado_exterior, sc_lavado_exin, sc_lavado_integral, sc_int_ext_cuatro, sc_integral_cuatro, " +
                 "sc_int_ext_industrial, sc_integral_industrial, sc_desrotular_peg_facil, sc_desrotular_peg_normal, " +
                 "sc_desrotular_peg_dificil, sc_rotular_peg_facil, sc_rotular_peg_normal, sc_rotular_peg_dificil, " +
                 "sc_ldom_exterior, sc_ldom_exin, sc_ldom_integral, sc_ldom_int_ext_cuatro, sc_ldom_integral_cuatro, " +
