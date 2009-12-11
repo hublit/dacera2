@@ -1593,7 +1593,7 @@ public class CSServicioCliente extends javax.swing.JPanel
             {
                 String query = "UPDATE sc_servicios_clientes SET sc_todoterreno  = '"+todoterreno+"', sc_industrial  = '"+industrial+"', " +
                                "sc_furgonetas  = '"+furgonetas+"', sc_furgones  = '"+furgones+"', sc_lavado_exterior  = '"+lavadoEx+"', " +
-                               "sc_lavado_exin  = '"+lavadoExIn+"', sc_lavado_integral  = '"+lavadoInt+"', sc_int_ext_cuatro  = '"+lavadoDomIE4+"', " +
+                               "sc_lavado_exin  = '"+lavadoExIn+"', sc_lavado_integral  = '"+lavadoInt+"', sc_int_ext_cuatro  = '"+lavadoIE4+"', " +
                                "sc_integral_cuatro  = '"+lavadoIntegral4+"', sc_int_ext_industrial  = '"+lavadoIEIndustrial+"', " +
                                "sc_integral_industrial  = '"+lavadoIntInd+"', sc_desrotular_peg_facil  = '"+desrotularPegaFacil+"', " +
                                "sc_desrotular_peg_normal  = '"+desrotularPegaNormal+"', sc_desrotular_peg_dificil  = '"+desrotularPegaDificil+"', " +
