@@ -400,8 +400,10 @@ public class PruebaCesar
      //FacturaXML nueva=new FacturaXML(query);
     try 
     { 
-        Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","rcortes");
+        //Class.forName("com.mysql.jdbc.Driver");
+        //con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","cesar");
+        DbConnection conexion=new DbConnection();
+        con=conexion.getConexion();
         //con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
         //1-Compilamos el archivo XML y lo cargamos en memoria 
         jasperReport = JasperCompileManager.compileReport("src\\data\\report1.jrxml");
@@ -458,9 +460,9 @@ public class PruebaCesar
         pars.put("Importe","Dinero");
 
 
-        //JasperFillManager.fillReportToFile("c:\\report1.jasper", pars, new JREmptyDataSource());
+        JasperFillManager.fillReportToFile("src\\data\\report1.jasper", pars, con);
 
-        //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
+        JasperExportManager.exportReportToPdfFile("src\\data\\report1.jrprint");
         //2-Llenamos el reporte con la informaci�n y par�metros necesarios
         jasperPrint = JasperFillManager.fillReport("src\\data\\report1.jasper", pars, con);
 
