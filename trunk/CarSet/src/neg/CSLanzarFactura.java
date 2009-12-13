@@ -31,22 +31,22 @@ import java.text.DecimalFormat;
  * 
  * @author Administrador 
  */ 
-public class PruebaCesar
+public class CSLanzarFactura
 {
     static DbConnection datos = new DbConnection();     
     /** 
      * @param args the command line arguments 
      */ 
     //public static void lanzar(String query,String fechaFactura,BeanCliente beanCliente,int flag) throws ClassNotFoundException, SQLException {
-    public static void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura) throws ClassNotFoundException, SQLException, JRException
+    public static void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero) throws ClassNotFoundException, SQLException, JRException
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fa_facturas_aux";
      boolean resDel = datos.manipuladorDatos(queryDel);
 
      double total=0;
-      double iva = 0;
-        double totalIva = 0;
+     double iva = 0;
+     double totalIva = 0;
      String importeTotal = "";
      String importeTotalIva = "";
      String importeIva = "";
@@ -449,6 +449,19 @@ public class PruebaCesar
         pars.put("IVA","16%");
         pars.put("ImporteIVA", importeIva);
         pars.put("ImporteTotalIVA", importeTotalIva);
+
+        if(numero==0)
+        {
+            pars.put("NumFactura","PREV");
+        }
+        else
+        {
+            String numFactura=Integer.valueOf(numero).toString();
+            String finalNumFactura=Utilidades.rellenarCeros(numFactura,5);
+            finalNumFactura=finalNumFactura +"/"+ fechaFactura.substring(8, 10);
+
+            pars.put("NumFactura",finalNumFactura);
+        }
         /*if(flag==1)
             pars.put("NumFactura","");
         else

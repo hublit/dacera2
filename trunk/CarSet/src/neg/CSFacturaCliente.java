@@ -16,7 +16,6 @@ import data.Cliente;
 import data.DbConnection;
 import data.FacturasCesar;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -28,14 +27,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import utils.Utilidades;
-import neg.PruebaCesar;
 
 /**
  *
@@ -159,7 +155,6 @@ public class CSFacturaCliente extends javax.swing.JPanel {
         jSeparator7.setName("jSeparator7"); // NOI18N
 
         jButtonPrev.setText("Previsualizar");
-        jButtonPrev.setEnabled(false);
         jButtonPrev.setName("jButtonPrev"); // NOI18N
         jButtonPrev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,8 +266,83 @@ public class CSFacturaCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
-        System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
+        int numero=0;
+        String query="Select max(fa_id) from fa_factura_cliente";
+        ResultSet rs=datos.select(query);
+        try {
+            while (rs.next()) {
+                numero =Integer.valueOf(rs.getInt("max(fa_id)"));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        LanzarFactura(numero+1);
 
+        //En este caso falta hacer el insert en la tabla de facturas
+    }//GEN-LAST:event_jButtonGenerarActionPerformed
+
+    private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
+
+        System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
+
+        String query = "SELECT cl_id, cl_nombre , cl_DNI_CIF FROM cl_clientes order by cl_id";
+
+        CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
+        // adjuntar panel al panel de contenido del marco interno
+        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
+        CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
+        // establecer tama�o de marco interno en el tama�o de su contenido
+        CSDesktop.BuscaCliente.pack();
+        // adjuntar marco interno al escritorio y mostrarlo
+        CSDesktop.elEscritorio.add( CSDesktop.BuscaCliente );
+        CSDesktop.BuscaCliente.setLocation(150, 50);
+        CSDesktop.BuscaCliente.setVisible( true );
+}//GEN-LAST:event_jToggleButtonClienteActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+       CSDesktop.FacturaCliente.dispose();
+       CSDesktop.menuFacturaCliente.setEnabled(true);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrevActionPerformed
+       LanzarFactura(0);
+    }//GEN-LAST:event_jButtonPrevActionPerformed
+
+ public Dimension getPreferredSize()
+   {
+      return new Dimension( 826,500 );
+   }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonGenerar;
+    private javax.swing.JButton jButtonPrev;
+    private com.toedter.calendar.JDateChooser jDateFecha;
+    private com.toedter.calendar.JDateChooser jDateFechaFactura;
+    private com.toedter.calendar.JDateChooser jDateFechaFin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    public javax.swing.JTextField jTextCliente;
+    private javax.swing.JToggleButton jToggleButtonCliente;
+    private javax.swing.JLabel lCliente;
+    private javax.swing.JLabel lFechaFin;
+    private javax.swing.JLabel lFechaIni;
+    private javax.swing.JLabel lFechaIni1;
+    // End of variables declaration//GEN-END:variables
+
+    public void ValidarFormatos(String accion)
+    {
+         jButtonGenerar.setEnabled(false);
+         JLabel errorFields = new JLabel(accion);
+         JOptionPane.showMessageDialog(null,errorFields);
+         jButtonGenerar.setEnabled(true);
+    }
+
+    private void LanzarFactura(int numero)
+    {
         int clienteID = 0;
         String fechaI="";
         String fechaF="";
@@ -291,11 +361,11 @@ public class CSFacturaCliente extends javax.swing.JPanel {
         String cliente = new String(jTextCliente.getText());
         Cliente oCliente = new Cliente();
         BeanCliente beanCliente = new BeanCliente();
-       
+
         clienteID = oCliente.getClienteID(cliente);
         beanCliente = oCliente.getDatosFacturaCliente(clienteID);
         beanCliente.setCl_id(String.valueOf(clienteID));
-        
+
         Calendar fechaCalendar = jDateFecha.getCalendar();
         //String fecha = ConvertirFechaString(fechaCalendar);
         if (fechaCalendar!=null)
@@ -320,9 +390,6 @@ public class CSFacturaCliente extends javax.swing.JPanel {
         }
         else
         {
-            
-            //String query="select * from pe_pedidos";
-
             String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
                            "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                            "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
@@ -372,86 +439,24 @@ public class CSFacturaCliente extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-
             System.out.println(query);
             try {
                 try {
-                    PruebaCesar.lanzar(lista,beanCliente,fechaFac);
-                    //PruebaCesar.lanzar(query,fechaFac,beanCliente,2);
+                    CSLanzarFactura.lanzar(lista,beanCliente,fechaFac,numero);
+                    //CSLanzarFactura.lanzar(query,fechaFac,beanCliente,2);
                     //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
                 } catch (JRException ex) {
                     Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                //PruebaCesar.lanzar(query,fechaFac,beanCliente,2);
+                //CSLanzarFactura.lanzar(query,fechaFac,beanCliente,2);
                 //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-
             //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
-        }
-
-    }//GEN-LAST:event_jButtonGenerarActionPerformed
-
-    private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
-
-        System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query = "SELECT cl_id, cl_nombre , cl_DNI_CIF FROM cl_clientes order by cl_id";
-
-        CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
-        // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
-        CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
-        // establecer tama�o de marco interno en el tama�o de su contenido
-        CSDesktop.BuscaCliente.pack();
-        // adjuntar marco interno al escritorio y mostrarlo
-        CSDesktop.elEscritorio.add( CSDesktop.BuscaCliente );
-        CSDesktop.BuscaCliente.setLocation(150, 50);
-        CSDesktop.BuscaCliente.setVisible( true );
-}//GEN-LAST:event_jToggleButtonClienteActionPerformed
-
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       CSDesktop.FacturaCliente.dispose();
-       CSDesktop.menuFacturaCliente.setEnabled(true);
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
-
-    private void jButtonPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrevActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonPrevActionPerformed
-
- public Dimension getPreferredSize()
-   {
-      return new Dimension( 826,500 );
-   }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonGenerar;
-    private javax.swing.JButton jButtonPrev;
-    private com.toedter.calendar.JDateChooser jDateFecha;
-    private com.toedter.calendar.JDateChooser jDateFechaFactura;
-    private com.toedter.calendar.JDateChooser jDateFechaFin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
-    public javax.swing.JTextField jTextCliente;
-    private javax.swing.JToggleButton jToggleButtonCliente;
-    private javax.swing.JLabel lCliente;
-    private javax.swing.JLabel lFechaFin;
-    private javax.swing.JLabel lFechaIni;
-    private javax.swing.JLabel lFechaIni1;
-    // End of variables declaration//GEN-END:variables
-
-    public void ValidarFormatos(String accion)
-    {
-         jButtonGenerar.setEnabled(false);
-         JLabel errorFields = new JLabel(accion);
-         JOptionPane.showMessageDialog(null,errorFields);
-         jButtonGenerar.setEnabled(true);
+    }
     }
    
 }

@@ -247,7 +247,6 @@
     <Component class="javax.swing.JButton" name="jButtonPrev">
       <Properties>
         <Property name="text" type="java.lang.String" value="Previsualizar"/>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="jButtonPrev" noResource="true"/>
       </Properties>
       <Events>
