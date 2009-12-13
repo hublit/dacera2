@@ -34,10 +34,10 @@ import utils.Utilidades;
  *
  * @author depr102
  */
-public class CSInformeDet1 extends javax.swing.JPanel {
+public class CSInformeDet2 extends javax.swing.JPanel {
 
     /** Creates new form CSInformeDet1 */
-    public CSInformeDet1() {
+    public CSInformeDet2() {
         initComponents();
     }
 
