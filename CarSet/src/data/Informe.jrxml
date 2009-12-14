@@ -55,6 +55,13 @@
 				<reportElement x="27" y="9" width="139" height="80"/>
 				<imageExpression class="java.lang.String"><![CDATA["src/images/logo_carset_200.jpg"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="306" y="25" width="363" height="52"/>
+				<textElement>
+					<font fontName="Verdana" size="26" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[INFORME DETALLADO 1]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
