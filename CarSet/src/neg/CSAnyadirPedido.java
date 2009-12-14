@@ -156,10 +156,7 @@ public class CSAnyadirPedido extends JPanel
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        lFuMadrid = new javax.swing.JLabel();
-        jCheckBoxFMadrid = new javax.swing.JCheckBox();
         lServicio = new javax.swing.JLabel();
         jComboBoxServicio = new javax.swing.JComboBox();
         lServicioFMad = new javax.swing.JLabel();
@@ -223,6 +220,7 @@ public class CSAnyadirPedido extends JPanel
         lTarifaCli = new javax.swing.JLabel();
         jTextSuplemento = new javax.swing.JTextField();
         lTarifaEsProv1 = new javax.swing.JLabel();
+        lServicioFMad2 = new javax.swing.JLabel();
 
         setForeground(new java.awt.Color(0, 0, 100));
 
@@ -482,32 +480,12 @@ public class CSAnyadirPedido extends JPanel
         jLabel16.setText("*");
         jLabel16.setName("jLabel16"); // NOI18N
 
-        jLabel18.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel18.setText("*");
-        jLabel18.setName("jLabel18"); // NOI18N
-
         jLabel19.setForeground(new java.awt.Color(204, 0, 0));
         jLabel19.setText("*");
         jLabel19.setName("jLabel19"); // NOI18N
 
-        lFuMadrid.setForeground(new java.awt.Color(0, 0, 100));
-        lFuMadrid.setText("Fuera de Madrid");
-        lFuMadrid.setName("lFuMadrid"); // NOI18N
-
-        jCheckBoxFMadrid.setAlignmentX(0.5F);
-        jCheckBoxFMadrid.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        jCheckBoxFMadrid.setMaximumSize(new java.awt.Dimension(45, 45));
-        jCheckBoxFMadrid.setMinimumSize(new java.awt.Dimension(45, 45));
-        jCheckBoxFMadrid.setName("jCheckBoxFMadrid"); // NOI18N
-        jCheckBoxFMadrid.setPreferredSize(new java.awt.Dimension(60, 60));
-        jCheckBoxFMadrid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxFMadridActionPerformed(evt);
-            }
-        });
-
         lServicio.setFont(new java.awt.Font("Tahoma", 1, 11));
-        lServicio.setForeground(new java.awt.Color(0, 0, 100));
+        lServicio.setForeground(new java.awt.Color(170, 16, 4));
         lServicio.setText("SERVICIOS");
         lServicio.setName("lServicio"); // NOI18N
 
@@ -517,7 +495,7 @@ public class CSAnyadirPedido extends JPanel
         jComboBoxServicio.setName("jComboBoxServicio"); // NOI18N
 
         lServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
-        lServicioFMad.setText("F.M. Origen");
+        lServicioFMad.setText("Origen");
         lServicioFMad.setName("lServicioFMad"); // NOI18N
 
         jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
@@ -531,7 +509,7 @@ public class CSAnyadirPedido extends JPanel
 
         jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxSoporte.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Grúa", "Camión completo", "Conductor", "Tren", "Custodia", "Transportes pesados" }));
+        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Grúa", "Camión completo", "Conductor", "Tren", "Custodia", "Traslado pesado" }));
         jComboBoxSoporte.setName("jComboBoxSoporte"); // NOI18N
         jComboBoxSoporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -734,7 +712,7 @@ public class CSAnyadirPedido extends JPanel
         jComboBoxServicioEspecial.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioEspecial.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioEspecial.setMaximumRowCount(20);
-        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urgente", "ITV", "Pre_ITV", "ITV + Pre_ITV", "Peritación", "M.obra Mecá./Chapa", "Chequeo", "Repostaje", " ", "LAVADO DOMICILIO", "LD Exterior", "LD Interior y Exterior", "LD Integral", "LD Inte./Exte. 4x4", "LD Integral 4x4", "LD Inte./Exte. Indust.", "LD Integral Indust.", " ", "LAVADO CAMPA", "LC Exterior", "LC Interior y Exterior", "LC Integral", "LC Inte./Exte. 4x4", "LC Integral 4x4", "LC Inte./Ext. Indust.", "LC Integral Industrial", " ", "Desrotu. peg. fácil", "Desrotu. peg. normal", "Desrotu. peg. difícil", "Rotular peg. fácil", "Rotular peg. normal", "Rotular peg. difícil", "Otros" }));
+        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urgente", "ITV", "Pre_ITV", "ITV + Pre_ITV", "Peritación", "Mano obra Mecánica/Chapa", "Chequeo", "Repostaje", " ", "LAVADO DOMICILIO", "LD Exterior", "LD Interior y Exterior", "LD Integral", "LD Interior/Exterior 4x4", "LD Integral 4x4", "LD Interior/Exterior Industrial", "LD Integral Industrial", " ", "LAVADO CAMPA", "LC Exterior", "LC Interior y Exterior", "LC Integral", "LC Interior/Exterior 4x4", "LC Integral 4x4", "LC Interior/Exterior Industrial", "LC Integral Industrial", " ", "Desrotular pegatinas fácil", "Desrotular pegatinas normal", "Desrotular pegatinas difícil", "Rotular pegatinas fácil", "Rotular pegatinas normal", "Rotular pegatinas difícil", "Otros" }));
         jComboBoxServicioEspecial.setName("jComboBoxServicioEspecial"); // NOI18N
         jComboBoxServicioEspecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -768,7 +746,7 @@ public class CSAnyadirPedido extends JPanel
         jSeparator4.setName("jSeparator4"); // NOI18N
 
         lServicioFMad1.setForeground(new java.awt.Color(0, 0, 100));
-        lServicioFMad1.setText("F.M. Destino");
+        lServicioFMad1.setText("Destino");
         lServicioFMad1.setName("lServicioFMad1"); // NOI18N
 
         jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
@@ -785,6 +763,10 @@ public class CSAnyadirPedido extends JPanel
         lTarifaEsProv1.setForeground(new java.awt.Color(0, 0, 100));
         lTarifaEsProv1.setText("Suplemento");
         lTarifaEsProv1.setName("lTarifaEsProv1"); // NOI18N
+
+        lServicioFMad2.setForeground(new java.awt.Color(0, 0, 100));
+        lServicioFMad2.setText("Provincial");
+        lServicioFMad2.setName("lServicioFMad2"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -807,7 +789,7 @@ public class CSAnyadirPedido extends JPanel
                 .addComponent(lSolred)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextSolred, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(lViaje)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -815,7 +797,7 @@ public class CSAnyadirPedido extends JPanel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lOrigen)
-                .addContainerGap(877, Short.MAX_VALUE))
+                .addContainerGap(882, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -827,7 +809,7 @@ public class CSAnyadirPedido extends JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lDireccionOrigen)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                .addComponent(jTextDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -852,13 +834,13 @@ public class CSAnyadirPedido extends JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextNombreOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 7, Short.MAX_VALUE)
                                 .addGap(2, 2, 2)
                                 .addComponent(lTelefonoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                                 .addGap(3, 3, 3)
                                 .addComponent(jTextTelefonoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 7, Short.MAX_VALUE)
                                 .addGap(4, 4, 4)
                                 .addComponent(lFechaOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -867,17 +849,17 @@ public class CSAnyadirPedido extends JPanel
                                 .addComponent(lHoraOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextCodPostalOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                            .addComponent(jTextHoraOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)))
+                            .addComponent(jTextCodPostalOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                            .addComponent(jTextHoraOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lTipoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lTipoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                         .addGap(944, 944, 944)))
                 .addGap(7, 7, 7))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lNumero)
@@ -894,7 +876,7 @@ public class CSAnyadirPedido extends JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7))
@@ -917,7 +899,7 @@ public class CSAnyadirPedido extends JPanel
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(lPoblacionDestino)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextPoblacionDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                                                .addComponent(jTextPoblacionDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jLabel13)
                                                 .addGap(2, 2, 2)
@@ -933,7 +915,7 @@ public class CSAnyadirPedido extends JPanel
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jTextNombreDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 6, Short.MAX_VALUE)
+                                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 7, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(lTelefonoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -946,13 +928,13 @@ public class CSAnyadirPedido extends JPanel
                                                 .addComponent(jDateFechaDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                                                 .addGap(14, 14, 14))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lTipoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                                        .addComponent(lTipoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                                         .addGap(821, 821, 821)))
                                 .addGap(4, 4, 4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(lHoraDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(lHoraDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -960,8 +942,8 @@ public class CSAnyadirPedido extends JPanel
                                         .addGap(4, 4, 4)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextCodPostalDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                                    .addComponent(jTextHoraDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                                    .addComponent(jTextCodPostalDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                                    .addComponent(jTextHoraDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGap(7, 7, 7))
                     .addGroup(layout.createSequentialGroup()
@@ -975,73 +957,60 @@ public class CSAnyadirPedido extends JPanel
                                     .addComponent(jLabel9))
                                 .addGap(304, 304, 304)
                                 .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
                                 .addComponent(jButtonCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBoxIdaVuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel1)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lFuMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel23)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lServicio)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBoxServicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lServicioFMad)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBoxServicioFMad, 0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lMatricula)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addComponent(lMarca)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lModelo)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jTextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(lServicioFMad1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBoxServicioFMadDestino, 0, 105, Short.MAX_VALUE)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(lSEspecial)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel15)
-                                        .addGap(8, 8, 8)
-                                        .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lServicio)
+                                .addGap(18, 18, 18)
+                                .addComponent(lServicioFMad2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lServicioFMad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lServicioFMad1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lSEspecial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxServicioEspecial, 0, 206, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jCheckBoxIdaVuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lMatricula)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lMarca)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lModelo)
+                                .addGap(10, 10, 10)
+                                .addComponent(jTextModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
                 .addGap(11, 11, 11))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
                 .addGap(11, 11, 11))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -1049,7 +1018,7 @@ public class CSAnyadirPedido extends JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lSoporte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxSoporte, 0, 251, Short.MAX_VALUE)
+                .addComponent(jComboBoxSoporte, 0, 256, Short.MAX_VALUE)
                 .addGap(68, 68, 68)
                 .addComponent(lProveedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1059,7 +1028,7 @@ public class CSAnyadirPedido extends JPanel
                 .addGap(12, 12, 12))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(11, 11, 11)
@@ -1072,7 +1041,7 @@ public class CSAnyadirPedido extends JPanel
                 .addComponent(lTarifaEsProv)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(lTarifaEsProv1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1083,15 +1052,15 @@ public class CSAnyadirPedido extends JPanel
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
                 .addGap(11, 11, 11))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
                 .addGap(11, 11, 11))
         );
         layout.setVerticalGroup(
@@ -1186,38 +1155,31 @@ public class CSAnyadirPedido extends JPanel
                             .addComponent(jDateFechaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel23)
+                            .addComponent(lServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lServicioFMad2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15)
+                            .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lServicioFMad1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lSEspecial))
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lFuMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel23)
-                                        .addComponent(lServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lServicioFMad1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lSEspecial)
-                                        .addComponent(jLabel15)))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1)
-                                .addComponent(jLabel16)
-                                .addComponent(lMatricula)
                                 .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lMarca)
                                 .addComponent(jCheckBoxIdaVuelta)
-                                .addComponent(jTextMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lMarca)
+                                .addComponent(jTextMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel16)
+                                .addComponent(lMatricula))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jTextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lModelo)))
@@ -1278,13 +1240,12 @@ public class CSAnyadirPedido extends JPanel
                                     .addComponent(jCheckBoxCerrado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel9)))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
-        int fueraM=0;
         int cerradoN=0;
         int idaVueltaN=0;
         int diasCampaN=0;
@@ -1366,7 +1327,6 @@ public class CSAnyadirPedido extends JPanel
         String tipoDestino=new String(jComboTipoDestino.getSelectedItem().toString());
         String nombreDestino=new String(jTextNombreDestino.getText());
         String telefonoDestino=new String(jTextTelefonoDestino.getText());
-        boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
         String servicio=new String(jComboBoxServicio.getSelectedItem().toString());
         String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
         String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
@@ -1501,16 +1461,6 @@ public class CSAnyadirPedido extends JPanel
         }       
         else
         {
-              String servicioAux="";
-              String servicioDestino = "";
-              if(!fueraMad){
-                  fueraM=0;
-                  servicioAux=servicio;
-              }else{
-                  fueraM=1;
-                  servicioAux=servicioFMad;
-                  servicioDestino = servicioFMadDestino;
-              }
               if(!cerrado)
                   cerradoN=0;
               else
@@ -1525,7 +1475,7 @@ public class CSAnyadirPedido extends JPanel
                                                          "pe_hora_origen,pe_tipo_origen,pe_nombre_origen, pe_telefono_origen, " +
                                                          "pe_direccion_destino, pe_poblacion_destino, pe_provincia_destino, " +
                                                          "pe_cp_destino, pe_fecha_destino, pe_hora_destino, pe_tipo_destino, " +
-                                                         "pe_nombre_destino,pe_telefono_destino, pe_fuera_mad, pe_servicio, " +
+                                                         "pe_nombre_destino,pe_telefono_destino, pe_servicio, " +
                                                          "pe_servicio_origen, pe_servicio_destino, pe_servicio_especial, " +
                                                          "pe_dias_campa,pe_ida_vuelta,pe_soporte, pe_ve_matricula, " +
                                                          "pe_ve_marca,pe_ve_modelo,pe_hora_real_origen,pe_hora_real_destino, " +
@@ -1534,7 +1484,7 @@ public class CSAnyadirPedido extends JPanel
 
               query = query + "'"+fecha2+"','"+descripcion+"','"+direccionOrigen+"','"+poblacionOrigen+"','"+provinciaOrigen+"','"+codigoPOrigen+"','"+fechaOrigen+"','"+horaOrigen+"'";
               query = query + " ,'"+tipoOrigen+"','"+nombreOrigen+"','"+telefonoOrigen+"','"+direccionDestino+"','"+poblacionDestino+"','"+provinciaDestino+"','"+codigoPDestino+"'";
-              query = query + ", '"+fechaDestino+"','"+horaDestino+"','"+tipoDestino+"','"+nombreDestino+"','"+telefonoDestino+"','"+fueraM+"'";
+              query = query + ", '"+fechaDestino+"','"+horaDestino+"','"+tipoDestino+"','"+nombreDestino+"','"+telefonoDestino+"'";
               query = query + " ,'"+servicio+"','"+servicioFMad+"','"+servicioFMadDestino+"','"+servicioEspecial+"','"+diasCampaN+"','"+idaVueltaN+"','"+soporte+"','"+matricula+"'";
               query = query + ",'"+marca+"','"+modelo+"','"+horaRealOrigen+"','"+horaRealDestino+"','"+solredN+"','"+viajeN+"'";
               query = query + " ,'"+taescliN+"','"+taesproN+"','"+suplementoN+"','"+factor+"','"+estado+"','"+cerradoN+"')";
@@ -1665,19 +1615,6 @@ public class CSAnyadirPedido extends JPanel
         // TODO add your handling code here:
 }//GEN-LAST:event_jButtonCancelar1KeyPressed
 
-    private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
-        // TODO add your handling code here:
-        /*if (jCheckBoxFMadrid.isSelected()) {
-            jComboBoxServicio.setEnabled(false);
-            jComboBoxServicioFMad.setEnabled(true);
-            jComboBoxServicioFMadDestino.setEnabled(true);
-        } else {
-            jComboBoxServicio.setEnabled(true);
-            jComboBoxServicioFMad.setEnabled(false);
-            jComboBoxServicioFMadDestino.setEnabled(false);
-        }*/
-    }//GEN-LAST:event_jCheckBoxFMadridActionPerformed
-
     private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_jComboBoxEstadoActionPerformed
@@ -1768,7 +1705,6 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JButton jButtonCancelar1;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JCheckBox jCheckBoxCerrado;
-    private javax.swing.JCheckBox jCheckBoxFMadrid;
     private javax.swing.JCheckBox jCheckBoxIdaVuelta;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxProvinciaDestino;
@@ -1792,7 +1728,6 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -1854,7 +1789,6 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JLabel lFecha;
     private javax.swing.JLabel lFechaDestino;
     private javax.swing.JLabel lFechaOrigen;
-    private javax.swing.JLabel lFuMadrid;
     private javax.swing.JLabel lHoraDestino;
     private javax.swing.JLabel lHoraOrigen;
     private javax.swing.JLabel lHoraRealDestino;
@@ -1875,6 +1809,7 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JLabel lServicio;
     private javax.swing.JLabel lServicioFMad;
     private javax.swing.JLabel lServicioFMad1;
+    private javax.swing.JLabel lServicioFMad2;
     private javax.swing.JLabel lSolred;
     private javax.swing.JLabel lSoporte;
     private javax.swing.JLabel lTarifaCli;

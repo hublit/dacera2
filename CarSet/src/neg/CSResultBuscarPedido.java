@@ -70,7 +70,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "ORIGEN", "DESTINO", "FUERA MADRID","MATRICULA"});
+        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "ORIGEN", "DESTINO", "SOPORTE","MATRICULA"});
 
         int numeroFila = 0;
         try {
@@ -78,7 +78,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
                 for (int k = 0; k < 37; k++) {
-                    if (k==0 ||k == 1 || k == 3 || k == 12 || k == 21 || k == 29) {
+                    if (k==0 ||k == 1 || k == 3 || k == 12 || k == 27 || k == 28) {
                         if(k==1)
                         {
                              String fecha=(rs.getObject(k+1)).toString();
