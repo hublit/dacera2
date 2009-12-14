@@ -337,7 +337,8 @@ public class CSLanzarFactura
 
             importeCampa2=String.valueOf(importeCampa5);
 
-
+            ArrayList factorTarifa = obtenerFactor(factor, cl_id);
+            factorTexto = factorTarifa.get(0).toString();
         }
 
         //LINEA DE SERVICIO ESPECIAL OTROS
