@@ -161,7 +161,7 @@
 			<textField>
 				<reportElement x="271" y="96" width="126" height="20"/>
 				<textElement>
-					<font fontName="Verdana" size="10" isBold="true" isUnderline="true" pdfFontName="Times-Italic" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+					<font fontName="Verdana" size="10" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{NombreCliente}]]></textFieldExpression>
 			</textField>
