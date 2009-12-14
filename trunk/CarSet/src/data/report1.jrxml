@@ -1033,7 +1033,7 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="53" splitType="Stretch"/>
+		<band height="28"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="55" splitType="Stretch">
@@ -1054,9 +1054,9 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="149">
+		<band height="121">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="29" width="475" height="20" backcolor="#999999"/>
+				<reportElement mode="Opaque" x="0" y="16" width="475" height="20" backcolor="#999999"/>
 				<box>
 					<pen lineWidth="1.0" lineColor="#999999"/>
 					<topPen lineWidth="1.0" lineColor="#999999"/>
@@ -1070,21 +1070,7 @@
 				<text><![CDATA[TOTAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="474" y="82" width="80" height="20"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana"/>
-				</textElement>
-				<text><![CDATA[]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="275" y="62" width="99" height="20"/>
+				<reportElement x="275" y="56" width="99" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -1098,21 +1084,7 @@
 				<text><![CDATA[BASE I.V.A]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="474" y="102" width="80" height="20"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" isBold="true"/>
-				</textElement>
-				<text><![CDATA[]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="374" y="62" width="100" height="20"/>
+				<reportElement x="374" y="56" width="100" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -1126,7 +1098,7 @@
 				<text><![CDATA[% I.V.A]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="474" y="62" width="80" height="20"/>
+				<reportElement x="474" y="56" width="80" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -1140,7 +1112,7 @@
 				<text><![CDATA[IMPORTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="275" y="102" width="199" height="20"/>
+				<reportElement x="275" y="96" width="199" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -1154,17 +1126,31 @@
 				<text><![CDATA[IMPORTE TOTAL]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="375" y="82" width="99" height="20"/>
+				<reportElement x="374" y="76" width="100" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{IVA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="475" y="82" width="79" height="20"/>
+				<reportElement x="474" y="76" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{ImporteIVA} + " € "]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="475" y="29" width="80" height="20"/>
+				<reportElement x="475" y="16" width="80" height="20"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -1175,14 +1161,21 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{ImporteTotal} + " € "]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="475" y="102" width="79" height="20"/>
+				<reportElement x="474" y="96" width="80" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{ImporteTotalIVA} + " €"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="275" y="82" width="99" height="20"/>
+				<reportElement x="275" y="76" width="99" height="20"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
