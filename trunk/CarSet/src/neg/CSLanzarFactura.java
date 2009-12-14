@@ -458,14 +458,13 @@ public class CSLanzarFactura
         {
             String numFactura=Integer.valueOf(numero).toString();
             String finalNumFactura=Utilidades.rellenarCeros(numFactura,5);
-            finalNumFactura=finalNumFactura +"/"+ fechaFactura.substring(8, 10);
+            String finalNumCliente=Utilidades.rellenarCeros(beanCliente.getCl_id(), 5);
+            finalNumFactura=fechaFactura.substring(8, 10)+"/"+ finalNumCliente +"/"+ finalNumFactura;
+            //finalNumFactura=finalNumFactura +"/"+ fechaFactura.substring(8, 10);
 
             pars.put("NumFactura",finalNumFactura);
         }
-        /*if(flag==1)
-            pars.put("NumFactura","");
-        else
-            pars.put("NumFactura","09/"+1212);*/
+       
         pars.put("Anyo","/"+nuevaO);
 
         pars.put("TipoServicio","Probanso");
@@ -473,9 +472,9 @@ public class CSLanzarFactura
         pars.put("Importe","Dinero");
 
 
-        JasperFillManager.fillReportToFile("src\\data\\report1.jasper", pars, con);
+        //JasperFillManager.fillReportToFile("src\\data\\report1.jasper", pars, con);
 
-        JasperExportManager.exportReportToPdfFile("src\\data\\report1.jrprint");
+        //JasperExportManager.exportReportToPdfFile("src\\data\\report1.jrprint");
         //2-Llenamos el reporte con la informaci�n y par�metros necesarios
         jasperPrint = JasperFillManager.fillReport("src\\data\\report1.jasper", pars, con);
 
@@ -483,10 +482,19 @@ public class CSLanzarFactura
       //JasperExportManager.exportReportToPdfFile(
       //    jasperPrint, "c:/holaMundo.pdf");
 
-
-        JRViewer jrViewer = new JRViewer(jasperPrint);
-        CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
-        CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+        if(numero==0)
+        {
+             JRViewerSin jrViewer = new JRViewerSin(jasperPrint);
+             CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
+             CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+        }
+        else
+        {
+            JRViewer jrViewer = new JRViewer(jasperPrint);
+             CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
+             CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+        }
+       
         //CSDesktop.NuevaFactura.add(jrViewer);
         CSDesktop.NuevaFactura.pack();
        
