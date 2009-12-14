@@ -288,7 +288,7 @@ public class CSInformeDet2 extends javax.swing.JPanel {
                //JasperExportManager.exportReportToPdfFile(
                //jasperPrint, "c:/holaMundo.pdf");
 
-                JRViewer jrViewer = new JRViewer(jasperPrint);
+                JRViewerSin jrViewer = new JRViewerSin(jasperPrint);
                 CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
                 CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
                 //CSDesktop.NuevaFactura.add(jrViewer);
