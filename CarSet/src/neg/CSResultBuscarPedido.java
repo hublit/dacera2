@@ -11,7 +11,8 @@
 
 package neg;
 
-import utils.TablaModeloPedidos;
+//import utils.TablaModeloPedidos;
+import utils.TablaModelo;
 import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -45,7 +46,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
     public CSResultBuscarPedido(String query) {
 
         DbConnection datos = new DbConnection();
-        TablaModeloPedidos modelo = new TablaModeloPedidos();
+        TablaModelo modelo = new TablaModelo();
         ResultSet rs = datos.select(query);
 
         KeyListener l = new KeyListener()
@@ -53,7 +54,6 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
             public void keyTyped(KeyEvent e) {}
             public void keyPressed(KeyEvent e)
             {
-
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
                 {
                     jButtonCerrar.doClick();
@@ -70,7 +70,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "ORIGEN", "DESTINO", "SOPORTE","MATRICULA"});
+        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "ORIGEN", "DESTINO", "SOPORTE", "MATRICULA"});
 
         int numeroFila = 0;
         try {
@@ -136,8 +136,8 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
         TableColumn columna3 = jTable1.getColumnModel().getColumn(3);
         columna3.setPreferredWidth(200);
         TableColumn columna4 = jTable1.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(50);
-        TableColumn columna5 = jTable1.getColumnModel().getColumn(4);
+        columna4.setPreferredWidth(100);
+        TableColumn columna5 = jTable1.getColumnModel().getColumn(5);
         columna5.setPreferredWidth(100);
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
