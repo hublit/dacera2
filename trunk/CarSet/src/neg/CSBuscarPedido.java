@@ -26,6 +26,8 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import utils.Utilidades;
 
 /**
@@ -65,8 +67,9 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         {
             if (this.getComponents()[k] != jComboBoxProvinciaOrigen &&
                 this.getComponents()[k] != jComboBoxProvinciaDestino &&
-                this.getComponents()[k] != jComboBoxServicio &&
+                this.getComponents()[k] != jComboFactor &&
                 this.getComponents()[k] != jComboBoxServicioFMad &&
+                this.getComponents()[k] != jComboBoxServicioFMadDestino &&
                 this.getComponents()[k] != jComboBoxSoporte &&
                 this.getComponents()[k] != jComboBoxEstado)
             {
@@ -87,17 +90,13 @@ public class CSBuscarPedido extends javax.swing.JPanel {
 
         jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jComboVehiculo = new javax.swing.JComboBox();
-        lServicio = new javax.swing.JLabel();
+        jComboBoxSoporte = new javax.swing.JComboBox();
         jSeparator4 = new javax.swing.JSeparator();
         lDestino1 = new javax.swing.JLabel();
-        lSoporte = new javax.swing.JLabel();
         jTextMatricula = new javax.swing.JTextField();
-        lFuMadrid = new javax.swing.JLabel();
         lMatricula = new javax.swing.JLabel();
         lPoblacionDestino = new javax.swing.JLabel();
         lVehiculo = new javax.swing.JLabel();
-        jCheckBoxFMadrid = new javax.swing.JCheckBox();
         jToggleButtonCliente = new javax.swing.JToggleButton();
         lCliente = new javax.swing.JLabel();
         jTextDireccionOrigen1 = new javax.swing.JTextField();
@@ -109,7 +108,6 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         jTextProveedor = new javax.swing.JTextField();
         lNumero = new javax.swing.JLabel();
         jTextPoblacionOrigen = new javax.swing.JTextField();
-        jComboBoxServicio = new javax.swing.JComboBox();
         lDireccionDestino1 = new javax.swing.JLabel();
         lEstado3 = new javax.swing.JLabel();
         lCodPostalDestino = new javax.swing.JLabel();
@@ -131,13 +129,17 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         lProvinciaDestino = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jDateFecha = new com.toedter.calendar.JDateChooser();
-        jComboBoxSoporte = new javax.swing.JComboBox();
         lFechaFin = new javax.swing.JLabel();
         jDateFechaFin = new com.toedter.calendar.JDateChooser();
-        lServicioFMad = new javax.swing.JLabel();
         jComboBoxServicioFMad = new javax.swing.JComboBox();
-        lServicioFMad1 = new javax.swing.JLabel();
+        lServicioFMad2 = new javax.swing.JLabel();
+        jComboFactor = new javax.swing.JComboBox();
+        lServicio = new javax.swing.JLabel();
+        lServicioFMad = new javax.swing.JLabel();
         jComboBoxServicioFMadDestino = new javax.swing.JComboBox();
+        lServicioFMad1 = new javax.swing.JLabel();
+        lSEspecial = new javax.swing.JLabel();
+        jComboBoxServicioEspecial = new javax.swing.JComboBox();
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.setName("jButtonBuscar"); // NOI18N
@@ -156,14 +158,10 @@ public class CSBuscarPedido extends javax.swing.JPanel {
             }
         });
 
-        jComboVehiculo.setBackground(new java.awt.Color(228, 229, 255));
-        jComboVehiculo.setForeground(new java.awt.Color(0, 0, 100));
-        jComboVehiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Turismo", "Industrial", "4x4", "Monovolumen" }));
-        jComboVehiculo.setName("jComboVehiculo"); // NOI18N
-
-        lServicio.setForeground(new java.awt.Color(0, 0, 100));
-        lServicio.setText("Servicio");
-        lServicio.setName("lServicio"); // NOI18N
+        jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxSoporte.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Grúa", "Camión completo", "Conductor", "Tren", "Custodia", "Traslado pesado" }));
+        jComboBoxSoporte.setName("jComboBoxSoporte"); // NOI18N
 
         jSeparator4.setName("jSeparator4"); // NOI18N
 
@@ -172,20 +170,12 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         lDestino1.setText("DATOS DEL DESTINO");
         lDestino1.setName("lDestino1"); // NOI18N
 
-        lSoporte.setForeground(new java.awt.Color(0, 0, 100));
-        lSoporte.setText("Soporte");
-        lSoporte.setName("lSoporte"); // NOI18N
-
         jTextMatricula.setName("jTextMatricula"); // NOI18N
         jTextMatricula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextMatriculaFocusLost(evt);
             }
         });
-
-        lFuMadrid.setForeground(new java.awt.Color(0, 0, 100));
-        lFuMadrid.setText("Fuera de Madrid");
-        lFuMadrid.setName("lFuMadrid"); // NOI18N
 
         lMatricula.setForeground(new java.awt.Color(0, 0, 100));
         lMatricula.setText("Matrícula");
@@ -196,20 +186,8 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         lPoblacionDestino.setName("lPoblacionDestino"); // NOI18N
 
         lVehiculo.setForeground(new java.awt.Color(0, 0, 100));
-        lVehiculo.setText("Tipo de vehículo");
+        lVehiculo.setText("Soporte");
         lVehiculo.setName("lVehiculo"); // NOI18N
-
-        jCheckBoxFMadrid.setAlignmentX(0.5F);
-        jCheckBoxFMadrid.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        jCheckBoxFMadrid.setMaximumSize(new java.awt.Dimension(45, 45));
-        jCheckBoxFMadrid.setMinimumSize(new java.awt.Dimension(45, 45));
-        jCheckBoxFMadrid.setName("jCheckBoxFMadrid"); // NOI18N
-        jCheckBoxFMadrid.setPreferredSize(new java.awt.Dimension(60, 60));
-        jCheckBoxFMadrid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxFMadridActionPerformed(evt);
-            }
-        });
 
         jToggleButtonCliente.setText("Buscar Cliente");
         jToggleButtonCliente.setName("jToggleButtonCliente"); // NOI18N
@@ -267,11 +245,6 @@ public class CSBuscarPedido extends javax.swing.JPanel {
                 jTextPoblacionOrigenFocusLost(evt);
             }
         });
-
-        jComboBoxServicio.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxServicio.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urbano", "Interurbano", "Provincial", "Urbano ITV", "Especial" }));
-        jComboBoxServicio.setName("jComboBoxServicio"); // NOI18N
 
         lDireccionDestino1.setForeground(new java.awt.Color(0, 0, 100));
         lDireccionDestino1.setText("Dirección");
@@ -355,12 +328,6 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         jDateFecha.setDateFormatString("dd-MM-yyyy"); // NOI18N
         jDateFecha.setName("jDateFecha"); // NOI18N
 
-        jComboBoxSoporte.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxSoporte.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxSoporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Grúa", "Camión completo", "Conductor", "Tren", "Custodia" }));
-        jComboBoxSoporte.setSelectedIndex(2);
-        jComboBoxSoporte.setName("jComboBoxSoporte"); // NOI18N
-
         lFechaFin.setForeground(new java.awt.Color(0, 0, 100));
         lFechaFin.setText("Fecha fin");
         lFechaFin.setName("lFechaFin"); // NOI18N
@@ -368,23 +335,52 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         jDateFechaFin.setDateFormatString("dd-MM-yyyy"); // NOI18N
         jDateFechaFin.setName("jDateFechaFin"); // NOI18N
 
-        lServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
-        lServicioFMad.setText("F.M. Origen");
-        lServicioFMad.setName("lServicioFMad"); // NOI18N
-
         jComboBoxServicioFMad.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "A CORUÑA", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERÍA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CÓRDOBA", "CUENCA", "GIRONA", "GRANADA", "GUADALAJ.", "GUIPÚZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LA RIOJA", "LAS PALMAS", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MÁLAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PONTEVED.", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA", "OTROS" }));
         jComboBoxServicioFMad.setName("jComboBoxServicioFMad"); // NOI18N
 
-        lServicioFMad1.setForeground(new java.awt.Color(0, 0, 100));
-        lServicioFMad1.setText("F.M. Destino");
-        lServicioFMad1.setName("lServicioFMad1"); // NOI18N
+        lServicioFMad2.setForeground(new java.awt.Color(0, 0, 100));
+        lServicioFMad2.setText("Factor");
+        lServicioFMad2.setName("lServicioFMad2"); // NOI18N
+
+        jComboFactor.setBackground(new java.awt.Color(228, 229, 255));
+        jComboFactor.setForeground(new java.awt.Color(0, 0, 100));
+        jComboFactor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urbano", "Interurbano", "Provincial", "Urbano ITV", "Especial" }));
+        jComboFactor.setName("jComboFactor"); // NOI18N
+
+        lServicio.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lServicio.setForeground(new java.awt.Color(170, 16, 4));
+        lServicio.setText("SERVICIOS");
+        lServicio.setName("lServicio"); // NOI18N
+
+        lServicioFMad.setForeground(new java.awt.Color(0, 0, 100));
+        lServicioFMad.setText("Origen");
+        lServicioFMad.setName("lServicioFMad"); // NOI18N
 
         jComboBoxServicioFMadDestino.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicioFMadDestino.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxServicioFMadDestino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "A CORUÑA", "ÁLAVA", "ALBACETE", "ALICANTE", "ALMERÍA", "ASTURIAS", "ÁVILA", "BADAJOZ", "BARCELONA", "BURGOS", "CÁCERES", "CÁDIZ", "CANTABRIA", "CASTELLÓN", "CEUTA", "CIUDAD REAL", "CÓRDOBA", "CUENCA", "GIRONA", "GRANADA", "GUADALAJ.", "GUIPÚZCOA", "HUELVA", "HUESCA", "ILLES BALEARS", "JAÉN", "LA RIOJA", "LAS PALMAS", "LEÓN", "LLEIDA", "LUGO", "MADRID", "MÁLAGA", "MELILLA", "MURCIA", "NAVARRA", "OURENSE", "PALENCIA", "PONTEVED.", "SALAMANCA", "SANTA CRUZ DE TENERIFE", "SEGOVIA", "SEVILLA", "SORIA", "TARRAGONA", "TERUEL", "TOLEDO", "VALENCIA", "VALLADOLID", "VIZCAYA", "ZAMORA", "ZARAGOZA", "OTROS" }));
         jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
+
+        lServicioFMad1.setForeground(new java.awt.Color(0, 0, 100));
+        lServicioFMad1.setText("Destino");
+        lServicioFMad1.setName("lServicioFMad1"); // NOI18N
+
+        lSEspecial.setForeground(new java.awt.Color(0, 0, 100));
+        lSEspecial.setText("Especial");
+        lSEspecial.setName("lSEspecial"); // NOI18N
+
+        jComboBoxServicioEspecial.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxServicioEspecial.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxServicioEspecial.setMaximumRowCount(20);
+        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urgente", "ITV", "Pre_ITV", "ITV + Pre_ITV", "Peritación", "Mano obra Mecánica/Chapa", "Chequeo", "Repostaje", " ", "LAVADO DOMICILIO", "LD Exterior", "LD Interior y Exterior", "LD Integral", "LD Interior/Exterior 4x4", "LD Integral 4x4", "LD Interior/Exterior Industrial", "LD Integral Industrial", " ", "LAVADO CAMPA", "LC Exterior", "LC Interior y Exterior", "LC Integral", "LC Interior/Exterior 4x4", "LC Integral 4x4", "LC Interior/Exterior Industrial", "LC Integral Industrial", " ", "Desrotular pegatinas fácil", "Desrotular pegatinas normal", "Desrotular pegatinas difícil", "Rotular pegatinas fácil", "Rotular pegatinas normal", "Rotular pegatinas difícil", "Otros" }));
+        jComboBoxServicioEspecial.setName("jComboBoxServicioEspecial"); // NOI18N
+        jComboBoxServicioEspecial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxServicioEspecialActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -426,34 +422,14 @@ public class CSBuscarPedido extends javax.swing.JPanel {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
                             .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lFuMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lServicio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lServicioFMad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lServicioFMad1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxServicioFMadDestino, 0, 110, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lSoporte)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lVehiculo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)
+                                .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                                 .addComponent(lMatricula)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)
+                                .addGap(18, 18, 18)
                                 .addComponent(lProveedor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -503,7 +479,25 @@ public class CSBuscarPedido extends javax.swing.JPanel {
                                             .addGap(18, 18, 18)
                                             .addComponent(lCodPostalOrigen)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextCodPostalOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                            .addComponent(jTextCodPostalOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lServicio)
+                                .addGap(22, 22, 22)
+                                .addComponent(lServicioFMad2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(lServicioFMad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lServicioFMad1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxServicioFMadDestino, 0, 165, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lSEspecial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
@@ -555,29 +549,23 @@ public class CSBuscarPedido extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lSoporte)
-                            .addComponent(lServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lServicioFMad1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jCheckBoxFMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(lFuMadrid)))
-                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lServicioFMad2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lSEspecial)
+                    .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lServicioFMad1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lVehiculo)
+                    .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonProveedor)
                     .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lProveedor)
-                    .addComponent(lVehiculo)
-                    .addComponent(jComboVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lMatricula)
                     .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -633,12 +621,11 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         String poblacionDestino=new String(jTextPoblacionDestino.getText());
         String provinciaDestino=new String(jComboBoxProvinciaDestino.getSelectedItem().toString());
         String codPostalDestino=new String(jTextCodPostalDestino.getText());
-        boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
-        String servicio=new String(jComboBoxServicio.getSelectedItem().toString());
+        int factor = new Integer(jComboFactor.getSelectedIndex());
+        String servicio=new String(jComboFactor.getSelectedItem().toString());
         String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
         String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
         String soporte=new String(jComboBoxSoporte.getSelectedItem().toString());
-        String vehiculo=new String(jComboVehiculo.getSelectedItem().toString());
         String matricula=new String(jTextMatricula.getText());
         String proveedor=new String(jTextProveedor.getText());
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
@@ -646,272 +633,246 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         boolean and = false;
         String query = "SELECT * FROM pe_pedidos pe ";
 
-
-        if(!cliente.equals("") && !proveedor.equals(""))
+        if (cliente.equals("") && proveedor.equals(""))
         {
-            Cliente cliente2=new Cliente();
-            clienteID=cliente2.getClienteID(cliente);
-            Proveedor proveedor2=new Proveedor();
-            proveedorID=proveedor2.getProveedorID(proveedor);
-            
-            query = query + ", pc_pedidos_clientes pc, pp_pedidos_proveedores pp WHERE pe.pe_num = pc.pe_num AND"+ 
-                    " pe.pe_num = pp.pe_num AND pc.cl_id = "+clienteID+" AND pp.pr_id = "+proveedorID;
-            and=true;
-
-        }
-        else if(!cliente.equals(""))
-        {
-            Cliente cliente2=new Cliente();
-            clienteID=cliente2.getClienteID(cliente);
-
-            query = query + ", pc_pedidos_clientes pc WHERE pe.pe_num = pc.pe_num AND pc.cl_id = "+clienteID;
-            and=true;
-        }
-        else if(!proveedor.equals(""))
-        {
-            Proveedor proveedor2=new Proveedor();
-            proveedorID=proveedor2.getProveedorID(proveedor);
-
-            query = query + ", pp_pedidos_proveedores pp WHERE pe.pe_num = pp.pe_num AND pp.pr_id = "+proveedorID;
-             and=true;
-        }      
-        else
-        {
-            query = query + " WHERE ";
-        }
-        if(numeroN!=0)
-        {
-             if (and)
-             {
-                query = query + " AND pe_num = "+numeroN;
-                and=true;
-             }
-              else
-             {
-                  query = query + " pe_num = "+numeroN;
-                  and = true;
-             }
-        }
-        if ((!fechaI.equals(""))&& (!fechaF.equals("")) )
-        {
-             if (and)
-             {
-                 query = query + " AND pe_fecha >='"+fechaI+"' and pe_fecha<='"+fechaF+"'";
-             }
-             else
-             {
-                  query = query + " pe_fecha >='"+fechaI+"' and pe_fecha<='"+fechaF+"'";
-                  and = true;
-             }
-        }
-        if (!direccionOrigen.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_direccion_origen='"+direccionOrigen+"'";
-             }
-             else
-             {
-                  query = query + " pe_direccion_origen='"+direccionOrigen+"'";
-                  and = true;
-             }
-        }
-        if (!poblacionOrigen.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_poblacion_origen='"+poblacionOrigen+"'";
-             }
-             else
-             {
-                  query = query + " pe_poblacion_origen='"+poblacionOrigen+"'";
-                  and = true;
-             }
-        }
-        if (!provinciaOrigen.equals("Selecciona"))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_provincia_origen='"+provinciaOrigen+"'";
-             }
-             else
-             {
-                  query = query + " pe_provincia_origen='"+provinciaOrigen+"'";
-                  and = true;
-             }
-        }
-        if (!codPostalOrigen.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_cp_origen='"+codPostalOrigen+"'";
-             }
-             else
-             {
-                  query = query + " pe_cp_origen='"+codPostalOrigen+"'";
-                  and = true;
-             }
-        }
-         if (!direccionDestino.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_direccion_destino='"+direccionDestino+"'";
-             }
-             else
-             {
-                  query = query + " pe_direccion_destino='"+direccionDestino+"'";
-                  and = true;
-             }
-        }
-        if (!poblacionDestino.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_poblacion_destino='"+poblacionDestino+"'";
-             }
-             else
-             {
-                  query = query + " pe_poblacion_destino='"+poblacionDestino+"'";
-                  and = true;
-             }
-        }
-        if (!provinciaDestino.equals("Selecciona"))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_provincia_destino='"+provinciaDestino+"'";
-             }
-             else
-             {
-                  query = query + " pe_provincia_destino='"+provinciaDestino+"'";
-                  and = true;
-             }
-        }
-        if (!codPostalDestino.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_cp_destino='"+codPostalDestino+"'";
-             }
-             else
-             {
-                  query = query + " pe_cp_destino='"+codPostalDestino+"'";
-                  and = true;
-             }
-        }
-        if(!fueraMad)
-        {
-            if (and)
-            {
-                query = query + " AND pe_fuera_mad=0 ";
-            }
-             else
-             {
-                  query = query + " pe_fuera_mad=0 ";
-                  and = true;
-             }
-
-            if (!servicio.equals("Selecciona"))
-            {
-                    query = query + " AND pe_servicio='"+servicio+"'";
-            }
-
+            jButtonBuscar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Cliente o un Proveedor</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonBuscar.setEnabled(true);
+            //query = query + " WHERE ";
         }
         else
         {
-             if (and)
+
+            if(!cliente.equals("") && !proveedor.equals(""))
+            {
+                Cliente cliente2=new Cliente();
+                clienteID=cliente2.getClienteID(cliente);
+                Proveedor proveedor2=new Proveedor();
+                proveedorID=proveedor2.getProveedorID(proveedor);
+
+                query = query + ", pc_pedidos_clientes pc, pp_pedidos_proveedores pp WHERE pe.pe_num = pc.pe_num AND"+
+                        " pe.pe_num = pp.pe_num AND pc.cl_id = "+clienteID+" AND pp.pr_id = "+proveedorID;
+                and = true;
+
+            }
+            else if(!cliente.equals(""))
+            {
+                Cliente cliente2=new Cliente();
+                clienteID=cliente2.getClienteID(cliente);
+
+                query = query + ", pc_pedidos_clientes pc WHERE pe.pe_num = pc.pe_num AND pc.cl_id = "+clienteID;
+                and = true;
+            }
+            else if(!proveedor.equals(""))
+            {
+                Proveedor proveedor2=new Proveedor();
+                proveedorID=proveedor2.getProveedorID(proveedor);
+
+                query = query + ", pp_pedidos_proveedores pp WHERE pe.pe_num = pp.pe_num AND pp.pr_id = "+proveedorID;
+                and = true;
+            }
+
+
+            if(numeroN!=0)
+            {
+                 if (and)
+                 {
+                    query = query + " AND pe_num = "+numeroN;
+                    and = true;
+                 }
+                  else
+                 {
+                      query = query + " pe_num = "+numeroN;
+                      and = true;
+                 }
+            }
+            if ((!fechaI.equals(""))&& (!fechaF.equals("")) )
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_fecha >='"+fechaI+"' and pe_fecha<='"+fechaF+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_fecha >='"+fechaI+"' and pe_fecha<='"+fechaF+"'";
+                      and = true;
+                 }
+            }
+            if (!direccionOrigen.equals(""))
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_direccion_origen='"+direccionOrigen+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_direccion_origen='"+direccionOrigen+"'";
+                      and = true;
+                 }
+            }
+            if (!poblacionOrigen.equals(""))
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_poblacion_origen='"+poblacionOrigen+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_poblacion_origen='"+poblacionOrigen+"'";
+                      and = true;
+                 }
+            }
+            if (!provinciaOrigen.equals("Selecciona"))
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_provincia_origen='"+provinciaOrigen+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_provincia_origen='"+provinciaOrigen+"'";
+                      and = true;
+                 }
+            }
+            if (!codPostalOrigen.equals(""))
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_cp_origen='"+codPostalOrigen+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_cp_origen='"+codPostalOrigen+"'";
+                      and = true;
+                 }
+            }
+             if (!direccionDestino.equals(""))
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_direccion_destino='"+direccionDestino+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_direccion_destino='"+direccionDestino+"'";
+                      and = true;
+                 }
+            }
+            if (!poblacionDestino.equals(""))
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_poblacion_destino='"+poblacionDestino+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_poblacion_destino='"+poblacionDestino+"'";
+                      and = true;
+                 }
+            }
+            if (!provinciaDestino.equals("Selecciona"))
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_provincia_destino='"+provinciaDestino+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_provincia_destino='"+provinciaDestino+"'";
+                      and = true;
+                 }
+            }
+            if (!codPostalDestino.equals(""))
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_cp_destino='"+codPostalDestino+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_cp_destino='"+codPostalDestino+"'";
+                      and = true;
+                 }
+            }
+            if (!servicioFMad.equals("Selecciona"))
+            {
+                if (and)
                 {
-                    query = query + " AND pe_fuera_mad=1 ";
+                    query = query + " AND pe_servicio_origen='"+servicioFMad+"'";
+                }
+                else
+                {
+                    query = query + " pe_servicio_origen='"+servicioFMad+"'";
+                }
+            }
+            if (!servicioFMadDestino.equals("Selecciona"))
+            {
+                if (and)
+                {
+                    query = query + " AND pe_servicio_destino='"+servicioFMadDestino+"'";
+
+                }
+                else
+                {
+                    query = query + " pe_servicio_destino='"+servicioFMadDestino+"'";
+                }
+            }
+            if(!soporte.equals("Selecciona"))
+            {
+                if (and)
+                {
+                    query = query + " AND pe_soporte='"+soporte+"'";
                 }
                  else
                  {
-                      query = query + " pe_fuera_mad=1 ";
+                      query = query + " pe_soporte='"+soporte+"'";
                       and = true;
                  }
-
-            if (!servicioFMad.equals("Selecciona"))
+            }
+            if (factor != 0)
             {
-                
-                    query = query + " AND pe_servicio='"+servicioFMad+"'";
-               
+                 if (and)
+                 {
+                     query = query + " AND fc_id='"+factor+"'";
+                 }
+                 else
+                 {
+                      query = query + " fc_id='"+factor+"'";
+                      and = true;
+                 }
             }
-
-             if (!servicioFMadDestino.equals("Selecciona"))
-             {
-               
-                    query = query + " AND pe_servicio_destino='"+servicioFMadDestino+"'";
-               
-            }
-
-        }
-        if(soporte.equals(""))
-        {
-            if (and)
+            if (!matricula.equals(""))
             {
-                query = query + " AND pe_soporte='"+soporte+"'";
+                 if (and)
+                 {
+                     query = query + " AND pe_matricula='"+matricula+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_matricula='"+matricula+"'";
+                      and = true;
+                 }
             }
-             else
-             {
-                  query = query + " pe_soporte='"+soporte+"'";
-                  and = true;
-             }
-        }
-         if (!vehiculo.equals("Selecciona"))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_vehiculo='"+vehiculo+"'";
-             }
-             else
-             {
-                  query = query + " pe_vehiculo='"+vehiculo+"'";
-                  and = true;
-             }
-        }
-        if (!matricula.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_matricula='"+matricula+"'";
-             }
-             else
-             {
-                  query = query + " pe_matricula='"+matricula+"'";
-                  and = true;
-             }
-        }
-        if (estado.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_estado='"+estado+"'";
-             }
-             else
-             {
-                  query = query + " pe_estado='"+estado+"'";
-                  and = true;
-             }
-        }
+            if (estado.equals(""))
+            {
+                 if (and)
+                 {
+                     query = query + " AND pe_estado='"+estado+"'";
+                 }
+                 else
+                 {
+                      query = query + " pe_estado='"+estado+"'";
+                      and = true;
+                 }
+            }
 
-                System.out.println(query+" ORDER BY pe.pe_num DESC");
-                query = query+" ORDER BY pe.pe_num ASC";
+                    System.out.println(query+" ORDER BY pe.pe_num DESC");
+                    query = query+" ORDER BY pe.pe_num ASC";
 
-                CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+                    CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+        }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
-
-    private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
-        // TODO add your handling code here:
-        if (jCheckBoxFMadrid.isSelected()) {
-            jComboBoxServicio.setEnabled(false);
-            jComboBoxServicioFMad.setEnabled(true);
-            jComboBoxServicioFMadDestino.setEnabled(true);
-        } else {
-            jComboBoxServicio.setEnabled(true);
-            jComboBoxServicioFMad.setEnabled(false);
-            jComboBoxServicioFMadDestino.setEnabled(false);
-        }
-}//GEN-LAST:event_jCheckBoxFMadridActionPerformed
 
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
@@ -978,6 +939,10 @@ public class CSBuscarPedido extends javax.swing.JPanel {
        jTextMatricula.setText(MatriculaM);
     }//GEN-LAST:event_jTextMatriculaFocusLost
 
+    private void jComboBoxServicioEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServicioEspecialActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jComboBoxServicioEspecialActionPerformed
+
  public Dimension getPreferredSize()
    {
       return new Dimension( 1020,500 );
@@ -986,15 +951,14 @@ public class CSBuscarPedido extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JCheckBox jCheckBoxFMadrid;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxProvinciaDestino;
     private javax.swing.JComboBox jComboBoxProvinciaOrigen;
-    private javax.swing.JComboBox jComboBoxServicio;
+    private javax.swing.JComboBox jComboBoxServicioEspecial;
     private javax.swing.JComboBox jComboBoxServicioFMad;
     private javax.swing.JComboBox jComboBoxServicioFMadDestino;
     private javax.swing.JComboBox jComboBoxSoporte;
-    private javax.swing.JComboBox jComboVehiculo;
+    private javax.swing.JComboBox jComboFactor;
     private com.toedter.calendar.JDateChooser jDateFecha;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private javax.swing.JSeparator jSeparator1;
@@ -1023,7 +987,6 @@ public class CSBuscarPedido extends javax.swing.JPanel {
     private javax.swing.JLabel lEstado3;
     private javax.swing.JLabel lFechaFin;
     private javax.swing.JLabel lFechaIni;
-    private javax.swing.JLabel lFuMadrid;
     private javax.swing.JLabel lMatricula;
     private javax.swing.JLabel lNumero;
     private javax.swing.JLabel lOrigen1;
@@ -1032,17 +995,17 @@ public class CSBuscarPedido extends javax.swing.JPanel {
     private javax.swing.JLabel lProveedor;
     private javax.swing.JLabel lProvinciaDestino;
     private javax.swing.JLabel lProvinciaOrigen;
+    private javax.swing.JLabel lSEspecial;
     private javax.swing.JLabel lServicio;
     private javax.swing.JLabel lServicioFMad;
     private javax.swing.JLabel lServicioFMad1;
-    private javax.swing.JLabel lSoporte;
+    private javax.swing.JLabel lServicioFMad2;
     private javax.swing.JLabel lVehiculo;
     // End of variables declaration//GEN-END:variables
 
 
     private void limitacionesCampos()
     {
-
        LimitadorDeDocumento limitadorPoblacionOrigen= new LimitadorDeDocumento(50);
        jTextPoblacionOrigen.setDocument(limitadorPoblacionOrigen);
        LimitadorDeDocumento limitadorCPOrigen= new LimitadorDeDocumento(5);
