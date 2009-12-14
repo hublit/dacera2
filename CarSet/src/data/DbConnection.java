@@ -35,9 +35,9 @@ public class DbConnection
 
 
 		//Ruta de conexion. Conecta al server especificado y la Base de datos
-		//String url = "jdbc:mysql://localhost/"+db;
+		String url = "jdbc:mysql://localhost/"+db;
 
-                String url = "jdbc:mysql://192.168.1.35:3306/"+db;
+                //String url = "jdbc:mysql://192.168.1.35:3306/"+db;
 	try
 	{
             //Instanciación del conextor jdbc
@@ -58,7 +58,7 @@ public class DbConnection
 	* getConexion()
 	* Devuelve la variable privada del tipo Connection.
 	*/
-	private Connection getConexion()
+	public Connection getConexion()
 	{
 		return this.conn;
 	}
