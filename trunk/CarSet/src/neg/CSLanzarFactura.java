@@ -409,15 +409,15 @@ public class CSLanzarFactura
      //FacturaXML nueva=new FacturaXML(query);
     try 
     { 
-        //Class.forName("com.mysql.jdbc.Driver");
-        //con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","cesar");
+       
         DbConnection conexion=new DbConnection();
         con=conexion.getConexion();
-        //con = DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
+
+
         //1-Compilamos el archivo XML y lo cargamos en memoria 
         jasperReport = JasperCompileManager.compileReport("src\\data\\report1.jrxml");
 
-     /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
+       /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
 
       if(beanCliente.getDireccion_fiscal().equals(""))
       {
