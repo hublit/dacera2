@@ -267,10 +267,7 @@ public class CSInformeDet1 extends javax.swing.JPanel {
                     Class.forName("com.mysql.jdbc.Driver");
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-                   // con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
-                    //con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/carset","root","rcortes");
+                }                                  
                     DbConnection conexion=new DbConnection();
                     con=(Connection) conexion.getConexion();
                
