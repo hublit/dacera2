@@ -289,7 +289,7 @@ public class CSInformeDet1 extends javax.swing.JPanel {
                //jasperPrint, "c:/holaMundo.pdf");
 
                 JRViewer jrViewer = new JRViewer(jasperPrint);
-                CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
+                CSDesktop.NuevaFactura = new JInternalFrame("Informe Detallado 1", true, false, false, true );
                 CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
                 //CSDesktop.NuevaFactura.add(jrViewer);
                 CSDesktop.NuevaFactura.pack();
