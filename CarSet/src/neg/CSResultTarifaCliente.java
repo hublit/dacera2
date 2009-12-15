@@ -55,7 +55,7 @@ public class CSResultTarifaCliente extends javax.swing.JPanel {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
                 for (int k = 0; k < 11; k++) {
-                    if (k == 0 || k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k == 9) {
+                    if (k == 0 || k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k == 8) {
                          if(k==5)
                         {
                              String fecha=(rs.getObject(k+1)).toString();
@@ -129,7 +129,7 @@ public class CSResultTarifaCliente extends javax.swing.JPanel {
         //tablaClientes.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaClientes.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaClientes.getColumnModel().getColumn(5).setCellRenderer(tcr);
-
+        tablaClientes.getColumnModel().getColumn(6).setCellRenderer(tcr);
         tablaClientes.addMouseListener(new MouseAdapter()
         {
         public void mouseClicked(MouseEvent e)

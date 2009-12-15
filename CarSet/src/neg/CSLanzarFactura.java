@@ -184,7 +184,8 @@ public class CSLanzarFactura
                  //double dd2dec = new Double(df2.format(valor F)).doubleValue();
                  //System.out.println("Valor factor de corrección"+dd2dec);
             }
-            
+
+
             //SERVICIOS ESPECIALES
             String campoServicio = "";
 
@@ -208,7 +209,7 @@ public class CSLanzarFactura
             {
                 campoServicio = "sc_peritacion";
             }
-            else if(servicioEspecial.equals("M.obra Mecá./Chapa"))
+            else if(servicioEspecial.equals("Mano obra Mecánica/Chapa"))
             {
                 campoServicio = "sc_mo_mecanica_chapa";
             }
@@ -232,7 +233,7 @@ public class CSLanzarFactura
             {
                 campoServicio = "sc_ldom_integral";
             }
-            else if(servicioEspecial.equals("LD Inte./Exte. 4x4"))
+            else if(servicioEspecial.equals("LD Interior/Exterior 4x4"))
             {
                 campoServicio = "sc_ldom_int_ext_cuatro";
             }
@@ -240,11 +241,11 @@ public class CSLanzarFactura
             {
                 campoServicio = "sc_ldom_integral_cuatro";
             }
-            else if(servicioEspecial.equals("LD Inte./Exte. Indust."))
+            else if(servicioEspecial.equals("LD Interior/Exterior Industrial"))
             {
                 campoServicio = "sc_ldom_int_ext_industrial";
             }
-            else if(servicioEspecial.equals("LD Integral Indust."))
+            else if(servicioEspecial.equals("LD Integral Industrial"))
             {
                 campoServicio = "sc_ldom_integral_industrial";
             }
@@ -260,7 +261,7 @@ public class CSLanzarFactura
             {
                 campoServicio = "sc_lavado_integral";
             }
-            else if(servicioEspecial.equals("LC Inte./Exte. 4x4"))
+            else if(servicioEspecial.equals("LC Interior/Exterior 4x4"))
             {
                 campoServicio = "sc_int_ext_cuatro";
             }
@@ -268,7 +269,7 @@ public class CSLanzarFactura
             {
                 campoServicio = "sc_integral_cuatro";
             }
-            else if(servicioEspecial.equals("LC Inte./Ext. Indust."))
+            else if(servicioEspecial.equals("LC Interior/Exterior Industrial"))
             {
                 campoServicio = "sc_int_ext_industrial";
             }
@@ -276,27 +277,27 @@ public class CSLanzarFactura
             {
                 campoServicio = "sc_integral_industrial";
             }
-            else if(servicioEspecial.equals("Desrotu. peg. fácil"))
+            else if(servicioEspecial.equals("Desrotular pegatinas fácil"))
             {
                 campoServicio = "sc_desrotular_peg_facil";
             }
-            else if(servicioEspecial.equals("Desrotu. peg. normal"))
+            else if(servicioEspecial.equals("Desrotular pegatinas normal"))
             {
                 campoServicio = "sc_desrotular_peg_normal";
             }
-            else if(servicioEspecial.equals("Desrotu. peg. difícil"))
+            else if(servicioEspecial.equals("Desrotular pegatinas difícil"))
             {
                 campoServicio = "sc_desrotular_peg_dificil";
             }
-            else if(servicioEspecial.equals("Rotular peg. fácil"))
+            else if(servicioEspecial.equals("Rotular pegatinas fácil"))
             {
                 campoServicio = "sc_rotular_peg_facil";
             }
-            else if(servicioEspecial.equals("Rotular peg. normal"))
+            else if(servicioEspecial.equals("Rotular pegatinas normal"))
             {
                 campoServicio = "sc_rotular_peg_normal";
             }
-            else if(servicioEspecial.equals("Rotular peg. difícil"))
+            else if(servicioEspecial.equals("Rotular pegatinas difícil"))
             {
                 campoServicio = "sc_rotular_peg_dificil";
             }
