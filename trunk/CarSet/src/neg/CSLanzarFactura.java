@@ -25,7 +25,13 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 import utils.Utilidades;
 import data.*;
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /** 
  * 
@@ -38,7 +44,7 @@ public class CSLanzarFactura
      * @param args the command line arguments 
      */ 
     //public static void lanzar(String query,String fechaFactura,BeanCliente beanCliente,int flag) throws ClassNotFoundException, SQLException {
-    public static void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero) throws ClassNotFoundException, SQLException, JRException
+    public static void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID) throws ClassNotFoundException, SQLException, JRException
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fa_facturas_aux";
@@ -397,6 +403,7 @@ public class CSLanzarFactura
     String poblacionFiscal="";
     String provinciaFiscal="";
     String codPostalFiscal="";
+    String finalNumFactura="";
 
      //FacturaXML nueva=new FacturaXML(query);
     try 
@@ -427,15 +434,14 @@ public class CSLanzarFactura
       }
 
       String [] tempOrigen = null;
-      tempOrigen = fechaFactura.split("\\/");                    
-                    String diaO=tempOrigen[2];
-                    String nuevaO=diaO.substring(2,4);                
+      tempOrigen = fechaFactura.split("\\-");
+      String nuevaFechaFactura=tempOrigen[2]+"/"+tempOrigen[1]+"/"+tempOrigen[0];     
 
       Map pars = new HashMap();
-        pars.put("FechaFactura", fechaFactura);
+        pars.put("FechaFactura", nuevaFechaFactura);
         pars.put("NombreCliente",beanCliente.getNombre());
         pars.put("DireccionFiscal", direccionFiscal);
-        pars.put("Direccion", beanCliente.getDireccion().concat(beanCliente.getPoblacion()));
+        pars.put("Direccion", beanCliente.getDireccion());
         pars.put("PoblacionFiscal", poblacionFiscal);
         pars.put("Poblacion", beanCliente.getPoblacion());
         pars.put("ProvinciaFiscal", provinciaFiscal);
@@ -458,16 +464,14 @@ public class CSLanzarFactura
         else
         {
             String numFactura=Integer.valueOf(numero).toString();
-            String finalNumFactura=Utilidades.rellenarCeros(numFactura,5);
+            finalNumFactura=Utilidades.rellenarCeros(numFactura,5);
             String finalNumCliente=Utilidades.rellenarCeros(beanCliente.getCl_id(), 5);
-            finalNumFactura=fechaFactura.substring(8, 10)+"/"+ finalNumCliente +"/"+ finalNumFactura;
+            finalNumFactura=nuevaFechaFactura.substring(8, 10)+"/"+ finalNumCliente +"/"+ finalNumFactura;
             //finalNumFactura=finalNumFactura +"/"+ fechaFactura.substring(8, 10);
 
             pars.put("NumFactura",finalNumFactura);
         }
-       
-        pars.put("Anyo","/"+nuevaO);
-
+               
         pars.put("TipoServicio","Probanso");
         pars.put("Servicio","Prueba");
         pars.put("Importe","Dinero");
@@ -483,39 +487,58 @@ public class CSLanzarFactura
       //JasperExportManager.exportReportToPdfFile(
       //    jasperPrint, "c:/holaMundo.pdf");
 
+        finalNumFactura=finalNumFactura.replace("/","_");
+        String nombreFichero=finalNumFactura+"_"+beanCliente.getNombre()+".pdf";
+
         if(numero==0)
         {
              JRViewerSin jrViewer = new JRViewerSin(jasperPrint);
              CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
              CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+             CSDesktop.NuevaFactura.pack();
+             CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
+             Dimension pantalla = CSDesktop.elEscritorio.getSize();
+             CSDesktop.NuevaFactura.setSize(pantalla);
+             CSDesktop.NuevaFactura.setVisible(true);
         }
         else
         {
-            JRViewer jrViewer = new JRViewer(jasperPrint);
-             CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
-             CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
-        }
-       
-        //CSDesktop.NuevaFactura.add(jrViewer);
-        CSDesktop.NuevaFactura.pack();
-       
-        CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
-        Dimension pantalla = CSDesktop.elEscritorio.getSize();
-        CSDesktop.NuevaFactura.setSize(pantalla);
-        CSDesktop.NuevaFactura.setVisible(true);
+            String query="INSERT INTO fa_factura_cliente (fa_fecha,fa_mes,fa_anyo,cl_id, " +
+                    "fa_fecha_pago, fa_pagado) VALUES (";
+            query = query + "'"+fechaFactura+"','"+tempOrigen[1]+"','"+tempOrigen[2]+"','"+clienteID+"','0000-00-00','0')";
 
+            System.out.println(query);
+
+             boolean rs = datos.manipuladorDatos(query);
+             if(rs)
+             {
+                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                    JOptionPane.showMessageDialog(null,errorFields);
+
+             }
+             else
+             {
+                 JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero);
+                 CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
+                 CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+                 CSDesktop.NuevaFactura.pack();
+                 CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
+                 Dimension pantalla = CSDesktop.elEscritorio.getSize();
+                 CSDesktop.NuevaFactura.setSize(pantalla);
+                 CSDesktop.NuevaFactura.setVisible(true);
+             }
+        }                    
          //3-Exportamos el reporte a pdf y lo guardamos en disco
-              JasperExportManager.exportReportToPdfFile(
-               jasperPrint, "c:/Factura.pdf");
+         //     JasperExportManager.exportReportToPdfFile(
+         //      jasperPrint,nombreFichero);
 
-      /*JasperViewer hola=new JasperViewer(jasperPrint, false);
-      CSDesktop.NuevaFactura = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
-     //CSDesktop.NuevaFactura.getContentPane().add( hola, BorderLayout.CENTER );
-      CSDesktop.NuevaFactura.pack();
-      CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
-      CSDesktop.NuevaFactura.setVisible( true );*/
+        //try {
+        //        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + nombreFichero);
+        //    } catch (IOException e) {
+        //        e.printStackTrace();
+        //    }
 
-      //JasperViewer.viewReport(jasperPrint, false);*/
+     
     }
     catch (JRException e)
     {

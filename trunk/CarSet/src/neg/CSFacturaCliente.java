@@ -44,11 +44,7 @@ public class CSFacturaCliente extends javax.swing.JPanel {
     public CSFacturaCliente()
     {
         initComponents();
-
-       
-
-        Date hoy=new Date();
-        jDateFechaFactura.setDate(hoy);
+              
          KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}
@@ -92,8 +88,6 @@ public class CSFacturaCliente extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jButtonPrev = new javax.swing.JButton();
-        jDateFechaFactura = new com.toedter.calendar.JDateChooser();
-        lFechaIni1 = new javax.swing.JLabel();
 
         jButtonGenerar.setText("Generar");
         jButtonGenerar.setName("jButtonGenerar"); // NOI18N
@@ -162,13 +156,6 @@ public class CSFacturaCliente extends javax.swing.JPanel {
             }
         });
 
-        jDateFechaFactura.setDateFormatString("dd-MM-yyyy"); // NOI18N
-        jDateFechaFactura.setName("jDateFechaFactura"); // NOI18N
-
-        lFechaIni1.setForeground(new java.awt.Color(0, 0, 100));
-        lFechaIni1.setText("Fecha Factura");
-        lFechaIni1.setName("lFechaIni1"); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,28 +182,21 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                 .addGap(137, 137, 137)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lFechaIni1)
+                        .addComponent(lFechaIni)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateFechaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                        .addComponent(lFechaFin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lFechaIni)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                                .addComponent(lFechaFin)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
-                        .addGap(191, 191, 191))))
+                        .addComponent(lCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                .addGap(191, 191, 191))
             .addGroup(layout.createSequentialGroup()
                 .addGap(364, 364, 364)
                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,12 +229,8 @@ public class CSFacturaCliente extends javax.swing.JPanel {
                             .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lCliente)))
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lFechaIni1)
-                    .addComponent(jDateFechaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGenerar)
@@ -319,7 +295,6 @@ public class CSFacturaCliente extends javax.swing.JPanel {
     private javax.swing.JButton jButtonGenerar;
     private javax.swing.JButton jButtonPrev;
     private com.toedter.calendar.JDateChooser jDateFecha;
-    private com.toedter.calendar.JDateChooser jDateFechaFactura;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator4;
@@ -330,7 +305,6 @@ public class CSFacturaCliente extends javax.swing.JPanel {
     private javax.swing.JLabel lCliente;
     private javax.swing.JLabel lFechaFin;
     private javax.swing.JLabel lFechaIni;
-    private javax.swing.JLabel lFechaIni1;
     // End of variables declaration//GEN-END:variables
 
     public void ValidarFormatos(String accion)
@@ -348,16 +322,7 @@ public class CSFacturaCliente extends javax.swing.JPanel {
         String fechaF="";
         String fechaFac="";
         ArrayList lista=new ArrayList();
-
-        Calendar fechaCalendarFactura = jDateFechaFactura.getCalendar();
-        if(fechaCalendarFactura!=null)
-        {
-             Date fechaFactura=fechaCalendarFactura.getTime();
-             SimpleDateFormat formatoDeFechaFactura = new SimpleDateFormat("dd/MM/yyyy");
-             fechaFac=formatoDeFechaFactura.format(fechaFactura);
-        }
-
-
+      
         String cliente = new String(jTextCliente.getText());
         Cliente oCliente = new Cliente();
         BeanCliente beanCliente = new BeanCliente();
@@ -442,7 +407,7 @@ public class CSFacturaCliente extends javax.swing.JPanel {
             System.out.println(query);
             try {
                 try {
-                    CSLanzarFactura.lanzar(lista,beanCliente,fechaFac,numero);
+                    CSLanzarFactura.lanzar(lista,beanCliente,fechaF,numero,clienteID);
                     //CSLanzarFactura.lanzar(query,fechaFac,beanCliente,2);
                     //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
                 } catch (JRException ex) {
