@@ -9,7 +9,13 @@
 */
 package data;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,10 +40,24 @@ public class DbConnection
                 String pass = "rcortes";
 
 
-		//Ruta de conexion. Conecta al server especificado y la Base de datos
-		String url = "jdbc:mysql://localhost/"+db;
+                //String ip = "www.google.com.mx";
+            //String pingResult = "";
 
-                //String url = "jdbc:mysql://192.168.1.35:3306/"+db;
+            InetAddress a = null;
+            String IPReal="";
+        try {            
+            @SuppressWarnings("static-access")
+            InetAddress direccion = InetAddress.getLocalHost().getByName("madrid017");
+            IPReal=direccion.getHostAddress();                        
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(IPReal);
+
+		//Ruta de conexion. Conecta al server especificado y la Base de datos
+		//String url = "jdbc:mysql://localhost/"+db;
+
+                String url = "jdbc:mysql://"+IPReal+":3306/"+db;
 	try
 	{
             //Instanciación del conextor jdbc
