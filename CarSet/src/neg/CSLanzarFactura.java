@@ -415,7 +415,7 @@ public class CSLanzarFactura
 
 
         //1-Compilamos el archivo XML y lo cargamos en memoria 
-        jasperReport = JasperCompileManager.compileReport("src\\data\\report1.jrxml");
+       // jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\report\\report1.jrxml");
 
        /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
 
@@ -479,11 +479,11 @@ public class CSLanzarFactura
 
 
         //JasperFillManager.fillReportToFile("src\\data\\report1.jasper", pars, con);
-
+        System.out.println("DESDE AQUI");
         //JasperExportManager.exportReportToPdfFile("src\\data\\report1.jrprint");
         //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-        jasperPrint = JasperFillManager.fillReport("src\\data\\report1.jasper", pars, con);
-
+        jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\report1.jasper", pars, con);
+        System.out.println("HASTA AQUI");
                //3-Exportamos el reporte a pdf y lo guardamos en disco 
       //JasperExportManager.exportReportToPdfFile(
       //    jasperPrint, "c:/holaMundo.pdf");
