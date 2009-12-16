@@ -47,7 +47,7 @@ public class DbConnection
             String IPReal="";
         try {            
             @SuppressWarnings("static-access")
-            InetAddress direccion = InetAddress.getLocalHost().getByName("madrid017");
+            InetAddress direccion = InetAddress.getLocalHost().getByName("cesar");
             IPReal=direccion.getHostAddress();                        
         } catch (UnknownHostException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
