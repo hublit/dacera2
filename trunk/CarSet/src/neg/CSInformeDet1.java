@@ -272,14 +272,14 @@ public class CSInformeDet1 extends javax.swing.JPanel {
                     con=(Connection) conexion.getConexion();
                
                 //1-Compilamos el archivo XML y lo cargamos en memoria
-                 jasperReport = JasperCompileManager.compileReport("src\\data\\Informe.jrxml");
+                jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\Informe.jrxml");
 
                 /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
                 //JasperFillManager.fillReportToFile("c:\\report1.jasper", pars, new JREmptyDataSource());
 
                 //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
                 //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-                jasperPrint = JasperFillManager.fillReport("src\\data\\Informe.jasper", pars, con);
+                jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\Informe.jasper", pars, con);
 
                //3-Exportamos el reporte a pdf y lo guardamos en disco
                //JasperExportManager.exportReportToPdfFile(
