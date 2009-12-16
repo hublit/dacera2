@@ -415,7 +415,7 @@ public class CSLanzarFactura
 
 
         //1-Compilamos el archivo XML y lo cargamos en memoria 
-       jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\report\\report1.jrxml");
+       jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\report1.jrxml");
 
        /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
 
