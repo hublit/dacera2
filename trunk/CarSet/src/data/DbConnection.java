@@ -38,12 +38,7 @@ public class DbConnection
                 String db = "carset";
                 String user = "root";
                 String pass = "rcortes";
-
-
-                //String ip = "www.google.com.mx";
-            //String pingResult = "";
-
-            InetAddress a = null;
+            
             String IPReal="";
         try {            
             @SuppressWarnings("static-access")
