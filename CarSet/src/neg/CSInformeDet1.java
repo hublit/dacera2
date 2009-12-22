@@ -241,14 +241,16 @@ public class CSInformeDet1 extends javax.swing.JPanel {
             /*String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
                            "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                            "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, " +
-                           "pe.pe_ta_es_cliente, pe.pe_suplemento, tc.tc_tarifa " +
-                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
+                           "pe.pe_ta_es_cliente, pe.pe_suplemento, tc.tc_tarifa, fc_nombre " +
+                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, " +
+                           "sc_servicios_clientes sc, fc_factores_correccion fc " +
                            "WHERE pe.pe_num = pc.pe_num " +
                            "AND tc.tc_servicio = pe.pe_servicio " +
                            "AND tc.cl_id = pc.cl_id " +
                            "AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
                            "AND tc.tc_servicio_destino = pe.pe_servicio_destino " +
                            "AND tc.tc_soporte = pe.pe_soporte " +
+                           "AND pe.fc_id = fc.fc_id " +
                            "AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"' " +
                            "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";*/
 
