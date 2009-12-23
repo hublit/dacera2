@@ -1015,7 +1015,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
 
     private void jButtonTarifasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTarifasActionPerformed
         int pr_id = new Integer(Integer.parseInt(jTextNumero.getText()));
-        String queryTarifa = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = '"+pr_id+"'";
+        String queryTarifa = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = '"+pr_id+"' AND tp_fecha_hasta = '2050-01-01'";
         CSResultTarifaProveedor resultBuscarProveedor = new CSResultTarifaProveedor(queryTarifa);
         CSDesktop.EditarProveedor.setVisible(false);
 }//GEN-LAST:event_jButtonTarifasActionPerformed
@@ -1413,7 +1413,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
      */
     public void incrementarTarifas(String proveedor, String incremento)
     {
-        String query = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = '"+proveedor+"'";
+        String query = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = '"+proveedor+"' AND tp_fecha_hasta = '2050-01-01'";
 
         ResultSet rs = datos.select(query);
         try {
