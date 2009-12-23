@@ -838,7 +838,7 @@ public class CSEditarCliente extends javax.swing.JPanel
 
     private void jButtonTarifasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTarifasActionPerformed
         int cl_id = new Integer(Integer.parseInt(jTextNumero.getText()));
-        String queryTarifa = "SELECT * FROM tc_tarifas_clientes t WHERE cl_id = '"+cl_id+"'";
+        String queryTarifa = "SELECT * FROM tc_tarifas_clientes t WHERE cl_id = '"+cl_id+"' AND tc_fecha_hasta = '2050-01-01'";
         CSResultTarifaCliente resultBuscarCliente = new CSResultTarifaCliente(queryTarifa);
         CSDesktop.EditarCliente.setVisible(false);
 }//GEN-LAST:event_jButtonTarifasActionPerformed
@@ -1391,7 +1391,7 @@ public class CSEditarCliente extends javax.swing.JPanel
      */
     public void incrementarTarifas(String cliente, String incremento)
     {
-        String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = '"+cliente+"'";
+        String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = '"+cliente+"' AND tc_fecha_hasta = '2050-01-01'";
 
         ResultSet rs = datos.select(query);
         try {
