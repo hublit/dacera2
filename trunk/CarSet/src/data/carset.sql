@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `fc_factores_correccion` (
   `fc_nombre` varchar(50) collate utf8_spanish_ci NOT NULL default '',
   `fc_descripcion` varchar(255) collate utf8_spanish_ci default NULL,
   PRIMARY KEY  (`fc_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1;
 
 --
 -- Volcar la base de datos para la tabla `fc_factores_correccion`
