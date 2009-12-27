@@ -377,12 +377,13 @@
               <Color blue="64" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Gruero"/>
-                <StringItem index="1" value="Conductor"/>
-                <StringItem index="2" value="Tren"/>
-                <StringItem index="3" value="Custodia"/>
-                <StringItem index="4" value="Global"/>
+              <StringArray count="6">
+                <StringItem index="0" value="Selecciona"/>
+                <StringItem index="1" value="Gruero"/>
+                <StringItem index="2" value="Conductor"/>
+                <StringItem index="3" value="Tren"/>
+                <StringItem index="4" value="Custodia"/>
+                <StringItem index="5" value="Global"/>
               </StringArray>
             </Property>
             <Property name="name" type="java.lang.String" value="jComboBoxTipo" noResource="true"/>
@@ -397,10 +398,11 @@
               <Color blue="64" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="Empresa"/>
-                <StringItem index="1" value="R&#xe9;gimen General"/>
-                <StringItem index="2" value="Aut&#xf3;nomo"/>
+              <StringArray count="4">
+                <StringItem index="0" value="Selecciona"/>
+                <StringItem index="1" value="Empresa"/>
+                <StringItem index="2" value="R&#xe9;gimen General"/>
+                <StringItem index="3" value="Aut&#xf3;nomo"/>
               </StringArray>
             </Property>
             <Property name="name" type="java.lang.String" value="jComboBoxRegimen" noResource="true"/>

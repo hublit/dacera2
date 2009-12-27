@@ -179,12 +179,12 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
 
         jComboBoxTipo.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxTipo.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gruero", "Conductor", "Tren", "Custodia", "Global" }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Gruero", "Conductor", "Tren", "Custodia", "Global" }));
         jComboBoxTipo.setName("jComboBoxTipo"); // NOI18N
 
         jComboBoxRegimen.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxRegimen.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxRegimen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Empresa", "Régimen General", "Autónomo" }));
+        jComboBoxRegimen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Empresa", "Régimen General", "Autónomo" }));
         jComboBoxRegimen.setName("jComboBoxRegimen"); // NOI18N
 
         lRegimen.setForeground(new java.awt.Color(0, 0, 100));
@@ -390,12 +390,12 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
         }
         else
         {
-            String query = "SELECT * FROM pr_proveedores c WHERE";
+            String query = "SELECT * FROM pr_proveedores c";
             boolean and = false;
 
             if (numero!=-1)
             {
-                query = query + " pr_num = "+numero;
+                query = query + " WHERE pr_num = "+numero;
                 and = true;
             }
              if (!nombre.equals(""))
@@ -406,7 +406,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
                 }
                 else
                 {
-                    query = query + " pr_nombre_fiscal like '%"+nombre+"%'";
+                    query = query + " WHERE pr_nombre_fiscal like '%"+nombre+"%'";
                     and = true;
                 }
             }
@@ -418,11 +418,11 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
                 }
                 else
                 {
-                    query = query + " pr_DNI_CIF = '"+dni+"'";
+                    query = query + " WHERE pr_DNI_CIF = '"+dni+"'";
                     and = true;
                 }
             }
-            if (!regimen.equals(""))
+            if (!regimen.equals("Selecciona"))
             {
                 if (and)
                 {
@@ -430,11 +430,11 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
                 }
                 else
                 {
-                    query = query + " pr_regimen = '"+regimen+"'";
+                    query = query + " WHERE pr_regimen = '"+regimen+"'";
                     and = true;
                 }
             }
-            if (!tipo.equals(""))
+            if (!tipo.equals("Selecciona"))
             {
                 if (and)
                 {
@@ -442,7 +442,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
                 }
                 else
                 {
-                    query = query + " pr_tipo = '"+tipo+"'";
+                    query = query + " WHERE pr_tipo = '"+tipo+"'";
                     and = true;
                 }
             }
@@ -454,7 +454,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
                 }
                 else
                 {
-                    query = query + " pr_cod_postal = '"+codPostal+"'";
+                    query = query + " WHERE pr_cod_postal = '"+codPostal+"'";
                     and = true;
                 }
             }
@@ -466,7 +466,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
                 }
                 else
                 {
-                    query = query + " wher cl_poblacion like '%"+poblacion+"%'";
+                    query = query + " WHERE cl_poblacion like '%"+poblacion+"%'";
                     and = true;
                 }
             }
@@ -478,7 +478,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
                 }
                 else
                 {
-                    query = query + " pr_provincia like '%"+provincia+"%'";
+                    query = query + " WHERE pr_provincia like '%"+provincia+"%'";
                     and = true;
                 }
             }
