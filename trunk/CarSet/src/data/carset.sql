@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `fc_factores_correccion` (
   `fc_nombre` varchar(50) collate utf8_spanish_ci NOT NULL default '',
   `fc_descripcion` varchar(255) collate utf8_spanish_ci default NULL,
   PRIMARY KEY  (`fc_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=0;
 
 --
 -- Volcar la base de datos para la tabla `fc_factores_correccion`
@@ -549,13 +549,13 @@ CREATE TABLE IF NOT EXISTS `fa_facturas_aux` (
   `fa_texto_traslado` varchar(100) collate utf8_spanish_ci default NULL,
   `fa_importe_traslado` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_factor_correccion` varchar(80) collate utf8_spanish_ci default NULL,
-  `fa_texto_factor_correccion` varchar(50) collate utf8_spanish_ci default NULL,
+  `fa_texto_factor_correccion` varchar(100) collate utf8_spanish_ci default NULL,
   `fa_importe_factor_correccion` varchar(15) collate utf8_spanish_ci NOT NULL default '',
   `fa_suplemento` varchar(15) collate utf8_spanish_ci NOT NULL default '',
-  `fa_texto_suplemento` varchar(15) collate utf8_spanish_ci default NULL,
+  `fa_texto_suplemento` varchar(100) collate utf8_spanish_ci default NULL,
   `fa_importe_suplemento` varchar(50) collate utf8_spanish_ci default NULL,
   `fa_servicio_adicional` varchar(50) collate utf8_spanish_ci default NULL,
-  `fa_texto_servicio_adicional` varchar(30) collate utf8_spanish_ci default NULL,
+  `fa_texto_servicio_adicional` varchar(100) collate utf8_spanish_ci default NULL,
   `fa_importe_servicio_adicional` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_campa` varchar(30) collate utf8_spanish_ci default NULL,
   `fa_texto_campa` varchar(30) collate utf8_spanish_ci default NULL,
