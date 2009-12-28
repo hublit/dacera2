@@ -355,7 +355,7 @@ public class CSFacturaCliente extends javax.swing.JPanel {
         }
         else
         {
-            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
+            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
                            "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                            "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
                            "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento, " +
@@ -380,8 +380,8 @@ public class CSFacturaCliente extends javax.swing.JPanel {
 
                     nueva.setNumPedido(rs.getLong("pe_num"));
                     nueva.setFecha(rs.getString("pe_fecha"));
-                    nueva.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
-                    nueva.setProvinciaDestino(rs.getString("pe_provincia_destino"));
+                    nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
+                    nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
                     nueva.setServicio(rs.getString("pe_servicio"));
                     nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
                     nueva.setServicioDestino(rs.getString("pe_servicio_destino"));

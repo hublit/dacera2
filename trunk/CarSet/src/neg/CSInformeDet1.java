@@ -235,7 +235,7 @@ public class CSInformeDet1 extends javax.swing.JPanel {
                     "pe.pe_fecha_origen,pe.pe_hora_origen,pe.pe_nombre_origen,pe.pe_direccion_destino, pe.pe_cp_destino, " +
                     "pe.pe_fecha_destino,pe.pe_hora_destino,pe.pe_nombre_destino FROM pe_pedidos pe, pc_pedidos_clientes pc " +
                     "WHERE pe.pe_num = pc.pe_num AND pe.pe_fecha BETWEEN '"+fechaIni+"' " +
-                    "AND '"+fechaFin+"' AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";
+                    "AND '"+fechaFin+"' AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
 
              System.out.println(query);
             /*String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
