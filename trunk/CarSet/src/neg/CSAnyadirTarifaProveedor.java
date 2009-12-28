@@ -487,7 +487,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
                 fechaDesde = formatoDeFecha.format(fecha);
             }
 
-            fechaCalendar = jDateDesde.getCalendar();
+            fechaCalendar = jDateHasta.getCalendar();
             if (fechaCalendar != null) {
                 Date fecha = fechaCalendar.getTime();
                 SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
