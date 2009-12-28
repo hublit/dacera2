@@ -1,35 +1,23 @@
 package neg; 
 
 //import con_reportes.presentacion;
-import data.BeanCliente;
-import data.DbConnection;
-import data.FacturasCesar;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Frame; 
 import java.sql.Connection; 
-import java.sql.DriverManager; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap; 
 import java.util.Map;
 import javax.swing.JInternalFrame;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException; 
 import net.sf.jasperreports.engine.JasperCompileManager; 
-import net.sf.jasperreports.engine.JasperExportManager; 
 import net.sf.jasperreports.engine.JasperFillManager; 
 import net.sf.jasperreports.engine.JasperPrint; 
 import net.sf.jasperreports.engine.JasperReport; 
-import net.sf.jasperreports.view.JasperViewer;
 import utils.Utilidades;
 import data.*;
-import java.io.IOException;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -144,7 +132,10 @@ public class CSLanzarFactura
             }
             else
             {
-                importeTraslado = otro.getTarifaEsCliente();
+                if (!otro.getServicioEspecial().equals("Otros"))
+                    importeTraslado = otro.getTarifaEsCliente();
+                else
+                    importeTraslado=otro.getTarifa();
             }
             importeTarifa = Double.parseDouble(importeTraslado);
 
@@ -354,10 +345,13 @@ public class CSLanzarFactura
             if(otro.getServicioEspecial().equals("Otros"))
             {
                servicioEspecial=otro.getDescripcion().toUpperCase();
+               importeServicio=Integer.parseInt(otro.getTarifaEsCliente());
+               importeServicioEs=otro.getTarifaEsCliente();
             }
             else
             {
                servicioEspecial=otro.getServicioEspecial().toUpperCase();
+               
             }
             labelServicioEspecial="SERVICIO ESPECIAL";
         }
@@ -563,22 +557,22 @@ public class CSLanzarFactura
 
       switch(factorInt)
       {
-          case 1 :
+          case 0 :
               descripcion = "TURISMO";
           break;
-          case 2 :
+          case 1 :
               campo = "sc_industrial";
               descripcion = "INDUSTRIAL";
           break;
-          case 3 :
+          case 2 :
               campo = "sc_todoterreno";
               descripcion = "TODOTERRENO";
           break;
-          case 4 :
+          case 3 :
               campo = "sc_furgonetas";
               descripcion = "FURGONETAS";
           break;
-          case 5 :
+          case 4 :
               campo = "sc_furgones";
               descripcion = "FURGONES";
           break;
