@@ -76,6 +76,7 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ServicioProveedor;
   public static JInternalFrame FacturaCliente;
   public static JInternalFrame InformeDetallado1;
+  public static JInternalFrame InformeDetallado2;
   public static JInternalFrame NuevaFactura;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
@@ -482,7 +483,12 @@ public class CSDesktop extends JFrame
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
                InformeDetallado1 = new JInternalFrame("Informe Detallado 1", true,false,false,true );
-               CSInformeDet1 panel = panel = new CSInformeDet1();
+               CSInformeDet1 panel=null;
+                try {
+                    panel = panel = new CSInformeDet1();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
                InformeDetallado1.getContentPane().add( panel,BorderLayout.CENTER);
                InformeDetallado1.pack();
                elEscritorio.add( InformeDetallado1 );
@@ -492,6 +498,26 @@ public class CSDesktop extends JFrame
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
                InformeDetallado1.setVisible( true );
+            }
+         });
+
+      menuInformeDetallado2 = new JMenuItem( "Informe Detallado 2" );
+      menuInformeDetallado2.setMnemonic( 'x' );
+      menuInforme.add( menuInformeDetallado2 );
+      menuInformeDetallado2.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeDetallado2 = new JInternalFrame("Informe Detallado 2", true,false,false,true );
+               CSInformeDet2 panel = panel = new CSInformeDet2();
+               InformeDetallado2.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeDetallado2.pack();
+               elEscritorio.add( InformeDetallado2 );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeDetallado2.getSize();
+               InformeDetallado2.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeDetallado2.setVisible( true );
             }
          });
 

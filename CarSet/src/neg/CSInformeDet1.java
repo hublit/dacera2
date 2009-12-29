@@ -43,6 +43,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
     public CSInformeDet1() throws SQLException
     {
         initComponents();
+        CSDesktop.menuInformeDetallado1.setEnabled(false);
         KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}
@@ -253,28 +254,22 @@ public class CSInformeDet1 extends javax.swing.JPanel
             System.out.println(fechaIni);
             System.out.println(fechaFin);
 
-            String query="select pe.pe_num,pe.pe_fecha,pe.pe_ve_matricula,pe.pe_direccion_origen,pe.pe_cp_origen, " +
-                    "pe.pe_fecha_origen,pe.pe_hora_origen,pe.pe_nombre_origen,pe.pe_direccion_destino, pe.pe_cp_destino, " +
-                    "pe.pe_fecha_destino,pe.pe_hora_destino,pe.pe_nombre_destino FROM pe_pedidos pe, pc_pedidos_clientes pc " +
-                    "WHERE pe.pe_num = pc.pe_num AND pe.pe_fecha BETWEEN '"+fechaIni+"' " +
-                    "AND '"+fechaFin+"' AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
+            
+            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen," +
+                         " pe.pe_provincia_destino,pe.pe_servicio, pe.pe_servicio_origen, " +
+                         " pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " +
+                         " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula,pe.pe_ta_es_cliente," +
+                         " pe.pe_suplemento, tc.tc_tarifa, fc.fc_nombre" +
+                         " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, " +
+                         " sc_servicios_clientes sc, fc_factores_correccion fc" +
+                         " WHERE pe.pe_num = pc.pe_num AND tc.tc_servicio = pe.pe_servicio AND tc.cl_id = pc.cl_id" +
+                         " AND fc.fc_id = pe.fc_id AND tc.tc_fecha_hasta = '2050-01-01'" +
+                         " AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
+                         " AND tc.tc_servicio_destino = pe.pe_servicio_destino AND tc.tc_soporte = pe.pe_soporte" +
+                         " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
+                         " AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
 
-             System.out.println(query);
-            /*String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
-                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
-                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, " +
-                           "pe.pe_ta_es_cliente, pe.pe_suplemento, tc.tc_tarifa, fc_nombre " +
-                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, " +
-                           "sc_servicios_clientes sc, fc_factores_correccion fc " +
-                           "WHERE pe.pe_num = pc.pe_num " +
-                           "AND tc.tc_servicio = pe.pe_servicio " +
-                           "AND tc.cl_id = pc.cl_id " +
-                           "AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
-                           "AND tc.tc_servicio_destino = pe.pe_servicio_destino " +
-                           "AND tc.tc_soporte = pe.pe_soporte " +
-                           "AND pe.fc_id = fc.fc_id " +
-                           "AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"' " +
-                           "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";*/
+            System.out.println(query);
 
             Map pars = new HashMap();
             pars.put("Cliente", cliente);
@@ -296,14 +291,14 @@ public class CSInformeDet1 extends javax.swing.JPanel
                     con=(Connection) conexion.getConexion();
                
                 //1-Compilamos el archivo XML y lo cargamos en memoria
-                jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\Informe.jrxml");
+                jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jrxml");
 
                 /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
                 //JasperFillManager.fillReportToFile("c:\\report1.jasper", pars, new JREmptyDataSource());
 
                 //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
                 //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-                jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\Informe.jasper", pars, con);
+                jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jasper", pars, con);
 
                //3-Exportamos el reporte a pdf y lo guardamos en disco
                //JasperExportManager.exportReportToPdfFile(
@@ -329,6 +324,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.InformeDetallado1.dispose();
+        CSDesktop.menuInformeDetallado1.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 

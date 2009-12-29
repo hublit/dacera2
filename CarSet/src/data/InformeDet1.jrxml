@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Informe2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="Cliente" class="java.lang.String"/>
+	<parameter name="Mes" class="java.lang.String"/>
+	<parameter name="Blanco" class="java.lang.String"/>
+	<parameter name="Query" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[$P!{Query}]]>
+	</queryString>
+	<field name="pe_num" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_provincia_origen" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_provincia_destino" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_servicio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_servicio_origen" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_servicio_destino" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_servicio_especial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_dias_campa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_ida_vuelta" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fc_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_soporte" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_ve_matricula" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_ta_es_cliente" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pe_suplemento" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tc_tarifa" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fc_nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="pe_num_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{pe_num}]]></variableExpression>
+	</variable>
+	<variable name="pe_ta_es_cliente_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{pe_ta_es_cliente}]]></variableExpression>
+	</variable>
+	<variable name="Suma" class="java.lang.Double" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$V{Suma} + ( ($F{pe_ta_es_cliente}.equals("") || ($F{pe_servicio_especial}).equals("Otros")) ? $F{tc_tarifa} : $F{pe_ta_es_cliente} )]]></variableExpression>
+		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
+	</variable>
+	<variable name="Texto" class="java.lang.String"/>
+	<variable name="SumaNeto" class="java.lang.Double" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$V{SumaNeto} + ( ($F{pe_ta_es_cliente}.equals("") || ($F{pe_servicio_especial}).equals("Otros")) ? $F{tc_tarifa} + $F{pe_suplemento} - $F{pe_suplemento} : $F{pe_ta_es_cliente} + $F{pe_suplemento} - $F{pe_suplemento} )]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{pe_suplemento}]]></initialValueExpression>
+	</variable>
+	<variable name="SumaSuple" class="java.lang.Double" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$V{SumaSuple} + $F{pe_suplemento}]]></variableExpression>
+		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
+	</variable>
+	<variable name="SumaDesc" class="java.lang.Double" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$V{SumaDesc} + $F{pe_suplemento}]]></variableExpression>
+		<initialValueExpression><![CDATA[0.0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="86" splitType="Stretch">
+			<image>
+				<reportElement x="16" y="1" width="139" height="80"/>
+				<imageExpression class="java.lang.String"><![CDATA["c:/AplicacionCarSet/reportes/images/logo_carset_200.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="189" y="23" width="310" height="35"/>
+				<textElement>
+					<font fontName="Verdana" size="22" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[INFORME DETALLADO 1]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="32" y="8" width="204" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["  CLIENTE : " + $P{Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="8" width="204" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["  MES : " + $P{Mes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="49" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0" lineColor="#333333"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[NUMERO PEDIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="49" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[FECHA PEDIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="94" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[SOPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="144" y="0" width="85" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[ORIGEN - DESTINO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="229" y="0" width="76" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[SERVICIOS ADICIONALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="305" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[TIPO VEHICULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="350" y="0" width="49" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[MATRICULA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="399" y="0" width="156" height="20" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="399" y="20" width="51" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[TRASLADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="20" width="30" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[SUPL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="20" width="31" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[DESC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="511" y="20" width="44" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[NETO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="49" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{pe_num}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="49" y="0" width="45" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{pe_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="0" width="50" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pe_soporte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="0" width="76" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{pe_servicio_especial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="49" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pe_ve_matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="0" width="51" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[( ($F{pe_ta_es_cliente}.equals("") || ($F{pe_servicio_especial}).equals("Otros")) ? $F{tc_tarifa} : $F{pe_ta_es_cliente} )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="450" y="0" width="30" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{pe_suplemento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="0" width="85" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{pe_provincia_origen}.equals($F{pe_provincia_destino}) ? "  " + $F{pe_provincia_origen}+"  "+$F{pe_servicio} : "  " + $F{pe_provincia_origen}+" - "+ $F{pe_provincia_destino} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="0" width="45" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fc_nombre}.equals("Ninguno") ? "Turismo" : $F{fc_nombre} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="511" y="0" width="44" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ($F{pe_ta_es_cliente}.equals("") || ($F{pe_servicio_especial}).equals("Otros")) ? $F{tc_tarifa} + $F{pe_suplemento} - $F{pe_suplemento} : $F{pe_ta_es_cliente} + $F{pe_suplemento} - $F{pe_suplemento} )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="480" y="0" width="31" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<image>
+				<reportElement x="208" y="4" width="133" height="50"/>
+				<imageExpression class="java.lang.String"><![CDATA["c:/AplicacionCarSet/reportes/images/Firma.JPG"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="350" y="0" width="49" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="399" y="0" width="51" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{Suma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="511" y="0" width="44" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{SumaNeto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="30" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{SumaSuple}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="31" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{SumaDesc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
