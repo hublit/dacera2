@@ -111,9 +111,9 @@ INSERT INTO dp_departamentos (dp_nombre, dp_descripcion) VALUES ('Otros', 'Depar
 --
 CREATE TABLE IF NOT EXISTS `fa_factura_cliente` (
   `fa_id` int(8) NOT NULL auto_increment,
-  `fa_fecha` date NOT NULL default '0000-00-00',
-  `fa_mes` varchar(15) collate utf8_spanish_ci NOT NULL default '',
-  `fa_anyo` varchar(15) collate utf8_spanish_ci NOT NULL default '',
+  `fa_num` varchar(50) collate utf8_spanish_ci NOT NULL default '',
+  `fa_fecha_desde` date NOT NULL default '0000-00-00',
+  `fa_fecha_hasta` date NOT NULL default '0000-00-00',
   `cl_id` int(10) NOT NULL,
   `fa_fecha_pago` date default NULL,
   `fa_pagado` tinyint(1) NOT NULL default '0',

@@ -42,6 +42,7 @@ public class CSInformeDet2 extends javax.swing.JPanel
     public CSInformeDet2()
     {
         initComponents();
+        CSDesktop.menuInformeDetallado2.setEnabled(false);
 
         KeyListener l = new KeyListener()
         {
@@ -86,7 +87,7 @@ public class CSInformeDet2 extends javax.swing.JPanel
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("GENERAR  INFORME DETALLADO 1");
+        jLabel1.setText("GENERAR  INFORME DETALLADO 2");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
@@ -257,23 +258,9 @@ public class CSInformeDet2 extends javax.swing.JPanel
                     "pe.pe_fecha_origen,pe.pe_hora_origen,pe.pe_nombre_origen,pe.pe_direccion_destino, pe.pe_cp_destino, " +
                     "pe.pe_fecha_destino,pe.pe_hora_destino,pe.pe_nombre_destino FROM pe_pedidos pe, pc_pedidos_clientes pc " +
                     "WHERE pe.pe_num = pc.pe_num AND pe.pe_fecha BETWEEN '"+fechaIni+"' " +
-                    "AND '"+fechaFin+"' AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";
+                    "AND '"+fechaFin+"' AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
 
-             System.out.println(query);
-            /*String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
-                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
-                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, " +
-                           "pe.pe_ta_es_cliente, pe.pe_suplemento, tc.tc_tarifa " +
-                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
-                           "WHERE pe.pe_num = pc.pe_num " +
-                           "AND tc.tc_servicio = pe.pe_servicio " +
-                           "AND tc.cl_id = pc.cl_id " +
-                           "AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
-                           "AND tc.tc_servicio_destino = pe.pe_servicio_destino " +
-                           "AND tc.tc_soporte = pe.pe_soporte " +
-                           "AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"' " +
-                           "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num DESC";*/
-
+             System.out.println(query);           
             Map pars = new HashMap();
             pars.put("Cliente", cliente);
             pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
@@ -297,21 +284,21 @@ public class CSInformeDet2 extends javax.swing.JPanel
                     con=(Connection) conexion.getConexion();
                
                 //1-Compilamos el archivo XML y lo cargamos en memoria
-                 jasperReport = JasperCompileManager.compileReport("src\\data\\Informe.jrxml");
+                 jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet2.jrxml");
 
                 /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
                 //JasperFillManager.fillReportToFile("c:\\report1.jasper", pars, new JREmptyDataSource());
 
                 //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
                 //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-                jasperPrint = JasperFillManager.fillReport("src\\data\\Informe.jasper", pars, con);
+                jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\InformeDet2.jasper", pars, con);
 
                //3-Exportamos el reporte a pdf y lo guardamos en disco
                //JasperExportManager.exportReportToPdfFile(
                //jasperPrint, "c:/holaMundo.pdf");
 
-                JRViewerSin jrViewer = new JRViewerSin(jasperPrint);
-                CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
+                JRViewer jrViewer = new JRViewer(jasperPrint);
+                CSDesktop.NuevaFactura = new JInternalFrame("Informe Detallado 2", true, false, false, true );
                 CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
                 //CSDesktop.NuevaFactura.add(jrViewer);
                 CSDesktop.NuevaFactura.pack();
@@ -329,7 +316,8 @@ public class CSInformeDet2 extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        CSDesktop.InformeDetallado1.dispose();
+        CSDesktop.InformeDetallado2.dispose();
+        CSDesktop.menuInformeDetallado2.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 

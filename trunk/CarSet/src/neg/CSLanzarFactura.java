@@ -32,7 +32,7 @@ public class CSLanzarFactura
      * @param args the command line arguments 
      */ 
     //public static void lanzar(String query,String fechaFactura,BeanCliente beanCliente,int flag) throws ClassNotFoundException, SQLException {
-    public static void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID) throws ClassNotFoundException, SQLException, JRException
+    public static void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin) throws ClassNotFoundException, SQLException, JRException
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fa_facturas_aux";
@@ -87,7 +87,7 @@ public class CSLanzarFactura
         double importeCampa5=0;
 
 
-        FacturasCesar otro = (FacturasCesar)lista.get(i);
+        BeanFactura otro = (BeanFactura)lista.get(i);
 
         String numPedido=Long.valueOf(otro.getNumPedido()).toString();
         finalNum=Utilidades.rellenarCeros(numPedido, 5);
@@ -473,17 +473,17 @@ public class CSLanzarFactura
 
 
         //JasperFillManager.fillReportToFile("src\\data\\report1.jasper", pars, con);
-        System.out.println("DESDE AQUI");
+       
         //JasperExportManager.exportReportToPdfFile("src\\data\\report1.jrprint");
         //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-        jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\report1.jasper", pars, con);
-        System.out.println("HASTA AQUI");
-               //3-Exportamos el reporte a pdf y lo guardamos en disco 
+        jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\Factura.jasper", pars, con);
+       
+       //3-Exportamos el reporte a pdf y lo guardamos en disco 
       //JasperExportManager.exportReportToPdfFile(
       //    jasperPrint, "c:/holaMundo.pdf");
 
-        finalNumFactura=finalNumFactura.replace("/","_");
-        String nombreFichero=finalNumFactura+"_"+beanCliente.getNombre()+".pdf";
+        String finalNumFactura2=finalNumFactura.replace("/","_");
+        String nombreFichero=finalNumFactura2+"_"+beanCliente.getNombre()+".pdf";
 
         if(numero==0)
         {
@@ -498,9 +498,9 @@ public class CSLanzarFactura
         }
         else
         {
-            String query="INSERT INTO fa_factura_cliente (fa_fecha,fa_mes,fa_anyo,cl_id, " +
+            String query="INSERT INTO fa_factura_cliente (fa_num,fa_fecha_desde,fa_fecha_hasta,cl_id, " +
                     "fa_fecha_pago, fa_pagado) VALUES (";
-            query = query + "'"+fechaFactura+"','"+tempOrigen[1]+"','"+tempOrigen[2]+"','"+clienteID+"','0000-00-00','0')";
+            query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0')";
 
             System.out.println(query);
 
