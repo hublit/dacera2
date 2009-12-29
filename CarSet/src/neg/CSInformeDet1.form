@@ -16,71 +16,75 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
+              <Component id="jButtonGenerar" min="-2" pref="121" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSeparator6" alignment="2" pref="688" max="32767" attributes="1"/>
-                  <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSeparator7" alignment="1" pref="688" max="32767" attributes="1"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="137" pref="137" max="137" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lCliente1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="jMonthChooser" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jYearChooser" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lCliente" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextCliente" pref="220" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jToggleButtonCliente" max="32767" attributes="1"/>
-                              <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-              </Group>
+              <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="257" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator6" pref="688" max="32767" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
-              <Component id="jButtonGenerar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="222" max="32767" attributes="0"/>
-              <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lCliente1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jMonthChooser" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jYearChooser" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lCliente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTextCliente" min="-2" pref="262" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jToggleButtonCliente" max="32767" attributes="1"/>
+              <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSeparator7" alignment="2" pref="688" max="32767" attributes="1"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator7" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lCliente1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jYearChooser" min="-2" max="-2" attributes="0"/>
-                  <Component id="jMonthChooser" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jToggleButtonCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lCliente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="62" max="32767" attributes="0"/>
-              <Component id="jSeparator6" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lCliente1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jMonthChooser" min="-2" max="-2" attributes="0"/>
+                  <Component id="jYearChooser" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+              <Component id="jSeparator6" min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonGenerar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,7 +98,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="4" green="10" red="aa" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="GENERAR  INFORME DETALLADO 1"/>
+        <Property name="text" type="java.lang.String" value="INFORME DETALLADO 1"/>
         <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
       </Properties>
     </Component>

@@ -56,6 +56,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
                 this.getComponents()[k].addKeyListener(l);
             }
         }
+        jTextNumero.addKeyListener(l);
         addKeyListener(l);
     }
 
@@ -156,8 +157,6 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
         lNumero.setText("Núm. Proveedor PR/");
         lNumero.setName("lNumero"); // NOI18N
 
-        jTextNumero.setEditable(false);
-        jTextNumero.setEnabled(false);
         jTextNumero.setName("jTextNumero"); // NOI18N
 
         jTextNombre.setName("jTextNombre"); // NOI18N

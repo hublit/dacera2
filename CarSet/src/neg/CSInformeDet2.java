@@ -60,7 +60,7 @@ public class CSInformeDet2 extends javax.swing.JPanel
             }
             public void keyReleased(KeyEvent e) {}
         };
-        
+        jTextCliente.addKeyListener(l);
         addKeyListener(l);
     }
 
@@ -78,16 +78,16 @@ public class CSInformeDet2 extends javax.swing.JPanel
         jToggleButtonCliente = new javax.swing.JToggleButton();
         lCliente = new javax.swing.JLabel();
         jTextCliente = new javax.swing.JTextField();
-        jSeparator6 = new javax.swing.JSeparator();
-        jMonthChooser = new com.toedter.calendar.JMonthChooser();
-        lCliente1 = new javax.swing.JLabel();
-        jYearChooser = new com.toedter.calendar.JYearChooser();
-        jButtonGenerar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButtonGenerar = new javax.swing.JButton();
+        jMonthChooser = new com.toedter.calendar.JMonthChooser();
+        jSeparator6 = new javax.swing.JSeparator();
+        jYearChooser = new com.toedter.calendar.JYearChooser();
+        lCliente1 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("GENERAR  INFORME DETALLADO 2");
+        jLabel1.setText("INFORME DETALLADO 2");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
@@ -108,25 +108,6 @@ public class CSInformeDet2 extends javax.swing.JPanel
         jTextCliente.setEditable(false);
         jTextCliente.setName("jTextCliente"); // NOI18N
 
-        jSeparator6.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator6.setName("jSeparator6"); // NOI18N
-
-        jMonthChooser.setName("jMonthChooser"); // NOI18N
-
-        lCliente1.setForeground(new java.awt.Color(0, 0, 100));
-        lCliente1.setText("Mes");
-        lCliente1.setName("lCliente1"); // NOI18N
-
-        jYearChooser.setName("jYearChooser"); // NOI18N
-
-        jButtonGenerar.setText("Generar");
-        jButtonGenerar.setName("jButtonGenerar"); // NOI18N
-        jButtonGenerar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGenerarActionPerformed(evt);
-            }
-        });
-
         jButtonCancelar.setForeground(new java.awt.Color(255, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.setName("jButtonCancelar"); // NOI18N
@@ -136,6 +117,25 @@ public class CSInformeDet2 extends javax.swing.JPanel
             }
         });
 
+        jButtonGenerar.setText("Generar");
+        jButtonGenerar.setName("jButtonGenerar"); // NOI18N
+        jButtonGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerarActionPerformed(evt);
+            }
+        });
+
+        jMonthChooser.setName("jMonthChooser"); // NOI18N
+
+        jSeparator6.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator6.setName("jSeparator6"); // NOI18N
+
+        jYearChooser.setName("jYearChooser"); // NOI18N
+
+        lCliente1.setForeground(new java.awt.Color(0, 0, 100));
+        lCliente1.setText("Mes");
+        lCliente1.setName("lCliente1"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,57 +143,57 @@ public class CSInformeDet2 extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(239, 239, 239)
+                        .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lCliente1)
-                                .addGap(22, 22, 22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jYearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lCliente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(181, 181, 181)))))
+                                .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                        .addGap(149, 149, 149)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(jButtonGenerar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
-                .addComponent(jButtonCancelar)
-                .addGap(194, 194, 194))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addGap(16, 16, 16)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lCliente1)
-                    .addComponent(jYearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jToggleButtonCliente)
                     .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lCliente1)
+                    .addComponent(jMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jYearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGenerar)
                     .addComponent(jButtonCancelar))
-                .addGap(11, 11, 11))
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -215,17 +215,19 @@ public class CSInformeDet2 extends javax.swing.JPanel
         CSDesktop.BuscaCliente.setVisible( true );
 }//GEN-LAST:event_jToggleButtonClienteActionPerformed
 
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        CSDesktop.InformeDetallado2.dispose();
+        CSDesktop.menuInformeDetallado2.setEnabled(true);
+}//GEN-LAST:event_jButtonCancelarActionPerformed
+
     private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
 
         //Se comprueba que haya seleccionado un cliente
         String cliente = new String(jTextCliente.getText());
 
-        if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK"))
-        {
-                ValidarFormatos(Utilidades.campoObligatorio(cliente, "Cliente"));
-        }
-        else
-        {
+        if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK")) {
+            ValidarFormatos(Utilidades.campoObligatorio(cliente, "Cliente"));
+        } else {
             int clienteID = 0;
             String fechaIni="";
             String fechaFin="";
@@ -235,70 +237,73 @@ public class CSInformeDet2 extends javax.swing.JPanel
 
             Cliente oCliente = new Cliente();
             clienteID = oCliente.getClienteID(cliente);
-            
+
             int mesIni=0;
             int anyoIni=0;
-            if(mes==1)
-            {
+            if(mes==1) {
                 mesIni=12;
                 anyoIni=anyo-1;
-            }
-            else
-            {
+            } else {
                 mesIni=mes-1;
                 anyoIni=anyo;
             }
-            
+
             fechaIni=anyoIni+"-"+mesIni+"-26";
             fechaFin=anyo+"-"+mes+"-24";
             System.out.println(fechaIni);
             System.out.println(fechaFin);
 
-            String query="select pe.pe_num,pe.pe_fecha,pe.pe_ve_matricula,pe.pe_direccion_origen,pe.pe_cp_origen, " +
-                    "pe.pe_fecha_origen,pe.pe_hora_origen,pe.pe_nombre_origen,pe.pe_direccion_destino, pe.pe_cp_destino, " +
-                    "pe.pe_fecha_destino,pe.pe_hora_destino,pe.pe_nombre_destino FROM pe_pedidos pe, pc_pedidos_clientes pc " +
-                    "WHERE pe.pe_num = pc.pe_num AND pe.pe_fecha BETWEEN '"+fechaIni+"' " +
-                    "AND '"+fechaFin+"' AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
 
-             System.out.println(query);           
+            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen," +
+                    " pe.pe_provincia_destino,pe.pe_servicio, pe.pe_servicio_origen, " +
+                    " pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " +
+                    " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula,pe.pe_ta_es_cliente," +
+                    " pe.pe_suplemento, tc.tc_tarifa, fc.fc_nombre" +
+                    " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, " +
+                    " sc_servicios_clientes sc, fc_factores_correccion fc" +
+                    " WHERE pe.pe_num = pc.pe_num AND tc.tc_servicio = pe.pe_servicio AND tc.cl_id = pc.cl_id" +
+                    " AND fc.fc_id = pe.fc_id AND tc.tc_fecha_hasta = '2050-01-01'" +
+                    " AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
+                    " AND tc.tc_servicio_destino = pe.pe_servicio_destino AND tc.tc_soporte = pe.pe_soporte" +
+                    " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
+                    " AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
+
+            System.out.println(query);
+
             Map pars = new HashMap();
             pars.put("Cliente", cliente);
             pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
             pars.put("Query", query);
 
-             JasperReport jasperReport = null;
-             JasperPrint jasperPrint;
-             Connection con = null;
+            JasperReport jasperReport = null;
+            JasperPrint jasperPrint;
+            Connection con = null;
 
-             try
-             {
+            try {
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
-                   // con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/carset","root","sc09V1");
-                    //con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/carset","root","rcortes");
-                    DbConnection conexion=new DbConnection();
-                    con=(Connection) conexion.getConexion();
-               
+                DbConnection conexion=new DbConnection();
+                con=(Connection) conexion.getConexion();
+
                 //1-Compilamos el archivo XML y lo cargamos en memoria
-                 jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet2.jrxml");
+                jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jrxml");
 
                 /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
                 //JasperFillManager.fillReportToFile("c:\\report1.jasper", pars, new JREmptyDataSource());
 
                 //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
                 //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-                jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\InformeDet2.jasper", pars, con);
+                jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jasper", pars, con);
 
-               //3-Exportamos el reporte a pdf y lo guardamos en disco
-               //JasperExportManager.exportReportToPdfFile(
-               //jasperPrint, "c:/holaMundo.pdf");
+                //3-Exportamos el reporte a pdf y lo guardamos en disco
+                //JasperExportManager.exportReportToPdfFile(
+                //jasperPrint, "c:/holaMundo.pdf");
 
                 JRViewer jrViewer = new JRViewer(jasperPrint);
-                CSDesktop.NuevaFactura = new JInternalFrame("Informe Detallado 2", true, false, false, true );
+                CSDesktop.NuevaFactura = new JInternalFrame("Informe Detallado 1", true, false, false, true );
                 CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
                 //CSDesktop.NuevaFactura.add(jrViewer);
                 CSDesktop.NuevaFactura.pack();
@@ -307,18 +312,11 @@ public class CSInformeDet2 extends javax.swing.JPanel
                 Dimension pantalla = CSDesktop.elEscritorio.getSize();
                 CSDesktop.NuevaFactura.setSize(pantalla);
                 CSDesktop.NuevaFactura.setVisible(true);
-             }
-             catch (JRException e)
-             {
+            } catch (JRException e) {
                 e.printStackTrace();
-             }
+            }
         }
-    }//GEN-LAST:event_jButtonGenerarActionPerformed
-
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        CSDesktop.InformeDetallado2.dispose();
-        CSDesktop.menuInformeDetallado2.setEnabled(true);
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
+}//GEN-LAST:event_jButtonGenerarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -38,30 +38,28 @@ import utils.Utilidades;
  *
  * @author raul
  */
-public class CSFacturaCliente extends JPanel {
-
+public class CSFacturaCliente extends JPanel
+{
     private DbConnection datos = new DbConnection();
     
     public CSFacturaCliente()
     {
         initComponents();
-        CSDesktop.menuFacturaCliente.setEnabled(false);
+        //CSDesktop.menuFacturaCliente.setEnabled(false);
 
-         KeyListener l = new KeyListener()
+        KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}
             public void keyPressed(KeyEvent e)
             {
-
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-                {                    
+                {
                     jButtonCancelar.doClick();
                 }
             }
             public void keyReleased(KeyEvent e) {}
         };
-         
-
+        jTextCliente.addKeyListener(l);
         addKeyListener(l);
     }
 
@@ -88,6 +86,9 @@ public class CSFacturaCliente extends JPanel {
         jLabel1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jButtonPrev = new javax.swing.JButton();
+
+        setRequestFocusEnabled(false);
+        setVerifyInputWhenFocusTarget(false);
 
         jButtonGenerar.setText("Generar");
         jButtonGenerar.setName("jButtonGenerar"); // NOI18N
@@ -142,7 +143,7 @@ public class CSFacturaCliente extends JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("GENERAR  FACTURA CLIENTE");
+        jLabel1.setText("FACTURA CLIENTE");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
@@ -160,84 +161,76 @@ public class CSFacturaCliente extends JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
-                    .addComponent(jLabel1))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(264, 264, 264)
-                .addComponent(jButtonPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lFechaIni)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                        .addComponent(lFechaFin)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
+                        .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                        .addComponent(lFechaFin))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                 .addGap(191, 191, 191))
             .addGroup(layout.createSequentialGroup()
-                .addGap(364, 364, 364)
+                .addGap(275, 275, 275)
+                .addComponent(jButtonPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(253, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+                    .addComponent(jLabel1))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(381, Short.MAX_VALUE)
                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addGap(349, 349, 349))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(16, 16, 16)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(56, 56, 56)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lCliente)
+                    .addComponent(jToggleButtonCliente))
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
-                                    .addComponent(lFechaIni)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(1, 1, 1)))
-                                .addGap(46, 46, 46))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jToggleButtonCliente)
-                            .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lCliente)))
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGenerar)
                     .addComponent(jButtonPrev))
-                .addGap(33, 33, 33)
+                .addGap(31, 31, 31)
                 .addComponent(jButtonCancelar)
-                .addGap(26, 26, 26))
+                .addGap(28, 28, 28))
         );
     }// </editor-fold>//GEN-END:initComponents
 
