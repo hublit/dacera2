@@ -83,6 +83,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                 this.getComponents()[k].addKeyListener(l);
             }
         }
+        jComboBoxServicio.addKeyListener(l);
         addKeyListener(l);
     }
 
