@@ -1310,8 +1310,8 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                    boolean rsTc = true;
                    int tc_id = 1;
 
-                    String fueraMad = rs.getString("tc_fuera_mad");
                     String servicio = rs.getString("tc_servicio");
+                    String servicioOrigen = rs.getString("tc_servicio_origen");
                     String servicioDestino = rs.getString("tc_servicio_destino");
                     String soporte = rs.getString("tc_soporte");
                     Date fechaDesde = rs.getDate("tc_fecha_desde");
@@ -1319,10 +1319,11 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     String incremento = rs.getString("tc_incremento");
                     String tarifa = rs.getString("tc_tarifa");
 
-                   String queryTc  = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_destino, tc_soporte, tc_fecha_desde, "+
-                                     "tc_fecha_hasta, tc_fuera_mad, tc_incremento, tc_tarifa, cl_id) " +
-                                     "VALUES ('" + servicio + "', '" + servicioDestino + "' ,'" + soporte + "' ,'" + fechaDesde + "', '" + fechaHasta + "'," +
-                                     "'" + fueraMad + "', " + incremento + ", " + tarifa + ", " + idCliente+") ";
+                   String queryTc = "INSERT INTO tc_tarifas_clientes (tc_servicio, tc_servicio_origen, tc_servicio_destino, " +
+                   "tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_incremento, tc_tarifa, cl_id) " +
+                   "VALUES ('" + servicio + "', '" + servicioOrigen + "', '" + servicioDestino + "', " +
+                   "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "', " +
+                   ""+ incremento + ", "+ tarifa + ", "+ idCliente+")";
                                                    
 
                    System.out.println(queryTc);
