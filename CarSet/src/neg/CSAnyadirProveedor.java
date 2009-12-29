@@ -1338,9 +1338,8 @@ public class CSAnyadirProveedor extends JPanel
                    DbConnection da = new DbConnection();
                    boolean rsTp = true;
                    int tp_id = 1;
-
-                    String fueraMad = rs.getString("tp_fuera_mad");
                     String servicio = rs.getString("tp_servicio");
+                    String servicioOrigen = rs.getString("tp_servicio_origen");
                     String servicioDestino = rs.getString("tp_servicio_destino");
                     String soporte = rs.getString("tp_soporte");
                     Date fechaDesde = rs.getDate("tp_fecha_desde");
@@ -1348,10 +1347,11 @@ public class CSAnyadirProveedor extends JPanel
                     String incremento = rs.getString("tp_incremento");
                     String tarifa = rs.getString("tp_tarifa");
 
-                   String queryTp  = "INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_destino, tp_soporte, tp_fecha_desde, " +
-                                     "tp_fecha_hasta, tp_fuera_mad, tp_incremento, tp_tarifa, pr_id) " +
-                                     "VALUES ('" + servicio + "', '" + servicioDestino + "' ,'" + soporte + "' ,'" + fechaDesde + "', '" + fechaHasta + "'," +
-                                     "" + fueraMad + ", " + incremento + ", " + tarifa + ", " + idProveedor+") ";
+                   String queryTp = "INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, " +
+                   "tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_incremento, tp_tarifa, pr_id) " +
+                   "VALUES ('" + servicio + "', '" + servicioOrigen + "', '" + servicioDestino + "', " +
+                   "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "', " +
+                   ""+ incremento + ", "+ tarifa + ", "+ idProveedor+")" ;
 
                    System.out.println(queryTp);
                    rsTp = da.manipuladorDatos(queryTp);
