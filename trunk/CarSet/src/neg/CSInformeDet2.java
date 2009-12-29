@@ -16,6 +16,8 @@ import data.Cliente;
 import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -34,11 +36,31 @@ import utils.Utilidades;
  *
  * @author depr102
  */
-public class CSInformeDet2 extends javax.swing.JPanel {
-
+public class CSInformeDet2 extends javax.swing.JPanel
+{
     /** Creates new form CSInformeDet1 */
-    public CSInformeDet2() {
+    public CSInformeDet2()
+    {
         initComponents();
+
+        KeyListener l = new KeyListener()
+        {
+            public void keyTyped(KeyEvent e) {}
+            public void keyPressed(KeyEvent e)
+            {
+               if (e.getKeyCode() == KeyEvent.VK_ENTER)
+               {
+                    jButtonGenerar.doClick();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                    jButtonCancelar.doClick();
+                }
+            }
+            public void keyReleased(KeyEvent e) {}
+        };
+        
+        addKeyListener(l);
     }
 
     /** This method is called from within the constructor to
