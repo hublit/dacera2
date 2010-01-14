@@ -40,12 +40,13 @@ import utils.Utilidades;
  */
 public class CSFacturaCliente extends JPanel
 {
+
     private DbConnection datos = new DbConnection();
     
     public CSFacturaCliente()
     {
         initComponents();
-        //CSDesktop.menuFacturaCliente.setEnabled(false);
+        CSDesktop.menuFacturaCliente.setEnabled(false);
 
         KeyListener l = new KeyListener()
         {
@@ -235,6 +236,10 @@ public class CSFacturaCliente extends JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
+
+        int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres generar la Factura y un nuevo numero?");
+
+        if (JOptionPane.OK_OPTION == confirmado) {
         int numero=0;
         String query="Select max(fa_id) from fa_factura_cliente";
         ResultSet rs=datos.select(query);
@@ -247,7 +252,7 @@ public class CSFacturaCliente extends JPanel
             Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         LanzarFactura(numero+1);
-
+        }
         //En este caso falta hacer el insert en la tabla de facturas
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 

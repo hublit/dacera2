@@ -254,11 +254,10 @@ public class CSInformeDet2 extends javax.swing.JPanel
             System.out.println(fechaFin);
 
 
-            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen," +
-                    " pe.pe_provincia_destino,pe.pe_servicio, pe.pe_servicio_origen, " +
-                    " pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " +
-                    " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula,pe.pe_ta_es_cliente," +
-                    " pe.pe_suplemento, tc.tc_tarifa, fc.fc_nombre" +
+            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha,pe.pe_ve_matricula,pe.pe_direccion_origen," +
+                    " pe.pe_cp_origen,pe.pe_fecha_origen,pe.pe_hora_origen,pe.pe_nombre_origen," +
+                    " pe.pe_direccion_destino,pe.pe_cp_destino, pe.pe_fecha_destino, " +
+                    " pe.pe_hora_destino, pe.pe_nombre_destino" +
                     " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, " +
                     " sc_servicios_clientes sc, fc_factores_correccion fc" +
                     " WHERE pe.pe_num = pc.pe_num AND tc.tc_servicio = pe.pe_servicio AND tc.cl_id = pc.cl_id" +
@@ -289,21 +288,21 @@ public class CSInformeDet2 extends javax.swing.JPanel
                 con=(Connection) conexion.getConexion();
 
                 //1-Compilamos el archivo XML y lo cargamos en memoria
-                jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jrxml");
+                jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet2.jrxml");
 
                 /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
                 //JasperFillManager.fillReportToFile("c:\\report1.jasper", pars, new JREmptyDataSource());
 
                 //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
                 //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-                jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jasper", pars, con);
+                jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\InformeDet2.jasper", pars, con);
 
                 //3-Exportamos el reporte a pdf y lo guardamos en disco
                 //JasperExportManager.exportReportToPdfFile(
                 //jasperPrint, "c:/holaMundo.pdf");
 
                 JRViewer jrViewer = new JRViewer(jasperPrint);
-                CSDesktop.NuevaFactura = new JInternalFrame("Informe Detallado 1", true, false, false, true );
+                CSDesktop.NuevaFactura = new JInternalFrame("Informe Detallado 2", true, false, false, true );
                 CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
                 //CSDesktop.NuevaFactura.add(jrViewer);
                 CSDesktop.NuevaFactura.pack();
