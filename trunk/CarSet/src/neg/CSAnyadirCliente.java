@@ -1409,7 +1409,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 "sc_ida_vuelta, sc_entrada_campa, sc_campa, sc_peritacion, sc_mo_mecanica_chapa, sc_chequeo, " +
                 "sc_repostaje, sc_suplemento, sc_urgente, cl_id) " +
                 "VALUES ('"+todoterreno+"', '"+industrial+"', '"+furgonetas+"', '"+furgones+"', '"+lavadoEx+"', " +
-                "'"+lavadoExIn+"', '"+lavadoInt+"', '"+lavadoDomIE4+"', '"+lavadoIntegral4+"', '"+lavadoIEIndustrial+"', " +
+                "'"+lavadoExIn+"', '"+lavadoInt+"', '"+lavadoIE4+"', '"+lavadoIntegral4+"', '"+lavadoIEIndustrial+"', " +
                 "'"+lavadoIntInd+"', '"+desrotularPegaFacil+"', '"+desrotularPegaNormal+"', '"+desrotularPegaDificil+"', " +
                 "'"+rotularPegaFacil+"', '"+rotularPegaNormal+"', '"+rotularPegaDificil+"', '"+lavadoDomEx+"', " +
                 "'"+lavadoDomExIn+"', '"+lavadoDomInt+"', '"+lavadoDomIE4+"', '"+lavadoDomIntegral4+"', '"+lavadoDomIEIndustrial+"', " +

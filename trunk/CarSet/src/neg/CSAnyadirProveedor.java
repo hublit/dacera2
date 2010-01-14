@@ -1436,7 +1436,7 @@ public class CSAnyadirProveedor extends JPanel
                 "sp_ida_vuelta, sp_entrada_campa, sp_campa, sp_peritacion, sp_mo_mecanica_chapa, sp_chequeo, " +
                 "sp_repostaje, sp_suplemento, sp_urgente, pr_id) " +
                 "VALUES ('"+todoterreno+"', '"+industrial+"', '"+furgonetas+"', '"+furgones+"', '"+lavadoEx+"', " +
-                "'"+lavadoExIn+"', '"+lavadoInt+"', '"+lavadoDomIE4+"', '"+lavadoIntegral4+"', '"+lavadoIEIndustrial+"', " +
+                "'"+lavadoExIn+"', '"+lavadoInt+"', '"+lavadoIE4+"', '"+lavadoIntegral4+"', '"+lavadoIEIndustrial+"', " +
                 "'"+lavadoIntInd+"', '"+desrotularPegaFacil+"', '"+desrotularPegaNormal+"', '"+desrotularPegaDificil+"', " +
                 "'"+rotularPegaFacil+"', '"+rotularPegaNormal+"', '"+rotularPegaDificil+"', '"+lavadoDomEx+"', " +
                 "'"+lavadoDomExIn+"', '"+lavadoDomInt+"', '"+lavadoDomIE4+"', '"+lavadoDomIntegral4+"', '"+lavadoDomIEIndustrial+"', " +
