@@ -359,8 +359,10 @@ public class CSFacturaCliente extends JPanel
                            "AND tc.tc_fecha_hasta = '2050-01-01' " +
                            "AND tc.tc_servicio = pe.pe_servicio " +
                            "AND tc.cl_id = pc.cl_id " +
-                           "AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
-                           "AND tc.tc_servicio_destino = pe.pe_servicio_destino " +
+                           "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " + 
+                           "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " +
+                           "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
+                           "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
                            "AND tc.tc_soporte = pe.pe_soporte " +
                            "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
                            "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
