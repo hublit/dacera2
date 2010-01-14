@@ -302,7 +302,7 @@ public class CSLanzarFactura
                 importeServicioEs = rsSe.getString(campoServicio);
                }
 
-               importeServicio = Integer.parseInt(importeServicioEs);
+               importeServicio = Double.parseDouble(importeServicioEs);
            }
             //SUPLEMENTO
             if(!otro.getSuplemento().equals("0"))

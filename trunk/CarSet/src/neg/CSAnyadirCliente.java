@@ -1039,16 +1039,19 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
                     //Controlar posible error
                     //Creamos las tarifas de la plantilla
-                    crearTarifasCliente(cl_id);
+                    boolean tarifas=crearTarifasCliente(cl_id);
                     //Creamos los servicios de la plantilla
-                    crearServiciosCliente(cl_id);
+                    boolean servicios=crearServiciosCliente(cl_id);
 
-                    jButtonGuardar.setEnabled(false);
-                    JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
-                    JOptionPane.showMessageDialog(null,mensaje);
-                    jButtonGuardar.setEnabled(true);
-                    CSDesktop.NuevoCliente.dispose();
-                    CSDesktop.menuNuevoCliente.setEnabled(true);                                                           
+                    if(tarifas && servicios)
+                    {
+                        jButtonGuardar.setEnabled(false);
+                        JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,mensaje);
+                        jButtonGuardar.setEnabled(true);
+                        CSDesktop.NuevoCliente.dispose();
+                        CSDesktop.menuNuevoCliente.setEnabled(true);
+                    }
                 }
             }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
@@ -1297,8 +1300,9 @@ public class CSAnyadirCliente extends javax.swing.JPanel
      * Insertar las tarifas del cliente desde el cliente de plantilla
      * @param cliente
      */
-    public void crearTarifasCliente(String idCliente)
+    public boolean crearTarifasCliente(String idCliente)
     {
+        boolean tarifaOK=true;
         String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = 1";
 
         ResultSet rs = datos.select(query);
@@ -1323,17 +1327,19 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                    "tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_incremento, tc_tarifa, cl_id) " +
                    "VALUES ('" + servicio + "', '" + servicioOrigen + "', '" + servicioDestino + "', " +
                    "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "', " +
-                   ""+ incremento + ", "+ tarifa + ", "+ idCliente+")";
+                   ""+ incremento + ", "+ tarifa + ")";
                                                    
 
                    System.out.println(queryTc);
                    rsTc = da.manipuladorDatos(queryTc);
-                   if(rsTc)
+                   if(!rsTc)
                    {
+                        borrarTarifasYCliente(idCliente);
                         jButtonGuardar.setEnabled(false);
                         JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar las tarifas en la base de datos</FONT></HTML>");
                         JOptionPane.showMessageDialog(null,errorFields);
                         jButtonGuardar.setEnabled(true);
+                        tarifaOK=false;
                    }
                    da.cerrarConexion();
             }
@@ -1342,16 +1348,18 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         catch (SQLException ex)
         {
             Logger.getLogger(CSEditarCliente.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
-
+        return tarifaOK;
     }
 
     /**
      * Insertar los servicios especiales del cliente desde el cliente de plantilla
      * @param cliente
      */
-    public void crearServiciosCliente(String idCliente)
+    public boolean crearServiciosCliente(String idCliente)
     {
+        boolean servicioOK=true;
         String query = "SELECT * FROM sc_servicios_clientes WHERE cl_id = 1";
 
         ResultSet rs = datos.select(query);
@@ -1419,12 +1427,14 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
                System.out.println(querySe);
                rsSe = se.manipuladorDatos(querySe);
-               if(rsSe)
+               if(!rsSe)
                {
+                     borrarTarifasYCliente(idCliente);
                     jButtonGuardar.setEnabled(false);
                     JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar los servicios especiales en la base de datos</FONT></HTML>");
                     JOptionPane.showMessageDialog(null,errorFields);
                     jButtonGuardar.setEnabled(true);
+                    servicioOK=false;
                }
                se.cerrarConexion();
             }
@@ -1434,7 +1444,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         {
             Logger.getLogger(CSEditarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return servicioOK;
     }
 
     /**
@@ -1490,4 +1500,16 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jTextEmailCon.setDocument(limitadorEmailContacto);
     }
 
+public void borrarTarifasYCliente(String idCliente)
+    {
+        String query = "DELETE FROM tc_tarifas_clientes WHERE cl_id = " + idCliente;
+        boolean resDel = datos.manipuladorDatos(query);
+
+        query="DELETE FROM cl_clientes WHERE cl_id = " + idCliente;
+        resDel = datos.manipuladorDatos(query);
+
+        query="DELETE FROM sc_servicios_clientes WHERE cl_id = " + idCliente;
+        resDel = datos.manipuladorDatos(query);
+
+    }
 }
