@@ -1327,7 +1327,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                    "tc_soporte, tc_fecha_desde, tc_fecha_hasta, tc_incremento, tc_tarifa, cl_id) " +
                    "VALUES ('" + servicio + "', '" + servicioOrigen + "', '" + servicioDestino + "', " +
                    "'" + soporte + "', '" + fechaDesde + "','" + fechaHasta + "', " +
-                   ""+ incremento + ", "+ tarifa + ")";
+                   ""+ incremento + ", "+ tarifa + ", "+ idCliente+")";
                                                    
 
                    System.out.println(queryTc);
