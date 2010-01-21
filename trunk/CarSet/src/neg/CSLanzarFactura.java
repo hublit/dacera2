@@ -161,22 +161,25 @@ public class CSLanzarFactura
             }
 
              //LINEA DE FACTOR DE CORRECCION
-            ArrayList factorTarifa = obtenerFactor(factor, cl_id);
-            factorTexto = factorTarifa.get(0).toString();
 
-            if(!factorTexto.equals("TURISMO") && importeTraslado != null)
-            {
-                 labelFactor = "FACTOR DE CORRECCION";
-                 DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
-                 double ft = Double.parseDouble(factorTarifa.get(1).toString());
-                 importeFc = ((importeTarifa * ft) - importeTarifa);
-                 importeFactor = Double.toString(importeFc);
-                 factorTexto2=factorTarifa.get(0).toString();
-                 //double dd2dec = new Double(df2.format(valor F)).doubleValue();
-                 //System.out.println("Valor factor de corrección"+dd2dec);
-            }
+           
+                ArrayList factorTarifa = obtenerFactor(factor, cl_id);
+                factorTexto = factorTarifa.get(0).toString();
 
-
+             if(factorTexto.equals("Grua"))
+             {
+                if(!factorTexto.equals("TURISMO") && importeTraslado != null)
+                {
+                    labelFactor = "FACTOR DE CORRECCION";
+                    DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
+                    double ft = Double.parseDouble(factorTarifa.get(1).toString());
+                    importeFc = ((importeTarifa * ft) - importeTarifa);
+                    importeFactor = Double.toString(importeFc);
+                    factorTexto2=factorTarifa.get(0).toString();
+                    //double dd2dec = new Double(df2.format(valor F)).doubleValue();
+                    //System.out.println("Valor factor de corrección"+dd2dec);
+                }
+             }
             //SERVICIOS ESPECIALES
             String campoServicio = "";
 
@@ -447,10 +450,11 @@ public class CSLanzarFactura
         pars.put("Query","SELECT * FROM pe_pedidos;");
         pars.put("Blanco","");
         pars.put("Factor","Turismo");
-        pars.put("ImporteTotal",String.valueOf(total));
+        pars.put("ImporteTotal",total);
         pars.put("IVA","16%");
-        pars.put("ImporteIVA", importeIva);
-        pars.put("ImporteTotalIVA", importeTotalIva);
+        pars.put("ImporteIVA", iva);
+        pars.put("ImporteTotalIVA", totalIva);
+        pars.put("EURO","€");
 
         if(numero==0)
         {
