@@ -29,7 +29,7 @@
               <Component id="lNumero" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jTextId" min="-2" pref="51" max="-2" attributes="1"/>
-              <EmptySpace pref="539" max="32767" attributes="0"/>
+              <EmptySpace pref="551" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -37,7 +37,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="lPContacto2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="634" max="32767" attributes="0"/>
+                      <EmptySpace pref="646" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -107,9 +107,9 @@
               </Group>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="331" max="32767" attributes="0"/>
+              <EmptySpace pref="335" max="32767" attributes="0"/>
               <Component id="jButtonModificar" min="-2" pref="95" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="321" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -591,12 +591,11 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="4">
             <StringItem index="0" value="Selecciona"/>
             <StringItem index="1" value="Urbano"/>
             <StringItem index="2" value="Interurbano"/>
             <StringItem index="3" value="Provincial"/>
-            <StringItem index="4" value="Urbano ITV"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxServicio" noResource="true"/>
