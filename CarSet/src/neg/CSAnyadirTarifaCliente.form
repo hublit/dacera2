@@ -55,7 +55,6 @@
                                       <EmptySpace pref="490" max="32767" attributes="0"/>
                                       <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jSeparator1" alignment="1" pref="691" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
@@ -115,6 +114,7 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jSeparator1" alignment="1" pref="691" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           </Group>
@@ -128,10 +128,10 @@
                   </Group>
               </Group>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="342" max="32767" attributes="0"/>
-              <Component id="jButtonGuardar" min="-2" pref="105" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="311" max="-2" attributes="0"/>
+              <Component id="jButtonGuardar" min="-2" pref="105" max="-2" attributes="0"/>
+              <EmptySpace pref="342" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -217,8 +217,8 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Component id="jSeparator1" min="-2" pref="15" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButtonGuardar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -608,12 +608,11 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="4">
             <StringItem index="0" value="Selecciona"/>
             <StringItem index="1" value="Urbano"/>
             <StringItem index="2" value="Interurbano"/>
             <StringItem index="3" value="Provincial"/>
-            <StringItem index="4" value="Urbano ITV"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxServicio" noResource="true"/>
