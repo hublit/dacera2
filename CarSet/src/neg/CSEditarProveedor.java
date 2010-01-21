@@ -490,7 +490,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
         jComboBoxProvincia.setName("jComboBoxProvincia"); // NOI18N
 
         lFactura1.setForeground(new java.awt.Color(0, 0, 100));
-        lFactura1.setText("Fecha Alta Cliente");
+        lFactura1.setText("Fecha Alta Proveedor");
         lFactura1.setName("lFactura1"); // NOI18N
 
         jDateChooserAlta.setDateFormatString("dd-MM-yyyy");
@@ -568,11 +568,11 @@ public class CSEditarProveedor extends javax.swing.JPanel
                                 .addComponent(lEstado)
                                 .addGap(26, 26, 26)
                                 .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                                 .addComponent(jLabel18)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lFactura1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(5, 5, 5)
                                 .addComponent(jDateChooserAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)
                                 .addComponent(lFactura)
