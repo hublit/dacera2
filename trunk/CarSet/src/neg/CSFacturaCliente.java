@@ -361,7 +361,7 @@ public class CSFacturaCliente extends JPanel
                            "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
                            "WHERE pe.pe_num = pc.pe_num " +
                            "AND sc.cl_id = pc.cl_id " +
-                           "AND tc.tc_fecha_hasta = '2050-01-01' " +
+                           "AND tc.tc_fecha_hasta > "+fechaF+" " +
                            "AND tc.tc_servicio = pe.pe_servicio " +
                            "AND tc.cl_id = pc.cl_id " +
                            "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " + 
@@ -370,7 +370,7 @@ public class CSFacturaCliente extends JPanel
                            "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
                            "AND tc.tc_soporte = pe.pe_soporte " +
                            "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
-                           "AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
+                           "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
 
             ResultSet rs = datos.select(query);
