@@ -20,9 +20,10 @@
 	<parameter name="Servicio" class="java.lang.String"/>
 	<parameter name="Importe" class="java.lang.String"/>
 	<parameter name="IVA" class="java.lang.String"/>
-	<parameter name="ImporteIVA" class="java.lang.String"/>
-	<parameter name="ImporteTotalIVA" class="java.lang.String"/>
-	<parameter name="ImporteTotal" class="java.lang.String"/>
+	<parameter name="ImporteIVA" class="java.lang.Double"/>
+	<parameter name="ImporteTotalIVA" class="java.lang.Double"/>
+	<parameter name="ImporteTotal" class="java.lang.Double"/>
+	<parameter name="EURO" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select * from fa_facturas_aux]]>
 	</queryString>
@@ -859,7 +860,7 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="474" y="20" width="81" height="20" isRemoveLineWhenBlank="true"/>
 				<box rightPadding="3">
 					<pen lineWidth="1.0"/>
@@ -929,7 +930,7 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_campa2}.equals("CAMPA") ?  $F{fa_importe_campa2}.concat( "  € " ) :$F{fa_importe_campa2})]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="474" y="140" width="81" height="20" isRemoveLineWhenBlank="true"/>
 				<box rightPadding="3">
 					<pen lineWidth="1.0"/>
@@ -1137,53 +1138,93 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{IVA}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="474" y="76" width="80" height="20"/>
+			<textField pattern="###0.00">
+				<reportElement x="474" y="76" width="66" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{ImporteIVA} + " € "]]></textFieldExpression>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{ImporteIVA}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="475" y="16" width="80" height="20"/>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="475" y="16" width="65" height="20"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{ImporteTotal} + " € "]]></textFieldExpression>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{ImporteTotal}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="474" y="96" width="80" height="20"/>
+			<textField pattern="#,##0.00">
+				<reportElement x="474" y="96" width="66" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{ImporteTotalIVA} + " €"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{ImporteTotalIVA}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="275" y="76" width="99" height="20"/>
+			<textField>
+				<reportElement x="540" y="76" width="14" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $P{EURO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="96" width="14" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $P{EURO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="16" width="14" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $P{EURO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="275" y="76" width="85" height="20"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{ImporteTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="76" width="14" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{ImporteTotal} + " € "]]></textFieldExpression>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $P{EURO}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

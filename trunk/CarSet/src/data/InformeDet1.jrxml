@@ -381,7 +381,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[( ($F{pe_ta_es_cliente}.equals("") || ($F{pe_servicio_especial}).equals("Otros")) ? $F{tc_tarifa} : $F{pe_ta_es_cliente} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[( ($F{pe_ta_es_cliente}.equals("") || ($F{pe_servicio_especial}).equals("Otros")) ? $F{pe_ta_es_cliente} :  $F{tc_tarifa} )]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
 				<reportElement x="450" y="0" width="30" height="20"/>
@@ -434,7 +434,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[( ($F{pe_ta_es_cliente}.equals("") || ($F{pe_servicio_especial}).equals("Otros")) ? $F{tc_tarifa} + $F{pe_suplemento} - $F{pe_suplemento} : $F{pe_ta_es_cliente} + $F{pe_suplemento} - $F{pe_suplemento} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[( ($F{pe_ta_es_cliente}.equals("") || ($F{pe_servicio_especial}).equals("Otros")) ? $F{pe_ta_es_cliente} + $F{pe_suplemento} - $F{pe_suplemento} : $F{tc_tarifa} + $F{pe_suplemento} - $F{pe_suplemento} )]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="480" y="0" width="31" height="20"/>
