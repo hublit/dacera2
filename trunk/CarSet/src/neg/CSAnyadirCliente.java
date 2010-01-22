@@ -1332,7 +1332,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
                    System.out.println(queryTc);
                    rsTc = da.manipuladorDatos(queryTc);
-                   if(!rsTc)
+                   if(rsTc)
                    {
                         borrarTarifasYCliente(idCliente);
                         jButtonGuardar.setEnabled(false);
@@ -1427,7 +1427,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
                System.out.println(querySe);
                rsSe = se.manipuladorDatos(querySe);
-               if(!rsSe)
+               if(rsSe)
                {
                      borrarTarifasYCliente(idCliente);
                     jButtonGuardar.setEnabled(false);
