@@ -187,7 +187,7 @@ public class CSLanzarFactura
             {
                 campoServicio = "sc_urgente";
             }
-            else if(servicioEspecial.equals("ITV"))
+            else if(servicioEspecial.equals("ITV Conductor"))
             {
                 campoServicio = "sc_itv";
             }
@@ -195,7 +195,7 @@ public class CSLanzarFactura
             {
                 campoServicio = "sc_pre_itv";
             }
-            else if(servicioEspecial.equals("ITV + Pre_ITV"))
+            else if(servicioEspecial.equals("ITV Grúa"))
             {
                 campoServicio = "sc_itv_pre_itv";
             }
