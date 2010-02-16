@@ -312,6 +312,7 @@ public class CSLanzarFactura
             {
                 labelSuplemento="SUPLEMENTO";
                 ServicioSuplemento = otro.getDescripcion();
+                importeSuplemento=otro.getSuplemento();
                 importeSup = Integer.parseInt(importeSuplemento);
             }
         }
@@ -376,7 +377,7 @@ public class CSLanzarFactura
                                                     "VALUES (";
         query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
                         "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTraslado+"','"+labelFactor+"'," +
-                        "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+""+"'," +
+                        "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+importeSuplemento+"'," +
                         "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioEs+"','"+labelCampa+"','"+finalCampa+"'," +
                         "'"+importeCampa+"','"+labelCampa2+"','"+finalCampa2+"','"+importeCampa2+"','"+labelIda+"','"+textoIda+"','"+importeIda+"','"+importeTotalAux+"')";
 
