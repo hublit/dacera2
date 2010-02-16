@@ -263,14 +263,17 @@ public class CSInformeDet1 extends javax.swing.JPanel
                          " pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " +
                          " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula,pe.pe_ta_es_cliente," +
                          " pe.pe_suplemento, tc.tc_tarifa, fc.fc_nombre" +
-                         " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, " +
-                         " sc_servicios_clientes sc, fc_factores_correccion fc" +
-                         " WHERE pe.pe_num = pc.pe_num AND tc.tc_servicio = pe.pe_servicio AND tc.cl_id = pc.cl_id" +
-                         " AND fc.fc_id = pe.fc_id AND tc.tc_fecha_hasta = '2050-01-01'" +
-                         " AND tc.tc_servicio_origen = pe.pe_servicio_origen " +
-                         " AND tc.tc_servicio_destino = pe.pe_servicio_destino AND tc.tc_soporte = pe.pe_soporte" +
+                         " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc,  sc_servicios_clientes sc, fc_factores_correccion fc" +
+                         " WHERE pc.pe_num = pe.pe_num" +
+                         " AND sc.cl_id = pc.cl_id" +
+                         " AND tc.tc_fecha_hasta > pe.pe_fecha" +
+                         " AND tc.tc_servicio = pe.pe_servicio" +
+                         " AND tc.cl_id = pc.cl_id" +
+                         " AND (tc.tc_servicio_origen = pe.pe_servicio_origen OR tc.tc_servicio_origen = pe.pe_servicio_destino)" +
+                         " AND (tc.tc_servicio_destino = pe.pe_servicio_destino OR tc.tc_servicio_destino = pe.pe_servicio_origen)" +
+                         " AND tc.tc_soporte = pe.pe_soporte" +
                          " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
-                         " AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
+                         " AND pc.cl_id = "+clienteID+" GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
             System.out.println(query);
 
