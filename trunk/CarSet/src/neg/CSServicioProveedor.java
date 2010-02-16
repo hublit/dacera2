@@ -358,7 +358,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
         jLabel46.setName("jLabel46"); // NOI18N
 
         lItv.setForeground(new java.awt.Color(0, 0, 100));
-        lItv.setText("ITV");
+        lItv.setText("ITV Conductor");
         lItv.setName("lItv"); // NOI18N
 
         jTextRotularPegNormal.setName("jTextRotularPegNormal"); // NOI18N
@@ -644,7 +644,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
         jTextItvPreItv.setName("jTextItvPreItv"); // NOI18N
 
         lItvPreItv.setForeground(new java.awt.Color(0, 0, 100));
-        lItvPreItv.setText("ITV + Pre-ITV");
+        lItvPreItv.setText("ITV Grúa");
         lItvPreItv.setName("lItvPreItv"); // NOI18N
 
         jLabel23.setForeground(new java.awt.Color(204, 0, 0));
@@ -1055,31 +1055,16 @@ public class CSServicioProveedor extends javax.swing.JPanel
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                 .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel18)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addComponent(jLabel29)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.LEADING))
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING))
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel20)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel28)
-                                                    .addComponent(jLabel17))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel19)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                            .addComponent(jLabel20)
+                                            .addComponent(jLabel28)
+                                            .addComponent(jLabel17)
+                                            .addComponent(jLabel19))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
@@ -1380,19 +1365,15 @@ public class CSServicioProveedor extends javax.swing.JPanel
                             .addComponent(ltantoxciento1)
                             .addComponent(jLabel20)
                             .addComponent(lUrgente))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextRotularPegDificil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lEuro21))
-                        .addGap(1, 1, 1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lRotularPegDificil)
-                            .addComponent(jLabel46))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextRotularPegDificil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lEuro21))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lRotularPegDificil)
+                        .addComponent(jLabel46)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
