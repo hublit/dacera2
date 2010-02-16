@@ -1300,6 +1300,10 @@ public class CSEditarPedido extends javax.swing.JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaRealDestino=formatoDeFecha.format(fecha);
         }
+        else
+        {
+            fechaRealDestino="2010-01-01";
+        }
 
         String descripcion = new String(jTextDescripcion.getText());
         int factor = new Integer(jComboFactor.getSelectedIndex());
@@ -1882,9 +1886,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                 Date dD=sdfD.parse(nuevaD);
                 jDateFechaDestino.setDate(dD);
 
-                String fechaRealDestino=rs.getString("pe_fecha_real_destino");
-                if(fechaRealDestino != null)
-                {
+                String fechaRealDestino = rs.getString("pe_fecha_real_destino");               
                     String [] tempRealDestino = null;
                         tempRealDestino = fechaRealDestino.split("\\-");
                         String anyoRD=tempRealDestino[0];
@@ -1895,7 +1897,8 @@ public class CSEditarPedido extends javax.swing.JPanel
                     Date dRD=sdfRD.parse(nuevaRD);
 
                     jDateFechaRealDestino.setDate(dRD);
-                }
+                
+               
 
                 jTextNumero.setText(rs.getString("pe_num"));
                 jTextDireccionOrigen.setText(rs.getString("pe_direccion_origen"));

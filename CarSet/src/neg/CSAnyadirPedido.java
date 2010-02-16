@@ -1311,6 +1311,10 @@ public class CSAnyadirPedido extends JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaRealDestino=formatoDeFecha.format(fecha);
         }
+        else
+        {
+            fechaRealDestino="2010-01-01";
+        }
         String descripcion = new String(jTextDescripcion.getText());
         int factor = new Integer(jComboFactor.getSelectedIndex());
         String cliente= new String(jTextCliente.getText());

@@ -166,7 +166,7 @@ public class CSLanzarFactura
                 ArrayList factorTarifa = obtenerFactor(factor, cl_id);
                 factorTexto = factorTarifa.get(0).toString();
 
-             if(factorTexto.equals("Grua"))
+             if(soporte.equals("Grúa"))
              {
                 if(!factorTexto.equals("TURISMO") && importeTraslado != null)
                 {
@@ -174,10 +174,12 @@ public class CSLanzarFactura
                     DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
                     double ft = Double.parseDouble(factorTarifa.get(1).toString());
                     importeFc = ((importeTarifa * ft) - importeTarifa);
-                    importeFactor = Double.toString(importeFc);
+                    double nuevoImporteFactor=redondear(importeFc, 2);
+                    importeFactor = Double.toString(nuevoImporteFactor);
                     factorTexto2=factorTarifa.get(0).toString();
                     //double dd2dec = new Double(df2.format(valor F)).doubleValue();
                     //System.out.println("Valor factor de corrección"+dd2dec);
+
                 }
              }
             //SERVICIOS ESPECIALES
@@ -597,5 +599,9 @@ public class CSLanzarFactura
      
       return factorSel;
   }
+  public static double redondear( double numero, int decimales ) {
+    return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
+  }
+
 
 }

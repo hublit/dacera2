@@ -262,10 +262,10 @@ public class CSInformeDet2 extends javax.swing.JPanel
                     " sc_servicios_clientes sc, fc_factores_correccion fc" +
                     " WHERE pe.pe_num = pc.pe_num AND tc.tc_servicio = pe.pe_servicio AND tc.cl_id = pc.cl_id" +
                     " AND fc.fc_id = pe.fc_id AND tc.tc_fecha_hasta = '2050-01-01'" +
-                    "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " +
-                    "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " +
-                       "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
-                           "OR tc.tc_servicio_destino = pe.pe_servicio_origen) AND tc.tc_soporte = pe.pe_soporte" +
+                    " AND (tc.tc_servicio_origen = pe.pe_servicio_origen " +
+                    " OR tc.tc_servicio_origen = pe.pe_servicio_destino) " +
+                    " AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
+                    " OR tc.tc_servicio_destino = pe.pe_servicio_origen) AND tc.tc_soporte = pe.pe_soporte" +
                     " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
                     " AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
 
