@@ -246,41 +246,17 @@
                                           <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
                                               <Component id="jLabel22" alignment="1" max="32767" attributes="1"/>
                                               <Component id="jLabel18" alignment="1" min="-2" max="-2" attributes="1"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabel29" min="-2" max="-2" attributes="1"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="jLabel36" alignment="0" max="32767" attributes="1"/>
-                                                      <Component id="jLabel48" alignment="0" max="32767" attributes="1"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="jLabel47" alignment="1" max="32767" attributes="1"/>
-                                                      <Component id="jLabel37" alignment="0" min="-2" max="-2" attributes="1"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="1"/>
+                                              <Component id="jLabel36" alignment="0" max="32767" attributes="1"/>
+                                              <Component id="jLabel48" alignment="0" max="32767" attributes="1"/>
+                                              <Component id="jLabel47" alignment="1" max="32767" attributes="1"/>
+                                              <Component id="jLabel37" alignment="0" min="-2" max="-2" attributes="1"/>
                                               <Component id="jLabel23" alignment="0" min="-2" pref="6" max="-2" attributes="1"/>
                                           </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jLabel20" min="-2" max="-2" attributes="1"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="jLabel28" alignment="1" min="-2" max="-2" attributes="1"/>
-                                                  <Component id="jLabel17" alignment="1" min="-2" max="-2" attributes="1"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jLabel19" min="-2" max="-2" attributes="1"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLabel20" alignment="1" min="-2" max="-2" attributes="1"/>
+                                          <Component id="jLabel28" alignment="1" min="-2" max="-2" attributes="1"/>
+                                          <Component id="jLabel17" alignment="1" min="-2" max="-2" attributes="1"/>
+                                          <Component id="jLabel19" alignment="1" min="-2" max="-2" attributes="1"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -671,24 +647,18 @@
                       </Group>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextRotularPegDificil" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lEuro21" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTextRotularPegDificil" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lEuro21" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lRotularPegDificil" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="1"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="lRotularPegDificil" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="1"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -859,7 +829,7 @@
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="jTextIndustrial"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ITV"/>
+        <Property name="text" type="java.lang.String" value="ITV Conductor"/>
         <Property name="name" type="java.lang.String" value="lItv" noResource="true"/>
       </Properties>
     </Component>
@@ -1075,7 +1045,7 @@
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="jTextIndustrial"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ITV + Pre-ITV"/>
+        <Property name="text" type="java.lang.String" value="ITV Gr&#xfa;a"/>
         <Property name="name" type="java.lang.String" value="lItvPreItv" noResource="true"/>
       </Properties>
     </Component>
