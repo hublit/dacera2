@@ -44,19 +44,23 @@
                               <Component id="lEstado3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jComboBoxEstado" min="-2" pref="94" max="-2" attributes="1"/>
-                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="lHoraRealOrigen" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jTextHoraRealOrigen" min="-2" pref="50" max="-2" attributes="1"/>
-                              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="lFechaRealDestino" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jDateFechaRealDestino" pref="104" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="lHoraRealDestino" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jTextHoraRealDestino" min="-2" pref="53" max="-2" attributes="1"/>
-                              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="lSolred" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jTextSolred" min="-2" pref="58" max="-2" attributes="0"/>
-                              <EmptySpace pref="91" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="lViaje" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jTextViaje" min="-2" pref="54" max="-2" attributes="0"/>
@@ -270,10 +274,6 @@
                               <EmptySpace pref="3" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSeparator8" pref="972" max="32767" attributes="1"/>
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jSeparator4" pref="973" max="32767" attributes="1"/>
                               <EmptySpace pref="3" max="-2" attributes="0"/>
                           </Group>
@@ -337,6 +337,11 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator8" pref="972" max="32767" attributes="1"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -518,22 +523,31 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator7" min="-2" pref="7" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lEstado3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lViaje" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextViaje" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextSolred" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lSolred" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lEstado3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lViaje" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextViaje" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lFechaRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextSolred" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lSolred" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jDateFechaRealDestino" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator8" min="-2" pref="7" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="5" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -1879,9 +1893,9 @@
           <StringArray count="35">
             <StringItem index="0" value="Selecciona"/>
             <StringItem index="1" value="Urgente"/>
-            <StringItem index="2" value="ITV"/>
+            <StringItem index="2" value="ITV Conductor"/>
             <StringItem index="3" value="Pre_ITV"/>
-            <StringItem index="4" value="ITV + Pre_ITV"/>
+            <StringItem index="4" value="ITV Gr&#xfa;a"/>
             <StringItem index="5" value="Peritaci&#xf3;n"/>
             <StringItem index="6" value="Mano obra Mec&#xe1;nica/Chapa"/>
             <StringItem index="7" value="Chequeo"/>
@@ -1932,6 +1946,21 @@
         </Property>
         <Property name="text" type="java.lang.String" value="D&#xed;as campa"/>
         <Property name="name" type="java.lang.String" value="jLabel15" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lFechaRealDestino">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Fecha Real Destino"/>
+        <Property name="name" type="java.lang.String" value="lFechaRealDestino" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaRealDestino">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+        <Property name="name" type="java.lang.String" value="jDateFechaRealDestino" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
