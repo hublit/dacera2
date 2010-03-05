@@ -28,6 +28,7 @@ public class BeanFactura {
     private String modelo;
     private String tarifaEsCliente;
     private String tarifaEsProveedor;
+    private String servicioSuplemento;
 
 
     private String suplemento;
@@ -180,6 +181,14 @@ public class BeanFactura {
 
     public String getSoporte() {
         return soporte;
+    }
+
+    public String getServicioSuplemento() {
+        return servicioSuplemento;
+    }
+
+    public void setServicioSuplemento(String servicioSuplemento) {
+        this.servicioSuplemento = servicioSuplemento;
     }
 
     public String getSuplemento() {
