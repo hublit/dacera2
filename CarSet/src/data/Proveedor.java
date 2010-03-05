@@ -142,4 +142,36 @@ public class Proveedor
         }
        return proveedor;
    }
+
+   public BeanProveedor getDatosFacturaProveedor(int proveedorID)
+   {
+       BeanProveedor bProveedor = new BeanProveedor();
+
+       ResultSet rsCl = cn.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF, pr_direccion, pr_cod_postal, " +
+                                  "pr_poblacion, pr_provincia, pr_direccion_fiscal, pr_cod_postal_fiscal, " +
+                                  "pr_poblacion_fiscal, pr_provincia_fiscal " +
+                                  "FROM pr_proveedores WHERE pr_id = "+proveedorID);
+        try
+        {
+            while (rsCl.next())
+            {
+                bProveedor.setNombre(rsCl.getString("pr_nombre_fiscal"));
+                bProveedor.setDNI_CIF(rsCl.getString("pr_DNI_CIF"));
+                bProveedor.setDireccion(rsCl.getString("pr_direccion"));
+                bProveedor.setCod_postal(rsCl.getString("pr_cod_postal"));
+                bProveedor.setPoblacion(rsCl.getString("pr_poblacion"));
+                bProveedor.setProvincia(rsCl.getString("pr_provincia"));
+                bProveedor.setDireccion_fiscal(rsCl.getString("pr_direccion_fiscal"));
+                bProveedor.setCod_postal_fiscal(rsCl.getString("pr_cod_postal_fiscal"));
+                bProveedor.setPoblacion_fiscal(rsCl.getString("pr_poblacion_fiscal"));
+                bProveedor.setProvinciaFiscal(rsCl.getString("pr_provincia_fiscal"));
+            }
+            rsCl.close();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return bProveedor;
+   }
 }
