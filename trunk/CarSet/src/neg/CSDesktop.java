@@ -75,9 +75,11 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ServicioCliente;
   public static JInternalFrame ServicioProveedor;
   public static JInternalFrame FacturaCliente;
+  public static JInternalFrame FacturaProveedor;
   public static JInternalFrame InformeDetallado1;
   public static JInternalFrame InformeDetallado2;
   public static JInternalFrame NuevaFactura;
+  public static JInternalFrame NuevoAlbaran;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
   public static JMenu menuPedidos;
@@ -97,6 +99,7 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuTarifaCliente;
   public static JMenuItem menuTarifaProveedor;
   public static JMenuItem menuFacturaCliente;
+  public static JMenuItem menuFacturaProveedor;
   public static JMenuItem menuInformeDetallado1;
   public static JMenuItem menuInformeDetallado2;
 
@@ -105,26 +108,8 @@ public class CSDesktop extends JFrame
       elEscritorio = new DesktopConFondo("/images/fondo_desktop.jpg");
       getContentPane().add( elEscritorio );
       barra = new JMenuBar();
-      
 
-      // establecer elemento de men� Salir
-      /*JMenuItem elementoSalir = new JMenuItem( "Salir" );
-      elementoSalir.setMnemonic( 'S' );
-      menuArchivo.add( elementoSalir );
-      elementoSalir.addActionListener(
-
-         new ActionListener() {  // clase interna an�nima
-
-            // terminar la aplicaci�n cuando el usuario haga clic en elementoSalir
-            public void actionPerformed( ActionEvent evento )
-            {
-               System.exit( 0 );
-            }*/
-
-         //}  // fin de la clase interna an�nima
-
-     // ); // fin de la llamada a addActionListener
-
+      //Barra con los menus
       menuClientes = new JMenu( "Clientes" );
       menuProveedores = new JMenu( "Proveedores" );
       menuPedidos = new JMenu( "Pedidos" );
@@ -133,8 +118,10 @@ public class CSDesktop extends JFrame
       menuInforme = new JMenu("Informes");
       menuAyuda = new JMenu( "Ayuda" );
 
+      //MENU DE CLIENTES
       menuClientes.setMnemonic( 'C' );
 
+      //Nuevo Cliente
       menuNuevoCliente = new JMenuItem( "Nuevo Cliente" );
       menuNuevoCliente.setMnemonic( 'n' );
       menuClientes.add( menuNuevoCliente );
@@ -163,6 +150,7 @@ public class CSDesktop extends JFrame
             }
          }); 
 
+      //Buscar Cliente
       menuBuscarCliente = new JMenuItem( "Buscar Cliente" );
       menuBuscarCliente.setMnemonic( 'b' );
       menuClientes.add( menuBuscarCliente );
@@ -471,6 +459,28 @@ public class CSDesktop extends JFrame
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
                FacturaCliente.setVisible( true );
+            }
+         });
+
+      menuFacturaProveedor = new JMenuItem( "Factura Proveedor" );
+      menuFacturaProveedor.setMnemonic( 'x' );
+      menuFactura.add( menuFacturaProveedor );
+      menuFacturaProveedor.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               FacturaProveedor = new JInternalFrame("Factura Proveedor", true,false,false,true );
+
+               CSFacturaProveedor panel = null;
+               panel = new CSFacturaProveedor();
+               FacturaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
+               FacturaProveedor.pack();
+               elEscritorio.add( FacturaProveedor );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = FacturaProveedor.getSize();
+               FacturaProveedor.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               FacturaProveedor.setVisible( true );
             }
          });
 
