@@ -1115,8 +1115,9 @@ public class CSAnyadirProveedor extends JPanel
       return new Dimension( 850,600 );
    }
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-               CSDesktop.NuevoProveedor.dispose();
-               CSDesktop.menuNuevoProveedor.setEnabled(true);
+        datos.cerrarConexion();
+        CSDesktop.NuevoProveedor.dispose();
+        CSDesktop.menuNuevoProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextNombreFocusLost
@@ -1333,9 +1334,9 @@ public class CSAnyadirProveedor extends JPanel
         ResultSet rs = datos.select(query);
         try {
 
+            DbConnection da = new DbConnection();
             while (rs.next())
             {
-                   DbConnection da = new DbConnection();
                    boolean rsTp = true;
                    int tp_id = 1;
                     String servicio = rs.getString("tp_servicio");
@@ -1362,8 +1363,8 @@ public class CSAnyadirProveedor extends JPanel
                         JOptionPane.showMessageDialog(null,errorFields);
                         jButtonGuardar.setEnabled(true);
                    }
-                   da.cerrarConexion();
             }
+            da.cerrarConexion();
             rs.close();
         }
         catch (SQLException ex)
@@ -1384,9 +1385,9 @@ public class CSAnyadirProveedor extends JPanel
         ResultSet rs = datos.select(query);
         try {
 
+            DbConnection se = new DbConnection();
             while (rs.next())
             {
-                DbConnection se = new DbConnection();
                 boolean rsSe = true;
 
                 String todoterreno = rs.getString("sp_todoterreno");
@@ -1453,8 +1454,8 @@ public class CSAnyadirProveedor extends JPanel
                     JOptionPane.showMessageDialog(null,errorFields);
                     jButtonGuardar.setEnabled(true);
                 }
-                se.cerrarConexion();
             }
+            se.cerrarConexion();
             rs.close();
         }
         catch (SQLException ex)

@@ -1057,7 +1057,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-            
+       datos.cerrarConexion();
        CSDesktop.NuevoCliente.dispose();
        CSDesktop.menuNuevoCliente.setEnabled(true);                          
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -1307,10 +1307,10 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
         ResultSet rs = datos.select(query);
         try {
+            DbConnection da = new DbConnection();
 
             while (rs.next())
-            {
-                   DbConnection da = new DbConnection();
+            {       
                    boolean rsTc = true;
                    int tc_id = 1;
 
@@ -1341,8 +1341,9 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         jButtonGuardar.setEnabled(true);
                         tarifaOK=false;
                    }
-                   da.cerrarConexion();
+
             }
+            da.cerrarConexion();
             rs.close();
         }
         catch (SQLException ex)
@@ -1360,14 +1361,16 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     public boolean crearServiciosCliente(String idCliente)
     {
         boolean servicioOK=true;
+        String fecha_desde = "2009-01-10";
+        String fecha_hasta = "2050-01-01";
         String query = "SELECT * FROM sc_servicios_clientes WHERE cl_id = 1";
 
         ResultSet rs = datos.select(query);
         try
         {
+            DbConnection se = new DbConnection();
             while (rs.next())
             {
-                DbConnection se = new DbConnection();
                 boolean rsSe = true;
 
                 String todoterreno = rs.getString("sc_todoterreno");
@@ -1436,8 +1439,9 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     jButtonGuardar.setEnabled(true);
                     servicioOK=false;
                }
-               se.cerrarConexion();
+
             }
+            se.cerrarConexion();
             rs.close();
         }
         catch (SQLException ex)
