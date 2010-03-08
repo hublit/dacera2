@@ -44,7 +44,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
     {
         initComponents();
         limitacionesCampos();
-        
+        datos = new DbConnection();
         getFPagoProveedores();
         this.datosProveedor(proveedor);
         this.ABResultBuscarContactos(proveedor);
@@ -942,7 +942,6 @@ public class CSEditarProveedor extends javax.swing.JPanel
                            "WHERE pr_id = "+numero+"";
 
             System.out.println(query);
-            datos = new DbConnection();
             boolean rs = datos.manipuladorDatos(query);
             System.out.println(rs);
             if(rs)
@@ -968,7 +967,6 @@ public class CSEditarProveedor extends javax.swing.JPanel
                 JOptionPane.showMessageDialog(null,mensaje);
                 jButtonModificar.setEnabled(true);
                 //Cerramos la conexión antes de cerrar la ventana
-                datos.cerrarConexion();
                 CSDesktop.EditarProveedor.dispose();
                 CSDesktop.ResultProveedor.dispose();
                 CSDesktop.menuBuscarProveedor.setEnabled(true);
@@ -1209,7 +1207,6 @@ public class CSEditarProveedor extends javax.swing.JPanel
      */
      public void datosProveedor(int proveedor)
     {
-        datos = new DbConnection();
     	String query = "SELECT * FROM pr_proveedores " +
                        "WHERE pr_id = "+proveedor;
 
@@ -1289,7 +1286,6 @@ public class CSEditarProveedor extends javax.swing.JPanel
      */
     private void getFPagoProveedores() throws SQLException
     {
-        datos = new DbConnection();
         ResultSet rs = datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
 
         //jComboBoxFPago = new JComboBox();
@@ -1417,10 +1413,10 @@ public class CSEditarProveedor extends javax.swing.JPanel
 
         ResultSet rs = datos.select(query);
         try {
-
+            
+            DbConnection da = new DbConnection();
             while (rs.next())
             {
-                   DbConnection da = new DbConnection();
                    boolean rsTp = true;
                    int tp_id = rs.getInt("tp_id");
                    String tarifa =  rs.getString("tp_tarifa");
@@ -1440,15 +1436,15 @@ public class CSEditarProveedor extends javax.swing.JPanel
                         JOptionPane.showMessageDialog(null,errorFields);
                         jButtonModificar.setEnabled(true);
                    }
-                   da.cerrarConexion();
+
             }
+            da.cerrarConexion();
             rs.close();
         }
         catch (SQLException ex)
         {
             Logger.getLogger(CSEditarProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
