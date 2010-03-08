@@ -44,8 +44,8 @@ public class CSEditarCliente extends javax.swing.JPanel
 {
     DbConnection datos;
     /** Creates new form ABEditarCliente */
-    public CSEditarCliente(int cliente) throws SQLException {
-        
+    public CSEditarCliente(int cliente) throws SQLException
+    {
         initComponents();      
         limitacionesCampos();
         datos = new DbConnection();
@@ -53,8 +53,6 @@ public class CSEditarCliente extends javax.swing.JPanel
         getComercial();
         this.datosCliente(cliente);
         this.ABResultBuscarContactos(cliente);
-       
-
 
         //getDepartamentoContacto();r
 
@@ -219,11 +217,6 @@ public class CSEditarCliente extends javax.swing.JPanel
         jButtonCancelar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelar1ActionPerformed(evt);
-            }
-        });
-        jButtonCancelar1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButtonCancelar1KeyPressed(evt);
             }
         });
 
@@ -873,10 +866,6 @@ public class CSEditarCliente extends javax.swing.JPanel
         }
 }//GEN-LAST:event_EliminarActionPerformed
 
-    private void jButtonCancelar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonCancelar1KeyPressed
-        // TODO add your handling code here:
-}//GEN-LAST:event_jButtonCancelar1KeyPressed
-
     private void jButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar1ActionPerformed
         {
             //cerramos la conexión antes de cerrar la ventana
@@ -1395,10 +1384,9 @@ public class CSEditarCliente extends javax.swing.JPanel
 
         ResultSet rs = datos.select(query);
         try {
-
+            DbConnection da = new DbConnection();
             while (rs.next())
             {
-                   DbConnection da = new DbConnection();
                    boolean rsTc = true;
                    int tc_id = rs.getInt("tc_id");
                    String tarifa =  rs.getString("tc_tarifa");
@@ -1418,8 +1406,9 @@ public class CSEditarCliente extends javax.swing.JPanel
                         JOptionPane.showMessageDialog(null,errorFields);
                         jButtonModificar.setEnabled(true);
                    }
-                   da.cerrarConexion();
+             
             }
+            da.cerrarConexion();
             rs.close();
         } 
         catch (SQLException ex)
@@ -1456,6 +1445,5 @@ public class CSEditarCliente extends javax.swing.JPanel
         LimitadorDeDocumento limitadorWeb= new LimitadorDeDocumento(50);
         jTextWeb.setDocument(limitadorWeb);
     }
-
 
 }
