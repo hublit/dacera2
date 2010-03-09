@@ -631,12 +631,13 @@ public class CSBuscarPedido extends javax.swing.JPanel {
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
 
         boolean and = false;
+        boolean where = false;
         String query = "SELECT * FROM pe_pedidos pe ";
 
-        if (cliente.equals("") && proveedor.equals(""))
+        if (cliente.equals("") && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
         {
             jButtonBuscar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Cliente o un Proveedor</FONT></HTML>");
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Cliente, un Proveedor o un período de fecha</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonBuscar.setEnabled(true);
             //query = query + " WHERE ";
@@ -646,23 +647,25 @@ public class CSBuscarPedido extends javax.swing.JPanel {
 
             if(!cliente.equals("") && !proveedor.equals(""))
             {
-                Cliente cliente2=new Cliente();
-                clienteID=cliente2.getClienteID(cliente);
-                Proveedor proveedor2=new Proveedor();
-                proveedorID=proveedor2.getProveedorID(proveedor);
+                Cliente cliente2 = new Cliente();
+                clienteID = cliente2.getClienteID(cliente);
+                Proveedor proveedor2 = new Proveedor();
+                proveedorID = proveedor2.getProveedorID(proveedor);
 
                 query = query + ", pc_pedidos_clientes pc, pp_pedidos_proveedores pp WHERE pe.pe_num = pc.pe_num AND"+
                         " pe.pe_num = pp.pe_num AND pc.cl_id = "+clienteID+" AND pp.pr_id = "+proveedorID;
-                and = true;
 
+                and = true;
+                where = true;
             }
             else if(!cliente.equals(""))
             {
-                Cliente cliente2=new Cliente();
-                clienteID=cliente2.getClienteID(cliente);
+                Cliente cliente2 = new Cliente();
+                clienteID = cliente2.getClienteID(cliente);
 
                 query = query + ", pc_pedidos_clientes pc WHERE pe.pe_num = pc.pe_num AND pc.cl_id = "+clienteID;
                 and = true;
+                where = true;
             }
             else if(!proveedor.equals(""))
             {
@@ -671,206 +674,85 @@ public class CSBuscarPedido extends javax.swing.JPanel {
 
                 query = query + ", pp_pedidos_proveedores pp WHERE pe.pe_num = pp.pe_num AND pp.pr_id = "+proveedorID;
                 and = true;
+                where = true;
             }
 
+            if ((!fechaI.equals(""))&& (!fechaF.equals("")) )
+            {
+                 if (!where)
+                 {
+                     query = query + " WHERE ";
+                 }
+                query = query + " pe_fecha >='"+fechaI+"' AND pe_fecha<='"+fechaF+"'";
+                and = true;
+            }
 
             if(numeroN!=0)
             {
-                 if (and)
-                 {
-                    query = query + " AND pe_num = "+numeroN;
-                    and = true;
-                 }
-                  else
-                 {
-                      query = query + " pe_num = "+numeroN;
-                      and = true;
-                 }
+                query = query + " AND pe_num = "+numeroN;
             }
-            if ((!fechaI.equals(""))&& (!fechaF.equals("")) )
-            {
-                 if (and)
-                 {
-                     query = query + " AND pe_fecha >='"+fechaI+"' and pe_fecha<='"+fechaF+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_fecha >='"+fechaI+"' and pe_fecha<='"+fechaF+"'";
-                      and = true;
-                 }
-            }
+
             if (!direccionOrigen.equals(""))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_direccion_origen='"+direccionOrigen+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_direccion_origen='"+direccionOrigen+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_direccion_origen='"+direccionOrigen+"'";
             }
             if (!poblacionOrigen.equals(""))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_poblacion_origen='"+poblacionOrigen+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_poblacion_origen='"+poblacionOrigen+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_poblacion_origen='"+poblacionOrigen+"'";
             }
             if (!provinciaOrigen.equals("Selecciona"))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_provincia_origen='"+provinciaOrigen+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_provincia_origen='"+provinciaOrigen+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_provincia_origen='"+provinciaOrigen+"'";
             }
             if (!codPostalOrigen.equals(""))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_cp_origen='"+codPostalOrigen+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_cp_origen='"+codPostalOrigen+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_cp_origen='"+codPostalOrigen+"'";
             }
              if (!direccionDestino.equals(""))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_direccion_destino='"+direccionDestino+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_direccion_destino='"+direccionDestino+"'";
-                      and = true;
-                 }
+                 query = query + " AND pe_direccion_destino='"+direccionDestino+"'";
             }
             if (!poblacionDestino.equals(""))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_poblacion_destino='"+poblacionDestino+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_poblacion_destino='"+poblacionDestino+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_poblacion_destino='"+poblacionDestino+"'";
             }
             if (!provinciaDestino.equals("Selecciona"))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_provincia_destino='"+provinciaDestino+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_provincia_destino='"+provinciaDestino+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_provincia_destino='"+provinciaDestino+"'";
             }
             if (!codPostalDestino.equals(""))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_cp_destino='"+codPostalDestino+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_cp_destino='"+codPostalDestino+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_cp_destino='"+codPostalDestino+"'";
             }
             if (!servicioFMad.equals("Selecciona"))
             {
-                if (and)
-                {
-                    query = query + " AND pe_servicio_origen='"+servicioFMad+"'";
-                }
-                else
-                {
-                    query = query + " pe_servicio_origen='"+servicioFMad+"'";
-                }
+                query = query + " AND pe_servicio_origen='"+servicioFMad+"'";
             }
             if (!servicioFMadDestino.equals("Selecciona"))
             {
-                if (and)
-                {
-                    query = query + " AND pe_servicio_destino='"+servicioFMadDestino+"'";
-
-                }
-                else
-                {
-                    query = query + " pe_servicio_destino='"+servicioFMadDestino+"'";
-                }
+                 query = query + " AND pe_servicio_destino='"+servicioFMadDestino+"'";
             }
             if(!soporte.equals("Selecciona"))
             {
-                if (and)
-                {
-                    query = query + " AND pe_soporte='"+soporte+"'";
-                }
-                 else
-                 {
-                      query = query + " pe_soporte='"+soporte+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_soporte='"+soporte+"'";
             }
             if (factor != 0)
             {
-                 if (and)
-                 {
-                     query = query + " AND fc_id='"+factor+"'";
-                 }
-                 else
-                 {
-                      query = query + " fc_id='"+factor+"'";
-                      and = true;
-                 }
+                query = query + " AND fc_id='"+factor+"'";
             }
             if (!matricula.equals(""))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_matricula='"+matricula+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_matricula='"+matricula+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_matricula='"+matricula+"'";
             }
             if (estado.equals(""))
             {
-                 if (and)
-                 {
-                     query = query + " AND pe_estado='"+estado+"'";
-                 }
-                 else
-                 {
-                      query = query + " pe_estado='"+estado+"'";
-                      and = true;
-                 }
+                query = query + " AND pe_estado='"+estado+"'";
             }
+            query = query+" ORDER BY pe.pe_fecha ASC";
 
-                    System.out.println(query+" ORDER BY pe.pe_num DESC");
-                    query = query+" ORDER BY pe.pe_num ASC";
+            System.out.println(query);
 
-                    CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+            CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -1016,7 +898,6 @@ public class CSBuscarPedido extends javax.swing.JPanel {
        jTextCodPostalDestino.setDocument(limitadorCPDestino);
        LimitadorDeDocumento limitadorMatricula= new LimitadorDeDocumento(10);
        jTextMatricula.setDocument(limitadorMatricula);
-
     }
     
 }
