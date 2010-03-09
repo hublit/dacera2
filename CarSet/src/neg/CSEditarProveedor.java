@@ -1029,7 +1029,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
     private void jButtonSEspecialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSEspecialesActionPerformed
         try {
             int pr_id = new Integer(Integer.parseInt(jTextNumero.getText()));
-            String querySE = "SELECT * FROM sp_servicios_proveedores WHERE pr_id = '"+pr_id+"'";
+            String querySE = "SELECT * FROM sp_servicios_proveedores WHERE pr_id = '"+pr_id+"' AND sp_fecha_hasta = '2050-01-01'";
             CSServicioProveedor serviciosProveedor = new CSServicioProveedor(querySE, pr_id);
             CSDesktop.EditarProveedor.setVisible(false);
 

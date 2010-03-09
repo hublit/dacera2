@@ -990,7 +990,7 @@ public class CSEditarCliente extends javax.swing.JPanel
     private void jButtonSEspecialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSEspecialesActionPerformed
         try {
             int cl_id = new Integer(Integer.parseInt(jTextNumero.getText()));
-            String querySE = "SELECT * FROM sc_servicios_clientes WHERE cl_id = '"+cl_id+"'";            
+            String querySE = "SELECT * FROM sc_servicios_clientes WHERE cl_id = '"+cl_id+"' AND sc_fecha_hasta = '2050-01-01'";
             CSServicioCliente serviciosCliente = new CSServicioCliente(querySE, cl_id);
             CSDesktop.EditarCliente.setVisible(false);
             
