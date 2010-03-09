@@ -481,7 +481,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel {
                     and = true;
                 }
             }
-
+            query = query + " ORDER BY pr_nombre_fiscal ASC";
             System.out.println(query);
             CSResultBuscarProveedor resultBuscarProveedor = new CSResultBuscarProveedor(query);
 
