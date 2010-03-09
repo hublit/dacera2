@@ -34,12 +34,16 @@ public class CSServicioCliente extends javax.swing.JPanel
     int cl_id = 0;
     String fecha_desde = "";
     String fecha_hasta = "";
+    String fecha_hoy = "";
 
-    /** Creates new form ABAnyadirCliente */
     public CSServicioCliente(String query, int cliente) throws SQLException
     {
         ResultSet rs = datos.select(query);
-        
+
+        Date fecha = new Date();
+        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+        fecha_hoy = formatoDeFecha.format(fecha);
+
         CSDesktop.EditarCliente.setEnabled(false);
         initComponents();
         limitacionesCampos();
@@ -87,7 +91,6 @@ public class CSServicioCliente extends javax.swing.JPanel
                 jTextLavadoDIn4.setText(rs.getString("sc_ldom_integral_cuatro"));
                 jTextLavadoDInExInd.setText(rs.getString("sc_ldom_int_ext_industrial"));
                 jTextLavadoDIntInd.setText(rs.getString("sc_ldom_integral_industrial"));
-
                 fecha_desde = rs.getString("sc_fecha_desde");
                 fecha_hasta = rs.getString("sc_fecha_hasta");
                 numeroFila++;
@@ -1599,7 +1602,7 @@ public class CSServicioCliente extends javax.swing.JPanel
                                "sc_itv_pre_itv  = '"+itvPreItv+"', sc_ida_vuelta  = '"+idaVuelta+"', sc_entrada_campa  = '"+entradaCampa+"', " +
                                "sc_campa  = '"+campa+"', sc_peritacion  = '"+peritacion+"', sc_mo_mecanica_chapa  = '"+mOMecanicaChapa+"', " +
                                "sc_chequeo  = '"+chequeo+"', sc_repostaje  = '"+repostaje+"', sc_suplemento  = '"+suplemento+"', " +
-                               "sc_urgente  = '"+urgente+"', cl_id = "+ cl_id+", sc_fecha_desde  = '"+fecha_desde+"', sc_fecha_hasta = "+ fecha_hasta+"  " +
+                               "sc_urgente  = '"+urgente+"', cl_id = "+ cl_id+", sc_fecha_desde  = '"+fecha_desde+"', sc_fecha_hasta = '"+ fecha_hasta+"'  " +
                                "WHERE sc_id = "+ sc_id+"";
 
                 System.out.println(query);
@@ -1630,6 +1633,7 @@ public class CSServicioCliente extends javax.swing.JPanel
     }
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
             {
+               datos.cerrarConexion();
                CSDesktop.EditarCliente.setEnabled(true);
                CSDesktop.ServicioCliente.dispose();
                CSDesktop.EditarCliente.setVisible(true);
@@ -1637,10 +1641,6 @@ public class CSServicioCliente extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonNuevosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevosActionPerformed
-        String nueva = "2050-01-01";
-        Date fecha = new Date();
-        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-        String fecha_hoy = formatoDeFecha.format(fecha);
 
         String query = "UPDATE sc_servicios_clientes SET sc_fecha_hasta  = '"+fecha_hoy+"' WHERE sc_id = "+ sc_id+"";
 
@@ -1655,6 +1655,7 @@ public class CSServicioCliente extends javax.swing.JPanel
                 }
                 else
                 {
+                    crearServiciosCliente(cl_id);
                     jButtonModificar.setEnabled(false);
                     JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
                     JOptionPane.showMessageDialog(null, mensaje);
@@ -1852,15 +1853,9 @@ public class CSServicioCliente extends javax.swing.JPanel
      * Insertar los servicios especiales del cliente desde el cliente de plantilla
      * @param cliente
      */
-    public boolean crearServiciosCliente(String idCliente)
+    public boolean crearServiciosCliente(int idCliente)
     {
         boolean servicioOK = true;
-
-        fecha_hasta = "2050-01-01";
-        Date fecha = new Date();
-
-        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-        fecha_desde = formatoDeFecha.format(fecha);
 
         String todoterreno = new String(jText4x4.getText());
         String industrial = new String(jTextIndustrial.getText());
@@ -1898,7 +1893,7 @@ public class CSServicioCliente extends javax.swing.JPanel
         String repostaje = new String(jTextRepostaje.getText());
         String suplemento = new String(jTextSuplemento.getText());
         String urgente = new String(jTextUrgente.getText());
-
+        fecha_desde = fecha_hoy;
 
         //CAMPOS OBLIGATORIOS
         if (!Utilidades.campoObligatorio(todoterreno,"todoterreno").equals("OK"))
@@ -2049,166 +2044,4 @@ public class CSServicioCliente extends javax.swing.JPanel
         }
         return servicioOK;
     }
-
-    /**
-     * Recogemos y validamos los parámetros para la modificación y la creacion de los nuevos servicios
-     */
-    public boolean validarParametros()
-    {
-            boolean servicioOK = true;
-            String todoterreno = new String(jText4x4.getText());
-            String industrial = new String(jTextIndustrial.getText());
-            String furgonetas = new String(jTextFurgonetas.getText());
-            String furgones = new String(jTextFurgones.getText());
-            String lavadoEx = new String(jTextLavadoEx.getText());
-            String lavadoExIn = new String(jTextLavadoINEX.getText());
-            String lavadoInt = new String(jTextLavadoInt.getText());
-            String lavadoIE4 = new String(jTextLavadoInEx4.getText());
-            String lavadoIntegral4 = new String(jTextLavadoInt4.getText());
-            String lavadoIEIndustrial = new String(jTextLavadoInExInd.getText());
-            String lavadoIntInd = new String(jTextLavadoIntInd.getText());
-            String desrotularPegaFacil = new String(jTextDesrotularPegFacil.getText());
-            String desrotularPegaNormal = new String(jTextDesrotularPegNormal.getText());
-            String desrotularPegaDificil = new String(jTextDesrotularPegDificil.getText());
-            String rotularPegaFacil = new String(jTextRotularPegFacil.getText());
-            String rotularPegaNormal = new String(jTextRotularPegNormal.getText());
-            String rotularPegaDificil = new String(jTextRotularPegDificil.getText());
-            String lavadoDomEx = new String(jTextLavadoDEx.getText());
-            String lavadoDomExIn = new String(jTextLavadoDINEX.getText());
-            String lavadoDomInt = new String(jTextLavadoDIn.getText());
-            String lavadoDomIE4 = new String(jTextLavadoDIntEx4.getText());
-            String lavadoDomIntegral4 = new String(jTextLavadoDIn4.getText());
-            String lavadoDomIEIndustrial = new String(jTextLavadoDInExInd.getText());
-            String lavadoDomIntInd = new String(jTextLavadoDIntInd.getText());
-            String itv = new String(jTextItv.getText());
-            String preItv = new String(jTextPreItv.getText());
-            String itvPreItv = new String(jTextItvPreItv.getText());
-            String idaVuelta = new String(jTextIdaVuelta.getText());
-            String entradaCampa = new String(jTextCampaEntrada.getText());
-            String campa = new String(jTextCampa.getText());
-            String peritacion = new String(jTextPeritacion.getText());
-            String mOMecanicaChapa = new String(jTextMObraMChapa.getText());
-            String chequeo = new String(jTextChequeo.getText());
-            String repostaje = new String(jTextRepostaje.getText());
-            String suplemento = new String(jTextSuplemento.getText());
-            String urgente = new String(jTextUrgente.getText());
-
-
-            //CAMPOS OBLIGATORIOS
-            if (!Utilidades.campoObligatorio(todoterreno,"todoterreno").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(todoterreno,"todoterreno"));
-            }
-            else if (!Utilidades.campoObligatorio(furgones,"Furgones").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(furgones,"Furgones"));
-            }
-            else if (!Utilidades.campoObligatorio(furgonetas,"Furgonetas").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(furgonetas,"Furgonetas"));
-            }
-            else if (!Utilidades.campoObligatorio(industrial,"Industrial").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(industrial,"Industrial"));
-            }
-            else if (!Utilidades.campoObligatorioCombo(idaVuelta,"Ida y vuelta").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorioCombo(idaVuelta,"Ida y vuelta"));
-            }
-            else if (!Utilidades.campoObligatorio(itv,"ITV").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(itv,"ITV"));
-            }
-            else if (!Utilidades.campoObligatorio(preItv,"Pre-ITV").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(preItv,"Pre-itv"));
-            }
-            else if (!Utilidades.campoObligatorio(itvPreItv,"ITV + Pre-ITV").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(itvPreItv,"ITV + Pre-itv"));
-            }
-            else if (!Utilidades.campoObligatorio(campa,"Campa").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(campa,"Campa"));
-            }
-            else if (!Utilidades.campoObligatorio(entradaCampa,"Entrada en Campa").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(entradaCampa, "Entrada en Campa"));
-            }
-            else if (!Utilidades.campoObligatorio(peritacion ,"Peritación").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(peritacion,"Peritación"));
-            }
-            else if (!Utilidades.campoObligatorio(mOMecanicaChapa,"Mano de Obra Mecánica y Chapa").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(mOMecanicaChapa,"Mano de Obra Mecánica y Chapa"));
-            }
-            else if (!Utilidades.campoObligatorio(repostaje,"Repostaje").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(repostaje,"Repostaje"));
-            }
-            else if (!Utilidades.campoObligatorio(suplemento,"Suplemento").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(suplemento,"Suplemento"));
-            }
-            else if (!Utilidades.campoObligatorio(urgente,"Urgente").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(urgente,"Urgente"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoEx, "Lavado exterior").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoEx,"Lavado exterior"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoExIn,"Lavado Exterior e Interior").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoExIn,"Lavado Exterior e Interior"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoInt,"Lavado Integral").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoInt,"Lavado Integral"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoIE4,"Lavado interior exterior 4x4").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoIE4,"Lavado interior exterior 4x4"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoIntegral4,"Lavado Integral 4x4").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoIntegral4,"Lavado Integral 4x4"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoIEIndustrial,"Lavado interior y exterior Industrial").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoIEIndustrial,"Lavado interior y exterior Industrial"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoDomEx,"Lavado exterior a Domicilio").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoDomEx,"Lavado exterior a Domicilio"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoDomExIn,"Lavado Interior y Exterior a Domicilio").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoDomExIn,"Lavado Interior y Exterior a Domicilio"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoDomInt,"Lavado Integral a Domicilio").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoDomInt,"Lavado Integral a Domicilio"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoDomIE4,"Lavado interior exterior 4x4 a Domicilio").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoDomIE4,"Lavado interior exterior 4x4 a Domicilio"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoDomIntegral4,"Limpieza Integral 4x4 a Domicilio").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoDomIntegral4,"Limpieza Integral 4x4 a Domicilio"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoDomIEIndustrial,"Lavado interior exterior Industrial a Domicilio").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoDomIEIndustrial,"Lavado interior exterior Industrial a Domicilio"));
-            }
-            else if (!Utilidades.campoObligatorio(lavadoDomIntInd,"Limpieza Integral Industrial a Domicilio").equals("OK"))
-            {
-                 ValidarFormatos(Utilidades.campoObligatorio(lavadoDomIntInd,"Limpieza Integral Industrial a Domicilio"));
-            }
-
-        return servicioOK;
-    }
-
 }

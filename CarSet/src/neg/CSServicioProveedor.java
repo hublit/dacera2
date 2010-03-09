@@ -16,6 +16,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -33,18 +35,27 @@ public class CSServicioProveedor extends javax.swing.JPanel
     DbConnection datos = new DbConnection();
     int pr_id = 0;
     static int sp_id = 0;
+    String fecha_desde = "";
+    String fecha_hasta = "";
+    String fecha_hoy = "";
 
     public CSServicioProveedor(String query, int proveedor) throws SQLException
     {
         ResultSet rs = datos.select(query);
         
+        Date fecha = new Date();
+        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+        fecha_hoy = formatoDeFecha.format(fecha);
+
         CSDesktop.EditarProveedor.setEnabled(false);
         initComponents();
         limitacionesCampos();
         pr_id = proveedor;
         int numeroFila = 0;
-        try {
-            while (rs.next()) {
+        try
+        {
+            while (rs.next())
+            {
                 sp_id = rs.getInt("sp_id");
                 jTextIndustrial.setText(rs.getString("sp_industrial"));
                 jText4x4.setText(rs.getString("sp_todoterreno"));
@@ -82,10 +93,14 @@ public class CSServicioProveedor extends javax.swing.JPanel
                 jTextLavadoDIn4.setText(rs.getString("sp_ldom_integral_cuatro"));
                 jTextLavadoDInExInd.setText(rs.getString("sp_ldom_int_ext_industrial"));
                 jTextLavadoDIntInd.setText(rs.getString("sp_ldom_integral_industrial"));
+                fecha_desde = rs.getString("sp_fecha_desde");
+                fecha_hasta = rs.getString("sp_fecha_hasta");
                 numeroFila++;
             }
             rs.close();
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex)
+        {
             Logger.getLogger(CSServicioProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         CSDesktop.ServicioProveedor = new JInternalFrame("Sercicios Especiales de Proveedor", true, false, false, true );
@@ -309,6 +324,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
         jLabel34 = new javax.swing.JLabel();
         lDesrotularPegNormal = new javax.swing.JLabel();
         lEuro15 = new javax.swing.JLabel();
+        jButtonNuevos = new javax.swing.JButton();
 
         jButtonModificar.setText("Modificar");
         jButtonModificar.setName("jButtonModificar"); // NOI18N
@@ -854,6 +870,14 @@ public class CSServicioProveedor extends javax.swing.JPanel
         lEuro15.setText("€");
         lEuro15.setName("lEuro15"); // NOI18N
 
+        jButtonNuevos.setText("Generar nuevos");
+        jButtonNuevos.setName("jButtonNuevos"); // NOI18N
+        jButtonNuevos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -861,15 +885,18 @@ public class CSServicioProveedor extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(185, 185, 185)
-                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonNuevos, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                                .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(185, 185, 185)
+                                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
@@ -1380,7 +1407,8 @@ public class CSServicioProveedor extends javax.swing.JPanel
                     .addComponent(jLabel1)
                     .addComponent(jButtonCancelar)
                     .addComponent(jButtonModificar))
-                .addGap(24, 24, 24))
+                .addGap(1, 1, 1)
+                .addComponent(jButtonNuevos))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1555,11 +1583,11 @@ public class CSServicioProveedor extends javax.swing.JPanel
                                "sp_itv_pre_itv  = '"+itvPreItv+"', sp_ida_vuelta  = '"+idaVuelta+"', sp_entrada_campa  = '"+entradaCampa+"', " +
                                "sp_campa  = '"+campa+"', sp_peritacion  = '"+peritacion+"', sp_mo_mecanica_chapa  = '"+mOMecanicaChapa+"', " +
                                "sp_chequeo  = '"+chequeo+"', sp_repostaje  = '"+repostaje+"', sp_suplemento  = '"+suplemento+"', " +
-                               "sp_urgente  = '"+urgente+"', pr_id = "+ pr_id+"  " +
+                               "sp_urgente  = '"+urgente+"', pr_id = "+ pr_id+", sp_fecha_desde  = '"+fecha_desde+"', sp_fecha_hasta = '"+ fecha_hasta+"'  " +
                                "WHERE sp_id = "+ sp_id+"";
 
                 System.out.println(query);
-                //datos = new DbConnection();
+
                 boolean rs = datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs)
@@ -1587,16 +1615,40 @@ public class CSServicioProveedor extends javax.swing.JPanel
     }
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
             {
+               datos.cerrarConexion();
                CSDesktop.EditarProveedor.setEnabled(true);
                CSDesktop.ServicioProveedor.dispose();
                CSDesktop.EditarProveedor.setVisible(true);
             }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    private void jButtonNuevosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevosActionPerformed
+
+        String query = "UPDATE sp_servicios_proveedores SET sp_fecha_hasta  = '"+fecha_hoy+"' WHERE pr_id = "+ sp_id+"";
+
+        System.out.println(query);
+        boolean rs = datos.manipuladorDatos(query);
+        if(rs) {
+            jButtonModificar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonModificar.setEnabled(true);
+        } else {
+            crearServiciosProveedor(pr_id);
+            jButtonModificar.setEnabled(false);
+            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null, mensaje);
+            jButtonModificar.setEnabled(true);
+            CSDesktop.ServicioProveedor.dispose();
+            CSDesktop.EditarProveedor.setVisible(true);
+        }
+}//GEN-LAST:event_jButtonNuevosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonNuevos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1749,6 +1801,204 @@ public class CSServicioProveedor extends javax.swing.JPanel
     private javax.swing.JLabel ltantoxciento1;
     // End of variables declaration//GEN-END:variables
 
+
+        /**
+     * Insertar los servicios especiales del cliente desde el cliente de plantilla
+     * @param cliente
+     */
+    public boolean crearServiciosProveedor(int idProveedor)
+    {
+        boolean servicioOK = true;
+
+        String todoterreno = new String(jText4x4.getText());
+        String industrial = new String(jTextIndustrial.getText());
+        String furgonetas = new String(jTextFurgonetas.getText());
+        String furgones = new String(jTextFurgones.getText());
+        String lavadoEx = new String(jTextLavadoEx.getText());
+        String lavadoExIn = new String(jTextLavadoINEX.getText());
+        String lavadoInt = new String(jTextLavadoInt.getText());
+        String lavadoIE4 = new String(jTextLavadoInEx4.getText());
+        String lavadoIntegral4 = new String(jTextLavadoInt4.getText());
+        String lavadoIEIndustrial = new String(jTextLavadoInExInd.getText());
+        String lavadoIntInd = new String(jTextLavadoIntInd.getText());
+        String desrotularPegaFacil = new String(jTextDesrotularPegFacil.getText());
+        String desrotularPegaNormal = new String(jTextDesrotularPegNormal.getText());
+        String desrotularPegaDificil = new String(jTextDesrotularPegDificil.getText());
+        String rotularPegaFacil = new String(jTextRotularPegFacil.getText());
+        String rotularPegaNormal = new String(jTextRotularPegNormal.getText());
+        String rotularPegaDificil = new String(jTextRotularPegDificil.getText());
+        String lavadoDomEx = new String(jTextLavadoDEx.getText());
+        String lavadoDomExIn = new String(jTextLavadoDINEX.getText());
+        String lavadoDomInt = new String(jTextLavadoDIn.getText());
+        String lavadoDomIE4 = new String(jTextLavadoDIntEx4.getText());
+        String lavadoDomIntegral4 = new String(jTextLavadoDIn4.getText());
+        String lavadoDomIEIndustrial = new String(jTextLavadoDInExInd.getText());
+        String lavadoDomIntInd = new String(jTextLavadoDIntInd.getText());
+        String itv = new String(jTextItv.getText());
+        String preItv = new String(jTextPreItv.getText());
+        String itvPreItv = new String(jTextItvPreItv.getText());
+        String idaVuelta = new String(jTextIdaVuelta.getText());
+        String entradaCampa = new String(jTextCampaEntrada.getText());
+        String campa = new String(jTextCampa.getText());
+        String peritacion = new String(jTextPeritacion.getText());
+        String mOMecanicaChapa = new String(jTextMObraMChapa.getText());
+        String chequeo = new String(jTextChequeo.getText());
+        String repostaje = new String(jTextRepostaje.getText());
+        String suplemento = new String(jTextSuplemento.getText());
+        String urgente = new String(jTextUrgente.getText());
+        fecha_desde = fecha_hoy;
+
+        //CAMPOS OBLIGATORIOS
+        if (!Utilidades.campoObligatorio(todoterreno,"todoterreno").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(todoterreno,"todoterreno"));
+        }
+        else if (!Utilidades.campoObligatorio(furgones,"Furgones").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(furgones,"Furgones"));
+        }
+        else if (!Utilidades.campoObligatorio(furgonetas,"Furgonetas").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(furgonetas,"Furgonetas"));
+        }
+        else if (!Utilidades.campoObligatorio(industrial,"Industrial").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(industrial,"Industrial"));
+        }
+        else if (!Utilidades.campoObligatorioCombo(idaVuelta,"Ida y vuelta").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorioCombo(idaVuelta,"Ida y vuelta"));
+        }
+        else if (!Utilidades.campoObligatorio(itv,"ITV").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(itv,"ITV"));
+        }
+        else if (!Utilidades.campoObligatorio(preItv,"Pre-ITV").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(preItv,"Pre-itv"));
+        }
+        else if (!Utilidades.campoObligatorio(itvPreItv,"ITV + Pre-ITV").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(itvPreItv,"ITV + Pre-itv"));
+        }
+        else if (!Utilidades.campoObligatorio(campa,"Campa").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(campa,"Campa"));
+        }
+        else if (!Utilidades.campoObligatorio(entradaCampa,"Entrada en Campa").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(entradaCampa, "Entrada en Campa"));
+        }
+        else if (!Utilidades.campoObligatorio(peritacion ,"Peritación").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(peritacion,"Peritación"));
+        }
+        else if (!Utilidades.campoObligatorio(mOMecanicaChapa,"Mano de Obra Mecánica y Chapa").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(mOMecanicaChapa,"Mano de Obra Mecánica y Chapa"));
+        }
+        else if (!Utilidades.campoObligatorio(repostaje,"Repostaje").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(repostaje,"Repostaje"));
+        }
+        else if (!Utilidades.campoObligatorio(suplemento,"Suplemento").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(suplemento,"Suplemento"));
+        }
+        else if (!Utilidades.campoObligatorio(urgente,"Urgente").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(urgente,"Urgente"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoEx, "Lavado exterior").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoEx,"Lavado exterior"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoExIn,"Lavado Exterior e Interior").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoExIn,"Lavado Exterior e Interior"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoInt,"Lavado Integral").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoInt,"Lavado Integral"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoIE4,"Lavado interior exterior 4x4").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoIE4,"Lavado interior exterior 4x4"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoIntegral4,"Lavado Integral 4x4").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoIntegral4,"Lavado Integral 4x4"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoIEIndustrial,"Lavado interior y exterior Industrial").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoIEIndustrial,"Lavado interior y exterior Industrial"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoDomEx,"Lavado exterior a Domicilio").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoDomEx,"Lavado exterior a Domicilio"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoDomExIn,"Lavado Interior y Exterior a Domicilio").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoDomExIn,"Lavado Interior y Exterior a Domicilio"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoDomInt,"Lavado Integral a Domicilio").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoDomInt,"Lavado Integral a Domicilio"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoDomIE4,"Lavado interior exterior 4x4 a Domicilio").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoDomIE4,"Lavado interior exterior 4x4 a Domicilio"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoDomIntegral4,"Limpieza Integral 4x4 a Domicilio").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoDomIntegral4,"Limpieza Integral 4x4 a Domicilio"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoDomIEIndustrial,"Lavado interior exterior Industrial a Domicilio").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoDomIEIndustrial,"Lavado interior exterior Industrial a Domicilio"));
+        }
+        else if (!Utilidades.campoObligatorio(lavadoDomIntInd,"Limpieza Integral Industrial a Domicilio").equals("OK"))
+        {
+             ValidarFormatos(Utilidades.campoObligatorio(lavadoDomIntInd,"Limpieza Integral Industrial a Domicilio"));
+        }
+        else
+        {
+            String querySe  = "INSERT INTO sp_servicios_proveedores (sp_todoterreno, sp_industrial, sp_furgonetas, sp_furgones, " +
+            "sp_lavado_exterior, sp_lavado_exin, sp_lavado_integral, sp_int_ext_cuatro, sp_integral_cuatro, " +
+            "sp_int_ext_industrial, sp_integral_industrial, sp_desrotular_peg_facil, sp_desrotular_peg_normal, " +
+            "sp_desrotular_peg_dificil, sp_rotular_peg_facil, sp_rotular_peg_normal, sp_rotular_peg_dificil, " +
+            "sp_ldom_exterior, sp_ldom_exin, sp_ldom_integral, sp_ldom_int_ext_cuatro, sp_ldom_integral_cuatro, " +
+            "sp_ldom_int_ext_industrial, sp_ldom_integral_industrial, sp_itv, sp_pre_itv, sp_itv_pre_itv, " +
+            "sp_ida_vuelta, sp_entrada_campa, sp_campa, sp_peritacion, sp_mo_mecanica_chapa, sp_chequeo, " +
+            "sp_repostaje, sp_suplemento, sp_urgente, pr_id, sp_fecha_desde, sp_fecha_hasta) " +
+            "VALUES ('"+todoterreno+"', '"+industrial+"', '"+furgonetas+"', '"+furgones+"', '"+lavadoEx+"', " +
+            "'"+lavadoExIn+"', '"+lavadoInt+"', '"+lavadoIE4+"', '"+lavadoIntegral4+"', '"+lavadoIEIndustrial+"', " +
+            "'"+lavadoIntInd+"', '"+desrotularPegaFacil+"', '"+desrotularPegaNormal+"', '"+desrotularPegaDificil+"', " +
+            "'"+rotularPegaFacil+"', '"+rotularPegaNormal+"', '"+rotularPegaDificil+"', '"+lavadoDomEx+"', " +
+            "'"+lavadoDomExIn+"', '"+lavadoDomInt+"', '"+lavadoDomIE4+"', '"+lavadoDomIntegral4+"', '"+lavadoDomIEIndustrial+"', " +
+            "'"+lavadoDomIntInd+"', '"+itv+"', '"+preItv+"', '"+itvPreItv+"', '"+idaVuelta+"', '"+entradaCampa+"', " +
+            "'"+campa+"', '"+peritacion+"', '"+mOMecanicaChapa+"', '"+chequeo+"', '"+repostaje+"', '"+suplemento+"', " +
+            "'"+urgente+"', '"+idProveedor+"', '"+fecha_desde+"', '"+fecha_hasta+"') ";
+
+            System.out.println(querySe);
+            boolean rs = datos.manipuladorDatos(querySe);
+
+            if(rs)
+            {
+                jButtonModificar.setEnabled(false);
+                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                JOptionPane.showMessageDialog(null,errorFields);
+                jButtonModificar.setEnabled(true);
+            }
+            else
+            {
+                servicioOK = false;
+            }
+        }
+        return servicioOK;
+    }
+
+
     public void ValidarFormatos(String accion)
     {
          jButtonModificar.setEnabled(false);
@@ -1771,7 +2021,6 @@ public class CSServicioProveedor extends javax.swing.JPanel
         LimitadorDeDocumento limitadorMonovolumen= new LimitadorDeDocumento(10);
         LimitadorDeDocumento limitadorCampa= new LimitadorDeDocumento(10);
         jTextCampa.setDocument(limitadorCampa);
-
     }
 
 }
