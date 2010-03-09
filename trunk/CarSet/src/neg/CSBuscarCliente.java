@@ -490,6 +490,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
                     and = true;
                 }
             }
+            query = query + " ORDER BY cl_nombre ASC";
           System.out.println(query);
           CSResultBuscarCliente resultBuscarCliente = new CSResultBuscarCliente(query);
           
