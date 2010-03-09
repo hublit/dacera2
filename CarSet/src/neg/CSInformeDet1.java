@@ -262,7 +262,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                          " pe.pe_provincia_destino,pe.pe_servicio, pe.pe_servicio_origen, " +
                          " pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " +
                          " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula,pe.pe_ta_es_cliente," +
-                         " pe.pe_suplemento, tc.tc_tarifa, fc.fc_nombre" +
+                         " pe.pe_suplemento, tc.tc_tarifa, fc.fc_nombre, sc.sc_ida_vuelta" +
                          " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc,  sc_servicios_clientes sc, fc_factores_correccion fc" +
                          " WHERE pc.pe_num = pe.pe_num" +
                          " AND sc.cl_id = pc.cl_id" +
