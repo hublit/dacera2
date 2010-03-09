@@ -505,8 +505,8 @@ public class CSLanzarFactura
         }
         else
         {
-            String query="INSERT INTO fa_factura_cliente (fa_num,fa_fecha_desde,fa_fecha_hasta,cl_id, " +
-                    "fa_fecha_pago, fa_pagado) VALUES (";
+            String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
+                    "fl_fecha_pago, fl_pagado) VALUES (";
             query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0')";
 
             System.out.println(query);
