@@ -1426,7 +1426,8 @@ public class CSAnyadirProveedor extends JPanel
                 String repostaje = rs.getString("sp_repostaje");
                 String suplemento = rs.getString("sp_suplemento");
                 String urgente = rs.getString("sp_urgente");
-
+                String fecha_desde = rs.getString("sp_fecha_desde");
+                String fecha_hasta = rs.getString("sp_fecha_hasta");
 
                 String querySe  = "INSERT INTO sp_servicios_proveedores (sp_todoterreno, sp_industrial, sp_furgonetas, sp_furgones, " +
                 "sp_lavado_exterior, sp_lavado_exin, sp_lavado_integral, sp_int_ext_cuatro, sp_integral_cuatro, " +
@@ -1435,7 +1436,7 @@ public class CSAnyadirProveedor extends JPanel
                 "sp_ldom_exterior, sp_ldom_exin, sp_ldom_integral, sp_ldom_int_ext_cuatro, sp_ldom_integral_cuatro, " +
                 "sp_ldom_int_ext_industrial, sp_ldom_integral_industrial, sp_itv, sp_pre_itv, sp_itv_pre_itv, " +
                 "sp_ida_vuelta, sp_entrada_campa, sp_campa, sp_peritacion, sp_mo_mecanica_chapa, sp_chequeo, " +
-                "sp_repostaje, sp_suplemento, sp_urgente, pr_id) " +
+                "sp_repostaje, sp_suplemento, sp_urgente, pr_id, sp_fecha_desde, sp_fecha_hasta) " +
                 "VALUES ('"+todoterreno+"', '"+industrial+"', '"+furgonetas+"', '"+furgones+"', '"+lavadoEx+"', " +
                 "'"+lavadoExIn+"', '"+lavadoInt+"', '"+lavadoIE4+"', '"+lavadoIntegral4+"', '"+lavadoIEIndustrial+"', " +
                 "'"+lavadoIntInd+"', '"+desrotularPegaFacil+"', '"+desrotularPegaNormal+"', '"+desrotularPegaDificil+"', " +
@@ -1443,7 +1444,7 @@ public class CSAnyadirProveedor extends JPanel
                 "'"+lavadoDomExIn+"', '"+lavadoDomInt+"', '"+lavadoDomIE4+"', '"+lavadoDomIntegral4+"', '"+lavadoDomIEIndustrial+"', " +
                 "'"+lavadoDomIntInd+"', '"+itv+"', '"+preItv+"', '"+itvPreItv+"', '"+idaVuelta+"', '"+entradaCampa+"', " +
                 "'"+campa+"', '"+peritacion+"', '"+mOMecanicaChapa+"', '"+chequeo+"', '"+repostaje+"', '"+suplemento+"', " +
-                "'"+urgente+"', '"+ idProveedor+"') ";
+                "'"+urgente+"', '"+ idProveedor+"', '"+ fecha_desde+"', '"+ fecha_hasta+"') ";
 
                 System.out.println(querySe);
                 rsSe = se.manipuladorDatos(querySe);

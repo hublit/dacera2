@@ -1361,8 +1361,6 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     public boolean crearServiciosCliente(String idCliente)
     {
         boolean servicioOK=true;
-        String fecha_desde = "2009-01-10";
-        String fecha_hasta = "2050-01-01";
         String query = "SELECT * FROM sc_servicios_clientes WHERE cl_id = 1";
 
         ResultSet rs = datos.select(query);
@@ -1409,6 +1407,8 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 String repostaje = rs.getString("sc_repostaje");
                 String suplemento = rs.getString("sc_suplemento");
                 String urgente = rs.getString("sc_urgente");
+                String fecha_desde = rs.getString("sc_fecha_desde");
+                String fecha_hasta = rs.getString("sc_fecha_hasta");
 
 
                 String querySe  = "INSERT INTO sc_servicios_clientes (sc_todoterreno, sc_industrial, sc_furgonetas, sc_furgones, " +
@@ -1418,7 +1418,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 "sc_ldom_exterior, sc_ldom_exin, sc_ldom_integral, sc_ldom_int_ext_cuatro, sc_ldom_integral_cuatro, " +
                 "sc_ldom_int_ext_industrial, sc_ldom_integral_industrial, sc_itv, sc_pre_itv, sc_itv_pre_itv, " +
                 "sc_ida_vuelta, sc_entrada_campa, sc_campa, sc_peritacion, sc_mo_mecanica_chapa, sc_chequeo, " +
-                "sc_repostaje, sc_suplemento, sc_urgente, cl_id) " +
+                "sc_repostaje, sc_suplemento, sc_urgente, cl_id, sc_fecha_desde, sc_fecha_hasta) " +
                 "VALUES ('"+todoterreno+"', '"+industrial+"', '"+furgonetas+"', '"+furgones+"', '"+lavadoEx+"', " +
                 "'"+lavadoExIn+"', '"+lavadoInt+"', '"+lavadoIE4+"', '"+lavadoIntegral4+"', '"+lavadoIEIndustrial+"', " +
                 "'"+lavadoIntInd+"', '"+desrotularPegaFacil+"', '"+desrotularPegaNormal+"', '"+desrotularPegaDificil+"', " +
@@ -1426,7 +1426,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 "'"+lavadoDomExIn+"', '"+lavadoDomInt+"', '"+lavadoDomIE4+"', '"+lavadoDomIntegral4+"', '"+lavadoDomIEIndustrial+"', " +
                 "'"+lavadoDomIntInd+"', '"+itv+"', '"+preItv+"', '"+itvPreItv+"', '"+idaVuelta+"', '"+entradaCampa+"', " +
                 "'"+campa+"', '"+peritacion+"', '"+mOMecanicaChapa+"', '"+chequeo+"', '"+repostaje+"', '"+suplemento+"', " +
-                "'"+urgente+"', '"+ idCliente+"') ";
+                "'"+urgente+"', '"+ idCliente+"', '"+ fecha_desde+"', '"+ fecha_hasta+"') ";
 
                System.out.println(querySe);
                rsSe = se.manipuladorDatos(querySe);
