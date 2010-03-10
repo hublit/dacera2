@@ -249,7 +249,7 @@ public class CSInformeDet2 extends javax.swing.JPanel
             }
 
             fechaIni=anyoIni+"-"+mesIni+"-26";
-            fechaFin=anyo+"-"+mes+"-24";
+            fechaFin=anyo+"-"+mes+"-25";
             System.out.println(fechaIni);
             System.out.println(fechaFin);
 

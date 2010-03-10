@@ -362,6 +362,7 @@ public class CSFacturaCliente extends JPanel
                            "WHERE pe.pe_num = pc.pe_num " +
                            "AND sc.cl_id = pc.cl_id " +
                            "AND tc.tc_fecha_hasta > pe.pe_fecha " +
+                           "AND sc.sc_fecha_hasta > pe.pe_fecha " +
                            "AND tc.tc_servicio = pe.pe_servicio " +
                            "AND tc.cl_id = pc.cl_id " +
                            "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " + 
