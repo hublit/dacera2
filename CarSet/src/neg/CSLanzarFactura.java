@@ -299,7 +299,7 @@ public class CSLanzarFactura
             }
            if (!campoServicio.equals(""))
            {
-               String querySe = "SELECT "+campoServicio+" FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
+            String querySe = "SELECT "+campoServicio+" FROM sc_servicios_clientes WHERE cl_id = "+cl_id+" AND sc_fecha_hasta > '"+fecha+"' LIMIT 1";
 
                ResultSet rsSe = datos.select(querySe);
                while (rsSe.next())
