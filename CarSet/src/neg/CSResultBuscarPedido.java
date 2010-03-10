@@ -40,12 +40,12 @@ import javax.swing.table.TableColumn;
  *
  * @author depr102
  */
-public class CSResultBuscarPedido extends javax.swing.JPanel {
-
+public class CSResultBuscarPedido extends javax.swing.JPanel
+{
+    DbConnection datos = new DbConnection();
     /** Creates new form ABResultBuscarPedido */
-    public CSResultBuscarPedido(String query) {
-
-        DbConnection datos = new DbConnection();
+    public CSResultBuscarPedido(String query)
+    {
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = datos.select(query);
 
@@ -64,9 +64,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
 
         for (int k = 0; k < this.getComponents().length; k ++)
         {
-
                 this.getComponents()[k].addKeyListener(l);
-
         }
         addKeyListener(l);
 
@@ -185,8 +183,6 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
         }    );
     }
 
-
-
      public Dimension getPreferredSize()
    {
       return new Dimension( 1100,650 );
@@ -259,8 +255,9 @@ public class CSResultBuscarPedido extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
-       CSDesktop.ResultPedido.dispose();
-       CSDesktop.menuBuscarPedido.setEnabled(true);
+        datos.cerrarConexion();
+        CSDesktop.ResultPedido.dispose();
+        CSDesktop.menuBuscarPedido.setEnabled(true);
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
 

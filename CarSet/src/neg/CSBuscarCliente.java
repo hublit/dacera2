@@ -499,6 +499,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
+            datos.cerrarConexion();
             CSDesktop.BuscarCliente.dispose();
             CSDesktop.menuBuscarCliente.setEnabled(true);
         }

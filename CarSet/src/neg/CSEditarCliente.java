@@ -1239,7 +1239,6 @@ public class CSEditarCliente extends javax.swing.JPanel
      */
     private void getFPagoClientes() throws SQLException
     {
-        datos = new DbConnection();
         ResultSet rs = datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
         int j = 0;
         String valor = "";

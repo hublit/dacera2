@@ -40,6 +40,7 @@ public class CSEditarPedido extends javax.swing.JPanel
     /** Creates new form ABEditarPedido */
     public CSEditarPedido(int pedido) throws SQLException
     {
+        datos = new DbConnection();
         initComponents();
         limitacionesCampos();
         getFactorCorrecion();
@@ -1511,7 +1512,6 @@ public class CSEditarPedido extends javax.swing.JPanel
                             "pe_fecha_real_destino = '"+fechaRealDestino+"', pe_hora_real_destino='"+horarealDestino+"' WHERE pe_num = "+numero+"";
 
                 System.out.println(query);
-                datos = new DbConnection();
                 boolean rs = datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs)
@@ -1580,8 +1580,9 @@ public class CSEditarPedido extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       CSDesktop.EditarPedido.dispose();
-       CSDesktop.ResultPedido.setVisible(true);
+        datos.cerrarConexion();
+        CSDesktop.EditarPedido.dispose();
+        CSDesktop.ResultPedido.setVisible(true);
        
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -1995,7 +1996,6 @@ public class CSEditarPedido extends javax.swing.JPanel
 
      private JComboBox getFactorCorrecion() throws SQLException
     {
-        datos = new DbConnection();
         ResultSet rs = datos.select("SELECT fc_id, fc_nombre FROM fc_factores_correccion");
 
 

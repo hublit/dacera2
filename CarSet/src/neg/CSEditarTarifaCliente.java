@@ -507,7 +507,6 @@ public class CSEditarTarifaCliente extends JPanel
                     */
 
                     System.out.println(query);
-                    datos = new DbConnection();
                     boolean rs = datos.manipuladorDatos(query);
                     System.out.println(rs);
                     if(rs)
@@ -549,6 +548,7 @@ public class CSEditarTarifaCliente extends JPanel
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        datos.cerrarConexion();
         CSDesktop.EditarTarifaCliente.dispose();
         CSDesktop.ABResultTarifasCliente.setVisible(true);
         
@@ -643,7 +643,6 @@ public class CSEditarTarifaCliente extends JPanel
      */
     private int getIdCliente(String cliente) throws SQLException
     {
-        datos = new DbConnection();
         ResultSet rs = datos.select("SELECT cl_id FROM cl_clientes WHERE cl_nombre = '"+cliente+"'");
 
         int valor = 0;

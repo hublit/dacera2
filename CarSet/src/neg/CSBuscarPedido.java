@@ -34,13 +34,15 @@ import utils.Utilidades;
  *
  * @author depr73
  */
-public class CSBuscarPedido extends javax.swing.JPanel {
+public class CSBuscarPedido extends javax.swing.JPanel
+{
     int clienteID=0;
     int proveedorID=0;
     private String fecha2;
-    private DbConnection datos;
+
     /** Creates new form ABBuscarPedido */
-    public CSBuscarPedido() {
+    public CSBuscarPedido()
+    {
 
         CSDesktop.menuBuscarPedido.setEnabled(false);
         initComponents();

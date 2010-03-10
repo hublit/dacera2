@@ -32,7 +32,6 @@ public class CSEditarContactoProveedor extends javax.swing.JPanel
     /** Creates new form ABEditarContactosProveedor */
     public CSEditarContactoProveedor(int contacto) throws SQLException
     {
-        datos = new DbConnection();
         initComponents();
         getDepartamentoContacto();
         datosContactoProveedor(contacto);
@@ -288,6 +287,7 @@ public class CSEditarContactoProveedor extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
+            datos.cerrarConexion();
             CSDesktop.EditarContactoProveedor.dispose();
         }
 }//GEN-LAST:event_jButtonCancelarActionPerformed

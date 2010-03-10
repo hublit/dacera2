@@ -48,6 +48,7 @@ public class CSAnyadirPedido extends JPanel
     /** Creates new form ABAnyadirProveedores */
     public CSAnyadirPedido() throws SQLException
     {
+        datos = new DbConnection();
         CSDesktop.menuNuevoPedido.setEnabled(false);
         this.setLayout(new GridBagLayout());
         Date hoy = new Date();
@@ -1522,7 +1523,6 @@ public class CSAnyadirPedido extends JPanel
 
 
                System.out.println(query);
-                datos = new DbConnection();
                 boolean rs3 = datos.manipuladorDatos(query);
                 System.out.println(rs3);
                 if(rs3)
@@ -1636,6 +1636,7 @@ public class CSAnyadirPedido extends JPanel
 
     private void jButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar1ActionPerformed
         {
+            datos.cerrarConexion();
             CSDesktop.NuevoPedido.dispose();
             CSDesktop.menuNuevoPedido.setEnabled(true);
             
@@ -1900,7 +1901,7 @@ public class CSAnyadirPedido extends JPanel
 
   private void getFactorCorrecion() throws SQLException
         {
-        datos = new DbConnection();
+
         ResultSet rs = datos.select("SELECT fc_id, fc_nombre FROM fc_factores_correccion");
         int j = 0;
         String valor = "";
