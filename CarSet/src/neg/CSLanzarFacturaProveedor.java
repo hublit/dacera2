@@ -44,7 +44,7 @@ public class CSLanzarFacturaProveedor
      String importeTotal = "";
      String importeTotalIva = "";
      String importeIva = "";
-     String cl_id = beanProveedor.getPr_id();
+     String pr_id = beanProveedor.getPr_id();
 
      for(int i = 0; i < lista.size(); i++)
      {
@@ -142,12 +142,12 @@ public class CSLanzarFacturaProveedor
             //SI TIENE IDA Y VUELTA
             if(otro.getIdaVuelta().equals("1"))
             {
-               String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
+               String queryIv = "SELECT sp_ida_vuelta FROM sp_servicios_proveedores WHERE pr_id = "+pr_id;
 
                ResultSet rsIv = datos.select(queryIv);
                while (rsIv.next())
                {
-                  IdaVuelta = rsIv.getString("sc_ida_vuelta");
+                  IdaVuelta = rsIv.getString("sp_ida_vuelta");
                }
 
                 labelIda="DESCUENTO";
@@ -163,7 +163,7 @@ public class CSLanzarFacturaProveedor
              //LINEA DE FACTOR DE CORRECCION
 
            
-                ArrayList factorTarifa = obtenerFactor(factor, cl_id);
+                ArrayList factorTarifa = obtenerFactor(factor, pr_id);
                 factorTexto = factorTarifa.get(0).toString();
 
              if(soporte.equals("Grúa"))
@@ -187,119 +187,119 @@ public class CSLanzarFacturaProveedor
 
             if (servicioEspecial.equals("Urgente"))
             {
-                campoServicio = "sc_urgente";
+                campoServicio = "sp_urgente";
             }
             else if(servicioEspecial.equals("ITV Conductor"))
             {
-                campoServicio = "sc_itv";
+                campoServicio = "sp_itv";
             }
             else if(servicioEspecial.equals("Pre_ITV"))
             {
-                campoServicio = "sc_pre_itv";
+                campoServicio = "sp_pre_itv";
             }
             else if(servicioEspecial.equals("ITV Grúa"))
             {
-                campoServicio = "sc_itv_pre_itv";
+                campoServicio = "sp_itv_pre_itv";
             }
             else if(servicioEspecial.equals("Peritación"))
             {
-                campoServicio = "sc_peritacion";
+                campoServicio = "sp_peritacion";
             }
             else if(servicioEspecial.equals("Mano obra Mecánica/Chapa"))
             {
-                campoServicio = "sc_mo_mecanica_chapa";
+                campoServicio = "sp_mo_mecanica_chapa";
             }
             else if(servicioEspecial.equals("Chequeo"))
             {
-                campoServicio = "sc_chequeo";
+                campoServicio = "sp_chequeo";
             }
             else if(servicioEspecial.equals("Repostaje"))
             {
-                campoServicio = "sc_repostaje";
+                campoServicio = "sp_repostaje";
             }
             else if(servicioEspecial.equals("LD Exterior"))
             {
-                campoServicio = "sc_ldom_exterior";
+                campoServicio = "sp_ldom_exterior";
             }
             else if(servicioEspecial.equals("LD Interior y Exterior"))
             {
-                campoServicio = "sc_ldom_exin";
+                campoServicio = "sp_ldom_exin";
             }
             else if(servicioEspecial.equals("LD Integral"))
             {
-                campoServicio = "sc_ldom_integral";
+                campoServicio = "sp_ldom_integral";
             }
             else if(servicioEspecial.equals("LD Interior/Exterior 4x4"))
             {
-                campoServicio = "sc_ldom_int_ext_cuatro";
+                campoServicio = "sp_ldom_int_ext_cuatro";
             }
             else if(servicioEspecial.equals("LD Integral 4x4"))
             {
-                campoServicio = "sc_ldom_integral_cuatro";
+                campoServicio = "sp_ldom_integral_cuatro";
             }
             else if(servicioEspecial.equals("LD Interior/Exterior Industrial"))
             {
-                campoServicio = "sc_ldom_int_ext_industrial";
+                campoServicio = "sp_ldom_int_ext_industrial";
             }
             else if(servicioEspecial.equals("LD Integral Industrial"))
             {
-                campoServicio = "sc_ldom_integral_industrial";
+                campoServicio = "sp_ldom_integral_industrial";
             }
             else if(servicioEspecial.equals("LC Exterior"))
             {
-                campoServicio = "sc_lavado_exterior";
+                campoServicio = "sp_lavado_exterior";
             }
             else if(servicioEspecial.equals("LC Interior y Exterior"))
             {
-                campoServicio = "sc_lavado_exin";
+                campoServicio = "sp_lavado_exin";
             }
             else if(servicioEspecial.equals("LC Integral"))
             {
-                campoServicio = "sc_lavado_integral";
+                campoServicio = "sp_lavado_integral";
             }
             else if(servicioEspecial.equals("LC Interior/Exterior 4x4"))
             {
-                campoServicio = "sc_int_ext_cuatro";
+                campoServicio = "sp_int_ext_cuatro";
             }
             else if(servicioEspecial.equals("LC Integral 4x4"))
             {
-                campoServicio = "sc_integral_cuatro";
+                campoServicio = "sp_integral_cuatro";
             }
             else if(servicioEspecial.equals("LC Interior/Exterior Industrial"))
             {
-                campoServicio = "sc_int_ext_industrial";
+                campoServicio = "sp_int_ext_industrial";
             }
             else if(servicioEspecial.equals("LC Integral Industrial"))
             {
-                campoServicio = "sc_integral_industrial";
+                campoServicio = "sp_integral_industrial";
             }
             else if(servicioEspecial.equals("Desrotular pegatinas fácil"))
             {
-                campoServicio = "sc_desrotular_peg_facil";
+                campoServicio = "sp_desrotular_peg_facil";
             }
             else if(servicioEspecial.equals("Desrotular pegatinas normal"))
             {
-                campoServicio = "sc_desrotular_peg_normal";
+                campoServicio = "sp_desrotular_peg_normal";
             }
             else if(servicioEspecial.equals("Desrotular pegatinas difícil"))
             {
-                campoServicio = "sc_desrotular_peg_dificil";
+                campoServicio = "sp_desrotular_peg_dificil";
             }
             else if(servicioEspecial.equals("Rotular pegatinas fácil"))
             {
-                campoServicio = "sc_rotular_peg_facil";
+                campoServicio = "sp_rotular_peg_facil";
             }
             else if(servicioEspecial.equals("Rotular pegatinas normal"))
             {
-                campoServicio = "sc_rotular_peg_normal";
+                campoServicio = "sp_rotular_peg_normal";
             }
             else if(servicioEspecial.equals("Rotular pegatinas difícil"))
             {
-                campoServicio = "sc_rotular_peg_dificil";
+                campoServicio = "sp_rotular_peg_dificil";
             }
            if (!campoServicio.equals(""))
            {
-               String querySe = "SELECT "+campoServicio+" FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
+               String querySe = "SELECT "+campoServicio+" FROM sp_servicios_proveedores WHERE pr_id = "+pr_id+" AND sp_fecha_hasta > '"+fecha+"' LIMIT 1";
 
                ResultSet rsSe = datos.select(querySe);
                while (rsSe.next())
@@ -320,13 +320,13 @@ public class CSLanzarFacturaProveedor
         }
         else
         {
-             String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
+             String queryCampa = "SELECT sp_entrada_campa, sp_campa FROM sp_servicios_proveedores WHERE pr_id = "+pr_id;
 
                ResultSet rsCampa = datos.select(queryCampa);
                while (rsCampa.next())
                {
-                  importeCampaAux = rsCampa.getString("sc_entrada_campa");
-                  importeCampa2Aux = rsCampa.getString("sc_campa");
+                  importeCampaAux = rsCampa.getString("sp_entrada_campa");
+                  importeCampa2Aux = rsCampa.getString("sp_campa");
                }
 
             soporte = "CAMPA";
@@ -341,7 +341,7 @@ public class CSLanzarFacturaProveedor
 
             importeCampa2=String.valueOf(importeCampa5);
 
-            ArrayList factorTarifa = obtenerFactor(factor, cl_id);
+            ArrayList factorTarifa = obtenerFactor(factor, pr_id);
             factorTexto = factorTarifa.get(0).toString();
         }
 
