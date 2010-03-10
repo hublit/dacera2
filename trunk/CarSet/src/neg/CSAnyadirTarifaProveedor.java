@@ -600,8 +600,9 @@ public class CSAnyadirTarifaProveedor extends JPanel
          jButtonGuardar.setEnabled(true);
     }
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        datos.cerrarConexion();
         CSDesktop.TarifaProveedor.dispose();
-         CSDesktop.menuTarifaProveedor.setEnabled(true);
+        CSDesktop.menuTarifaProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jToggleButtonProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonProveedorActionPerformed
@@ -654,7 +655,8 @@ public class CSAnyadirTarifaProveedor extends JPanel
 
         try {
             DbConnection da = new DbConnection();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 boolean rsUp = true;
                 boolean rsTp = true;
 
@@ -775,7 +777,6 @@ public class CSAnyadirTarifaProveedor extends JPanel
      */
     private int getIdProveedores(String proveedor) throws SQLException
     {
-        datos = new DbConnection();
         ResultSet rs = datos.select("SELECT pr_id FROM pr_proveedores WHERE pr_nombre_fiscal = '"+proveedor+"'");
                 System.out.print("SELECT pr_id FROM pr_proveedores WHERE pr_nombre_fiscal = '"+proveedor+"'");
         int valor = 0;
@@ -793,7 +794,6 @@ public class CSAnyadirTarifaProveedor extends JPanel
      */
     private int getTarifaProveedor(int proveedor, String soporte, String servicio, String servicio_origen, String servicio_destino) throws SQLException
     {
-        datos = new DbConnection();
         int tarifa = 0;
         tarifa = datos.numeroFilas("SELECT tp_id FROM tp_tarifas_proveedores WHERE " +
                                    "tp_servicio='"+servicio+"' AND tp_servicio_origen='"+servicio_origen+"' " +

@@ -35,15 +35,14 @@ import javax.swing.table.TableColumn;
  *
  * @author depr102
  */
-public class CSResultTarifaCliente extends javax.swing.JPanel {
-
+public class CSResultTarifaCliente extends javax.swing.JPanel
+{
+    DbConnection datos = new DbConnection();
     /** Creates new form ABResultC */
-    public CSResultTarifaCliente(String query) {
-
-
+    public CSResultTarifaCliente(String query)
+    {
         CSDesktop.EditarCliente.setVisible(false);
 
-        DbConnection datos = new DbConnection();
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = datos.select(query);
         System.out.println("Tarifas: "+query);
@@ -234,6 +233,7 @@ public class CSResultTarifaCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        datos.cerrarConexion();
         CSDesktop.ABResultTarifasCliente.dispose();
         CSDesktop.EditarCliente.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -302,7 +302,8 @@ public class CSContactoProveedor extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
-        CSDesktop.NuevoContactoProveedor.dispose();
+         datos.cerrarConexion();
+         CSDesktop.NuevoContactoProveedor.dispose();
          CSDesktop.menuContactoProveedor.setEnabled(true);
         }
 }//GEN-LAST:event_jButtonCancelarActionPerformed

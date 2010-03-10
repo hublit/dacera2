@@ -30,14 +30,14 @@ import javax.swing.table.TableColumn;
  *
  * @author depr102
  */
-public class CSSelectCliente extends javax.swing.JPanel {
-
+public class CSSelectCliente extends javax.swing.JPanel
+{
+    DbConnection datos = new DbConnection();
     private JTextField jTextCli;
     private int cliID=0;
     /** Creates new form BuscaClientesPanel */
-    public CSSelectCliente(String query,JTextField jTextC) {      
-
-        DbConnection datos = new DbConnection();
+    public CSSelectCliente(String query,JTextField jTextC)
+    {
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = datos.select(query);
         this.jTextCli=jTextC;
@@ -182,7 +182,8 @@ public class CSSelectCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           CSDesktop.BuscaCliente.dispose();
+        datos.cerrarConexion();
+        CSDesktop.BuscaCliente.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
@@ -201,6 +202,5 @@ public class CSSelectCliente extends javax.swing.JPanel {
     //public int getRowSeleccionada () {
     //    return row;
 //}
-
 
 }

@@ -563,7 +563,6 @@ public class CSAnyadirTarifaCliente extends JPanel
                                ""+ incrementoN + ", "+ tarifaN + ", "+ idCliente+")";
 
                 System.out.println(query);
-                datos = new DbConnection();
                 boolean rs = datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if (rs) {
@@ -587,6 +586,7 @@ public class CSAnyadirTarifaCliente extends JPanel
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        datos.cerrarConexion();
         CSDesktop.TarifaCliente.dispose();
         CSDesktop.menuTarifaCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -767,7 +767,6 @@ public class CSAnyadirTarifaCliente extends JPanel
      */
     private int getTarifaCliente(int cliente, String soporte, String servicio, String servicio_origen, String servicio_destino) throws SQLException
     {
-        datos = new DbConnection();
         int tarifa = 0;
         tarifa = datos.numeroFilas("SELECT tc_id FROM tc_tarifas_clientes WHERE " +
                                    "tc_servicio='"+servicio+"' AND tc_servicio_origen='"+servicio_origen+"' " +

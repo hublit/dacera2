@@ -34,12 +34,12 @@ import utils.Utilidades;
  *
  * @author depr102
  */
-public class CSResultBuscarCliente extends javax.swing.JPanel {
-
+public class CSResultBuscarCliente extends javax.swing.JPanel
+{
+    DbConnection datos = new DbConnection();
     /** Creates new form ABResultC */
-    public CSResultBuscarCliente(String query) {
-
-        DbConnection datos = new DbConnection();
+    public CSResultBuscarCliente(String query)
+    {
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = datos.select(query);
         
@@ -216,6 +216,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        datos.cerrarConexion();
         CSDesktop.ResultCliente.dispose();
         CSDesktop.menuBuscarCliente.setEnabled(true);
        

@@ -329,6 +329,7 @@ public class CSContactoCliente extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
+        datos.cerrarConexion();
         CSDesktop.NuevoContactoCliente.dispose();
         CSDesktop.menuContactoCliente.setEnabled(true);
         

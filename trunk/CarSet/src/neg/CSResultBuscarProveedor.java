@@ -35,12 +35,12 @@ import javax.swing.table.TableColumn;
  *
  * @author lito
  */
-public class CSResultBuscarProveedor extends javax.swing.JPanel {
-
+public class CSResultBuscarProveedor extends javax.swing.JPanel
+{
+    DbConnection datos = new DbConnection();
     /** Creates new form ABResultBuscarProveedores */
     public CSResultBuscarProveedor(String query)
     {
-        DbConnection datos = new DbConnection();
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = datos.select(query);
   
@@ -231,6 +231,7 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        datos.cerrarConexion();
         CSDesktop.ResultProveedor.dispose();
         CSDesktop.menuBuscarProveedor.setEnabled(true);
 }//GEN-LAST:event_jButton1ActionPerformed

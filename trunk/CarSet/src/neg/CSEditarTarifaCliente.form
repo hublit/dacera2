@@ -29,7 +29,7 @@
               <Component id="lNumero" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jTextId" min="-2" pref="51" max="-2" attributes="1"/>
-              <EmptySpace pref="551" max="32767" attributes="0"/>
+              <EmptySpace pref="350" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -37,7 +37,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Component id="lPContacto2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="646" max="32767" attributes="0"/>
+                      <EmptySpace pref="445" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">

@@ -27,14 +27,13 @@ import javax.swing.table.TableColumn;
  *
  * @author depr102
  */
-public class CSSelectProveedor extends javax.swing.JPanel {
-
+public class CSSelectProveedor extends javax.swing.JPanel
+{
+    DbConnection datos = new DbConnection();
     private JTextField jTextPro;
     /** Creates new form BuscaClientesPanel */
-    public CSSelectProveedor(String query,JTextField jTextC) {
-
-
-        DbConnection datos = new DbConnection();
+    public CSSelectProveedor(String query,JTextField jTextC)
+    {
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = datos.select(query);
         this.jTextPro=jTextC;
@@ -179,6 +178,7 @@ public class CSSelectProveedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        datos.cerrarConexion();
         CSDesktop.BuscaProveedor.dispose();
 }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -198,6 +198,5 @@ public class CSSelectProveedor extends javax.swing.JPanel {
     //public int getRowSeleccionada () {
     //    return row;
 //}
-
 
 }

@@ -316,6 +316,7 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
+            datos.cerrarConexion();
             CSDesktop.EditarContactoCliente.dispose();
         }
 }//GEN-LAST:event_jButtonCancelarActionPerformed

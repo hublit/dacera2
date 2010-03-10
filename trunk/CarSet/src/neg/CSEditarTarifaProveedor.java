@@ -480,7 +480,6 @@ public class CSEditarTarifaProveedor extends JPanel
                                    "WHERE tp_id = "+id+"";
 
                     System.out.println(query);
-                    datos = new DbConnection();
                     boolean rs = datos.manipuladorDatos(query);
                     System.out.println(rs);
                     if(rs)
@@ -524,6 +523,7 @@ public class CSEditarTarifaProveedor extends JPanel
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        datos.cerrarConexion();
         CSDesktop.EditarTarifaProveedor.dispose();
         CSDesktop.ABResultTarifasProveedor.setVisible(true);
         
