@@ -12,13 +12,17 @@
 package neg;
 
 import com.mysql.jdbc.Connection;
+import data.BeanFactura;
 import data.Cliente;
 import data.DbConnection;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -39,6 +43,7 @@ import utils.Utilidades;
  */
 public class CSInformeDet1 extends javax.swing.JPanel
 {
+    private DbConnection datos = new DbConnection();
     /** Creates new form CSInformeDet1 */
     public CSInformeDet1() throws SQLException
     {
@@ -232,6 +237,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
             int clienteID = 0;
             String fechaIni="";
             String fechaFin="";
+            ArrayList lista=new ArrayList();
 
             int mes=jMonthChooser.getMonth()+ 1 ;
             int anyo=jYearChooser.getYear();
@@ -253,7 +259,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
             }
             
             fechaIni=anyoIni+"-"+mesIni+"-26";
-            fechaFin=anyo+"-"+mes+"-24";
+            fechaFin=anyo+"-"+mes+"-25";
             System.out.println(fechaIni);
             System.out.println(fechaFin);
 
@@ -276,55 +282,56 @@ public class CSInformeDet1 extends javax.swing.JPanel
                          " AND pc.cl_id = "+clienteID+" GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
             System.out.println(query);
+            ResultSet rs = datos.select(query);
+            try {
+                while (rs.next()) {
+                    BeanFactura nueva = new BeanFactura();
 
-            Map pars = new HashMap();
-            pars.put("Cliente", cliente);
-            pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
-            pars.put("Query", query);
+                    nueva.setNumPedido(rs.getLong("pe_num"));
+                    nueva.setFecha(rs.getString("pe_fecha"));
+                    nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
+                    nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
+                    nueva.setServicio(rs.getString("pe_servicio"));
+                    nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
+                    nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
+                    nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
+                    nueva.setDiasCampa(rs.getString("pe_dias_campa"));
+                    nueva.setFactor(rs.getString("fc_id"));
+                    nueva.setSoporte(rs.getString("pe_soporte"));
+                    nueva.setMatricula(rs.getString("pe_ve_matricula"));
+                    //nueva.setMarca(rs.getString("pe_ve_marca"));
+                    nueva.setVehiculo(rs.getString("fc_nombre"));
+                    nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
+                    //nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
+                    nueva.setSuplemento(rs.getString("pe_suplemento"));
+                    //nueva.setDescripcion(rs.getString("pe_descripcion"));
+                    nueva.setTarifa(rs.getString("tc_tarifa"));
+                    nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
 
-             JasperReport jasperReport = null;
-             JasperPrint jasperPrint;
-             Connection con = null;
+                    lista.add(nueva);
+                    }
+            } catch (SQLException ex) {
+                Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                CSLanzarInforme1.lanzar(lista, clienteID, cliente, mes, anyo);
+                //CSLanzarFactura.lanzar(query,fechaFac,beanCliente,2);
+                //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                        //CSLanzarFactura.lanzar(query,fechaFac,beanCliente,2);
+                        //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
 
-             try
-             {
-                try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
-                }                                  
-                    DbConnection conexion=new DbConnection();
-                    con=(Connection) conexion.getConexion();
-               
-                //1-Compilamos el archivo XML y lo cargamos en memoria
-                jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jrxml");
-
-                /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
-                //JasperFillManager.fillReportToFile("c:\\report1.jasper", pars, new JREmptyDataSource());
-
-                //JasperExportManager.exportReportToPdfFile("c:\\report1.jrprint");
-                //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-                jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jasper", pars, con);
-
-               //3-Exportamos el reporte a pdf y lo guardamos en disco
-               //JasperExportManager.exportReportToPdfFile(
-               //jasperPrint, "c:/holaMundo.pdf");
-
-                JRViewer jrViewer = new JRViewer(jasperPrint);
-                CSDesktop.NuevaFactura = new JInternalFrame("Informe Detallado 1", true, false, false, true );
-                CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
-                //CSDesktop.NuevaFactura.add(jrViewer);
-                CSDesktop.NuevaFactura.pack();
-
-                CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
-                Dimension pantalla = CSDesktop.elEscritorio.getSize();
-                CSDesktop.NuevaFactura.setSize(pantalla);
-                CSDesktop.NuevaFactura.setVisible(true);
-             }
-             catch (JRException e)
-             {
-                e.printStackTrace();
-             }
+              
+ 
+            
         }
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 

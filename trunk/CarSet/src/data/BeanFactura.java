@@ -34,9 +34,18 @@ public class BeanFactura {
     private String suplemento;
     private String descripcion;
     private String tarifa;
+    private String vehiculo;
 
     public String getTarifa() {
         return tarifa;
+    }
+
+    public String getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(String vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     public void setTarifa(String tarifa) {
