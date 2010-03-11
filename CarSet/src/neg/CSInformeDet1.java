@@ -336,6 +336,8 @@ public class CSInformeDet1 extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+
+        datos.cerrarConexion();
         CSDesktop.InformeDetallado1.dispose();
         CSDesktop.menuInformeDetallado1.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
