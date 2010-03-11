@@ -278,6 +278,8 @@ public class CSFacturaProveedor extends JPanel
 }//GEN-LAST:event_jToggleButtonClienteActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+
+       datos.cerrarConexion();
        CSDesktop.FacturaProveedor.dispose();
        CSDesktop.menuFacturaProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
