@@ -636,10 +636,10 @@ public class CSBuscarPedido extends javax.swing.JPanel
         boolean where = false;
         String query = "SELECT * FROM pe_pedidos pe ";
 
-        if (cliente.equals("") && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
+        if (numero.equals("") && cliente.equals("") && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
         {
             jButtonBuscar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Cliente, un Proveedor o un período de fecha</FONT></HTML>");
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar el número de pedido, un Cliente, un Proveedor o período de fecha</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonBuscar.setEnabled(true);
             //query = query + " WHERE ";
@@ -657,7 +657,6 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 query = query + ", pc_pedidos_clientes pc, pp_pedidos_proveedores pp WHERE pe.pe_num = pc.pe_num AND"+
                         " pe.pe_num = pp.pe_num AND pc.cl_id = "+clienteID+" AND pp.pr_id = "+proveedorID;
 
-                and = true;
                 where = true;
             }
             else if(!cliente.equals(""))
@@ -666,7 +665,6 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 clienteID = cliente2.getClienteID(cliente);
 
                 query = query + ", pc_pedidos_clientes pc WHERE pe.pe_num = pc.pe_num AND pc.cl_id = "+clienteID;
-                and = true;
                 where = true;
             }
             else if(!proveedor.equals(""))
@@ -675,7 +673,6 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 proveedorID=proveedor2.getProveedorID(proveedor);
 
                 query = query + ", pp_pedidos_proveedores pp WHERE pe.pe_num = pp.pe_num AND pp.pr_id = "+proveedorID;
-                and = true;
                 where = true;
             }
 
@@ -683,15 +680,28 @@ public class CSBuscarPedido extends javax.swing.JPanel
             {
                  if (!where)
                  {
-                     query = query + " WHERE ";
+                     query = query + " WHERE";
                  }
+                 else
+                 {
+                     query = query + " AND";
+                 }
+
                 query = query + " pe_fecha >='"+fechaI+"' AND pe_fecha<='"+fechaF+"'";
-                and = true;
             }
 
-            if(numeroN!=0)
+            if(numeroN != 0)
             {
-                query = query + " AND pe_num = "+numeroN;
+                if (!where)
+                 {
+                     query = query + " WHERE";
+                 }
+                 else
+                 {
+                     query = query + " AND";
+                 }
+
+                query = query + " pe_num = "+numeroN;
             }
 
             if (!direccionOrigen.equals(""))
