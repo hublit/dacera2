@@ -226,18 +226,23 @@ public class CSInformeDet2 extends javax.swing.JPanel
         //Se comprueba que haya seleccionado un cliente
         String cliente = new String(jTextCliente.getText());
 
-        if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK")) {
+        /*if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK")) {
             ValidarFormatos(Utilidades.campoObligatorio(cliente, "Cliente"));
-        } else {
+        } else {*/
             int clienteID = 0;
             String fechaIni="";
             String fechaFin="";
+            String queryAux="";
 
             int mes=jMonthChooser.getMonth()+ 1 ;
             int anyo=jYearChooser.getYear();
 
-            Cliente oCliente = new Cliente();
-            clienteID = oCliente.getClienteID(cliente);
+            if(!cliente.equals(""))
+            {
+                Cliente oCliente = new Cliente();
+                clienteID = oCliente.getClienteID(cliente);
+                queryAux=" AND pc.cl_id = "+clienteID+" ";
+            }
 
             int mesIni=0;
             int anyoIni=0;
@@ -254,8 +259,20 @@ public class CSInformeDet2 extends javax.swing.JPanel
             System.out.println(fechaIni);
             System.out.println(fechaFin);
 
-
-            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha,pe.pe_ve_matricula,pe.pe_direccion_origen," +
+            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_ve_matricula, pe.pe_direccion_origen," +
+                " pe.pe_cp_origen, pe.pe_fecha_origen, pe.pe_hora_origen, pe.pe_nombre_origen, pe.pe_direccion_destino,"+
+                " pe.pe_cp_destino, pe.pe_fecha_destino, pe.pe_hora_destino, pe.pe_nombre_destino"+
+                " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc"+
+                " WHERE pe.pe_num = pc.pe_num"+
+                " AND tc.tc_servicio = pe.pe_servicio"+
+                " AND tc.cl_id = pc.cl_id"+
+                " AND tc.tc_fecha_hasta = '2050-01-01'"+
+                " AND (tc.tc_servicio_origen = pe.pe_servicio_origen  OR tc.tc_servicio_origen = pe.pe_servicio_destino)"+
+                " AND (tc.tc_servicio_destino = pe.pe_servicio_destino  OR tc.tc_servicio_destino = pe.pe_servicio_origen)"+
+                " AND tc.tc_soporte = pe.pe_soporte"+
+                " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
+                    /* " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC
+            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_ve_matricula, pe.pe_direccion_origen," +
                     " pe.pe_cp_origen,pe.pe_fecha_origen,pe.pe_hora_origen,pe.pe_nombre_origen," +
                     " pe.pe_direccion_destino,pe.pe_cp_destino, pe.pe_fecha_destino, " +
                     " pe.pe_hora_destino, pe.pe_nombre_destino" +
@@ -268,8 +285,12 @@ public class CSInformeDet2 extends javax.swing.JPanel
                     " OR tc.tc_servicio_origen = pe.pe_servicio_destino) " +
                     " AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
                     " OR tc.tc_servicio_destino = pe.pe_servicio_origen) AND tc.tc_soporte = pe.pe_soporte" +
-                    " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
-                    " AND pc.cl_id = "+clienteID+" ORDER BY pe.pe_num ASC";
+                    " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";*/
+            if(!cliente.equals(""))
+            {
+                query=query + queryAux;
+            }
+            query = query + " ORDER BY pe.pe_num ASC";
 
             System.out.println(query);
 
@@ -305,20 +326,20 @@ public class CSInformeDet2 extends javax.swing.JPanel
                 //JasperExportManager.exportReportToPdfFile(
                 //jasperPrint, "c:/holaMundo.pdf");
 
-                JRViewer jrViewer = new JRViewer(jasperPrint);
-                CSDesktop.NuevaFactura = new JInternalFrame("Informe Detallado 2", true, false, false, true );
-                CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+                JRViewerDet2 jrViewer = new JRViewerDet2(jasperPrint);
+                CSDesktop.NuevoInformeDetallado2 = new JInternalFrame("Informe Detallado 2", true, false, false, true );
+                CSDesktop.NuevoInformeDetallado2.getContentPane().add( jrViewer, BorderLayout.CENTER );
                 //CSDesktop.NuevaFactura.add(jrViewer);
-                CSDesktop.NuevaFactura.pack();
+                CSDesktop.NuevoInformeDetallado2.pack();
 
-                CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
+                CSDesktop.elEscritorio.add( CSDesktop.NuevoInformeDetallado2 );
                 Dimension pantalla = CSDesktop.elEscritorio.getSize();
-                CSDesktop.NuevaFactura.setSize(pantalla);
-                CSDesktop.NuevaFactura.setVisible(true);
+                CSDesktop.NuevoInformeDetallado2.setSize(pantalla);
+                CSDesktop.NuevoInformeDetallado2.setVisible(true);
             } catch (JRException e) {
                 e.printStackTrace();
             }
-        }
+        //}
 }//GEN-LAST:event_jButtonGenerarActionPerformed
 
 

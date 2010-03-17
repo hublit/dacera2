@@ -10,38 +10,20 @@ package neg;
  * cuales indican con im�genes su estado
  */
 import java.text.ParseException;
-import utils.DesktopConFondo;
 import java.awt.*;
 import java.awt.event.*;
-
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ButtonGroup;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
-import javax.swing.event.InternalFrameEvent;
-import javax.swing.event.InternalFrameListener;
-import neg.CSDesktop;
 import utils.*;
 import data.DbConnection;
-//import pruebas.FrameInterno;
 
 public class CSDesktop extends JFrame
 {
@@ -79,6 +61,8 @@ public class CSDesktop extends JFrame
   public static JInternalFrame InformeDetallado1;
   public static JInternalFrame InformeDetallado2;
   public static JInternalFrame NuevaFactura;
+  public static JInternalFrame NuevoInformeDetallado1;
+  public static JInternalFrame NuevoInformeDetallado2;
   public static JInternalFrame NuevoAlbaran;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
@@ -105,8 +89,17 @@ public class CSDesktop extends JFrame
 
   public static DbConnection datos = new DbConnection();
   
-  public CSDesktop()
+  public  CSDesktop()
   {
+
+      setDefaultCloseOperation(CSDesktop.DO_NOTHING_ON_CLOSE);
+      addWindowListener(new WindowAdapter() {
+        public void windowClosing(WindowEvent we) {
+
+            confirmarCierre();
+        }
+        });
+
       elEscritorio = new DesktopConFondo("/images/fondo_desktop.jpg");
       getContentPane().add( elEscritorio );
       barra = new JMenuBar();
@@ -575,4 +568,13 @@ public class CSDesktop extends JFrame
       
   }
 
+  void confirmarCierre()
+  {
+       int confirmado = JOptionPane.showConfirmDialog(this,"¿Realmente quieres salir de la aplicación?");
+
+                    if (JOptionPane.OK_OPTION == confirmado)
+                    {
+                        CSDesktop.datos.cerrarConexion();
+                    }
+  }
 }

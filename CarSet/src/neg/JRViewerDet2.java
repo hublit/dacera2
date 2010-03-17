@@ -110,9 +110,9 @@ import org.apache.commons.logging.LogFactory;
  * @author Teodor Danciu (teodord@users.sourceforge.net)
  * @version $Id: JRViewer.java 3035 2009-08-27 12:05:03Z teodord $
  */
-public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListener
+public class JRViewerDet2 extends javax.swing.JPanel implements JRHyperlinkListener
 {
-	private static final Log log = LogFactory.getLog(JRViewerSin.class);
+	private static final Log log = LogFactory.getLog(JRViewerDet2.class);
 
 	private static final long serialVersionUID = JRConstants.SERIAL_VERSION_UID;
 
@@ -203,49 +203,49 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 	protected JRSaveContributor lastSaveContributor = null;
 
 	/** Creates new form JRViewer */
-	public JRViewerSin(String fileName, boolean isXML) throws JRException
+	public JRViewerDet2(String fileName, boolean isXML) throws JRException
 	{
 		this(fileName, isXML, null);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerSin(InputStream is, boolean isXML) throws JRException
+	public JRViewerDet2(InputStream is, boolean isXML) throws JRException
 	{
 		this(is, isXML, null);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerSin(JasperPrint jrPrint)
+	public JRViewerDet2(JasperPrint jrPrint)
 	{
 		this(jrPrint, null);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerSin(String fileName, boolean isXML, Locale locale) throws JRException
+	public JRViewerDet2(String fileName, boolean isXML, Locale locale) throws JRException
 	{
 		this(fileName, isXML, locale, null);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerSin(InputStream is, boolean isXML, Locale locale) throws JRException
+	public JRViewerDet2(InputStream is, boolean isXML, Locale locale) throws JRException
 	{
 		this(is, isXML, locale, null);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerSin(JasperPrint jrPrint, Locale locale)
+	public JRViewerDet2(JasperPrint jrPrint, Locale locale)
 	{
 		this(jrPrint, locale, null);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerSin(String fileName, boolean isXML, Locale locale, ResourceBundle resBundle) throws JRException
+	public JRViewerDet2(String fileName, boolean isXML, Locale locale, ResourceBundle resBundle) throws JRException
 	{
 		initResources(locale, resBundle);
 
@@ -266,7 +266,7 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 
 
 	/** Creates new form JRViewer */
-	public JRViewerSin(InputStream is, boolean isXML, Locale locale, ResourceBundle resBundle) throws JRException
+	public JRViewerDet2(InputStream is, boolean isXML, Locale locale, ResourceBundle resBundle) throws JRException
 	{
 		initResources(locale, resBundle);
 
@@ -287,7 +287,7 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 
 
 	/** Creates new form JRViewer */
-	public JRViewerSin(JasperPrint jrPrint, Locale locale, ResourceBundle resBundle)
+	public JRViewerDet2(JasperPrint jrPrint, Locale locale, ResourceBundle resBundle)
 	{
 		initResources(locale, resBundle);
 
@@ -434,18 +434,8 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 	protected void initSaveContributors()
 	{
 		final String[] DEFAULT_CONTRIBUTORS =
-			{
-				"net.sf.jasperreports.view.save.JRPrintSaveContributor",
-				"net.sf.jasperreports.view.save.JRPdfSaveContributor",
-				"net.sf.jasperreports.view.save.JRRtfSaveContributor",
-				"net.sf.jasperreports.view.save.JROdtSaveContributor",
-				"net.sf.jasperreports.view.save.JRDocxSaveContributor",
-				"net.sf.jasperreports.view.save.JRHtmlSaveContributor",
-				"net.sf.jasperreports.view.save.JRSingleSheetXlsSaveContributor",
-				"net.sf.jasperreports.view.save.JRMultipleSheetsXlsSaveContributor",
-				"net.sf.jasperreports.view.save.JRCsvSaveContributor",
-				"net.sf.jasperreports.view.save.JRXmlSaveContributor",
-				"net.sf.jasperreports.view.save.JREmbeddedImagesXmlSaveContributor"
+			{				
+				"net.sf.jasperreports.view.save.JRPdfSaveContributor",																																				
 			};
 
 		for(int i = 0; i < DEFAULT_CONTRIBUTORS.length; i++)
@@ -614,6 +604,7 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
         java.awt.GridBagConstraints gridBagConstraints;
 
         tlbToolBar = new javax.swing.JPanel();
+        btnSave = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         btnReload = new javax.swing.JButton();
         pnlSep01 = new javax.swing.JPanel();
@@ -636,11 +627,6 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
             model.addElement("" + zooms[i] + "%");
         }
         cmbZoom.setModel(model);
-        pnlSep3 = new javax.swing.JPanel();
-        pnlSep4 = new javax.swing.JPanel();
-        pnlSep5 = new javax.swing.JPanel();
-        pnlSep6 = new javax.swing.JPanel();
-        pnlSep7 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         pnlMain = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
@@ -665,6 +651,19 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
         setLayout(new java.awt.BorderLayout());
 
         tlbToolBar.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 2));
+
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sf/jasperreports/view/images/save.GIF"))); // NOI18N
+        btnSave.setToolTipText(getBundleString("save"));
+        btnSave.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnSave.setMaximumSize(new java.awt.Dimension(23, 23));
+        btnSave.setMinimumSize(new java.awt.Dimension(23, 23));
+        btnSave.setPreferredSize(new java.awt.Dimension(23, 23));
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        tlbToolBar.add(btnSave);
 
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sf/jasperreports/view/images/print.GIF"))); // NOI18N
         btnPrint.setToolTipText(getBundleString("print"));
@@ -845,21 +844,6 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
             }
         });
         tlbToolBar.add(cmbZoom);
-
-        pnlSep3.setMaximumSize(new java.awt.Dimension(10, 10));
-        tlbToolBar.add(pnlSep3);
-
-        pnlSep4.setMaximumSize(new java.awt.Dimension(10, 10));
-        tlbToolBar.add(pnlSep4);
-
-        pnlSep5.setMaximumSize(new java.awt.Dimension(10, 10));
-        tlbToolBar.add(pnlSep5);
-
-        pnlSep6.setMaximumSize(new java.awt.Dimension(10, 10));
-        tlbToolBar.add(pnlSep6);
-
-        pnlSep7.setMaximumSize(new java.awt.Dimension(10, 10));
-        tlbToolBar.add(pnlSep7);
 
         jButton1.setForeground(new java.awt.Color(255, 0, 0));
         jButton1.setText("Cancelar");
@@ -1072,6 +1056,79 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 		}
 	}//GEN-LAST:event_btnFitPageActionPerformed
 
+	void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+		// Add your handling code here:
+
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setLocale(this.getLocale());
+		fileChooser.updateUI();
+		for(int i = 0; i < saveContributors.size(); i++)
+		{
+			fileChooser.addChoosableFileFilter((JRSaveContributor)saveContributors.get(i));
+		}
+
+		if (saveContributors.contains(lastSaveContributor))
+		{
+			fileChooser.setFileFilter(lastSaveContributor);
+		}
+		else if (saveContributors.size() > 0)
+		{
+			fileChooser.setFileFilter((JRSaveContributor)saveContributors.get(0));
+		}
+		
+		if (lastFolder != null)
+		{
+			fileChooser.setCurrentDirectory(lastFolder);
+		}
+		
+		int retValue = fileChooser.showSaveDialog(this);
+		if (retValue == JFileChooser.APPROVE_OPTION)
+		{
+			FileFilter fileFilter = fileChooser.getFileFilter();
+			File file = fileChooser.getSelectedFile();
+			
+			lastFolder = file.getParentFile();
+
+			JRSaveContributor contributor = null;
+
+			if (fileFilter instanceof JRSaveContributor)
+			{
+				contributor = (JRSaveContributor)fileFilter;
+			}
+			else
+			{
+				int i = 0;
+				while(contributor == null && i < saveContributors.size())
+				{
+					contributor = (JRSaveContributor)saveContributors.get(i++);
+					if (!contributor.accept(file))
+					{
+						contributor = null;
+					}
+				}
+
+				if (contributor == null)
+				{
+					contributor = new JRPrintSaveContributor(getLocale(), this.resourceBundle);
+				}
+			}
+
+			lastSaveContributor = contributor;
+			
+			try
+			{
+				contributor.save(jasperPrint, file);
+			}
+			catch (JRException e)
+			{
+				if (log.isErrorEnabled())
+					log.error("Save error.", e);
+
+				JOptionPane.showMessageDialog(this, getBundleString("error.saving"));
+			}
+		}
+	}//GEN-LAST:event_btnSaveActionPerformed
+
 	void pnlLinksMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLinksMouseDragged
 		// Add your handling code here:
 
@@ -1119,6 +1176,43 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 		downX = evt.getX();
 		downY = evt.getY();
 	}//GEN-LAST:event_pnlLinksMousePressed
+
+	void btnPrintActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPrintActionPerformed
+	{//GEN-HEADEREND:event_btnPrintActionPerformed
+		// Add your handling code here:
+
+		Thread thread =
+			new Thread(
+				new Runnable()
+				{
+					public void run()
+					{
+						try
+						{
+							
+							btnPrint.setEnabled(false);
+							JRViewerDet2.this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+							JasperPrintManager.printReport(jasperPrint, true);
+						}
+						catch (Exception ex)
+						{
+							if (log.isErrorEnabled())
+								log.error("Print error.", ex);
+
+							JOptionPane.showMessageDialog(JRViewerDet2.this, getBundleString("error.printing"));
+						}
+						finally
+						{
+							JRViewerDet2.this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+							btnPrint.setEnabled(true);
+						}
+					}
+				}
+			);
+
+		thread.start();
+
+	}//GEN-LAST:event_btnPrintActionPerformed
 
 	void btnLastActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnLastActionPerformed
 	{//GEN-HEADEREND:event_btnLastActionPerformed
@@ -1237,36 +1331,8 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 	}//GEN-LAST:event_cmbZoomActionPerformed
 
         private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           CSDesktop.NuevaFactura.dispose();
-        }//GEN-LAST:event_jButton1ActionPerformed
-
-        private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-            // Add your handling code here:
-
-            Thread thread =
-                    new Thread(
-                    new Runnable() {
-                public void run() {
-                    try {
-
-                        btnPrint.setEnabled(false);
-                        JRViewerSin.this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                        JasperPrintManager.printReport(jasperPrint, true);
-                    } catch (Exception ex) {
-                        if (log.isErrorEnabled())
-                            log.error("Print error.", ex);
-
-                        JOptionPane.showMessageDialog(JRViewerSin.this, getBundleString("error.printing"));
-                    } finally {
-                        JRViewerSin.this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                        btnPrint.setEnabled(true);
-                    }
-                }
-            }
-            );
-
-            thread.start();
-        }//GEN-LAST:event_btnPrintActionPerformed
+            CSDesktop.NuevoInformeDetallado2.dispose();
+}//GEN-LAST:event_jButton1ActionPerformed
 
 
 	/**
@@ -1414,7 +1480,8 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 			)
 		{
 			pnlPage.setVisible(false);
-			
+			btnSave.setEnabled(false);
+			btnPrint.setEnabled(false);
 			btnActualSize.setEnabled(false);
 			btnFitPage.setEnabled(false);
 			btnFitWidth.setEnabled(false);
@@ -1431,7 +1498,8 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 		}
 
 		pnlPage.setVisible(true);
-		
+		btnSave.setEnabled(true);
+		btnPrint.setEnabled(true);
 		btnActualSize.setEnabled(true);
 		btnFitPage.setEnabled(true);
 		btnFitWidth.setEnabled(true);
@@ -1956,7 +2024,7 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 			{
 				public void run()
 				{
-					JOptionPane.showMessageDialog(JRViewerSin.this, getBundleString("error.displaying"));
+					JOptionPane.showMessageDialog(JRViewerDet2.this, getBundleString("error.displaying"));
 				}
 			});
 		}
@@ -2070,9 +2138,9 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
 		private static final long serialVersionUID = JRConstants.SERIAL_VERSION_UID;
 
 		private boolean renderImage;
-		JRViewerSin viewer = null;
+		JRViewerDet2 viewer = null;
 
-		public PageRenderer(JRViewerSin viewer)
+		public PageRenderer(JRViewerDet2 viewer)
 		{
 			this.viewer = viewer;
 		}
@@ -2110,6 +2178,7 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
     protected javax.swing.JButton btnPrevious;
     protected javax.swing.JButton btnPrint;
     protected javax.swing.JButton btnReload;
+    protected javax.swing.JButton btnSave;
     protected javax.swing.JButton btnZoomIn;
     protected javax.swing.JButton btnZoomOut;
     protected javax.swing.JComboBox cmbZoom;
@@ -2130,11 +2199,6 @@ public class JRViewerSin extends javax.swing.JPanel implements JRHyperlinkListen
     protected javax.swing.JPanel pnlSep01;
     protected javax.swing.JPanel pnlSep02;
     protected javax.swing.JPanel pnlSep03;
-    protected javax.swing.JPanel pnlSep3;
-    protected javax.swing.JPanel pnlSep4;
-    protected javax.swing.JPanel pnlSep5;
-    protected javax.swing.JPanel pnlSep6;
-    protected javax.swing.JPanel pnlSep7;
     protected javax.swing.JPanel pnlStatus;
     private javax.swing.JScrollPane scrollPane;
     protected javax.swing.JPanel tlbToolBar;
