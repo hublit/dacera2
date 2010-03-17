@@ -16,9 +16,6 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 import java.awt.event.KeyEvent;
-import javax.swing.InputMap;
-import javax.swing.KeyStroke;
-import java.awt.event.KeyAdapter;
 
 public class CSLogin extends JFrame
 {
@@ -39,7 +36,6 @@ public class CSLogin extends JFrame
         super();
         create();
         this.setVisible(true);
-
     }
 
     private void create() throws IOException
@@ -54,31 +50,29 @@ public class CSLogin extends JFrame
         jPasswordField1 = new JPasswordField();
         jButton1 = new JButton();
         contentPane = (JPanel)this.getContentPane();
+   
+        KeyListener l=new KeyListener()
+        {
+            public void keyTyped(KeyEvent e) {}
 
-       
-        KeyListener l=new KeyListener() {
-
-            public void keyTyped(KeyEvent e) {
-                
-            }
-
-            public void keyPressed(KeyEvent e) {
-
-               if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                try {
-                    jButton1_actionPerformed(null);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CSLogin.class.getName()).log(Level.SEVERE, null, ex);
+            public void keyPressed(KeyEvent e)
+            {
+               if (e.getKeyCode() == KeyEvent.VK_ENTER)
+               {
+                    try
+                    {
+                        jButton1_actionPerformed(null);
+                    }
+                    catch (SQLException ex)
+                    {
+                        Logger.getLogger(CSLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
-            }
 
-            public void keyReleased(KeyEvent e) {
-               
-            }
+            public void keyReleased(KeyEvent e) { }
         };
-       
-       
+              
         //Para que funciona la tecla ENTER
         jTextField1.addKeyListener(l);
         jPasswordField1.addKeyListener(l);
@@ -119,16 +113,17 @@ public class CSLogin extends JFrame
         jButton1.setForeground(new Color(0, 0, 100));
         jButton1.setText("Acceder");
 
-  
-
         jButton1.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e)
         {
-                try {
-                    jButton1_actionPerformed(e);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CSLogin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            try
+            {
+                jButton1_actionPerformed(e);
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(CSLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     });
 
@@ -148,8 +143,6 @@ public class CSLogin extends JFrame
     addComponent(contentPane, jLabel4, 320,395,100,25);
     addComponent(contentPane, jLabel6, 390,395,100,25);
     
-
-    
     this.setTitle("CarSet - Acceso para usuarios registrados");
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     this.setResizable(false);
@@ -161,7 +154,6 @@ public class CSLogin extends JFrame
         (pantalla.width - ventana.width) / 2,
         (pantalla.height - ventana.height) / 2);
     this.setVisible(true);
-
  
     }
     /** Add Component Without a Layout Manager (Absolute Positioning) */
@@ -190,8 +182,8 @@ public class CSLogin extends JFrame
         }
         else
         {
-        	jLabel3.setVisible(false);
-        	jLabel4.setText("Cargando...");
+            jLabel3.setVisible(false);
+            jLabel4.setText("Cargando...");
             jLabel4.setForeground(new Color(0, 0, 255));
             Icon imagen = new ImageIcon(getClass().getResource("/images/loader.gif"));
             jLabel6.setIcon(imagen);
@@ -242,10 +234,9 @@ public class CSLogin extends JFrame
                    System.err.println("Errorrrrr :" +er.toString());
                     er.printStackTrace();
                 }
-                }
-
+            }
+        datos.cerrarConexion();
         }
-
     }
 
     public static void main(String[] args) throws IOException
