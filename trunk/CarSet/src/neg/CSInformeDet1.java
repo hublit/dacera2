@@ -11,31 +11,22 @@
 
 package neg;
 
-import com.mysql.jdbc.Connection;
 import data.BeanFactura;
 import data.Cliente;
 import data.DbConnection;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import utils.Utilidades;
 
 /**
  *
@@ -228,22 +219,27 @@ public class CSInformeDet1 extends javax.swing.JPanel
         //Se comprueba que haya seleccionado un cliente
         String cliente = new String(jTextCliente.getText());
 
-        if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK"))
+        /*if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK"))
         {
                 ValidarFormatos(Utilidades.campoObligatorio(cliente, "Cliente"));
         }
         else
-        {
+        {*/
             int clienteID = 0;
             String fechaIni="";
             String fechaFin="";
+            String queryAux="";
             ArrayList lista=new ArrayList();
 
             int mes=jMonthChooser.getMonth()+ 1 ;
             int anyo=jYearChooser.getYear();
 
-            Cliente oCliente = new Cliente();
-            clienteID = oCliente.getClienteID(cliente);
+             if (!cliente.equals(""))
+             {
+                Cliente oCliente = new Cliente();
+                clienteID = oCliente.getClienteID(cliente);
+                queryAux=" AND pc.cl_id = "+clienteID+" ";
+             }
             
             int mesIni=0;
             int anyoIni=0;
@@ -263,8 +259,22 @@ public class CSInformeDet1 extends javax.swing.JPanel
             System.out.println(fechaIni);
             System.out.println(fechaFin);
 
-            
-            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen," +
+            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
+                " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa,"+
+                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento,"+
+                " tc.tc_tarifa, sc.sc_ida_vuelta"+
+                " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc,"+
+                " sc_servicios_clientes sc"+
+                " WHERE pc.pe_num = pe.pe_num"+
+                " AND sc.cl_id = pc.cl_id"+
+                " AND tc.tc_fecha_hasta > pe.pe_fecha"+
+                " AND tc.tc_servicio = pe.pe_servicio"+
+                " AND tc.cl_id = pc.cl_id"+
+                " AND (tc.tc_servicio_origen = pe.pe_servicio_origen OR tc.tc_servicio_origen = pe.pe_servicio_destino)"+
+                " AND (tc.tc_servicio_destino = pe.pe_servicio_destino OR tc.tc_servicio_destino = pe.pe_servicio_origen)"+
+                " AND tc.tc_soporte = pe.pe_soporte"+
+                " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
+            /*String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen," +
                          " pe.pe_provincia_destino,pe.pe_servicio, pe.pe_servicio_origen, " +
                          " pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " +
                          " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula,pe.pe_ta_es_cliente," +
@@ -278,8 +288,12 @@ public class CSInformeDet1 extends javax.swing.JPanel
                          " AND (tc.tc_servicio_origen = pe.pe_servicio_origen OR tc.tc_servicio_origen = pe.pe_servicio_destino)" +
                          " AND (tc.tc_servicio_destino = pe.pe_servicio_destino OR tc.tc_servicio_destino = pe.pe_servicio_origen)" +
                          " AND tc.tc_soporte = pe.pe_soporte" +
-                         " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
-                         " AND pc.cl_id = "+clienteID+" GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
+                         " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";*/
+            if (!cliente.equals(""))
+            {
+                query=query + " AND pc.cl_id = "+clienteID+" ";
+            }
+             query=query +" GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
             System.out.println(query);
             ResultSet rs = datos.select(query);
@@ -314,9 +328,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                CSLanzarInforme1.lanzar(lista, clienteID, cliente, mes, anyo);
-                //CSLanzarFactura.lanzar(query,fechaFac,beanCliente,2);
-                //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+                CSLanzarInforme1.lanzar(lista, clienteID, cliente, mes, anyo);              
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -332,14 +344,14 @@ public class CSInformeDet1 extends javax.swing.JPanel
               
  
             
-        }
+       // }
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
 
-        datos.cerrarConexion();
         CSDesktop.InformeDetallado1.dispose();
         CSDesktop.menuInformeDetallado1.setEnabled(true);
+        datos.cerrarConexion();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 

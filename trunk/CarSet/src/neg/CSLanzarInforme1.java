@@ -18,13 +18,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import utils.Utilidades;
 import data.*;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -188,16 +184,16 @@ public class CSLanzarInforme1
                //JasperExportManager.exportReportToPdfFile(
                //jasperPrint, "c:/holaMundo.pdf");
 
-                JRViewer jrViewer = new JRViewer(jasperPrint);
-                CSDesktop.NuevaFactura = new JInternalFrame("Informe Detallado 1", true, false, false, true );
-                CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+                JRViewerDet1 jrViewer = new JRViewerDet1(jasperPrint);
+                CSDesktop.NuevoInformeDetallado1 = new JInternalFrame("Informe Detallado 1", true, false, false, true );
+                CSDesktop.NuevoInformeDetallado1.getContentPane().add( jrViewer, BorderLayout.CENTER );
                 //CSDesktop.NuevaFactura.add(jrViewer);
-                CSDesktop.NuevaFactura.pack();
+                CSDesktop.NuevoInformeDetallado1.pack();
 
-                CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
+                CSDesktop.elEscritorio.add( CSDesktop.NuevoInformeDetallado1 );
                 Dimension pantalla = CSDesktop.elEscritorio.getSize();
-                CSDesktop.NuevaFactura.setSize(pantalla);
-                CSDesktop.NuevaFactura.setVisible(true);
+                CSDesktop.NuevoInformeDetallado1.setSize(pantalla);
+                CSDesktop.NuevoInformeDetallado1.setVisible(true);
              }
              catch (JRException e)
              {

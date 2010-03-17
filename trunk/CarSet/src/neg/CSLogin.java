@@ -216,7 +216,7 @@ public class CSLogin extends JFrame
                 {                  
                     this.setVisible(false);
                     CSDesktop ventana = new CSDesktop();
-                    ventana.addWindowListener( new WindowAdapter() {
+                   ventana.addWindowListener( new WindowAdapter() {
                       public void windowClosing( WindowEvent evt ) {
                         System.exit( 0 );
                       }
@@ -226,7 +226,7 @@ public class CSLogin extends JFrame
                     ventana.setSize(1200,750);
                     ventana.setTitle("CarSet");
                     ventana.setLocationRelativeTo(null);
-                    ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                     ventana.setVisible( true );                   
                 }
                 catch(Exception er)
