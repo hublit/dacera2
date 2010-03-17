@@ -40,7 +40,7 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import neg.CSDesktop;
 import utils.*;
-
+import data.DbConnection;
 //import pruebas.FrameInterno;
 
 public class CSDesktop extends JFrame
@@ -103,6 +103,8 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuInformeDetallado1;
   public static JMenuItem menuInformeDetallado2;
 
+  public static DbConnection datos = new DbConnection();
+  
   public CSDesktop()
   {
       elEscritorio = new DesktopConFondo("/images/fondo_desktop.jpg");

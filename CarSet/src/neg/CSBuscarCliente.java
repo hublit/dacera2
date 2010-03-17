@@ -12,14 +12,12 @@
 package neg;
 
 import utils.LimitadorDeDocumento;
-import data.DbConnection;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import utils.Utilidades;
 
 /**
  *
@@ -27,7 +25,6 @@ import utils.Utilidades;
  */
 public class CSBuscarCliente extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     /** Creates new form ABBuscarCliente */
     public CSBuscarCliente() throws SQLException
     {
@@ -499,7 +496,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
-            datos.cerrarConexion();
+            CSDesktop.datos.cerrarConexion();
             CSDesktop.BuscarCliente.dispose();
             CSDesktop.menuBuscarCliente.setEnabled(true);
         }
@@ -571,7 +568,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
 
      private void getComercial() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT co_id, co_nombre FROM co_comerciales");
+        ResultSet rs = CSDesktop.datos.select("SELECT co_id, co_nombre FROM co_comerciales");
         int j = 0;
         String valor = "";
         while(rs.next())
