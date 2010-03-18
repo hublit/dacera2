@@ -8,6 +8,7 @@ package data;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import neg.CSDesktop;
 
 /**
  *
@@ -16,12 +17,10 @@ import java.util.logging.Logger;
 public class Proveedor
 {
 
-   DbConnection cn;
-
    /** Constructor de DbUser */
    public Proveedor()
    {
-      cn = new DbConnection();
+
    }
 
 
@@ -34,7 +33,7 @@ public class Proveedor
       try
       {
 
-         ResultSet rsTotal = cn.select("SELECT count(1) as cont FROM pr_proveedores ");
+         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM pr_proveedores ");
 
          rsTotal.next();
          registros = rsTotal.getInt("cont");
@@ -48,7 +47,7 @@ public class Proveedor
       Object [][] data = new Object[registros][5];
       try
       {
-         ResultSet rs = cn.select("SELECT pr_id, pr_nombre_fiscal FROM pr_proveedores ORDER BY pr_id ");
+         ResultSet rs = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal FROM pr_proveedores ORDER BY pr_nombre_fiscal ");
 
          int i = 0;
          while(rs.next())
@@ -84,7 +83,7 @@ public class Proveedor
 
       try
       {
-         ResultSet rsCl = cn.select("SELECT pr_id, pr_nombre_fiscal " +
+         ResultSet rsCl = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal " +
                                     "FROM pr_proveedores " +
                                     "WHERE pr_nombre_fiscal = '"+nombre+"' AND pr_DNI_CIF = '"+nif+"'");
 
@@ -115,7 +114,7 @@ public class Proveedor
    {
        int proveedorID=0;
 
-       ResultSet rsCl = cn.select("SELECT pr_id FROM pr_proveedores WHERE pr_nombre_fiscal = '"+proveedor+"'");
+       ResultSet rsCl = CSDesktop.datos.select("SELECT pr_id FROM pr_proveedores WHERE pr_nombre_fiscal = '"+proveedor+"'");
         try {
             while (rsCl.next()) {
                 proveedorID = rsCl.getInt("pr_id");
@@ -131,7 +130,7 @@ public class Proveedor
    {
        String proveedor="";
 
-       ResultSet rsCl = cn.select("SELECT pr_nombre_fiscal FROM pr_proveedores WHERE pr_id = "+proveedorID);
+       ResultSet rsCl = CSDesktop.datos.select("SELECT pr_nombre_fiscal FROM pr_proveedores WHERE pr_id = "+proveedorID);
         try {
             while (rsCl.next()) {
                 proveedor = rsCl.getString("pr_nombre_fiscal");
@@ -147,7 +146,7 @@ public class Proveedor
    {
        BeanProveedor bProveedor = new BeanProveedor();
 
-       ResultSet rsCl = cn.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF, pr_direccion, pr_cod_postal, " +
+       ResultSet rsCl = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF, pr_direccion, pr_cod_postal, " +
                                   "pr_poblacion, pr_provincia, pr_direccion_fiscal, pr_cod_postal_fiscal, " +
                                   "pr_poblacion_fiscal, pr_provincia_fiscal " +
                                   "FROM pr_proveedores WHERE pr_id = "+proveedorID);
