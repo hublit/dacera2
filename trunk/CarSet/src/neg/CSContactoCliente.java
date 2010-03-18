@@ -13,7 +13,6 @@ package neg;
 
 import utils.Utilidades;
 import data.Cliente;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -32,7 +31,6 @@ import javax.swing.event.InternalFrameListener;
  */
 public class CSContactoCliente extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     int clienteID=0;
 
     /** Creates new form ABContactosCliente */
@@ -329,10 +327,8 @@ public class CSContactoCliente extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
-        datos.cerrarConexion();
         CSDesktop.NuevoContactoCliente.dispose();
         CSDesktop.menuContactoCliente.setEnabled(true);
-        
         }
 }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -369,7 +365,7 @@ public class CSContactoCliente extends javax.swing.JPanel
                            "VALUES ('"+nombre+"','"+telefono+"','"+telefono2+"','"+email+"', "+
                            "'"+clienteID+"', '"+fDepartamento+"')";
             System.out.println(query);
-            boolean rs = datos.manipuladorDatos(query);
+            boolean rs = CSDesktop.datos.manipuladorDatos(query);
             System.out.println(query);
             if(rs)
             {
@@ -386,7 +382,6 @@ public class CSContactoCliente extends javax.swing.JPanel
                 jButtonGuardar.setEnabled(true);
                 CSDesktop.NuevoContactoCliente.dispose();
                 CSDesktop.menuContactoCliente.setEnabled(true);
-
             }
          }
 }//GEN-LAST:event_jButtonGuardarActionPerformed
@@ -394,12 +389,9 @@ public class CSContactoCliente extends javax.swing.JPanel
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query="select cl_id,cl_nombre,cl_DNI_CIF from cl_clientes order by cl_id";
-
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
+        CSSelectCliente panel = new CSSelectCliente(jTextCliente);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();
@@ -460,7 +452,7 @@ public class CSContactoCliente extends javax.swing.JPanel
 
     private void getDepartamentoContacto() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
+        ResultSet rs = CSDesktop.datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
         int j = 0;
         String valor = "";
         while(rs.next())
