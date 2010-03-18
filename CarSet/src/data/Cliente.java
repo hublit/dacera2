@@ -8,7 +8,8 @@ package data;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import data.BeanCliente;
+import neg.CSDesktop;
+
 /**
  *
  * @author lito
@@ -16,12 +17,10 @@ import data.BeanCliente;
 public class Cliente
 {
 
-   DbConnection cn;
 
    /** Constructor de DbUser */
    public Cliente()
    {
-      cn = new DbConnection();
    }
 
 
@@ -34,7 +33,7 @@ public class Cliente
       try
       {
 
-         ResultSet rsTotal = cn.select("SELECT count(1) as cont FROM cl_clientes ");
+         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM cl_clientes ");
 
          rsTotal.next();
          registros = rsTotal.getInt("cont");
@@ -48,7 +47,7 @@ public class Cliente
       Object [][] data = new Object[registros][5];
       try
       {
-         ResultSet rs = cn.select("SELECT cl_id, cl_nombre  FROM cl_clientes ORDER BY cl_id ");
+         ResultSet rs = CSDesktop.datos.select("SELECT cl_id, cl_nombre  FROM cl_clientes ORDER BY cl_nombre ");
 
          int i = 0;
          while(rs.next())
@@ -67,6 +66,7 @@ public class Cliente
       {
          System.out.println(e);
       }
+
       return data;
 
    }
@@ -85,7 +85,7 @@ public class Cliente
 
       try
       {
-         ResultSet rsCl = cn.select("SELECT cl_id, cl_nombre " +
+         ResultSet rsCl = CSDesktop.datos.select("SELECT cl_id, cl_nombre " +
                                     "FROM cl_clientes " +
                                     "WHERE cl_nombre = '"+nombre+"' AND cl_DNI_CIF = '"+nif+"'");
 
@@ -114,9 +114,9 @@ public class Cliente
 
    public int getClienteID(String cliente)
    {
-       int clienteID=0;
+       int clienteID = 0;
 
-       ResultSet rsCl = cn.select("SELECT cl_id FROM cl_clientes WHERE cl_nombre = '"+cliente+"'");
+       ResultSet rsCl = CSDesktop.datos.select("SELECT cl_id FROM cl_clientes WHERE cl_nombre = '"+cliente+"'");
         try {
             while (rsCl.next()) {
                 clienteID = rsCl.getInt("cl_id");
@@ -132,7 +132,7 @@ public class Cliente
    {
        String cliente="";
 
-       ResultSet rsCl = cn.select("SELECT cl_nombre FROM cl_clientes WHERE cl_id = "+clienteID);
+       ResultSet rsCl = CSDesktop.datos.select("SELECT cl_nombre FROM cl_clientes WHERE cl_id = "+clienteID);
         try {
             while (rsCl.next()) {
                 cliente = rsCl.getString("cl_nombre");
@@ -153,7 +153,7 @@ public class Cliente
    {
        BeanCliente bCliente = new BeanCliente();
 
-       ResultSet rsCl = cn.select("SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, " +
+       ResultSet rsCl = CSDesktop.datos.select("SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, " +
                                   "cl_poblacion, cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, " +
                                   "cl_poblacion_fiscal, cl_provincia_fiscal " +
                                   "FROM cl_clientes WHERE cl_id = "+clienteID);
