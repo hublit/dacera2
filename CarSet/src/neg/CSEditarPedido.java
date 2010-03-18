@@ -14,7 +14,6 @@ package neg;
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
 import data.Cliente;
-import data.DbConnection;
 import data.Proveedor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -36,11 +35,9 @@ import javax.swing.JOptionPane;
  */
 public class CSEditarPedido extends javax.swing.JPanel
 {
-    private DbConnection datos;
     /** Creates new form ABEditarPedido */
     public CSEditarPedido(int pedido) throws SQLException
     {
-        datos = new DbConnection();
         initComponents();
         limitacionesCampos();
         getFactorCorrecion();
@@ -327,7 +324,7 @@ public class CSEditarPedido extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Pendiente" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Pendiente", "Anulado" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
         jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -977,12 +974,12 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lSoporte)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxSoporte, 0, 147, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelNcamion, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                .addComponent(jLabelNcamion, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextNumCamion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
+                                .addGap(33, 33, 33)
                                 .addComponent(lProveedor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1205,8 +1202,8 @@ public class CSEditarPedido extends javax.swing.JPanel
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lSoporte)
                         .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelNcamion)
-                        .addComponent(jTextNumCamion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextNumCamion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelNcamion))
                     .addComponent(jLabel24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1527,7 +1524,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                             "pe_fecha_real_destino = '"+fechaRealDestino+"', pe_hora_real_destino='"+horarealDestino+"' WHERE pe_num = "+numero+"";
 
                 System.out.println(query);
-                boolean rs = datos.manipuladorDatos(query);
+                boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs)
                 {
@@ -1543,7 +1540,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                     proveedorID=proveedor2.getProveedorID(proveedor);
 
                      String queryCon = "UPDATE pp_pedidos_proveedores set pr_id= '"+proveedorID+"' WHERE pe_num = "+numero+"";
-                     boolean rsCon = datos.manipuladorDatos(queryCon);
+                     boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
                                 if(rsCon)
                                 {
                                     jButtonModificar.setEnabled(false);
@@ -1570,9 +1567,9 @@ public class CSEditarPedido extends javax.swing.JPanel
         {
             int pr_id = Integer.parseInt(jTextNumero.getText());
             //String query="DELETE from pr_proveedores where pr_id="+pr_id;
-            String query="UPDATE pe_pedidos SET pe_estado='Inactivo' where pe_num='"+pr_id+"'";
+            String query = "UPDATE pe_pedidos SET pe_estado='Inactivo' where pe_num='"+pr_id+"'";
 
-            boolean rs=datos.manipuladorDatos(query);
+            boolean rs = CSDesktop.datos.manipuladorDatos(query);
              if(rs)
              {
                     jButtonModificar.setEnabled(false);
@@ -1595,10 +1592,8 @@ public class CSEditarPedido extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        datos.cerrarConexion();
         CSDesktop.EditarPedido.dispose();
-        CSDesktop.ResultPedido.setVisible(true);
-       
+        CSDesktop.ResultPedido.setVisible(true);   
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextDireccionOrigenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDireccionOrigenFocusLost
@@ -1864,10 +1859,9 @@ public class CSEditarPedido extends javax.swing.JPanel
      */
     public void datosPedidos(int pedido)
     {
-        datos = new DbConnection();
     	String query = "SELECT * FROM pe_pedidos p " + "WHERE pe_num = "+pedido;
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         System.out.println(query);
         int numeroFila = 0;
         int clienteID=0;
@@ -1979,13 +1973,13 @@ public class CSEditarPedido extends javax.swing.JPanel
             }
             rs.close();
             String queryC="SELECT cl_id from pc_pedidos_clientes where pe_num="+pedido;
-                ResultSet rsC = datos.select(queryC);
+                ResultSet rsC = CSDesktop.datos.select(queryC);
                 while(rsC.next())
                 {
                     clienteID=rsC.getInt("cl_id");
                 }
                 String queryP="SELECT pr_id from pp_pedidos_proveedores where pe_num="+pedido;
-                ResultSet rsP = datos.select(queryP);
+                ResultSet rsP = CSDesktop.datos.select(queryP);
                 while(rsP.next())
                 {
                     proveedorID=rsP.getInt("pr_id");
@@ -2016,8 +2010,7 @@ public class CSEditarPedido extends javax.swing.JPanel
 
      private JComboBox getFactorCorrecion() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT fc_id, fc_nombre FROM fc_factores_correccion");
-
+        ResultSet rs = CSDesktop.datos.select("SELECT fc_id, fc_nombre FROM fc_factores_correccion");
 
         //jTarifas.setSelectedIndex(0);
         int j = 0;
