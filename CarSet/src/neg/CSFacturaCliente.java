@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABBuscarFactura.java
  *
  * Created on 07-oct-2009, 17:50:47
@@ -13,7 +8,6 @@ package neg;
 
 import data.BeanCliente;
 import data.Cliente;
-import data.DbConnection;
 import data.BeanFactura;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -40,8 +34,6 @@ import utils.Utilidades;
  */
 public class CSFacturaCliente extends JPanel
 {
-
-    private DbConnection datos = new DbConnection();
     
     public CSFacturaCliente()
     {
@@ -239,19 +231,23 @@ public class CSFacturaCliente extends JPanel
 
         int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres generar la Factura y un nuevo numero?");
 
-        if (JOptionPane.OK_OPTION == confirmado) {
-        int numero=0;
-        String query="Select max(fa_id) from fa_factura_cliente";
-        ResultSet rs=datos.select(query);
-        try {
-            while (rs.next()) {
-                numero =Integer.valueOf(rs.getInt("max(fa_id)"));
-                
+        if (JOptionPane.OK_OPTION == confirmado)
+        {
+            int numero = 0;
+            String query = "Select max(fa_id) from fa_factura_cliente";
+            ResultSet rs = CSDesktop.datos.select(query);
+            try
+            {
+                while (rs.next())
+                {
+                    numero =Integer.valueOf(rs.getInt("max(fa_id)"));
+                }
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        LanzarFactura(numero+1);
+            catch (SQLException ex)
+            {
+                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            LanzarFactura(numero+1);
         }
         //En este caso falta hacer el insert en la tabla de facturas
     }//GEN-LAST:event_jButtonGenerarActionPerformed
@@ -259,12 +255,9 @@ public class CSFacturaCliente extends JPanel
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query = "SELECT cl_id, cl_nombre , cl_DNI_CIF FROM cl_clientes order by cl_id";
-
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
+        CSSelectCliente panel = new CSSelectCliente(jTextCliente);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();
@@ -275,8 +268,6 @@ public class CSFacturaCliente extends JPanel
 }//GEN-LAST:event_jToggleButtonClienteActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       
-       datos.cerrarConexion();
        CSDesktop.FacturaCliente.dispose();
        CSDesktop.menuFacturaCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -376,7 +367,7 @@ public class CSFacturaCliente extends JPanel
                            "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
 System.out.println(query);
-            ResultSet rs = datos.select(query);
+            ResultSet rs = CSDesktop.datos.select(query);
             try {
                 while (rs.next()) {
                     BeanFactura nueva = new BeanFactura();

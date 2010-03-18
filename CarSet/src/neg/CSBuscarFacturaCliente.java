@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABBuscarFactura.java
  *
  * Created on 07-oct-2009, 17:50:47
@@ -13,33 +8,28 @@ package neg;
 
 import utils.LimitadorDeDocumento;
 import data.Cliente;
-import data.DbConnection;
-import data.Proveedor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
-import utils.Utilidades;
 
 /**
  *
  * @author depr73
  */
-public class CSBuscarFacturaCliente extends javax.swing.JPanel {
+public class CSBuscarFacturaCliente extends javax.swing.JPanel
+{
     int clienteID=0;
     int proveedorID=0;
     private String fecha2;
-    private DbConnection datos;
-    /** Creates new form ABBuscarPedido */
-    public CSBuscarFacturaCliente() {
 
+    /** Creates new form ABBuscarPedido */
+    public CSBuscarFacturaCliente()
+    {
         CSDesktop.menuBuscarPedido.setEnabled(false);
         initComponents();
         limitacionesCampos();
@@ -571,12 +561,9 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel {
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query = "SELECT cl_id, cl_nombre , cl_DNI_CIF FROM cl_clientes order by cl_id";
-
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
+        CSSelectCliente panel = new CSSelectCliente(jTextCliente);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();
@@ -637,10 +624,8 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel {
 
     private void limitacionesCampos()
     {
- 
        LimitadorDeDocumento limitadorMatricula= new LimitadorDeDocumento(10);
        jTextMatricula.setDocument(limitadorMatricula);
-
     }
    
 }
