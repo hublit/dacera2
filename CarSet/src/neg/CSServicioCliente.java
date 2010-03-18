@@ -8,7 +8,6 @@ package neg;
 
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -29,7 +28,6 @@ import javax.swing.JOptionPane;
  */
 public class CSServicioCliente extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     static int sc_id = 0;
     int cl_id = 0;
     String fecha_desde = "";
@@ -38,7 +36,7 @@ public class CSServicioCliente extends javax.swing.JPanel
 
     public CSServicioCliente(String query, int cliente) throws SQLException
     {
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
 
         Date fecha = new Date();
         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -1606,7 +1604,7 @@ public class CSServicioCliente extends javax.swing.JPanel
                                "WHERE sc_id = "+ sc_id+"";
 
                 System.out.println(query);
-                boolean rs = datos.manipuladorDatos(query);
+                boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs)
                 {
@@ -1633,7 +1631,6 @@ public class CSServicioCliente extends javax.swing.JPanel
     }
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
             {
-               datos.cerrarConexion();
                CSDesktop.EditarCliente.setEnabled(true);
                CSDesktop.ServicioCliente.dispose();
                CSDesktop.EditarCliente.setVisible(true);
@@ -1645,7 +1642,7 @@ public class CSServicioCliente extends javax.swing.JPanel
         String query = "UPDATE sc_servicios_clientes SET sc_fecha_hasta  = '"+fecha_hoy+"' WHERE sc_id = "+ sc_id+"";
 
                 System.out.println(query);
-                boolean rs = datos.manipuladorDatos(query);
+                boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 if(rs)
                 {
                     jButtonModificar.setEnabled(false);
@@ -1830,7 +1827,7 @@ public class CSServicioCliente extends javax.swing.JPanel
          jButtonModificar.setEnabled(true);
     }
 
-     private void limitacionesCampos()
+    private void limitacionesCampos()
     {
         LimitadorDeDocumento limitador4= new LimitadorDeDocumento(10);
         jText4x4.setDocument(limitador4);
@@ -1846,7 +1843,6 @@ public class CSServicioCliente extends javax.swing.JPanel
         jTextLavadoEx.setDocument(limitadorLavado);
         LimitadorDeDocumento limitadorCampa= new LimitadorDeDocumento(10);
         jTextCampa.setDocument(limitadorCampa);
-
     }
 
     /**
@@ -2028,7 +2024,7 @@ public class CSServicioCliente extends javax.swing.JPanel
             "'"+urgente+"', '"+idCliente+"', '"+fecha_desde+"', '"+fecha_hasta+"') ";
 
             System.out.println(querySe);
-            boolean rs = datos.manipuladorDatos(querySe);
+            boolean rs = CSDesktop.datos.manipuladorDatos(querySe);
 
             if(rs)
             {
