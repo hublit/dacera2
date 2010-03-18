@@ -307,8 +307,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lSoporte" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jComboBoxSoporte" pref="256" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+              <Component id="jComboBoxSoporte" min="-2" pref="140" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabelNcamion" min="-2" pref="73" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTextNumCamion" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
               <Component id="lProveedor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextProveedor" min="-2" pref="419" max="-2" attributes="0"/>
@@ -509,6 +513,8 @@
                               <Component id="lSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboBoxSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelNcamion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextNumCamion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1966,6 +1972,21 @@
       <Properties>
         <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
         <Property name="name" type="java.lang.String" value="jDateFechaRealDestino" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelNcamion">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="N.&#xba; en Cami&#xf3;n"/>
+        <Property name="name" type="java.lang.String" value="jLabelNcamion" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextNumCamion">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="jTextNumCamion" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

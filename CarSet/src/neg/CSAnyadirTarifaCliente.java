@@ -12,10 +12,8 @@
 package neg;
 
 import java.text.ParseException;
-import javax.swing.event.InternalFrameEvent;
 import utils.Utilidades;
 import data.Cliente;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
@@ -23,7 +21,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,7 +30,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.event.InternalFrameListener;
+import data.DbConnection;
 
 /**
  *
@@ -41,11 +38,9 @@ import javax.swing.event.InternalFrameListener;
  */
 public class CSAnyadirTarifaCliente extends JPanel
 {
-    DbConnection datos;
     
     public CSAnyadirTarifaCliente() throws ParseException
     {
-        datos = new DbConnection();
         CSDesktop.menuTarifaCliente.setEnabled(false);
         this.setLayout(new GridBagLayout());
         Date hoy = new Date();
@@ -563,7 +558,7 @@ public class CSAnyadirTarifaCliente extends JPanel
                                ""+ incrementoN + ", "+ tarifaN + ", "+ idCliente+")";
 
                 System.out.println(query);
-                boolean rs = datos.manipuladorDatos(query);
+                boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if (rs) {
                     jButtonGuardar.setEnabled(false);
@@ -586,7 +581,6 @@ public class CSAnyadirTarifaCliente extends JPanel
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        datos.cerrarConexion();
         CSDesktop.TarifaCliente.dispose();
         CSDesktop.menuTarifaCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -595,12 +589,10 @@ public class CSAnyadirTarifaCliente extends JPanel
 
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
 
-        String query="select cl_id,cl_nombre,cl_DNI_CIF from cl_clientes order by cl_id";
-
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         int clienteID = 0;
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
+        CSSelectCliente panel = new CSSelectCliente(jTextCliente);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();
@@ -630,7 +622,7 @@ public class CSAnyadirTarifaCliente extends JPanel
 
         String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = '"+idCliente+"'";
         System.out.println("texto: "+cliente+"---Id: "+idCliente+"--query: "+query);
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
 
         String tc_id="";
         try {
@@ -768,7 +760,7 @@ public class CSAnyadirTarifaCliente extends JPanel
     private int getTarifaCliente(int cliente, String soporte, String servicio, String servicio_origen, String servicio_destino) throws SQLException
     {
         int tarifa = 0;
-        tarifa = datos.numeroFilas("SELECT tc_id FROM tc_tarifas_clientes WHERE " +
+        tarifa = CSDesktop.datos.numeroFilas("SELECT tc_id FROM tc_tarifas_clientes WHERE " +
                                    "tc_servicio='"+servicio+"' AND tc_servicio_origen='"+servicio_origen+"' " +
                                    "AND tc_servicio_destino='"+servicio_destino+"' " +
                                    "AND tc_soporte='"+soporte+"' AND cl_id = '"+cliente+"'");
