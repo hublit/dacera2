@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * BuscaClientesPanel.java
  *
  * Created on 06-oct-2009, 11:09:27
@@ -11,20 +6,12 @@
 
 package neg;
 
-import java.beans.PropertyVetoException;
-import javax.swing.event.InternalFrameEvent;
 import utils.TablaModelo;
-import data.DbConnection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.InternalFrameListener;
 import javax.swing.table.TableColumn;
+import data.Cliente;
 
 /**
  *
@@ -32,43 +19,35 @@ import javax.swing.table.TableColumn;
  */
 public class CSSelectCliente extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     private JTextField jTextCli;
-    private int cliID=0;
+    private int cliID = 0;
+    
     /** Creates new form BuscaClientesPanel */
-    public CSSelectCliente(String query,JTextField jTextC)
+    public CSSelectCliente(JTextField jTextC)
     {
         TablaModelo modelo = new TablaModelo();
-        ResultSet rs = datos.select(query);
-        this.jTextCli=jTextC;
+        Cliente client = new Cliente();
+
+        this.jTextCli = jTextC;
 
         modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE", "DNI",});
 
-        int numeroFila = 0;
-            try {
-                while (rs.next()) {
-                    Object[] datosFila = new Object[modelo.getColumnCount()];
-                    int j = 0;
-                    for (int k = 0; k < 4; k++) {
-                        if (k==0 ||k == 1 || k == 2) {
-                            datosFila[j] = rs.getObject(k + 1);
-                            j++;
-                        } else {
-                        //datosFila[k] = rs.getObject(k + 1);
-                        //System.out.println("No Dato"+k+" "+rs.getObject(k + 1));
-                        }
-                    }
-                    modelo.addRow(datosFila);
-                    numeroFila++;
+       int numeroFila = 0;
+       for (int i = 0; i < client.getClientes().length; i ++)
+       {
+            Object[] datosFila = new Object[modelo.getColumnCount()];
+            int j = 0;
+            for (int k = 0; k < 4; k++) {
+                if (k == 0 || k == 1 || k == 2) {
+                    datosFila[j] = client.getClientes()[i][k];
+                    //datosFila[j] = rs.getObject(k + 1);
+                    j++;
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(CSSelectCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-            try {
-                rs.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(CSSelectCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            modelo.addRow(datosFila);
+            numeroFila++;
+        }
+
         initComponents();
         jTable1.setModel(modelo);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
@@ -90,8 +69,7 @@ public class CSSelectCliente extends javax.swing.JPanel
                String cliente = ((String)jTable1.getValueAt(fila,1).toString());
                jTextCli.setText(cliente);              
                CSDesktop.BuscaCliente.dispose();
-              }
-                    
+              }                  
          }
         });
 
@@ -182,7 +160,6 @@ public class CSSelectCliente extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        datos.cerrarConexion();
         CSDesktop.BuscaCliente.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -191,7 +168,6 @@ public class CSSelectCliente extends javax.swing.JPanel
          CSDesktop.BuscaCliente.dispose();
 }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonLimpiar;
@@ -199,8 +175,5 @@ public class CSSelectCliente extends javax.swing.JPanel
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    //public int getRowSeleccionada () {
-    //    return row;
-//}
 
 }

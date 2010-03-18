@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * BuscaClientesPanel.java
  *
  * Created on 06-oct-2009, 11:09:27
@@ -12,14 +7,9 @@
 package neg;
 
 import utils.TablaModelo;
-import data.DbConnection;
+import data.Proveedor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
 
@@ -29,42 +19,33 @@ import javax.swing.table.TableColumn;
  */
 public class CSSelectProveedor extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     private JTextField jTextPro;
     /** Creates new form BuscaClientesPanel */
-    public CSSelectProveedor(String query,JTextField jTextC)
+    public CSSelectProveedor(JTextField jTextC)
     {
         TablaModelo modelo = new TablaModelo();
-        ResultSet rs = datos.select(query);
+        Proveedor prov = new Proveedor();
         this.jTextPro=jTextC;
 
         modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE", "DNI",});
 
         int numeroFila = 0;
-            try {
-                while (rs.next()) {
-                    Object[] datosFila = new Object[modelo.getColumnCount()];
-                    int j = 0;
-                    for (int k = 0; k < 4; k++) {
-                        if (k==0 ||k == 1 || k == 2) {
-                            datosFila[j] = rs.getObject(k + 1);
-                            j++;
-                        } else {
-                        //datosFila[k] = rs.getObject(k + 1);
-                        //System.out.println("No Dato"+k+" "+rs.getObject(k + 1));
-                        }
-                    }
-                    modelo.addRow(datosFila);
-                    numeroFila++;
+
+        for (int i = 0; i < prov.getProveedores().length; i ++)
+        {
+            Object[] datosFila = new Object[modelo.getColumnCount()];
+            int j = 0;
+            for (int k = 0; k < 4; k++) {
+                if (k==0 ||k == 1 || k == 2) {
+                    //datosFila[j] = rs.getObject(k + 1);
+                    datosFila[j] = prov.getProveedores()[i][k];
+                    j++;
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(CSSelectCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-            try {
-                rs.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(CSSelectCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            modelo.addRow(datosFila);
+            numeroFila++;
+        }
+
         initComponents();
         jTable1.setModel(modelo);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
@@ -86,8 +67,7 @@ public class CSSelectProveedor extends javax.swing.JPanel
                String cliente = ((String)jTable1.getValueAt(fila,1).toString());
                jTextPro.setText(cliente);
                CSDesktop.BuscaProveedor.dispose();
-              }
-                    
+              }                    
          }
         });
 
@@ -178,7 +158,6 @@ public class CSSelectProveedor extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        datos.cerrarConexion();
         CSDesktop.BuscaProveedor.dispose();
 }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -194,9 +173,5 @@ public class CSSelectProveedor extends javax.swing.JPanel
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
-    //public int getRowSeleccionada () {
-    //    return row;
-//}
 
 }
