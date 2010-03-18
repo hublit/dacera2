@@ -307,12 +307,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lSoporte" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jComboBoxSoporte" min="-2" pref="140" max="-2" attributes="0"/>
+              <Component id="jComboBoxSoporte" min="-2" pref="154" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabelNcamion" min="-2" pref="73" max="-2" attributes="0"/>
+              <Component id="jLabelNcamion" min="-2" pref="81" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextNumCamion" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
               <Component id="lProveedor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextProveedor" min="-2" pref="419" max="-2" attributes="0"/>
@@ -513,8 +513,8 @@
                               <Component id="lSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboBoxSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelNcamion" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextNumCamion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelNcamion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1248,9 +1248,10 @@
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="3">
             <StringItem index="0" value="Activo"/>
             <StringItem index="1" value="Pendiente"/>
+            <StringItem index="2" value="Anulado"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxEstado" noResource="true"/>
