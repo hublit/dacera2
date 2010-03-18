@@ -406,6 +406,8 @@ public class CSLanzarFacturaProveedor
      //FacturaXML nueva=new FacturaXML(query);
     try 
     { 
+        DbConnection conexion=new DbConnection();
+        con=conexion.getConexion();
         //1-Compilamos el archivo XML y lo cargamos en memoria 
        jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\Albaran.jrxml");
 

@@ -164,6 +164,8 @@ public class CSLanzarInforme1
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CSLanzarInforme1.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                DbConnection conexion=new DbConnection();
+                con=(Connection) conexion.getConexion();
                 //1-Compilamos el archivo XML y lo cargamos en memoria
                 jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jrxml");
 
