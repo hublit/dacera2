@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * CSInformeDet1.java
  *
  * Created on 10-dic-2009, 8:48:09
@@ -13,7 +8,6 @@ package neg;
 
 import com.mysql.jdbc.Connection;
 import data.Cliente;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -200,12 +194,9 @@ public class CSInformeDet2 extends javax.swing.JPanel
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query = "SELECT cl_id, cl_nombre , cl_DNI_CIF FROM cl_clientes order by cl_id";
-
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
+        CSSelectCliente panel = new CSSelectCliente(jTextCliente);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();
@@ -216,7 +207,6 @@ public class CSInformeDet2 extends javax.swing.JPanel
 }//GEN-LAST:event_jToggleButtonClienteActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        
         CSDesktop.InformeDetallado2.dispose();
         CSDesktop.menuInformeDetallado2.setEnabled(true);
 }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -309,8 +299,6 @@ public class CSInformeDet2 extends javax.swing.JPanel
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                DbConnection conexion=new DbConnection();
-                con=(Connection) conexion.getConexion();
 
                 //1-Compilamos el archivo XML y lo cargamos en memoria
                 jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet2.jrxml");

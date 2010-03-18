@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABBuscarFactura.java
  *
  * Created on 07-oct-2009, 17:50:47
@@ -12,9 +7,6 @@
 package neg;
 
 
-import data.BeanCliente;
-import data.Cliente;
-import data.DbConnection;
 import data.BeanFactura;
 import data.BeanProveedor;
 import data.Proveedor;
@@ -43,8 +35,6 @@ import utils.Utilidades;
  */
 public class CSFacturaProveedor extends JPanel
 {
-
-    private DbConnection datos = new DbConnection();
     
     public CSFacturaProveedor()
     {
@@ -242,16 +232,21 @@ public class CSFacturaProveedor extends JPanel
 
         int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres generar la Factura y un nuevo numero?");
 
-        if (JOptionPane.OK_OPTION == confirmado) {
-        int numero=0;
-        String query="Select max(fa_id) from fa_factura_cliente";
-        ResultSet rs=datos.select(query);
-        try {
-            while (rs.next()) {
+        if (JOptionPane.OK_OPTION == confirmado)
+        {
+        int numero = 0;
+        String query = "Select max(fa_id) from fa_factura_cliente";
+        ResultSet rs = CSDesktop.datos.select(query);
+        try
+        {
+            while (rs.next())
+            {
                 numero =Integer.valueOf(rs.getInt("max(fa_id)"));
-                
+    
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex)
+        {
             Logger.getLogger(CSFacturaProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         LanzarFactura(numero+1);
@@ -262,12 +257,9 @@ public class CSFacturaProveedor extends JPanel
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query="select pr_id,pr_nombre_fiscal,pr_DNI_CIF from pr_proveedores order by pr_id";
-
         CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectProveedor panel = new CSSelectProveedor(query,jTextProveedor);
+        CSSelectProveedor panel = new CSSelectProveedor(jTextProveedor);
         CSDesktop.BuscaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaProveedor.pack();
@@ -278,8 +270,6 @@ public class CSFacturaProveedor extends JPanel
 }//GEN-LAST:event_jToggleButtonClienteActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-
-       datos.cerrarConexion();
        CSDesktop.FacturaProveedor.dispose();
        CSDesktop.menuFacturaProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -378,7 +368,7 @@ public class CSFacturaProveedor extends JPanel
                            "AND pp.pr_id = "+proveedorID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
 System.out.println(query);
-            ResultSet rs = datos.select(query);
+            ResultSet rs = CSDesktop.datos.select(query);
             try {
                 while (rs.next()) {
                     BeanFactura nueva = new BeanFactura();

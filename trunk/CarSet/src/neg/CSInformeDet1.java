@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * CSInformeDet1.java
  *
  * Created on 10-dic-2009, 8:48:09
@@ -13,7 +8,6 @@ package neg;
 
 import data.BeanFactura;
 import data.Cliente;
-import data.DbConnection;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
@@ -34,7 +28,6 @@ import net.sf.jasperreports.engine.JRException;
  */
 public class CSInformeDet1 extends javax.swing.JPanel
 {
-    private DbConnection datos = new DbConnection();
     /** Creates new form CSInformeDet1 */
     public CSInformeDet1() throws SQLException
     {
@@ -199,12 +192,9 @@ public class CSInformeDet1 extends javax.swing.JPanel
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query = "SELECT cl_id, cl_nombre , cl_DNI_CIF FROM cl_clientes order by cl_id";
-
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
+        CSSelectCliente panel = new CSSelectCliente(jTextCliente);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();
@@ -296,7 +286,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
              query=query +" GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
             System.out.println(query);
-            ResultSet rs = datos.select(query);
+            ResultSet rs = CSDesktop.datos.select(query);
             try {
                 while (rs.next()) {
                     BeanFactura nueva = new BeanFactura();
@@ -341,17 +331,13 @@ public class CSInformeDet1 extends javax.swing.JPanel
                         //CSLanzarFactura.lanzar(query,fechaFac,beanCliente,2);
                         //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
 
-              
  
-            
        // }
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-
         CSDesktop.InformeDetallado1.dispose();
         CSDesktop.menuInformeDetallado1.setEnabled(true);
-        datos.cerrarConexion();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 
