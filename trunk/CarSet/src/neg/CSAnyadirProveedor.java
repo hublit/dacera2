@@ -25,8 +25,6 @@ import java.util.Date;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,7 +36,6 @@ import utils.Utilidades;
  */
 public class CSAnyadirProveedor extends JPanel
 {
-    DbConnection datos = new DbConnection();
     /** Creates new form ABAnyadirProveedores */
     public CSAnyadirProveedor() throws SQLException
     {
@@ -1029,8 +1026,8 @@ public class CSAnyadirProveedor extends JPanel
                                                         "'"+numCuenta+"','"+estado+"', '"+diaFactura+"')";
 
                 System.out.println(query);
-                datos = new DbConnection();
-                boolean rs = datos.manipuladorDatos(query);
+                CSDesktop.datos = new DbConnection();
+                boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs)
                 {
@@ -1044,7 +1041,7 @@ public class CSAnyadirProveedor extends JPanel
                 {
                     query = "select distinct last_insert_id() from pr_proveedores";
                     String pr_id = "";
-                    ResultSet rs2 = datos.select(query);
+                    ResultSet rs2 = CSDesktop.datos.select(query);
                     try {
                            if (rs2.first())
                             {
@@ -1055,7 +1052,7 @@ public class CSAnyadirProveedor extends JPanel
                                                   "'"+pr_id+"', '"+fDepartamento+"')";
 
                                 System.out.println(queryCon);
-                                boolean rsCon = datos.manipuladorDatos(queryCon);
+                                boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
                                 System.out.println(queryCon);
                                 if(rsCon)
                                 {
@@ -1081,32 +1078,6 @@ public class CSAnyadirProveedor extends JPanel
                     jButtonGuardar.setEnabled(true);
                     CSDesktop.NuevoProveedor.dispose();
                     CSDesktop.menuNuevoProveedor.setEnabled(true);
-
-                    /*int confirmado = JOptionPane.showConfirmDialog(this,"Los datos se han guardado correctamente.¿Quiere crear una tarifa para este proveedor?");
-
-                    if (JOptionPane.OK_OPTION == confirmado)
-                    {
-                        CSDesktop.TarifaProveedor = new JInternalFrame("Tarifa Proveedor", true, true, true, true );
-                        // adjuntar panel al panel de contenido del marco interno
-                        CSAnyadirTarifaProveedor panel = new CSAnyadirTarifaProveedor();
-                        CSDesktop.TarifaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
-                        // establecer tama�o de marco interno en el tama�o de su contenido
-                        CSDesktop.TarifaProveedor.pack();
-                        // adjuntar marco interno al escritorio y mostrarlo
-                        CSDesktop.elEscritorio.add( CSDesktop.TarifaProveedor );
-
-                        Dimension pantalla = CSDesktop.elEscritorio.getSize();
-                        Dimension ventana = CSDesktop.TarifaProveedor.getSize();
-                        CSDesktop.TarifaProveedor.setLocation(
-                        (pantalla.width - ventana.width) / 2,
-                        (pantalla.height - ventana.height) / 2);
-                        CSDesktop.TarifaProveedor.setVisible(true);
-                    }
-
-                    //cerramos la conexión antes de cerrar la ventana
-                    datos.cerrarConexion();
-                    CSDesktop.NuevoProveedor.dispose();
-                   */
                 }
             }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
@@ -1115,7 +1086,6 @@ public class CSAnyadirProveedor extends JPanel
       return new Dimension( 850,600 );
    }
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        datos.cerrarConexion();
         CSDesktop.NuevoProveedor.dispose();
         CSDesktop.menuNuevoProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -1289,7 +1259,7 @@ public class CSAnyadirProveedor extends JPanel
      */
     private void getFPagoProveedores() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
+        ResultSet rs = CSDesktop.datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
         int j = 0;
         String valor = "";
         while(rs.next())
@@ -1309,7 +1279,7 @@ public class CSAnyadirProveedor extends JPanel
      */
     private void getDepartamentoContacto() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
+        ResultSet rs = CSDesktop.datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
         int j = 0;
         String valor = "";
         while(rs.next())
@@ -1331,7 +1301,7 @@ public class CSAnyadirProveedor extends JPanel
     {
         String query = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = 1";
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         try {
 
             DbConnection da = new DbConnection();
@@ -1382,7 +1352,7 @@ public class CSAnyadirProveedor extends JPanel
     {
         String query = "SELECT * FROM sp_servicios_proveedores WHERE pr_id = 1";
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         try {
 
             DbConnection se = new DbConnection();

@@ -11,7 +11,6 @@
 
 package neg;
 
-
 import java.text.ParseException;
 import utils.Utilidades;
 import data.DbConnection;
@@ -23,13 +22,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -41,7 +38,6 @@ import javax.swing.JPanel;
  */
 public class CSAnyadirTarifaProveedor extends JPanel
 {
-    DbConnection datos = new DbConnection();
     /** Creates new form ABAnyadirProveedores */
     public CSAnyadirTarifaProveedor() throws ParseException
     {
@@ -504,7 +500,6 @@ public class CSAnyadirTarifaProveedor extends JPanel
                 Logger.getLogger(CSAnyadirTarifaProveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-
             String servicioFMadDestinoAux="";
             if(!servicioFMadDestino.equals("Selecciona"))
             {
@@ -571,7 +566,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
                                ""+ incrementoN + ", "+ tarifaN + ", "+ idProveedor+")" ;
 
                 System.out.print(query);
-                boolean rs = datos.manipuladorDatos(query);
+                boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if (rs) {
                     jButtonGuardar.setEnabled(false);
@@ -600,19 +595,15 @@ public class CSAnyadirTarifaProveedor extends JPanel
          jButtonGuardar.setEnabled(true);
     }
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        datos.cerrarConexion();
         CSDesktop.TarifaProveedor.dispose();
         CSDesktop.menuTarifaProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jToggleButtonProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonProveedorActionPerformed
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query="select pr_id,pr_nombre_fiscal,pr_DNI_CIF from pr_proveedores order by pr_id";
-
-        CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
+      CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectProveedor panel = new CSSelectProveedor(query,jTextProveedor);
+        CSSelectProveedor panel = new CSSelectProveedor(jTextProveedor);
         CSDesktop.BuscaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaProveedor.pack();
@@ -650,7 +641,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
 
         String query = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = '"+idProveedor+"'";
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         String tp_id="";
 
         try {
@@ -676,12 +667,6 @@ public class CSAnyadirTarifaProveedor extends JPanel
                 String incrementoBd = rs.getString("tp_incremento");
                 String tarifa = rs.getString("tp_tarifa");
 
-
-                /*String queryUp = "UPDATE tp_tarifas_proveedores SET tp_servicio ='"+servicio+"', tp_servicio_origen ='"+servicioFMad+"', " +
-                                 "tp_servicio_destino ='"+servicioFMadDestino+"',tp_soporte='"+soporte+"', tp_fecha_desde = '"+fechaDesde+"', " +
-                                 "tp_fecha_hasta='"+fecha2+"', tp_fuera_mad='"+fueraM+"', tp_incremento='"+incrementoBd+"', tp_tarifa="+tarifa+" "+
-                                 "WHERE tp_id = "+tp_id+" AND pr_id = "+idProveedor+" AND tp_fecha_hasta='2050-01-01'";
-                */
                 String queryUp = "UPDATE tp_tarifas_proveedores SET tp_fecha_hasta='"+fechaActual+"' " +
                                  "WHERE tp_id = "+tp_id+"";
 
@@ -698,11 +683,6 @@ public class CSAnyadirTarifaProveedor extends JPanel
 
                 double tarifaN = Double.valueOf(tarifa).doubleValue();
                 tarifaN = tarifaN + ((tarifaN * incrementoN) / 100.0);
-
-                //NumberFormat l_nf = NumberFormat.getInstance();
-                //l_nf.setMaximumFractionDigits(2);  // 2 decimales como mucho y como poco
-                //l_nf.setMinimumFractionDigits(2);
-                //l_nf.format(tarifaN);
 
                 String queryTp = "INSERT INTO tp_tarifas_proveedores (tp_servicio, tp_servicio_origen, tp_servicio_destino, " +
                                  "tp_soporte, tp_fecha_desde, tp_fecha_hasta, tp_incremento, tp_tarifa, pr_id) " +
@@ -769,7 +749,6 @@ public class CSAnyadirTarifaProveedor extends JPanel
     // End of variables declaration//GEN-END:variables
 
 
-
     /**
      * Función para sacar el id del proveedor de la bd
      * @return
@@ -777,7 +756,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
      */
     private int getIdProveedores(String proveedor) throws SQLException
     {
-        ResultSet rs = datos.select("SELECT pr_id FROM pr_proveedores WHERE pr_nombre_fiscal = '"+proveedor+"'");
+        ResultSet rs = CSDesktop.datos.select("SELECT pr_id FROM pr_proveedores WHERE pr_nombre_fiscal = '"+proveedor+"'");
                 System.out.print("SELECT pr_id FROM pr_proveedores WHERE pr_nombre_fiscal = '"+proveedor+"'");
         int valor = 0;
         while(rs.next())
@@ -795,7 +774,7 @@ public class CSAnyadirTarifaProveedor extends JPanel
     private int getTarifaProveedor(int proveedor, String soporte, String servicio, String servicio_origen, String servicio_destino) throws SQLException
     {
         int tarifa = 0;
-        tarifa = datos.numeroFilas("SELECT tp_id FROM tp_tarifas_proveedores WHERE " +
+        tarifa = CSDesktop.datos.numeroFilas("SELECT tp_id FROM tp_tarifas_proveedores WHERE " +
                                    "tp_servicio='"+servicio+"' AND tp_servicio_origen='"+servicio_origen+"' " +
                                    "AND tp_servicio_destino='"+servicio_destino+"' " +
                                    "AND tp_soporte='"+soporte+"' AND pr_id = '"+proveedor+"'");

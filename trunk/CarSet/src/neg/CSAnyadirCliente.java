@@ -28,12 +28,10 @@ import javax.swing.JOptionPane;
  */
 public class CSAnyadirCliente extends javax.swing.JPanel
 {
-    DbConnection datos;
     /** Creates new form ABAnyadirCliente */
     public CSAnyadirCliente() throws SQLException
     {
         CSDesktop.menuNuevoCliente.setEnabled(false);
-        datos = new DbConnection();
         Date hoy = new Date();
 
         initComponents();
@@ -1000,7 +998,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                       
                 System.out.println(query);
                 //datos = new DbConnection();
-                boolean rs = datos.manipuladorDatos(query);
+                boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs)
                 {
@@ -1013,7 +1011,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 {
                     query = "select distinct last_insert_id() from cl_clientes";
                     String cl_id="";
-                    ResultSet rs2 = datos.select(query);
+                    ResultSet rs2 = CSDesktop.datos.select(query);
                     try {
                            if (rs2.first())
                             {
@@ -1023,7 +1021,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                                                   "VALUES ('"+nombreContacto+"','"+telefContacto+"','"+telefContacto2+"','"+emailContacto+"', "+
                                                   "'"+cl_id+"', '"+fDepartamento+"')";
                                 System.out.println(queryCon);
-                                boolean rsCon = datos.manipuladorDatos(queryCon);
+                                boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
                                 System.out.println(queryCon);
                                 if(rsCon)
                                 {
@@ -1057,7 +1055,6 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       datos.cerrarConexion();
        CSDesktop.NuevoCliente.dispose();
        CSDesktop.menuNuevoCliente.setEnabled(true);                          
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -1239,13 +1236,12 @@ public class CSAnyadirCliente extends javax.swing.JPanel
      */
      private void getFPagoClientes() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
+        ResultSet rs = CSDesktop.datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
         int j = 0;
         String valor = "";
         while(rs.next())
         {
-            valor = rs.getString("fp_tipo");
-           
+            valor = rs.getString("fp_tipo");      
                 jComboBoxFPago.addItem(valor);               
                 jComboBoxFPago.setSelectedIndex(0);
 
@@ -1261,7 +1257,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
  */
     private void getDepartamentoContacto() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
+        ResultSet rs = CSDesktop.datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
         int j = 0;
         String valor = "";
         while(rs.next())
@@ -1282,7 +1278,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
      */
     private void getComercial() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT co_id, co_nombre FROM co_comerciales");
+        ResultSet rs = CSDesktop.datos.select("SELECT co_id, co_nombre FROM co_comerciales");
         int j = 0;
         String valor = "";
         while(rs.next())
@@ -1305,7 +1301,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         boolean tarifaOK=true;
         String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = 1";
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         try {
             DbConnection da = new DbConnection();
 
@@ -1363,7 +1359,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         boolean servicioOK=true;
         String query = "SELECT * FROM sc_servicios_clientes WHERE cl_id = 1";
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         try
         {
             DbConnection se = new DbConnection();
@@ -1507,13 +1503,13 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 public void borrarTarifasYCliente(String idCliente)
     {
         String query = "DELETE FROM tc_tarifas_clientes WHERE cl_id = " + idCliente;
-        boolean resDel = datos.manipuladorDatos(query);
+        boolean resDel = CSDesktop.datos.manipuladorDatos(query);
 
         query="DELETE FROM cl_clientes WHERE cl_id = " + idCliente;
-        resDel = datos.manipuladorDatos(query);
+        resDel = CSDesktop.datos.manipuladorDatos(query);
 
         query="DELETE FROM sc_servicios_clientes WHERE cl_id = " + idCliente;
-        resDel = datos.manipuladorDatos(query);
+        resDel = CSDesktop.datos.manipuladorDatos(query);
 
     }
 }

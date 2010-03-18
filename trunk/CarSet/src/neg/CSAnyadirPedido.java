@@ -14,7 +14,6 @@ package neg;
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
 import data.Cliente;
-import data.DbConnection;
 import data.Proveedor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -26,15 +25,12 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import utils.VerticalLabelUI;
 
 /**
  *
@@ -44,11 +40,10 @@ public class CSAnyadirPedido extends JPanel
 {
     int clienteID=0;
     int proveedorID=0;
-    DbConnection datos;
+
     /** Creates new form ABAnyadirProveedores */
     public CSAnyadirPedido() throws SQLException
     {
-        datos = new DbConnection();
         CSDesktop.menuNuevoPedido.setEnabled(false);
         this.setLayout(new GridBagLayout());
         Date hoy = new Date();
@@ -224,6 +219,8 @@ public class CSAnyadirPedido extends JPanel
         lServicioFMad2 = new javax.swing.JLabel();
         lFechaRealDestino = new javax.swing.JLabel();
         jDateFechaRealDestino = new com.toedter.calendar.JDateChooser();
+        jLabelNcamion = new javax.swing.JLabel();
+        jTextNumCamion = new javax.swing.JTextField();
 
         setForeground(new java.awt.Color(0, 0, 100));
 
@@ -778,6 +775,13 @@ public class CSAnyadirPedido extends JPanel
         jDateFechaRealDestino.setDateFormatString("dd-MM-yyyy");
         jDateFechaRealDestino.setName("jDateFechaRealDestino"); // NOI18N
 
+        jLabelNcamion.setForeground(new java.awt.Color(0, 0, 100));
+        jLabelNcamion.setText("N.º en Camión");
+        jLabelNcamion.setName("jLabelNcamion"); // NOI18N
+
+        jTextNumCamion.setEnabled(false);
+        jTextNumCamion.setName("jTextNumCamion"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -1032,8 +1036,12 @@ public class CSAnyadirPedido extends JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lSoporte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxSoporte, 0, 256, Short.MAX_VALUE)
-                .addGap(68, 68, 68)
+                .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelNcamion, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextNumCamion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(lProveedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1207,7 +1215,9 @@ public class CSAnyadirPedido extends JPanel
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lSoporte)
                                 .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lProveedor))
+                                .addComponent(lProveedor)
+                                .addComponent(jLabelNcamion)
+                                .addComponent(jTextNumCamion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel24))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1523,7 +1533,7 @@ public class CSAnyadirPedido extends JPanel
 
 
                System.out.println(query);
-                boolean rs3 = datos.manipuladorDatos(query);
+                boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs3);
                 if(rs3)
                 {
@@ -1541,7 +1551,7 @@ public class CSAnyadirPedido extends JPanel
                     proveedorID=proveedor2.getProveedorID(proveedor);
                     query = "select distinct last_insert_id() from pe_pedidos";
                     String pe_num="";
-                    ResultSet rs2 = datos.select(query);
+                    ResultSet rs2 = CSDesktop.datos.select(query);
                     try {
                            if (rs2.first())
                             {
@@ -1549,7 +1559,7 @@ public class CSAnyadirPedido extends JPanel
                                 //System.out.println(rs2.getInt("last_insert_id()"));
                                 String queryCon = "INSERT INTO pc_pedidos_clientes (pe_num,cl_id) "+
                                                   "VALUES ('"+pe_num+"','"+clienteID+"')";
-                                boolean rsCon = datos.manipuladorDatos(queryCon);
+                                boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
                                 if(rsCon)
                                 {
                                     jButtonGuardar.setEnabled(false);
@@ -1559,7 +1569,7 @@ public class CSAnyadirPedido extends JPanel
                                 }
                                 queryCon = "INSERT INTO pp_pedidos_proveedores (pe_num,pr_id) "+
                                                   "VALUES ('"+pe_num+"','"+proveedorID+"')";
-                                rsCon = datos.manipuladorDatos(queryCon);
+                                rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
                                 if(rsCon)
                                 {
                                     jButtonGuardar.setEnabled(false);
@@ -1595,12 +1605,9 @@ public class CSAnyadirPedido extends JPanel
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
          System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-               String query="select cl_id,cl_nombre,cl_DNI_CIF from cl_clientes order by cl_id";
-
                CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
                // adjuntar panel al panel de contenido del marco interno
-               CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
+               CSSelectCliente panel = new CSSelectCliente(jTextCliente);
                CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
                // establecer tama�o de marco interno en el tama�o de su contenido
                CSDesktop.BuscaCliente.pack();
@@ -1613,12 +1620,9 @@ public class CSAnyadirPedido extends JPanel
 
     private void jToggleButtonProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonProveedorActionPerformed
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-               String query="select pr_id,pr_nombre_fiscal,pr_DNI_CIF from pr_proveedores order by pr_id";
-
                CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
                // adjuntar panel al panel de contenido del marco interno
-               CSSelectProveedor panel = new CSSelectProveedor(query,jTextProveedor);
+               CSSelectProveedor panel = new CSSelectProveedor(jTextProveedor);
                CSDesktop.BuscaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
                // establecer tama�o de marco interno en el tama�o de su contenido
                CSDesktop.BuscaProveedor.pack();
@@ -1636,10 +1640,8 @@ public class CSAnyadirPedido extends JPanel
 
     private void jButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar1ActionPerformed
         {
-            datos.cerrarConexion();
             CSDesktop.NuevoPedido.dispose();
-            CSDesktop.menuNuevoPedido.setEnabled(true);
-            
+            CSDesktop.menuNuevoPedido.setEnabled(true);      
         }
 }//GEN-LAST:event_jButtonCancelar1ActionPerformed
 
@@ -1773,6 +1775,7 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelNcamion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1797,6 +1800,7 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JTextField jTextModelo;
     private javax.swing.JTextField jTextNombreDestino;
     private javax.swing.JTextField jTextNombreOrigen;
+    private javax.swing.JTextField jTextNumCamion;
     private javax.swing.JTextField jTextNumero;
     private javax.swing.JTextField jTextPoblacionDestino;
     private javax.swing.JTextField jTextPoblacionOrigen;
@@ -1902,7 +1906,7 @@ public class CSAnyadirPedido extends JPanel
   private void getFactorCorrecion() throws SQLException
         {
 
-        ResultSet rs = datos.select("SELECT fc_id, fc_nombre FROM fc_factores_correccion");
+        ResultSet rs = CSDesktop.datos.select("SELECT fc_id, fc_nombre FROM fc_factores_correccion");
         int j = 0;
         String valor = "";
         while(rs.next())
