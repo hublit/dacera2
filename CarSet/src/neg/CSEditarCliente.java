@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABEditarCliente.java
  *
  * Created on 06-oct-2009, 22:04:43
@@ -13,9 +8,7 @@ package neg;
 import utils.Utilidades;
 import utils.TablaModelo;
 import utils.LimitadorDeDocumento;
-import data.DbConnection;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -28,13 +21,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
+import data.DbConnection;
 
 /**
  *
@@ -42,13 +35,11 @@ import javax.swing.table.TableColumn;
  */
 public class CSEditarCliente extends javax.swing.JPanel
 {
-    DbConnection datos;
     /** Creates new form ABEditarCliente */
     public CSEditarCliente(int cliente) throws SQLException
     {
         initComponents();      
         limitacionesCampos();
-        datos = new DbConnection();
         getFPagoClientes();
         getComercial();
         this.datosCliente(cliente);
@@ -845,7 +836,7 @@ public class CSEditarCliente extends javax.swing.JPanel
             //String query="DELETE from cl_clientes where cl_id="+cl_id;
             String query="UPDATE cl_clientes SET cl_estado='Inactivo' where cl_id='"+cl_id+"'";
 
-            boolean rs=datos.manipuladorDatos(query);
+            boolean rs = CSDesktop.datos.manipuladorDatos(query);
             if(rs)
             {
                 jButtonModificar.setEnabled(false);
@@ -868,8 +859,6 @@ public class CSEditarCliente extends javax.swing.JPanel
 
     private void jButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar1ActionPerformed
         {
-            //cerramos la conexión antes de cerrar la ventana
-            datos.cerrarConexion();
             CSDesktop.EditarCliente.dispose();
             CSDesktop.ResultCliente.setVisible(true);
         }
@@ -960,7 +949,7 @@ public class CSEditarCliente extends javax.swing.JPanel
                                "WHERE cl_id='"+numero+"'";
 
                 System.out.println(query);
-                boolean rs = datos.manipuladorDatos(query);
+                boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs) {
                     jButtonModificar.setEnabled(false);
@@ -978,7 +967,6 @@ public class CSEditarCliente extends javax.swing.JPanel
                     JOptionPane.showMessageDialog(null,mensaje);
                     jButtonModificar.setEnabled(true);
                     //cerramos la conexión antes de cerrar la ventana
-                    datos.cerrarConexion();
                     CSDesktop.EditarCliente.dispose();
                     CSDesktop.ResultCliente.dispose();
                     CSDesktop.menuBuscarCliente.setEnabled(true);
@@ -993,7 +981,6 @@ public class CSEditarCliente extends javax.swing.JPanel
             String querySE = "SELECT * FROM sc_servicios_clientes WHERE cl_id = '"+cl_id+"' AND sc_fecha_hasta = '2050-01-01'";
             CSServicioCliente serviciosCliente = new CSServicioCliente(querySE, cl_id);
             CSDesktop.EditarCliente.setVisible(false);
-            
             
         } catch (SQLException ex) {
             Logger.getLogger(CSEditarCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -1157,11 +1144,11 @@ public class CSEditarCliente extends javax.swing.JPanel
     	String query = "SELECT * FROM cl_clientes c " +
                        "WHERE cl_id = "+cliente;
 
-        ResultSet rs = datos.select(query+" ORDER BY cl_nombre DESC");
+        ResultSet rs = CSDesktop.datos.select(query+" ORDER BY cl_nombre DESC");
         int numeroFila = 0;
         String cl_id="";
 
-         try
+        try
         {
             while(rs.next())
             {
@@ -1239,16 +1226,16 @@ public class CSEditarCliente extends javax.swing.JPanel
      */
     private void getFPagoClientes() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
+        ResultSet rs = CSDesktop.datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
         int j = 0;
         String valor = "";
         while(rs.next())
         {
             valor = rs.getString("fp_tipo");
 
-                jComboBoxFPago.addItem(valor);
-                //jComboBoxFPago.setSelectedIndex(index);
-                j++;
+            jComboBoxFPago.addItem(valor);
+            //jComboBoxFPago.setSelectedIndex(index);
+            j++;
         }
      }
 
@@ -1260,7 +1247,7 @@ public class CSEditarCliente extends javax.swing.JPanel
     {
         TablaModelo modelo = new TablaModelo();
         String queryCont = "SELECT * FROM cc_contactos_cliente WHERE cl_id = '"+cliente+"'";
-        ResultSet rs = datos.select(queryCont);
+        ResultSet rs = CSDesktop.datos.select(queryCont);
 
         modelo.setColumnIdentifiers(new String[] {"NUM","NOMBRE", "TELEFONO", "MAIL"});
 
@@ -1313,8 +1300,6 @@ public class CSEditarCliente extends javax.swing.JPanel
         tablaContactos.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaContactos.getColumnModel().getColumn(2).setCellRenderer(tcr);
 
-
-
         tablaContactos.addMouseListener(new MouseAdapter()
         {
         public void mouseClicked(MouseEvent e)
@@ -1358,7 +1343,7 @@ public class CSEditarCliente extends javax.swing.JPanel
      */
     private void getComercial() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT co_id, co_nombre FROM co_comerciales");
+        ResultSet rs = CSDesktop.datos.select("SELECT co_id, co_nombre FROM co_comerciales");
         int j = 0;
         String valor = "";
         while(rs.next())
@@ -1381,7 +1366,7 @@ public class CSEditarCliente extends javax.swing.JPanel
     {
         String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = '"+cliente+"' AND tc_fecha_hasta = '2050-01-01'";
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         try {
             DbConnection da = new DbConnection();
             while (rs.next())

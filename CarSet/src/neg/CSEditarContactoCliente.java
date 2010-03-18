@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABEditarContactosCliente.java
  *
  * Created on 12-oct-2009, 12:35:08
@@ -29,8 +24,6 @@ import javax.swing.event.InternalFrameListener;
  */
 public class CSEditarContactoCliente extends javax.swing.JPanel
 {
-
-    DbConnection datos = new DbConnection();
 
     /** Creates new form ABEditarContactosCliente */
     public CSEditarContactoCliente(int contacto) throws SQLException
@@ -316,7 +309,6 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
-            datos.cerrarConexion();
             CSDesktop.EditarContactoCliente.dispose();
         }
 }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -349,10 +341,10 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
         {
             //System.out.println(rs2.getInt("last_insert_id()"));
             String query = "UPDATE cc_contactos_cliente SET cc_nombre = '"+nombre+"', cc_telefono = '"+telefono+"', " +
-                              "cc_telefono2 = '"+telefono2+"', cc_email = '"+email+"', dp_id = '"+fDepartamento+"' where cc_id=" + numero ;
+                           "cc_telefono2 = '"+telefono2+"', cc_email = '"+email+"', dp_id = '"+fDepartamento+"' where cc_id=" + numero ;
 
             System.out.println(query);
-            boolean rsCon = datos.manipuladorDatos(query);
+            boolean rsCon = CSDesktop.datos.manipuladorDatos(query);
             System.out.println(query);
             if(rsCon)
             {
@@ -361,9 +353,6 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
                 JOptionPane.showMessageDialog(null,errorFields);
                 jButtonModificar.setEnabled(true);
             }
-
-
-            // query="INSERT INTO cc_contactos_clientes (cc_nombre,cc_telefono,cc_email,cl_id) VALUES (";
 
             jButtonModificar.setEnabled(false);
             JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
@@ -390,9 +379,9 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
         if (JOptionPane.OK_OPTION == confirmado)
         {
             int cc_id = Integer.parseInt(jTextNumContacto.getText());
-            String query="DELETE from cc_contactos_cliente where cc_id="+cc_id;
+            String query = "DELETE from cc_contactos_cliente where cc_id="+cc_id;
 
-            boolean rs=datos.manipuladorDatos(query);
+            boolean rs = CSDesktop.datos.manipuladorDatos(query);
             if(rs) {
                 jButtonModificar.setEnabled(false);
                 JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al eleiminar el contacto en la base de datos</FONT></HTML>");
@@ -447,8 +436,10 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
     {
     	String query = "SELECT * FROM cc_contactos_cliente " +
                        "WHERE cc_id = "+contacto;
+
         System.out.println("Query con:"+query);
-        ResultSet rs = datos.select(query);
+
+        ResultSet rs = CSDesktop.datos.select(query);
         int numeroFila = 0;
         int cc_id = 0;
 
@@ -489,7 +480,7 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
 
     private void getDepartamentoContacto() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
+        ResultSet rs = CSDesktop.datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
         int j = 0;
         String valor = "";
         while(rs.next())

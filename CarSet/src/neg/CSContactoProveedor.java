@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABContactosProveedor.java
  *
  * Created on 11-oct-2009, 20:53:54
@@ -13,7 +8,6 @@ package neg;
 
 import utils.Utilidades;
 import data.Proveedor;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -30,7 +24,6 @@ import javax.swing.JOptionPane;
  */
 public class CSContactoProveedor extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     int proveedorID=0;
 
     /** Creates new form ABContactosProveedor */
@@ -302,7 +295,6 @@ public class CSContactoProveedor extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         {
-         datos.cerrarConexion();
          CSDesktop.NuevoContactoProveedor.dispose();
          CSDesktop.menuContactoProveedor.setEnabled(true);
         }
@@ -341,7 +333,7 @@ public class CSContactoProveedor extends javax.swing.JPanel
                               "VALUES ('"+nombre+"','"+telefono+"','"+telefono2+"','"+email+"', "+
                               "'"+proveedorID+"', '"+fDepartamento+"')";
     System.out.println(query);
-            boolean rs = datos.manipuladorDatos(query);
+            boolean rs = CSDesktop.datos.manipuladorDatos(query);
             System.out.println(query);
             if(rs)
             {
@@ -358,19 +350,15 @@ public class CSContactoProveedor extends javax.swing.JPanel
                 jButtonGuardar.setEnabled(true);
                 CSDesktop.NuevoContactoProveedor.dispose();
                  CSDesktop.menuContactoProveedor.setEnabled(true);
-
             }
          }
 }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jToggleButtonProveedor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonProveedor2ActionPerformed
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query="select pr_id,pr_nombre_fiscal,pr_DNI_CIF from pr_proveedores order by pr_id";
-
         CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectProveedor panel = new CSSelectProveedor(query,jTextProveedor);
+        CSSelectProveedor panel = new CSSelectProveedor(jTextProveedor);
         CSDesktop.BuscaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaProveedor.pack();
@@ -424,6 +412,7 @@ public class CSContactoProveedor extends javax.swing.JPanel
     {
       return new Dimension( 850,600 );
     }
+    
     public void ValidarFormatos(String accion)
     {
          jButtonGuardar.setEnabled(false);
@@ -434,7 +423,7 @@ public class CSContactoProveedor extends javax.swing.JPanel
 
     private void getDepartamentoContacto() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
+        ResultSet rs = CSDesktop.datos.select("SELECT dp_id, dp_nombre FROM dp_departamentos");
         int j = 0;
         String valor = "";
         while(rs.next())
@@ -444,7 +433,6 @@ public class CSContactoProveedor extends javax.swing.JPanel
                 jComboBoxDepartamento.addItem(valor);
                 jComboBoxDepartamento.setSelectedIndex(0);
 
-                //jCombPago.addItem(rs.getString("fp_tipo"))
                 j++;
         }
      }

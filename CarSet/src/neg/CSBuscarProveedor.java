@@ -16,12 +16,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import utils.Utilidades;
+
 /**
  *
  * @author depr73
  */
-public class CSBuscarProveedor extends javax.swing.JPanel {
+public class CSBuscarProveedor extends javax.swing.JPanel
+{
 
     /** Creates new form ABBuscarProveedores */
     public CSBuscarProveedor()

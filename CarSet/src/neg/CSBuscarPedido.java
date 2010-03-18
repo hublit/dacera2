@@ -13,22 +13,17 @@ package neg;
 
 import utils.LimitadorDeDocumento;
 import data.Cliente;
-import data.DbConnection;
 import data.Proveedor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import utils.Utilidades;
 
 /**
  *
@@ -646,7 +641,6 @@ public class CSBuscarPedido extends javax.swing.JPanel
         }
         else
         {
-
             if(!cliente.equals("") && !proveedor.equals(""))
             {
                 Cliente cliente2 = new Cliente();
@@ -771,13 +765,10 @@ public class CSBuscarPedido extends javax.swing.JPanel
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-
-        String query="select cl_id,cl_nombre,cl_DNI_CIF from cl_clientes order by cl_id";
-
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(query,jTextCliente);
-        CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
+        CSSelectCliente panel = new CSSelectCliente(jTextCliente);
+        CSDesktop.BuscaCliente.getContentPane().add(panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();
         // adjuntar marco interno al escritorio y mostrarlo
@@ -789,11 +780,9 @@ public class CSBuscarPedido extends javax.swing.JPanel
     private void jToggleButtonProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonProveedorActionPerformed
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
 
-        String query="select pr_id,pr_nombre_fiscal,pr_DNI_CIF from pr_proveedores order by pr_id";
-
         CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectProveedor panel = new CSSelectProveedor(query,jTextProveedor);
+        CSSelectProveedor panel = new CSSelectProveedor(jTextProveedor);
         CSDesktop.BuscaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaProveedor.pack();
