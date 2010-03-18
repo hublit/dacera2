@@ -12,9 +12,6 @@
 package neg;
 
 import utils.Utilidades;
-import data.Cliente;
-import data.DbConnection;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
@@ -24,11 +21,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,14 +31,12 @@ import javax.swing.JPanel;
  */
 public class CSEditarTarifaProveedor extends JPanel
 {
-    DbConnection datos;
     static int pr_id = 0;
 
     public CSEditarTarifaProveedor(int tarifa)
     {
         CSDesktop.ABResultTarifasProveedor.setVisible(false);
         CSDesktop.EditarProveedor.setVisible(false);
-        datos = new DbConnection();
         this.setLayout(new GridBagLayout());
         initComponents();
         this.datosTarifa(tarifa);
@@ -480,7 +470,7 @@ public class CSEditarTarifaProveedor extends JPanel
                                    "WHERE tp_id = "+id+"";
 
                     System.out.println(query);
-                    boolean rs = datos.manipuladorDatos(query);
+                    boolean rs = CSDesktop.datos.manipuladorDatos(query);
                     System.out.println(rs);
                     if(rs)
                     {
@@ -499,7 +489,7 @@ public class CSEditarTarifaProveedor extends JPanel
                         ""+ incremento + ", "+ tarifaN + ", "+ pr_id+")";
 
                         System.out.println(queryTp);
-                        boolean rsTp = datos.manipuladorDatos(queryTp);
+                        boolean rsTp = CSDesktop.datos.manipuladorDatos(queryTp);
                         if(rsTp)
                         {
                             jButtonModificar.setEnabled(false);
@@ -523,7 +513,6 @@ public class CSEditarTarifaProveedor extends JPanel
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        datos.cerrarConexion();
         CSDesktop.EditarTarifaProveedor.dispose();
         CSDesktop.ABResultTarifasProveedor.setVisible(true);
         
@@ -576,11 +565,11 @@ public class CSEditarTarifaProveedor extends JPanel
     	String query = "SELECT * FROM tp_tarifas_proveedores " +
                        "WHERE tp_id = "+tarifa;
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         int numeroFila = 0;
         String tp_id="";
 
-         try
+        try
         {
             while(rs.next())
             {

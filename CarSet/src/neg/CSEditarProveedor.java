@@ -36,7 +36,6 @@ import javax.swing.table.TableColumn;
  */
 public class CSEditarProveedor extends javax.swing.JPanel
 {
-    DbConnection datos;
     int proveedor;
 
     /** Creates new form ABEditarProveedores */
@@ -44,7 +43,6 @@ public class CSEditarProveedor extends javax.swing.JPanel
     {
         initComponents();
         limitacionesCampos();
-        datos = new DbConnection();
         getFPagoProveedores();
         this.datosProveedor(proveedor);
         this.ABResultBuscarContactos(proveedor);
@@ -942,7 +940,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
                            "WHERE pr_id = "+numero+"";
 
             System.out.println(query);
-            boolean rs = datos.manipuladorDatos(query);
+            boolean rs = CSDesktop.datos.manipuladorDatos(query);
             System.out.println(rs);
             if(rs)
             {
@@ -961,7 +959,6 @@ public class CSEditarProveedor extends javax.swing.JPanel
                     incrementarTarifas(numero, incremento);
                 }
 
-
                 jButtonModificar.setEnabled(false);
                 JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
                 JOptionPane.showMessageDialog(null,mensaje);
@@ -975,8 +972,6 @@ public class CSEditarProveedor extends javax.swing.JPanel
 }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        //Cerramos la conexión antes de cerrar la ventana
-        datos.cerrarConexion();
         CSDesktop.EditarProveedor.dispose();
         CSDesktop.ResultProveedor.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -988,9 +983,9 @@ public class CSEditarProveedor extends javax.swing.JPanel
         {
             int pr_id = Integer.parseInt(jTextNumero.getText());
             //String query="DELETE from pr_proveedores where pr_id="+pr_id;
-            String query="UPDATE pr_proveedores SET pr_estado='Inactivo' where pr_id='"+pr_id+"'";
+            String query = "UPDATE pr_proveedores SET pr_estado='Inactivo' where pr_id='"+pr_id+"'";
 
-            boolean rs=datos.manipuladorDatos(query);
+            boolean rs = CSDesktop.datos.manipuladorDatos(query);
              if(rs)
              {
                     jButtonModificar.setEnabled(false);
@@ -1210,7 +1205,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
     	String query = "SELECT * FROM pr_proveedores " +
                        "WHERE pr_id = "+proveedor;
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         System.out.println(query);
         int numeroFila = 0;
 
@@ -1218,7 +1213,6 @@ public class CSEditarProveedor extends javax.swing.JPanel
         {
             while(rs.next())
             {
-
                 String fecha = rs.getString("pr_fecha");
                 String [] temp = null;
                     temp = fecha.split("\\-");
@@ -1286,7 +1280,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
      */
     private void getFPagoProveedores() throws SQLException
     {
-        ResultSet rs = datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
+        ResultSet rs = CSDesktop.datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
 
         //jComboBoxFPago = new JComboBox();
         //jTarifas.setSelectedIndex(0);
@@ -1310,7 +1304,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
     {
         TablaModelo modelo = new TablaModelo();
         String queryCont = "SELECT * FROM cp_contactos_proveedor WHERE pr_id = '"+proveedor+"'";
-        ResultSet rs = datos.select(queryCont);
+        ResultSet rs = CSDesktop.datos.select(queryCont);
 
         modelo.setColumnIdentifiers(new String[] {"NUM","NOMBRE", "TELEFONO", "MAIL"});
 
@@ -1411,7 +1405,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
     {
         String query = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = '"+proveedor+"' AND tp_fecha_hasta = '2050-01-01'";
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         try {
             
             DbConnection da = new DbConnection();
@@ -1436,7 +1430,6 @@ public class CSEditarProveedor extends javax.swing.JPanel
                         JOptionPane.showMessageDialog(null,errorFields);
                         jButtonModificar.setEnabled(true);
                    }
-
             }
             da.cerrarConexion();
             rs.close();

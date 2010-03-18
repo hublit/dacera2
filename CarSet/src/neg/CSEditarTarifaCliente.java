@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABEditarTarifaCliente.java
  *
  * Created on 29-sep-2009, 21:04:18
@@ -11,11 +6,7 @@
 
 package neg;
 
-import javax.swing.event.InternalFrameEvent;
 import utils.Utilidades;
-import data.Cliente;
-import data.DbConnection;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
@@ -25,15 +16,9 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.event.InternalFrameListener;
 
 /**
  *
@@ -41,14 +26,12 @@ import javax.swing.event.InternalFrameListener;
  */
 public class CSEditarTarifaCliente extends JPanel
 {
-    DbConnection datos;
     static int cl_id = 0;
 
     public CSEditarTarifaCliente(int tarifa)
     {
         CSDesktop.ABResultTarifasCliente.setVisible(false);
         CSDesktop.EditarCliente.setVisible(false);
-        datos = new DbConnection();
         this.setLayout(new GridBagLayout());
         initComponents();
         this.datosTarifa(tarifa);
@@ -466,16 +449,6 @@ public class CSEditarTarifaCliente extends JPanel
             }
             else
             {
-
-                /*if (!Utilidades.campoObligatorioCombo(servicioAux,"Servicio Origen").equals("OK"))
-                 {
-                    ValidarFormatos(Utilidades.campoObligatorioCombo(servicioAux,"Servicio Origen"));
-                 }
-                  else if (!Utilidades.campoObligatorioCombo(servicioDestinoAux,"Servicio Destino").equals("OK"))
-                 {
-                    ValidarFormatos(Utilidades.campoObligatorioCombo(servicioDestinoAux,"Servicio Destino"));
-                 }
-                  else*/
                  if (!Utilidades.campoObligatorio(tarifa,"Tarifa").equals("OK"))
                  {
                     ValidarFormatos(Utilidades.campoObligatorio(tarifa,"Tarifa"));
@@ -491,7 +464,6 @@ public class CSEditarTarifaCliente extends JPanel
                  {
                     double tarifaN = Double.valueOf(tarifa).doubleValue();
 
-                    //System.out.println("Incremento:"+Double.parseDouble("0."+incremento));
                     if (incremento.trim().equals("") || !Utilidades.validarNumericoDecimal(incremento).equals("OK"))
                     {
                         incremento = "0";
@@ -500,14 +472,8 @@ public class CSEditarTarifaCliente extends JPanel
                     String query = "UPDATE tc_tarifas_clientes SET tc_fecha_hasta='"+fechaActual+"' " +
                                    "WHERE tc_id = "+id+"";
 
-                    /* String query = "UPDATE tc_tarifas_clientes SET tc_servicio ='"+servicio+"', tc_servicio_origen ='"+servicioFMad+"', " +
-                                   "tc_servicio_destino ='"+servicioFMadDestino+"',tc_soporte='"+soporte+"', tc_fecha_desde = '"+fechaDesde+"', " +
-                                   "tc_fecha_hasta='"+fechaHasta+"', tc_fuera_mad='"+fueraM+"', tc_incremento='"+incremento+"', tc_tarifa="+tarifaN+""+
-                                   "WHERE tc_id = "+id+"";
-                    */
-
                     System.out.println(query);
-                    boolean rs = datos.manipuladorDatos(query);
+                    boolean rs = CSDesktop.datos.manipuladorDatos(query);
                     System.out.println(rs);
                     if(rs)
                     {
@@ -526,7 +492,7 @@ public class CSEditarTarifaCliente extends JPanel
                         ""+ incremento + ", "+ tarifaN + ", "+ cl_id+")";
 
                         System.out.println(queryTc);
-                        boolean rsTc = datos.manipuladorDatos(queryTc);
+                        boolean rsTc = CSDesktop.datos.manipuladorDatos(queryTc);
                         if(rsTc)
                         {
                             jButtonModificar.setEnabled(false);
@@ -548,7 +514,6 @@ public class CSEditarTarifaCliente extends JPanel
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        datos.cerrarConexion();
         CSDesktop.EditarTarifaCliente.dispose();
         CSDesktop.ABResultTarifasCliente.setVisible(true);
         
@@ -601,11 +566,11 @@ public class CSEditarTarifaCliente extends JPanel
     	String query = "SELECT * FROM tc_tarifas_clientes " +
                        "WHERE tc_id = "+tarifa;
 
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         int numeroFila = 0;
         String tc_id="";
 
-         try
+        try
         {
             while(rs.next())
             {
@@ -643,7 +608,7 @@ public class CSEditarTarifaCliente extends JPanel
      */
     private int getIdCliente(String cliente) throws SQLException
     {
-        ResultSet rs = datos.select("SELECT cl_id FROM cl_clientes WHERE cl_nombre = '"+cliente+"'");
+        ResultSet rs = CSDesktop.datos.select("SELECT cl_id FROM cl_clientes WHERE cl_nombre = '"+cliente+"'");
 
         int valor = 0;
         while(rs.next())
@@ -653,7 +618,7 @@ public class CSEditarTarifaCliente extends JPanel
         return valor;
     }
 
-     public void ValidarFormatos(String accion)
+    public void ValidarFormatos(String accion)
     {
          jButtonModificar.setEnabled(false);
          JLabel errorFields = new JLabel(accion);
