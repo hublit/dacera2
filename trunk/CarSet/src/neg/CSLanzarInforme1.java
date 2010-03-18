@@ -21,14 +21,12 @@ import data.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Administrador
  */
 public class CSLanzarInforme1
 {
-    static DbConnection datos = new DbConnection();
     /**
      * @param args the command line arguments
      */
@@ -37,7 +35,7 @@ public class CSLanzarInforme1
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fi_informe_aux";
-     boolean resDel = datos.manipuladorDatos(queryDel);
+     boolean resDel = CSDesktop.datos.manipuladorDatos(queryDel);
 
      double traslado=0;
      double suplemento = 0;
@@ -47,7 +45,6 @@ public class CSLanzarInforme1
 
      for(int i = 0; i < lista.size(); i++)
      {
-
         String finalServicio="";
         String importeTraslado="";
         String IdaVuelta="";
@@ -105,7 +102,7 @@ public class CSLanzarInforme1
             {
                String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+clienteID;
 
-               ResultSet rsIv = datos.select(queryIv);
+               ResultSet rsIv = CSDesktop.datos.select(queryIv);
                while (rsIv.next())
                {
                   IdaVuelta = rsIv.getString("sc_ida_vuelta");
@@ -139,7 +136,7 @@ public class CSLanzarInforme1
                         "'"+importeTarifa+"','"+dSuplemento+"','"+IdaVuelta2+"','"+importeTotalAux+"')";
 
         System.out.println(query);
-        boolean rs3 = datos.manipuladorDatos(query);
+        boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
 
         traslado=traslado + importeTarifa;
         suplemento=suplemento + dSuplemento;
@@ -167,9 +164,6 @@ public class CSLanzarInforme1
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CSLanzarInforme1.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    DbConnection conexion=new DbConnection();
-                    con=(Connection) conexion.getConexion();
-
                 //1-Compilamos el archivo XML y lo cargamos en memoria
                 jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet1.jrxml");
 
@@ -242,7 +236,7 @@ public class CSLanzarInforme1
       if (!campo.equals(""))
       {
           String queryFactor = "SELECT "+campo+" FROM sp_servicios_proveedores WHERE pr_id="+proveedor;
-          ResultSet rs3 = datos.select(queryFactor);
+          ResultSet rs3 = CSDesktop.datos.select(queryFactor);
 
           while(rs3.next())
           {
@@ -256,6 +250,5 @@ public class CSLanzarInforme1
   public static double redondear( double numero, int decimales ) {
     return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
   }
-
 
 }

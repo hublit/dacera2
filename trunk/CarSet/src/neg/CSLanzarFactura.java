@@ -26,8 +26,7 @@ import javax.swing.JOptionPane;
  * @author Administrador 
  */ 
 public class CSLanzarFactura
-{
-    static DbConnection datos = new DbConnection();     
+{ 
     /** 
      * @param args the command line arguments 
      */ 
@@ -36,7 +35,7 @@ public class CSLanzarFactura
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fa_facturas_aux";
-     boolean resDel = datos.manipuladorDatos(queryDel);
+     boolean resDel = CSDesktop.datos.manipuladorDatos(queryDel);
 
      double total=0;
      double iva = 0;
@@ -147,7 +146,7 @@ public class CSLanzarFactura
             {
                String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
 
-               ResultSet rsIv = datos.select(queryIv);
+               ResultSet rsIv = CSDesktop.datos.select(queryIv);
                while (rsIv.next())
                {
                   IdaVuelta = rsIv.getString("sc_ida_vuelta");
@@ -304,7 +303,7 @@ public class CSLanzarFactura
            {
             String querySe = "SELECT "+campoServicio+" FROM sc_servicios_clientes WHERE cl_id = "+cl_id+" AND sc_fecha_hasta > '"+fecha+"' LIMIT 1";
 
-               ResultSet rsSe = datos.select(querySe);
+               ResultSet rsSe = CSDesktop.datos.select(querySe);
                while (rsSe.next())
                {
                 importeServicioEs = rsSe.getString(campoServicio);
@@ -325,7 +324,7 @@ public class CSLanzarFactura
         {
              String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
 
-               ResultSet rsCampa = datos.select(queryCampa);
+               ResultSet rsCampa = CSDesktop.datos.select(queryCampa);
                while (rsCampa.next())
                {
                   importeCampaAux = rsCampa.getString("sc_entrada_campa");
@@ -388,7 +387,7 @@ public class CSLanzarFactura
                         "'"+importeCampa+"','"+labelCampa2+"','"+finalCampa2+"','"+importeCampa2+"','"+labelIda+"','"+textoIda+"','"+importeIda+"','"+importeTotalAux+"')";
 
         System.out.println(query);
-        boolean rs3 = datos.manipuladorDatos(query);
+        boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
 
         total=total + totalAux;
      }
@@ -413,11 +412,6 @@ public class CSLanzarFactura
      //FacturaXML nueva=new FacturaXML(query);
     try 
     { 
-       
-        DbConnection conexion=new DbConnection();
-        con=conexion.getConexion();
-
-
         //1-Compilamos el archivo XML y lo cargamos en memoria 
        jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\Factura.jrxml");
 
@@ -515,7 +509,7 @@ public class CSLanzarFactura
 
             System.out.println(query);
 
-             boolean rs = datos.manipuladorDatos(query);
+             boolean rs = CSDesktop.datos.manipuladorDatos(query);
              if(rs)
              {
                     JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
@@ -592,7 +586,7 @@ public class CSLanzarFactura
       if (!campo.equals(""))
       {
           String queryFactor = "SELECT "+campo+" FROM sc_servicios_clientes WHERE cl_id="+cliente;
-          ResultSet rs3 = datos.select(queryFactor);
+          ResultSet rs3 = CSDesktop.datos.select(queryFactor);
 
           while(rs3.next())
           {
@@ -606,6 +600,5 @@ public class CSLanzarFactura
   public static double redondear( double numero, int decimales ) {
     return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
   }
-
 
 }
