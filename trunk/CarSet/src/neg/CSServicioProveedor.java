@@ -8,12 +8,10 @@ package neg;
 
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -32,7 +30,6 @@ import javax.swing.event.InternalFrameListener;
  */
 public class CSServicioProveedor extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     int pr_id = 0;
     static int sp_id = 0;
     String fecha_desde = "";
@@ -41,7 +38,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
 
     public CSServicioProveedor(String query, int proveedor) throws SQLException
     {
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         
         Date fecha = new Date();
         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -1588,7 +1585,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
 
                 System.out.println(query);
 
-                boolean rs = datos.manipuladorDatos(query);
+                boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs)
                 {
@@ -1615,7 +1612,6 @@ public class CSServicioProveedor extends javax.swing.JPanel
     }
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
             {
-               datos.cerrarConexion();
                CSDesktop.EditarProveedor.setEnabled(true);
                CSDesktop.ServicioProveedor.dispose();
                CSDesktop.EditarProveedor.setVisible(true);
@@ -1627,7 +1623,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
         String query = "UPDATE sp_servicios_proveedores SET sp_fecha_hasta  = '"+fecha_hoy+"' WHERE pr_id = "+ sp_id+"";
 
         System.out.println(query);
-        boolean rs = datos.manipuladorDatos(query);
+        boolean rs = CSDesktop.datos.manipuladorDatos(query);
         if(rs) {
             jButtonModificar.setEnabled(false);
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
@@ -1981,7 +1977,7 @@ public class CSServicioProveedor extends javax.swing.JPanel
             "'"+urgente+"', '"+idProveedor+"', '"+fecha_desde+"', '"+fecha_hasta+"') ";
 
             System.out.println(querySe);
-            boolean rs = datos.manipuladorDatos(querySe);
+            boolean rs = CSDesktop.datos.manipuladorDatos(querySe);
 
             if(rs)
             {

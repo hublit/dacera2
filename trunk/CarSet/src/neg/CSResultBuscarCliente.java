@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABResultC.java
  *
  * Created on 07-oct-2009, 12:38:47
@@ -12,7 +7,6 @@
 package neg;
 
 import utils.TablaModelo;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -24,11 +18,9 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import utils.Utilidades;
 
 /**
  *
@@ -36,12 +28,11 @@ import utils.Utilidades;
  */
 public class CSResultBuscarCliente extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     /** Creates new form ABResultC */
     public CSResultBuscarCliente(String query)
     {
         TablaModelo modelo = new TablaModelo();
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         
         modelo.setColumnIdentifiers(new String[] {"NUM", "NOMBRE", "DNI/CIF", "TELEFONO", "MAIL" });
 
@@ -55,9 +46,6 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
                         datosFila[j] = rs.getObject(k + 1);
                         System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         j++;
-                    } else {
-                        //datosFila[k] = rs.getObject(k + 1);
-                        //System.out.println("No Dato"+k+" "+rs.getObject(k + 1));
                     }
                 }
                 modelo.addRow(datosFila);
@@ -216,7 +204,6 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        datos.cerrarConexion();
         CSDesktop.ResultCliente.dispose();
         CSDesktop.menuBuscarCliente.setEnabled(true);
        

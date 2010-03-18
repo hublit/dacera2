@@ -11,9 +11,7 @@
 
 package neg;
 
-import javax.swing.event.InternalFrameListener;
 import utils.TablaModelo;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -25,9 +23,7 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
@@ -37,14 +33,13 @@ import javax.swing.table.TableColumn;
  */
 public class CSResultTarifaProveedor extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     /** Creates new form ABResultC */
     public CSResultTarifaProveedor(String query)
     {
         CSDesktop.EditarProveedor.setVisible(false);
 
         TablaModelo modelo = new TablaModelo();
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
         System.out.println("Tarifas: "+query);
         modelo.setColumnIdentifiers(new String[] {"NUMERO", "SERVICIO", "SERVICIO ORIGEN", "SERVICIO DESTINO", "SOPORTE", "FECHA DESDE", "TARIFA"});
         int numeroFila = 0;
@@ -57,9 +52,6 @@ public class CSResultTarifaProveedor extends javax.swing.JPanel
                         datosFila[j] = rs.getObject(k + 1);
                         System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         j++;
-                    } else {
-                        //datosFila[k] = rs.getObject(k + 1);
-                        //System.out.println("No Dato"+k+" "+rs.getObject(k + 1));
                     }
                 }
                 modelo.addRow(datosFila);
@@ -216,7 +208,6 @@ public class CSResultTarifaProveedor extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        datos.cerrarConexion();
         CSDesktop.ABResultTarifasProveedor.dispose();
         CSDesktop.EditarProveedor.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

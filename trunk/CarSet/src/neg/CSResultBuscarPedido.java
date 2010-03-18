@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABResultBuscarPedido.java
  *
  * Created on 19-oct-2009, 15:58:57
@@ -13,25 +8,19 @@ package neg;
 
 //import utils.TablaModeloPedidos;
 import utils.TablaModelo;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -42,12 +31,11 @@ import javax.swing.table.TableColumn;
  */
 public class CSResultBuscarPedido extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     /** Creates new form ABResultBuscarPedido */
     public CSResultBuscarPedido(String query)
     {
         TablaModelo modelo = new TablaModelo();
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
 
         KeyListener l = new KeyListener()
         {
@@ -255,7 +243,6 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
-        datos.cerrarConexion();
         CSDesktop.ResultPedido.dispose();
         CSDesktop.menuBuscarPedido.setEnabled(true);
     }//GEN-LAST:event_jButtonCerrarActionPerformed

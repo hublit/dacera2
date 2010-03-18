@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * ABResultBuscarProveedores.java
  *
  * Created on 07-oct-2009, 22:40:56
@@ -12,7 +7,6 @@
 package neg;
 
 import utils.TablaModelo;
-import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -26,7 +20,6 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -37,12 +30,11 @@ import javax.swing.table.TableColumn;
  */
 public class CSResultBuscarProveedor extends javax.swing.JPanel
 {
-    DbConnection datos = new DbConnection();
     /** Creates new form ABResultBuscarProveedores */
     public CSResultBuscarProveedor(String query)
     {
         TablaModelo modelo = new TablaModelo();
-        ResultSet rs = datos.select(query);
+        ResultSet rs = CSDesktop.datos.select(query);
   
         KeyListener l = new KeyListener()
         {
@@ -231,7 +223,6 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        datos.cerrarConexion();
         CSDesktop.ResultProveedor.dispose();
         CSDesktop.menuBuscarProveedor.setEnabled(true);
 }//GEN-LAST:event_jButton1ActionPerformed
