@@ -55,6 +55,7 @@ public class CSLanzarFacturaProveedor
         String labelSuplemento="";
         String ServicioSuplemento="";
         String labelServicioEspecial="";
+        String importeServicioEsOtros = "";
         String servicioEspecial="";
         String finalNum="";
         String labelCampa="";
@@ -75,6 +76,7 @@ public class CSLanzarFacturaProveedor
         String IdaVuelta="";
         String factorTexto2="";
         String importeTotalAux="";
+        String labelOtros="";
         double importeTarifa = 0;
         double importeServicio = 0;
         double importeFc = 0;
@@ -84,6 +86,7 @@ public class CSLanzarFacturaProveedor
         double IdaVuelta2=0;
         double importeCampa4=0;
         double importeCampa5=0;
+        double importeServicioOtros = 0;
 
         BeanFactura otro = (BeanFactura)lista.get(i);
 
@@ -343,24 +346,25 @@ public class CSLanzarFacturaProveedor
         }
 
         //LINEA DE SERVICIO ESPECIAL OTROS
-        if(!otro.getServicioEspecial().equals(""))
+       if(!otro.getServicioEspecial().equals(""))
         {
             if(otro.getServicioEspecial().equals("Otros"))
             {
-               servicioEspecial=otro.getDescripcion().toUpperCase();
-               importeServicio=Integer.parseInt(otro.getTarifaEsCliente());
-               importeServicioEs=otro.getTarifaEsCliente();
+               labelOtros=otro.getDescripcion().toUpperCase();
+               importeServicioOtros=Integer.parseInt(otro.getTarifaEsCliente());
+               importeServicioEsOtros=otro.getTarifaEsCliente();
+               servicioEspecial="";
             }
             else
             {
                servicioEspecial=otro.getServicioEspecial().toUpperCase();
-               
+               labelServicioEspecial="SERVICIO ESPECIAL";
             }
-            labelServicioEspecial="SERVICIO ESPECIAL";
+
         }
 
         //TOTAL
-        totalAux = importeTarifa - IdaVuelta2 + importeFc + importeServicio + importeSup + importeCampa4 + importeCampa5;
+        totalAux = importeTarifa - IdaVuelta2 + importeFc + importeServicio + importeSup + importeCampa4 + importeCampa5 + importeServicioOtros;
         importeTotalAux = Double.toString(totalAux);
 
         
@@ -371,13 +375,13 @@ public class CSLanzarFacturaProveedor
                                                     "fa_texto_factor_correccion, fa_importe_factor_correccion, " +
                                                     "fa_suplemento, fa_texto_suplemento, fa_importe_suplemento, " +
                                                     "fa_servicio_adicional, fa_texto_servicio_adicional, " +
-                                                    "fa_importe_servicio_adicional, fa_campa,fa_texto_campa, fa_importe_campa, " +
+                                                    "fa_importe_servicio_adicional,fa_servicio_otro,fa_importe_servicio_otro, fa_campa,fa_texto_campa, fa_importe_campa, " +
                                                     "fa_campa2, fa_texto_campa2, fa_importe_campa2,fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total) " +
                                                     "VALUES (";
         query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
                         "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTraslado+"','"+labelFactor+"'," +
                         "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+importeSuplemento+"'," +
-                        "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioEs+"','"+labelCampa+"','"+finalCampa+"'," +
+                        "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioEs+"','"+labelOtros+"','"+importeServicioEsOtros+"','"+labelCampa+"','"+finalCampa+"'," +
                         "'"+importeCampa+"','"+labelCampa2+"','"+finalCampa2+"','"+importeCampa2+"','"+labelIda+"','"+textoIda+"','"+importeIda+"','"+importeTotalAux+"')";
 
         System.out.println(query);

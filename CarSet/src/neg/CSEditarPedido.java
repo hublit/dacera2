@@ -1338,6 +1338,10 @@ public class CSEditarPedido extends javax.swing.JPanel
         {
             taescliN=Double.valueOf(tarifaCliente).doubleValue();
         }
+        else
+        {
+            taescliN=-1;
+        }
         String tarifaProveedor=new String(jTextTaEsProv.getText());
         if(!tarifaProveedor.equals(""))
         {
@@ -1938,7 +1942,14 @@ public class CSEditarPedido extends javax.swing.JPanel
                 jTextModelo.setText(rs.getString("pe_ve_modelo"));
                 jTextSolred.setText(String.valueOf(rs.getInt("pe_solred")));
                 jTextViaje.setText(String.valueOf(rs.getInt("pe_viaje")));
-                jTextTaEsCli.setText(String.valueOf(rs.getDouble("pe_ta_es_cliente")));
+                if(rs.getDouble("pe_ta_es_cliente")== -1)
+                {
+                     jTextTaEsCli.setText("");
+                }
+                else
+                {
+                     jTextTaEsCli.setText(String.valueOf(rs.getDouble("pe_ta_es_cliente")));
+                }
                 jTextTaEsProv.setText(String.valueOf(rs.getDouble("pe_ta_es_proveedor")));
                 jTextSuplemento.setText(String.valueOf(rs.getDouble("pe_suplemento")));
                 jComboFactor.setSelectedIndex(rs.getInt("fc_id"));

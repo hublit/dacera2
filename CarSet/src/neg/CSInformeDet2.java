@@ -8,6 +8,7 @@ package neg;
 
 import com.mysql.jdbc.Connection;
 import data.Cliente;
+import data.DbConnection;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -299,7 +300,8 @@ public class CSInformeDet2 extends javax.swing.JPanel
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                 DbConnection conexion=new DbConnection();
+                con=(Connection) conexion.getConexion();
                 //1-Compilamos el archivo XML y lo cargamos en memoria
                 jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\InformeDet2.jrxml");
 
