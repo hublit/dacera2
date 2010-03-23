@@ -1370,6 +1370,8 @@ public class CSAnyadirPedido extends JPanel
         String servicioEspecial=new String(jComboBoxServicioEspecial.getSelectedItem().toString());
         String soporte=new String(jComboBoxSoporte.getSelectedItem().toString());
         String suplemento=new String(jTextSuplemento.getText().toString());
+        String numEnCamion = new String(jTextNumCamion.getText());
+
         if(!suplemento.equals(""))
         {
             suplementoN=Double.valueOf(suplemento).doubleValue();
@@ -1517,14 +1519,14 @@ public class CSAnyadirPedido extends JPanel
                                                          "pe_dias_campa,pe_ida_vuelta,pe_soporte, pe_ve_matricula,pe_ve_marca, " +
                                                          "pe_ve_modelo,pe_hora_real_origen,pe_fecha_real_destino,pe_hora_real_destino, " +
                                                          "pe_solred, pe_viaje,pe_ta_es_cliente,pe_ta_es_proveedor,pe_suplemento, " +
-                                                         "fc_id, pe_estado,pe_activo) VALUES (";
+                                                         "fc_id, pe_estado,pe_activo,pe_num_en_camion) VALUES (";
 
               query = query + "'"+fecha2+"','"+descripcion+"','"+direccionOrigen+"','"+poblacionOrigen+"','"+provinciaOrigen+"','"+codigoPOrigen+"','"+fechaOrigen+"','"+horaOrigen+"'";
               query = query + " ,'"+tipoOrigen+"','"+nombreOrigen+"','"+telefonoOrigen+"','"+direccionDestino+"','"+poblacionDestino+"','"+provinciaDestino+"','"+codigoPDestino+"'";
               query = query + ", '"+fechaDestino+"','"+horaDestino+"','"+tipoDestino+"','"+nombreDestino+"','"+telefonoDestino+"'";
               query = query + " ,'"+servicio+"','"+servicioFMad+"','"+servicioFMadDestino+"','"+servicioEspecial+"','"+diasCampaN+"','"+idaVueltaN+"','"+soporte+"','"+matricula+"'";
               query = query + ",'"+marca+"','"+modelo+"','"+horaRealOrigen+"','"+fechaRealDestino+"','"+horaRealDestino+"','"+solredN+"','"+viajeN+"'";
-              query = query + " ,'"+taescliN+"','"+taesproN+"','"+suplementoN+"','"+factor+"','"+estado+"','"+cerradoN+"')";
+              query = query + " ,'"+taescliN+"','"+taesproN+"','"+suplementoN+"','"+factor+"','"+estado+"','"+cerradoN+"','"+numEnCamion+"')";
 
 
                System.out.println(query);

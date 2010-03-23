@@ -3,7 +3,6 @@
  *
  * Created on 07-oct-2009, 18:18:28
  */
-
 package neg;
 
 import utils.Utilidades;
@@ -1374,6 +1373,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         String horarealDestino=new String(jTextHoraRealDestino.getText());
         boolean cerrado = new Boolean(jCheckBoxCerrado.isSelected());
         String diasCampa = new String(jTextDiasCampa.getText());
+        String numEnCamion = new String(jTextNumCamion.getText());
         if(!diasCampa.equals(""))
         {
             diasCampaN=Integer.valueOf(diasCampa).intValue();
@@ -1516,7 +1516,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                             "pe_ve_marca = '"+marca+"', pe_ve_modelo = '"+modelo+"', pe_solred='"+solredN+"', pe_viaje = '"+viajeN+"', " +
                             "pe_ta_es_cliente = '"+taescliN+"', pe_ta_es_proveedor = '"+taesproN+"', pe_suplemento= '"+suplementoN+"', " +
                             "fc_id = '"+factor+"', pe_estado = '"+estado+"' , pe_activo = '"+cerradoN+"',pe_hora_real_origen = '"+horarealOrigen+"', " +
-                            "pe_fecha_real_destino = '"+fechaRealDestino+"', pe_hora_real_destino='"+horarealDestino+"' WHERE pe_num = "+numero+"";
+                            "pe_fecha_real_destino = '"+fechaRealDestino+"', pe_hora_real_destino='"+horarealDestino+"', pe_num_en_camion='"+numEnCamion+"' WHERE pe_num = "+numero+"";
 
                 System.out.println(query);
                 boolean rs = CSDesktop.datos.manipuladorDatos(query);
@@ -1945,6 +1945,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                 jComboBoxEstado.setSelectedItem(rs.getString("pe_estado"));
                 jTextHoraRealOrigen.setText(rs.getString("pe_hora_real_origen"));
                 jTextHoraRealDestino.setText(rs.getString("pe_hora_real_destino"));
+                jTextNumCamion.setText(rs.getString("pe_num_en_camion"));
                  if(rs.getInt("pe_activo")==0)
                 {
                     jCheckBoxCerrado.setSelected(false);
