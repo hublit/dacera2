@@ -92,13 +92,13 @@ public class CSDesktop extends JFrame
   public  CSDesktop()
   {
 
-      setDefaultCloseOperation(CSDesktop.DO_NOTHING_ON_CLOSE);
+      /*setDefaultCloseOperation(CSDesktop.DO_NOTHING_ON_CLOSE);
       addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent we) {
 
             confirmarCierre();
         }
-        });
+        });*/
 
       elEscritorio = new DesktopConFondo("/images/fondo_desktop.jpg");
       getContentPane().add( elEscritorio );
@@ -568,7 +568,7 @@ public class CSDesktop extends JFrame
       
   }
 
-  void confirmarCierre()
+  /*void confirmarCierre()
   {
        int confirmado = JOptionPane.showConfirmDialog(this,"¿Realmente quieres salir de la aplicación?");
 
@@ -576,5 +576,5 @@ public class CSDesktop extends JFrame
                     {
                         CSDesktop.datos.cerrarConexion();
                     }
-  }
+  }*/
 }

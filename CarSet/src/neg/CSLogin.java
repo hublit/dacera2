@@ -218,7 +218,7 @@ public class CSLogin extends JFrame
                     CSDesktop ventana = new CSDesktop();
                    ventana.addWindowListener( new WindowAdapter() {
                       public void windowClosing( WindowEvent evt ) {
-                        System.exit( 0 );
+                        confirmarCierre();
                       }
                     } );
                     ventana.getRootPane().setDefaultButton(jButton1);
@@ -251,4 +251,14 @@ public class CSLogin extends JFrame
         new CSLogin();
 
     };
+     void confirmarCierre()
+  {
+       int confirmado = JOptionPane.showConfirmDialog(this,"¿Realmente quieres salir de la aplicación?");
+
+                    if (JOptionPane.OK_OPTION == confirmado)
+                    {
+                        CSDesktop.datos.cerrarConexion();
+                        System.exit(0);
+                    }
+  }
 }
