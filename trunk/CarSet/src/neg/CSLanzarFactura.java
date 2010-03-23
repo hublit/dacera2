@@ -170,7 +170,7 @@ public class CSLanzarFactura
 
              if(soporte.equals("Grúa"))
              {
-                if((!factorTexto.equals("Sin factor") && !factorTexto.equals("TURISMO")) && importeTraslado != null)
+                if((!factorTexto.equals("Sin factor") && (!factorTexto.equals("TURISMO")) )&& !importeTraslado.equals(""))
                 {
                     labelFactor = "FACTOR DE CORRECCION";
                     DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
