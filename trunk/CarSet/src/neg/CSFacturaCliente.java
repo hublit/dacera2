@@ -363,6 +363,7 @@ public class CSFacturaCliente extends JPanel
                            "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
                            "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
                            "AND tc.tc_soporte = pe.pe_soporte " +
+                           "AND pe.pe_estado = 'Activo'" +
                            "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
                            "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 

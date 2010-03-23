@@ -251,7 +251,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
 
             String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
                 " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa,"+
-                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento,"+
+                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento,"+
                 " tc.tc_tarifa, sc.sc_ida_vuelta"+
                 " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc,"+
                 " sc_servicios_clientes sc"+
@@ -304,7 +304,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                     nueva.setSoporte(rs.getString("pe_soporte"));
                     nueva.setMatricula(rs.getString("pe_ve_matricula"));
                     //nueva.setMarca(rs.getString("pe_ve_marca"));
-                    nueva.setVehiculo(rs.getString("fc_nombre"));
+                    //nueva.setVehiculo(rs.getString("fc_nombre"));
                     nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
                     //nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
                     nueva.setSuplemento(rs.getString("pe_suplemento"));

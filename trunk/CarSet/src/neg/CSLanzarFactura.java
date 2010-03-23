@@ -128,7 +128,7 @@ public class CSLanzarFactura
             }
 
             //TARIFA
-            if(otro.getTarifaEsCliente().equals("0"))
+            if(otro.getTarifaEsCliente().equals("-1"))
             {
                 importeTraslado = otro.getTarifa();
             }
@@ -565,21 +565,24 @@ public class CSLanzarFactura
       switch(factorInt)
       {
           case 0 :
+              descripcion = "";
+          break;
+         case 1 :
               descripcion = "TURISMO";
           break;
-          case 1 :
+          case 2 :
               campo = "sc_industrial";
               descripcion = "INDUSTRIAL";
           break;
-          case 2 :
+          case 3 :
               campo = "sc_todoterreno";
               descripcion = "TODOTERRENO";
           break;
-          case 3 :
+          case 4 :
               campo = "sc_furgonetas";
               descripcion = "FURGONETAS";
           break;
-          case 4 :
+          case 5 :
               campo = "sc_furgones";
               descripcion = "FURGONES";
           break;

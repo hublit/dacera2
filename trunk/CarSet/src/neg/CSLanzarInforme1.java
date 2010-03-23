@@ -113,14 +113,8 @@ public class CSLanzarInforme1
                IdaVuelta2=(importeTarifa*IdaVueltaP)/100;
             }
 
-            if(otro.getVehiculo().equals("Ninguno"))
-            {
-                Vehiculo="Turismo";
-            }
-            else
-            {
-                Vehiculo=otro.getVehiculo();
-            }
+            Vehiculo = obtenerFactor(otro.getFactor());
+            
          
         //TOTAL
         double importeTotalAux = importeTarifa + dSuplemento - IdaVuelta2;
@@ -205,49 +199,36 @@ public class CSLanzarInforme1
    * @return
    * @throws SQLException
    */
-  private static ArrayList obtenerFactor(String factor, String proveedor) throws SQLException
+ private static String obtenerFactor(String factor) 
   {
-      ArrayList factorSel = new ArrayList();
+
       int factorInt = Integer.parseInt(factor);
-      String campo = "";
       String descripcion = "";
 
       switch(factorInt)
       {
           case 0 :
+              descripcion = "";
+          break;
+         case 1 :
               descripcion = "TURISMO";
           break;
-          case 1 :
-              campo = "sp_industrial";
+          case 2 :
               descripcion = "INDUSTRIAL";
           break;
-          case 2 :
-              campo = "sp_todoterreno";
+          case 3 :
               descripcion = "TODOTERRENO";
           break;
-          case 3 :
-              campo = "sp_furgonetas";
+          case 4 :
               descripcion = "FURGONETAS";
           break;
-          case 4 :
-              campo = "sp_furgones";
+          case 5 :
               descripcion = "FURGONES";
           break;
       }
-       factorSel.add(descripcion);
-      if (!campo.equals(""))
-      {
-          String queryFactor = "SELECT "+campo+" FROM sp_servicios_proveedores WHERE pr_id="+proveedor;
-          ResultSet rs3 = CSDesktop.datos.select(queryFactor);
 
-          while(rs3.next())
-          {
-              factorSel.add(rs3.getDouble(campo));
 
-          }
-      }
-
-      return factorSel;
+      return descripcion;
   }
   public static double redondear( double numero, int decimales ) {
     return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
