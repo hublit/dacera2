@@ -172,8 +172,6 @@ public class CSLanzarFactura
              {
                 if((!factorTexto.equals("Sin factor") && !factorTexto.equals("TURISMO")) && importeTraslado != null)
                 {
-                    System.out.println("FactorTexto: "+factorTexto);
-                    System.out.println("importeTraslado: "+importeTraslado);
                     labelFactor = "FACTOR DE CORRECCION";
                     DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
                     double ft = Double.parseDouble(factorTarifa.get(1).toString());

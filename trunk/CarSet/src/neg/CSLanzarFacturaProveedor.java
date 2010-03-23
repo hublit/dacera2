@@ -168,7 +168,7 @@ public class CSLanzarFacturaProveedor
 
              if(soporte.equals("Grúa"))
              {
-                if(!factorTexto.equals("TURISMO") && importeTraslado != null)
+                if((!factorTexto.equals("Sin factor") && !factorTexto.equals("TURISMO")) && importeTraslado != null)
                 {
                     labelFactor = "FACTOR DE CORRECCION";
                     DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
@@ -562,22 +562,25 @@ public class CSLanzarFacturaProveedor
       switch(factorInt)
       {
           case 0 :
+              descripcion = "Sin factor";
+          break;
+         case 1 :
               descripcion = "TURISMO";
           break;
-          case 1 :
-              campo = "sp_industrial";
+          case 2 :
+              campo = "sc_industrial";
               descripcion = "INDUSTRIAL";
           break;
-          case 2 :
-              campo = "sp_todoterreno";
+          case 3 :
+              campo = "sc_todoterreno";
               descripcion = "TODOTERRENO";
           break;
-          case 3 :
-              campo = "sp_furgonetas";
+          case 4 :
+              campo = "sc_furgonetas";
               descripcion = "FURGONETAS";
           break;
-          case 4 :
-              campo = "sp_furgones";
+          case 5 :
+              campo = "sc_furgones";
               descripcion = "FURGONES";
           break;
       }
