@@ -1497,9 +1497,9 @@ public class CSEditarPedido extends javax.swing.JPanel
         else
         {
               if(!cerrado)
-                  cerradoN=1;
-              else
                   cerradoN=0;
+              else
+                  cerradoN=1;
 
               if(!idaVuelta)
                   idaVueltaN=0;

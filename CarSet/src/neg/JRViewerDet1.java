@@ -1332,6 +1332,7 @@ public class JRViewerDet1 extends javax.swing.JPanel implements JRHyperlinkListe
 
         private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             CSDesktop.NuevoInformeDetallado1.dispose();
+            
 }//GEN-LAST:event_jButton1ActionPerformed
 
 

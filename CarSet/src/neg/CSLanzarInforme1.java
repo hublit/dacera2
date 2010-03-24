@@ -83,7 +83,7 @@ public class CSLanzarInforme1
                 finalServicio=origen+" - "+ destino;
             }
 
-            if(otro.getTarifaEsCliente().equals("0"))
+            if(otro.getTarifaEsCliente().equals("-1"))
             {
                 importeTraslado = otro.getTarifa();
             }
@@ -111,6 +111,8 @@ public class CSLanzarInforme1
                IdaVueltaP=Double.parseDouble(IdaVuelta);
 
                IdaVuelta2=(importeTarifa*IdaVueltaP)/100;
+               IdaVuelta2=redondear(IdaVuelta2, 2);
+
             }
 
             Vehiculo = obtenerFactor(otro.getFactor());
@@ -118,6 +120,7 @@ public class CSLanzarInforme1
          
         //TOTAL
         double importeTotalAux = importeTarifa + dSuplemento - IdaVuelta2;
+        importeTotalAux=redondear(importeTotalAux, 2);
         //importeTotalAux = Double.toString(totalAux);
         
 

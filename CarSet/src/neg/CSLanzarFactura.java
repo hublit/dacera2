@@ -102,7 +102,13 @@ public class CSLanzarFactura
         String factor=otro.getFactor();
         String numCampa=otro.getDiasCampa();
         servicioEspecial = otro.getServicioEspecial();
-        
+        String numCamion=otro.getNumCamion();
+
+        if(soporte.equals("Camion Completo"))
+        {
+            
+        }
+
         if(numCampa.equals("0"))
         {
             //LINEA DE TRASLADO
@@ -131,6 +137,9 @@ public class CSLanzarFactura
             if(otro.getTarifaEsCliente().equals("-1"))
             {
                 importeTraslado = otro.getTarifa();
+                if(soporte.equals("Camión completo") && !numCamion.equals("1"))
+                    importeTraslado="0";
+               
             }
             else
             {
@@ -138,6 +147,8 @@ public class CSLanzarFactura
                     importeTraslado = otro.getTarifaEsCliente();
                 else
                     importeTraslado=otro.getTarifa();
+                    if(soporte.equals("Camión completo") && !numCamion.equals("1"))
+                        importeTraslado="0";
             }
             importeTarifa = Double.parseDouble(importeTraslado);
 
@@ -378,13 +389,13 @@ public class CSLanzarFactura
                                                     "fa_suplemento, fa_texto_suplemento, fa_importe_suplemento, " +
                                                     "fa_servicio_adicional, fa_texto_servicio_adicional, " +
                                                     "fa_importe_servicio_adicional, fa_servicio_otro,fa_importe_servicio_otro,fa_campa,fa_texto_campa, fa_importe_campa, " +
-                                                    "fa_campa2, fa_texto_campa2, fa_importe_campa2,fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total) " +
+                                                    "fa_campa2, fa_texto_campa2, fa_importe_campa2,fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total, fa_num_en_camion) " +
                                                     "VALUES (";
         query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
                         "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTraslado+"','"+labelFactor+"'," +
                         "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+importeSuplemento+"'," +
                         "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioEs+"','"+labelOtros+"','"+importeServicioEsOtros+"','"+labelCampa+"','"+finalCampa+"'," +
-                        "'"+importeCampa+"','"+labelCampa2+"','"+finalCampa2+"','"+importeCampa2+"','"+labelIda+"','"+textoIda+"','"+importeIda+"','"+importeTotalAux+"')";
+                        "'"+importeCampa+"','"+labelCampa2+"','"+finalCampa2+"','"+importeCampa2+"','"+labelIda+"','"+textoIda+"','"+importeIda+"','"+importeTotalAux+"','"+numCamion+"')";
 
         System.out.println(query);
         boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
