@@ -101,6 +101,7 @@ public class CSLanzarFacturaProveedor
         String factor=otro.getFactor();
         String numCampa=otro.getDiasCampa();
         servicioEspecial = otro.getServicioEspecial();
+        String numCamion=otro.getNumCamion();
         
         if(numCampa.equals("0"))
         {
@@ -127,7 +128,7 @@ public class CSLanzarFacturaProveedor
             }
 
             //TARIFA
-            if(otro.getTarifaEsCliente().equals("0"))
+            if(otro.getTarifaEsCliente().equals("-1"))
             {
                 importeTraslado = otro.getTarifa();
             }
@@ -376,13 +377,13 @@ public class CSLanzarFacturaProveedor
                                                     "fa_suplemento, fa_texto_suplemento, fa_importe_suplemento, " +
                                                     "fa_servicio_adicional, fa_texto_servicio_adicional, " +
                                                     "fa_importe_servicio_adicional,fa_servicio_otro,fa_importe_servicio_otro, fa_campa,fa_texto_campa, fa_importe_campa, " +
-                                                    "fa_campa2, fa_texto_campa2, fa_importe_campa2,fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total) " +
+                                                    "fa_campa2, fa_texto_campa2, fa_importe_campa2,fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total, fa_num_en_camion ) " +
                                                     "VALUES (";
         query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
                         "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTraslado+"','"+labelFactor+"'," +
                         "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+importeSuplemento+"'," +
                         "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioEs+"','"+labelOtros+"','"+importeServicioEsOtros+"','"+labelCampa+"','"+finalCampa+"'," +
-                        "'"+importeCampa+"','"+labelCampa2+"','"+finalCampa2+"','"+importeCampa2+"','"+labelIda+"','"+textoIda+"','"+importeIda+"','"+importeTotalAux+"')";
+                        "'"+importeCampa+"','"+labelCampa2+"','"+finalCampa2+"','"+importeCampa2+"','"+labelIda+"','"+textoIda+"','"+importeIda+"','"+importeTotalAux+"','"+numCamion+"')";
 
         System.out.println(query);
         boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
@@ -493,7 +494,7 @@ public class CSLanzarFacturaProveedor
         if(numero==0)
         {
              JRViewerSin jrViewer = new JRViewerSin(jasperPrint);
-             CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
+             CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Proveedor", true, false, false, true );
              CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
              CSDesktop.NuevaFactura.pack();
              CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
@@ -568,19 +569,19 @@ public class CSLanzarFacturaProveedor
               descripcion = "TURISMO";
           break;
           case 2 :
-              campo = "sc_industrial";
+              campo = "sp_industrial";
               descripcion = "INDUSTRIAL";
           break;
           case 3 :
-              campo = "sc_todoterreno";
+              campo = "sp_todoterreno";
               descripcion = "TODOTERRENO";
           break;
           case 4 :
-              campo = "sc_furgonetas";
+              campo = "sp_furgonetas";
               descripcion = "FURGONETAS";
           break;
           case 5 :
-              campo = "sc_furgones";
+              campo = "sp_furgones";
               descripcion = "FURGONES";
           break;
       }

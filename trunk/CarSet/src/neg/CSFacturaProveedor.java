@@ -351,7 +351,7 @@ public class CSFacturaProveedor extends JPanel
            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
                            "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                            "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
-                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento, " +
+                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento, pe.pe_num_en_camion, " +
                            "pe.pe_descripcion, tp.tp_tarifa, sp_entrada_campa, sp_campa, sp_suplemento " +
                            "FROM pe_pedidos pe, pp_pedidos_proveedores pp, tp_tarifas_proveedores tp, sp_servicios_proveedores sp " +
                            "WHERE pe.pe_num = pp.pe_num " +
@@ -394,7 +394,7 @@ System.out.println(query);
                     nueva.setTarifa(rs.getString("tp_tarifa"));
                     nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                     nueva.setServicioSuplemento(rs.getString("sp_suplemento"));
-
+                    nueva.setNumCamion(rs.getString("pe_num_en_camion"));
                     lista.add(nueva);
                     }
             } catch (SQLException ex) {

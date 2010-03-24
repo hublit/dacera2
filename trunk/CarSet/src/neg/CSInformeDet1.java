@@ -21,6 +21,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
+import utils.Utilidades;
 
 /**
  *
@@ -209,12 +210,12 @@ public class CSInformeDet1 extends javax.swing.JPanel
         //Se comprueba que haya seleccionado un cliente
         String cliente = new String(jTextCliente.getText());
 
-        /*if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK"))
+        if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK"))
         {
                 ValidarFormatos(Utilidades.campoObligatorio(cliente, "Cliente"));
         }
         else
-        {*/
+        {
             int clienteID = 0;
             String fechaIni="";
             String fechaFin="";
@@ -263,7 +264,9 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 " AND (tc.tc_servicio_origen = pe.pe_servicio_origen OR tc.tc_servicio_origen = pe.pe_servicio_destino)"+
                 " AND (tc.tc_servicio_destino = pe.pe_servicio_destino OR tc.tc_servicio_destino = pe.pe_servicio_origen)"+
                 " AND tc.tc_soporte = pe.pe_soporte"+
-                " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
+                " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
+                " AND pc.cl_id = "+clienteID+" " +
+                " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
             /*String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen," +
                          " pe.pe_provincia_destino,pe.pe_servicio, pe.pe_servicio_origen, " +
                          " pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " +
@@ -278,12 +281,8 @@ public class CSInformeDet1 extends javax.swing.JPanel
                          " AND (tc.tc_servicio_origen = pe.pe_servicio_origen OR tc.tc_servicio_origen = pe.pe_servicio_destino)" +
                          " AND (tc.tc_servicio_destino = pe.pe_servicio_destino OR tc.tc_servicio_destino = pe.pe_servicio_origen)" +
                          " AND tc.tc_soporte = pe.pe_soporte" +
-                         " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";*/
-            if (!cliente.equals(""))
-            {
-                query=query + " AND pc.cl_id = "+clienteID+" ";
-            }
-             query=query +" GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
+                         " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";*/                   
+            
 
             System.out.println(query);
             ResultSet rs = CSDesktop.datos.select(query);
@@ -332,7 +331,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                         //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
 
  
-       // }
+        }
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed

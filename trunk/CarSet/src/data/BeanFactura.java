@@ -30,6 +30,8 @@ public class BeanFactura {
     private String tarifaEsProveedor;
     private String servicioSuplemento;
 
+    private String numCamion;
+
 
     private String suplemento;
     private String descripcion;
@@ -212,7 +214,13 @@ public class BeanFactura {
         return tarifaEsProveedor;
     }
 
+     public String getNumCamion() {
+        return numCamion;
+    }
 
+    public void setNumCamion(String numCamion) {
+        this.numCamion = numCamion;
+    }
 
 
 }
