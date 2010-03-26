@@ -1280,7 +1280,7 @@ public class CSAnyadirPedido extends JPanel
         String fechaRealDestino="";
         double solredN=0;
         double viajeN=0;
-        double taescliN=0;
+        double taescliN=-1;
         double taesproN=0;
         double suplementoN = 0;
         //String fecha = new String(jDate.getDate().toString());
