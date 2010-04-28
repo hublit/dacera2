@@ -141,14 +141,18 @@ public class CSLanzarInforme1
         neto = neto + importeTotalAux;
         //total=total + totalAux;
      }
+            Double importeTrasladoAux=redondear(traslado, 2);
+            Double importeSuplementoAux=redondear(suplemento, 2);
+            Double importeDescuentoAux=redondear(descuento, 2);
+            Double importeNetoAux=redondear(neto, 2);
 
             Map pars = new HashMap();
             pars.put("Cliente", cliente);
             pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
-            pars.put("SumaTarifa", traslado);
-            pars.put("SumaSuplemento", suplemento);
-            pars.put("SumaDescuento", descuento);
-            pars.put("SumaNeto", neto);
+            pars.put("SumaTarifa", importeTrasladoAux);
+            pars.put("SumaSuplemento", importeSuplementoAux);
+            pars.put("SumaDescuento", importeDescuentoAux);
+            pars.put("SumaNeto", importeNetoAux);
 
              JasperReport jasperReport = null;
              JasperPrint jasperPrint;

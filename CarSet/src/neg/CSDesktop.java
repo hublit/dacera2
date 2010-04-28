@@ -457,13 +457,13 @@ public class CSDesktop extends JFrame
             }
          });
 
-      menuFacturaProveedor = new JMenuItem( "Factura Proveedor" );
+      menuFacturaProveedor = new JMenuItem( "Albaran Proveedor" );
       menuFacturaProveedor.setMnemonic( 'x' );
       menuFactura.add( menuFacturaProveedor );
       menuFacturaProveedor.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-               FacturaProveedor = new JInternalFrame("Factura Proveedor", true,false,false,true );
+               FacturaProveedor = new JInternalFrame("Albaran Proveedor", true,false,false,true );
 
                CSFacturaProveedor panel = null;
                panel = new CSFacturaProveedor();
@@ -481,13 +481,13 @@ public class CSDesktop extends JFrame
 
       menuInforme.setMnemonic( 'I' );
 
-      menuInformeDetallado1 = new JMenuItem( "Informe Detallado 1" );
+      menuInformeDetallado1 = new JMenuItem( "Informe Cliente 1" );
       menuInformeDetallado1.setMnemonic( 'w' );
       menuInforme.add( menuInformeDetallado1 );
       menuInformeDetallado1.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-               InformeDetallado1 = new JInternalFrame("Informe Detallado 1", true,false,false,true );
+               InformeDetallado1 = new JInternalFrame("Informe Cliente 1", true,false,false,true );
                CSInformeDet1 panel=null;
                 try {
                     panel = panel = new CSInformeDet1();
@@ -506,13 +506,58 @@ public class CSDesktop extends JFrame
             }
          });
 
-      menuInformeDetallado2 = new JMenuItem( "Informe Detallado 2" );
+      menuInformeDetallado2 = new JMenuItem( "Informe Cliente 2" );
       menuInformeDetallado2.setMnemonic( 'x' );
       menuInforme.add( menuInformeDetallado2 );
       menuInformeDetallado2.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-               InformeDetallado2 = new JInternalFrame("Informe Detallado 2", true,false,false,true );
+               InformeDetallado2 = new JInternalFrame("Informe Cliente 2", true,false,false,true );
+               CSInformeDet2 panel = panel = new CSInformeDet2();
+               InformeDetallado2.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeDetallado2.pack();
+               elEscritorio.add( InformeDetallado2 );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeDetallado2.getSize();
+               InformeDetallado2.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeDetallado2.setVisible( true );
+            }
+         });
+
+      menuInformeDetallado1 = new JMenuItem( "Informe Proveedor 1" );
+      menuInformeDetallado1.setMnemonic( 'w' );
+      menuInforme.add( menuInformeDetallado1 );
+      menuInformeDetallado1.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeDetallado1 = new JInternalFrame("Informe Proveedor 1", true,false,false,true );
+               CSInformeDet1 panel=null;
+                try {
+                    panel = panel = new CSInformeDet1();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               InformeDetallado1.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeDetallado1.pack();
+               elEscritorio.add( InformeDetallado1 );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeDetallado1.getSize();
+               InformeDetallado1.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeDetallado1.setVisible( true );
+            }
+         });
+
+      menuInformeDetallado2 = new JMenuItem( "Informe Proveedor 2" );
+      menuInformeDetallado2.setMnemonic( 'x' );
+      menuInforme.add( menuInformeDetallado2 );
+      menuInformeDetallado2.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeDetallado2 = new JInternalFrame("Informe Proveedor 2", true,false,false,true );
                CSInformeDet2 panel = panel = new CSInformeDet2();
                InformeDetallado2.getContentPane().add( panel,BorderLayout.CENTER);
                InformeDetallado2.pack();
