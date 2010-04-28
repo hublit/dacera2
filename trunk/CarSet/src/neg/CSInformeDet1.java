@@ -77,7 +77,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("INFORME DETALLADO 1");
+        jLabel1.setText("INFORME CLIENTE 1");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
