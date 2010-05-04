@@ -8,6 +8,7 @@ package neg;
 
 import data.BeanFactura;
 import data.Cliente;
+import data.Proveedor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
@@ -27,13 +28,13 @@ import utils.Utilidades;
  *
  * @author depr102
  */
-public class CSInformeDet1 extends javax.swing.JPanel
+public class CSInformeDetPr1 extends javax.swing.JPanel
 {
     /** Creates new form CSInformeDet1 */
-    public CSInformeDet1() throws SQLException
+    public CSInformeDetPr1() throws SQLException
     {
         initComponents();
-        CSDesktop.menuInformeDetallado1.setEnabled(false);
+        CSDesktop.menuInformeProveedor1.setEnabled(false);
         KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}
@@ -50,7 +51,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
             }
             public void keyReleased(KeyEvent e) {}
         };
-        jTextCliente.addKeyListener(l);
+        jTextProveedor.addKeyListener(l);
         addKeyListener(l);
     }
 
@@ -67,7 +68,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
         jSeparator7 = new javax.swing.JSeparator();
         jToggleButtonCliente = new javax.swing.JToggleButton();
         lCliente = new javax.swing.JLabel();
-        jTextCliente = new javax.swing.JTextField();
+        jTextProveedor = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         jMonthChooser = new com.toedter.calendar.JMonthChooser();
         lCliente1 = new javax.swing.JLabel();
@@ -77,13 +78,13 @@ public class CSInformeDet1 extends javax.swing.JPanel
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("INFORME CLIENTE 1");
+        jLabel1.setText("INFORME PROVEEDOR 1");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator7.setName("jSeparator7"); // NOI18N
 
-        jToggleButtonCliente.setText("Buscar Cliente");
+        jToggleButtonCliente.setText("Buscar Proveedor");
         jToggleButtonCliente.setName("jToggleButtonCliente"); // NOI18N
         jToggleButtonCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,11 +93,11 @@ public class CSInformeDet1 extends javax.swing.JPanel
         });
 
         lCliente.setForeground(new java.awt.Color(0, 0, 100));
-        lCliente.setText("Cliente");
+        lCliente.setText("Proveedor");
         lCliente.setName("lCliente"); // NOI18N
 
-        jTextCliente.setEditable(false);
-        jTextCliente.setName("jTextCliente"); // NOI18N
+        jTextProveedor.setEditable(false);
+        jTextProveedor.setName("jTextProveedor"); // NOI18N
 
         jSeparator6.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator6.setName("jSeparator6"); // NOI18N
@@ -135,10 +136,10 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonCancelar)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(137, 137, 137)
@@ -152,7 +153,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(159, 159, 159))
@@ -160,7 +161,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel1)
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -173,7 +174,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jToggleButtonCliente)
-                    .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lCliente))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -192,35 +193,31 @@ public class CSInformeDet1 extends javax.swing.JPanel
 
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
-        System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-        CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
+        System.out.println("\nBotón Buscar Proveedor.");
+        CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(jTextCliente);
-        CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
+        CSSelectProveedor panel = new CSSelectProveedor(jTextProveedor);
+        CSDesktop.BuscaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
-        CSDesktop.BuscaCliente.pack();
+        CSDesktop.BuscaProveedor.pack();
         // adjuntar marco interno al escritorio y mostrarlo
-        CSDesktop.elEscritorio.add( CSDesktop.BuscaCliente );
-        CSDesktop.BuscaCliente.setLocation(150, 50);
-        CSDesktop.BuscaCliente.setVisible( true );
+        CSDesktop.elEscritorio.add( CSDesktop.BuscaProveedor );
+        CSDesktop.BuscaProveedor.setLocation(150, 50);
+        CSDesktop.BuscaProveedor.setVisible( true );
 }//GEN-LAST:event_jToggleButtonClienteActionPerformed
 
     private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
 
-        GenerarInforme();
-    }
-
-    public void GenerarInforme(){
         //Se comprueba que haya seleccionado un cliente
-        String cliente = new String(jTextCliente.getText());
+        String proveedor = new String(jTextProveedor.getText());
 
-        if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK"))
+        if (!Utilidades.campoObligatorio(proveedor, "Proveedor").equals("OK"))
         {
-                ValidarFormatos(Utilidades.campoObligatorio(cliente, "Cliente"));
+                ValidarFormatos(Utilidades.campoObligatorio(proveedor, "Proveedor"));
         }
         else
         {
-            int clienteID = 0;
+            int proveedorID = 0;
             String fechaIni="";
             String fechaFin="";
             String queryAux="";
@@ -229,11 +226,11 @@ public class CSInformeDet1 extends javax.swing.JPanel
             int mes=jMonthChooser.getMonth()+ 1 ;
             int anyo=jYearChooser.getYear();
 
-             if (!cliente.equals(""))
+             if (!proveedor.equals(""))
              {
-                Cliente oCliente = new Cliente();
-                clienteID = oCliente.getClienteID(cliente);
-                queryAux=" AND pc.cl_id = "+clienteID+" ";
+                Proveedor oProveedor = new Proveedor();
+                proveedorID = oProveedor.getProveedorID(proveedor);
+                queryAux=" AND pc.pr_id = "+proveedorID+" ";
              }
             
             int mesIni=0;
@@ -256,22 +253,22 @@ public class CSInformeDet1 extends javax.swing.JPanel
 
             String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
                 " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa,"+
-                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento,"+
-                " tc.tc_tarifa, sc.sc_ida_vuelta"+
-                " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc,"+
-                " sc_servicios_clientes sc"+
-                " WHERE pc.pe_num = pe.pe_num"+
-                " AND sc.cl_id = pc.cl_id"+
-                " AND tc.tc_fecha_hasta > pe.pe_fecha"+
-                " AND tc.tc_servicio = pe.pe_servicio"+
-                " AND tc.cl_id = pc.cl_id"+
-                " AND (tc.tc_servicio_origen = pe.pe_servicio_origen OR tc.tc_servicio_origen = pe.pe_servicio_destino)"+
-                " AND (tc.tc_servicio_destino = pe.pe_servicio_destino OR tc.tc_servicio_destino = pe.pe_servicio_origen)"+
-                " AND tc.tc_soporte = pe.pe_soporte"+
+                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_proveedor, pe.pe_suplemento,"+
+                " tp.tp_tarifa, sp.sp_ida_vuelta"+
+                " FROM pe_pedidos pe, pp_pedidos_proveedores pp, tp_tarifas_proveedores tp,"+
+                " sp_servicios_proveedores sp"+
+                " WHERE pp.pe_num = pe.pe_num"+
+                " AND sp.pr_id = pp.pr_id"+
+                " AND tp.tp_fecha_hasta > pe.pe_fecha"+
+                " AND tp.tp_servicio = pe.pe_servicio"+
+                " AND tp.pr_id = pp.pr_id"+
+                " AND (tp.tp_servicio_origen = pe.pe_servicio_origen OR tp.tp_servicio_origen = pe.pe_servicio_destino)"+
+                " AND (tp.tp_servicio_destino = pe.pe_servicio_destino OR tp.tp_servicio_destino = pe.pe_servicio_origen)"+
+                " AND tp.tp_soporte = pe.pe_soporte"+
                 " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
-                " AND pc.cl_id = "+clienteID+" " +
+                " AND pp.pr_id = "+proveedorID+" " +
                 " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
-  
+                                         
             System.out.println(query);
             ResultSet rs = CSDesktop.datos.select(query);
             try {
@@ -290,9 +287,9 @@ public class CSInformeDet1 extends javax.swing.JPanel
                     nueva.setFactor(rs.getString("fc_id"));
                     nueva.setSoporte(rs.getString("pe_soporte"));
                     nueva.setMatricula(rs.getString("pe_ve_matricula"));                   
-                    nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
+                    nueva.setTarifaEsCliente(rs.getString("pe_ta_es_proveedor"));
                     nueva.setSuplemento(rs.getString("pe_suplemento"));                
-                    nueva.setTarifa(rs.getString("tc_tarifa"));
+                    nueva.setTarifa(rs.getString("tp_tarifa"));
                     nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                     lista.add(nueva);
                     }
@@ -300,8 +297,8 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                CSLanzarInforme1 informe1=new CSLanzarInforme1();
-                informe1.lanzar(lista, clienteID, cliente, mes, anyo);
+                CSLanzarInformePr1 informe1 = new CSLanzarInformePr1();
+                informe1.lanzar(lista, proveedorID, proveedor, mes, anyo);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -310,13 +307,13 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
                 Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
-            }                      
+            }                     
         }
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        CSDesktop.InformeDetallado1.dispose();
-        CSDesktop.menuInformeDetallado1.setEnabled(true);
+        CSDesktop.InformeProveedor1.dispose();
+        CSDesktop.menuInformeProveedor1.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 
@@ -327,7 +324,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
     private com.toedter.calendar.JMonthChooser jMonthChooser;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    public javax.swing.JTextField jTextCliente;
+    public javax.swing.JTextField jTextProveedor;
     private javax.swing.JToggleButton jToggleButtonCliente;
     private com.toedter.calendar.JYearChooser jYearChooser;
     private javax.swing.JLabel lCliente;

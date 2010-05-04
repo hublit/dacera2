@@ -31,7 +31,7 @@ public class CSLanzarFacturaProveedor
      * @param args the command line arguments 
      */ 
     //public static void lanzar(String query,String fechaFactura,BeanCliente beanCliente,int flag) throws ClassNotFoundException, SQLException {
-    public static void lanzar(ArrayList lista,BeanProveedor beanProveedor,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin) throws ClassNotFoundException, SQLException, JRException
+    public void lanzar(ArrayList lista,BeanProveedor beanProveedor,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin) throws ClassNotFoundException, SQLException, JRException
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fa_facturas_aux";
@@ -178,138 +178,13 @@ public class CSLanzarFacturaProveedor
                     double nuevoImporteFactor=redondear(importeFc, 2);
                     importeFactor = Double.toString(nuevoImporteFactor);
                     factorTexto2=factorTarifa.get(0).toString();
-                    //double dd2dec = new Double(df2.format(valor F)).doubleValue();
-                    //System.out.println("Valor factor de corrección"+dd2dec);
-
+                   
                 }
              }
-            //SERVICIOS ESPECIALES
-            String campoServicio = "";
-
-            if (servicioEspecial.equals("Urgente"))
-            {
-                campoServicio = "sp_urgente";
-            }
-            else if(servicioEspecial.equals("ITV Conductor"))
-            {
-                campoServicio = "sp_itv";
-            }
-            else if(servicioEspecial.equals("Pre_ITV"))
-            {
-                campoServicio = "sp_pre_itv";
-            }
-            else if(servicioEspecial.equals("ITV Grúa"))
-            {
-                campoServicio = "sp_itv_pre_itv";
-            }
-            else if(servicioEspecial.equals("Peritación"))
-            {
-                campoServicio = "sp_peritacion";
-            }
-            else if(servicioEspecial.equals("Mano obra Mecánica/Chapa"))
-            {
-                campoServicio = "sp_mo_mecanica_chapa";
-            }
-            else if(servicioEspecial.equals("Chequeo"))
-            {
-                campoServicio = "sp_chequeo";
-            }
-            else if(servicioEspecial.equals("Repostaje"))
-            {
-                campoServicio = "sp_repostaje";
-            }
-            else if(servicioEspecial.equals("LD Exterior"))
-            {
-                campoServicio = "sp_ldom_exterior";
-            }
-            else if(servicioEspecial.equals("LD Interior y Exterior"))
-            {
-                campoServicio = "sp_ldom_exin";
-            }
-            else if(servicioEspecial.equals("LD Integral"))
-            {
-                campoServicio = "sp_ldom_integral";
-            }
-            else if(servicioEspecial.equals("LD Interior/Exterior 4x4"))
-            {
-                campoServicio = "sp_ldom_int_ext_cuatro";
-            }
-            else if(servicioEspecial.equals("LD Integral 4x4"))
-            {
-                campoServicio = "sp_ldom_integral_cuatro";
-            }
-            else if(servicioEspecial.equals("LD Interior/Exterior Industrial"))
-            {
-                campoServicio = "sp_ldom_int_ext_industrial";
-            }
-            else if(servicioEspecial.equals("LD Integral Industrial"))
-            {
-                campoServicio = "sp_ldom_integral_industrial";
-            }
-            else if(servicioEspecial.equals("LC Exterior"))
-            {
-                campoServicio = "sp_lavado_exterior";
-            }
-            else if(servicioEspecial.equals("LC Interior y Exterior"))
-            {
-                campoServicio = "sp_lavado_exin";
-            }
-            else if(servicioEspecial.equals("LC Integral"))
-            {
-                campoServicio = "sp_lavado_integral";
-            }
-            else if(servicioEspecial.equals("LC Interior/Exterior 4x4"))
-            {
-                campoServicio = "sp_int_ext_cuatro";
-            }
-            else if(servicioEspecial.equals("LC Integral 4x4"))
-            {
-                campoServicio = "sp_integral_cuatro";
-            }
-            else if(servicioEspecial.equals("LC Interior/Exterior Industrial"))
-            {
-                campoServicio = "sp_int_ext_industrial";
-            }
-            else if(servicioEspecial.equals("LC Integral Industrial"))
-            {
-                campoServicio = "sp_integral_industrial";
-            }
-            else if(servicioEspecial.equals("Desrotular pegatinas fácil"))
-            {
-                campoServicio = "sp_desrotular_peg_facil";
-            }
-            else if(servicioEspecial.equals("Desrotular pegatinas normal"))
-            {
-                campoServicio = "sp_desrotular_peg_normal";
-            }
-            else if(servicioEspecial.equals("Desrotular pegatinas difícil"))
-            {
-                campoServicio = "sp_desrotular_peg_dificil";
-            }
-            else if(servicioEspecial.equals("Rotular pegatinas fácil"))
-            {
-                campoServicio = "sp_rotular_peg_facil";
-            }
-            else if(servicioEspecial.equals("Rotular pegatinas normal"))
-            {
-                campoServicio = "sp_rotular_peg_normal";
-            }
-            else if(servicioEspecial.equals("Rotular pegatinas difícil"))
-            {
-                campoServicio = "sp_rotular_peg_dificil";
-            }
-           if (!campoServicio.equals(""))
-           {
-               String querySe = "SELECT "+campoServicio+" FROM sp_servicios_proveedores WHERE pr_id = "+pr_id+" AND sp_fecha_hasta > '"+fecha+"' LIMIT 1";
-
-               ResultSet rsSe = CSDesktop.datos.select(querySe);
-               while (rsSe.next())
-               {
-                importeServicioEs = rsSe.getString(campoServicio);
-               }
-
-               importeServicio = Double.parseDouble(importeServicioEs);
-           }
+            importeServicioEs=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,pr_id,fecha);
+            if(!importeServicioEs.equals(""))
+             importeServicio = Double.parseDouble(importeServicioEs);
+            
             //SUPLEMENTO
             if(!otro.getSuplemento().equals("0"))
             {
@@ -414,7 +289,7 @@ public class CSLanzarFacturaProveedor
         DbConnection conexion=new DbConnection();
         con=conexion.getConexion();
         //1-Compilamos el archivo XML y lo cargamos en memoria 
-       jasperReport = JasperCompileManager.compileReport("c:\\AplicacionCarSet\\reportes\\Albaran.jrxml");
+       jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/Albaran.jrxml"));
 
        /* JasperCompileManager.compileReportToFile("c:\\prueba.jrxml");*/
 
@@ -482,7 +357,7 @@ public class CSLanzarFacturaProveedor
        
         //JasperExportManager.exportReportToPdfFile("src\\data\\report1.jrprint");
         //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-        jasperPrint = JasperFillManager.fillReport("c:\\AplicacionCarSet\\reportes\\Albaran.jasper", pars, con);
+        jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/Albaran.jasper"), pars, con);
        
        //3-Exportamos el reporte a pdf y lo guardamos en disco 
       //JasperExportManager.exportReportToPdfFile(

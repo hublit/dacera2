@@ -402,14 +402,11 @@ System.out.println(query);
             System.out.println(query);
             try {
                 try {
-                    CSLanzarFactura.lanzar(lista,beanCliente,fechaF,numero,clienteID,fechaI,fechaF);
-                    //CSLanzarFactura.lanzar(query,fechaFac,beanCliente,2);
-                    //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+                    CSLanzarFactura factura = new CSLanzarFactura();
+                    factura.lanzar(lista,beanCliente,fechaF,numero,clienteID,fechaI,fechaF);
                 } catch (JRException ex) {
                     Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                //CSLanzarFactura.lanzar(query,fechaFac,beanCliente,2);
-                //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+                }               
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

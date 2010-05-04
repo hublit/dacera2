@@ -25,12 +25,13 @@ import java.util.logging.Logger;
  *
  * @author Administrador
  */
-public class CSLanzarInforme1
+public class CSLanzarInformePr1
 {
     /**
      * @param args the command line arguments
-     */ 
-    public void lanzar(ArrayList lista, int clienteID,String cliente,int mes, int anyo) throws ClassNotFoundException, SQLException, JRException, ParseException
+     */
+    //public static void lanzar(String query,String fechaFactura,BeanCliente beanCliente,int flag) throws ClassNotFoundException, SQLException {
+    public void lanzar(ArrayList lista, int proveedorID,String proveedor,int mes, int anyo) throws ClassNotFoundException, SQLException, JRException, ParseException
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fi_informe_aux";
@@ -61,16 +62,18 @@ public class CSLanzarInforme1
         finalNum=Utilidades.rellenarCeros(numPedido, 5);
         String fecha=otro.getFecha();                    
         finalNum=finalNum +"/"+ fecha.substring(2, 4);
+        //String marca=otro.getMarca();
+        //String modelo=otro.getModelo();
         String matricula=otro.getMatricula();
         String soporte=otro.getSoporte();        
         String servicioEspecial = otro.getServicioEspecial();
         String sSuplemento=otro.getSuplemento();
         dSuplemento = Double.parseDouble(sSuplemento);
 
-        String cl_id=String.valueOf(clienteID);
-        importeServicioEs=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,cl_id,fecha);
-        if(!importeServicioEs.equals(""))
-           importeServicio = Double.parseDouble(importeServicioEs);
+        String cl_id=String.valueOf(proveedorID);
+        sSuplemento=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,cl_id,fecha);
+        if(!sSuplemento.equals(""))
+           dSuplemento = Double.parseDouble(sSuplemento);
        
             //LINEA DE TRASLADO
             String servicio = otro.getServicio();
@@ -103,7 +106,7 @@ public class CSLanzarInforme1
             //SI TIENE IDA Y VUELTA
             if(otro.getIdaVuelta().equals("1"))
             {
-               String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+clienteID;
+               String queryIv = "SELECT sc_ida_vuelta FROM sp_servicios_proveedores WHERE pr_id = "+proveedorID;
 
                ResultSet rsIv = CSDesktop.datos.select(queryIv);
                while (rsIv.next())
@@ -124,7 +127,10 @@ public class CSLanzarInforme1
         //TOTAL
         double importeTotalAux = importeTarifa + dSuplemento - IdaVuelta2 + importeServicio;
         importeTotalAux=redondear(importeTotalAux, 2);
-              
+        //importeTotalAux = Double.toString(totalAux);
+        
+
+
         String query = "INSERT INTO fi_informe_aux (fi_num, fi_fecha, fi_soporte, fi_traslado, " +
                                                     "fi_servicio,fi_importe_servicio,fi_vehiculo, fi_matricula, fi_tarifa, fi_suplemento, " +
                                                     "fi_descuento, fi_neto" +
@@ -147,7 +153,7 @@ public class CSLanzarInforme1
             Double importeNetoAux=redondear(neto, 2);
 
             Map pars = new HashMap();
-            pars.put("Cliente", cliente);
+            pars.put("Cliente", proveedor);
             pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
             pars.put("SumaTarifa", importeTrasladoAux);
             pars.put("SumaSuplemento", importeSuplementoAux);
@@ -168,14 +174,15 @@ public class CSLanzarInforme1
                 DbConnection conexion=new DbConnection();
                 con=(Connection) conexion.getConexion();
                 //1-Compilamos el archivo XML y lo cargamos en memoria
-                jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/InformeDet1.jrxml"));
-              
+                jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/InformeDetProveedor1.jrxml"));
+           
                 //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-                jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/InformeDet1.jasper"), pars, con);
-
+                jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/InformeDetProveedor1.jasper"), pars, con);
+               
                 JRViewerDet1 jrViewer = new JRViewerDet1(jasperPrint);
                 CSDesktop.NuevoInformeDetallado1 = new JInternalFrame("Informe Detallado 1", true, false, false, true );
                 CSDesktop.NuevoInformeDetallado1.getContentPane().add( jrViewer, BorderLayout.CENTER );
+                //CSDesktop.NuevaFactura.add(jrViewer);
                 CSDesktop.NuevoInformeDetallado1.pack();
 
                 CSDesktop.elEscritorio.add( CSDesktop.NuevoInformeDetallado1 );
