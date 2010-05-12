@@ -60,6 +60,8 @@ public class CSDesktop extends JFrame
   public static JInternalFrame FacturaProveedor;
   public static JInternalFrame InformeDetallado1;
   public static JInternalFrame InformeDetallado2;
+  public static JInternalFrame InformeProveedor1;
+  public static JInternalFrame InformeProveedor2;
   public static JInternalFrame NuevaFactura;
   public static JInternalFrame NuevoInformeDetallado1;
   public static JInternalFrame NuevoInformeDetallado2;
@@ -86,6 +88,8 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuFacturaProveedor;
   public static JMenuItem menuInformeDetallado1;
   public static JMenuItem menuInformeDetallado2;
+  public static JMenuItem menuInformeProveedor2;
+  public static JMenuItem menuInformeProveedor1;
 
   public static DbConnection datos = new DbConnection();
   
@@ -526,48 +530,48 @@ public class CSDesktop extends JFrame
             }
          });
 
-      menuInformeDetallado1 = new JMenuItem( "Informe Proveedor 1" );
-      menuInformeDetallado1.setMnemonic( 'w' );
-      menuInforme.add( menuInformeDetallado1 );
-      menuInformeDetallado1.addActionListener(
+      menuInformeProveedor1 = new JMenuItem( "Informe Proveedor 1" );
+      menuInformeProveedor1.setMnemonic( 'w' );
+      menuInforme.add( menuInformeProveedor1 );
+      menuInformeProveedor1.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-               InformeDetallado1 = new JInternalFrame("Informe Proveedor 1", true,false,false,true );
-               CSInformeDet1 panel=null;
+               InformeProveedor1 = new JInternalFrame("Informe Proveedor 1", true,false,false,true );
+               CSInformeDetPr1 panel=null;
                 try {
-                    panel = panel = new CSInformeDet1();
+                    panel = panel = new CSInformeDetPr1();
                 } catch (SQLException ex) {
                     Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               InformeDetallado1.getContentPane().add( panel,BorderLayout.CENTER);
-               InformeDetallado1.pack();
-               elEscritorio.add( InformeDetallado1 );
+               InformeProveedor1.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeProveedor1.pack();
+               elEscritorio.add( InformeProveedor1 );
                Dimension pantalla = elEscritorio.getSize();
-               Dimension ventana = InformeDetallado1.getSize();
-               InformeDetallado1.setLocation(
+               Dimension ventana = InformeProveedor1.getSize();
+               InformeProveedor1.setLocation(
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
-               InformeDetallado1.setVisible( true );
+               InformeProveedor1.setVisible( true );
             }
          });
 
-      menuInformeDetallado2 = new JMenuItem( "Informe Proveedor 2" );
-      menuInformeDetallado2.setMnemonic( 'x' );
-      menuInforme.add( menuInformeDetallado2 );
-      menuInformeDetallado2.addActionListener(
+      menuInformeProveedor2 = new JMenuItem( "Informe Proveedor 2" );
+      menuInformeProveedor2.setMnemonic( 'x' );
+      menuInforme.add( menuInformeProveedor2 );
+      menuInformeProveedor2.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-               InformeDetallado2 = new JInternalFrame("Informe Proveedor 2", true,false,false,true );
-               CSInformeDet2 panel = panel = new CSInformeDet2();
-               InformeDetallado2.getContentPane().add( panel,BorderLayout.CENTER);
-               InformeDetallado2.pack();
-               elEscritorio.add( InformeDetallado2 );
+               InformeProveedor2 = new JInternalFrame("Informe Proveedor 2", true,false,false,true );
+               CSInformeDetPr2 panel = panel = new CSInformeDetPr2();
+               InformeProveedor2.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeProveedor2.pack();
+               elEscritorio.add( InformeProveedor2 );
                Dimension pantalla = elEscritorio.getSize();
-               Dimension ventana = InformeDetallado2.getSize();
-               InformeDetallado2.setLocation(
+               Dimension ventana = InformeProveedor2.getSize();
+               InformeProveedor2.setLocation(
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
-               InformeDetallado2.setVisible( true );
+               InformeProveedor2.setVisible( true );
             }
          });
 
@@ -596,7 +600,6 @@ public class CSDesktop extends JFrame
 
       
       setJMenuBar( barra );
-      //barra.add( menuArchivo );
       barra.add( menuClientes );
       barra.add( menuProveedores );
       barra.add( menuPedidos );

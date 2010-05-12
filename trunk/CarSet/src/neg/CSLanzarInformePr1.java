@@ -69,6 +69,7 @@ public class CSLanzarInformePr1
         String servicioEspecial = otro.getServicioEspecial();
         String sSuplemento=otro.getSuplemento();
         dSuplemento = Double.parseDouble(sSuplemento);
+        String numCamion=otro.getNumCamion();
 
         String cl_id=String.valueOf(proveedorID);
         sSuplemento=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,cl_id,fecha);
@@ -89,7 +90,7 @@ public class CSLanzarInformePr1
                 finalServicio=origen+" - "+ destino;
             }
 
-            if(otro.getTarifaEsCliente().equals("-1"))
+            if(otro.getTarifaEsCliente().equals("0"))
             {
                 importeTraslado = otro.getTarifa();
             }
@@ -122,7 +123,11 @@ public class CSLanzarInformePr1
             }
 
             Vehiculo = obtenerFactor(otro.getFactor());
-            
+
+        if(soporte.equals("Camión completo") && !numCamion.equals("1"))
+        {
+            importeTarifa=0;
+        }
          
         //TOTAL
         double importeTotalAux = importeTarifa + dSuplemento - IdaVuelta2 + importeServicio;
