@@ -29,10 +29,7 @@ public class BeanFactura {
     private String tarifaEsCliente;
     private String tarifaEsProveedor;
     private String servicioSuplemento;
-
     private String numCamion;
-
-
     private String suplemento;
     private String descripcion;
     private String tarifa;
