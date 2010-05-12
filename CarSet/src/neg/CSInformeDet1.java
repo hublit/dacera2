@@ -255,7 +255,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
             System.out.println(fechaFin);
 
             String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
-                " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa,"+
+                " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, pe.pe_num_en_camion, "+
                 " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento,"+
                 " tc.tc_tarifa, sc.sc_ida_vuelta"+
                 " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc,"+
@@ -294,6 +294,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                     nueva.setSuplemento(rs.getString("pe_suplemento"));                
                     nueva.setTarifa(rs.getString("tc_tarifa"));
                     nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
+                    nueva.setNumCamion(rs.getString("pe_num_en_camion"));
                     lista.add(nueva);
                     }
             } catch (SQLException ex) {
