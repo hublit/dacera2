@@ -185,7 +185,7 @@ public class CSLanzarInformePr1
                 jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/InformeDetProveedor1.jasper"), pars, con);
                
                 JRViewerDet1 jrViewer = new JRViewerDet1(jasperPrint);
-                CSDesktop.NuevoInformeDetallado1 = new JInternalFrame("Informe Detallado 1", true, false, false, true );
+                CSDesktop.NuevoInformeDetallado1 = new JInternalFrame("Informe Proveedor 1", true, false, false, true );
                 CSDesktop.NuevoInformeDetallado1.getContentPane().add( jrViewer, BorderLayout.CENTER );
                 //CSDesktop.NuevaFactura.add(jrViewer);
                 CSDesktop.NuevoInformeDetallado1.pack();
