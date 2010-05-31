@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="892" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty">
 	<parameter name="FechaFactura" class="java.lang.String"/>
 	<parameter name="NombreCliente" class="java.lang.String"/>
 	<parameter name="DireccionFiscal" class="java.lang.String"/>
@@ -365,23 +365,22 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="221" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<elementGroup/>
-			<textField>
-				<reportElement x="130" y="0" width="261" height="20" isRemoveLineWhenBlank="true"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="20" width="141" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="2.5"/>
 					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") ? $F{fa_marca} +" "+ $F{fa_modelo} + " (" + $F{fa_matricula} + " ) -- " + $F{fa_factor} : $P{Blanco} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? "  "+ $F{fa_traslado} : null )]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="391" y="0" width="83" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
@@ -391,11 +390,53 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") ? $F{fa_soporte} : $P{Blanco} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") ? $F{fa_soporte} : null )]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="20" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="474" y="20" width="66" height="20" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $F{fa_importe_traslado}.concat( "  € " ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="0" width="261" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="2.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") ? $F{fa_marca} +" "+ $F{fa_modelo} + " (" + $F{fa_matricula} + " ) -- " + $F{fa_factor} : null )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="474" y="0" width="66" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
@@ -404,80 +445,10 @@
 					<bottomPen lineWidth="1.0" lineColor="#000000"/>
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") ? $P{Blanco}.concat("-") : $P{Blanco} )]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="62" y="80" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="391" y="80" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="13" y="100" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="62" y="100" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="391" y="100" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") ? $P{Blanco}.concat("-") : null )]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement x="62" y="0" width="68" height="20" isRemoveLineWhenBlank="true"/>
@@ -489,54 +460,11 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[( !$F{fa_soporte}.equals("Camión completo")? $F{fa_fecha} : null )]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="130" y="20" width="141" height="20" isRemoveLineWhenBlank="true"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") ? "  "+ $F{fa_traslado} : $P{Blanco} )]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="40" width="141" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_factor_correccion}!=null)]]></printWhenExpression>
-				</reportElement>
-				<box>
-					<pen lineWidth="1.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  "+ $F{fa_factor_correccion}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="80" width="141" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_suplemento}!=null)]]></printWhenExpression>
-				</reportElement>
-				<box>
-					<pen lineWidth="1.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_suplemento}]]></textFieldExpression>
-			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="62" y="20" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
@@ -546,14 +474,25 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="13" y="20" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_traslado}!=null)]]></printWhenExpression>
-				</reportElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="0" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#000000"/>
+				<box>
+					<topPen lineWidth="2.5"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") ? $F{fa_num} : null )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="20" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -562,42 +501,12 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="62" y="40" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="13" y="40" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="271" y="20" width="120" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_texto_traslado}!=null)]]></printWhenExpression>
-				</reportElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="20" width="120" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -605,44 +514,27 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") ? "  "+ $F{fa_texto_traslado} : $P{Blanco} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? "  "+ $F{fa_texto_traslado} : $P{Blanco} )]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="271" y="40" width="120" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_texto_factor_correccion}!=null)]]></printWhenExpression>
-				</reportElement>
+		</band>
+		<band height="40">
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="20" width="141" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_texto_factor_correccion}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? "  "+ $F{fa_label_ida} :null)]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="false">
-				<reportElement x="271" y="80" width="120" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_suplemento}!=null)]]></printWhenExpression>
-				</reportElement>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_texto_suplemento}]]></textFieldExpression>
-			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="391" y="20" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
@@ -652,12 +544,54 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="391" y="40" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="0" width="120" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? "  " + $F{fa_texto_factor_correccion} :$P{Blanco})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="20" width="120" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ?  "  " + $F{fa_texto_ida} :$P{Blanco})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="474" y="0" width="66" height="20" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $F{fa_importe_factor_correccion}.concat( "  € " ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="20" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -666,191 +600,24 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="13" y="0" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#000000"/>
-				<box>
-					<topPen lineWidth="2.5"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") ? $F{fa_num} : $P{Blanco} )]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="100" width="141" height="20" isRemoveLineWhenBlank="true"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_campa}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="271" y="100" width="120" height="20" isRemoveLineWhenBlank="true"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_texto_campa}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="62" y="120" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="13" y="120" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="120" width="141" height="20" isRemoveLineWhenBlank="true"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_campa2}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="271" y="120" width="120" height="20" isRemoveLineWhenBlank="true"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_texto_campa2}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="391" y="120" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="140" width="141" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_servicio_adicional}!=null)]]></printWhenExpression>
-				</reportElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="0" width="141" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_servicio_adicional}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? "  "+ $F{fa_factor_correccion} : null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="391" y="140" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="271" y="140" width="120" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_texto_servicio_adicional}!=null)]]></printWhenExpression>
-				</reportElement>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_texto_servicio_adicional}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="62" y="140" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="13" y="140" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00">
+			<textField isBlankWhenNull="true">
 				<reportElement x="474" y="20" width="66" height="20" isRemoveLineWhenBlank="true"/>
 				<box rightPadding="3">
 					<pen lineWidth="1.0"/>
@@ -860,82 +627,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $F{fa_importe_traslado}.concat( "  € " ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $F{fa_importe_ida}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="474" y="40" width="66" height="20" isRemoveLineWhenBlank="true"/>
-				<box rightPadding="3">
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $F{fa_importe_factor_correccion}.concat( "  € " ) :$F{fa_importe_factor_correccion})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="474" y="80" width="66" height="20" isRemoveLineWhenBlank="true"/>
-				<box rightPadding="3">
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $F{fa_importe_suplemento}.concat( "  € " ) :$F{fa_importe_suplemento})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="474" y="100" width="66" height="20" isRemoveLineWhenBlank="true"/>
-				<box rightPadding="3">
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ?  $F{fa_importe_campa}.concat( "  € " ) :$F{fa_importe_campa})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="474" y="120" width="66" height="20" isRemoveLineWhenBlank="true"/>
-				<box rightPadding="3">
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa2}.equals("CAMPA") ?  $F{fa_importe_campa2}.concat( "  € " ) :$F{fa_importe_campa2})]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00">
-				<reportElement x="474" y="140" width="66" height="20" isRemoveLineWhenBlank="true"/>
-				<box rightPadding="3">
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $F{fa_importe_servicio_adicional}.concat( "  € " ) :$F{fa_importe_servicio_adicional})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="62" y="60" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="0" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -944,27 +641,193 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="130" y="60" width="141" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_factor_correccion}!=null)]]></printWhenExpression>
-				</reportElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="0" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="0" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="20" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="40">
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="20" width="141" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? "  " + $F{fa_campa} :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="0" width="120" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? "  " + $F{fa_texto_suplemento} :$P{Blanco})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="20" width="120" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? "  " + $F{fa_texto_campa} :$P{Blanco})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="474" y="20" width="66" height="20" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ?  $F{fa_importe_campa}.concat( "  € " ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="0" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="20" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="0" width="141" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  "+ $F{fa_label_ida}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? "  " + $F{fa_suplemento} :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="474" y="60" width="66" height="20" isRemoveLineWhenBlank="true"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="0" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="20" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="20" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="474" y="0" width="66" height="20" isRemoveLineWhenBlank="true"/>
 				<box rightPadding="3">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -973,14 +836,42 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $F{fa_importe_ida}.concat( "  € " ) :$F{fa_importe_ida})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $F{fa_importe_suplemento}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="271" y="60" width="120" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_texto_factor_correccion}!=null)]]></printWhenExpression>
-				</reportElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="0" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="40">
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="20" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="20" width="120" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -988,13 +879,13 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_texto_ida}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? "  " + $F{fa_texto_servicio_adicional} :$P{Blanco})]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="13" y="60" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="0" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -1003,12 +894,25 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="391" y="60" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="0" width="141" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? "  " + $F{fa_campa2} :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="0" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -1017,12 +921,12 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="13" y="160" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="20" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -1031,12 +935,26 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="62" y="160" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="474" y="20" width="66" height="20" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $F{fa_importe_servicio_adicional}.concat( "  € " ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="0" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -1045,27 +963,52 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="8"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="130" y="160" width="261" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_servicio_adicional}!=null)]]></printWhenExpression>
-				</reportElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="474" y="0" width="66" height="20" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa2}.equals("CAMPA") ?  $F{fa_importe_campa2}.concat( "  € " ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="0" width="120" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? "  " + $F{fa_texto_campa2} :$P{Blanco})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="20" width="141" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  " + $F{fa_servicio_otro}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? "  " + $F{fa_servicio_adicional} :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="391" y="160" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="20" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -1074,28 +1017,41 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00">
-				<reportElement x="474" y="160" width="66" height="20" isRemoveLineWhenBlank="true"/>
+		</band>
+		<band height="60">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="474" y="40" width="66" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box rightPadding="3">
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_soporte}.equals("Camión completo")  ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="271" y="20" width="120" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="2.5"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isBold="true" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $F{fa_importe_servicio_otro}.concat( "  € " ) :$F{fa_importe_servicio_otro})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? " "+$F{fa_texto_traslado} :null )]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="13" y="80" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_suplemento}!=null)]]></printWhenExpression>
-				</reportElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="40" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -1104,40 +1060,26 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="271" y="180" width="120" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_texto_servicio_adicional}!=null)]]></printWhenExpression>
-				</reportElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="0" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
-					<topPen lineWidth="2.5"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isBold="true"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? " "+$F{fa_texto_traslado} : $P{Blanco} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="391" y="180" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#000000"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="2.5"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $F{fa_soporte} : $P{Blanco} )]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="62" y="180" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="20" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="2.5" lineColor="#000000"/>
@@ -1146,27 +1088,93 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="8"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $P{Blanco}.concat( "-" ) : $P{Blanco} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $P{Blanco}.concat( "-" ) : null )]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="130" y="180" width="141" height="20" isRemoveLineWhenBlank="true">
-					<printWhenExpression><![CDATA[Boolean.valueOf($F{fa_servicio_adicional}!=null)]]></printWhenExpression>
-				</reportElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="0" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="0" width="261" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? "  " + $F{fa_servicio_otro} :null)]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="62" y="40" width="68" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[( $F{fa_soporte}.equals("Camión completo")? $F{fa_fecha} : null )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="391" y="20" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#000000"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="2.5"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? " CAMION COMPLETO" : $P{Blanco} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $F{fa_soporte} : null )]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="13" y="180" width="49" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="474" y="0" width="66" height="20" isRemoveLineWhenBlank="true"/>
+				<box rightPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $F{fa_importe_servicio_otro}.concat( "  € " ) :null)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="20" width="141" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="2.5"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="7" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? " CAMION COMPLETO" : null )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="20" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="2.5" lineColor="#000000"/>
@@ -1175,25 +1183,12 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="8" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $P{Blanco}.concat( "-" ) : $P{Blanco} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $P{Blanco}.concat( "-" ) : null )]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="13" y="200" width="49" height="20" isRemoveLineWhenBlank="true"/>
-				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") ? $F{fa_num} : $P{Blanco} )]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="129" y="200" width="262" height="20" isRemoveLineWhenBlank="true"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="40" width="261" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -1202,26 +1197,39 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_soporte}.equals("Camión completo") ? "  " + $F{fa_marca} +" "+ $F{fa_modelo} + " (" + $F{fa_matricula} + " ) -- " + $F{fa_factor} : $P{Blanco} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_soporte}.equals("Camión completo") ? "  " + $F{fa_marca} +" "+ $F{fa_modelo} + " (" + $F{fa_matricula} + " ) -- " + $F{fa_factor} : null )]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="62" y="200" width="68" height="20" isRemoveLineWhenBlank="true"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="13" y="40" width="49" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
-					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[( $F{fa_soporte}.equals("Camión completo")? $F{fa_fecha} : null )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") ? $F{fa_num} : null )]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00">
-				<reportElement x="474" y="180" width="66" height="20" isRemoveLineWhenBlank="true"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="0" width="68" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="474" y="20" width="66" height="20" isRemoveLineWhenBlank="true"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="2.5"/>
@@ -1229,37 +1237,9 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
+					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $F{fa_importe_traslado}.concat( "  € " ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="391" y="200" width="83" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00">
-				<reportElement x="474" y="200" width="66" height="20" isRemoveLineWhenBlank="true" forecolor="#FFFFFF"/>
-				<box rightPadding="3">
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_soporte}.equals("Camión completo")  ? $P{Blanco}.concat( "-" ) :$P{Blanco})]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $F{fa_importe_traslado}.concat( "  €  " ) :null)]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
