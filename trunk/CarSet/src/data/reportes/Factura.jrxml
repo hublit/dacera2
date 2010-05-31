@@ -217,7 +217,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="54" splitType="Stretch">
+		<band height="62" splitType="Stretch">
 			<textField>
 				<reportElement x="83" y="33" width="100" height="20"/>
 				<box>
@@ -277,9 +277,9 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="43" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="13" y="24" width="50" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="13" y="10" width="50" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0" lineColor="#006600"/>
 					<topPen lineWidth="1.0" lineColor="#006600"/>
@@ -293,7 +293,7 @@
 				<text><![CDATA[Nº PEDIDO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="62" y="24" width="68" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="62" y="10" width="68" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineColor="#006600"/>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#006600"/>
@@ -307,7 +307,7 @@
 				<text><![CDATA[FECHA PEDIDO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="130" y="24" width="141" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="130" y="10" width="141" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineColor="#006600"/>
 					<topPen lineWidth="1.0" lineColor="#006600"/>
@@ -321,7 +321,7 @@
 				<text><![CDATA[VEHICULO / TIPO SERVICIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="271" y="24" width="120" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="271" y="10" width="120" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0" lineColor="#006600"/>
 					<topPen lineWidth="1.0" lineColor="#006600"/>
@@ -335,7 +335,7 @@
 				<text><![CDATA[SERVICIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="391" y="24" width="83" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="391" y="10" width="83" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0" lineColor="#006600"/>
 					<topPen lineWidth="1.0" lineColor="#006600"/>
@@ -349,7 +349,7 @@
 				<text><![CDATA[SOPORTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="474" y="24" width="66" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="474" y="10" width="66" height="19" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0" lineColor="#006600"/>
 					<topPen lineWidth="1.0" lineColor="#006600"/>
@@ -376,7 +376,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? "  "+ $F{fa_traslado} : null )]]></textFieldExpression>
 			</textField>
@@ -390,7 +390,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") ? $F{fa_soporte} : null )]]></textFieldExpression>
 			</textField>
@@ -404,7 +404,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -418,7 +418,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $F{fa_importe_traslado}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
@@ -432,7 +432,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") ? $F{fa_marca} +" "+ $F{fa_modelo} + " (" + $F{fa_matricula} + " ) -- " + $F{fa_factor} : null )]]></textFieldExpression>
 			</textField>
@@ -446,7 +446,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") ? $P{Blanco}.concat("-") : null )]]></textFieldExpression>
 			</textField>
@@ -460,7 +460,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[( !$F{fa_soporte}.equals("Camión completo")? $F{fa_fecha} : null )]]></textFieldExpression>
 			</textField>
@@ -474,7 +474,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -487,7 +487,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") ? $F{fa_num} : null )]]></textFieldExpression>
 			</textField>
@@ -501,7 +501,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -515,7 +515,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && $F{fa_traslado}.equals("TRASLADO") ? "  "+ $F{fa_texto_traslado} : $P{Blanco} )]]></textFieldExpression>
 			</textField>
@@ -530,7 +530,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? "  "+ $F{fa_label_ida} :null)]]></textFieldExpression>
 			</textField>
@@ -544,7 +544,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -558,7 +558,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? "  " + $F{fa_texto_factor_correccion} :$P{Blanco})]]></textFieldExpression>
 			</textField>
@@ -572,7 +572,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ?  "  " + $F{fa_texto_ida} :$P{Blanco})]]></textFieldExpression>
 			</textField>
@@ -586,7 +586,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $F{fa_importe_factor_correccion}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
@@ -600,7 +600,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -613,7 +613,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? "  "+ $F{fa_factor_correccion} : null)]]></textFieldExpression>
 			</textField>
@@ -627,7 +627,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $F{fa_importe_ida}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
@@ -641,7 +641,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -655,7 +655,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -669,7 +669,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_factor_correccion}.equals("FACTOR DE CORRECCION") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -683,7 +683,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_label_ida}.equals("DESCUENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -698,7 +698,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? "  " + $F{fa_campa} :null)]]></textFieldExpression>
 			</textField>
@@ -712,7 +712,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? "  " + $F{fa_texto_suplemento} :$P{Blanco})]]></textFieldExpression>
 			</textField>
@@ -725,7 +725,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? "  " + $F{fa_texto_campa} :$P{Blanco})]]></textFieldExpression>
 			</textField>
@@ -739,7 +739,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ?  $F{fa_importe_campa}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
@@ -753,7 +753,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -767,7 +767,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -780,7 +780,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? "  " + $F{fa_suplemento} :null)]]></textFieldExpression>
 			</textField>
@@ -794,7 +794,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -808,7 +808,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -822,7 +822,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -836,7 +836,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $F{fa_importe_suplemento}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
@@ -850,7 +850,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_suplemento}.equals("SUPLEMENTO") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -866,7 +866,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -880,7 +880,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? "  " + $F{fa_texto_servicio_adicional} :$P{Blanco})]]></textFieldExpression>
 			</textField>
@@ -894,7 +894,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -907,7 +907,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? "  " + $F{fa_campa2} :null)]]></textFieldExpression>
 			</textField>
@@ -921,7 +921,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -935,7 +935,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -949,7 +949,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $F{fa_importe_servicio_adicional}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
@@ -963,7 +963,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -977,7 +977,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa2}.equals("CAMPA") ?  $F{fa_importe_campa2}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
@@ -990,7 +990,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_campa}.equals("CAMPA") ? "  " + $F{fa_texto_campa2} :$P{Blanco})]]></textFieldExpression>
 			</textField>
@@ -1003,7 +1003,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? "  " + $F{fa_servicio_adicional} :null)]]></textFieldExpression>
 			</textField>
@@ -1017,7 +1017,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && $F{fa_servicio_adicional}.equals("SERVICIO ESPECIAL") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -1033,7 +1033,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_soporte}.equals("Camión completo")  ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -1046,7 +1046,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isBold="true" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? " "+$F{fa_texto_traslado} :null )]]></textFieldExpression>
 			</textField>
@@ -1060,7 +1060,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -1074,7 +1074,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -1088,7 +1088,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $P{Blanco}.concat( "-" ) : null )]]></textFieldExpression>
 			</textField>
@@ -1102,7 +1102,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( !$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -1115,7 +1115,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? "  " + $F{fa_servicio_otro} :null)]]></textFieldExpression>
 			</textField>
@@ -1129,7 +1129,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[( $F{fa_soporte}.equals("Camión completo")? $F{fa_fecha} : null )]]></textFieldExpression>
 			</textField>
@@ -1142,7 +1142,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $F{fa_soporte} : null )]]></textFieldExpression>
 			</textField>
@@ -1156,7 +1156,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $F{fa_importe_servicio_otro}.concat( "  € " ) :null)]]></textFieldExpression>
 			</textField>
@@ -1169,7 +1169,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isBold="true" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isBold="true" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? " CAMION COMPLETO" : null )]]></textFieldExpression>
 			</textField>
@@ -1183,7 +1183,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="8" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $P{Blanco}.concat( "-" ) : null )]]></textFieldExpression>
 			</textField>
@@ -1197,7 +1197,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_soporte}.equals("Camión completo") ? "  " + $F{fa_marca} +" "+ $F{fa_modelo} + " (" + $F{fa_matricula} + " ) -- " + $F{fa_factor} : null )]]></textFieldExpression>
 			</textField>
@@ -1210,7 +1210,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($F{fa_soporte}.equals("Camión completo") ? $F{fa_num} : null )]]></textFieldExpression>
 			</textField>
@@ -1224,7 +1224,7 @@
 					<rightPen lineWidth="1.0" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="8" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(!$F{fa_soporte}.equals("Camión completo") && !$F{fa_servicio_otro}.equals("") ? $P{Blanco}.concat( "-" ) :null)]]></textFieldExpression>
 			</textField>
@@ -1237,14 +1237,14 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Verdana" size="7" isStrikeThrough="false"/>
+					<font fontName="Verdana" size="6" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fa_soporte}.equals("Camión completo") && $F{fa_num_en_camion}.equals("1") ? $F{fa_importe_traslado}.concat( "  €  " ) :null)]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="64" splitType="Stretch">
+		<band height="62" splitType="Stretch">
 			<textField>
 				<reportElement x="444" y="42" width="69" height="20"/>
 				<textElement textAlignment="Right"/>
