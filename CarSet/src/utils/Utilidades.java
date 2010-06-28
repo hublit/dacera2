@@ -3,6 +3,7 @@
 */
 package utils;
 
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -815,4 +816,70 @@ public class Utilidades
          CSDesktop.menuTarifa.setEnabled(flag);
          CSDesktop.menuAyuda.setEnabled(flag);
      }
+
+     /* Cifrar una cadena */
+
+/*public String getMD5(String passwd){
+byte[] textBytes = passwd.getBytes();
+MessageDigest md = null;
+try {
+md = MessageDigest.getInstance("MD5");
+} catch (NoSuchAlgorithmException e) {
+e.printStackTrace();
+}
+md.update(textBytes);
+byte[] codigo = md.digest();
+md5 = this.convertToHex(md5sum);
+return md;
+}*/
+
+/* Convierta a Hexa */
+
+/*private String convertToHex(byte[] data) {
+StringBuffer buf = new StringBuffer();
+for (int i = 0; i &lt; data.length; i++) {
+int halfbyte = (data[i] &gt;&gt;&gt; 4) &amp; 0x0F;
+int two_halfs = 0;
+do {
+if ((0 &lt;= halfbyte) &amp;&amp; (halfbyte &lt;= 9))
+buf.append((char) (’0′ + halfbyte));
+else
+buf.append((char) (‘a’ + (halfbyte - 10)));
+halfbyte = data[i] &amp; 0x0F;
+} while(two_halfs++ &lt; 1);
+}
+return buf.toString();
+*/
+/* Calcular el MD5 de un archivo*/
+
+//}
+
+/*public String getMD5(File archivo) {
+byte[] textBytes = new byte[10000];
+MessageDigest md = null;
+int read = 0;
+String md5 = null;
+try {
+InputStream is = new FileInputStream(archivo);
+md = MessageDigest.getInstance("MD5");
+while ((read = is.read(textBytes)) &gt; 0) {
+md.update(textBytes, 0, read);
+}
+is.close();
+byte[] md5sum = md.digest();
+md5 = this.convertToHex(md5sum);
+} catch (FileNotFoundException e1) {
+e1.printStackTrace();
+} catch (NoSuchAlgorithmException e) {
+e.printStackTrace();
+} catch (IOException e) {
+e.printStackTrace();
+}
+
+return md5;
+
+}*/
+
+
+
 }
