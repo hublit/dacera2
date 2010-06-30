@@ -4,6 +4,8 @@
 package utils;
 
 import java.security.MessageDigest;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -816,6 +818,105 @@ public class Utilidades
          CSDesktop.menuTarifa.setEnabled(flag);
          CSDesktop.menuAyuda.setEnabled(flag);
      }
+
+      public static String CalcularImporteServicioEspecial(String servicioEspecial, String cl_id, String fecha)
+        throws SQLException
+    {
+        String campoServicio = "";
+        String importeServicioEs = "";
+        if(servicioEspecial.equals("Urgente"))
+            campoServicio = "sc_urgente";
+        else
+        if(servicioEspecial.equals("ITV Conductor"))
+            campoServicio = "sc_itv";
+        else
+        if(servicioEspecial.equals("Pre_ITV"))
+            campoServicio = "sc_pre_itv";
+        else
+        if(servicioEspecial.equals("ITV Gr\372a"))
+            campoServicio = "sc_itv_pre_itv";
+        else
+        if(servicioEspecial.equals("Peritaci\363n"))
+            campoServicio = "sc_peritacion";
+        else
+        if(servicioEspecial.equals("Mano obra Mec\341nica/Chapa"))
+            campoServicio = "sc_mo_mecanica_chapa";
+        else
+        if(servicioEspecial.equals("Chequeo"))
+            campoServicio = "sc_chequeo";
+        else
+        if(servicioEspecial.equals("Repostaje"))
+            campoServicio = "sc_repostaje";
+        else
+        if(servicioEspecial.equals("LD Exterior"))
+            campoServicio = "sc_ldom_exterior";
+        else
+        if(servicioEspecial.equals("LD Interior y Exterior"))
+            campoServicio = "sc_ldom_exin";
+        else
+        if(servicioEspecial.equals("LD Integral"))
+            campoServicio = "sc_ldom_integral";
+        else
+        if(servicioEspecial.equals("LD Interior/Exterior 4x4"))
+            campoServicio = "sc_ldom_int_ext_cuatro";
+        else
+        if(servicioEspecial.equals("LD Integral 4x4"))
+            campoServicio = "sc_ldom_integral_cuatro";
+        else
+        if(servicioEspecial.equals("LD Interior/Exterior Industrial"))
+            campoServicio = "sc_ldom_int_ext_industrial";
+        else
+        if(servicioEspecial.equals("LD Integral Industrial"))
+            campoServicio = "sc_ldom_integral_industrial";
+        else
+        if(servicioEspecial.equals("LC Exterior"))
+            campoServicio = "sc_lavado_exterior";
+        else
+        if(servicioEspecial.equals("LC Interior y Exterior"))
+            campoServicio = "sc_lavado_exin";
+        else
+        if(servicioEspecial.equals("LC Integral"))
+            campoServicio = "sc_lavado_integral";
+        else
+        if(servicioEspecial.equals("LC Interior/Exterior 4x4"))
+            campoServicio = "sc_int_ext_cuatro";
+        else
+        if(servicioEspecial.equals("LC Integral 4x4"))
+            campoServicio = "sc_integral_cuatro";
+        else
+        if(servicioEspecial.equals("LC Interior/Exterior Industrial"))
+            campoServicio = "sc_int_ext_industrial";
+        else
+        if(servicioEspecial.equals("LC Integral Industrial"))
+            campoServicio = "sc_integral_industrial";
+        else
+        if(servicioEspecial.equals("Desrotular pegatinas f\341cil"))
+            campoServicio = "sc_desrotular_peg_facil";
+        else
+        if(servicioEspecial.equals("Desrotular pegatinas normal"))
+            campoServicio = "sc_desrotular_peg_normal";
+        else
+        if(servicioEspecial.equals("Desrotular pegatinas dif\355cil"))
+            campoServicio = "sc_desrotular_peg_dificil";
+        else
+        if(servicioEspecial.equals("Rotular pegatinas f\341cil"))
+            campoServicio = "sc_rotular_peg_facil";
+        else
+        if(servicioEspecial.equals("Rotular pegatinas normal"))
+            campoServicio = "sc_rotular_peg_normal";
+        else
+        if(servicioEspecial.equals("Rotular pegatinas dif\355cil"))
+            campoServicio = "sc_rotular_peg_dificil";
+        if(!campoServicio.equals(""))
+        {
+            String querySe = (new StringBuilder()).append("SELECT ").append(campoServicio).append(" FROM sc_servicios_clientes WHERE cl_id = ").append(cl_id).append(" AND sc_fecha_hasta > '").append(fecha).append("' LIMIT 1").toString();
+            for(ResultSet rsSe = CSDesktop.datos.select(querySe); rsSe.next();)
+                importeServicioEs = rsSe.getString(campoServicio);
+
+        }
+        return importeServicioEs;
+    }
+
 
      /* Cifrar una cadena */
 
