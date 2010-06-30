@@ -67,6 +67,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 this.getComponents()[k] != jComboBoxFPago &&
                 this.getComponents()[k] != jComboBoxPlazo &&
                 this.getComponents()[k] != jComboBoxComercial &&
+                this.getComponents()[k] != jComboBoxTarifa &&
                 this.getComponents()[k] != jComboBoxProvincia)
             {
                 this.getComponents()[k].addKeyListener(l);                
@@ -163,6 +164,8 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jDateChooserAlta = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        lTarifa = new javax.swing.JLabel();
+        jComboBoxTarifa = new javax.swing.JComboBox();
 
         lNombre.setForeground(new java.awt.Color(0, 0, 100));
         lNombre.setText("Nombre");
@@ -512,6 +515,15 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jLabel11.setText("*");
         jLabel11.setName("jLabel11"); // NOI18N
 
+        lTarifa.setForeground(new java.awt.Color(0, 0, 100));
+        lTarifa.setText("Tipo de Tarifa");
+        lTarifa.setName("lTarifa"); // NOI18N
+
+        jComboBoxTarifa.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxTarifa.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxTarifa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "  1", "  2", "  3", "  4", "  5", "  6", "  7", "  8", "  9", " 10" }));
+        jComboBoxTarifa.setName("jComboBoxTarifa"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -620,14 +632,20 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addComponent(jTextDiasPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lDiasPlazo)
-                        .addGap(29, 29, 29)
-                        .addComponent(lFPago)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7))
+                        .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(228, 228, 228)))
+                        .addGap(40, 40, 40)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lFPago)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lTarifa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(61, 61, 61)
@@ -783,7 +801,9 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addComponent(lEstado)
                         .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lFactura)
-                        .addComponent(jLabel11))
+                        .addComponent(jLabel11)
+                        .addComponent(jComboBoxTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lTarifa))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jDateChooserAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)))
@@ -866,7 +886,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             String poblacionFiscal = new String(jTextPoblacionFiscal.getText());
             String provinciaFiscal = new String(jComboBoxProvinciaFiscal.getSelectedItem().toString());
             String codPostalFiscal = new String(jTextCodPostalFiscal.getText());
-
+            String tipoTarifa = new String(jComboBoxTarifa.getSelectedItem().toString());
             Calendar fechaCalendar = jDateChooserAlta.getCalendar();
 
             if (fechaCalendar!=null)
@@ -890,7 +910,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             String fDepartamento = new String(Integer.valueOf(jComboBoxDepartamento.getSelectedIndex()+1).toString());
             String departamento = new String(jComboBoxDepartamento.getSelectedItem().toString());
             String  co_id = new String(Integer.valueOf(jComboBoxComercial.getSelectedIndex()+1).toString());            
-
+            String password = "";
             //CAMPOS OBLIGATORIOS
             if (!Utilidades.campoObligatorio(nombre,"Nombre").equals("OK"))
             {
@@ -991,10 +1011,11 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                                                          "cl_cod_postal, cl_poblacion, cl_provincia, " +
                                                          "cl_telefono, cl_telefono2, cl_fax, cl_email, " +
                                                          "cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id,cl_direccion_fiscal,cl_cod_postal_fiscal, " +
-                                                         "cl_poblacion_fiscal,cl_provincia_fiscal,cl_fecha,cl_num_cuenta) VALUES (";
+                                                         "cl_poblacion_fiscal,cl_provincia_fiscal,cl_fecha,cl_num_cuenta, cl_tipo_tarifa, cl_password) VALUES (";
                 query = query + "'"+nombre+"','"+dni+"','"+direccion+"','"+codPostal+"','"+poblacion+"','"+provincia+"','"+telefono+"'";
                 query = query + " ,'"+telefono2+"','"+fax+"','"+email+"','"+web+"','"+plazo+"','"+dPlazo+"','"+fPago+"','"+estado+"'";
-                query = query + " ,'"+co_id+"','"+direccionFiscal+"','"+codPostalFiscal+"','"+poblacionFiscal+"','"+provinciaFiscal+"','"+fecha2+"','"+numCuenta+"')";
+                query = query + " ,'"+co_id+"','"+direccionFiscal+"','"+codPostalFiscal+"','"+poblacionFiscal+"','"+provinciaFiscal+"','"+fecha2+"'";
+                query = query + " ,'"+numCuenta+"','"+tipoTarifa+"','"+password+"')";
                       
                 System.out.println(query);
                 //datos = new DbConnection();
@@ -1147,6 +1168,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     private javax.swing.JComboBox jComboBoxPlazo;
     private javax.swing.JComboBox jComboBoxProvincia;
     private javax.swing.JComboBox jComboBoxProvinciaFiscal;
+    private javax.swing.JComboBox jComboBoxTarifa;
     private com.toedter.calendar.JDateChooser jDateChooserAlta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1211,6 +1233,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     private javax.swing.JLabel lPoblacionFiscal;
     private javax.swing.JLabel lProvincia;
     private javax.swing.JLabel lProvinciaFiscal;
+    private javax.swing.JLabel lTarifa;
     private javax.swing.JLabel lTelefono;
     private javax.swing.JLabel lTelefono2;
     private javax.swing.JLabel lTelefonoCon;
