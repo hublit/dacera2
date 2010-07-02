@@ -3,7 +3,9 @@
 */
 package utils;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -917,40 +919,88 @@ public class Utilidades
         return importeServicioEs;
     }
 
+    /**
+     * Convierta a Hexa
+     * @param data
+     * @return
+     */
+    private static String convertToHex(byte[] data)
+    {
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < data.length; i++)
+        {
+            int halfbyte = (data[i] >>> 4) & 0x0F;
+            int two_halfs = 0;
+            do {
+                if ((0 <= halfbyte) && (halfbyte <= 9))
+                    buf.append((char) ('0' + halfbyte));
+                else
+                    buf.append((char) ('a' + (halfbyte - 10)));
+                halfbyte = data[i] & 0x0F;
+            } while(two_halfs++ < 1);
+        }
+        return buf.toString();
+    }
+
+    /**
+     * Ciframos una cadena
+     * @param text
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException
+     */
+    public static String MD5(String text)
+    throws NoSuchAlgorithmException, UnsupportedEncodingException
+    {
+        MessageDigest md;
+        md = MessageDigest.getInstance("MD5");
+        byte[] md5hash = new byte[32];
+        md.update(text.getBytes("iso-8859-1"), 0, text.length());
+        md5hash = md.digest();
+        return convertToHex(md5hash);
+    }
+
 
      /* Cifrar una cadena */
+ /*   public String getMD5(String passwd)
+    {
+        byte[] textBytes = passwd.getBytes();
+        MessageDigest md = null;
+        try
+        {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        md.update(textBytes);
+        byte[] codigo = md.digest();
+        
+        String md5 = "";
+        //String md5 = this.convertToHex(md5sum);
+        return md5;
+    }*/
 
-/*public String getMD5(String passwd){
-byte[] textBytes = passwd.getBytes();
-MessageDigest md = null;
-try {
-md = MessageDigest.getInstance("MD5");
-} catch (NoSuchAlgorithmException e) {
-e.printStackTrace();
-}
-md.update(textBytes);
-byte[] codigo = md.digest();
-md5 = this.convertToHex(md5sum);
-return md;
-}*/
-
-/* Convierta a Hexa */
-
-/*private String convertToHex(byte[] data) {
-StringBuffer buf = new StringBuffer();
-for (int i = 0; i &lt; data.length; i++) {
-int halfbyte = (data[i] &gt;&gt;&gt; 4) &amp; 0x0F;
-int two_halfs = 0;
-do {
-if ((0 &lt;= halfbyte) &amp;&amp; (halfbyte &lt;= 9))
-buf.append((char) (’0′ + halfbyte));
-else
-buf.append((char) (‘a’ + (halfbyte - 10)));
-halfbyte = data[i] &amp; 0x0F;
-} while(two_halfs++ &lt; 1);
-}
-return buf.toString();
-*/
+    /* Convierta a Hexa */
+/*    private String convertToHex(byte[] data)
+    {
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i &lt; data.length; i++)
+        {
+            int halfbyte = (data[i] &gt;&gt;&gt; 4) &amp; 0x0F;
+            int two_halfs = 0;
+            do
+            {
+                if ((0 &lt;= halfbyte) &amp;&amp; (halfbyte &lt;= 9))
+                    buf.append((char) (’0′ + halfbyte));
+                else
+                    buf.append((char) (‘a’ + (halfbyte - 10)));
+                    halfbyte = data[i] &amp; 0x0F;
+                } while(two_halfs++ &lt; 1);
+            }
+        return buf.toString();
+    }*/
+    
 /* Calcular el MD5 de un archivo*/
 
 //}
