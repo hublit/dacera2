@@ -518,7 +518,7 @@ public class CSAnyadirPedido extends JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Cobrado", "Pagado" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Cobrado", "Pagado", "Anulado" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
         jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
