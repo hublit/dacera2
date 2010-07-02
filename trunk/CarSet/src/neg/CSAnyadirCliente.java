@@ -7,6 +7,8 @@
 package neg;
 
 import data.Cliente;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
@@ -909,8 +911,17 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             String emailContacto = new String(jTextEmailCon.getText());
             String fDepartamento = new String(Integer.valueOf(jComboBoxDepartamento.getSelectedIndex()+1).toString());
             String departamento = new String(jComboBoxDepartamento.getSelectedItem().toString());
-            String  co_id = new String(Integer.valueOf(jComboBoxComercial.getSelectedIndex()+1).toString());            
+            String  co_id = new String(Integer.valueOf(jComboBoxComercial.getSelectedIndex()+1).toString());
             String password = "";
+            try {
+                password = Utilidades.MD5(dni);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(CSAnyadirCliente.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(CSAnyadirCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("password: "+password);
+
             //CAMPOS OBLIGATORIOS
             if (!Utilidades.campoObligatorio(nombre,"Nombre").equals("OK"))
             {
