@@ -5,6 +5,7 @@
  */
 package neg;
 
+import data.BeanCorreoCliente;
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
 import data.Cliente;
@@ -22,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -1496,6 +1498,40 @@ public class CSEditarPedido extends javax.swing.JPanel
 
         else
         {
+              if (estado.equals("En Proceso"))
+              {
+                    int seleccion = JOptionPane.showOptionDialog(
+                    jTextTelefonoDestino,
+                    "¿Quieres mandar el mail a " + cliente + "?",
+                    "Selector de opciones",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,    // null para icono por defecto.
+                    new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
+                    "SI");
+
+                    if(seleccion == 0)
+                    {
+                        BeanCorreoCliente mail= new BeanCorreoCliente();
+
+                        //Para calcular la fecha
+                        Date fechaHoy = new Date(System.currentTimeMillis());
+                        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+                        String fechaHoy2=formatoDeFecha.format(fechaHoy);
+
+                        //Para el numero de pedido
+                        String numPedido=Utilidades.rellenarCeros(numero,5);
+                        String pedido=numPedido+"/"+fecha2.substring(2, 4);
+                        
+
+                        mail.setCliente(cliente);
+                        mail.setFecha(fechaHoy2);
+                        mail.setNumPedido(pedido);
+                        mail.setSoporte(soporte);
+
+                        EnviarMail.main(mail);
+                    }                                      
+              }
               if(!cerrado)
                   cerradoN=0;
               else
@@ -1556,7 +1592,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                     CSDesktop.ResultPedido.dispose();
                     CSDesktop.menuBuscarPedido.setEnabled(true);
                     
-                }
+                }                
     }//GEN-LAST:event_jButtonModificarActionPerformed
     }
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
