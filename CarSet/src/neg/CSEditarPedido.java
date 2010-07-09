@@ -1275,6 +1275,8 @@ public class CSEditarPedido extends javax.swing.JPanel
         double taesproN=0;
         double suplementoN = 0;
         int proveedorID=0;
+        String fechaEntrega="";
+        String fechaRecogida="";
 
         String numero = new String(jTextNumero.getText());
        
@@ -1294,6 +1296,8 @@ public class CSEditarPedido extends javax.swing.JPanel
             Date fecha = fechaCalendar.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaOrigen=formatoDeFecha.format(fecha);
+            SimpleDateFormat formatoDeFecha2 = new SimpleDateFormat("dd-MM-yyyy");
+            fechaRecogida=formatoDeFecha2.format(fecha);
         }
 
          fechaCalendar = jDateFechaDestino.getCalendar();
@@ -1302,6 +1306,8 @@ public class CSEditarPedido extends javax.swing.JPanel
             Date fecha = fechaCalendar.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaDestino=formatoDeFecha.format(fecha);
+            SimpleDateFormat formatoDeFecha2 = new SimpleDateFormat("dd-MM-yyyy");
+            fechaEntrega=formatoDeFecha2.format(fecha);
         }
 
         fechaCalendar = jDateFechaRealDestino.getCalendar();
@@ -1497,41 +1503,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         }
 
         else
-        {
-              if (estado.equals("En Proceso"))
-              {
-                    int seleccion = JOptionPane.showOptionDialog(
-                    jTextTelefonoDestino,
-                    "¿Quieres mandar el mail a " + cliente + "?",
-                    "Selector de opciones",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,    // null para icono por defecto.
-                    new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
-                    "SI");
-
-                    if(seleccion == 0)
-                    {
-                        BeanCorreoCliente mail= new BeanCorreoCliente();
-
-                        //Para calcular la fecha
-                        Date fechaHoy = new Date(System.currentTimeMillis());
-                        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
-                        String fechaHoy2=formatoDeFecha.format(fechaHoy);
-
-                        //Para el numero de pedido
-                        String numPedido=Utilidades.rellenarCeros(numero,5);
-                        String pedido=numPedido+"/"+fecha2.substring(2, 4);
-                        
-
-                        mail.setCliente(cliente);
-                        mail.setFecha(fechaHoy2);
-                        mail.setNumPedido(pedido);
-                        mail.setSoporte(soporte);
-
-                        EnviarMail.main(mail);
-                    }                                      
-              }
+        {             
               if(!cerrado)
                   cerradoN=0;
               else
@@ -1583,6 +1555,61 @@ public class CSEditarPedido extends javax.swing.JPanel
                                     JOptionPane.showMessageDialog(null,errorFields);
                                     jButtonModificar.setEnabled(true);
                                 }
+
+                    //Se manda el mail de confirmacion
+                    if (estado.equals("En Proceso"))
+                    {
+                        int seleccion = JOptionPane.showOptionDialog(
+                        CSEditarPedido.this,
+                        "¿Quieres mandar un mail al cliente " + cliente + "?",
+                        "Atención",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,    // null para icono por defecto.
+                        new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
+                        "SI");
+
+                        if(seleccion == 0)
+                        {
+                            BeanCorreoCliente mail= new BeanCorreoCliente();
+
+                            //Para calcular la fecha
+                            Date fechaHoy = new Date(System.currentTimeMillis());
+                            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+                            String fechaHoy2=formatoDeFecha.format(fechaHoy);
+
+                            //Para el numero de pedido
+                            String numPedido=Utilidades.rellenarCeros(numero,5);
+                            String pedido=numPedido+"/"+fecha2.substring(2, 4);
+
+
+                            mail.setCliente(cliente);
+                            mail.setFecha(fechaHoy2);
+                            mail.setNumPedido(pedido);
+                            mail.setSoporte(soporte);
+                            mail.setFechaEntrega(fechaEntrega);
+                            mail.setFechaRecogida(fechaRecogida);
+                            mail.setMarca(marca);
+                            mail.setModelo(modelo);
+                            mail.setMatricula(matricula);
+                            mail.setDireccionOrigen(direccionOrigen);
+                            mail.setPoblacionOrigen(poblacionOrigen);
+                            mail.setProvinciaOrigen(provinciaOrigen);
+                            mail.setNombreOrigen(nombreOrigen);
+                            mail.setTelefonoOrigen(telefonoOrigen);
+                            mail.setDireccionDestino(direccionDestino);
+                            mail.setPoblacionDestino(poblacionDestino);
+                            mail.setProvinciaDestino(provinciaDestino);
+                            mail.setNombreDestino(nombreDestino);
+                            mail.setTelefonoDestino(telefonoDestino);
+                            mail.setNumero(numero);
+                            Cliente client = new Cliente();
+                            mail.setClienteID(String.valueOf(client.getClienteID(cliente)));
+
+
+                            CSEnviarMailProceso.main(mail);
+                        }
+                }
 
                     jButtonModificar.setEnabled(false);
                     JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
