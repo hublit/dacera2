@@ -37,7 +37,7 @@ public class DbConnection
 	{
                 String db = "carset";
                 String user = "root";
-                String pass = "cesar";
+                String pass = "rcortes";
             
             String IPReal="";
         try {            
@@ -47,13 +47,13 @@ public class DbConnection
             IPReal=direccion.getHostAddress();                        
         } catch (UnknownHostException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
-           //System.exit(0);
+            System.exit(0);
         }
         System.out.println(IPReal);
 
 		//Ruta de conexion. Conecta al server especificado y la Base de datos
 		String url = "jdbc:mysql://localhost/"+db;
-
+                //String url = "jdbc:mysql://10.25.11.22/"+db;
                 //String url = "jdbc:mysql://"+IPReal+":3306/"+db;
 	try
 	{
