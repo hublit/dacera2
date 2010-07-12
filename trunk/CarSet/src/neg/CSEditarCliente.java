@@ -527,7 +527,7 @@ public class CSEditarCliente extends javax.swing.JPanel
 
         jComboBoxTarifa.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxTarifa.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxTarifa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "  1", "  2", "  3", "  4", "  5", "  6", "  7", "  8", "  9", " 10" }));
+        jComboBoxTarifa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         jComboBoxTarifa.setName("jComboBoxTarifa"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1216,7 +1216,8 @@ public class CSEditarCliente extends javax.swing.JPanel
                 }
                 jComboBoxComercial.setSelectedIndex(rs.getInt("co_id")-1);
                 jComboBoxEstado.setSelectedItem(rs.getString("cl_estado"));
-                jComboBoxEstado.setSelectedItem(rs.getString("cl_tipo_tarifa"));
+                jComboBoxTarifa.setSelectedItem(rs.getString("cl_tipo_tarifa"));
+                System.out.println("Tipo de tarifa: "+rs.getInt("cl_tipo_tarifa"));
                 numeroFila++;
             }
             rs.close();
