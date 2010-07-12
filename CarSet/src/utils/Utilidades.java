@@ -9,6 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import neg.CSDesktop;
@@ -1031,6 +1032,56 @@ return md5;
 
 }*/
 
+public static ArrayList obtenerFactor(String factor, String cliente) throws SQLException
+  {
+      ArrayList factorSel = new ArrayList();
+      int factorInt = Integer.parseInt(factor);
+      String campo = "";
+      String descripcion = "";
+
+      switch(factorInt)
+      {
+          case 0 :
+              descripcion = "Sin factor";
+          break;
+         case 1 :
+              descripcion = "TURISMO";
+          break;
+          case 2 :
+              campo = "sc_industrial";
+              descripcion = "INDUSTRIAL";
+          break;
+          case 3 :
+              campo = "sc_todoterreno";
+              descripcion = "TODOTERRENO";
+          break;
+          case 4 :
+              campo = "sc_furgonetas";
+              descripcion = "FURGONETAS";
+          break;
+          case 5 :
+              campo = "sc_furgones";
+              descripcion = "FURGONES";
+          break;
+      }
+       factorSel.add(descripcion);
+      if (!campo.equals(""))
+      {
+          String queryFactor = "SELECT "+campo+" FROM sc_servicios_clientes WHERE cl_id="+cliente;
+          ResultSet rs3 = CSDesktop.datos.select(queryFactor);
+
+          while(rs3.next())
+          {
+              factorSel.add(rs3.getDouble(campo));
+
+          }
+      }
+
+      return factorSel;
+  }
+public static double redondear( double numero, int decimales ) {
+    return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
+  }
 
 
 }
