@@ -82,11 +82,13 @@ public class CSEnviarMailProceso
            
             // Propiedades de la conexión
             Properties props = new Properties();
-            props.setProperty("mail.smtp.host", "correo.inem.es");
+            props.setProperty("mail.smtp.host", "smtp.e.telefonica.net");
             props.setProperty("mail.smtp.starttls.enable", "false");
             props.setProperty("mail.smtp.port", "25");
-            //props.setProperty("mail.smtp.user", "cesar.delacruz@sepe.es");
-            props.setProperty("mail.smtp.auth", "false");
+               props.setProperty("mail.smtp.auth", "true");
+            props.setProperty("mail.smtp.user", "rsanchez@carset.e.telefonica.net");
+            props.setProperty("mail.smtp.password","912686953");
+         
 
             // Preparamos la sesion
             Session session = Session.getDefaultInstance(props);
