@@ -1557,7 +1557,8 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 }
 
                     //Se manda el mail de confirmacion
-                    if (estado.equals("En Proceso"))
+                                        //Se manda el mail de confirmacion
+                    if (estado.equals("En Proceso") || (estado.equals("Entregado")))
                     {
                         int seleccion = JOptionPane.showOptionDialog(
                         CSEditarPedido.this,
@@ -1606,10 +1607,65 @@ public class CSEditarPedido extends javax.swing.JPanel
                             Cliente client = new Cliente();
                             mail.setClienteID(String.valueOf(client.getClienteID(cliente)));
 
-
-                            CSEnviarMailProceso.main(mail);
+                            if(estado.equals("En Proceso"))
+                                CSEnviarMailProceso.main(mail);
+                            else if (estado.equals("Entregado"))
+                                CSEnviarMailEntregado.main(mail);
                         }
-                }
+                        if(estado.equals("En Proceso"))
+                        {
+                           int seleccion2 = JOptionPane.showOptionDialog(
+                                CSEditarPedido.this,
+                        "¿Quieres mandar un mail al proveedor " + proveedor + "?",
+                        "Atención",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,    // null para icono por defecto.
+                        new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
+                        "SI");
+
+                        if(seleccion2 == 0)
+                        {
+                            BeanCorreoCliente mail= new BeanCorreoCliente();
+
+                            //Para calcular la fecha
+                            Date fechaHoy = new Date(System.currentTimeMillis());
+                            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+                            String fechaHoy2=formatoDeFecha.format(fechaHoy);
+
+                            //Para el numero de pedido
+                            String numPedido=Utilidades.rellenarCeros(numero,5);
+                            String pedido=numPedido+"/"+fecha2.substring(2, 4);
+
+
+                            mail.setCliente(proveedor);
+                            mail.setFecha(fechaHoy2);
+                            mail.setNumPedido(pedido);
+                            mail.setSoporte(soporte);
+                            mail.setFechaEntrega(fechaEntrega);
+                            mail.setFechaRecogida(fechaRecogida);
+                            mail.setMarca(marca);
+                            mail.setModelo(modelo);
+                            mail.setMatricula(matricula);
+                            mail.setDireccionOrigen(direccionOrigen);
+                            mail.setPoblacionOrigen(poblacionOrigen);
+                            mail.setProvinciaOrigen(provinciaOrigen);
+                            mail.setNombreOrigen(nombreOrigen);
+                            mail.setTelefonoOrigen(telefonoOrigen);
+                            mail.setDireccionDestino(direccionDestino);
+                            mail.setPoblacionDestino(poblacionDestino);
+                            mail.setProvinciaDestino(provinciaDestino);
+                            mail.setNombreDestino(nombreDestino);
+                            mail.setTelefonoDestino(telefonoDestino);
+                            mail.setNumero(numero);
+                            Proveedor proveed = new Proveedor();
+                            mail.setClienteID(String.valueOf(proveed.getProveedorID(proveedor)));
+
+                            CSEnviarMailProveedor.main(mail);
+                             }
+
+                        }
+                    }
 
                     jButtonModificar.setEnabled(false);
                     JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
