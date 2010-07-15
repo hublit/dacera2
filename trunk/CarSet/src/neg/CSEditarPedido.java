@@ -2038,7 +2038,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                 jTextNumero.setText(rs.getString("pe_num"));
                 jTextDireccionOrigen.setText(rs.getString("pe_direccion_origen"));
                 jTextPoblacionOrigen.setText(rs.getString("pe_poblacion_origen"));
-                jComboBoxProvinciaOrigen.setSelectedItem(rs.getString("pe_provincia_origen"));
+                jComboBoxProvinciaOrigen.setSelectedItem(rs.getString("pe_provincia_origen").trim());
                 jTextCodPostalOrigen.setText(rs.getString("pe_cp_origen"));
                 jComboTipoOrigen.setSelectedItem(rs.getString("pe_tipo_origen"));
                 jTextNombreOrigen.setText(rs.getString("pe_nombre_origen"));
@@ -2046,15 +2046,15 @@ public class CSEditarPedido extends javax.swing.JPanel
                 jTextHoraOrigen.setText(rs.getString("pe_hora_origen"));
                 jTextDireccionDestino.setText(rs.getString("pe_direccion_destino"));
                 jTextPoblacionDestino.setText(rs.getString("pe_poblacion_destino"));
-                jComboBoxProvinciaDestino.setSelectedItem(rs.getString("pe_provincia_destino"));
+                jComboBoxProvinciaDestino.setSelectedItem(rs.getString("pe_provincia_destino").trim());
                 jTextCodPostalDestino.setText(rs.getString("pe_cp_destino"));
                 jComboTipoDestino.setSelectedItem(rs.getString("pe_tipo_destino"));
                 jTextNombreDestino.setText(rs.getString("pe_nombre_destino"));
                 jTextTelefonoDestino.setText(rs.getString("pe_telefono_destino"));
                 jTextHoraDestino.setText(rs.getString("pe_hora_destino"));
                 jComboBoxServicio.setSelectedItem(rs.getString("pe_servicio"));
-                jComboBoxServicioFMad.setSelectedItem(rs.getString("pe_servicio_origen"));
-                jComboBoxServicioFMadDestino.setSelectedItem(rs.getString("pe_servicio_destino"));
+                jComboBoxServicioFMad.setSelectedItem(rs.getString("pe_servicio_origen").trim());
+                jComboBoxServicioFMadDestino.setSelectedItem(rs.getString("pe_servicio_destino").trim());
                 jComboBoxSoporte.setSelectedItem(rs.getString("pe_soporte"));                             
                 jTextMatricula.setText(rs.getString("pe_ve_matricula"));
                 jTextMarca.setText(rs.getString("pe_ve_marca"));
