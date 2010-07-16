@@ -86,8 +86,8 @@ public class CSEnviarMailProceso
             props.setProperty("mail.smtp.starttls.enable", "false");
             props.setProperty("mail.smtp.port", "25");
                props.setProperty("mail.smtp.auth", "true");
-            props.setProperty("mail.smtp.user", "rsanchez@carset.e.telefonica.net");
-            props.setProperty("mail.smtp.password","912686953");
+            props.setProperty("mail.smtp.user", "raul.cortes@grupoaldebaran.com");
+            props.setProperty("mail.smtp.password","aldebaran");
 
             /*Properties props = new Properties();
       props.put("mail.smtp.host", "SERVIDOR_MAIL_SMTP");
