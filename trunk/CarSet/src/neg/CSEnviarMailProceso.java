@@ -88,7 +88,34 @@ public class CSEnviarMailProceso
                props.setProperty("mail.smtp.auth", "true");
             props.setProperty("mail.smtp.user", "rsanchez@carset.e.telefonica.net");
             props.setProperty("mail.smtp.password","912686953");
-         
+
+            /*Properties props = new Properties();
+      props.put("mail.smtp.host", "SERVIDOR_MAIL_SMTP");
+      Session sesion = Session.getInstance(props);
+      // Tanto el usuario como la clave son de la cuenta de correo que envía el mensaje.
+      sesion.setPasswordAuthentication(new URLName("URL_DOMINIO_DE_ORIGEN"), new PasswordAuthentication("USUARIO_MAIL","CLAVE_MAIL"));
+      Store buzon=sesion.getStore("pop3");
+      buzon.connect("SERVIDOR_MAIL_POP", "USUARIO_MAIL", "CLAVE_MAIL");
+      buzon.close();
+
+      MimeMessage mensaje = new MimeMessage(sesion);
+      mensaje.setFrom(new InternetAddress("DIRECCION_DEL_REMITENTE"));
+      mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+      mensaje.setSubject(asunto);
+      mensaje.setText(cuerpo);
+
+      try{
+        Transport mta = sesion.getTransport("smtp");
+        mta.connect();
+        try{
+            Transport.send(mensaje);
+        }catch(SendFailedException ex){return false;}
+        mta.close();
+      }catch(Exception ex){
+        System.out.println("Cartero: Error al enviar "+ex.toString());
+      }
+    }catch(Exception ex){return false;}*/
+
 
             // Preparamos la sesion
             Session session = Session.getDefaultInstance(props);
