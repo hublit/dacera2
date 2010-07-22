@@ -11,8 +11,6 @@ package neg;
  */
 import data.BeanCorreoCliente;
 import java.sql.ResultSet;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -20,7 +18,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import utils.Utilidades;
 
 /**
  * Ejemplo de envio de correo simple con JavaMail

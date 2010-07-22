@@ -20,6 +20,7 @@ import data.*;
 import java.text.DecimalFormat;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperExportManager;
 
 /** 
  * 
@@ -372,10 +373,16 @@ public class CSLanzarFactura
         //JasperExportManager.exportReportToPdfFile("src\\data\\report1.jrprint");
         //2-Llenamos el reporte con la informaci�n y par�metros necesarios
         jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/Factura.jasper"), pars, con);
-       
-       //3-Exportamos el reporte a pdf y lo guardamos en disco 
-      //JasperExportManager.exportReportToPdfFile(
-      //    jasperPrint, "c:/holaMundo.pdf");
+
+       String property = "java.io.tmpdir";
+
+        // Get the temporary directory and print it.
+        String tempDir = System.getProperty(property);
+        System.out.println("OS current temporary directory is " + tempDir);
+
+
+       //3-Exportamos el reporte a pdf y lo guardamos en disco
+      JasperExportManager.exportReportToPdfFile(jasperPrint, tempDir+"/holaMundo.pdf");
 
         String finalNumFactura2=finalNumFactura.replace("/","_");
         String nombreFichero=finalNumFactura2+"_"+beanCliente.getNombre()+".pdf";
