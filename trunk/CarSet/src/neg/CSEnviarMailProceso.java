@@ -10,16 +10,21 @@ package neg;
  * @author depr102
  */
 import data.BeanCorreoCliente;
+
+
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Properties;
+
+import javax.mail.PasswordAuthentication;
 
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 import utils.Utilidades;
 
 /**
@@ -40,6 +45,9 @@ public class CSEnviarMailProceso
         String importeServicioEs="";
         String IdaVuelta="";
         double importeTotal=0;
+        String nombre="";
+        String email="";
+
         try
         {
 
@@ -78,54 +86,42 @@ public class CSEnviarMailProceso
                 mail.setCampa(rs_mail.getString("sc_campa"));
                 mail.setSuplemento(rs_mail.getString("pe_suplemento"));
             }
-           
+
+            String queryContacto="SELECT * FROM CC_CONTACTOS_CLIENTE WHERE CL_ID="+mail.getClienteID()+" LIMIT 1";
+            ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
+
+             while (rsContacto.next())  {
+                 nombre=rsContacto.getString("cc_nombre");
+                 email=rsContacto.getString("cc_email");
+             }
+
            
             // Propiedades de la conexión
             Properties props = new Properties();
-            props.setProperty("mail.smtp.host", "smtp.e.telefonica.net");
-            props.setProperty("mail.smtp.starttls.enable", "false");
-            props.setProperty("mail.smtp.port", "25");
-               props.setProperty("mail.smtp.auth", "true");
-            props.setProperty("mail.smtp.user", "raul.cortes@grupoaldebaran.com");
-            props.setProperty("mail.smtp.password","aldebaran");
+            props.put("mail.transport.protocol","smtp");
+            //props.put("mail.smtp.host", "smtp.e.telefonica.net");
+            props.put("mail.smtp.host", "10.25.11.32");
+            //props.put("mail.smtp.starttls.enable", "false");
+            props.put("mail.smtp.port", "2525");
+            props.put("mail.smtp.auth", "true");
+            //props.put("mail.smtp.user", "raul.cortes@grupoaldebaran.com");
+            //props.put("mail.smtp.password","aldebaran");
 
-            /*Properties props = new Properties();
-      props.put("mail.smtp.host", "SERVIDOR_MAIL_SMTP");
-      Session sesion = Session.getInstance(props);
-      // Tanto el usuario como la clave son de la cuenta de correo que envía el mensaje.
-      sesion.setPasswordAuthentication(new URLName("URL_DOMINIO_DE_ORIGEN"), new PasswordAuthentication("USUARIO_MAIL","CLAVE_MAIL"));
-      Store buzon=sesion.getStore("pop3");
-      buzon.connect("SERVIDOR_MAIL_POP", "USUARIO_MAIL", "CLAVE_MAIL");
-      buzon.close();
+            SMTPAuthenticator auth = null;
+            auth=new SMTPAuthenticator();
+            Session mailSession = Session.getDefaultInstance(props, auth);
+            Transport transport = mailSession.getTransport();
 
-      MimeMessage mensaje = new MimeMessage(sesion);
-      mensaje.setFrom(new InternetAddress("DIRECCION_DEL_REMITENTE"));
-      mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-      mensaje.setSubject(asunto);
-      mensaje.setText(cuerpo);
-
-      try{
-        Transport mta = sesion.getTransport("smtp");
-        mta.connect();
-        try{
-            Transport.send(mensaje);
-        }catch(SendFailedException ex){return false;}
-        mta.close();
-      }catch(Exception ex){
-        System.out.println("Cartero: Error al enviar "+ex.toString());
-      }
-    }catch(Exception ex){return false;}*/
-
-
-            // Preparamos la sesion
-            Session session = Session.getDefaultInstance(props);
 
             // Construimos el mensaje
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("operaciones@carset.es"));            
+            MimeMessage message = new MimeMessage(mailSession);
+            message.setFrom(new InternetAddress("Operaciones CarSet <operaciones@carset.es>"));
              message.addRecipient(
                 Message.RecipientType.TO,
-                new InternetAddress("cdecruz@yahoo.es"));             
+                new InternetAddress(email));
+             message.addRecipient(
+                Message.RecipientType.CC,
+                new InternetAddress("cesardecruz@gmail.com"));
             message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
             //message.setText(
             //"Mensajito con Java Mail" + "de los buenos." + "poque si");
@@ -139,8 +135,8 @@ public class CSEnviarMailProceso
             "<br><br><table width='700'>" +
             "<tr><td width='100'><img src=\""+imagen+"\" width='100'></td>" +
             "<td><p><font face='Helvetica' size='+1'> CONFIRMACI&Oacute;N DE PEDIDO</p></font></td></tr>" +
-            "<tr><td colspan='2'><br><br><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
-            "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: </font></td></tr>" +
+            "<tr><td colspan='2'><br><br><table><tr><td width='100'><font face='Helvetica'>Cliente:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
+            "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font>" +
             "<tr><td colspan='2'><br><br><font face='Helvetica'> A continuaci&oacute;n y en contestaci&oacute;n a su solicitud, le remitimos la confirmaci&oacute;n del servicio solicitado:  </font></td></tr>" +
             "<br><br>" +
             "<tr><td width='200'><font face='Helvetica'><u> Tipo de servicio : </u></font></td><td><font face='Helvetica'> Traslado servicio "+mail.getSoporte()+" </font></td></tr>" +
@@ -148,16 +144,16 @@ public class CSEnviarMailProceso
             "<tr><td width='200'><font face='Helvetica'><u> Fecha aprox. de entrega : </u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>" +
             "<br>" +
             "<tr><td colspan='2'><table border='1' width='700'>" +
-                                "<tr><td align='center' width='100' bgcolor='#BDBDBD'><font face='Helvetica'><b>MARCA</b></font></td><td align='center' width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>MODELO </b></font></td><td align='center' width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>MATRICULA/BASTIDOR</b></font></td>" +
-                                "<tr><td align='center' width='100'><font face='Helvetica'>"+mail.getMarca()+"</font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getModelo()+"</font></td><td align='center'  width='300'><font face='Helvetica'>"+mail.getMatricula()+"</font></td></table>" +
+                                "<tr><td width='100' bgcolor='#BDBDBD'><font face='Helvetica'><b>MARCA</b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>MODELO </b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>MATRICULA/BASTIDOR</b></font></td>" +
+                                "<tr><td width='100'><font face='Helvetica'>"+mail.getMarca()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getModelo()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getMatricula()+"</font></td></table>" +
             "<br>" +
             "<tr><td colspan='2'><table border='1' width='700'>" +
-                                "<tr><td align='center' width='100' bgcolor='#BDBDBD'>&nbsp;</td><td align='center' width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE ORIGEN</b></font></td><td align='center' width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE DESTINO</b></font></td>" +
-                                "<tr><td align='center' width='100'><font face='Helvetica'><b>Direcci&oacute;n</b></font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getDireccionOrigen()+"</font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getDireccionDestino()+"</font></td>" +
-                                "<tr><td align='center' width='100'><font face='Helvetica'><b>Poblaci&oacute;n</b></font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getPoblacionOrigen()+"</font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getPoblacionDestino()+"</font></td>" +
-                                "<tr><td align='center' width='100'><font face='Helvetica'><b>Provincia</b></font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getProvinciaOrigen()+"</font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getProvinciaDestino()+"</font></td>" +
-                                "<tr><td align='center' width='100'><font face='Helvetica'><b>Contacto</b></font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getNombreOrigen()+"</font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getNombreDestino()+"</font></td>" +
-                                "<tr><td align='center' width='100'><font face='Helvetica'><b>Tel&eacute;fono</b></font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getTelefonoOrigen()+"</font></td><td align='center' width='300'><font face='Helvetica'>"+mail.getTelefonoDestino()+"</font></td>" +
+                                "<tr><td width='100' bgcolor='#BDBDBD'>&nbsp;</td><td width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE ORIGEN</b></font></td><td width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE DESTINO</b></font></td>" +
+                                "<tr><td width='100'><font face='Helvetica'><b>Direcci&oacute;n</b></font></td><td width='300'><font face='Helvetica'>"+mail.getDireccionOrigen()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getDireccionDestino()+"</font></td>" +
+                                "<tr><td width='100'><font face='Helvetica'><b>Poblaci&oacute;n</b></font></td><td width='300'><font face='Helvetica'>"+mail.getPoblacionOrigen()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getPoblacionDestino()+"</font></td>" +
+                                "<tr><td width='100'><font face='Helvetica'><b>Provincia</b></font></td><td width='300'><font face='Helvetica'>"+mail.getProvinciaOrigen()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getProvinciaDestino()+"</font></td>" +
+                                "<tr><td width='100'><font face='Helvetica'><b>Contacto</b></font></td><td width='300'><font face='Helvetica'>"+mail.getNombreOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getNombreDestino()+"</font></td>" +
+                                "<tr><td width='100'><font face='Helvetica'><b>Tel&eacute;fono</b></font></td><td width='300'><font face='Helvetica'>"+mail.getTelefonoOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getTelefonoDestino()+"</font></td>" +
             "</table></td></tr>" +
             "<br><br>" +
             "<tr><td colspan='2'><table width='400' border='1' align='right'>";
@@ -303,27 +299,45 @@ public class CSEnviarMailProceso
             }          
             htmlText = htmlText +"<tr><td><font face='Helvetica'><b>TOTAL</b></font></td><td align='right'><font face='Helvetica'><b>"+importeTotal+" &euro;</b></font></td></tr>";
             htmlText = htmlText +"</table><br>";
-            htmlText = htmlText +"<tr><td colspan='2'><br><br><font face='Helvetica'> Estos precios no incluyen I.V.A </font></td></tr>";
-            htmlText = htmlText +"<br><tr><td colspan='2'><br><br><font face='Helvetica'> Para cualquier consulta al respecto, no dude en ponerse en contacto con nuestro departamento de Operaciones (91.268.69.60). </font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'> Estos precios no incluyen I.V.A </font></td></tr>";
+            htmlText = htmlText +"<br><tr><td colspan='2'><br><font face='Helvetica'> Para cualquier consulta al respecto, no dude en ponerse en contacto con nuestro departamento de Operaciones (91.268.69.60). </font></td></tr>";
             htmlText = htmlText +"<br>";
-            htmlText = htmlText +"<tr><td colspan='2'><br><br><font face='Helvetica'>Atentamente, </font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'>Atentamente, </font></td></tr>";
             htmlText = htmlText +"<br><br>";
-            htmlText = htmlText +"<tr><td colspan='2'><br><br><font face='Helvetica'> Departamento de Operaciones</font></td></tr></table></body>";
+            htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'><b> Departamento de Operaciones<b></font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' size='+1' color='#088A08'>CarSet</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Tlf: 91 268 69 60</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Movil: 606 33 96 56</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 5 Bl.A - Pl .3 - Of. 2 </font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>28700 San Sebastián de los Reyes</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>www.carset.es</font></td></tr>";
+            htmlText = htmlText +"</table></body>";
 
             message.setContent(htmlText, "text/html");
 
 
             // Lo enviamos.
-            Transport t = session.getTransport("smtp");
-            t.connect("", "");
-            t.sendMessage(message, message.getAllRecipients());
+            //Transport t = session.getTransport("smtp");
+            transport.connect();
+            transport.sendMessage(message, message.getAllRecipients());
 
             // Cierre.
-            t.close();
+            transport.close();
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
     }
+
+    private static class SMTPAuthenticator extends javax.mail.Authenticator {
+       
+        @Override
+        public PasswordAuthentication getPasswordAuthentication() {
+           String username = "operaciones@carset.e.telefonica.net";
+            String password = "912686953";
+           return new PasswordAuthentication(username, password);
+        }
+    }
+
 }
