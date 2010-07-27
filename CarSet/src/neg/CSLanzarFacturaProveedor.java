@@ -393,7 +393,8 @@ public class CSLanzarFacturaProveedor
              }
              else
              {
-                 JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero);
+                 BeanCliente beanCliente = new BeanCliente();
+                 JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,beanCliente);
                  CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Albaran Proveedor", true, false, false, true );
                  CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
                  CSDesktop.NuevaFactura.pack();

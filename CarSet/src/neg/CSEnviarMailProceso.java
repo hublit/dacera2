@@ -107,8 +107,7 @@ public class CSEnviarMailProceso
             //props.put("mail.smtp.user", "raul.cortes@grupoaldebaran.com");
             //props.put("mail.smtp.password","aldebaran");
 
-            SMTPAuthenticator auth = null;
-            auth=new SMTPAuthenticator();
+            SMTPAuthenticator auth = new SMTPAuthenticator();
             Session mailSession = Session.getDefaultInstance(props, auth);
             Transport transport = mailSession.getTransport();
 
@@ -122,13 +121,10 @@ public class CSEnviarMailProceso
              message.addRecipient(
                 Message.RecipientType.CC,
                 new InternetAddress("cesardecruz@gmail.com"));
-            message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
-            //message.setText(
-            //"Mensajito con Java Mail" + "de los buenos." + "poque si");
+            message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());            
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
 
-            //String htmlText ="<br><br><center><table>";
-            //htmlText = htmlText + "<tr><td><img src=\"http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg\" width='50%></td></tr></table>";
+           
             String htmlText = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1//EN' 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'>" +
             "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='es'><head>" +
             "<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-15' /></head><body>" +
@@ -309,7 +305,7 @@ public class CSEnviarMailProceso
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Tlf: 91 268 69 60</font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Movil: 606 33 96 56</font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 5 Bl.A - Pl .3 - Of. 2 </font></td></tr>";
-            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>28700 San Sebastián de los Reyes</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>www.carset.es</font></td></tr>";
             htmlText = htmlText +"</table></body>";
 
