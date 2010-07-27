@@ -234,13 +234,13 @@ public class CSFacturaCliente extends JPanel
         if (JOptionPane.OK_OPTION == confirmado)
         {
             int numero = 0;
-            String query = "Select max(fa_id) from fa_factura_cliente";
+            String query = "Select max(fl_id) from fl_factura_cliente";
             ResultSet rs = CSDesktop.datos.select(query);
             try
             {
                 while (rs.next())
                 {
-                    numero =Integer.valueOf(rs.getInt("max(fa_id)"));
+                    numero =Integer.valueOf(rs.getInt("max(fl_id)"));
                 }
             }
             catch (SQLException ex)

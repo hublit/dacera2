@@ -30,6 +30,7 @@
  */
 package neg;
 
+import data.BeanCliente;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -41,6 +42,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -51,11 +53,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.io.FileFilter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -64,6 +69,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -72,7 +81,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JViewport;
 import javax.swing.SwingUtilities;
-import javax.swing.filechooser.FileFilter;
+
 
 import net.sf.jasperreports.engine.JRConstants;
 import net.sf.jasperreports.engine.JRException;
@@ -203,48 +212,48 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 	protected JRSaveContributor lastSaveContributor = null;
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(String fileName, boolean isXML) throws JRException
+	public JRViewerFactura(String fileName, boolean isXML,BeanCliente beanCliente) throws JRException
 	{
-		this(fileName, isXML, null);
+		this(fileName, isXML, null,beanCliente);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(InputStream is, boolean isXML) throws JRException
+	public JRViewerFactura(InputStream is, boolean isXML,BeanCliente beanCliente) throws JRException
 	{
-		this(is, isXML, null,"");
+		this(is, isXML, null,"",beanCliente);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(JasperPrint jrPrint,String nombre)
+	public JRViewerFactura(JasperPrint jrPrint,String nombre,BeanCliente beanCliente)
 	{
-		this(jrPrint, null,nombre);
+		this(jrPrint, null,nombre,beanCliente);
 	}
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(String fileName, boolean isXML, Locale locale) throws JRException
+	public JRViewerFactura(String fileName, boolean isXML, Locale locale,BeanCliente beanCliente) throws JRException
 	{
-		this(fileName, isXML, locale, null,"");
-	}
-
-
-	/** Creates new form JRViewer */
-	public JRViewerFactura(InputStream is, boolean isXML, Locale locale,String nombre) throws JRException
-	{
-		this(is, isXML, locale, null,nombre);
+		this(fileName, isXML, locale, null,"",beanCliente);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(JasperPrint jrPrint, Locale locale,String nombre)
+	public JRViewerFactura(InputStream is, boolean isXML, Locale locale,String nombre,BeanCliente beanCliente) throws JRException
 	{
-		this(jrPrint, locale, null,nombre);
+		this(is, isXML, locale, null,nombre,beanCliente);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(String fileName, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre) throws JRException
+	public JRViewerFactura(JasperPrint jrPrint, Locale locale,String nombre,BeanCliente beanCliente)
+	{
+		this(jrPrint, locale, null,nombre,beanCliente);
+	}
+
+
+	/** Creates new form JRViewer */
+	public JRViewerFactura(String fileName, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCliente beanCliente) throws JRException
 	{
 		initResources(locale, resBundle);
 
@@ -252,7 +261,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		setZooms();
 
-                iniciarComponentes(nombre);
+                iniciarComponentes(nombre,beanCliente);
 
 		//initComponents();
 
@@ -267,7 +276,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(InputStream is, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre) throws JRException
+	public JRViewerFactura(InputStream is, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCliente beanCliente) throws JRException
 	{
 		initResources(locale, resBundle);
 
@@ -275,7 +284,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		setZooms();
 
-                iniciarComponentes(nombre);
+                iniciarComponentes(nombre,beanCliente);
 
 		//initComponents();
 
@@ -290,7 +299,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(JasperPrint jrPrint, Locale locale, ResourceBundle resBundle,String nombre)
+	public JRViewerFactura(JasperPrint jrPrint, Locale locale, ResourceBundle resBundle,String nombre,BeanCliente beanCliente)
 	{
 		initResources(locale, resBundle);
 
@@ -300,7 +309,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		//initComponents();
 
-                iniciarComponentes(nombre);
+                iniciarComponentes(nombre,beanCliente);
 
 		loadReport(jrPrint);
 
@@ -598,7 +607,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		return listenerCount == 0;
 	}
 
- private void iniciarComponentes(final String nombre) {
+ private void iniciarComponentes(final String nombre,BeanCliente beanCliente) {
         java.awt.GridBagConstraints gridBagConstraints;
 
         tlbToolBar = new javax.swing.JPanel();
@@ -677,16 +686,56 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
         tlbToolBar.add(btnPrint);
 
         btnReload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sf/jasperreports/view/images/reload.GIF"))); // NOI18N
-        btnReload.setToolTipText(getBundleString("reload"));
+        btnReload.setToolTipText("Email");
         btnReload.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnReload.setMaximumSize(new java.awt.Dimension(23, 23));
         btnReload.setMinimumSize(new java.awt.Dimension(23, 23));
         btnReload.setPreferredSize(new java.awt.Dimension(23, 23));
         btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadActionPerformed(evt);
+            public void actionPerformed(java.awt.event.ActionEvent evt,BeanCliente beanCliente) {
+                btnReloadActionPerformed(evt,beanCliente);
             }
+
+            
+
+            private void btnReloadActionPerformed(ActionEvent evt, BeanCliente beanCliente) {
+                int seleccion = JOptionPane.showOptionDialog(
+                        JRViewerFactura.this,
+                        "¿Quieres mandar la factura por mail?",
+                        "Atención",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,    // null para icono por defecto.
+                        new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
+                        "SI");
+
+                if (seleccion==0)
+                {
+            try {
+                CSLanzarFactura factura = new CSLanzarFactura();
+                try {
+                    factura.enviarMail(beanCliente);
+                } catch (NoSuchProviderException ex) {
+                    Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (MessagingException ex) {
+                    Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (JRException ex) {
+                Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                }
+            }
+
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            
+           
         });
+        btnReload.setEnabled(true);
         tlbToolBar.add(btnReload);
 
         pnlSep01.setMaximumSize(new java.awt.Dimension(10, 10));
@@ -1010,7 +1059,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		int retValue = fileChooser.showSaveDialog(this);
 		if (retValue == JFileChooser.APPROVE_OPTION)
 		{
-			FileFilter fileFilter = fileChooser.getFileFilter();
+			javax.swing.filechooser.FileFilter fileFilter = fileChooser.getFileFilter();
 			File file = fileChooser.getSelectedFile();
 
 			lastFolder = file.getParentFile();
@@ -1145,11 +1194,6 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
         btnReload.setMaximumSize(new java.awt.Dimension(23, 23));
         btnReload.setMinimumSize(new java.awt.Dimension(23, 23));
         btnReload.setPreferredSize(new java.awt.Dimension(23, 23));
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadActionPerformed(evt);
-            }
-        });
         tlbToolBar.add(btnReload);
 
         pnlSep01.setMaximumSize(new java.awt.Dimension(10, 10));
@@ -1459,13 +1503,6 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		}
 	}//GEN-LAST:event_txtGoToActionPerformed
 
-	void cmbZoomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbZoomItemStateChanged
-		// Add your handling code here:
-		btnActualSize.setSelected(false);
-		btnFitPage.setSelected(false);
-		btnFitWidth.setSelected(false);
-	}//GEN-LAST:event_cmbZoomItemStateChanged
-
 	void pnlMainComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_pnlMainComponentResized
 		// Add your handling code here:
 		if (btnFitPage.isSelected())
@@ -1480,42 +1517,6 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		}
 
 	}//GEN-LAST:event_pnlMainComponentResized
-
-	void btnActualSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualSizeActionPerformed
-		// Add your handling code here:
-		if (btnActualSize.isSelected())
-		{
-			btnFitPage.setSelected(false);
-			btnFitWidth.setSelected(false);
-			cmbZoom.setSelectedIndex(-1);
-			setZoomRatio(1);
-			btnActualSize.setSelected(true);
-		}
-	}//GEN-LAST:event_btnActualSizeActionPerformed
-
-	void btnFitWidthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFitWidthActionPerformed
-		// Add your handling code here:
-		if (btnFitWidth.isSelected())
-		{
-			btnActualSize.setSelected(false);
-			btnFitPage.setSelected(false);
-			cmbZoom.setSelectedIndex(-1);
-			setRealZoomRatio(((float)pnlInScroll.getVisibleRect().getWidth() - 20f) / jasperPrint.getPageWidth());
-			btnFitWidth.setSelected(true);
-		}
-	}//GEN-LAST:event_btnFitWidthActionPerformed
-
-	void btnFitPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFitPageActionPerformed
-		// Add your handling code here:
-		if (btnFitPage.isSelected())
-		{
-			btnActualSize.setSelected(false);
-			btnFitWidth.setSelected(false);
-			cmbZoom.setSelectedIndex(-1);
-			fitPage();
-			btnFitPage.setSelected(true);
-		}
-	}//GEN-LAST:event_btnFitPageActionPerformed
 
 	void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 		// Add your handling code here:
@@ -1550,7 +1551,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		int retValue = fileChooser.showSaveDialog(this);
 		if (retValue == JFileChooser.APPROVE_OPTION)
 		{
-			FileFilter fileFilter = fileChooser.getFileFilter();
+			javax.swing.filechooser.FileFilter fileFilter = fileChooser.getFileFilter();
 			File file = fileChooser.getSelectedFile();
 			
 			lastFolder = file.getParentFile();
@@ -1708,31 +1709,6 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		refreshPage();
 	}//GEN-LAST:event_btnFirstActionPerformed
 
-	void btnReloadActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnReloadActionPerformed
-	{//GEN-HEADEREND:event_btnReloadActionPerformed
-		// Add your handling code here:
-		if (type == TYPE_FILE_NAME)
-		{
-			try
-			{
-				loadReport(reportFileName, isXML);
-			}
-			catch (JRException e)
-			{
-				if (log.isErrorEnabled())
-					log.error("Reload error.", e);
-
-				jasperPrint = null;
-				setPageIndex(0);
-				refreshPage();
-
-				JOptionPane.showMessageDialog(this, getBundleString("error.loading"));
-			}
-
-			forceRefresh();
-		}
-	}//GEN-LAST:event_btnReloadActionPerformed
-
 	protected void forceRefresh()
 	{
 		zoom = 0;//force pageRefresh()
@@ -1778,28 +1754,76 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		}
 	}//GEN-LAST:event_btnZoomOutActionPerformed
 
-	void cmbZoomActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cmbZoomActionPerformed
-	{//GEN-HEADEREND:event_cmbZoomActionPerformed
-		// Add your handling code here:
-		float newZoom = getZoomRatio();
-
-		if (newZoom < MIN_ZOOM)
-		{
-			newZoom = MIN_ZOOM;
-		}
-
-		if (newZoom > MAX_ZOOM)
-		{
-			newZoom = MAX_ZOOM;
-		}
-
-		setZoomRatio(newZoom);
-	}//GEN-LAST:event_cmbZoomActionPerformed
-
         private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             CSDesktop.NuevaFactura.dispose();
+            String property = "java.io.tmpdir";
+
+             // Get the temporary directory and print it.
+            String tempDir = System.getProperty(property);
+            System.out.println("OS current temporary directory is " + tempDir);
+
+            borrarTemporalesConMascara(tempDir, ".pdf");
+
+
+
+            
             
 }//GEN-LAST:event_jButton1ActionPerformed
+
+        private void cmbZoomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbZoomItemStateChanged
+            // Add your handling code here:
+            btnActualSize.setSelected(false);
+            btnFitPage.setSelected(false);
+            btnFitWidth.setSelected(false);
+}//GEN-LAST:event_cmbZoomItemStateChanged
+
+        private void cmbZoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbZoomActionPerformed
+            // Add your handling code here:
+            float newZoom = getZoomRatio();
+
+            if (newZoom < MIN_ZOOM) {
+                newZoom = MIN_ZOOM;
+            }
+
+            if (newZoom > MAX_ZOOM) {
+                newZoom = MAX_ZOOM;
+            }
+
+            setZoomRatio(newZoom);
+}//GEN-LAST:event_cmbZoomActionPerformed
+
+        private void btnFitWidthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFitWidthActionPerformed
+            // Add your handling code here:
+            if (btnFitWidth.isSelected()) {
+                btnActualSize.setSelected(false);
+                btnFitPage.setSelected(false);
+                cmbZoom.setSelectedIndex(-1);
+                setRealZoomRatio(((float)pnlInScroll.getVisibleRect().getWidth() - 20f) / jasperPrint.getPageWidth());
+                btnFitWidth.setSelected(true);
+            }
+}//GEN-LAST:event_btnFitWidthActionPerformed
+
+        private void btnFitPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFitPageActionPerformed
+            // Add your handling code here:
+            if (btnFitPage.isSelected()) {
+                btnActualSize.setSelected(false);
+                btnFitWidth.setSelected(false);
+                cmbZoom.setSelectedIndex(-1);
+                fitPage();
+                btnFitPage.setSelected(true);
+            }
+}//GEN-LAST:event_btnFitPageActionPerformed
+
+        private void btnActualSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualSizeActionPerformed
+            // Add your handling code here:
+            if (btnActualSize.isSelected()) {
+                btnFitPage.setSelected(false);
+                btnFitWidth.setSelected(false);
+                cmbZoom.setSelectedIndex(-1);
+                setZoomRatio(1);
+                btnActualSize.setSelected(true);
+            }
+}//GEN-LAST:event_btnActualSizeActionPerformed
 
 
 	/**
@@ -1920,7 +1944,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		type = TYPE_INPUT_STREAM;
 		this.isXML = isXmlReport;
-		btnReload.setEnabled(false);
+		//btnReload.setEnabled(false);
 		setPageIndex(0);
 	}
 
@@ -1932,7 +1956,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		jasperPrint = jrPrint;
 		type = TYPE_OBJECT;
 		isXML = false;
-		btnReload.setEnabled(false);
+		//btnReload.setEnabled(false);
 		setPageIndex(0);
 	}
 
@@ -2636,10 +2660,10 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JToggleButton btnActualSize;
+    private javax.swing.JToggleButton btnActualSize;
     protected javax.swing.JButton btnFirst;
-    protected javax.swing.JToggleButton btnFitPage;
-    protected javax.swing.JToggleButton btnFitWidth;
+    private javax.swing.JToggleButton btnFitPage;
+    private javax.swing.JToggleButton btnFitWidth;
     protected javax.swing.JButton btnLast;
     protected javax.swing.JButton btnNext;
     protected javax.swing.JButton btnPrevious;
@@ -2648,7 +2672,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
     protected javax.swing.JButton btnSave;
     protected javax.swing.JButton btnZoomIn;
     protected javax.swing.JButton btnZoomOut;
-    protected javax.swing.JComboBox cmbZoom;
+    private javax.swing.JComboBox cmbZoom;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
@@ -2672,4 +2696,23 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
     protected javax.swing.JTextField txtGoTo;
     // End of variables declaration//GEN-END:variables
 
+
+    public boolean borrarTemporalesConMascara(String ruta, String mascara)
+    {
+		boolean result=false;
+		File file =new File(ruta);
+		nameFilter filter = new nameFilter(mascara);
+		File[] files2=  file.listFiles(filter);
+		if (files2.length > 0) {
+			for (int i=0;i<files2.length;i++) {
+				result=files2[i].delete();
+			}
+		}
+		return result;
+
+    }
 }
+
+
+
+
