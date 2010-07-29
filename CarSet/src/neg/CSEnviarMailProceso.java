@@ -100,7 +100,7 @@ public class CSEnviarMailProceso
             Properties props = new Properties();
             props.put("mail.transport.protocol","smtp");
             //props.put("mail.smtp.host", "smtp.e.telefonica.net");
-            props.put("mail.smtp.host", "10.25.11.32");
+            props.put("mail.smtp.host", "localhost");
             //props.put("mail.smtp.starttls.enable", "false");
             props.put("mail.smtp.port", "2525");
             props.put("mail.smtp.auth", "true");
@@ -115,9 +115,9 @@ public class CSEnviarMailProceso
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(mailSession);
             message.setFrom(new InternetAddress("Operaciones CarSet <operaciones@carset.es>"));
-             message.addRecipient(
+            /* message.addRecipient(
                 Message.RecipientType.TO,
-                new InternetAddress(email));
+                new InternetAddress(email));*/
              message.addRecipient(
                 Message.RecipientType.CC,
                 new InternetAddress("cesardecruz@gmail.com"));

@@ -22,11 +22,18 @@ import data.*;
 import javax.mail.PasswordAuthentication;
 import java.text.DecimalFormat;
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -388,7 +395,7 @@ public class CSLanzarFactura
        
 
         String finalNumFactura2=finalNumFactura.replace("/","_");
-        nombreFichero=finalNumFactura2+"_"+beanCliente.getNombre()+".pdf";
+        nombreFichero=finalNumFactura2+"_"+beanCliente.getNombre()+"pdf";
 
          String property = "java.io.tmpdir";
 
@@ -424,7 +431,18 @@ public class CSLanzarFactura
              }
              else
              {
-                 JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,beanCliente);
+                 BeanCorreoCliente mail = new BeanCorreoCliente();
+
+                 mail.setCliente(beanCliente.getNombre());
+                 mail.setClienteID(beanCliente.getCl_id());
+                 mail.setFecha(nuevaFechaFactura);
+                 mail.setNumPedido(finalNumFactura);
+                 mail.setTarifa(importeTotalIva);
+
+                 //mail.setSuplemento(beanCliente.);
+
+
+                 JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail);
                  CSDesktop.NuevaFactura = new JInternalFrame("Generación Factura Cliente", true, false, false, true );
                  CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
                  CSDesktop.NuevaFactura.pack();
@@ -432,6 +450,9 @@ public class CSLanzarFactura
                  Dimension pantalla = CSDesktop.elEscritorio.getSize();
                  CSDesktop.NuevaFactura.setSize(pantalla);
                  CSDesktop.NuevaFactura.setVisible(true);
+
+
+
 
                  //3-Exportamos el reporte a pdf y lo guardamos en disco
                 JasperExportManager.exportReportToPdfFile(jasperPrint, tempDir+"/"+nombreFichero);
@@ -464,21 +485,23 @@ public class CSLanzarFactura
    */
   
 
-    public void enviarMail(BeanCliente beanCliente) throws JRException, NoSuchProviderException, MessagingException, SQLException
+    public void enviarMail(BeanCorreoCliente mail,String nombre) throws JRException, NoSuchProviderException, MessagingException, SQLException
     {
 
-            String queryContacto="SELECT * FROM CC_CONTACTOS_CLIENTE WHERE CL_ID="+beanCliente.getCl_id()+" LIMIT 1";
+            String queryContacto="SELECT * FROM CC_CONTACTOS_CLIENTE WHERE CL_ID="+mail.getClienteID()+" LIMIT 1";
             ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
+            String nombreContacto="";
+            String email="";
 
              while (rsContacto.next())  {
-                 String nombre=rsContacto.getString("cc_nombre");
-                 String email=rsContacto.getString("cc_email");
+                 nombreContacto=rsContacto.getString("cc_nombre");
+                 email=rsContacto.getString("cc_email");
              }
 
             Properties props = new Properties();
             props.put("mail.transport.protocol","smtp");
             //props.put("mail.smtp.host", "smtp.e.telefonica.net");
-            props.put("mail.smtp.host", "10.25.11.32");
+            props.put("mail.smtp.host", "localhost");
             //props.put("mail.smtp.starttls.enable", "false");
             props.put("mail.smtp.port", "2525");
             props.put("mail.smtp.auth", "true");
@@ -499,6 +522,50 @@ public class CSLanzarFactura
                 new InternetAddress("cesardecruz@gmail.com"));
             /*message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());*/
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
+           
+            // Create the message part
+            BodyPart messageBodyPart = new MimeBodyPart();
+
+            String htmlText = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1//EN' 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'>" +
+            "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='es'><head>" +
+            "<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-15' /></head><body>" +
+            "<br><br><table width='700'>" +
+            "<tr><td width='100'><img src=\""+imagen+"\" width='100'></td>" +
+            "<td align='center'><p><font face='Helvetica' size='+1'> ENVIO DE FACTURA </p></font></td></tr>" +
+            "<tr><td colspan='2'><br><br><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Factura:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
+            "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombreContacto+"</font>" +
+            "<tr><td colspan='2'><br><br><font face='Helvetica'> A continuaci&oacute;, le adjuntamos la factura correspondiente a los servicios contratados hasta la fecha con nuestra empresa. </font></td></tr>" +
+            "<tr><td colspan='2'><br><br><font face='Helvetica'> En caso de necesitar una copia de esta factura en papel, háganoslo saber y se la remitiremos por correo a la mayor brevedad. </font></td></tr>" ;
+
+
+            // Fill the message
+            messageBodyPart.setContent(htmlText, "text/html");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
+
+             String property = "java.io.tmpdir";
+
+             // Get the temporary directory and print it.
+            String tempDir = System.getProperty(property);
+
+            // Part two is attachment
+            messageBodyPart = new MimeBodyPart();
+            DataSource source = new FileDataSource(tempDir+"/"+nombre);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(nombre);
+            multipart.addBodyPart(messageBodyPart);
+
+            // Put parts in message
+            message.setContent(multipart);
+
+            transport.connect();
+            transport.sendMessage(message, message.getAllRecipients());
+
+            // Cierre.
+            transport.close();
+
+
     }
 
     private static class SMTPAuthenticator extends javax.mail.Authenticator {
