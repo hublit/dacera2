@@ -31,6 +31,7 @@
 package neg;
 
 import data.BeanCliente;
+import data.BeanCorreoCliente;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -212,48 +213,48 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 	protected JRSaveContributor lastSaveContributor = null;
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(String fileName, boolean isXML,BeanCliente beanCliente) throws JRException
+	public JRViewerFactura(String fileName, boolean isXML,BeanCorreoCliente mail) throws JRException
 	{
-		this(fileName, isXML, null,beanCliente);
+		this(fileName, isXML, null,mail);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(InputStream is, boolean isXML,BeanCliente beanCliente) throws JRException
+	public JRViewerFactura(InputStream is, boolean isXML,BeanCorreoCliente mail) throws JRException
 	{
-		this(is, isXML, null,"",beanCliente);
+		this(is, isXML, null,"",mail);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(JasperPrint jrPrint,String nombre,BeanCliente beanCliente)
+	public JRViewerFactura(JasperPrint jrPrint,String nombre,BeanCorreoCliente mail)
 	{
-		this(jrPrint, null,nombre,beanCliente);
+		this(jrPrint, null,nombre,mail);
 	}
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(String fileName, boolean isXML, Locale locale,BeanCliente beanCliente) throws JRException
+	public JRViewerFactura(String fileName, boolean isXML, Locale locale,BeanCorreoCliente mail) throws JRException
 	{
-		this(fileName, isXML, locale, null,"",beanCliente);
-	}
-
-
-	/** Creates new form JRViewer */
-	public JRViewerFactura(InputStream is, boolean isXML, Locale locale,String nombre,BeanCliente beanCliente) throws JRException
-	{
-		this(is, isXML, locale, null,nombre,beanCliente);
+		this(fileName, isXML, locale, null,"",mail);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(JasperPrint jrPrint, Locale locale,String nombre,BeanCliente beanCliente)
+	public JRViewerFactura(InputStream is, boolean isXML, Locale locale,String nombre,BeanCorreoCliente mail) throws JRException
 	{
-		this(jrPrint, locale, null,nombre,beanCliente);
+		this(is, isXML, locale, null,nombre,mail);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(String fileName, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCliente beanCliente) throws JRException
+	public JRViewerFactura(JasperPrint jrPrint, Locale locale,String nombre,BeanCorreoCliente mail)
+	{
+		this(jrPrint, locale, null,nombre,mail);
+	}
+
+
+	/** Creates new form JRViewer */
+	public JRViewerFactura(String fileName, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCorreoCliente mail) throws JRException
 	{
 		initResources(locale, resBundle);
 
@@ -261,7 +262,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		setZooms();
 
-                iniciarComponentes(nombre,beanCliente);
+                iniciarComponentes(nombre,mail);
 
 		//initComponents();
 
@@ -276,7 +277,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(InputStream is, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCliente beanCliente) throws JRException
+	public JRViewerFactura(InputStream is, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCorreoCliente mail) throws JRException
 	{
 		initResources(locale, resBundle);
 
@@ -284,7 +285,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		setZooms();
 
-                iniciarComponentes(nombre,beanCliente);
+                iniciarComponentes(nombre,mail);
 
 		//initComponents();
 
@@ -299,7 +300,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(JasperPrint jrPrint, Locale locale, ResourceBundle resBundle,String nombre,BeanCliente beanCliente)
+	public JRViewerFactura(JasperPrint jrPrint, Locale locale, ResourceBundle resBundle,String nombre,BeanCorreoCliente mail)
 	{
 		initResources(locale, resBundle);
 
@@ -309,7 +310,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		//initComponents();
 
-                iniciarComponentes(nombre,beanCliente);
+                iniciarComponentes(nombre,mail);
 
 		loadReport(jrPrint);
 
@@ -607,7 +608,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		return listenerCount == 0;
 	}
 
- private void iniciarComponentes(final String nombre,BeanCliente beanCliente) {
+ private void iniciarComponentes(final String nombre,final BeanCorreoCliente mail) {
         java.awt.GridBagConstraints gridBagConstraints;
 
         tlbToolBar = new javax.swing.JPanel();
@@ -685,23 +686,21 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
         });
         tlbToolBar.add(btnPrint);
 
-        btnReload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sf/jasperreports/view/images/reload.GIF"))); // NOI18N
+        btnReload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sf/jasperreports/view/images/mail.gif"))); // NOI18N
         btnReload.setToolTipText("Email");
         btnReload.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnReload.setMaximumSize(new java.awt.Dimension(23, 23));
         btnReload.setMinimumSize(new java.awt.Dimension(23, 23));
         btnReload.setPreferredSize(new java.awt.Dimension(23, 23));
         btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt,BeanCliente beanCliente) {
-                btnReloadActionPerformed(evt,beanCliente);
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReloadActionPerformed(evt);
             }
-
-            
-
-            private void btnReloadActionPerformed(ActionEvent evt, BeanCliente beanCliente) {
+           
+            private void btnReloadActionPerformed(ActionEvent evt) {
                 int seleccion = JOptionPane.showOptionDialog(
                         JRViewerFactura.this,
-                        "¿Quieres mandar la factura por mail?",
+                        "¿Quieres mandar la factura por mail al cliente "+mail.getCliente()+"?",
                         "Atención",
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
@@ -711,26 +710,24 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
                 if (seleccion==0)
                 {
-            try {
-                CSLanzarFactura factura = new CSLanzarFactura();
-                try {
-                    factura.enviarMail(beanCliente);
-                } catch (NoSuchProviderException ex) {
-                    Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (MessagingException ex) {
-                    Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } catch (JRException ex) {
-                Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    try {
+                        CSLanzarFactura factura = new CSLanzarFactura();
+                     try {
+                        factura.enviarMail(mail,nombre);
+                    } catch (NoSuchProviderException ex) {
+                        Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (MessagingException ex) {
+                        Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    } catch (JRException ex) {
+                        Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
 
-            public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
+           
 
             
            
