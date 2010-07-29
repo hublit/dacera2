@@ -155,7 +155,7 @@ public class Cliente
 
        ResultSet rsCl = CSDesktop.datos.select("SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, " +
                                   "cl_poblacion, cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, " +
-                                  "cl_poblacion_fiscal, cl_provincia_fiscal " +
+                                  "cl_poblacion_fiscal, cl_provincia_fiscal,cl_plazo,cl_dias_plazo,fp_id " +
                                   "FROM cl_clientes WHERE cl_id = "+clienteID);
         try
         {
@@ -171,6 +171,8 @@ public class Cliente
                 bCliente.setCod_postal_fiscal(rsCl.getString("cl_cod_postal_fiscal"));
                 bCliente.setPoblacion_fiscal(rsCl.getString("cl_poblacion_fiscal"));
                 bCliente.setProvinciaFiscal(rsCl.getString("cl_provincia_fiscal"));
+                bCliente.setPlazoPago(rsCl.getString("cl_plazo"));
+
             }
             rsCl.close();
         }
