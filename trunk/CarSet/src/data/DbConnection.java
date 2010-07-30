@@ -40,15 +40,15 @@ public class DbConnection
                 String pass = "rcortes";
             
             String IPReal="";
-        try {            
+        /*try {
             @SuppressWarnings("static-access")
             //InetAddress direccion = InetAddress.getLocalHost().getByName("luis1");
-            InetAddress direccion = InetAddress.getLocalHost().getByName("W5602969");
+            //InetAddress direccion = InetAddress.getLocalHost().getByName("W5602969");
             IPReal=direccion.getHostAddress();                        
         } catch (UnknownHostException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
             System.exit(0);
-        }
+        }*/
         System.out.println(IPReal);
 
 		//Ruta de conexion. Conecta al server especificado y la Base de datos

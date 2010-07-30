@@ -152,6 +152,7 @@ public class Cliente
    public BeanCliente getDatosFacturaCliente(int clienteID)
    {
        BeanCliente bCliente = new BeanCliente();
+       int formaPago=0;
 
        ResultSet rsCl = CSDesktop.datos.select("SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, " +
                                   "cl_poblacion, cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, " +
@@ -172,15 +173,37 @@ public class Cliente
                 bCliente.setPoblacion_fiscal(rsCl.getString("cl_poblacion_fiscal"));
                 bCliente.setProvinciaFiscal(rsCl.getString("cl_provincia_fiscal"));
                 bCliente.setPlazoPago(rsCl.getString("cl_plazo"));
-
+                bCliente.setDiasPlazo(rsCl.getString("cl_dias_plazo"));
+                formaPago=rsCl.getInt("fp_id");
+               
             }
             rsCl.close();
+            String fPago=getSFormaPago(formaPago);
+            bCliente.setFormaPago(fPago);
         }
         catch (SQLException ex)
         {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+
        return bCliente;
+   }
+
+   public String getSFormaPago (int formaPago)
+   {
+       String fPago="";
+
+       ResultSet rsCl2 = CSDesktop.datos.select("SELECT fp_tipo FROM FP_FORMA_PAGO WHERE FP_ID="+ formaPago);
+        try {
+            while (rsCl2.next())
+            {
+                fPago=rsCl2.getString("fp_tipo");
+            }
+            rsCl2.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return fPago;
    }
 
 }
