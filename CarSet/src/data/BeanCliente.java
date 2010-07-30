@@ -20,6 +20,7 @@ public class BeanCliente
     private String provincia_fiscal;
     private String plazoPago;
     private String formaPago;
+    private String diasPlazo;
     /**
      * @return cl_id
      */
@@ -209,5 +210,13 @@ public class BeanCliente
     public void setProvinciaFiscal(String p_provincia)
     {
             provincia_fiscal = p_provincia;
+    }
+
+     public String getDiasPlazo() {
+        return diasPlazo;
+    }
+
+    public void setDiasPlazo(String diasPlazo) {
+        this.diasPlazo = diasPlazo;
     }
 }

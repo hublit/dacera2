@@ -42,7 +42,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
  * 
  * @author Administrador 
  */ 
-public class CSLanzarFactura
+public class CSLanzarFactura extends javax.swing.JPanel
 {
 
     JasperPrint jasperPrint;
@@ -51,7 +51,7 @@ public class CSLanzarFactura
      * @param args the command line arguments 
      */ 
     //public static void lanzar(String query,String fechaFactura,BeanCliente beanCliente,int flag) throws ClassNotFoundException, SQLException {
-    public void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin) throws ClassNotFoundException, SQLException, JRException
+    public void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin,ArrayList pedidos) throws ClassNotFoundException, SQLException, JRException
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fa_facturas_aux";
@@ -427,7 +427,6 @@ public class CSLanzarFactura
              {
                     JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
                     JOptionPane.showMessageDialog(null,errorFields);
-
              }
              else
              {
@@ -438,10 +437,10 @@ public class CSLanzarFactura
                  mail.setFecha(nuevaFechaFactura);
                  mail.setNumPedido(finalNumFactura);
                  mail.setTarifa(importeTotalIva);
-
-                 //mail.setSuplemento(beanCliente.);
-
-
+                 mail.setMarca(beanCliente.getPlazoPago());
+                 mail.setModelo(beanCliente.getDiasPlazo());
+                 mail.setMatricula(beanCliente.getFormaPago());
+                 
                  JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail);
                  CSDesktop.NuevaFactura = new JInternalFrame("Generación Factura Cliente", true, false, false, true );
                  CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
@@ -451,24 +450,33 @@ public class CSLanzarFactura
                  CSDesktop.NuevaFactura.setSize(pantalla);
                  CSDesktop.NuevaFactura.setVisible(true);
 
-
-
-
                  //3-Exportamos el reporte a pdf y lo guardamos en disco
                 JasperExportManager.exportReportToPdfFile(jasperPrint, tempDir+"/"+nombreFichero);
+
+               
+                //Cambiamos los pedidos de estado
+                if(pedidos.size()>0)
+                {
+                    int seleccion = JOptionPane.showOptionDialog(
+                        CSLanzarFactura.this,
+                        "¿Quieres cambiar el estado de los envíos a 'Facturado'?",
+                        "Atención",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,    // null para icono por defecto.
+                        new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
+                        "SI");
+
+                    if(seleccion == 0)
+                    {
+                        for (int i=0;i<pedidos.size();i++)
+                        {
+                            if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado' WHERE pe_num="+ pedidos.get(i)));
+                        }
+                    }
+                }
              }
-        }                    
-         //3-Exportamos el reporte a pdf y lo guardamos en disco
-         //     JasperExportManager.exportReportToPdfFile(
-         //      jasperPrint,nombreFichero);
-
-        //try {
-        //        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + nombreFichero);
-        //    } catch (IOException e) {
-        //        e.printStackTrace();
-        //    }
-
-     
+        }                             
     }
     catch (JRException e)
     {
@@ -492,6 +500,9 @@ public class CSLanzarFactura
             ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
             String nombreContacto="";
             String email="";
+
+            double importe=Utilidades.redondear(Double.parseDouble(mail.getTarifa()),2);
+            String importeS=String.valueOf(importe);
 
              while (rsContacto.next())  {
                  nombreContacto=rsContacto.getString("cc_nombre");
@@ -519,8 +530,8 @@ public class CSLanzarFactura
                 new InternetAddress(email));*/
              message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("cesardecruz@gmail.com"));
-            /*message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());*/
+                new InternetAddress("rsanchez@carset.es"));
+            message.setSubject("CarSet - Factura: " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
            
             // Create the message part
@@ -534,9 +545,37 @@ public class CSLanzarFactura
             "<td align='center'><p><font face='Helvetica' size='+1'> ENVIO DE FACTURA </p></font></td></tr>" +
             "<tr><td colspan='2'><br><br><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Factura:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
             "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombreContacto+"</font>" +
-            "<tr><td colspan='2'><br><br><font face='Helvetica'> A continuaci&oacute;, le adjuntamos la factura correspondiente a los servicios contratados hasta la fecha con nuestra empresa. </font></td></tr>" +
-            "<tr><td colspan='2'><br><br><font face='Helvetica'> En caso de necesitar una copia de esta factura en papel, háganoslo saber y se la remitiremos por correo a la mayor brevedad. </font></td></tr>" ;
-
+            "<tr><td colspan='2'><br><br><font face='Helvetica'> A continuaci&oacute;n, le adjuntamos la factura correspondiente a los servicios contratados hasta la fecha con nuestra empresa. </font></td></tr>" +
+            "<tr><td colspan='2'><br><br><font face='Helvetica'> En caso de necesitar una copia de esta factura en papel, háganoslo saber y se la remitiremos por correo a la mayor brevedad. </font></td></tr>" +
+            "<tr><td colspan='2'><br><table border='1' width='400'>" +
+            "<tr><td width='200' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td><td width='200'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td>" +
+            "<tr><td width='200'><font face='Helvetica'>&nbsp;Importe (Con IVA)</font></td><td width='200'><font face='Helvetica'>&nbsp;"+importeS+"</font></td>" +
+            "<tr><td width='200'><font face='Helvetica'>&nbsp;Fecha Factura</font></td><td width='200'><font face='Helvetica'>&nbsp;"+mail.getFecha()+"</font></td>" ;
+            if(mail.getMarca().equals("Especial"))
+            {
+                 htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Plazo Pago</font></td><td width='200'><font face='Helvetica'>&nbsp;"+mail.getModelo()+ " días</font></td>" ;
+            }
+            else
+            {
+                htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Plazo Pago</font></td><td width='200'><font face='Helvetica'>&nbsp;"+mail.getMarca()+ "</font></td>" ;
+            }
+            htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Forma de Pago</font></td><td width='200'><font face='Helvetica'>&nbsp;"+mail.getMatricula()+"</font></td>" ;
+            if(mail.getMatricula().equals("Transferencia"))
+            {
+                htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Nº Cuenta CarSet</font></td><td width='200'><font face='Helvetica'>2100 4024 61 2200077238 (La Caixa)</font></td>" ;
+            }
+            htmlText = htmlText + "<tr><td width='200' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td><td width='200'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td></table>";
+            htmlText = htmlText + "<tr><td colspan='2'><br><font face='Helvetica'>No dude en ponerse en contacto con nuestro departamento de administración para cualquier aclaración al respecto. </font></td></tr>" ;
+            htmlText = htmlText + "<tr><td colspan='2'><br><font face='Helvetica'> Atentamente </font></td></tr>" ;
+            htmlText = htmlText +"<br><br>";
+            htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'><b> Departamento de Administracion<b></font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' size='+1' color='#088A08'>CarSet</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Tlf: 91 268 69 60</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Movil: 606 33 96 56</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 5 Bl.A - Pl .3 - Of. 2 </font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>www.carset.es</font></td></tr>";
+            htmlText = htmlText +"</table></body>";
 
             // Fill the message
             messageBodyPart.setContent(htmlText, "text/html");
@@ -564,6 +603,9 @@ public class CSLanzarFactura
 
             // Cierre.
             transport.close();
+
+            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail ha sido enviado correctamente.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,mensaje);
 
 
     }

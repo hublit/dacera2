@@ -19,6 +19,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  * Ejemplo de envio de correo simple con JavaMail
@@ -108,12 +110,12 @@ public class CSEnviarMailEntregado
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(mailSession);
             message.setFrom(new InternetAddress("Operaciones CarSet <operaciones@carset.es>"));
-             message.addRecipient(
+             /*message.addRecipient(
                 Message.RecipientType.TO,
-                new InternetAddress(email));
+                new InternetAddress(email));*/
              message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("cesardecruz@gmail.com"));
+                new InternetAddress("rsanchez@carset.es"));
             message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
 
@@ -126,15 +128,15 @@ public class CSEnviarMailEntregado
             "<tr><td width='100'><img src=\""+imagen+"\" width='100'></td>" +
             "<td><p><font face='Helvetica' size='+1'> CONFIRMACI&Oacute;N DE ENTREGA</p></font></td></tr>" +
             "<tr><td colspan='2'><br><br><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
-            "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: </font></td></tr>" +
+            "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font></td></tr>" +
             "<tr><td colspan='2'><br><br><font face='Helvetica'> Mediante la presente, le pasamos confirmaci&oacute;n del siguiente servicio realizado por nuestros transportistas: </font></td></tr>" +
             "<br><br>" +
             "<tr><td width='200'><font face='Helvetica'><u> Tipo de servicio : </u></font></td><td><font face='Helvetica'> Traslado servicio "+mail.getSoporte()+" </font></td></tr>" +            
             "<tr><td width='200'><font face='Helvetica'><u> Fecha aprox. de entrega : </u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>" +
             "<br>" +
             "<tr><td colspan='2'><table border='1' width='700'>" +
-                                "<tr><td width='100' bgcolor='#BDBDBD'><font face='Helvetica'><b>MARCA</b></font></td><td  width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>MODELO </b></font></td><td  width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>MATRICULA/BASTIDOR</b></font></td>" +
-                                "<tr><td width='100'><font face='Helvetica'>"+mail.getMarca()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getModelo()+"</font></td><td   width='300'><font face='Helvetica'>"+mail.getMatricula()+"</font></td></table>" +
+                                "<tr><td width='100' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td  width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td  width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +
+                                "<tr><td width='100'><font face='Helvetica'>&nbsp;"+mail.getMarca()+"</font></td><td  width='300'><font face='Helvetica'>&nbsp;"+mail.getModelo()+"</font></td><td   width='300'><font face='Helvetica'>&nbsp;"+mail.getMatricula()+"</font></td></table>" +
             "<br>" +
             "<tr><td colspan='2'><table border='1' width='700'>" +
                                 "<tr><td width='100' bgcolor='#BDBDBD'>&nbsp;</td><td  width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE ORIGEN</b></font></td><td  width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE DESTINO</b></font></td>" +
@@ -167,6 +169,9 @@ public class CSEnviarMailEntregado
 
             // Cierre.
             transport.close();
+
+            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail ha sido enviado correctamente.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,mensaje);
         }
         catch (Exception e)
         {

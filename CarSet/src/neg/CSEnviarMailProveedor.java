@@ -21,6 +21,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import utils.Utilidades;
 
 /**
@@ -47,21 +49,18 @@ public class CSEnviarMailProveedor
         try
         {
 
-            String query="SELECT DISTINCT"+
-            " pe.pe_servicio_especial,pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id,pe.pe_ta_es_cliente," +
-            " pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion,pe.pe_descripcion, tc.tc_tarifa,sp_suplemento " +
-            " sc_entrada_campa, sc_campa" +
-            " FROM pe_pedidos pe, pc_pedidos_clientes pc, tp_tarifas_proveedor tc, sp_servicios_proveedores sc" +
-            " WHERE pe.pe_num =" +mail.getNumero()+""+
-            " AND sc.cl_id = pc.cl_id" +
-            " AND tc.tc_servicio = pe.pe_servicio"+
-            " AND  tc.cl_id = pc.cl_id"+
-            " AND (tc.tc_servicio_origen = pe.pe_servicio_origen"+
-            " OR tc.tc_servicio_origen = pe.pe_servicio_destino)"+
-            " AND (tc.tc_servicio_destino = pe.pe_servicio_destino"+
-            " OR tc.tc_servicio_destino = pe.pe_servicio_origen)"+
-            " AND tc.tc_soporte = pe.pe_soporte"+
-            " GROUP BY pe.pe_num";
+         String query="SELECT DISTINCT pe.pe_servicio_especial,pe.pe_dias_campa, pe.pe_ida_vuelta, " +
+                    "pe.fc_id,pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion," +
+                    "pe.pe_descripcion, tp.tp_tarifa,sp_suplemento,sp_entrada_campa, sp_campa FROM pe_pedidos " +
+                    "pe, pp_pedidos_proveedores pp, tp_tarifas_proveedores tp, sp_servicios_proveedores sp " +
+                    "WHERE pe.pe_num =" +mail.getNumero()+" "+
+                    "AND sp.pr_id = pp.pr_id AND tp.tp_servicio = pe.pe_servicio AND  " +
+                    "tp.pr_id = pp.pr_id AND (tp.tp_servicio_origen = pe.pe_servicio_origen " +
+                    "OR tp.tp_servicio_origen = pe.pe_servicio_destino) AND " +
+                    "(tp.tp_servicio_destino = pe.pe_servicio_destino OR " +
+                    "tp.tp_servicio_destino = pe.pe_servicio_origen) AND " +
+                    "tp.tp_soporte = pe.pe_soporte GROUP BY pe.pe_num";
+
 
             System.out.println(query);
 
@@ -77,12 +76,12 @@ public class CSEnviarMailProveedor
                 mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
                 mail.setDescripcion(rs_mail.getString("pe_descripcion"));
-                mail.setTarifa(rs_mail.getString("tc_tarifa"));
-                mail.setEntradaCampa(rs_mail.getString("sc_entrada_campa"));
-                mail.setCampa(rs_mail.getString("sc_campa"));
+                mail.setTarifa(rs_mail.getString("tp_tarifa"));
+                mail.setEntradaCampa(rs_mail.getString("sp_entrada_campa"));
+                mail.setCampa(rs_mail.getString("sp_campa"));
                 mail.setSuplemento(rs_mail.getString("pe_suplemento"));
             }
-            String queryContacto="SELECT * FROM CP_CONTACTOS_PROVEEDOR WHERE CL_ID="+mail.getClienteID()+" LIMIT 1";
+            String queryContacto="SELECT * FROM CP_CONTACTOS_PROVEEDOR WHERE CP_ID="+mail.getClienteID()+" LIMIT 1";
             ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
 
              while (rsContacto.next())  {
@@ -111,12 +110,12 @@ public class CSEnviarMailProveedor
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(mailSession);
             message.setFrom(new InternetAddress("Operaciones CarSet <operaciones@carset.es>"));
-             message.addRecipient(
+             /*message.addRecipient(
                 Message.RecipientType.TO,
-                new InternetAddress(email));
+                new InternetAddress(email));*/
              message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("cesardecruz@gmail.com"));
+                new InternetAddress("rsanchez@carset.es"));
             message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
 
@@ -129,7 +128,7 @@ public class CSEnviarMailProveedor
             "<tr><td width='100'><img src=\""+imagen+"\" width='100'></td>" +
             "<td><p><font face='Helvetica' size='+1'> CONFIRMACI&Oacute;N DE PEDIDO</p></font></td></tr>" +
             "<tr><td colspan='2'><br><br><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
-            "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: </font></td></tr>" +
+            "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font></td></tr>" +
             "<tr><td colspan='2'><br><br><font face='Helvetica'> A continuaci&oacute;n y en contestaci&oacute;n a su solicitud, le remitimos la confirmaci&oacute;n del servicio solicitado:  </font></td></tr>" +
             "<br><br>" +
             "<tr><td width='200'><font face='Helvetica'><u> Tipo de servicio : </u></font></td><td><font face='Helvetica'> Traslado servicio "+mail.getSoporte()+" </font></td></tr>" +
@@ -137,8 +136,8 @@ public class CSEnviarMailProveedor
             "<tr><td width='200'><font face='Helvetica'><u> Fecha aprox. de entrega : </u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>" +
             "<br>" +
             "<tr><td colspan='2'><table border='1' width='700'>" +
-                                "<tr><td width='100' bgcolor='#BDBDBD'><font face='Helvetica'><b>MARCA</b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>MODELO </b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>MATRICULA/BASTIDOR</b></font></td>" +
-                                "<tr><td width='100'><font face='Helvetica'>"+mail.getMarca()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getModelo()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getMatricula()+"</font></td></table>" +
+                                "<tr><td width='100' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +
+                                "<tr><td width='100'><font face='Helvetica'>&nbsp;"+mail.getMarca()+"</font></td><td width='300'><font face='Helvetica'>&nbsp;"+mail.getModelo()+"</font></td><td width='300'><font face='Helvetica'>&nbsp;"+mail.getMatricula()+"</font></td></table>" +
             "<br>" +
             "<tr><td colspan='2'><table border='1' width='700'>" +
                                 "<tr><td  width='100' bgcolor='#BDBDBD'>&nbsp;</td><td  width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE ORIGEN</b></font></td><td  width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE DESTINO</b></font></td>" +
@@ -173,7 +172,7 @@ public class CSEnviarMailProveedor
                 String tarifa2=String.valueOf(importeTarifa);
                 importeTotal = importeTotal + importeTarifa;
                 //Escribimos la linea
-                htmlText = htmlText + "<tr><td><font face='Helvetica'>TARIFA</font></td><td align='right'><font face='Helvetica'>"+importeTarifa+" &euro;</font></td></tr>";
+                htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;TARIFA</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeTarifa+" &euro;</font></td></tr>";
 
                 
 
@@ -195,7 +194,7 @@ public class CSEnviarMailProveedor
 
                     String importeIda=String.valueOf(IdaVuelta2);
 
-                    htmlText = htmlText + "<tr><td><font face='Helvetica'>"+textoIda+"</font></td><td align='right'><font face='Helvetica'> - " +IdaVuelta2+" &euro;</font></td></tr>";
+                    htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;"+textoIda+"</font></td><td align='right'><font face='Helvetica'> - " +IdaVuelta2+" &euro;</font></td></tr>";
 
                     importeTotal = importeTotal - IdaVuelta2;
                 }
@@ -216,7 +215,7 @@ public class CSEnviarMailProveedor
                             double nuevoImporteFactor=Utilidades.redondear(importeFc, 2);
                             String importeFactor = Double.toString(nuevoImporteFactor);
                             String factorTexto2=factorTarifa.get(0).toString();                            
-                            htmlText = htmlText + "<tr><td><font face='Helvetica'> FACTOR DE CORRECCION </font></td><td align='right'><font face='Helvetica'>"+importeFc+" &euro;</font></td></tr>";
+                            htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;FACTOR DE CORRECCION </font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeFc+" &euro;</font></td></tr>";
                             importeTotal = importeTotal + nuevoImporteFactor;
                         }
                     }
@@ -243,7 +242,7 @@ public class CSEnviarMailProveedor
                     String ServicioSuplemento = mail.getDescripcion();
                     String importeSuplemento=mail.getSuplemento();
                     double importeSup = Double.parseDouble(importeSuplemento);
-                    htmlText = htmlText +  "<tr><td><font face='Helvetica'>"+ServicioSuplemento+"</font></td><td align='right'><font face='Helvetica'>"+importeSuplemento+" &euro;</font></td></tr>";
+                    htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+ServicioSuplemento+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeSuplemento+" &euro;</font></td></tr>";
                     importeTotal = importeTotal + importeSup;
                 }
             }
@@ -269,8 +268,8 @@ public class CSEnviarMailProveedor
 
                 String importeCampa2=String.valueOf(importeCampa5);
 
-                htmlText = htmlText + "<tr><td><font face='Helvetica'>ENTRADA CAMPA</font></td><td align='right'><font face='Helvetica'>"+importeCampaAux+" &euro;</font></td></tr>";
-                htmlText = htmlText + "<tr><td><font face='Helvetica'>"+finalCampa2+"</font></td><td align='right'><font face='Helvetica'>"+importeCampa2+" &euro;</font></td></tr>";
+                htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;ENTRADA CAMPA</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeCampaAux+" &euro;</font></td></tr>";
+                htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;"+finalCampa2+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeCampa2+" &euro;</font></td></tr>";
 
                 importeTotal = importeTotal + importeCampa4 + importeCampa5;               
             }
@@ -285,12 +284,12 @@ public class CSEnviarMailProveedor
                     labelOtros=mail.getDescripcion().toUpperCase();
                     double importeServicioOtros=Double.parseDouble(mail.getTarifaEspecialCliente());
                     importeServicioEsOtros=mail.getTarifaEspecialCliente();
-                    htmlText = htmlText + "<tr><td><font face='Helvetica'>"+labelOtros+"</font></td><td align='right'><font face='Helvetica'>"+importeServicioEsOtros+" &euro;</font></td></tr>";
+                    htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;"+labelOtros+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeServicioEsOtros+" &euro;</font></td></tr>";
                     importeTotal = importeTotal + importeServicioOtros;
                 }
                 
             }          
-            htmlText = htmlText +"<tr><td><font face='Helvetica'><b>TOTAL</b></font></td><td align='right'><font face='Helvetica'><b>"+importeTotal+" &euro;</b></font></td></tr>";
+            htmlText = htmlText +"<tr><td><font face='Helvetica'><b>&nbsp;TOTAL</b></font></td><td align='right'><font face='Helvetica'><b>&nbsp;"+importeTotal+" &euro;</b></font></td></tr>";
             htmlText = htmlText +"</table><br>";
             htmlText = htmlText +"<tr><td colspan='2'><br><br><font face='Helvetica'> Estos precios no incluyen I.V.A </font></td></tr>";
             htmlText = htmlText +"<br><tr><td colspan='2'><br><br><font face='Helvetica'> Para cualquier consulta al respecto, no dude en ponerse en contacto con nuestro departamento de Operaciones (91.268.69.60). </font></td></tr>";
@@ -316,6 +315,9 @@ public class CSEnviarMailProveedor
 
             // Cierre.
             transport.close();
+
+            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail ha sido enviado correctamente.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,mensaje);
         }
         catch (Exception e)
         {
