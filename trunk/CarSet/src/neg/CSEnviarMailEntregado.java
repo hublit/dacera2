@@ -115,7 +115,7 @@ public class CSEnviarMailEntregado
                 new InternetAddress(email));*/
              message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("rsanchez@carset.es"));
+                new InternetAddress("cdecruz@yahoo.es"));
             message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
 
@@ -132,7 +132,7 @@ public class CSEnviarMailEntregado
             "<tr><td colspan='2'><br><br><font face='Helvetica'> Mediante la presente, le pasamos confirmaci&oacute;n del siguiente servicio realizado por nuestros transportistas: </font></td></tr>" +
             "<br><br>" +
             "<tr><td width='200'><font face='Helvetica'><u> Tipo de servicio : </u></font></td><td><font face='Helvetica'> Traslado servicio "+mail.getSoporte()+" </font></td></tr>" +            
-            "<tr><td width='200'><font face='Helvetica'><u> Fecha aprox. de entrega : </u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>" +
+            "<tr><td width='200'><font face='Helvetica'><u> Fecha de entrega : </u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>" +
             "<br>" +
             "<tr><td colspan='2'><table border='1' width='700'>" +
                                 "<tr><td width='100' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td  width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td  width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +

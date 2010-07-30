@@ -6,9 +6,12 @@ import java.awt.Dimension;
 import java.sql.Connection; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap; 
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
 import javax.swing.JInternalFrame;
@@ -21,6 +24,10 @@ import utils.Utilidades;
 import data.*;
 import javax.mail.PasswordAuthentication;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -395,7 +402,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
        
 
         String finalNumFactura2=finalNumFactura.replace("/","_");
-        nombreFichero=finalNumFactura2+"_"+beanCliente.getNombre()+"pdf";
+        nombreFichero=finalNumFactura2+"_"+beanCliente.getNombre()+".pdf";
 
          String property = "java.io.tmpdir";
 
@@ -440,6 +447,24 @@ public class CSLanzarFactura extends javax.swing.JPanel
                  mail.setMarca(beanCliente.getPlazoPago());
                  mail.setModelo(beanCliente.getDiasPlazo());
                  mail.setMatricula(beanCliente.getFormaPago());
+
+                 SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+                 Date datehora=null;
+                    try {
+                        datehora = sdf1.parse(nuevaFechaFactura);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                 
+		 Calendar myGDate=new GregorianCalendar();
+                 myGDate.setTime(datehora);
+                 myGDate.add(Calendar.DAY_OF_MONTH, 15);
+		 Date fechaActual = myGDate.getTime();
+                 SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+                 String fecha2=formatoDeFecha.format(fechaActual);
+
+                 mail.setFechaEntrega(fecha2);
+
                  
                  JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail);
                  CSDesktop.NuevaFactura = new JInternalFrame("Generación Factura Cliente", true, false, false, true );
@@ -530,7 +555,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 new InternetAddress(email));*/
              message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("rsanchez@carset.es"));
+                new InternetAddress("cdecruz@yahoo.es"));
             message.setSubject("CarSet - Factura: " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
            
@@ -554,11 +579,44 @@ public class CSLanzarFactura extends javax.swing.JPanel
             if(mail.getMarca().equals("Especial"))
             {
                  htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Plazo Pago</font></td><td width='200'><font face='Helvetica'>&nbsp;"+mail.getModelo()+ " días</font></td>" ;
+                 SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+                 Date datehora=null;
+                    try {
+                        datehora = sdf1.parse(mail.getFecha());
+                    } catch (ParseException ex) {
+                        Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+		 Calendar myGDate=new GregorianCalendar();
+                 myGDate.setTime(datehora);
+                 myGDate.add(Calendar.DAY_OF_MONTH, Integer.parseInt(mail.getModelo()));
+		 Date fechaActual = myGDate.getTime();
+                 SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+                 String fecha2=formatoDeFecha.format(fechaActual);
+                
+                 htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Fecha Vencimiento</font></td><td width='200'><font face='Helvetica'>&nbsp;"+fecha2+"</font></td>" ;
             }
             else
             {
                 htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Plazo Pago</font></td><td width='200'><font face='Helvetica'>&nbsp;"+mail.getMarca()+ "</font></td>" ;
+                SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+                 Date datehora=null;
+                    try {
+                        datehora = sdf1.parse(mail.getFecha());
+                    } catch (ParseException ex) {
+                        Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+		 Calendar myGDate=new GregorianCalendar();
+                 myGDate.setTime(datehora);
+                 myGDate.add(Calendar.DAY_OF_MONTH, Integer.parseInt(mail.getMarca().substring(0, 2)));
+		 Date fechaActual = myGDate.getTime();
+                 SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+                 String fecha2=formatoDeFecha.format(fechaActual);
+
+                 htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Fecha Vencimiento</font></td><td width='200'><font face='Helvetica'>&nbsp;"+fecha2+"</font></td>" ;
             }
+            
             htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Forma de Pago</font></td><td width='200'><font face='Helvetica'>&nbsp;"+mail.getMatricula()+"</font></td>" ;
             if(mail.getMatricula().equals("Transferencia"))
             {
@@ -566,7 +624,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
             }
             htmlText = htmlText + "<tr><td width='200' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td><td width='200'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td></table>";
             htmlText = htmlText + "<tr><td colspan='2'><br><font face='Helvetica'>No dude en ponerse en contacto con nuestro departamento de administración para cualquier aclaración al respecto. </font></td></tr>" ;
-            htmlText = htmlText + "<tr><td colspan='2'><br><font face='Helvetica'> Atentamente </font></td></tr>" ;
+            htmlText = htmlText + "<tr><td colspan='2'><br><font face='Helvetica'> Atentamente, </font></td></tr>" ;
             htmlText = htmlText +"<br><br>";
             htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'><b> Departamento de Administracion<b></font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' size='+1' color='#088A08'>CarSet</font></td></tr>";
