@@ -549,7 +549,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
             Transport transport = mailSession.getTransport();
 
             MimeMessage message = new MimeMessage(mailSession);
-            message.setFrom(new InternetAddress("Operaciones CarSet <operaciones@carset.es>"));
+            message.setFrom(new InternetAddress("Administración CarSet <carset@carset.es>"));
              /*message.addRecipient(
                 Message.RecipientType.TO,
                 new InternetAddress(email));*/
