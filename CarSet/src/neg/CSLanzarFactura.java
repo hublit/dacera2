@@ -308,7 +308,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
      }
 
     //IVA
-        iva = ((total * 16) / 100.0);
+        iva = ((total * 18) / 100.0);
         importeIva = Double.toString(iva);
 
         //TOTAL IVA
@@ -368,7 +368,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
         pars.put("Blanco","");
         pars.put("Factor","Turismo");
         pars.put("ImporteTotal",total);
-        pars.put("IVA","16%");
+        pars.put("IVA","18%");
         pars.put("ImporteIVA", iva);
         pars.put("ImporteTotalIVA", totalIva);
         pars.put("EURO","€");
@@ -466,7 +466,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                  mail.setFechaEntrega(fecha2);
 
                  
-                 JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail);
+                 JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail,0);
                  CSDesktop.NuevaFactura = new JInternalFrame("Generación Factura Cliente", true, false, false, true );
                  CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
                  CSDesktop.NuevaFactura.pack();

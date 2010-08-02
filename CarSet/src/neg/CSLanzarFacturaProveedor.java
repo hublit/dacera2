@@ -267,7 +267,7 @@ public class CSLanzarFacturaProveedor
      }
 
     //IVA
-        iva = ((total * 16) / 100.0);
+        iva = ((total * 18) / 100.0);
         importeIva = Double.toString(iva);
 
         //TOTAL IVA
@@ -328,7 +328,7 @@ public class CSLanzarFacturaProveedor
         pars.put("Blanco","");
         pars.put("Factor","Turismo");
         pars.put("ImporteTotal",total);
-        pars.put("IVA","16%");
+        pars.put("IVA","18%");
         pars.put("ImporteIVA", iva);
         pars.put("ImporteTotalIVA", totalIva);
         pars.put("EURO","€");
@@ -379,7 +379,7 @@ public class CSLanzarFacturaProveedor
         }
         else
         {
-            String query="INSERT INTO fr_factura_proveedor (fr_num,fr_fecha_desde,fr_fecha_hasta,cl_id, " +
+            String query="INSERT INTO fr_factura_proveedor (fr_num,fr_fecha_desde,fr_fecha_hasta,pr_id, " +
                     "fr_fecha_pago, fr_pagado) VALUES (";
             query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0')";
 
@@ -394,7 +394,7 @@ public class CSLanzarFacturaProveedor
              else
              {
                  BeanCorreoCliente mail=new BeanCorreoCliente();
-                 JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail);
+                 JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail,1);
                  CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Albaran Proveedor", true, false, false, true );
                  CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
                  CSDesktop.NuevaFactura.pack();
