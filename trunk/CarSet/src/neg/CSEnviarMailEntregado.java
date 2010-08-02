@@ -94,8 +94,8 @@ public class CSEnviarMailEntregado
             // Propiedades de la conexión
             Properties props = new Properties();
             props.put("mail.transport.protocol","smtp");
-            //props.put("mail.smtp.host", "smtp.e.telefonica.net");
-            props.put("mail.smtp.host", "10.25.11.32");
+            props.put("mail.smtp.host", "smtp.e.telefonica.net");
+            //props.put("mail.smtp.host", "10.25.11.32");
             //props.put("mail.smtp.starttls.enable", "false");
             props.put("mail.smtp.port", "2525");
             props.put("mail.smtp.auth", "true");
