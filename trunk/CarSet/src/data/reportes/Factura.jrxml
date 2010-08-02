@@ -1284,7 +1284,7 @@
 				<text><![CDATA[www.carset.es]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-5" y="-352" width="10" height="346"/>
+				<reportElement x="-5" y="-422" width="10" height="416"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
 					<font size="7"/>
 				</textElement>
