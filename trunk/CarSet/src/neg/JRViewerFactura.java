@@ -213,48 +213,48 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 	protected JRSaveContributor lastSaveContributor = null;
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(String fileName, boolean isXML,BeanCorreoCliente mail) throws JRException
+	public JRViewerFactura(String fileName, boolean isXML,BeanCorreoCliente mail,int flag) throws JRException
 	{
-		this(fileName, isXML, null,mail);
+		this(fileName, isXML, null,mail,flag);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(InputStream is, boolean isXML,BeanCorreoCliente mail) throws JRException
+	public JRViewerFactura(InputStream is, boolean isXML,BeanCorreoCliente mail,int flag) throws JRException
 	{
-		this(is, isXML, null,"",mail);
+		this(is, isXML, null,"",mail,flag);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(JasperPrint jrPrint,String nombre,BeanCorreoCliente mail)
+	public JRViewerFactura(JasperPrint jrPrint,String nombre,BeanCorreoCliente mail,int flag)
 	{
-		this(jrPrint, null,nombre,mail);
+		this(jrPrint, null,nombre,mail,flag);
 	}
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(String fileName, boolean isXML, Locale locale,BeanCorreoCliente mail) throws JRException
+	public JRViewerFactura(String fileName, boolean isXML, Locale locale,BeanCorreoCliente mail,int flag) throws JRException
 	{
-		this(fileName, isXML, locale, null,"",mail);
-	}
-
-
-	/** Creates new form JRViewer */
-	public JRViewerFactura(InputStream is, boolean isXML, Locale locale,String nombre,BeanCorreoCliente mail) throws JRException
-	{
-		this(is, isXML, locale, null,nombre,mail);
+		this(fileName, isXML, locale, null,"",mail,flag);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(JasperPrint jrPrint, Locale locale,String nombre,BeanCorreoCliente mail)
+	public JRViewerFactura(InputStream is, boolean isXML, Locale locale,String nombre,BeanCorreoCliente mail,int flag) throws JRException
 	{
-		this(jrPrint, locale, null,nombre,mail);
+		this(is, isXML, locale, null,nombre,mail,flag);
 	}
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(String fileName, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCorreoCliente mail) throws JRException
+	public JRViewerFactura(JasperPrint jrPrint, Locale locale,String nombre,BeanCorreoCliente mail,int flag)
+	{
+		this(jrPrint, locale, null,nombre,mail,flag);
+	}
+
+
+	/** Creates new form JRViewer */
+	public JRViewerFactura(String fileName, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCorreoCliente mail,int flag) throws JRException
 	{
 		initResources(locale, resBundle);
 
@@ -262,7 +262,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		setZooms();
 
-                iniciarComponentes(nombre,mail);
+                iniciarComponentes(nombre,mail,flag);
 
 		//initComponents();
 
@@ -277,7 +277,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(InputStream is, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCorreoCliente mail) throws JRException
+	public JRViewerFactura(InputStream is, boolean isXML, Locale locale, ResourceBundle resBundle,String nombre,BeanCorreoCliente mail,int flag) throws JRException
 	{
 		initResources(locale, resBundle);
 
@@ -285,7 +285,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		setZooms();
 
-                iniciarComponentes(nombre,mail);
+                iniciarComponentes(nombre,mail,flag);
 
 		//initComponents();
 
@@ -300,7 +300,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 
 	/** Creates new form JRViewer */
-	public JRViewerFactura(JasperPrint jrPrint, Locale locale, ResourceBundle resBundle,String nombre,BeanCorreoCliente mail)
+	public JRViewerFactura(JasperPrint jrPrint, Locale locale, ResourceBundle resBundle,String nombre,BeanCorreoCliente mail,int flag)
 	{
 		initResources(locale, resBundle);
 
@@ -310,7 +310,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		//initComponents();
 
-                iniciarComponentes(nombre,mail);
+                iniciarComponentes(nombre,mail,flag);
 
 		loadReport(jrPrint);
 
@@ -608,7 +608,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		return listenerCount == 0;
 	}
 
- private void iniciarComponentes(final String nombre,final BeanCorreoCliente mail) {
+ private void iniciarComponentes(final String nombre,final BeanCorreoCliente mail,int flag) {
         java.awt.GridBagConstraints gridBagConstraints;
 
         tlbToolBar = new javax.swing.JPanel();
@@ -685,56 +685,58 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
             }
         });
         tlbToolBar.add(btnPrint);
-
-        btnReload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sf/jasperreports/view/images/mail.gif"))); // NOI18N
-        btnReload.setToolTipText("Email");
-        btnReload.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        btnReload.setMaximumSize(new java.awt.Dimension(23, 23));
-        btnReload.setMinimumSize(new java.awt.Dimension(23, 23));
-        btnReload.setPreferredSize(new java.awt.Dimension(23, 23));
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadActionPerformed(evt);
-            }
+        if(flag==0)
+        {
+            btnReload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sf/jasperreports/view/images/mail.gif"))); // NOI18N
+            btnReload.setToolTipText("Email");
+            btnReload.setMargin(new java.awt.Insets(2, 2, 2, 2));
+            btnReload.setMaximumSize(new java.awt.Dimension(23, 23));
+            btnReload.setMinimumSize(new java.awt.Dimension(23, 23));
+            btnReload.setPreferredSize(new java.awt.Dimension(23, 23));
+            btnReload.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnReloadActionPerformed(evt);
+                }
            
-            private void btnReloadActionPerformed(ActionEvent evt) {
-                int seleccion = JOptionPane.showOptionDialog(
-                        JRViewerFactura.this,
-                        "¿Quieres mandar la factura por mail al cliente "+mail.getCliente()+"?",
-                        "Atención",
-                        JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,    // null para icono por defecto.
-                        new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
-                        "SI");
+                private void btnReloadActionPerformed(ActionEvent evt) {
+                    int seleccion = JOptionPane.showOptionDialog(
+                            JRViewerFactura.this,
+                            "¿Quieres mandar la factura por mail al cliente "+mail.getCliente()+"?",
+                            "Atención",
+                            JOptionPane.YES_NO_CANCEL_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,    // null para icono por defecto.
+                            new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
+                            "SI");
 
-                if (seleccion==0)
-                {
-                    try {
-                        CSLanzarFactura factura = new CSLanzarFactura();
-                     try {
-                        factura.enviarMail(mail,nombre);
-                    } catch (NoSuchProviderException ex) {
-                        Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (MessagingException ex) {
-                        Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    } catch (JRException ex) {
-                        Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                    if (seleccion==0)
+                    {
+                        try {
+                                CSLanzarFactura factura = new CSLanzarFactura();
+                            try {
+                                factura.enviarMail(mail,nombre);
+                            } catch (NoSuchProviderException ex) {
+                                Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (MessagingException ex) {
+                                Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } catch (JRException ex) {
+                            Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
-            }
 
            
 
             
            
         });
-        btnReload.setEnabled(true);
-        tlbToolBar.add(btnReload);
 
+            btnReload.setEnabled(true);
+            tlbToolBar.add(btnReload);
+        }
         pnlSep01.setMaximumSize(new java.awt.Dimension(10, 10));
         tlbToolBar.add(pnlSep01);
 

@@ -49,19 +49,20 @@ public class CSEnviarMailProveedor
         try
         {
 
-         String query="SELECT DISTINCT pe.pe_servicio_especial,pe.pe_dias_campa, pe.pe_ida_vuelta, " +
-                    "pe.fc_id,pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion," +
-                    "pe.pe_descripcion, tp.tp_tarifa,sp_suplemento,sp_entrada_campa, sp_campa FROM pe_pedidos " +
-                    "pe, pp_pedidos_proveedores pp, tp_tarifas_proveedores tp, sp_servicios_proveedores sp " +
-                    "WHERE pe.pe_num =" +mail.getNumero()+" "+
-                    "AND sp.pr_id = pp.pr_id AND tp.tp_servicio = pe.pe_servicio AND  " +
-                    "tp.pr_id = pp.pr_id AND (tp.tp_servicio_origen = pe.pe_servicio_origen " +
-                    "OR tp.tp_servicio_origen = pe.pe_servicio_destino) AND " +
-                    "(tp.tp_servicio_destino = pe.pe_servicio_destino OR " +
-                    "tp.tp_servicio_destino = pe.pe_servicio_origen) AND " +
-                    "tp.tp_soporte = pe.pe_soporte GROUP BY pe.pe_num";
-
-
+         String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino," +
+                      " pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial," +
+                      " pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula," +
+                      " pe.pe_ve_marca, pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, " +
+                      " pe.pe_suplemento, pe.pe_num_en_camion, pe.pe_descripcion, tp.tp_tarifa, sp_entrada_campa," +
+                      " sp_campa, sp_suplemento FROM pe_pedidos pe, pp_pedidos_proveedores pp, " +
+                      " tp_tarifas_proveedores tp, sp_servicios_proveedores sp " +
+                      " WHERE pe.pe_num = pp.pe_num AND sp.pr_id = pp.pr_id " +
+                      " AND tp.tp_fecha_hasta > pe.pe_fecha AND tp.tp_servicio = pe.pe_servicio " +
+                      " AND tp.pr_id = pp.pr_id " +
+                      " AND (tp.tp_servicio_origen = pe.pe_servicio_origen OR tp.tp_servicio_origen = pe.pe_servicio_destino) " +
+                      " AND (tp.tp_servicio_destino = pe.pe_servicio_destino OR tp.tp_servicio_destino = pe.pe_servicio_origen)" +
+                      " AND tp.tp_soporte = pe.pe_soporte AND pe.pe_num ="+mail.getNumero();
+            
             System.out.println(query);
 
             ResultSet rs_mail = CSDesktop.datos.select(query);
@@ -93,7 +94,7 @@ public class CSEnviarMailProveedor
            Properties props = new Properties();
             props.put("mail.transport.protocol","smtp");
             //props.put("mail.smtp.host", "smtp.e.telefonica.net");
-            props.put("mail.smtp.host", "10.25.11.32");
+            props.put("mail.smtp.host", "localhost");
             //props.put("mail.smtp.starttls.enable", "false");
             props.put("mail.smtp.port", "2525");
             props.put("mail.smtp.auth", "true");
