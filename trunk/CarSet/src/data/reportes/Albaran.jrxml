@@ -1256,7 +1256,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="143" y="6" width="262" height="14"/>
+				<reportElement x="143" y="6" width="262" height="14" forecolor="#006600"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
@@ -1277,18 +1277,18 @@
 				<text><![CDATA[San Sebastián de los Reyes. 28700 - MADRID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="145" y="48" width="262" height="14"/>
+				<reportElement x="145" y="48" width="262" height="14" forecolor="#006600"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[CIF. B-85750727 ]]></text>
+				<text><![CDATA[www.carset.es]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="-5" y="-352" width="10" height="346"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[Inscrito en el Registro Mercantil de Madrid: Tomo 27012, Libro 0, Folio 40, Seccion 8ª, Hoja: M486669]]></text>
+				<text><![CDATA[Inscrito en el Registro Mercantil de Madrid: Tomo 27012, Libro 0, Folio 40, Seccion 8ª, Hoja: M486669.CIF. B-85750727 ]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
