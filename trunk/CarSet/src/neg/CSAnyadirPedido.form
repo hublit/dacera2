@@ -1757,7 +1757,7 @@
             <StringItem index="6" value="Mano obra Mec&#xe1;nica/Chapa"/>
             <StringItem index="7" value="Chequeo"/>
             <StringItem index="8" value="Repostaje"/>
-            <StringItem index="9" value=" "/>
+            <StringItem index="9" value=""/>
             <StringItem index="10" value="LAVADO DOMICILIO"/>
             <StringItem index="11" value="LD Exterior"/>
             <StringItem index="12" value="LD Interior y Exterior"/>
@@ -1766,7 +1766,7 @@
             <StringItem index="15" value="LD Integral 4x4"/>
             <StringItem index="16" value="LD Interior/Exterior Industrial"/>
             <StringItem index="17" value="LD Integral Industrial"/>
-            <StringItem index="18" value=" "/>
+            <StringItem index="18" value=""/>
             <StringItem index="19" value="LAVADO CAMPA"/>
             <StringItem index="20" value="LC Exterior"/>
             <StringItem index="21" value="LC Interior y Exterior"/>
@@ -1775,7 +1775,7 @@
             <StringItem index="24" value="LC Integral 4x4"/>
             <StringItem index="25" value="LC Interior/Exterior Industrial"/>
             <StringItem index="26" value="LC Integral Industrial"/>
-            <StringItem index="27" value=" "/>
+            <StringItem index="27" value=""/>
             <StringItem index="28" value="Desrotular pegatinas f&#xe1;cil"/>
             <StringItem index="29" value="Desrotular pegatinas normal"/>
             <StringItem index="30" value="Desrotular pegatinas dif&#xed;cil"/>
