@@ -95,12 +95,10 @@ public class CSEnviarMailEntregado
             Properties props = new Properties();
             props.put("mail.transport.protocol","smtp");
             props.put("mail.smtp.host", "smtp.e.telefonica.net");
-            //props.put("mail.smtp.host", "10.25.11.32");
+            //props.put("mail.smtp.host", "localhost");
             //props.put("mail.smtp.starttls.enable", "false");
             props.put("mail.smtp.port", "2525");
             props.put("mail.smtp.auth", "true");
-            //props.put("mail.smtp.user", "raul.cortes@grupoaldebaran.com");
-            //props.put("mail.smtp.password","aldebaran");
 
             SMTPAuthenticator auth = new SMTPAuthenticator();
             Session mailSession = Session.getDefaultInstance(props, auth);
@@ -115,7 +113,7 @@ public class CSEnviarMailEntregado
                 new InternetAddress(email));*/
              message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("cdecruz@yahoo.es"));
+                new InternetAddress("rsanchez@carset.es"));
             message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
 
