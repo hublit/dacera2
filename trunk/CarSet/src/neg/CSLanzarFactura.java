@@ -554,7 +554,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 new InternetAddress(email));*/
              message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("rsanchez@carset.es"));
+                new InternetAddress("raulcr@gmail.com"));
             message.setSubject("CarSet - Factura: " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
            
