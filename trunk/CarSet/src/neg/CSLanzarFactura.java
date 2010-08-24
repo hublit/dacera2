@@ -518,8 +518,12 @@ public class CSLanzarFactura extends javax.swing.JPanel
    */
   
 
-    public void enviarMail(BeanCorreoCliente mail,String nombre) throws JRException, NoSuchProviderException, MessagingException, SQLException
+    public void enviarMail(BeanCorreoCliente mail,String nombre)
     {
+
+            try {
+                try {
+                    try {
 
             String queryContacto="SELECT * FROM CC_CONTACTOS_CLIENTE WHERE CL_ID="+mail.getClienteID()+" LIMIT 1";
             ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
@@ -539,7 +543,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
             props.put("mail.smtp.host", "smtp.e.telefonica.net");
             //props.put("mail.smtp.host", "localhost");
             //props.put("mail.smtp.starttls.enable", "false");
-            props.put("mail.smtp.port", "2525");
+            props.put("mail.smtp.port", "25");
             props.put("mail.smtp.auth", "true");
             
 
@@ -664,6 +668,25 @@ public class CSLanzarFactura extends javax.swing.JPanel
             JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail ha sido enviado correctamente.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,mensaje);
 
+
+        }catch (NoSuchProviderException e)
+            {
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail no ha podido ser enviado.</FONT></HTML>");
+                JOptionPane.showMessageDialog(null,mensaje);
+                e.printStackTrace();
+            }
+        }catch (MessagingException e1)
+            {
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail no ha podido ser enviado.</FONT></HTML>");
+                JOptionPane.showMessageDialog(null,mensaje);
+                e1.printStackTrace();
+            }
+        }catch (SQLException e2)
+            {
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail no ha podido ser enviado.</FONT></HTML>");
+                JOptionPane.showMessageDialog(null,mensaje);
+                e2.printStackTrace();
+            }
 
     }
 
