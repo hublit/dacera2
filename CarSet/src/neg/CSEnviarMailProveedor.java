@@ -82,6 +82,9 @@ public class CSEnviarMailProveedor
                 mail.setCampa(rs_mail.getString("sp_campa"));
                 mail.setSuplemento(rs_mail.getString("pe_suplemento"));
             }
+
+            if(rs_mail != null)
+            {
             String queryContacto="SELECT * FROM CP_CONTACTOS_PROVEEDOR WHERE CP_ID="+mail.getClienteID()+" LIMIT 1";
             ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
 
@@ -96,7 +99,7 @@ public class CSEnviarMailProveedor
             props.put("mail.smtp.host", "smtp.e.telefonica.net");
             //props.put("mail.smtp.host", "localhost");
             //props.put("mail.smtp.starttls.enable", "false");
-            props.put("mail.smtp.port", "2525");
+            props.put("mail.smtp.port", "25");
             props.put("mail.smtp.auth", "true");
             
 
@@ -318,9 +321,17 @@ public class CSEnviarMailProveedor
 
             JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail ha sido enviado correctamente.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,mensaje);
+             }
+            else
+            {
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>No existen datos para enviar el mail.</FONT></HTML>");
+                JOptionPane.showMessageDialog(null,mensaje);
+            }
         }
         catch (Exception e)
         {
+            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail no ha podido ser enviado.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,mensaje);
             e.printStackTrace();
         }
     }
