@@ -631,10 +631,10 @@ public class CSBuscarPedido extends javax.swing.JPanel
         boolean where = false;
         String query = "SELECT * FROM pe_pedidos pe ";
 
-        if (numero.equals("") && cliente.equals("") && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
+        if (numero.equals("") && cliente.equals("") && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("") && matricula.equals("")))
         {
             jButtonBuscar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar el número de pedido, un Cliente, un Proveedor o período de fecha</FONT></HTML>");
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar el número de pedido, un Cliente, un Proveedor, período de fecha o matrícula</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonBuscar.setEnabled(true);
             //query = query + " WHERE ";
@@ -698,6 +698,20 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 query = query + " pe_num = "+numeroN;
             }
 
+            if (!matricula.equals(""))
+            {
+                 if (!where)
+                 {
+                     query = query + " WHERE";
+                 }
+                 else
+                 {
+                     query = query + " AND";
+                 }
+
+                query = query + " pe_ve_matricula like '%"+matricula+"%'";
+            }
+
             if (!direccionOrigen.equals(""))
             {
                 query = query + " AND pe_direccion_origen='"+direccionOrigen+"'";
@@ -746,10 +760,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
             {
                 query = query + " AND fc_id='"+factor+"'";
             }
-            if (!matricula.equals(""))
-            {
-                query = query + " AND pe_matricula='"+matricula+"'";
-            }
+
             if (estado.equals(""))
             {
                 query = query + " AND pe_estado='"+estado+"'";

@@ -1386,6 +1386,12 @@ public class CSEditarPedido extends javax.swing.JPanel
         boolean cerrado = new Boolean(jCheckBoxCerrado.isSelected());
         String diasCampa = new String(jTextDiasCampa.getText());
         String numEnCamion = new String(jTextNumCamion.getText());
+
+        if (numEnCamion.equals(""))
+        {
+            numEnCamion = "0";
+        }
+        
         if(!diasCampa.equals(""))
         {
             diasCampaN=Integer.valueOf(diasCampa).intValue();
