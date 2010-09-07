@@ -1372,6 +1372,11 @@ public class CSAnyadirPedido extends JPanel
         String suplemento=new String(jTextSuplemento.getText().toString());
         String numEnCamion = new String(jTextNumCamion.getText());
 
+        if (numEnCamion.equals(""))
+        {
+            numEnCamion = "0";
+        }
+
         if(!suplemento.equals(""))
         {
             suplementoN=Double.valueOf(suplemento).doubleValue();
