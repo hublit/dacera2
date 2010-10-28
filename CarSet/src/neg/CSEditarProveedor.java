@@ -987,21 +987,21 @@ public class CSEditarProveedor extends javax.swing.JPanel
         if (JOptionPane.OK_OPTION == confirmado)
         {
             int pr_id = Integer.parseInt(jTextNumero.getText());
-            //String query="DELETE from pr_proveedores where pr_id="+pr_id;
-            String query = "UPDATE pr_proveedores SET pr_estado='Inactivo' where pr_id='"+pr_id+"'";
+            String query="DELETE from pr_proveedores where pr_id="+pr_id;
+            //String query = "UPDATE pr_proveedores SET pr_estado='Inactivo' where pr_id='"+pr_id+"'";
 
             boolean rs = CSDesktop.datos.manipuladorDatos(query);
              if(rs)
              {
                     jButtonModificar.setEnabled(false);
-                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al borrar el proveedor de la base de datos</FONT></HTML>");
                     JOptionPane.showMessageDialog(null,errorFields);
                     jButtonModificar.setEnabled(true);
             }
             else
             {
                     jButtonModificar.setEnabled(false);
-                    JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han borrado correctamente.</FONT></HTML>");
+                    JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El proveedor ha sido borrado correctamente.</FONT></HTML>");
                     JOptionPane.showMessageDialog(null,mensaje);
                     jButtonModificar.setEnabled(true);
                     CSDesktop.EditarProveedor.dispose();
