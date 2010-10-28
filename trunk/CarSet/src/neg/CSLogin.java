@@ -224,7 +224,7 @@ public class CSLogin extends JFrame
                 try
                 {                  
                     this.setVisible(false);
-                    CSDesktop ventana = new CSDesktop();
+                    CSDesktop ventana = new CSDesktop(usuario);
                    ventana.addWindowListener( new WindowAdapter() {
                       public void windowClosing( WindowEvent evt ) {
                         confirmarCierre();

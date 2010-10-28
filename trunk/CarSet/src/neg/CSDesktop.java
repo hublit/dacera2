@@ -25,6 +25,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import utils.*;
 import data.DbConnection;
+import javax.print.DocFlavor.STRING;
 
 public class CSDesktop extends JFrame
 {
@@ -67,6 +68,7 @@ public class CSDesktop extends JFrame
   public static JInternalFrame NuevoInformeDetallado1;
   public static JInternalFrame NuevoInformeDetallado2;
   public static JInternalFrame NuevoAlbaran;
+  public static JInternalFrame ValidacionPedidos;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
   public static JMenu menuPedidos;
@@ -74,6 +76,7 @@ public class CSDesktop extends JFrame
   public static JMenu menuFactura;
   public static JMenu menuInforme;
   public static JMenu menuAyuda;
+  public static JMenu menuTesoreria;
   public static JMenuBar barra;
   public static JMenuItem menuNuevoCliente;
   public static JMenuItem menuBuscarCliente;
@@ -91,10 +94,13 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuInformeDetallado2;
   public static JMenuItem menuInformeProveedor2;
   public static JMenuItem menuInformeProveedor1;
+  public static JMenuItem menuTesoreriaValidacion;
+  public static JMenuItem menuTesoreriaCliente;
+  public static JMenuItem menuTesoreriaProveedor;
 
   public static DbConnection datos;
   
-  public  CSDesktop() throws UnknownHostException
+  public  CSDesktop(String usuario) throws UnknownHostException
   {
 
       datos=new DbConnection();
@@ -117,6 +123,7 @@ public class CSDesktop extends JFrame
       menuTarifa = new JMenu( "Tarifas" );
       menuFactura = new JMenu( "Facturas" );
       menuInforme = new JMenu("Informes");
+      menuTesoreria = new JMenu("Tesorería");
       menuAyuda = new JMenu( "Ayuda" );
 
       //MENU DE CLIENTES
@@ -577,6 +584,33 @@ public class CSDesktop extends JFrame
             }
          });
 
+      //Tesorería
+      menuTesoreria.setMnemonic( 'E' );
+
+      menuTesoreriaValidacion = new JMenuItem( "Validación de Pedidos" );
+      menuTesoreriaValidacion.setMnemonic( 'v' );
+      menuTesoreria.add( menuTesoreriaValidacion );
+      menuTesoreriaValidacion.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               ValidacionPedidos = new JInternalFrame("Validación de Pedidos", true,false,false,true );
+               CSValidarPedido panel = null;
+
+               panel = new CSValidarPedido();
+
+               ValidacionPedidos.getContentPane().add( panel,BorderLayout.CENTER);
+               ValidacionPedidos.pack();
+               elEscritorio.add( ValidacionPedidos );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = ValidacionPedidos.getSize();
+               ValidacionPedidos.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               ValidacionPedidos.setVisible( true );
+            }
+         });
+
+
       menuAyuda.setMnemonic( 'A' );
 
       //establecer elemento de men� Acerca de...
@@ -608,7 +642,11 @@ public class CSDesktop extends JFrame
       barra.add( menuTarifa );
       barra.add( menuFactura );
       barra.add( menuInforme );
-      barra.add( menuAyuda );
+      if (usuario.equals("4"))
+      {
+        barra.add( menuTesoreria );
+      }
+        barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
       Dimension ventana = this.getSize();
