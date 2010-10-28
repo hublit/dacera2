@@ -13,6 +13,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -286,7 +287,12 @@ public class CSInformeDet2 extends javax.swing.JPanel
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                 DbConnection conexion=new DbConnection();
+                 DbConnection conexion = null;
+            try {
+                conexion = new DbConnection();
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSInformeDet2.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 con=(Connection) conexion.getConexion();
                 //1-Compilamos el archivo XML y lo cargamos en memoria
                 jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/InformeDet2.jrxml"));

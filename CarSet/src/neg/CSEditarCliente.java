@@ -5,6 +5,7 @@
  */
 package neg;
 
+import java.net.UnknownHostException;
 import utils.Utilidades;
 import utils.TablaModelo;
 import utils.LimitadorDeDocumento;
@@ -977,8 +978,12 @@ public class CSEditarCliente extends javax.swing.JPanel
                 } else {
                     if (jCheckIncremento.isSelected()) {
                         String incremento = new String(jTextIncremento.getText());
-                        //Asignamos el incremento a todas las tarifas del cliente
-                        incrementarTarifas(numero, incremento);
+                        try {
+                            //Asignamos el incremento a todas las tarifas del cliente
+                            incrementarTarifas(numero, incremento);
+                        } catch (UnknownHostException ex) {
+                            Logger.getLogger(CSEditarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                     jButtonModificar.setEnabled(false);
                     JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
@@ -1384,7 +1389,7 @@ public class CSEditarCliente extends javax.swing.JPanel
      * @param cliente
      * @param incremento
      */
-    public void incrementarTarifas(String cliente, String incremento)
+    public void incrementarTarifas(String cliente, String incremento) throws UnknownHostException
     {
         String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = '"+cliente+"' AND tc_fecha_hasta = '2050-01-01'";
 

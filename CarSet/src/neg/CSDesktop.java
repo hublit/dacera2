@@ -9,6 +9,7 @@ package neg;
  * Se utilizan botones del tipo creados en el ejemplo java1410, los 
  * cuales indican con im�genes su estado
  */
+import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.awt.*;
 import java.awt.event.*;
@@ -91,11 +92,12 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuInformeProveedor2;
   public static JMenuItem menuInformeProveedor1;
 
-  public static DbConnection datos = new DbConnection();
+  public static DbConnection datos;
   
-  public  CSDesktop()
+  public  CSDesktop() throws UnknownHostException
   {
 
+      datos=new DbConnection();
       /*setDefaultCloseOperation(CSDesktop.DO_NOTHING_ON_CLOSE);
       addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent we) {

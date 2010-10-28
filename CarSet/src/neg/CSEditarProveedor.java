@@ -5,6 +5,7 @@
  */
 
 package neg;
+import java.net.UnknownHostException;
 import utils.Utilidades;
 import utils.TablaModelo;
 import utils.LimitadorDeDocumento;
@@ -955,8 +956,12 @@ public class CSEditarProveedor extends javax.swing.JPanel
                 if (jCheckIncremento.isSelected())
                 {
                     String incremento = new String(jTextIncremento.getText());
-                    //Asignamos el incremento a todas las tarifas del cliente
-                    incrementarTarifas(numero, incremento);
+                    try {
+                        //Asignamos el incremento a todas las tarifas del cliente
+                        incrementarTarifas(numero, incremento);
+                    } catch (UnknownHostException ex) {
+                        Logger.getLogger(CSEditarProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
 
                 jButtonModificar.setEnabled(false);
@@ -1401,7 +1406,7 @@ public class CSEditarProveedor extends javax.swing.JPanel
      * @param proveedor
      * @param incremento
      */
-    public void incrementarTarifas(String proveedor, String incremento)
+    public void incrementarTarifas(String proveedor, String incremento) throws UnknownHostException
     {
         String query = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = '"+proveedor+"' AND tp_fecha_hasta = '2050-01-01'";
 

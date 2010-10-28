@@ -11,6 +11,7 @@
 
 package neg;
 
+import java.net.UnknownHostException;
 import utils.LimitadorDeDocumento;
 import data.DbConnection;
 import data.Proveedor;
@@ -1026,7 +1027,11 @@ public class CSAnyadirProveedor extends JPanel
                                                         "'"+numCuenta+"','"+estado+"', '"+diaFactura+"')";
 
                 System.out.println(query);
+            try {
                 CSDesktop.datos = new DbConnection();
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSAnyadirProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 boolean rs = CSDesktop.datos.manipuladorDatos(query);
                 System.out.println(rs);
                 if(rs)
@@ -1065,12 +1070,19 @@ public class CSAnyadirProveedor extends JPanel
                         } catch (SQLException ex) {
                             Logger.getLogger(CSAnyadirProveedor.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
+                try {
                     //Controlar posible error
                     //Creamos las tarifas de la plantilla
                     crearTarifasProveedor(pr_id);
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(CSAnyadirProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
                     //Creamos los servicios de la plantilla
                     crearServiciosProveedor(pr_id);
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(CSAnyadirProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                     jButtonGuardar.setEnabled(false);
                     JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
@@ -1297,7 +1309,7 @@ public class CSAnyadirProveedor extends JPanel
      * Insertar las tarifas del proveedor desde el proveedor de plantilla
      * @param proveedor
      */
-    public void crearTarifasProveedor(String idProveedor)
+    public void crearTarifasProveedor(String idProveedor) throws UnknownHostException
     {
         String query = "SELECT * FROM tp_tarifas_proveedores WHERE pr_id = 1";
 
@@ -1348,7 +1360,7 @@ public class CSAnyadirProveedor extends JPanel
      * Insertar los servicios especiales del proveedor desde el proveedor de plantilla
      * @param proveedor
      */
-    public void crearServiciosProveedor(String idProveedor)
+    public void crearServiciosProveedor(String idProveedor) throws UnknownHostException
     {
         String query = "SELECT * FROM sp_servicios_proveedores WHERE pr_id = 1";
 

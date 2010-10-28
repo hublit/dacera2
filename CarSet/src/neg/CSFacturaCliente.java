@@ -13,6 +13,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -239,7 +240,11 @@ public class CSFacturaCliente extends JPanel
             {
                 Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-            LanzarFactura(numero+1);
+            try {
+                LanzarFactura(numero + 1);
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }       
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
@@ -264,7 +269,11 @@ public class CSFacturaCliente extends JPanel
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrevActionPerformed
-       LanzarFactura(0);
+        try {
+            LanzarFactura(0);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonPrevActionPerformed
 
  public Dimension getPreferredSize()
@@ -297,7 +306,7 @@ public class CSFacturaCliente extends JPanel
          jButtonGenerar.setEnabled(true);
     }
 
-    private void LanzarFactura(int numero)
+    private void LanzarFactura(int numero) throws UnknownHostException
     {
         ArrayList pedidos=new ArrayList();
         int clienteID = 0;
