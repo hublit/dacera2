@@ -851,21 +851,21 @@ public class CSEditarCliente extends javax.swing.JPanel
 
         if (JOptionPane.OK_OPTION == confirmado) {
             int cl_id=Integer.parseInt(jTextNumero.getText());
-            //String query="DELETE from cl_clientes where cl_id="+cl_id;
-            String query="UPDATE cl_clientes SET cl_estado='Inactivo' where cl_id='"+cl_id+"'";
+            String query = "DELETE from cl_clientes where cl_id="+cl_id;
+            //String query="UPDATE cl_clientes SET cl_estado='Inactivo' where cl_id='"+cl_id+"'";
 
             boolean rs = CSDesktop.datos.manipuladorDatos(query);
             if(rs)
             {
                 jButtonModificar.setEnabled(false);
-                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al borrar el cliente de la base de datos</FONT></HTML>");
                 JOptionPane.showMessageDialog(null,errorFields);
                 jButtonModificar.setEnabled(true);
             } 
             else
             {
                 jButtonModificar.setEnabled(false);
-                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han borrado correctamente.</FONT></HTML>");
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El cliente ha sido borrado correctamente.</FONT></HTML>");
                 JOptionPane.showMessageDialog(null,mensaje);
                 jButtonModificar.setEnabled(true);
                 CSDesktop.EditarCliente.dispose();
