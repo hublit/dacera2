@@ -3,6 +3,7 @@ package neg;
 //import con_reportes.presentacion;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ public class CSLanzarInforme1
     /**
      * @param args the command line arguments
      */ 
-    public void lanzar(ArrayList lista, int clienteID,String cliente,int mes, int anyo) throws ClassNotFoundException, SQLException, JRException, ParseException
+    public void lanzar(ArrayList lista, int clienteID,String cliente,int mes, int anyo) throws ClassNotFoundException, SQLException, JRException, ParseException, UnknownHostException
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fi_informe_aux";

@@ -8,6 +8,7 @@ package neg;
 
 import data.Cliente;
 import java.io.UnsupportedEncodingException;
+import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import utils.Utilidades;
@@ -1069,9 +1070,19 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
                     //Controlar posible error
                     //Creamos las tarifas de la plantilla
-                    boolean tarifas=crearTarifasCliente(cl_id);
+                    boolean tarifas = false;
+                try {
+                    tarifas = crearTarifasCliente(cl_id);
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(CSAnyadirCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     //Creamos los servicios de la plantilla
-                    boolean servicios=crearServiciosCliente(cl_id);
+                    boolean servicios = false;
+                try {
+                    servicios = crearServiciosCliente(cl_id);
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(CSAnyadirCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                     if(tarifas && servicios)
                     {
@@ -1330,7 +1341,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
      * Insertar las tarifas del cliente desde el cliente de plantilla
      * @param cliente
      */
-    public boolean crearTarifasCliente(String idCliente)
+    public boolean crearTarifasCliente(String idCliente) throws UnknownHostException
     {
         boolean tarifaOK=true;
         String query = "SELECT * FROM tc_tarifas_clientes WHERE cl_id = 1";
@@ -1388,7 +1399,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
      * Insertar los servicios especiales del cliente desde el cliente de plantilla
      * @param cliente
      */
-    public boolean crearServiciosCliente(String idCliente)
+    public boolean crearServiciosCliente(String idCliente) throws UnknownHostException
     {
         boolean servicioOK=true;
         String query = "SELECT * FROM sc_servicios_clientes WHERE cl_id = 1";

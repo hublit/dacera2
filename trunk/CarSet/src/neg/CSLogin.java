@@ -9,6 +9,7 @@ import data.DbConnection;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -61,7 +62,11 @@ public class CSLogin extends JFrame
                {
                     try
                     {
-                        jButton1_actionPerformed(null);
+                        try {
+                            jButton1_actionPerformed(null);
+                        } catch (UnknownHostException ex) {
+                            Logger.getLogger(CSLogin.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                     catch (SQLException ex)
                     {
@@ -118,7 +123,11 @@ public class CSLogin extends JFrame
         {
             try
             {
-                jButton1_actionPerformed(e);
+                    try {
+                        jButton1_actionPerformed(e);
+                    } catch (UnknownHostException ex) {
+                        Logger.getLogger(CSLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
             }
             catch (SQLException ex)
             {
@@ -168,7 +177,7 @@ public class CSLogin extends JFrame
     private void jPasswordField1_actionPerformed(ActionEvent e)
     {
     }
-    public void jButton1_actionPerformed(ActionEvent e) throws SQLException
+    public void jButton1_actionPerformed(ActionEvent e) throws SQLException, UnknownHostException
     {
         System.out.println("\njButton1_actionPerformed(ActionEvent e) called.");
         String username = new String(jTextField1.getText());

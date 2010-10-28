@@ -12,6 +12,7 @@ import data.Proveedor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
+import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -299,7 +300,11 @@ public class CSInformeDetPr1 extends javax.swing.JPanel
             }
             try {
                 CSLanzarInformePr1 informe1 = new CSLanzarInformePr1();
-                informe1.lanzar(lista, proveedorID, proveedor, mes, anyo);
+                try {
+                    informe1.lanzar(lista, proveedorID, proveedor, mes, anyo);
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(CSInformeDetPr1.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

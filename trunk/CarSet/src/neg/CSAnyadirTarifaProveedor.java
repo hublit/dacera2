@@ -11,6 +11,7 @@
 
 package neg;
 
+import java.net.UnknownHostException;
 import java.text.ParseException;
 import utils.Utilidades;
 import data.DbConnection;
@@ -645,7 +646,12 @@ public class CSAnyadirTarifaProveedor extends JPanel
         String tp_id="";
 
         try {
-            DbConnection da = new DbConnection();
+            DbConnection da = null;
+            try {
+                da = new DbConnection();
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSAnyadirTarifaProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
             while (rs.next())
             {
                 boolean rsUp = true;

@@ -710,21 +710,9 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
                             "SI");
 
                     if (seleccion==0)
-                    {
-                        try {
-                                CSLanzarFactura factura = new CSLanzarFactura();
-                            try {
-                                factura.enviarMail(mail,nombre);
-                            } catch (NoSuchProviderException ex) {
-                                Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                            } catch (MessagingException ex) {
-                                Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        } catch (JRException ex) {
-                            Logger.getLogger(JRViewerFactura.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    {                        
+                        CSLanzarFactura factura = new CSLanzarFactura();                           
+                        factura.enviarMail(mail,nombre);                                                   
                     }
                 }
 

@@ -3,6 +3,7 @@ package neg;
 //import con_reportes.presentacion;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.net.UnknownHostException;
 import java.sql.Connection; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,7 +59,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
      * @param args the command line arguments 
      */ 
     //public static void lanzar(String query,String fechaFactura,BeanCliente beanCliente,int flag) throws ClassNotFoundException, SQLException {
-    public void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin,ArrayList pedidos) throws ClassNotFoundException, SQLException, JRException
+    public void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin,ArrayList pedidos) throws ClassNotFoundException, SQLException, JRException, UnknownHostException
     {
      //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
      String queryDel = "DELETE FROM fa_facturas_aux";
@@ -558,7 +559,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 new InternetAddress(email));*/
              message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("raulcr@gmail.com"));
+                new InternetAddress("carset@carset.es"));
             message.setSubject("CarSet - Factura: " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
            
