@@ -9,13 +9,9 @@
 */
 package data;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,28 +29,38 @@ public class DbConnection
 * El método constructor inicializa las dos variables de clase, conexion y
 * statement.
 */
-	public DbConnection()
+	public DbConnection() throws UnknownHostException
 	{
                 String db = "carset";
                 String user = "root";
                 String pass = "rcortes";
-            
-            String IPReal="";
-        /*try {
+                String url="";
+                String IPReal="";
+
+        try {
             @SuppressWarnings("static-access")
-            InetAddress direccion = InetAddress.getLocalHost().getByName("luis1");
-            //InetAddress direccion = InetAddress.getLocalHost().getByName("W5602969");
+            //InetAddress direccion = InetAddress.getLocalHost().getByName("luis1");
+            InetAddress direccion = InetAddress.getLocalHost().getByName("W5602969");
             IPReal=direccion.getHostAddress();                        
         } catch (UnknownHostException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
             System.exit(0);
-        }*/
-        System.out.println(IPReal);
+        }
+       
+        if(System.getenv("COMPUTERNAME").equals("luis1"))
+        {
 
 		//Ruta de conexion. Conecta al server especificado y la Base de datos
-		String url = "jdbc:mysql://localhost/"+db;
+                System.out.println(InetAddress.getLocalHost().toString());
+		url = "jdbc:mysql://localhost/"+db;
                 //String url = "jdbc:mysql://10.25.11.22/"+db;
                 //String url = "jdbc:mysql://"+IPReal+":3306/"+db;
+        }
+        else
+        {           
+                //url = "jdbc:mysql://"+IPReal+":3306/"+db;
+                url = "jdbc:mysql://localhost/"+db;
+        }
 	try
 	{
             //Instanciación del conextor jdbc
