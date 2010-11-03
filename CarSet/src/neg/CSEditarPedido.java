@@ -1262,21 +1262,22 @@ public class CSEditarPedido extends javax.swing.JPanel
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
-        int cerradoN=0;
-        int idaVueltaN=0;
-        int diasCampaN=0;
-        String fecha2="";
-        String fechaOrigen="";
-        String fechaDestino="";
-        String fechaRealDestino="";
-        double solredN=0;
-        double viajeN=0;
-        double taescliN=0;
-        double taesproN=0;
+        int cerradoN = 0;
+        int idaVueltaN = 0;
+        int diasCampaN = 0;
+        String fecha2 = "";
+        String fechaOrigen = "";
+        String fechaDestino = "";
+        String fechaRealDestino = "";
+        double solredN = 0;
+        double viajeN = 0;
+        double taescliN = 0;
+        double taesproN = 0;
         double suplementoN = 0;
-        int proveedorID=0;
-        String fechaEntrega="";
-        String fechaRecogida="";
+        int clienteID = 0;
+        int proveedorID = 0;
+        String fechaEntrega = "";
+        String fechaRecogida = "";
 
         String numero = new String(jTextNumero.getText());
        
@@ -1549,21 +1550,33 @@ public class CSEditarPedido extends javax.swing.JPanel
                 }
                 else
                 {
+                    Cliente cliente2 = new Cliente();
+                    clienteID = cliente2.getClienteID(cliente);
+
+                    String queryCli = "UPDATE pc_pedidos_clientes set cl_id= '"+clienteID+"' WHERE pe_num = "+numero+"";
+                    boolean rsCli = CSDesktop.datos.manipuladorDatos(queryCli);
+                    if(rsCli)
+                    {
+                        jButtonModificar.setEnabled(false);
+                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                        jButtonModificar.setEnabled(true);
+                    }
+
                     Proveedor proveedor2=new Proveedor();
                     proveedorID=proveedor2.getProveedorID(proveedor);
 
-                     String queryCon = "UPDATE pp_pedidos_proveedores set pr_id= '"+proveedorID+"' WHERE pe_num = "+numero+"";
-                     boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
-                                if(rsCon)
-                                {
-                                    jButtonModificar.setEnabled(false);
-                                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-                                    JOptionPane.showMessageDialog(null,errorFields);
-                                    jButtonModificar.setEnabled(true);
-                                }
+                    String queryCon = "UPDATE pp_pedidos_proveedores set pr_id= '"+proveedorID+"' WHERE pe_num = "+numero+"";
+                    boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
+                    if(rsCon)
+                    {
+                        jButtonModificar.setEnabled(false);
+                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                        jButtonModificar.setEnabled(true);
+                    }
 
                     //Se manda el mail de confirmacion
-                                        //Se manda el mail de confirmacion
                     if (estado.equals("En Proceso") || (estado.equals("Entregado")))
                     {
                         int seleccion = JOptionPane.showOptionDialog(

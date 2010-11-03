@@ -395,7 +395,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel
 
             if (numero!=-1)
             {
-                query = query + " WHERE pr_num = "+numero;
+                query = query + " WHERE pr_id = "+numero;
                 and = true;
             }
              if (!nombre.equals(""))
