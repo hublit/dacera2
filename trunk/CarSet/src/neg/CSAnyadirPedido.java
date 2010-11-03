@@ -1959,7 +1959,7 @@ public class CSAnyadirPedido extends JPanel
        LimitadorDeDocumento limitadorTelefonoDestino= new LimitadorDeDocumento(15);
        jTextTelefonoDestino.setDocument(limitadorTelefonoDestino);
 
-       LimitadorDeDocumento limitadorMatricula= new LimitadorDeDocumento(10);
+       LimitadorDeDocumento limitadorMatricula= new LimitadorDeDocumento(15);
        jTextMatricula.setDocument(limitadorMatricula);
        LimitadorDeDocumento limitadorMarca= new LimitadorDeDocumento(30);
        jTextMarca.setDocument(limitadorMarca);
