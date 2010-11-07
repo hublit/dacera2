@@ -67,7 +67,7 @@ public class CSValidarPedido extends JPanel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonGenerar = new javax.swing.JButton();
+        jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         jToggleButtonProveedor = new javax.swing.JToggleButton();
@@ -84,12 +84,11 @@ public class CSValidarPedido extends JPanel
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 
-        jButtonGenerar.setText("Buscar");
-        jButtonGenerar.setActionCommand("Buscar");
-        jButtonGenerar.setName("jButtonGenerar"); // NOI18N
-        jButtonGenerar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.setName("jButtonBuscar"); // NOI18N
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGenerarActionPerformed(evt);
+                jButtonBuscarActionPerformed(evt);
             }
         });
 
@@ -136,7 +135,7 @@ public class CSValidarPedido extends JPanel
         jDateFechaFin.setDateFormatString("dd-MM-yyyy"); // NOI18N
         jDateFechaFin.setName("jDateFechaFin"); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
         jLabel1.setText("VALIDAR PEDIDOS");
         jLabel1.setName("jLabel1"); // NOI18N
@@ -156,7 +155,7 @@ public class CSValidarPedido extends JPanel
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
                 .addGap(357, 357, 357)
-                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(341, 341, 341))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
@@ -208,42 +207,60 @@ public class CSValidarPedido extends JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonGenerar)
+                .addComponent(jButtonBuscar)
                 .addGap(31, 31, 31)
                 .addComponent(jButtonCancelar)
                 .addGap(28, 28, 28))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
-        int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres generar la Factura y un nuevo numero?");
+        System.out.println("\nBotón Buscar Pedidos en Validar Pedido.");
 
-        if (JOptionPane.OK_OPTION == confirmado)
+        String fechaI="";
+        String fechaF="";
+
+        Calendar fechaCalendar = jDateFecha.getCalendar();
+        //String fecha = ConvertirFechaString(fechaCalendar);
+        if (fechaCalendar!=null)
         {
-        int numero = 0;
-        String query = "Select max(fr_id) from fr_factura_proveedor";
-        ResultSet rs = CSDesktop.datos.select(query);
-        try
-        {
-            while (rs.next())
-            {
-                numero =Integer.valueOf(rs.getInt("max(fr_id)"));
-    
-            }
-        } 
-        catch (SQLException ex)
-        {
-            Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            Date fecha = fechaCalendar.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaI=formatoDeFecha.format(fecha);
         }
-            try {
-                LanzarFactura(numero + 1);
-            } catch (UnknownHostException ex) {
-                Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+        fechaCalendar = jDateFechaFin.getCalendar();
+        //String fecha = ConvertirFechaString(fechaCalendar);
+        if (fechaCalendar!=null)
+        {
+            Date fecha = fechaCalendar.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaF=formatoDeFecha.format(fecha);
         }
-        //En este caso falta hacer el insert en la tabla de facturas
-    }//GEN-LAST:event_jButtonGenerarActionPerformed
+
+        String proveedor=new String(jTextProveedor.getText());
+
+        if (proveedor.equals("") && fechaI.equals("") && fechaF.equals(""))
+        {
+            jButtonBuscar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Proveedor y un período de fecha </FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonBuscar.setEnabled(true);
+            //query = query + " WHERE ";
+        }
+         else
+        {
+             Proveedor proveedor2 = new Proveedor();
+             int proveedorID = proveedor2.getProveedorID(proveedor);
+
+             String query = "SELECT * FROM pe_pedidos pe ";
+             query = query + " , pp_pedidos_proveedores pp WHERE "+
+                        " pe.pe_num = pp.pe_num AND pp.pr_id = "+proveedorID;
+
+              CSResultValidarPedido resultBuscarCliente = new CSResultValidarPedido(query);
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jToggleButtonProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonProveedorActionPerformed
 
@@ -271,8 +288,8 @@ public class CSValidarPedido extends JPanel
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonGenerar;
     private com.toedter.calendar.JDateChooser jDateFecha;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private javax.swing.JLabel jLabel1;
@@ -288,10 +305,10 @@ public class CSValidarPedido extends JPanel
 
     public void ValidarFormatos(String accion)
     {
-         jButtonGenerar.setEnabled(false);
+         jButtonBuscar.setEnabled(false);
          JLabel errorFields = new JLabel(accion);
          JOptionPane.showMessageDialog(null,errorFields);
-         jButtonGenerar.setEnabled(true);
+         jButtonBuscar.setEnabled(true);
     }
 
     private void LanzarFactura(int numero) throws UnknownHostException
