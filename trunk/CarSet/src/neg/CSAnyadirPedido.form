@@ -1248,7 +1248,7 @@
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="8">
             <StringItem index="0" value="Activo"/>
             <StringItem index="1" value="En Proceso"/>
             <StringItem index="2" value="Entregado"/>
@@ -1256,6 +1256,7 @@
             <StringItem index="4" value="Cobrado"/>
             <StringItem index="5" value="Pagado"/>
             <StringItem index="6" value="Anulado"/>
+            <StringItem index="7" value="Fallido"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxEstado" noResource="true"/>
