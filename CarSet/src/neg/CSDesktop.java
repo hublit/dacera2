@@ -49,16 +49,19 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ABResultTarifasProveedor;
   public static JInternalFrame EditarCliente;
   public static JInternalFrame ResultPedido;
+  public static JInternalFrame ResultFacturaPedido;
   public static JInternalFrame ResultProveedor;
   public static JInternalFrame ResultContactoProveedor;
   public static JInternalFrame EditarProveedor;
   public static JInternalFrame NuevoContactoProveedor;
   public static JInternalFrame EditarContactoProveedor;
   public static JInternalFrame BuscaCliente;
+  public static JInternalFrame BuscaMail;
   public static JInternalFrame BuscaProveedor;
   public static JInternalFrame ServicioCliente;
   public static JInternalFrame ServicioProveedor;
   public static JInternalFrame FacturaCliente;
+  public static JInternalFrame FacturaClientePedido;
   public static JInternalFrame FacturaProveedor;
   public static JInternalFrame InformeDetallado1;
   public static JInternalFrame InformeDetallado2;
@@ -89,6 +92,7 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuTarifaCliente;
   public static JMenuItem menuTarifaProveedor;
   public static JMenuItem menuFacturaCliente;
+  public static JMenuItem menuFacturaClientePedido;
   public static JMenuItem menuFacturaProveedor;
   public static JMenuItem menuInformeDetallado1;
   public static JMenuItem menuInformeDetallado2;
@@ -470,6 +474,28 @@ public class CSDesktop extends JFrame
             }
          });
 
+      menuFacturaClientePedido = new JMenuItem( "Factura Cliente Pedido" );
+      menuFacturaClientePedido.setMnemonic( 'x' );
+      menuFactura.add( menuFacturaClientePedido );
+      menuFacturaClientePedido.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               FacturaClientePedido = new JInternalFrame("Factura Cliente Pedido", true,false,false,true );
+
+               CSFacturaClientePedido panel = null;
+               panel = new CSFacturaClientePedido();
+               FacturaClientePedido.getContentPane().add( panel,BorderLayout.CENTER);
+               FacturaClientePedido.pack();
+               elEscritorio.add( FacturaClientePedido );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = FacturaClientePedido.getSize();
+               FacturaClientePedido.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               FacturaClientePedido.setVisible( true );
+            }
+         });
+
       menuFacturaProveedor = new JMenuItem( "Albaran Proveedor" );
       menuFacturaProveedor.setMnemonic( 'x' );
       menuFactura.add( menuFacturaProveedor );
@@ -491,6 +517,8 @@ public class CSDesktop extends JFrame
                FacturaProveedor.setVisible( true );
             }
          });
+
+
 
       menuInforme.setMnemonic( 'I' );
 
