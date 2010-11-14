@@ -15,7 +15,10 @@ import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -70,11 +73,12 @@ public class CSInformeDet1 extends javax.swing.JPanel
         lCliente = new javax.swing.JLabel();
         jTextCliente = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
-        jMonthChooser = new com.toedter.calendar.JMonthChooser();
-        lCliente1 = new javax.swing.JLabel();
-        jYearChooser = new com.toedter.calendar.JYearChooser();
         jButtonGenerar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        lFechaIni = new javax.swing.JLabel();
+        jDateFecha = new com.toedter.calendar.JDateChooser();
+        lFechaFin = new javax.swing.JLabel();
+        jDateFechaFin = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
@@ -102,14 +106,6 @@ public class CSInformeDet1 extends javax.swing.JPanel
         jSeparator6.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator6.setName("jSeparator6"); // NOI18N
 
-        jMonthChooser.setName("jMonthChooser"); // NOI18N
-
-        lCliente1.setForeground(new java.awt.Color(0, 0, 100));
-        lCliente1.setText("Mes");
-        lCliente1.setName("lCliente1"); // NOI18N
-
-        jYearChooser.setName("jYearChooser"); // NOI18N
-
         jButtonGenerar.setText("Generar");
         jButtonGenerar.setName("jButtonGenerar"); // NOI18N
         jButtonGenerar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,41 +123,56 @@ public class CSInformeDet1 extends javax.swing.JPanel
             }
         });
 
+        lFechaIni.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaIni.setText("Fecha Desde");
+        lFechaIni.setName("lFechaIni"); // NOI18N
+
+        jDateFecha.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFecha.setName("jDateFecha"); // NOI18N
+
+        lFechaFin.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaFin.setText("Fecha Hasta");
+        lFechaFin.setName("lFechaFin"); // NOI18N
+
+        jDateFechaFin.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFechaFin.setName("jDateFechaFin"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(249, 249, 249)
-                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCancelar)
-                .addContainerGap(257, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lCliente1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(249, 249, 249)
+                        .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jYearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonCancelar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(159, 159, 159))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1)
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel1)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lFechaIni)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(lFechaFin)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -171,17 +182,18 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButtonCliente)
                     .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lCliente))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lCliente1)
-                    .addComponent(jMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jYearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                    .addComponent(lCliente)
+                    .addComponent(jToggleButtonCliente))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -212,6 +224,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
     }
 
     public void GenerarInforme(){
+
         //Se comprueba que haya seleccionado un cliente
         String cliente = new String(jTextCliente.getText());
 
@@ -224,43 +237,53 @@ public class CSInformeDet1 extends javax.swing.JPanel
             int clienteID = 0;
             String fechaIni="";
             String fechaFin="";
+            String fechaSIni="";
+            String fechaSFin="";
             String queryAux="";
             ArrayList lista=new ArrayList();
 
-            int mes=jMonthChooser.getMonth()+ 1 ;
-            int anyo=jYearChooser.getYear();
+            //RE RECOGEN LAS FECHAS DE GENERACION DEL INFORME
+            
+            //FECHA INICIO
+            Calendar fechaCalendar = jDateFecha.getCalendar();
+            if (fechaCalendar!=null)
+            {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fechaIni=formatoDeFecha.format(fecha);
+                formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+                fechaSIni = formatoDeFecha.format(fecha);
+            }
 
-             if (!cliente.equals(""))
-             {
+            //FECHA FIN
+            fechaCalendar = jDateFechaFin.getCalendar();
+            if (fechaCalendar!=null)
+            {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fechaFin=formatoDeFecha.format(fecha);
+                formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+                fechaSFin = formatoDeFecha.format(fecha);
+            }
+
+            // SI HAY CLIENTE, SE PUEDE HACER INFORME SIN CLIENTE, SOLO POR RANGO DE FECHAS
+            if (!cliente.equals(""))
+            {
                 Cliente oCliente = new Cliente();
                 clienteID = oCliente.getClienteID(cliente);
                 queryAux=" AND pc.cl_id = "+clienteID+" ";
-             }
-            
-            int mesIni=0;
-            int anyoIni=0;
-            if(mes==1)
-            {
-                mesIni=12;
-                anyoIni=anyo-1;
             }
-            else
-            {
-                mesIni=mes-1;
-                anyoIni=anyo;
-            }
-            
-            fechaIni=anyoIni+"-"+mesIni+"-26";
-            fechaFin=anyo+"-"+mes+"-25";
-            System.out.println(fechaIni);
-            System.out.println(fechaFin);
+
+            // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
+            // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.
 
             String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
                 " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, pe.pe_num_en_camion, "+
-                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento,"+
+                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento, pe.pe_descripcion, pe.pe_estado, "+
+                " pe.pe_fecha_origen, pe.pe_fecha_destino, pe.pe_fecha_real_destino, " +
                 " tc.tc_tarifa, sc.sc_ida_vuelta"+
-                " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc,"+
-                " sc_servicios_clientes sc"+
+                " FROM carset.pe_pedidos pe, carset.pc_pedidos_clientes pc, carset.tc_tarifas_clientes tc,"+
+                " carset.sc_servicios_clientes sc"+
                 " WHERE pc.pe_num = pe.pe_num"+
                 " AND sc.cl_id = pc.cl_id"+
                 " AND tc.tc_fecha_hasta > pe.pe_fecha"+
@@ -277,6 +300,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
             ResultSet rs = CSDesktop.datos.select(query);
             try {
                 while (rs.next()) {
+                    // SE METEN LOS DATOS EN EL BEAN DE FACTURA PARA DESPUES RELLENAR LA TABLA AUXILIAR DE INFORMES
                     BeanFactura nueva = new BeanFactura();
 
                     nueva.setNumPedido(rs.getLong("pe_num"));
@@ -296,6 +320,11 @@ public class CSInformeDet1 extends javax.swing.JPanel
                     nueva.setTarifa(rs.getString("tc_tarifa"));
                     nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                     nueva.setNumCamion(rs.getString("pe_num_en_camion"));
+                    nueva.setDescripcion(rs.getString("pe_descripcion"));
+                    nueva.setEstado(rs.getString("pe_estado"));
+                    nueva.setFecha_prevista_recogida(rs.getString("pe_fecha_origen"));
+                    nueva.setFecha_prevista_entrega(rs.getString("pe_fecha_destino"));
+                    nueva.setFecha_real_entrega(rs.getString("pe_fecha_real_destino"));
                     lista.add(nueva);
                     }
             } catch (SQLException ex) {
@@ -304,7 +333,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
             try {
                 CSLanzarInforme1 informe1=new CSLanzarInforme1();
                 try {
-                    informe1.lanzar(lista, clienteID, cliente, mes, anyo);
+                    informe1.lanzar(lista, clienteID, cliente,fechaSIni, fechaSFin);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -329,15 +358,16 @@ public class CSInformeDet1 extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGenerar;
+    private com.toedter.calendar.JDateChooser jDateFecha;
+    private com.toedter.calendar.JDateChooser jDateFechaFin;
     private javax.swing.JLabel jLabel1;
-    private com.toedter.calendar.JMonthChooser jMonthChooser;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     public javax.swing.JTextField jTextCliente;
     private javax.swing.JToggleButton jToggleButtonCliente;
-    private com.toedter.calendar.JYearChooser jYearChooser;
     private javax.swing.JLabel lCliente;
-    private javax.swing.JLabel lCliente1;
+    private javax.swing.JLabel lFechaFin;
+    private javax.swing.JLabel lFechaIni;
     // End of variables declaration//GEN-END:variables
 
      public void ValidarFormatos(String accion)

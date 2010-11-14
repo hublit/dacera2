@@ -59,7 +59,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
      * @param args the command line arguments 
      */ 
 
-    public void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin,ArrayList pedidos) throws ClassNotFoundException, SQLException, JRException, UnknownHostException
+    public void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin,ArrayList pedidos, int codigo) throws ClassNotFoundException, SQLException, JRException, UnknownHostException
     {
         // PRIMERO SE BORRA LA TABLA AUXILIAR PARA GENERAR LAS FACTURAS.
         String queryDel = "DELETE FROM fa_facturas_aux";
@@ -503,7 +503,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     //CAMBIAMOS LOS PEDIDOS DE ESTADO, SE PIDE CONFIRMACION
                     if(pedidos.size()>0)
                     {
-                        int seleccion = JOptionPane.showOptionDialog(
+                       int seleccion = JOptionPane.showOptionDialog(
                             CSLanzarFactura.this,
                             "¿Quieres cambiar el estado de los envíos a 'Facturado'?",
                             "Atención",
@@ -518,6 +518,14 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             for (int i=0;i<pedidos.size();i++)
                             {
                                 if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado' WHERE pe_num="+ pedidos.get(i)));
+                            }
+                            if(codigo==1)
+                            {
+                                CSDesktop.ResultFacturaPedido.dispose();
+                                CSFacturaClientePedido facturaCliente = new CSFacturaClientePedido(beanCliente.getNombre(),fechaIni,fechaFin);
+                                CSDesktop.ResultFacturaPedido.toBack();
+                                CSDesktop.FacturaClientePedido.toBack();
+                                CSDesktop.NuevaFactura.toFront();
                             }
                         }
                     }

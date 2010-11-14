@@ -8,7 +8,6 @@ package neg;
 
 import data.BeanCliente;
 import data.Cliente;
-import data.BeanFactura;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -26,20 +25,19 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import net.sf.jasperreports.engine.JRException;
 import utils.Utilidades;
 
 /**
  *
  * @author raul
  */
-public class CSFacturaCliente extends JPanel
+public class CSFacturaClientePedido extends JPanel
 {
     
-    public CSFacturaCliente()
+    public CSFacturaClientePedido()
     {
         initComponents();
-        CSDesktop.menuFacturaCliente.setEnabled(false);
+        CSDesktop.menuFacturaClientePedido.setEnabled(false);
 
         KeyListener l = new KeyListener()
         {
@@ -56,10 +54,35 @@ public class CSFacturaCliente extends JPanel
         jTextCliente.addKeyListener(l);
         addKeyListener(l);
     }
+
+    public CSFacturaClientePedido(String cliente,String fechaI, String fechaF)
+    {
+        initComponents();
+        CSDesktop.menuFacturaClientePedido.setEnabled(false);
+
+        KeyListener l = new KeyListener()
+        {
+            public void keyTyped(KeyEvent e) {}
+            public void keyPressed(KeyEvent e)
+            {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                    jButtonCancelar.doClick();
+                }
+            }
+            public void keyReleased(KeyEvent e) {}
+        };
+        try {
+            //jTextCliente.addKeyListener(l);
+            //addKeyListener(l);
+            LanzarFactura(0,cliente,fechaI,fechaF);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(CSFacturaClientePedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonGenerar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         jToggleButtonCliente = new javax.swing.JToggleButton();
@@ -76,14 +99,6 @@ public class CSFacturaCliente extends JPanel
 
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
-
-        jButtonGenerar.setText("Generar");
-        jButtonGenerar.setName("jButtonGenerar"); // NOI18N
-        jButtonGenerar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGenerarActionPerformed(evt);
-            }
-        });
 
         jButtonCancelar.setForeground(new java.awt.Color(204, 0, 0));
         jButtonCancelar.setText("Cancelar");
@@ -128,15 +143,15 @@ public class CSFacturaCliente extends JPanel
         jDateFechaFin.setDateFormatString("dd-MM-yyyy"); // NOI18N
         jDateFechaFin.setName("jDateFechaFin"); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("FACTURA CLIENTE");
+        jLabel1.setText("FACTURA CLIENTE POR PEDIDO");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator7.setName("jSeparator7"); // NOI18N
 
-        jButtonPrev.setText("Previsualizar");
+        jButtonPrev.setText("Buscar");
         jButtonPrev.setName("jButtonPrev"); // NOI18N
         jButtonPrev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +168,7 @@ public class CSFacturaCliente extends JPanel
                 .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(26, 26, 26)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,19 +190,15 @@ public class CSFacturaCliente extends JPanel
             .addGroup(layout.createSequentialGroup()
                 .addGap(275, 275, 275)
                 .addComponent(jButtonPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(245, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
                     .addComponent(jLabel1))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(381, Short.MAX_VALUE)
-                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(349, 349, 349))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,44 +220,28 @@ public class CSFacturaCliente extends JPanel
                     .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGenerar)
-                    .addComponent(jButtonPrev))
-                .addGap(31, 31, 31)
-                .addComponent(jButtonCancelar)
-                .addGap(28, 28, 28))
+                    .addComponent(jButtonPrev)
+                    .addComponent(jButtonCancelar))
+                .addGap(82, 82, 82))
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
 
-        int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres generar la Factura y un nuevo numero?");
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+       CSDesktop.FacturaClientePedido.dispose();
+       CSDesktop.menuFacturaClientePedido.setEnabled(true);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-        if (JOptionPane.OK_OPTION == confirmado)
-        {
-            int numero = 0;
-            String query = "Select max(fl_id) from fl_factura_cliente";
-            ResultSet rs = CSDesktop.datos.select(query);
-            try
-            {
-                while (rs.next())
-                {
-                    numero =Integer.valueOf(rs.getInt("max(fl_id)"));
-                }
-            }
-            catch (SQLException ex)
-            {
-                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                LanzarFactura(numero + 1);
-            } catch (UnknownHostException ex) {
-                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }       
-    }//GEN-LAST:event_jButtonGenerarActionPerformed
+    private void jButtonPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrevActionPerformed
+        try {
+            LanzarFactura(0,"","","");
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(CSFacturaClientePedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonPrevActionPerformed
 
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
@@ -263,19 +258,6 @@ public class CSFacturaCliente extends JPanel
         CSDesktop.BuscaCliente.setVisible( true );
 }//GEN-LAST:event_jToggleButtonClienteActionPerformed
 
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       CSDesktop.FacturaCliente.dispose();
-       CSDesktop.menuFacturaCliente.setEnabled(true);
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
-
-    private void jButtonPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrevActionPerformed
-        try {
-            LanzarFactura(0);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonPrevActionPerformed
-
  public Dimension getPreferredSize()
    {
       return new Dimension( 826,500 );
@@ -283,7 +265,6 @@ public class CSFacturaCliente extends JPanel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonGenerar;
     private javax.swing.JButton jButtonPrev;
     private com.toedter.calendar.JDateChooser jDateFecha;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
@@ -291,7 +272,7 @@ public class CSFacturaCliente extends JPanel
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    public javax.swing.JTextField jTextCliente;
+    private javax.swing.JTextField jTextCliente;
     private javax.swing.JToggleButton jToggleButtonCliente;
     private javax.swing.JLabel lCliente;
     private javax.swing.JLabel lFechaFin;
@@ -300,13 +281,11 @@ public class CSFacturaCliente extends JPanel
 
     public void ValidarFormatos(String accion)
     {
-         jButtonGenerar.setEnabled(false);
          JLabel errorFields = new JLabel(accion);
          JOptionPane.showMessageDialog(null,errorFields);
-         jButtonGenerar.setEnabled(true);
     }
 
-    private void LanzarFactura(int numero) throws UnknownHostException
+    public void LanzarFactura(int numero,String clienteS,String fechaIni, String fechaFin) throws UnknownHostException
     {
         ArrayList pedidos=new ArrayList();
         int clienteID = 0;
@@ -315,6 +294,10 @@ public class CSFacturaCliente extends JPanel
         ArrayList lista=new ArrayList();
       
         String cliente = new String(jTextCliente.getText());
+        if (cliente.equals(""))
+        {
+            cliente=clienteS;
+        }
         Cliente oCliente = new Cliente();
         BeanCliente beanCliente = new BeanCliente();
 
@@ -329,6 +312,10 @@ public class CSFacturaCliente extends JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaI=formatoDeFecha.format(fecha);
         }
+        else
+        {
+            fechaI=fechaIni;
+        }
 
         fechaCalendar = jDateFechaFin.getCalendar();        
         if (fechaCalendar!=null)
@@ -337,6 +324,10 @@ public class CSFacturaCliente extends JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaF=formatoDeFecha.format(fecha);
         }
+        else
+        {
+            fechaF=fechaFin;
+        }
 
         if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK"))
         {
@@ -344,7 +335,7 @@ public class CSFacturaCliente extends JPanel
         }
         else
         {
-            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
+            /*String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
                            "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                            "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
                            "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
@@ -361,13 +352,33 @@ public class CSFacturaCliente extends JPanel
                            "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
                            "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
                            "AND tc.tc_soporte = pe.pe_soporte " +
-                           //"AND (pe.pe_estado = 'Activo' OR pe.pe_estado = 'En Proceso' OR pe.pe_estado = 'Entregado')"  +
-                           "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
+                           "AND (pe.pe_estado = 'Activo' OR pe.pe_estado = 'En Proceso' OR pe.pe_estado = 'Entregado')"  +
+                           "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
+                           "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";+*/
+            
+             String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
+                           "pe.pe_servicio, pe.pe_servicio_especial, " +
+                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
+                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
+                           "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " +
+                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
+                           "WHERE pe.pe_num = pc.pe_num " +
+                           "AND sc.cl_id = pc.cl_id " +
+                           "AND tc.tc_fecha_hasta > pe.pe_fecha " +
+                           "AND sc.sc_fecha_hasta > pe.pe_fecha " +
+                           "AND tc.tc_servicio = pe.pe_servicio " +
+                           "AND tc.cl_id = pc.cl_id " +
+                           "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " + 
+                           "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " +
+                           "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
+                           "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
+                           "AND tc.tc_soporte = pe.pe_soporte " +
+                           "AND (pe.pe_estado = 'Activo' OR pe.pe_estado = 'En Proceso' OR pe.pe_estado = 'Entregado')"  +
                            "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
                            "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
             System.out.println(query);
-            ResultSet rs = CSDesktop.datos.select(query);
+            /*ResultSet rs = CSDesktop.datos.select(query);
             try {
                 while (rs.next()) {
                     BeanFactura nueva = new BeanFactura();
@@ -397,21 +408,24 @@ public class CSFacturaCliente extends JPanel
                     pedidos.add(rs.getLong("pe_num"));
                     }
             } catch (SQLException ex) {
-                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                Logger.getLogger(CSFacturaClientePedido.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
             System.out.println(query);
-            try {
+
+            CSResultBuscarFactura resultBuscarCliente = new CSResultBuscarFactura(query,beanCliente,fechaI,fechaF);
+
+            /*try {
                 try {
                     CSLanzarFactura factura = new CSLanzarFactura();
-                    factura.lanzar(lista,beanCliente,fechaF,numero,clienteID,fechaI,fechaF,pedidos,0);
+                    factura.lanzar(lista,beanCliente,fechaF,numero,clienteID,fechaI,fechaF,pedidos);
                 } catch (JRException ex) {
-                    Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CSFacturaClientePedido.class.getName()).log(Level.SEVERE, null, ex);
                 }               
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CSFacturaClientePedido.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                Logger.getLogger(CSFacturaClientePedido.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
         }
     }
 }
