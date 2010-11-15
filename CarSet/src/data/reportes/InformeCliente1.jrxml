@@ -94,7 +94,7 @@
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  FECHA : " + $P{FechaInicio} + " --- " + $P{FechaFin} ]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["  FECHA : " + $P{FechaInicio} + " --- " + $P{FechaFin}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="39" y="7" width="325" height="20"/>
