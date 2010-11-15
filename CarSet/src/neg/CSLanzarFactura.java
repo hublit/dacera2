@@ -287,8 +287,11 @@ public class CSLanzarFactura extends javax.swing.JPanel
                    //SE RECOGE EL MENSAJE DEL CAMPO DESCRIPCION Y SU VALOR ES LA TARIFA ESPECIAL CLIENTE
                    labelOtros=otro.getDescripcion().toUpperCase();
                    importeServicioOtros=Integer.parseInt(otro.getTarifaEsCliente());
-                   importeServicioEsOtros=otro.getTarifaEsCliente();
+                   //importeServicioEsOtros=otro.getTarifaEsCliente();
+                   importeServicioEsOtros="";
+                   importeTraslado=otro.getTarifaEsCliente();
                    servicioEspecial="";
+
                 }
                 // SI EL SERVICIO ESPECIAL NO ES OTROS
                 else

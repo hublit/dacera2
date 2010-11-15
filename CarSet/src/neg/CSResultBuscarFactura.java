@@ -70,7 +70,7 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "ORIGEN", "DESTINO", "SOPORTE", "MATRICULA"});
+        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "ORIGEN", "DESTINO", "SOPORTE", "MATRICULA", "OBSERVACIONES"});
 
         int numeroFila = 0;
         try {
@@ -105,7 +105,7 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
                 datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
                 for (int k = 0; k < 20; k++) {
-                    if (k==0 ||k==1 || k == 2 || k==3 || k == 9 || k==10 ) {
+                    if (k==0 ||k==1 || k == 2 || k==3 || k == 9 || k==10 || k==17) {
                         if(k==1)
                         {
                              String fecha=(rs.getObject(k+1)).toString();
@@ -157,15 +157,17 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
         columna.setPreferredWidth(25);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
-        columna1.setPreferredWidth(50);
+        columna1.setPreferredWidth(40);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
-        columna2.setPreferredWidth(200);
+        columna2.setPreferredWidth(100);
         TableColumn columna3 = jTable1.getColumnModel().getColumn(3);
-        columna3.setPreferredWidth(200);
+        columna3.setPreferredWidth(100);
         TableColumn columna4 = jTable1.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(100);
+        columna4.setPreferredWidth(50);
         TableColumn columna5 = jTable1.getColumnModel().getColumn(5);
-        columna5.setPreferredWidth(100);
+        columna5.setPreferredWidth(50);
+        TableColumn columna6 = jTable1.getColumnModel().getColumn(6);
+        columna6.setPreferredWidth(410);
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -286,17 +288,18 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(jButtonPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
-                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106)
-                .addComponent(jButtonCerrar)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90)
+                        .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106)
+                        .addComponent(jButtonCerrar)
+                        .addGap(260, 260, 260))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,7 +385,7 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
              jButtonPrev.setEnabled(true);
             jButtonGenerar.setEnabled(true);
         }
-        else if (celdas>2)
+        else if (celdas>1)
         {
             jButtonPrev.setEnabled(false);
             jButtonGenerar.setEnabled(false);

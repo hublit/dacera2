@@ -56,15 +56,15 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "ORIGEN", "DESTINO", "SOPORTE", "MATRICULA"});
+        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","PROVEEDOR","TA.CL","TA.PR","SUPLE","MG","F.REAL","OBSERVACIONES"});
 
         int numeroFila = 0;
         try {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                for (int k = 0; k < 37; k++) {
-                    if (k==0 ||k == 1 || k == 3 || k == 12 || k == 27 || k == 28) {
+                for (int k = 0; k < 18; k++) {
+                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10) {
                         if(k==1)
                         {
                              String fecha=(rs.getObject(k+1)).toString();
@@ -113,24 +113,36 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
         initComponents();
         jTable1.setModel(modelo);
+        jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(25);
+        columna.setPreferredWidth(50);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
-        columna1.setPreferredWidth(50);
+        columna1.setPreferredWidth(80);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
         columna2.setPreferredWidth(200);
         TableColumn columna3 = jTable1.getColumnModel().getColumn(3);
-        columna3.setPreferredWidth(200);
+        columna3.setPreferredWidth(80);
         TableColumn columna4 = jTable1.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(100);
+        columna4.setPreferredWidth(120);
         TableColumn columna5 = jTable1.getColumnModel().getColumn(5);
-        columna5.setPreferredWidth(100);
+        columna5.setPreferredWidth(120);
+        TableColumn columna6 = jTable1.getColumnModel().getColumn(6);
+        columna6.setPreferredWidth(80);
+        TableColumn columna7 = jTable1.getColumnModel().getColumn(7);
+        columna7.setPreferredWidth(100);
+        TableColumn columna8 = jTable1.getColumnModel().getColumn(8);
+        columna8.setPreferredWidth(100);
+        TableColumn columna9 = jTable1.getColumnModel().getColumn(9);
+        columna9.setPreferredWidth(120);
+         TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
+        columna10.setPreferredWidth(200);
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
+
         jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        //jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
 
         jTable1.addMouseListener(new MouseAdapter()
         {
@@ -188,6 +200,8 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonCerrar = new javax.swing.JButton();
+
+        setAutoscrolls(true);
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
