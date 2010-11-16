@@ -114,7 +114,7 @@ public class CSEnviarMailProceso
                     new InternetAddress(email));*/
                 message.addRecipient(
                     Message.RecipientType.CC,
-                    new InternetAddress("cdecruz@yahoo.es"));
+                    new InternetAddress("carset@carset.es"));
                 message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
                 String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
 
