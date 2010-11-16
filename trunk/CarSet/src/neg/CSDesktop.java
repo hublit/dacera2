@@ -670,10 +670,10 @@ public class CSDesktop extends JFrame
       barra.add( menuTarifa );
       barra.add( menuFactura );
       barra.add( menuInforme );
-      if (usuario.equals("4"))
+      /*if (usuario.equals("4"))
       {
         barra.add( menuTesoreria );
-      }
+      }*/
         barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
