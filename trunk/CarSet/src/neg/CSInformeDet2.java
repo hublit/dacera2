@@ -14,6 +14,9 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -76,10 +79,11 @@ public class CSInformeDet2 extends javax.swing.JPanel
         jTextCliente = new javax.swing.JTextField();
         jButtonCancelar = new javax.swing.JButton();
         jButtonGenerar = new javax.swing.JButton();
-        jMonthChooser = new com.toedter.calendar.JMonthChooser();
         jSeparator6 = new javax.swing.JSeparator();
-        jYearChooser = new com.toedter.calendar.JYearChooser();
-        lCliente1 = new javax.swing.JLabel();
+        lFechaFin = new javax.swing.JLabel();
+        jDateFecha = new com.toedter.calendar.JDateChooser();
+        lFechaIni = new javax.swing.JLabel();
+        jDateFechaFin = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
@@ -121,16 +125,22 @@ public class CSInformeDet2 extends javax.swing.JPanel
             }
         });
 
-        jMonthChooser.setName("jMonthChooser"); // NOI18N
-
         jSeparator6.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator6.setName("jSeparator6"); // NOI18N
 
-        jYearChooser.setName("jYearChooser"); // NOI18N
+        lFechaFin.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaFin.setText("Fecha Hasta");
+        lFechaFin.setName("lFechaFin"); // NOI18N
 
-        lCliente1.setForeground(new java.awt.Color(0, 0, 100));
-        lCliente1.setText("Mes");
-        lCliente1.setName("lCliente1"); // NOI18N
+        jDateFecha.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFecha.setName("jDateFecha"); // NOI18N
+
+        lFechaIni.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaIni.setText("Fecha Desde");
+        lFechaIni.setName("lFechaIni"); // NOI18N
+
+        jDateFechaFin.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFechaFin.setName("jDateFechaFin"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -150,20 +160,22 @@ public class CSInformeDet2 extends javax.swing.JPanel
                     .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lCliente1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jYearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lFechaIni)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(lFechaFin)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lCliente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                        .addGap(149, 149, 149)))
+                                .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                .addGap(149, 149, 149)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -178,12 +190,13 @@ public class CSInformeDet2 extends javax.swing.JPanel
                     .addComponent(jToggleButtonCliente)
                     .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lCliente))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lCliente1)
-                    .addComponent(jMonthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jYearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -226,8 +239,33 @@ public class CSInformeDet2 extends javax.swing.JPanel
             String fechaFin="";
             String queryAux="";
 
-            int mes=jMonthChooser.getMonth()+ 1 ;
-            int anyo=jYearChooser.getYear();
+            
+            String fechaSIni="";
+            String fechaSFin="";
+
+             //SE RECOGEN LAS FECHAS DE GENERACION DEL INFORME
+
+            //FECHA INICIO
+            Calendar fechaCalendar = jDateFecha.getCalendar();
+            if (fechaCalendar!=null)
+            {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fechaIni=formatoDeFecha.format(fecha);
+                formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+                fechaSIni = formatoDeFecha.format(fecha);
+            }
+
+            //FECHA FIN
+            fechaCalendar = jDateFechaFin.getCalendar();
+            if (fechaCalendar!=null)
+            {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fechaFin=formatoDeFecha.format(fecha);
+                formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+                fechaSFin = formatoDeFecha.format(fecha);
+            }
 
             if(!cliente.equals(""))
             {
@@ -236,18 +274,7 @@ public class CSInformeDet2 extends javax.swing.JPanel
                 queryAux=" AND pc.cl_id = "+clienteID+" ";
             }
 
-            int mesIni=0;
-            int anyoIni=0;
-            if(mes==1) {
-                mesIni=12;
-                anyoIni=anyo-1;
-            } else {
-                mesIni=mes-1;
-                anyoIni=anyo;
-            }
-
-            fechaIni=anyoIni+"-"+mesIni+"-26";
-            fechaFin=anyo+"-"+mes+"-25";
+           
             System.out.println(fechaIni);
             System.out.println(fechaFin);
 
@@ -274,8 +301,10 @@ public class CSInformeDet2 extends javax.swing.JPanel
 
             Map pars = new HashMap();
             pars.put("Cliente", cliente);
-            pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
+            //pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
             pars.put("Query", query);
+            pars.put("FechaInicio", fechaSIni);
+            pars.put("FechaFin", fechaSFin);
 
             JasperReport jasperReport = null;
             JasperPrint jasperPrint;
@@ -320,15 +349,16 @@ public class CSInformeDet2 extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGenerar;
+    private com.toedter.calendar.JDateChooser jDateFecha;
+    private com.toedter.calendar.JDateChooser jDateFechaFin;
     private javax.swing.JLabel jLabel1;
-    private com.toedter.calendar.JMonthChooser jMonthChooser;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     public javax.swing.JTextField jTextCliente;
     private javax.swing.JToggleButton jToggleButtonCliente;
-    private com.toedter.calendar.JYearChooser jYearChooser;
     private javax.swing.JLabel lCliente;
-    private javax.swing.JLabel lCliente1;
+    private javax.swing.JLabel lFechaFin;
+    private javax.swing.JLabel lFechaIni;
     // End of variables declaration//GEN-END:variables
 
      public void ValidarFormatos(String accion)

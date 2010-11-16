@@ -7,6 +7,7 @@
 package neg;
 
 //import utils.TablaModeloPedidos;
+import groovy.inspect.swingui.TableSorter;
 import utils.TablaModelo;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -24,6 +25,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
+import utils.Utilidades;
 
 /**
  *
@@ -56,18 +59,22 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","PROVEEDOR","TA.CL","TA.PR","SUPLE","MG","F.REAL","OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR","SUPLE","MG","F.REAL","ESTADO","OBSERVACIONES"});
 
         int numeroFila = 0;
         try {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
+                 double ta_es_cl=0;
+                        double ta_es_pr=0;
+                        double suple=0;
+                        double ganancia=0;
                 for (int k = 0; k < 18; k++) {
-                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10) {
-                        if(k==1)
+                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17) {
+                        if((k==1) || (k==15))
                         {
-                             String fecha=(rs.getObject(k+1)).toString();
+                            String fecha=(rs.getObject(k+1)).toString();
                              String [] temp = null;
                              temp = fecha.split("\\-");
                              String anyo=temp[0];
@@ -76,6 +83,27 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                              String nueva=dia+"-"+mes+"-"+anyo;
 
                              datosFila[j] = nueva;
+                        }
+                        else if(k==11)
+                        {
+                             ta_es_cl=rs.getDouble(k+1);
+                             datosFila[j] = rs.getDouble(k + 1);
+                        }
+                        else if(k==12)
+                        {
+                            ta_es_pr=rs.getDouble(k+1);
+                            datosFila[j] = rs.getDouble(k + 1);
+                        }
+                        else if (k==13)
+                        {
+                            suple=rs.getDouble(k+1);
+                            datosFila[j] = rs.getDouble(k + 1);
+                        }
+                        else if (k==14)
+                        {
+                            ganancia=ta_es_cl + suple - ta_es_pr;
+                            double gananciaF=Utilidades.redondear(ganancia, 2);
+                            datosFila[j] = gananciaF;
                         }
                         else
                         {
@@ -94,7 +122,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
          if (numeroFila == 0)
         {
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>No se han encontrado Pedidos con los parámetros de búsqueda seleccionados.</FONT></HTML>");
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>No se han encontrado datos.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
         }
          else
@@ -134,15 +162,40 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         columna8.setPreferredWidth(100);
         TableColumn columna9 = jTable1.getColumnModel().getColumn(9);
         columna9.setPreferredWidth(120);
-         TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
+        TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
         columna10.setPreferredWidth(200);
+        TableColumn columna11 = jTable1.getColumnModel().getColumn(11);
+        columna11.setPreferredWidth(60);
+        TableColumn columna12 = jTable1.getColumnModel().getColumn(12);
+        columna12.setPreferredWidth(60);
+        TableColumn columna13 = jTable1.getColumnModel().getColumn(13);
+        columna13.setPreferredWidth(60);
+        TableColumn columna14 = jTable1.getColumnModel().getColumn(14);
+        columna14.setPreferredWidth(60);
+        TableColumn columna15 = jTable1.getColumnModel().getColumn(15);
+        columna15.setPreferredWidth(80);
+        TableColumn columna16 = jTable1.getColumnModel().getColumn(16);
+        columna16.setPreferredWidth(100);
+        TableColumn columna17 = jTable1.getColumnModel().getColumn(17);
+        columna17.setPreferredWidth(500);
 
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
+        tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
+        DefaultTableCellRenderer tcrRight = new DefaultTableCellRenderer();
+        tcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
+
+
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(tcrCenter);
+        jTable1.getColumnModel().getColumn(1).setCellRenderer(tcrCenter);
+        jTable1.getColumnModel().getColumn(11).setCellRenderer(tcrRight);
+        jTable1.getColumnModel().getColumn(12).setCellRenderer(tcrRight);
+        jTable1.getColumnModel().getColumn(13).setCellRenderer(tcrRight);
+        jTable1.getColumnModel().getColumn(14).setCellRenderer(tcrRight);
+        jTable1.getColumnModel().getColumn(15).setCellRenderer(tcrCenter);
         //jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
+
+        jTable1.setAutoCreateRowSorter(true);
 
         jTable1.addMouseListener(new MouseAdapter()
         {
