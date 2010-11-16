@@ -379,6 +379,36 @@ public class CSLanzarFactura extends javax.swing.JPanel
             tempOrigen = fechaFactura.split("\\-");
             String nuevaFechaFactura=tempOrigen[2]+"/"+tempOrigen[1]+"/"+tempOrigen[0];
 
+             SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+             Date datehora=null;
+             try
+             {
+                datehora = sdf1.parse(nuevaFechaFactura);
+             } catch (ParseException ex) {
+                Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+             }
+
+            // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
+            String plazoPago=beanCliente.getPlazoPago();
+            int diasPlazo=0;
+            if (plazoPago.equals("Especial"))
+            {
+                diasPlazo=Integer.parseInt(beanCliente.getDiasPlazo());
+            }
+            else
+            {
+                diasPlazo=Integer.parseInt(plazoPago.substring(0,2));
+            }
+
+            Calendar myGDate=new GregorianCalendar();
+            myGDate.setTime(datehora);
+            myGDate.add(Calendar.DAY_OF_MONTH, diasPlazo );
+            Date fechaActual = myGDate.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+            String fecha2=formatoDeFecha.format(fechaActual);
+            // SE INTRODUCE EL VALOR EN EL BEAN
+            //mail.setFechaEntrega(fecha2);
+
             // SE INTRODUCEN LOS VALORES DE LOS PARAMETROS DE LA FACTURA
             Map pars = new HashMap();
                 pars.put("FechaFactura", nuevaFechaFactura);
@@ -400,6 +430,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 pars.put("ImporteIVA", iva);
                 pars.put("ImporteTotalIVA", totalIva);
                 pars.put("EURO","€");
+                pars.put("FechaVFactura",fecha2);
 
             // SI EL NUMERO ES 0, SIGNIFICA QUE SE HA PULSADO EL BOTON PREVISUALIZAR
             if(numero==0)
@@ -471,7 +502,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                      mail.setModelo(beanCliente.getDiasPlazo());
                      mail.setMatricula(beanCliente.getFormaPago());
 
-                     SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+                     /*SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
                      Date datehora=null;
                         try {
                             datehora = sdf1.parse(nuevaFechaFactura);
@@ -487,7 +518,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                      SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
                      String fecha2=formatoDeFecha.format(fechaActual);
                      // SE INTRODUCE EL VALOR EN EL BEAN
-                     mail.setFechaEntrega(fecha2);
+                     mail.setFechaEntrega(fecha2);*/
 
                      // SE LLAMA AL VISOR DE PDF´S
                      JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail,0);

@@ -31,23 +31,25 @@
                   <Component id="jSeparator6" alignment="0" pref="698" max="32767" attributes="1"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="lCliente1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jMonthChooser" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jYearChooser" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lFechaIni" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jDateFecha" min="-2" pref="116" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="lFechaFin" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jDateFechaFin" min="-2" pref="115" max="-2" attributes="1"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="lCliente" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jTextCliente" min="-2" pref="262" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jToggleButtonCliente" pref="111" max="32767" attributes="1"/>
+                              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jToggleButtonCliente" pref="111" max="32767" attributes="1"/>
-                      <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -67,13 +69,14 @@
                   <Component id="jTextCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lCliente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lCliente1" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jMonthChooser" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jYearChooser" alignment="1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lFechaFin" alignment="0" pref="20" max="32767" attributes="1"/>
+                  <Component id="jDateFechaFin" alignment="0" pref="20" max="32767" attributes="1"/>
+                  <Component id="jDateFecha" alignment="0" pref="20" max="32767" attributes="1"/>
+                  <Component id="lFechaIni" alignment="0" pref="20" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Component id="jSeparator6" min="-2" pref="11" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -154,11 +157,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGenerarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="com.toedter.calendar.JMonthChooser" name="jMonthChooser">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="jMonthChooser" noResource="true"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator6">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -167,18 +165,34 @@
         <Property name="name" type="java.lang.String" value="jSeparator6" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JYearChooser" name="jYearChooser">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="jYearChooser" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lCliente1">
+    <Component class="javax.swing.JLabel" name="lFechaFin">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Mes"/>
-        <Property name="name" type="java.lang.String" value="lCliente1" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="Fecha Hasta"/>
+        <Property name="name" type="java.lang.String" value="lFechaFin" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateFecha">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jDateFecha" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lFechaIni">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Fecha Desde"/>
+        <Property name="name" type="java.lang.String" value="lFechaIni" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaFin">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jDateFechaFin" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

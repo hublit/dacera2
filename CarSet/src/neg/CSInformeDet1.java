@@ -242,7 +242,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
             String queryAux="";
             ArrayList lista=new ArrayList();
 
-            //RE RECOGEN LAS FECHAS DE GENERACION DEL INFORME
+            //SE RECOGEN LAS FECHAS DE GENERACION DEL INFORME
             
             //FECHA INICIO
             Calendar fechaCalendar = jDateFecha.getCalendar();

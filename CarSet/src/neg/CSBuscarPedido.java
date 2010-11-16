@@ -632,10 +632,11 @@ public class CSBuscarPedido extends javax.swing.JPanel
         //String query = "SELECT * FROM pe_pedidos pe ";
         String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
                 " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal," +
-                " p.pe_soporte,p.pe_descripcion,p.pe_fecha_real_destino, p.pe_ta_es_cliente, p.pe_ta_es_proveedor, p.pe_suplemento," +
+                " p.pe_ta_es_cliente, p.pe_ta_es_proveedor,p.pe_suplemento,pe_solred,p.pe_fecha_real_destino,p.pe_estado,p.pe_descripcion, " +
                 " p.pe_estado FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc " +
                 " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +
                 " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
+
         if (numero.equals("") && cliente.equals("") && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("") && matricula.equals("")))
         {
             jButtonBuscar.setEnabled(false);
@@ -666,7 +667,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 clienteID = cliente2.getClienteID(cliente);
 
                 //query = query + ", pc_pedidos_clientes pc WHERE pe.pe_num = pc.pe_num AND pc.cl_id = "+clienteID;
-                //query = query + " AND pc.cl_id = "+clienteID;
+                query = query + " AND pc.cl_id = "+clienteID;
                 where = true;
             }
             else if(!proveedor.equals(""))

@@ -194,6 +194,7 @@ public class CSLanzarInforme1
          pars.put("SumaSuplemento", importeSuplementoAux);
          pars.put("SumaDescuento", importeDescuentoAux);
          pars.put("SumaNeto", importeNetoAux);
+         
 
          // CREACION DEL INFORME
          JasperReport jasperReport = null;
@@ -215,10 +216,10 @@ public class CSLanzarInforme1
             con=(Connection) conexion.getConexion();
 
             // COMPILAMOS EL ARCHIVO XML Y LO CARGAMOS EN MEMORIA
-            jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/InformeCliente1.jrxml"));
+            jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/InformeClienteCompleto1.jrxml"));
 
             // LLENAMOS EL REPORTE CON LA INFORMACION Y LOS PARAMETROS NECESARIOS
-            jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/InformeCliente1.jasper"), pars, con);
+            jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/InformeClienteCompleto1.jasper"), pars, con);
 
             JRViewerDet1 jrViewer = new JRViewerDet1(jasperPrint);
             CSDesktop.NuevoInformeDetallado1 = new JInternalFrame("Informe Detallado 1", true, false, false, true );

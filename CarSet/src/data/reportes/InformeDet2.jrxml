@@ -3,6 +3,8 @@
 	<parameter name="Cliente" class="java.lang.String"/>
 	<parameter name="Mes" class="java.lang.String"/>
 	<parameter name="Query" class="java.lang.String"/>
+	<parameter name="FechaInicio" class="java.lang.String"/>
+	<parameter name="FechaFin" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[$P!{Query}]]>
 	</queryString>
@@ -226,7 +228,7 @@
 				<text><![CDATA[HORA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="62" y="0" width="400" height="20"/>
+				<reportElement x="62" y="0" width="353" height="20"/>
 				<box>
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -238,20 +240,6 @@
 					<font fontName="Verdana"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["  CLIENTE : " + $P{Cliente}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="586" y="0" width="204" height="20"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Verdana"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  MES : " + $P{Mes}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="344" y="53" width="116" height="20" forecolor="#FFFFFF" backcolor="#006600"/>
@@ -393,6 +381,20 @@
 				</textElement>
 				<text><![CDATA[HORA]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="544" y="0" width="245" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineColor="#FFFFFF"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["  FECHA : " + $P{FechaInicio} + " --- " + $P{FechaFin}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<detail>
@@ -510,15 +512,15 @@
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{pe_fecha_destino}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="122" y="0" width="107" height="20"/>
+				<reportElement x="127" y="0" width="102" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{pe_direccion_origen}]]></textFieldExpression>
@@ -538,15 +540,15 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{pe_cp_origen}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="460" y="0" width="111" height="20"/>
+				<reportElement x="466" y="0" width="105" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{pe_direccion_origen}]]></textFieldExpression>
@@ -579,13 +581,41 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{pe_hora_destino}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="122" y="0" width="5" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="0" width="5" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="1" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="81" splitType="Stretch">
+		<band height="89" splitType="Stretch">
 			<textField>
 				<reportElement x="676" y="60" width="80" height="20"/>
 				<textElement textAlignment="Right"/>
@@ -615,7 +645,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
-				<text><![CDATA[        CARSET. Servicios Integrales, SL]]></text>
+				<text><![CDATA[        CARSET Servicios Integrales, SL]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="281" y="32" width="264" height="14"/>
@@ -623,6 +653,13 @@
 					<font size="7"/>
 				</textElement>
 				<text><![CDATA[Avda. Puente Cultural 5, Bloque A, Planta 3ª, Oficina 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="74" width="262" height="14" forecolor="#006600"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[www.carset.es]]></text>
 			</staticText>
 		</band>
 	</pageFooter>
