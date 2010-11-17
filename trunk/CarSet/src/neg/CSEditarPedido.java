@@ -1320,7 +1320,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         }
         else
         {
-            fechaRealDestino="2010-01-01";
+            fechaRealDestino = "01-01-2050";
         }
 
         String descripcion = new String(jTextDescripcion.getText());
