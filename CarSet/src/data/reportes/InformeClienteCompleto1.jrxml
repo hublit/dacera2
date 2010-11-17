@@ -536,7 +536,7 @@
 				<text><![CDATA[San Sebastián de los Reyes. 28700 - MADRID]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
-				<reportElement x="746" y="63" width="46" height="20"/>
+				<reportElement x="751" y="61" width="46" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
@@ -562,7 +562,7 @@
 				<text><![CDATA[Avda. Puente Cultural 5, Bloque A, Planta 3ª, Oficina 2]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="668" y="63" width="80" height="20"/>
+				<reportElement x="673" y="61" width="80" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
 			</textField>
