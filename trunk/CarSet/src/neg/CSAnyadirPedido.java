@@ -1316,7 +1316,7 @@ public class CSAnyadirPedido extends JPanel
         // SINO LE PONEMOS NOSOTROS UNA FECHA REAL DESTINO
         else
         {
-            fechaRealDestino="01-01-2050";
+            fechaRealDestino="2050-01-01";
         }
 
         // SE RECOGEN LOS VALORES DE LOS CAMPOS
