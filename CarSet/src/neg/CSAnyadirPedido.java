@@ -1314,11 +1314,11 @@ public class CSAnyadirPedido extends JPanel
             fechaRealDestino=formatoDeFecha.format(fecha);
         }
         // SINO LE PONEMOS NOSOTROS UNA FECHA REAL DESTINO
-        else
+/*        else
         {
             fechaRealDestino="2010-01-01";
         }
-
+*/
         // SE RECOGEN LOS VALORES DE LOS CAMPOS
         String descripcion = new String(jTextDescripcion.getText());
         int factor = new Integer(jComboFactor.getSelectedIndex());
