@@ -146,6 +146,10 @@ public class CSLanzarInforme1
 
             // OBTENER EL FACTOR DE CORRECCION
             Vehiculo = obtenerFactor(informe.getFactor());
+            if(Vehiculo.equals("Industriales y Monovolumenes"))
+            {
+                Vehiculo="Ind. y Monov.";
+            }
 
             // SI EL SOPORTE ES CAMION COMPLETO Y NO ES EL PRIMERO DEL CAMION, SU IMPORTE ES 0.
             if(soporte.equals("Camión completo") && !numCamion.equals("1"))
@@ -259,7 +263,7 @@ public class CSLanzarInforme1
                   descripcion = "TURISMO";
               break;
               case 2 :
-                  descripcion = "INDUSTRIAL";
+                  descripcion = "INDUS/MONOV";
               break;
               case 3 :
                   descripcion = "TODOTERRENO";
