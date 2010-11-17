@@ -80,7 +80,12 @@ public class CSLanzarInforme1
             String fechaPrevistaEntrega = informe.getFecha_prevista_entrega();
             String fechaRealEntrega = informe.getFecha_real_entrega();
 
-
+            String [] temp = null;
+            temp = fechaRealEntrega.split("\\-");
+            String anyo=temp[0];
+            String mes=temp[1];
+            String dia=temp[2];
+            String nuevaFechaRealEntrega=dia+"/"+mes+"/"+anyo;
 
             // SE CALCULA EL VALOR DEL SERVICIO ESPECIAL
             String cl_id=String.valueOf(clienteID);
@@ -170,7 +175,7 @@ public class CSLanzarInforme1
                                                         " ) VALUES (";
             query = query + "'"+finalNum+"','"+fecha+"','"+soporte+"','"+finalServicio+"', '"+servicioEspecial+"','"+importeServicioEs+"','"+Vehiculo+"','"+matricula+"'," +
                             "'"+importeTarifa+"','"+dSuplemento+"','"+IdaVuelta2+"','"+importeTotalAux+"','"+fechaPrevistaRecogida+"','"+fechaPrevistaEntrega+"', " +
-                            "'"+estado+"','"+fechaRealEntrega+"','"+observaciones+"')";
+                            "'"+estado+"','"+nuevaFechaRealEntrega+"','"+observaciones+"')";
 
             System.out.println(query);
             boolean rs3 = CSDesktop.datos.manipuladorDatos(query);

@@ -47,19 +47,19 @@
 	<field name="fi_importe_servicio" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="fi_fecha_prevista_recogida" class="java.sql.Date">
+	<field name="fi_estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fi_observaciones" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="fi_fecha_prevista_entrega" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="fi_estado" class="java.lang.String">
+	<field name="fi_fecha_prevista_recogida" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="fi_fecha_real_entrega" class="java.sql.Date">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="fi_observaciones" class="java.lang.String">
+	<field name="fi_fecha_real_entrega" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
@@ -438,7 +438,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{fi_fecha_real_entrega}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fi_fecha_real_entrega}.equals("01/01/2050") ? " " : $F{fi_fecha_real_entrega} )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="496" y="0" width="35" height="20"/>
