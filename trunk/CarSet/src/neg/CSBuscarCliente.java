@@ -8,7 +8,6 @@
  *
  * Created on 07-oct-2009, 0:21:39
  */
-
 package neg;
 
 import utils.LimitadorDeDocumento;
@@ -349,8 +348,9 @@ public class CSBuscarCliente extends javax.swing.JPanel
         
         System.out.println("\nBoton buscar Clientes.");
 
-        int numero=0;
+        int numero = 0;
         String textNumero = new String((jTextNumero.getText()));
+
         if (textNumero.equals(""))
         {
             numero=-1;
@@ -383,111 +383,48 @@ public class CSBuscarCliente extends javax.swing.JPanel
         }
         else
         {
-            String query = "SELECT * FROM cl_clientes c ";
-            boolean and = false;
+            String query = "SELECT cl.cl_id, cl.cl_nombre, cl.cl_tipo_tarifa, cl_provincia, cl.cl_plazo, fp.fp_tipo, co.co_nombre" +
+                           "  FROM cl_clientes cl, co_comerciales co, fp_forma_pago fp" +
+                           " WHERE cl.co_id = co.co_id AND cl.fp_id = fp.fp_id";
 
             if (numero!=-1)
             {
-                query = query + " where cl_id = "+numero;
-                and = true;
+                query = query + " AND cl.cl_id = "+numero;
             }
             if (!nombre.equals(""))
             {
-                if (and)
-                {
-                    query = query + " AND cl_nombre like '%"+nombre+"%'";
-                }
-                else
-                {
-                    query = query + " where cl_nombre like '%"+nombre+"%'";
-                    and = true;
-                }
+                query = query + " AND cl.cl_nombre like '%"+nombre+"%'";
             }
             if (!dni.equals(""))
             {
-               if (and)
-                {
-                    query = query + " AND cl_DNI_CIF = '"+dni+"'";
-                }
-                else
-                {
-                    query = query + " where cl_DNI_CIF = '"+dni+"'";
-                    and = true;
-                }
-            }            if (!codPostal.equals(""))
-            {
-                if (and)
-                {
-                    query = query + " AND cl_cod_postal = '"+codPostal+"'";
-                }
-                else
-                {
-                    query = query + " where cl_cod_postal = '"+codPostal+"'";
-                    and = true;
-                }
-            }
-            if (!direccion.equals(""))
-            {
-                if (and)
-                {
-                    query = query + " AND cl_direccion = '"+direccion+"'";
-                }
-                else
-                {
-                    query = query + " where cl_direccion = '"+direccion+"'";
-                    and = true;
-                }
+                query = query + " AND cl.cl_DNI_CIF = '"+dni+"'";
             }
             if (!codPostal.equals(""))
             {
-                if (and)
-                {
-                    query = query + " AND cl_cod_postal = '"+codPostal+"'";
-                }
-                else
-                {
-                    query = query + " where cl_cod_postal = '"+codPostal+"'";
-                    and = true;
-                }
+                     query = query + " AND cl.cl_cod_postal = '"+codPostal+"'";
+            }
+            if (!direccion.equals(""))
+            {
+                query = query + " AND cl.cl_direccion = '"+direccion+"'";
+            }
+            if (!codPostal.equals(""))
+            {
+                query = query + " AND cl.cl_cod_postal = '"+codPostal+"'";
             }
 
             if (!poblacion.equals(""))
             {
-                if (and)
-                {
-                    query = query + " AND cl_poblacion like '%"+poblacion+"%'";
-                }
-                else
-                {
-                    query = query + " where cl_poblacion like '%"+poblacion+"%'";
-                    and = true;
-                }
+                query = query + " AND cl.cl_poblacion like '%"+poblacion+"%'";
             }
             if (!provincia.equals("Selecciona"))
             {
-                if (and)
-                {
-                    query = query + " AND cl_provincia like '%"+provincia+"%'";
-                }
-                else
-                {
-                    query = query + " where cl_provincia like '%"+provincia+"%'";
-                    and = true;
-                }
+                query = query + " AND cl.cl_provincia like '%"+provincia+"%'";
             }
             if (comercial>1)
             {
-                if (and)
-                {
-                    query = query + " AND co_id= '"+comercial+"'";
-                }
-                else
-                {
-                    query = query + " where co_id = '"+comercial+"'";
-                    and = true;
-                }
+                query = query + " AND co.co_id= '"+comercial+"'";
             }
-            query = query + " ORDER BY cl_nombre ASC";
+            query = query + " ORDER BY cl.cl_nombre ASC";
           System.out.println(query);
           CSResultBuscarCliente resultBuscarCliente = new CSResultBuscarCliente(query);
           

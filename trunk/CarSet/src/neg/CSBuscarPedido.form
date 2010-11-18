@@ -49,7 +49,10 @@
                               <Component id="lEstado3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jComboBoxEstado" min="-2" pref="122" max="-2" attributes="1"/>
-                              <EmptySpace pref="761" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="568" max="-2" attributes="0"/>
+                              <Component id="lComercial" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jComboBoxComercial" pref="143" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jSeparator6" alignment="0" pref="920" max="32767" attributes="1"/>
                           <Component id="jSeparator1" alignment="0" pref="920" max="32767" attributes="1"/>
@@ -229,6 +232,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lEstado3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lComercial" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator6" min="-2" pref="10" max="-2" attributes="0"/>
@@ -1009,6 +1014,29 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxServicioEspecialActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lComercial">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Comercial"/>
+        <Property name="name" type="java.lang.String" value="lComercial" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxComercial">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboBoxComercial" noResource="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
