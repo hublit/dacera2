@@ -3,7 +3,6 @@
  *
  * Created on 07-oct-2009, 22:40:56
  */
-
 package neg;
 
 import utils.TablaModelo;
@@ -51,7 +50,7 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
 
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "NOMBRE", "DNI/CIF", "TELEFONO", "MAIL" });
+        modelo.setColumnIdentifiers(new String[] {"NUM", "NOMBRE", "TIPO", "PROVINCIA", "PLAZO DE PAGO", "FORMA DE PAGO" });
 
         int numeroFila = 0;
         try {
@@ -60,7 +59,7 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
                 int j = 0;
                 for (int k = 0; k < 24; k++)
                 {
-                    if (k==0 ||k == 2 || k == 3 || k == 14 || k == 17)
+                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4|| k == 5)
                     {
                         datosFila[j] = rs.getObject(k + 1);
                         System.out.println("Dato" + k + " " + rs.getObject(k + 1));
@@ -103,15 +102,16 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
         columna2.setPreferredWidth(100);
         TableColumn columna3 = tablaProveedores.getColumnModel().getColumn(3);
         columna3.setPreferredWidth(100);
-         TableColumn columna4 = tablaProveedores.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(250);
+        TableColumn columna4 = tablaProveedores.getColumnModel().getColumn(4);
+        columna4.setPreferredWidth(100);
+        TableColumn columna5 = tablaProveedores.getColumnModel().getColumn(5);
+        columna5.setPreferredWidth(110);
 
-         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tablaProveedores.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaProveedores.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaProveedores.getColumnModel().getColumn(3).setCellRenderer(tcr);
 
+        tablaProveedores.setAutoCreateRowSorter(true);
 
         tablaProveedores.addMouseListener(new MouseAdapter()
         {

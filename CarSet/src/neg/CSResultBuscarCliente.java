@@ -34,15 +34,16 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = CSDesktop.datos.select(query);
         
-        modelo.setColumnIdentifiers(new String[] {"NUM", "NOMBRE", "DNI/CIF", "TELEFONO", "MAIL" });
-
+        modelo.setColumnIdentifiers(new String[] {"NUM", "NOMBRE", "TIPO TARIFA", "PROVINCIA", "PLAZO DE PAGO", "FORMA DE PAGO", "COMERCIAL" });
         int numeroFila = 0;
         try {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                for (int k = 0; k < 24; k++) {
-                    if (k==0 ||k == 2 || k == 3 || k == 12 || k == 15) {
+                for (int k = 0; k < 34; k++)
+                {
+                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k == 6 )
+                    {
                         datosFila[j] = rs.getObject(k + 1);
                         System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         j++;
@@ -77,21 +78,26 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
         initComponents();
         tablaClientes.setModel(modelo);
         TableColumn columna = tablaClientes.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(50);
+        columna.setPreferredWidth(40);
         TableColumn columna1 = tablaClientes.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(300);
         TableColumn columna2 = tablaClientes.getColumnModel().getColumn(2);
-        columna2.setPreferredWidth(100);
+        columna2.setPreferredWidth(50);
         TableColumn columna3 = tablaClientes.getColumnModel().getColumn(3);
-        columna3.setPreferredWidth(100);
-         TableColumn columna4 = tablaClientes.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(250);
+        columna3.setPreferredWidth(75);
+        TableColumn columna4 = tablaClientes.getColumnModel().getColumn(4);
+        columna4.setPreferredWidth(70);
+        TableColumn columna5 = tablaClientes.getColumnModel().getColumn(5);
+        columna5.setPreferredWidth(100);
+        TableColumn columna6 = tablaClientes.getColumnModel().getColumn(6);
+        columna6.setPreferredWidth(100);
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tablaClientes.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaClientes.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaClientes.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        
+        tablaClientes.setAutoCreateRowSorter(true);
 
         tablaClientes.addMouseListener(new MouseAdapter()
         {
@@ -135,7 +141,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
 
      public Dimension getPreferredSize()
    {
-      return new Dimension( 826,600 );
+      return new Dimension( 1000,600 );
    }
 
     /** This method is called from within the constructor to
@@ -184,13 +190,10 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(347, 347, 347))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

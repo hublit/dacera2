@@ -11,6 +11,8 @@
 
 package neg;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.LimitadorDeDocumento;
 import data.Cliente;
 import data.Proveedor;
@@ -18,6 +20,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,6 +45,11 @@ public class CSBuscarPedido extends javax.swing.JPanel
 
         CSDesktop.menuBuscarPedido.setEnabled(false);
         initComponents();
+        try {
+            getComercial();
+        } catch (SQLException ex) {
+            Logger.getLogger(CSBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
         limitacionesCampos();
 
          KeyListener l = new KeyListener()
@@ -68,7 +77,8 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 this.getComponents()[k] != jComboBoxServicioFMad &&
                 this.getComponents()[k] != jComboBoxServicioFMadDestino &&
                 this.getComponents()[k] != jComboBoxSoporte &&
-                this.getComponents()[k] != jComboBoxEstado)
+                this.getComponents()[k] != jComboBoxEstado &&
+                this.getComponents()[k] != jComboBoxComercial)
             {
                 this.getComponents()[k].addKeyListener(l);
             }
@@ -137,6 +147,8 @@ public class CSBuscarPedido extends javax.swing.JPanel
         lServicioFMad1 = new javax.swing.JLabel();
         lSEspecial = new javax.swing.JLabel();
         jComboBoxServicioEspecial = new javax.swing.JComboBox();
+        lComercial = new javax.swing.JLabel();
+        jComboBoxComercial = new javax.swing.JComboBox();
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.setName("jButtonBuscar"); // NOI18N
@@ -379,6 +391,14 @@ public class CSBuscarPedido extends javax.swing.JPanel
             }
         });
 
+        lComercial.setForeground(new java.awt.Color(0, 0, 100));
+        lComercial.setText("Comercial");
+        lComercial.setName("lComercial"); // NOI18N
+
+        jComboBoxComercial.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxComercial.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxComercial.setName("jComboBoxComercial"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -414,7 +434,10 @@ public class CSBuscarPedido extends javax.swing.JPanel
                                 .addComponent(lEstado3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(568, 568, 568)
+                                .addComponent(lComercial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxComercial, 0, 143, Short.MAX_VALUE))
                             .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
                             .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
@@ -570,7 +593,9 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lEstado3)
-                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lComercial))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -626,14 +651,16 @@ public class CSBuscarPedido extends javax.swing.JPanel
         String matricula=new String(jTextMatricula.getText());
         String proveedor=new String(jTextProveedor.getText());
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
+        int comercial = (jComboBoxComercial.getSelectedIndex()+1);
 
         boolean and = false;
         boolean where = false;
         //String query = "SELECT * FROM pe_pedidos pe ";
         String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
                 " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal," +
-                " p.pe_ta_es_cliente, p.pe_ta_es_proveedor,p.pe_suplemento,pe_solred,p.pe_fecha_real_destino,p.pe_estado,p.pe_descripcion, " +
-                " p.pe_estado FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc " +
+                " p.pe_ta_es_cliente, p.pe_ta_es_proveedor,p.pe_suplemento,pe_solred,p.pe_fecha_real_destino," +
+                " p.pe_estado, p.pe_descripcion, p.pe_estado, cl.co_id" +
+                " FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc " +
                 " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +
                 " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
 
@@ -786,18 +813,39 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 query = query + " AND fc.fc_id='"+factor+"'";
             }
 
-            if (estado.equals(""))
+            if (!estado.equals(""))
             {
                 //query = query + " AND pe_estado='"+estado+"'";
                 query = query + " AND p.pe_estado='"+estado+"'";
             }
+            if (comercial>1)
+            {
+                query = query + " AND co_id= '"+comercial+"'";
+            }
+
             query = query+" ORDER BY p.pe_fecha ASC";
 
             System.out.println(query);
 
-            CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+            CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(query);
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void getComercial() throws SQLException
+    {
+        ResultSet rs = CSDesktop.datos.select("SELECT co_id, co_nombre FROM co_comerciales");
+        int j = 0;
+        String valor = "";
+        while(rs.next())
+        {
+            valor = rs.getString("co_nombre");
+
+            jComboBoxComercial.addItem(valor);
+            jComboBoxComercial.setSelectedIndex(0);
+
+            j++;
+        }
+     }
 
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
 
@@ -871,6 +919,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JComboBox jComboBoxComercial;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxProvinciaDestino;
     private javax.swing.JComboBox jComboBoxProvinciaOrigen;
@@ -901,6 +950,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
     private javax.swing.JLabel lCliente;
     private javax.swing.JLabel lCodPostalDestino;
     private javax.swing.JLabel lCodPostalOrigen;
+    private javax.swing.JLabel lComercial;
     private javax.swing.JLabel lDestino1;
     private javax.swing.JLabel lDireccionDestino1;
     private javax.swing.JLabel lDireccionOrigen1;

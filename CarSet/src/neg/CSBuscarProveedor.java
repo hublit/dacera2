@@ -8,7 +8,6 @@
  *
  * Created on 07-oct-2009, 11:25:56
  */
-
 package neg;
 
 import utils.LimitadorDeDocumento;
@@ -390,99 +389,43 @@ public class CSBuscarProveedor extends javax.swing.JPanel
         }
         else
         {
-            String query = "SELECT * FROM pr_proveedores c";
-            boolean and = false;
+            String query = "SELECT pr.pr_id, pr_nombre_fiscal, pr.pr_tipo, pr.pr_provincia, pr.pr_plazo, fp.fp_tipo" +
+                           " FROM pr_proveedores pr, fp_forma_pago fp" +
+                           " WHERE pr.fp_id = fp.fp_id";
 
             if (numero!=-1)
             {
-                query = query + " WHERE pr_id = "+numero;
-                and = true;
+                query = query + " AND pr.pr_id = "+numero;
             }
              if (!nombre.equals(""))
             {
-                if (and)
-                {
-                    query = query + " AND pr_nombre_fiscal like '%"+nombre+"%'";
-                }
-                else
-                {
-                    query = query + " WHERE pr_nombre_fiscal like '%"+nombre+"%'";
-                    and = true;
-                }
+                query = query + " AND pr.pr_nombre_fiscal like '%"+nombre+"%'";
             }
             if (!dni.equals(""))
             {
-                if (and)
-                {
-                    query = query + " AND pr_DNI_CIF = '"+dni+"'";
-                }
-                else
-                {
-                    query = query + " WHERE pr_DNI_CIF = '"+dni+"'";
-                    and = true;
-                }
+                query = query + " AND pr.pr_DNI_CIF = '"+dni+"'";
             }
             if (!regimen.equals("Selecciona"))
             {
-                if (and)
-                {
-                    query = query + " AND pr_regimen = '"+regimen+"'";
-                }
-                else
-                {
-                    query = query + " WHERE pr_regimen = '"+regimen+"'";
-                    and = true;
-                }
+                query = query + " AND pr.pr_regimen = '"+regimen+"'";
             }
             if (!tipo.equals("Selecciona"))
             {
-                if (and)
-                {
-                    query = query + " AND pr_tipo = '"+tipo+"'";
-                }
-                else
-                {
-                    query = query + " WHERE pr_tipo = '"+tipo+"'";
-                    and = true;
-                }
+                query = query + " AND pr.pr_tipo = '"+tipo+"'";
             }
             if (!codPostal.equals(""))
             {
-                if (and)
-                {
-                    query = query + " AND pr_cod_postal = '"+codPostal+"'";
-                }
-                else
-                {
-                    query = query + " WHERE pr_cod_postal = '"+codPostal+"'";
-                    and = true;
-                }
+                query = query + " AND pr.pr_cod_postal = '"+codPostal+"'";
             }
             if (!poblacion.equals(""))
             {
-                if (and)
-                {
-                    query = query + " AND cl_poblacion like '%"+poblacion+"%'";
-                }
-                else
-                {
-                    query = query + " WHERE cl_poblacion like '%"+poblacion+"%'";
-                    and = true;
-                }
+                query = query + " AND pr.pr_poblacion like '%"+poblacion+"%'";
             }
             if (!provincia.equals("Selecciona"))
             {
-                if (and)
-                {
-                    query = query + " AND pr_provincia like '%"+provincia+"%'";
-                }
-                else
-                {
-                    query = query + " WHERE pr_provincia like '%"+provincia+"%'";
-                    and = true;
-                }
+                query = query + " AND pr.pr_provincia like '%"+provincia+"%'";
             }
-            query = query + " ORDER BY pr_nombre_fiscal ASC";
+            query = query + " ORDER BY pr.pr_nombre_fiscal ASC";
             System.out.println(query);
             CSResultBuscarProveedor resultBuscarProveedor = new CSResultBuscarProveedor(query);
 
