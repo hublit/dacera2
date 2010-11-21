@@ -37,15 +37,13 @@ public class CSEnviarMailProveedor
      * main de prueba
      * @param args Se ignoran.
      */
-    public static void main(BeanCorreoCliente mail)
+    public static void main(BeanCorreoCliente mail,String email,String nombre)
     {
         String tarifa="";
         String importeServicioEs="";
         String IdaVuelta="";
         double importeTotal=0;
-        String nombre="";
-        String email="";
-
+        
         try
         {
 
@@ -85,13 +83,13 @@ public class CSEnviarMailProveedor
 
             if(rs_mail != null)
             {
-            String queryContacto="SELECT * FROM CP_CONTACTOS_PROVEEDOR WHERE CP_ID="+mail.getClienteID()+" LIMIT 1";
+            /*String queryContacto="SELECT * FROM CP_CONTACTOS_PROVEEDOR WHERE CP_ID="+mail.getClienteID()+" LIMIT 1";
             ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
 
              while (rsContacto.next())  {
                  nombre=rsContacto.getString("cp_nombre");
                  email=rsContacto.getString("cp_email");
-             }
+             }*/
            
             // Propiedades de la conexión
            Properties props = new Properties();
@@ -113,12 +111,12 @@ public class CSEnviarMailProveedor
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(mailSession);
             message.setFrom(new InternetAddress("Operaciones CarSet <operaciones@carset.es>"));
-             /*message.addRecipient(
-                Message.RecipientType.TO,
-                new InternetAddress(email));*/
              message.addRecipient(
+                Message.RecipientType.TO,
+                new InternetAddress(email));
+             /*message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("carset@carset.es"));
+                new InternetAddress("carset@carset.es"));*/
             message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
 

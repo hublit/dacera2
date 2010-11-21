@@ -32,6 +32,8 @@ package neg;
 
 import data.BeanCliente;
 import data.BeanCorreoCliente;
+import data.Cliente;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -77,6 +79,7 @@ import javax.mail.NoSuchProviderException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -699,7 +702,25 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
                 }
            
                 private void btnReloadActionPerformed(ActionEvent evt) {
-                    int seleccion = JOptionPane.showOptionDialog(
+
+                     Cliente finalCliente=new Cliente();
+                    //String cliente = jTextCliente.getText();
+                    //String cliente=mail.getCliente();
+                    String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID("HOLA");
+
+
+                    CSDesktop.BuscaMailCliente = new JInternalFrame("Seleccionar Mail Cliente", true, false, false, true );
+                    // adjuntar panel al panel de contenido del marco interno
+                    CSSelectMailClienteFactura panel = new CSSelectMailClienteFactura(query,mail,nombre);
+                    CSDesktop.BuscaMailCliente.getContentPane().add( panel,BorderLayout.CENTER);
+                    // establecer tama�o de marco interno en el tama�o de su contenido
+                    CSDesktop.BuscaMailCliente.pack();
+                    // adjuntar marco interno al escritorio y mostrarlo
+                    CSDesktop.elEscritorio.add( CSDesktop.BuscaMailCliente );
+                    CSDesktop.BuscaMailCliente.setLocation(150, 50);
+                    CSDesktop.BuscaMailCliente.setVisible( true );
+
+                    /*int seleccion = JOptionPane.showOptionDialog(
                             JRViewerFactura.this,
                             "¿Quieres mandar la factura por mail al cliente "+mail.getCliente()+"?",
                             "Atención",
@@ -713,13 +734,8 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
                     {                        
                         CSLanzarFactura factura = new CSLanzarFactura();                           
                         factura.enviarMail(mail,nombre);                                                   
-                    }
+                    }*/
                 }
-
-           
-
-            
-           
         });
 
             btnReload.setEnabled(true);
@@ -1125,6 +1141,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
         }
         cmbZoom.setModel(model);
         jButton1 = new javax.swing.JButton();
+        jButtonMail = new javax.swing.JButton();
         pnlMain = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         scrollPane.getHorizontalScrollBar().setUnitIncrement(5);
@@ -1345,6 +1362,15 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
             }
         });
         tlbToolBar.add(jButton1);
+
+        jButtonMail.setForeground(new java.awt.Color(255, 0, 0));
+        jButtonMail.setText("Mail");
+        jButtonMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMailActionPerformed(evt);
+            }
+        });
+        tlbToolBar.add(jButtonMail);
 
         add(tlbToolBar, java.awt.BorderLayout.NORTH);
 
@@ -1811,6 +1837,10 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
                 btnActualSize.setSelected(true);
             }
 }//GEN-LAST:event_btnActualSizeActionPerformed
+
+        private void jButtonMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMailActionPerformed
+           
+        }//GEN-LAST:event_jButtonMailActionPerformed
 
 
 	/**
@@ -2647,10 +2677,10 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnActualSize;
+    protected javax.swing.JToggleButton btnActualSize;
     protected javax.swing.JButton btnFirst;
-    private javax.swing.JToggleButton btnFitPage;
-    private javax.swing.JToggleButton btnFitWidth;
+    protected javax.swing.JToggleButton btnFitPage;
+    protected javax.swing.JToggleButton btnFitWidth;
     protected javax.swing.JButton btnLast;
     protected javax.swing.JButton btnNext;
     protected javax.swing.JButton btnPrevious;
@@ -2659,8 +2689,9 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
     protected javax.swing.JButton btnSave;
     protected javax.swing.JButton btnZoomIn;
     protected javax.swing.JButton btnZoomOut;
-    private javax.swing.JComboBox cmbZoom;
+    protected javax.swing.JComboBox cmbZoom;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonMail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

@@ -28,9 +28,13 @@
                           </Group>
                           <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="322" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButtonMailCliente" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButtonMailProveedor" min="-2" pref="137" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                       <Component id="jButtonModificar" min="-2" pref="115" max="-2" attributes="0"/>
-                      <EmptySpace pref="191" max="32767" attributes="0"/>
+                      <EmptySpace pref="142" max="32767" attributes="0"/>
                       <Component id="jButtonEliminar" min="-2" pref="113" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Component id="jButtonCancelar" min="-2" pref="94" max="-2" attributes="0"/>
@@ -558,9 +562,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonMailCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonMailProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -1993,6 +1999,24 @@
         <Property name="text" type="java.lang.String" value="N.&#xba; en Cami&#xf3;n"/>
         <Property name="name" type="java.lang.String" value="jLabelNcamion" noResource="true"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonMailCliente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mail Cliente"/>
+        <Property name="name" type="java.lang.String" value="jButtonMailCliente" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMailClienteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonMailProveedor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mail Proveedor"/>
+        <Property name="name" type="java.lang.String" value="jButtonMailProveedor" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMailProveedorActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

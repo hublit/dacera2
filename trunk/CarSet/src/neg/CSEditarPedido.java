@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -209,6 +210,8 @@ public class CSEditarPedido extends javax.swing.JPanel
         jDateFechaRealDestino = new com.toedter.calendar.JDateChooser();
         jTextNumCamion = new javax.swing.JTextField();
         jLabelNcamion = new javax.swing.JLabel();
+        jButtonMailCliente = new javax.swing.JButton();
+        jButtonMailProveedor = new javax.swing.JButton();
 
         jButtonModificar.setText("Modificar");
         jButtonModificar.setName("jButtonModificar"); // NOI18N
@@ -771,6 +774,22 @@ public class CSEditarPedido extends javax.swing.JPanel
         jLabelNcamion.setText("N.º en Camión");
         jLabelNcamion.setName("jLabelNcamion"); // NOI18N
 
+        jButtonMailCliente.setText("Mail Cliente");
+        jButtonMailCliente.setName("jButtonMailCliente"); // NOI18N
+        jButtonMailCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMailClienteActionPerformed(evt);
+            }
+        });
+
+        jButtonMailProveedor.setText("Mail Proveedor");
+        jButtonMailProveedor.setName("jButtonMailProveedor"); // NOI18N
+        jButtonMailProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMailProveedorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -785,9 +804,13 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jCheckBoxCerrado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel9))
-                        .addGap(322, 322, 322)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonMailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonMailProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83)
                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                         .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1245,9 +1268,11 @@ public class CSEditarPedido extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonModificar)
                             .addComponent(jButtonEliminar)
-                            .addComponent(jButtonCancelar)))
+                            .addComponent(jButtonCancelar)
+                            .addComponent(jButtonMailCliente)
+                            .addComponent(jButtonMailProveedor)
+                            .addComponent(jButtonModificar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -1579,9 +1604,18 @@ public class CSEditarPedido extends javax.swing.JPanel
                     //Se manda el mail de confirmacion
                     if (estado.equals("En Proceso") || (estado.equals("Entregado")))
                     {
+                        String mails="\n";
+                        for(int i=0;i<CSDesktop.mailCliente.size();i++)
+                        {
+                            mails=mails + CSDesktop.mailCliente.get(i);
+                            if(i!=CSDesktop.mailCliente.size()-1)
+                            {
+                                mails=mails + "\n";
+                            }
+                        }
                         int seleccion = JOptionPane.showOptionDialog(
                         CSEditarPedido.this,
-                        "¿Quieres mandar un mail al cliente " + cliente + "?",
+                        "¿Quieres mandar un mail al cliente " + mails + "?",
                         "Atención",
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
@@ -1627,15 +1661,35 @@ public class CSEditarPedido extends javax.swing.JPanel
                             mail.setClienteID(String.valueOf(client.getClienteID(cliente)));
 
                             if(estado.equals("En Proceso"))
-                                CSEnviarMailProceso.main(mail);
+                            {
+                                for(int i=0;i<CSDesktop.mailCliente.size();i++)
+                                {
+                                    CSEnviarMailProceso.main(mail,CSDesktop.mailCliente.get(i).toString(),CSDesktop.nombreCliente.get(i).toString());
+                                }
+                            }                                
                             else if (estado.equals("Entregado"))
-                                CSEnviarMailEntregado.main(mail);
+                            {
+                                 for(int i=0;i<CSDesktop.mailCliente.size();i++)
+                                {
+                                    CSEnviarMailEntregado.main(mail,CSDesktop.mailCliente.get(i).toString(),CSDesktop.nombreCliente.get(i).toString());
+                                 }
+                            }
                         }
                         if(estado.equals("En Proceso"))
                         {
+                            String mailsP="\n";
+                            for(int i=0;i<CSDesktop.mailProveedor.size();i++)
+                            {
+                                mailsP=mailsP + CSDesktop.mailProveedor.get(i);
+                                if(i!=CSDesktop.mailProveedor.size()-1)
+                                {
+                                    mailsP=mailsP + "\n";
+                                }
+                            }
+
                            int seleccion2 = JOptionPane.showOptionDialog(
                                 CSEditarPedido.this,
-                        "¿Quieres mandar un mail al proveedor " + proveedor + "?",
+                        "¿Quieres mandar un mail al proveedor " + mailsP + "?",
                         "Atención",
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
@@ -1680,7 +1734,10 @@ public class CSEditarPedido extends javax.swing.JPanel
                             Proveedor proveed = new Proveedor();
                             mail.setClienteID(String.valueOf(proveed.getProveedorID(proveedor)));
 
-                            CSEnviarMailProveedor.main(mail);
+                            for(int i=0;i<CSDesktop.mailProveedor.size();i++)
+                            {
+                                CSEnviarMailProveedor.main(mail,CSDesktop.mailProveedor.get(i).toString(),CSDesktop.nombreProveedor.get(i).toString());
+                            }
                              }
 
                         }
@@ -1857,6 +1914,43 @@ public class CSEditarPedido extends javax.swing.JPanel
     private void jComboBoxServicioEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServicioEspecialActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_jComboBoxServicioEspecialActionPerformed
+
+    private void jButtonMailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMailClienteActionPerformed
+
+        Cliente finalCliente=new Cliente();
+        String cliente = jTextCliente.getText();
+        String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID(cliente);
+
+
+        CSDesktop.BuscaMailCliente = new JInternalFrame("Seleccionar Mail Cliente", true, false, false, true );
+        // adjuntar panel al panel de contenido del marco interno
+        CSSelectMailCliente panel = new CSSelectMailCliente(query);
+        CSDesktop.BuscaMailCliente.getContentPane().add( panel,BorderLayout.CENTER);
+        // establecer tama�o de marco interno en el tama�o de su contenido
+        CSDesktop.BuscaMailCliente.pack();
+        // adjuntar marco interno al escritorio y mostrarlo
+        CSDesktop.elEscritorio.add( CSDesktop.BuscaMailCliente );
+        CSDesktop.BuscaMailCliente.setLocation(150, 50);
+        CSDesktop.BuscaMailCliente.setVisible( true );
+    }//GEN-LAST:event_jButtonMailClienteActionPerformed
+
+    private void jButtonMailProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMailProveedorActionPerformed
+
+        Proveedor finalProveedor=new Proveedor();
+        String proveedor = jTextProveedor.getText();
+        String query = "SELECT cp_nombre,cp_email FROM cp_contactos_proveedor where pr_id ="+ finalProveedor.getProveedorID(proveedor);
+
+        CSDesktop.BuscaMailProveedor = new JInternalFrame("Seleccionar Mail Proveedor", true, false, false, true );
+        // adjuntar panel al panel de contenido del marco interno
+        CSSelectMailProveedor panel = new CSSelectMailProveedor(query);
+        CSDesktop.BuscaMailProveedor.getContentPane().add( panel,BorderLayout.CENTER);
+        // establecer tama�o de marco interno en el tama�o de su contenido
+        CSDesktop.BuscaMailProveedor.pack();
+        // adjuntar marco interno al escritorio y mostrarlo
+        CSDesktop.elEscritorio.add( CSDesktop.BuscaMailProveedor );
+        CSDesktop.BuscaMailProveedor.setLocation(150, 50);
+        CSDesktop.BuscaMailProveedor.setVisible( true );
+    }//GEN-LAST:event_jButtonMailProveedorActionPerformed
  public Dimension getPreferredSize()
    {
       return new Dimension( 1100,650 );
@@ -1865,6 +1959,8 @@ public class CSEditarPedido extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JButton jButtonMailCliente;
+    private javax.swing.JButton jButtonMailProveedor;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JCheckBox jCheckBoxCerrado;
     private javax.swing.JCheckBox jCheckBoxIdaVuelta;
