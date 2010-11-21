@@ -25,7 +25,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import utils.*;
 import data.DbConnection;
-import javax.print.DocFlavor.STRING;
+import java.util.HashMap;
 
 public class CSDesktop extends JFrame
 {
@@ -50,13 +50,15 @@ public class CSDesktop extends JFrame
   public static JInternalFrame EditarCliente;
   public static JInternalFrame ResultPedido;
   public static JInternalFrame ResultFacturaPedido;
+  public static JInternalFrame ResultBuscarMail;
   public static JInternalFrame ResultProveedor;
   public static JInternalFrame ResultContactoProveedor;
   public static JInternalFrame EditarProveedor;
   public static JInternalFrame NuevoContactoProveedor;
   public static JInternalFrame EditarContactoProveedor;
   public static JInternalFrame BuscaCliente;
-  public static JInternalFrame BuscaMail;
+  public static JInternalFrame BuscaMailCliente;
+  public static JInternalFrame BuscaMailProveedor;
   public static JInternalFrame BuscaProveedor;
   public static JInternalFrame ServicioCliente;
   public static JInternalFrame ServicioProveedor;
@@ -103,6 +105,10 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuTesoreriaProveedor;
 
   public static DbConnection datos;
+  public static HashMap mailCliente = new HashMap();
+  public static HashMap mailProveedor = new HashMap();
+  public static HashMap nombreCliente = new HashMap();
+  public static HashMap nombreProveedor = new HashMap();
   
   public  CSDesktop(String usuario) throws UnknownHostException
   {

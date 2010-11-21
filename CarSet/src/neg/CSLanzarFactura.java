@@ -290,6 +290,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                    //importeServicioEsOtros=otro.getTarifaEsCliente();
                    importeServicioEsOtros="";
                    importeTraslado=otro.getTarifaEsCliente();
+                   importeServicioOtros=0;
                    servicioEspecial="";
 
                 }
@@ -572,25 +573,25 @@ public class CSLanzarFactura extends javax.swing.JPanel
         }
     }// FIN DE LA CLASE LANZAR
 
-  public void enviarMail(BeanCorreoCliente mail,String nombre)
+  public void enviarMail(BeanCorreoCliente mail,String nombre,String email,String remitente)
   {
-    try {
+ 
         try {
             try {
                     //SE RECOGE A QUIEN SE VA A ENVIAR EL MAIL
-                    String queryContacto="SELECT * FROM CC_CONTACTOS_CLIENTE WHERE CL_ID="+mail.getClienteID()+" LIMIT 1";
+                    /*String queryContacto="SELECT * FROM CC_CONTACTOS_CLIENTE WHERE CL_ID="+mail.getClienteID()+" LIMIT 1";
                     ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
                     String nombreContacto="";
-                    String email="";
+                    String email="";*/
 
                     double importe=Utilidades.redondear(Double.parseDouble(mail.getTarifa()),2);
                     String importeS=String.valueOf(importe);
 
-                    while (rsContacto.next())
+                    /*while (rsContacto.next())
                     {
                         nombreContacto=rsContacto.getString("cc_nombre");
                         email=rsContacto.getString("cc_email");
-                    }
+                    }*/
 
                     Properties props = new Properties();
                     props.put("mail.transport.protocol","smtp");
@@ -612,7 +613,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                         new InternetAddress(email));*/
                     message.addRecipient(
                         Message.RecipientType.CC,
-                        new InternetAddress("carset@carset.es"));
+                        new InternetAddress("c_de_cruz@hotmail.com"));
                     message.setSubject("CarSet - Factura: " + mail.getNumPedido());
                     String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
            
@@ -626,7 +627,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     "<tr><td width='100'><img src=\""+imagen+"\" width='100'></td>" +
                     "<td align='center'><p><font face='Helvetica' size='+1'> ENVIO DE FACTURA </p></font></td></tr>" +
                     "<tr><td colspan='2'><br><br><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Factura:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
-                    "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombreContacto+"</font>" +
+                    "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: "+remitente+"</font>" +
                     "<tr><td colspan='2'><br><br><font face='Helvetica'> A continuaci&oacute;n, le adjuntamos la factura correspondiente a los servicios contratados hasta la fecha con nuestra empresa. </font></td></tr>" +
                     "<tr><td colspan='2'><br><br><font face='Helvetica'> En caso de necesitar una copia de esta factura en papel, háganoslo saber y se la remitiremos por correo a la mayor brevedad. </font></td></tr>" +
                     "<tr><td colspan='2'><br><table border='1' width='400'>" +
@@ -735,12 +736,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 JOptionPane.showMessageDialog(null,mensaje);
                 e1.printStackTrace();
             }
-        }catch (SQLException e2)
-            {
-                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail no ha podido ser enviado.</FONT></HTML>");
-                JOptionPane.showMessageDialog(null,mensaje);
-                e2.printStackTrace();
-            }
+    
 
     }
 
@@ -748,7 +744,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
         @Override
         public PasswordAuthentication getPasswordAuthentication() {
-           String username = "carset@carset.e.telefonica.net";
+           String username = "operaciones@carset.e.telefonica.net";
             String password = "912686953";
            return new PasswordAuthentication(username, password);
         }
