@@ -19,6 +19,13 @@ import net.sf.jasperreports.engine.JasperReport;
 import utils.Utilidades;
 import data.*;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -34,215 +41,279 @@ public class CSLanzarFacturaProveedor
     //public static void lanzar(String query,String fechaFactura,BeanCliente beanCliente,int flag) throws ClassNotFoundException, SQLException {
     public void lanzar(ArrayList lista,BeanProveedor beanProveedor,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin) throws ClassNotFoundException, SQLException, JRException, UnknownHostException
     {
-     //Lo primero que hacemos es borrar la tabla para generar la factura que queremos
-     String queryDel = "DELETE FROM fa_facturas_aux";
-     boolean resDel = CSDesktop.datos.manipuladorDatos(queryDel);
+         // PRIMERO SE BORRA LA TABLA AUXILIAR PARA GENERAR LAS FACTURAS.
+        String queryDel = "DELETE FROM fa_facturas_aux";
+        boolean resDel = CSDesktop.datos.manipuladorDatos(queryDel);
 
-     double total=0;
-     double iva = 0;
-     double totalIva = 0;
-     String importeTotal = "";
-     String importeTotalIva = "";
-     String importeIva = "";
-     String pr_id = beanProveedor.getPr_id();
+        double total=0;
+        double iva = 0;
+        double totalIva = 0;
+        String importeTotal = "";
+        String importeTotalIva = "";
+        String importeIva = "";
+        String pr_id = beanProveedor.getPr_id();
 
-     for(int i = 0; i < lista.size(); i++)
-     {
-        String factorTexto="";
-        String finalServicio="";
-        String finalFactor="";
-        String labelFactor="";
-        String labelTraslado="";
-        String labelSuplemento="";
-        String ServicioSuplemento="";
-        String labelServicioEspecial="";
-        String importeServicioEsOtros = "";
-        String servicioEspecial="";
-        String finalNum="";
-        String labelCampa="";
-        String labelCampa2="";
-        String finalCampa="";
-        String finalCampa2="";
-        String importeTraslado="";
-        String importeFactor="";
-        String importeSuplemento="";
-        String importeServicioEs = "";
-        String importeCampa="";
-        String importeCampa2="";
-        String importeCampaAux="";
-        String importeCampa2Aux="";
-        String labelIda="";
-        String textoIda="";
-        String importeIda="";
-        String IdaVuelta="";
-        String factorTexto2="";
-        String importeTotalAux="";
-        String labelOtros="";
-        double importeTarifa = 0;
-        double importeServicio = 0;
-        double importeFc = 0;
-        double importeSup = 0;
-        double totalAux = 0;       
-        double IdaVueltaP=0;
-        double IdaVuelta2=0;
-        double importeCampa4=0;
-        double importeCampa5=0;
-        double importeServicioOtros = 0;
-
-        BeanFactura otro = (BeanFactura)lista.get(i);
-
-        String numPedido=Long.valueOf(otro.getNumPedido()).toString();
-        finalNum=Utilidades.rellenarCeros(numPedido, 5);
-        String fecha=otro.getFecha();
-        finalNum=finalNum +"/"+ fecha.substring(2, 4);
-        String marca=otro.getMarca();
-        String modelo=otro.getModelo();
-        String matricula=otro.getMatricula();
-        String soporte=otro.getSoporte();
-        String factor=otro.getFactor();
-        String numCampa=otro.getDiasCampa();
-        servicioEspecial = otro.getServicioEspecial();
-        String numCamion=otro.getNumCamion();
-        
-        if(numCampa.equals("0"))
+        for(int i = 0; i < lista.size(); i++)
         {
-            //LINEA DE TRASLADO
-            String servicio = otro.getServicio();
-            String origen = otro.getProvinciaOrigen();
-            String destino = otro.getProvinciaDestino();
+            //VARIABLES TRASLADO
+            String finalServicio="";
+            String labelTraslado="";
+            String importeTraslado="";
+            double importeTrasladoD = 0;
+            //VARIABLES SERVICIO ESPECIAL
+            String importeServicio = "";
+            double importeServicioD = 0;
+            String labelServicioEspecial="";
+            //VARIABLES OTROS
+            String labelOtros="";
+            String importeServicioOtros="";
+            //VARIABLES FACTOR DE CORRECCION
+            String factorTexto="";
+            //VARIABLES IDA VUELTA
+            String IdaVuelta="";
+            String labelIda="";
+            String textoIda="";
+            String importeIda="";
+            double IdaVueltaD=0;
+            double IdaVueltaDF=0;
+            //VARIBLES FACTOR
+            String labelFactor="";
+            double importeFc = 0;
+            String importeFactor="";
+            String factorTexto2="";
+            //VARIABLES SUPLEMENTO
+            String labelSuplemento="";
+            String ServicioSuplemento="";
+            String importeSuplemento="";
+            double importeSupD = 0;
+            //VARIABLES CAMPA
+            String importeEntradaCampaAux="";
+            String importeDiasCampaAux="";
+            String labelCampa="";
+            String finalCampaEntrada = "";
+            String finalCampaDias = "";
+            double importeCampaEntradaD=0;
+            double importeCampaDiasD=0;
+            String importeCampaDias="";
+            //VARIABLES TOTALES
+            double totalAux = 0;
+            String importeTotalAuxS="";
 
-            if((!origen.equals("Selecciona")) && (!destino.equals("Selecciona")))
+            BeanFactura beanFactura = (BeanFactura)lista.get(i);
+
+            String numPedido=Long.valueOf(beanFactura.getNumPedido()).toString();
+            String finalNum=Utilidades.rellenarCeros(numPedido, 5);
+            String fecha=beanFactura.getFecha();
+            finalNum=finalNum +"/"+ fecha.substring(2, 4);
+            String marca=beanFactura.getMarca();
+            String modelo=beanFactura.getModelo();
+            String matricula=beanFactura.getMatricula();
+            String soporte=beanFactura.getSoporte();
+            String factor=beanFactura.getFactor();
+            String numCampa=beanFactura.getDiasCampa();
+            String servicioEspecial = beanFactura.getServicioEspecial();
+            String numCamion=beanFactura.getNumCamion();
+
+            //NUEVA LOGICA DE FACTURACION
+
+            if (numCampa.equals("0"))
             {
-                if(origen.equals(destino))
+                //LINEA DE TRASLADO
+                String servicio = beanFactura.getServicio();
+                String origen = beanFactura.getProvinciaOrigen();
+                String destino = beanFactura.getProvinciaDestino();
+
+                if((!origen.equals("Selecciona")) && (!destino.equals("Selecciona")))
                 {
-                    finalServicio=origen+" "+ servicio.toUpperCase();
+                    if(origen.equals(destino))
+                    {
+                        finalServicio=origen+" "+ servicio.toUpperCase();
+                    }
+                    else
+                    {
+                       finalServicio=origen+" - "+ destino;
+                    }
+                    labelTraslado="TRASLADO";
                 }
                 else
                 {
-                    finalServicio=origen+" - "+ destino;
+                    finalServicio="MADRID" + servicio;
                 }
-                labelTraslado="TRASLADO";
-            }
-            else
-            {
-                finalServicio="MADRID" + servicio;
-            }
+                // SI TIENE TARIFA ESPECIAL CLIENTE
+                if(!beanFactura.getTarifaEsProveedor().equals("-1"))
+                {
+                    importeTraslado = beanFactura.getTarifaEsProveedor();
 
-            //TARIFA
-            if(otro.getTarifaEsCliente().equals("-1"))
-            {
-                importeTraslado = otro.getTarifa();
-            }
-            else
-            {
-                if (!otro.getServicioEspecial().equals("Otros"))
-                    importeTraslado = otro.getTarifaEsCliente();
+                    // SI EL SOPORTE ES CAMION COMPLETO Y SU NUMERO EN CAMION NO ES 1
+                    // EL IMPORTE ES 0 PORQUE SOLO LLEVA IMPORTE EL PRIMERO
+                    if(soporte.equals("Camión completo") && !numCamion.equals("1"))
+                        importeTraslado="0";
+                    importeTrasladoD = Double.parseDouble(importeTraslado);
+                    importeTrasladoD=Utilidades.redondear(importeTrasladoD, 2);
+                    //SERVICIO ESPECIAL
+                    if(!beanFactura.getServicioEspecial().equals(""))
+                    {
+                        if(!beanFactura.getServicioEspecial().equals("Otros"))
+                        {
+                            importeServicio=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,pr_id,fecha);
+                            if(!importeServicio.equals(""))
+                            {
+                                importeServicioD = Double.parseDouble(importeServicio);
+                                importeServicioD = Utilidades.redondear(importeServicioD, 2);
+                            }
+                            servicioEspecial=beanFactura.getServicioEspecial().toUpperCase();
+                            labelServicioEspecial="SERVICIO ESPECIAL";
+                        }
+                        else
+                        {
+                            labelOtros=beanFactura.getDescripcion().toUpperCase();
+                        }
+                    }
+                    // FACTOR DE CORRECCION
+                    ArrayList factorTarifa = Utilidades.obtenerFactor(factor, pr_id);
+                    factorTexto = factorTarifa.get(0).toString();
+                }
+                // SI NO TIENE TARIFA ESPECIAL
                 else
-                    importeTraslado=otro.getTarifa();
-            }
-            importeTarifa = Double.parseDouble(importeTraslado);
+                {
+                    importeTraslado = beanFactura.getTarifa();
+                    // SI EL SOPORTE ES CAMION COMPLETO Y SU NUMERO EN CAMION NO ES 1
+                    // EL IMPORTE ES 0 PORQUE SOLO LLEVA IMPORTE EL PRIMERO
+                    if(soporte.equals("Camión completo") && !numCamion.equals("1"))
+                        importeTraslado="0";
+                    importeTrasladoD = Double.parseDouble(importeTraslado);
+                    importeTrasladoD=Utilidades.redondear(importeTrasladoD, 2);
+                    if(!beanFactura.getServicioEspecial().equals(""))
+                    {
+                        if(!beanFactura.getServicioEspecial().equals("Otros"))
+                        {
+                            importeServicio=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,pr_id,fecha);
+                            if(!importeServicio.equals(""))
+                            {
+                                importeServicioD = Double.parseDouble(importeServicio);
+                                importeServicioD = Utilidades.redondear(importeServicioD, 2);
+                            }
+                            servicioEspecial=beanFactura.getServicioEspecial().toUpperCase();
+                            labelServicioEspecial="SERVICIO ESPECIAL";
+                        }
+                        // NO PUEDE TENER VALOR OTROS
+                        else
+                        {
+                             if(soporte.equals("Camión completo"))
+                            {
+                                labelOtros=beanFactura.getDescripcion().toUpperCase();
+                            }
+                        }
+                    }
+                    //SI TIENE IDA Y VUELTA
+                    if(beanFactura.getIdaVuelta().equals("1"))
+                    {
+                        String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+pr_id;
 
-            //SI TIENE IDA Y VUELTA
-            if(otro.getIdaVuelta().equals("1"))
+                        ResultSet rsIv = CSDesktop.datos.select(queryIv);
+                        while (rsIv.next())
+                        {
+                            IdaVuelta = rsIv.getString("sc_ida_vuelta");
+                        }
+
+                        labelIda="DESCUENTO";
+                        textoIda="IDA-VUELTA ("+IdaVuelta+"%)";
+
+                        IdaVueltaD=Double.parseDouble(IdaVuelta);
+
+                        IdaVueltaDF=(importeTrasladoD*IdaVueltaD)/100;
+                        IdaVueltaDF = Utilidades.redondear(IdaVueltaDF, 2);
+
+                        importeIda="- " + String.valueOf(IdaVueltaDF);
+                    }
+                    //LINEA DE FACTOR DE CORRECCION
+                    ArrayList factorTarifa = Utilidades.obtenerFactor(factor, pr_id);
+                    factorTexto = factorTarifa.get(0).toString();
+
+                    // SI EL SOPORTE ES GRUA, ES EL UNICO CASO EN EL QUE HAY FACTOR DE CORRECCION.
+                    if(soporte.equals("Grúa"))
+                    {
+                        //SI ES SIN FACTOR O TURISMO, Y EL IMPORTE NO ES VACIO, SE CALCULA EL FACTOR DE CORRECCION.
+                        if((!factorTexto.equals("Sin factor") && (!factorTexto.equals("TURISMO")) )&& !importeTraslado.equals(""))
+                        {
+                            labelFactor = "FACTOR DE CORRECCION";
+                            //DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
+                            double ft = Double.parseDouble(factorTarifa.get(1).toString());
+                            importeFc = ((importeTrasladoD * ft) - importeTrasladoD);
+                            importeFc=Utilidades.redondear(importeFc, 2);
+                            importeFactor = Double.toString(importeFc);
+                            factorTexto2=factorTarifa.get(0).toString();
+                        }
+                    }
+                    //SUPLEMENTO
+                    if(!beanFactura.getSuplemento().equals("0"))
+                    {
+                        labelSuplemento="SUPLEMENTO";
+                        ServicioSuplemento = beanFactura.getDescripcion();
+                        importeSuplemento=beanFactura.getSuplemento();
+                        importeSupD = Double.parseDouble(importeSuplemento);
+                        importeSupD = Utilidades.redondear(importeSupD, 2);
+                    }
+                }
+
+            }
+            //SI EL CAMPO DIAS CAMPA VIENE CON EL VALOR DISTINTO DE 0
+            else
             {
-               String queryIv = "SELECT sp_ida_vuelta FROM sp_servicios_proveedores WHERE pr_id = "+pr_id;
+                 String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+pr_id;
 
-               ResultSet rsIv = CSDesktop.datos.select(queryIv);
-               while (rsIv.next())
-               {
-                  IdaVuelta = rsIv.getString("sp_ida_vuelta");
-               }
+                 ResultSet rsCampa = CSDesktop.datos.select(queryCampa);
+                    while (rsCampa.next())
+                    {
+                        importeEntradaCampaAux = rsCampa.getString("sc_entrada_campa");
+                        importeDiasCampaAux = rsCampa.getString("sc_campa");
+                    }
 
-                labelIda="DESCUENTO";
-                textoIda="IDA-VUELTA ("+IdaVuelta+"%)";
+                soporte = "CAMPA";
+                labelCampa = "CAMPA";
+                finalCampaEntrada = "ENTRADA";
+                finalCampaDias = beanFactura.getDiasCampa()+ " DIAS * " + importeDiasCampaAux;
 
-                IdaVueltaP=Double.parseDouble(IdaVuelta);
+                importeCampaEntradaD=Double.parseDouble(importeEntradaCampaAux);
+                importeCampaDiasD=(Double.parseDouble(beanFactura.getDiasCampa()))*(Double.parseDouble(importeDiasCampaAux));
 
-                IdaVuelta2=(importeTarifa*IdaVueltaP)/100;
+                importeCampaDias=String.valueOf(importeCampaDiasD);
 
-                importeIda="- " + String.valueOf(IdaVuelta2);
-            }
-
-             //LINEA DE FACTOR DE CORRECCION
-           
-                ArrayList factorTarifa = obtenerFactor(factor, pr_id);
+                //LINEA DE FACTOR DE CORRECCION
+                ArrayList factorTarifa = Utilidades.obtenerFactor(factor, pr_id);
                 factorTexto = factorTarifa.get(0).toString();
 
-             if(soporte.equals("Grúa"))
-             {
-                if((!factorTexto.equals("Sin factor") && !factorTexto.equals("TURISMO")) && importeTraslado != null)
-                {
-                    labelFactor = "FACTOR DE CORRECCION";
-                    DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
-                    double ft = Double.parseDouble(factorTarifa.get(1).toString());
-                    importeFc = ((importeTarifa * ft) - importeTarifa);
-                    double nuevoImporteFactor=redondear(importeFc, 2);
-                    importeFactor = Double.toString(nuevoImporteFactor);
-                    factorTexto2=factorTarifa.get(0).toString();
-                   
-                }
-             }
-            importeServicioEs=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,pr_id,fecha);
-            if(!importeServicioEs.equals(""))
-             importeServicio = Double.parseDouble(importeServicioEs);
-            
-            //SUPLEMENTO
-            if(!otro.getSuplemento().equals("0"))
-            {
-                labelSuplemento="SUPLEMENTO";
-                ServicioSuplemento = otro.getDescripcion();
-                importeSuplemento=otro.getServicioSuplemento();
-                importeSup = Integer.parseInt(importeSuplemento);
-            }
-        }
-        else
-        {
-             String queryCampa = "SELECT sp_entrada_campa, sp_campa FROM sp_servicios_proveedores WHERE pr_id = "+pr_id;
+                 if(!beanFactura.getServicioEspecial().equals(""))
+                    {
+                        if(!beanFactura.getServicioEspecial().equals("Otros"))
+                        {
+                            importeServicio=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,pr_id,fecha);
+                            if(!importeServicio.equals(""))
+                            {
+                                importeServicioD = Double.parseDouble(importeServicio);
+                                importeServicioD = Utilidades.redondear(importeServicioD, 2);
+                            }
+                            servicioEspecial=beanFactura.getServicioEspecial().toUpperCase();
+                            labelServicioEspecial="SERVICIO ESPECIAL";
+                        }
+                        else
+                        {
+                            // NO PUEDE TENER VALOR OTROS EXCEPTO QUE SEA CAMION COMPLETO
+                            if(soporte.equals("Camión completo"))
+                            {
+                                labelOtros=beanFactura.getDescripcion().toUpperCase();
+                            }
+                        }
+                        /*else
+                        {
+                            labelOtros=otro.getDescripcion().toUpperCase();
+                        }*/
 
-               ResultSet rsCampa =CSDesktop.datos.select(queryCampa);
-               while (rsCampa.next())
-               {
-                  importeCampaAux = rsCampa.getString("sp_entrada_campa");
-                  importeCampa2Aux = rsCampa.getString("sp_campa");
-               }
-
-            soporte = "CAMPA";
-            labelCampa = "CAMPA";
-            labelCampa2 = "CAMPA";
-            finalCampa = "ENTRADA";
-            finalCampa2 = otro.getDiasCampa()+ " DIAS * " + importeCampa2Aux;
-            importeCampa=importeCampaAux;
-
-            importeCampa4=Double.parseDouble(importeCampa);
-            importeCampa5=(Double.parseDouble(otro.getDiasCampa()))*(Double.parseDouble(importeCampa2Aux));
-
-            importeCampa2=String.valueOf(importeCampa5);
-
-            ArrayList factorTarifa = obtenerFactor(factor, pr_id);
-            factorTexto = factorTarifa.get(0).toString();
-        }
-
-        //LINEA DE SERVICIO ESPECIAL OTROS
-       if(!otro.getServicioEspecial().equals(""))
-        {
-            if(otro.getServicioEspecial().equals("Otros"))
-            {
-               labelOtros=otro.getDescripcion().toUpperCase();
-               importeServicioOtros=Integer.parseInt(otro.getTarifaEsCliente());
-               importeServicioEsOtros=otro.getTarifaEsCliente();
-               servicioEspecial="";
-            }
-            else
-            {
-               servicioEspecial=otro.getServicioEspecial().toUpperCase();
-               labelServicioEspecial="SERVICIO ESPECIAL";
-            }
-
-        }
-
-        //TOTAL
-        totalAux = importeTarifa - IdaVuelta2 + importeFc + importeServicio + importeSup + importeCampa4 + importeCampa5 + importeServicioOtros;
-        importeTotalAux = Double.toString(totalAux);
+                    }
+           }           
+            //TOTAL
+            totalAux = importeTrasladoD - IdaVueltaDF + importeFc + importeServicioD + importeSupD + importeCampaEntradaD + importeCampaDiasD;
+            importeTotalAuxS = Double.toString(totalAux);
 
         
 
@@ -256,10 +327,10 @@ public class CSLanzarFacturaProveedor
                                                     "fa_campa2, fa_texto_campa2, fa_importe_campa2,fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total, fa_num_en_camion ) " +
                                                     "VALUES (";
         query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
-                        "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTraslado+"','"+labelFactor+"'," +
-                        "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+importeSuplemento+"'," +
-                        "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioEs+"','"+labelOtros+"','"+importeServicioEsOtros+"','"+labelCampa+"','"+finalCampa+"'," +
-                        "'"+importeCampa+"','"+labelCampa2+"','"+finalCampa2+"','"+importeCampa2+"','"+labelIda+"','"+textoIda+"','"+importeIda+"','"+importeTotalAux+"','"+numCamion+"')";
+                            "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTrasladoD+"','"+labelFactor+"'," +
+                            "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+importeSupD+"'," +
+                            "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioD+"','"+labelOtros+"','"+importeServicioOtros+"','"+labelCampa+"','"+finalCampaEntrada+"'," +
+                            "'"+importeEntradaCampaAux+"','"+labelCampa+"','"+finalCampaDias+"','"+importeCampaDiasD+"','"+labelIda+"','"+textoIda+"','"+IdaVueltaDF+"','"+importeTotalAuxS+"','"+numCamion+"')";
 
         System.out.println(query);
         boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
@@ -309,9 +380,40 @@ public class CSLanzarFacturaProveedor
           codPostalFiscal=beanProveedor.getCod_postal_fiscal();
       }
 
-      String [] tempOrigen = null;
-      tempOrigen = fechaFactura.split("\\-");
-      String nuevaFechaFactura=tempOrigen[2]+"/"+tempOrigen[1]+"/"+tempOrigen[0];     
+      // SE PONE LA FECHA DE LA FACTURA EN EL FORMATO ELEGIDO
+            String [] tempOrigen = null;
+            tempOrigen = fechaFactura.split("\\-");
+            String nuevaFechaFactura=tempOrigen[2]+"/"+tempOrigen[1]+"/"+tempOrigen[0];
+
+             SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+             Date datehora=null;
+             try
+             {
+                datehora = sdf1.parse(nuevaFechaFactura);
+             } catch (ParseException ex) {
+                Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+             }
+
+            // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
+            String plazoPago=beanProveedor.getPlazoPago();
+            int diasPlazo=0;
+            if (plazoPago.equals("Especial"))
+            {
+                diasPlazo=Integer.parseInt(beanProveedor.getDiasPlazo());
+            }
+            else
+            {
+                diasPlazo=Integer.parseInt(plazoPago.substring(0,2));
+            }
+
+            Calendar myGDate=new GregorianCalendar();
+            myGDate.setTime(datehora);
+            myGDate.add(Calendar.DAY_OF_MONTH, diasPlazo );
+            Date fechaActual = myGDate.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+            String fecha2=formatoDeFecha.format(fechaActual);
+            // SE INTRODUCE EL VALOR EN EL BEAN
+            //mail.setFechaEntrega(fecha2);
 
       Map pars = new HashMap();
         pars.put("FechaFactura", nuevaFechaFactura);
@@ -333,6 +435,7 @@ public class CSLanzarFacturaProveedor
         pars.put("ImporteIVA", iva);
         pars.put("ImporteTotalIVA", totalIva);
         pars.put("EURO","€");
+         pars.put("FechaVFactura",fecha2);
 
         if(numero==0)
         {

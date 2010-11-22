@@ -148,7 +148,7 @@ public class Proveedor
 
        ResultSet rsCl = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF, pr_direccion, pr_cod_postal, " +
                                   "pr_poblacion, pr_provincia, pr_direccion_fiscal, pr_cod_postal_fiscal, " +
-                                  "pr_poblacion_fiscal, pr_provincia_fiscal " +
+                                  "pr_poblacion_fiscal, pr_provincia_fiscal,pr_plazo, pr_dias_plazo " +
                                   "FROM pr_proveedores WHERE pr_id = "+proveedorID);
         try
         {
@@ -164,6 +164,8 @@ public class Proveedor
                 bProveedor.setCod_postal_fiscal(rsCl.getString("pr_cod_postal_fiscal"));
                 bProveedor.setPoblacion_fiscal(rsCl.getString("pr_poblacion_fiscal"));
                 bProveedor.setProvinciaFiscal(rsCl.getString("pr_provincia_fiscal"));
+                bProveedor.setPlazoPago(rsCl.getString("pr_plazo"));
+                bProveedor.setDiasPlazo(rsCl.getString("pr_dias_plazo"));
             }
             rsCl.close();
         }
