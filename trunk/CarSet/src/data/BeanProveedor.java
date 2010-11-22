@@ -18,7 +18,41 @@ public class BeanProveedor
     private String cod_postal_fiscal;
     private String poblacion_fiscal;
     private String provincia_fiscal;
+    private String plazoPago;
 
+    public String getDiasPlazo() {
+        return diasPlazo;
+    }
+
+    public void setDiasPlazo(String diasPlazo) {
+        this.diasPlazo = diasPlazo;
+    }
+
+    public String getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
+    }
+
+    public String getPlazoPago() {
+        return plazoPago;
+    }
+
+    public void setPlazoPago(String plazoPago) {
+        this.plazoPago = plazoPago;
+    }
+
+    public String getProvincia_fiscal() {
+        return provincia_fiscal;
+    }
+
+    public void setProvincia_fiscal(String provincia_fiscal) {
+        this.provincia_fiscal = provincia_fiscal;
+    }
+    private String formaPago;
+    private String diasPlazo;
     /**
      * @return cl_id
      */

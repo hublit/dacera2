@@ -155,7 +155,7 @@ public class CSSelectMailCliente extends javax.swing.JPanel
 
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAceptarActionPerformed(evt);
+                jButtonAceptarActionPerformed1(evt);
             }
         });
 
@@ -195,7 +195,11 @@ public class CSSelectMailCliente extends javax.swing.JPanel
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
 
          
-         int [] celdas1=jTable1.getSelectedRows();
+         
+}//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButtonAceptarActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed1
+        int [] celdas1=jTable1.getSelectedRows();
 
          for (int i=0;i<celdas1.length;i++)
          {
@@ -205,7 +209,7 @@ public class CSSelectMailCliente extends javax.swing.JPanel
          }
 
          CSDesktop.BuscaMailCliente.dispose();
-}//GEN-LAST:event_jButtonAceptarActionPerformed
+    }//GEN-LAST:event_jButtonAceptarActionPerformed1
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
