@@ -35,6 +35,7 @@ public class CSEditarPedido extends javax.swing.JPanel
     /** Creates new form ABEditarPedido */
     public CSEditarPedido(int pedido) throws SQLException
     {
+        CSDesktop.mailCliente.clear();
         initComponents();
         limitacionesCampos();
         getFactorCorrecion();
@@ -1380,6 +1381,10 @@ public class CSEditarPedido extends javax.swing.JPanel
         if(!tarifaProveedor.equals(""))
         {
             taesproN=Double.valueOf(tarifaProveedor).doubleValue();
+        }
+        else
+        {
+            taesproN=-1;
         }
         String suplemento=new String(jTextSuplemento.getText());
         if(!suplemento.equals(""))

@@ -32,14 +32,14 @@ public class BeanCorreoCliente {
     private String telefonoDestino;
     private String tarifa;
     private String servicioEspecial;
-    private String diasCampa;
+    private String diasCampa="";
     private String idaVuelta;
     private String factorCorrecccion;
     private String tarifaEspecialCliente;
     private String tarifaEspecialProveedor;
     private String numeroEnCamion;
-    private String entradaCampa;
-    private String campa;
+    private String entradaCampa="";
+    private String campa="";
     private String descripcion;
     private String numero;
     private String clienteID;
