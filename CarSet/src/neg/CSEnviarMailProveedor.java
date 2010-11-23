@@ -10,6 +10,9 @@ package neg;
  * @author depr102
  */
 import data.BeanCorreoCliente;
+import java.io.BufferedWriter;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import javax.mail.PasswordAuthentication;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
@@ -56,7 +59,7 @@ public class CSEnviarMailProveedor
                       " tp_tarifas_proveedores tp, sp_servicios_proveedores sp " +
                       " WHERE pe.pe_num = pp.pe_num AND sp.pr_id = pp.pr_id " +
                       " AND tp.tp_fecha_hasta > pe.pe_fecha AND tp.tp_servicio = pe.pe_servicio " +
-                      " AND tp.pr_id = pp.pr_id " +
+ //                     " AND tp.pr_id = pp.pr_id " +
                       " AND (tp.tp_servicio_origen = pe.pe_servicio_origen OR tp.tp_servicio_origen = pe.pe_servicio_destino) " +
                       " AND (tp.tp_servicio_destino = pe.pe_servicio_destino OR tp.tp_servicio_destino = pe.pe_servicio_origen)" +
                       " AND tp.tp_soporte = pe.pe_soporte AND pe.pe_num ="+mail.getNumero();
@@ -150,14 +153,14 @@ public class CSEnviarMailProveedor
             "</table></td></tr>" +
             "<br><br>" +
             "<tr><td colspan='2'><table width='400' border='1' align='right'>";
-            if(mail.getDiasCampa().equals("0"))
+            /*if(mail.getDiasCampa().equals("0"))
             {
                 //TARIFA
                 if(mail.getTarifaEspecialProveedor().equals("0"))
                 {
                     tarifa = mail.getTarifa();
-                    /*if(soporte.equals("Camión completo") && !numCamion.equals("1"))
-                        importeTraslado="0";*/
+                    if(soporte.equals("Camión completo") && !numCamion.equals("1"))
+                        importeTraslado="0";
                 }
                 else
                 {
@@ -165,8 +168,8 @@ public class CSEnviarMailProveedor
                         tarifa = mail.getTarifaEspecialCliente();
                     else
                         tarifa=mail.getTarifa();
-                    /*if(soporte.equals("Camión completo") && !numCamion.equals("1"))
-                        importeTraslado="0";*/
+                    if(soporte.equals("Camión completo") && !numCamion.equals("1"))
+                        importeTraslado="0";
                 }
                 double importeTarifa = Double.parseDouble(tarifa);
                 importeTarifa = Utilidades.redondear(importeTarifa, 2);
@@ -289,7 +292,172 @@ public class CSEnviarMailProveedor
                     importeTotal = importeTotal + importeServicioOtros;
                 }
                 
-            }          
+            }*/
+
+             if (mail.getDiasCampa()!= null || mail.getDiasCampa().equals("0")  )
+            {
+                if(!mail.getTarifaEspecialProveedor().equals("-1"))
+                {
+                    tarifa = mail.getTarifaEspecialProveedor();
+
+                    // SI EL SOPORTE ES CAMION COMPLETO Y SU NUMERO EN CAMION NO ES 1
+                    // EL IMPORTE ES 0 PORQUE SOLO LLEVA IMPORTE EL PRIMERO
+                    if(mail.getSoporte().equals("Camión completo") && !mail.getNumeroEnCamion().equals("1"))
+                        tarifa="0";
+                    double importeTrasladoD = Double.parseDouble(tarifa);
+                    importeTrasladoD=Utilidades.redondear(importeTrasladoD, 2);
+                    importeTotal = importeTotal + importeTrasladoD;
+                    //Escribimos la linea
+                    htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;TARIFA</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;"+importeTrasladoD+" &euro;</font></td></tr>";
+
+                    //SERVICIO ESPECIAL
+                    if(!mail.getServicioEspecial().equals(""))
+                    {
+                        if(!mail.getServicioEspecial().equals("Otros"))
+                        {
+                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),mail.getFecha());
+                            if(!importeServicio.equals(""))
+                            {
+                                double importeServicioD = Double.parseDouble(importeServicio);
+                                importeServicioD = Utilidades.redondear(importeServicioD, 2);
+                                //String servicioEspecial=mail.getServicioEspecial().toUpperCase();
+                                //String labelServicioEspecial="SERVICIO ESPECIAL";
+                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;"+importeServicioEs+" &euro;</font></td></tr>";
+                                importeTotal = importeTotal + importeServicioD;
+                            }
+                        }
+                        else
+                        {
+                            htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getDescripcion().toUpperCase()+"</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;</font></td></tr>";
+                            //labelOtros=beanFactura.getDescripcion().toUpperCase();
+                        }
+                    }
+                    // FACTOR DE CORRECCION
+                    //ArrayList factorTarifa = Utilidades.obtenerFactor(mail.getFactorCorrecccion(), mail.getClienteID());
+                    //factorTexto = factorTarifa.get(0).toString();
+                }
+                // SI NO TIENE TARIFA ESPECIAL
+                else
+                {
+                    tarifa = mail.getTarifa();
+                    // SI EL SOPORTE ES CAMION COMPLETO Y SU NUMERO EN CAMION NO ES 1
+                    // EL IMPORTE ES 0 PORQUE SOLO LLEVA IMPORTE EL PRIMERO
+                    if(mail.getSoporte().equals("Camión completo") && !mail.getNumeroEnCamion().equals("1"))
+                        tarifa="0";
+                    double importeTrasladoD = Double.parseDouble(tarifa);
+                    importeTrasladoD=Utilidades.redondear(importeTrasladoD, 2);
+                    importeTotal = importeTotal + importeTrasladoD;
+                     //Escribimos la linea
+                    htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;TARIFA</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeTrasladoD+" &euro;</font></td></tr>";
+
+                    if(!mail.getServicioEspecial().equals(""))
+                    {
+                        if(!mail.getServicioEspecial().equals("Otros"))
+                        {
+                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),mail.getFecha());
+                            if(!importeServicio.equals(""))
+                            {
+                                double importeServicioD = Double.parseDouble(importeServicio);
+                                importeServicioD = Utilidades.redondear(importeServicioD, 2);
+                                //servicioEspecial=beanFactura.getServicioEspecial().toUpperCase();
+                                //labelServicioEspecial="SERVICIO ESPECIAL";
+                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeServicioEs+" &euro;</font></td></tr>";
+                                importeTotal = importeTotal + importeServicioD;
+                            }
+
+                        }
+                        // NO PUEDE TENER VALOR OTROS
+                        else
+                        {
+                             if(mail.getSoporte().equals("Camión completo"))
+                            {
+                                //labelOtros=beanFactura.getDescripcion().toUpperCase();
+                                 htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getDescripcion().toUpperCase()+"</font></td><td align='right'><font face='Helvetica'>&nbsp;</font></td></tr>";
+                            }
+                        }
+                    }
+                    //SI TIENE IDA Y VUELTA
+                     if(mail.getIdaVuelta().equals("1"))
+                    {
+                        String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+mail.getClienteID();
+
+                        ResultSet rsIv = CSDesktop.datos.select(queryIv);
+                        while (rsIv.next())
+                        {
+                            IdaVuelta = rsIv.getString("sc_ida_vuelta");
+                        }
+                        String textoIda="IDA-VUELTA ("+IdaVuelta+"%)";
+
+                        double IdaVueltaP=Double.parseDouble(IdaVuelta);
+
+                        double IdaVuelta2=(importeTrasladoD *IdaVueltaP)/100;
+
+                        String importeIda=String.valueOf(IdaVuelta2);
+
+                        htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;"+textoIda+"</font></td><td align='right'><font face='Helvetica'> - " +IdaVuelta2+" &euro;</font></td></tr>";
+
+                        importeTotal = importeTotal - IdaVuelta2;
+                    }
+                    //LINEA DE FACTOR DE CORRECCION
+                    if(!mail.getFactorCorrecccion().equals("0"))
+                    {
+                        ArrayList factorTarifa = Utilidades.obtenerFactor(mail.getFactorCorrecccion(),mail.getClienteID());
+                        String factorTexto = factorTarifa.get(0).toString();
+
+                        if(mail.getSoporte().equals("Grúa"))
+                        {
+                            if((!factorTexto.equals("Sin factor") && (!factorTexto.equals("TURISMO")) )&& !tarifa.equals(""))
+                            {
+                                DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
+                                double ft = Double.parseDouble(factorTarifa.get(1).toString());
+                                double importeFc = ((importeTrasladoD * ft) - importeTrasladoD);
+                                double nuevoImporteFactor=Utilidades.redondear(importeFc, 2);
+                                String importeFactor = Double.toString(nuevoImporteFactor);
+                                String factorTexto2=factorTarifa.get(0).toString();
+                                htmlText = htmlText + "<tr><td><font face='Helvetica'> FACTOR DE CORRECCION </font></td><td align='right'><font face='Helvetica'>"+importeFc+" &euro;</font></td></tr>";
+                                importeTotal = importeTotal + nuevoImporteFactor;
+                            }
+                        }
+                    }
+                    //SUPLEMENTO
+                    if(!mail.getSuplemento().equals("0"))
+                    {
+                        String ServicioSuplemento = mail.getDescripcion();
+                        String importeSuplemento=mail.getSuplemento();
+                        double importeSup = Double.parseDouble(importeSuplemento);
+                        htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+ServicioSuplemento+"</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;"+importeSuplemento+" &euro;</font></td></tr>";
+                        importeTotal = importeTotal + importeSup;
+                    }
+                }
+
+            }
+            else if (mail.getDiasCampa()!=null)
+                {
+                    String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+mail.getClienteID();
+
+                    String importeCampa2Aux="";
+                    String importeCampaAux="";
+                    ResultSet rsCampa = CSDesktop.datos.select(queryCampa);
+                    while (rsCampa.next())
+                    {
+                        importeCampaAux = rsCampa.getString("sc_entrada_campa");
+                        importeCampa2Aux = rsCampa.getString("sc_campa");
+                    }
+
+                    String soporte = "CAMPA";
+                    String finalCampa2 = mail.getDiasCampa()+ " DIAS * " + importeCampa2Aux;
+                    String importeCampa=importeCampaAux;
+
+                    double importeCampa4=Double.parseDouble(importeCampa);
+                    double importeCampa5=(Double.parseDouble(mail.getDiasCampa()))*(Double.parseDouble(importeCampa2Aux));
+
+                    String importeCampa2=String.valueOf(importeCampa5);
+
+                    htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;ENTRADA CAMPA</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeCampaAux+" &euro;</font></td></tr>";
+                    htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;"+finalCampa2+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeCampa2+" &euro;</font></td></tr>";
+
+                    importeTotal = importeTotal + importeCampa4 + importeCampa5;
+                }
             htmlText = htmlText +"<tr><td><font face='Helvetica'><b>&nbsp;TOTAL</b></font></td><td align='right'><font face='Helvetica'><b>&nbsp;"+importeTotal+" &euro;</b></font></td></tr>";
             htmlText = htmlText +"</table><br>";
             htmlText = htmlText +"<tr><td colspan='2'><br><br><font face='Helvetica'> Estos precios no incluyen I.V.A </font></td></tr>";
@@ -307,6 +475,11 @@ public class CSEnviarMailProveedor
             htmlText = htmlText +"</table></body>";
 
             message.setContent(htmlText, "text/html");
+
+             BufferedWriter bw2 = null;
+                bw2 = new BufferedWriter(new FileWriter("c://mailProcesoProveedor.html", false));
+                bw2.write(htmlText);
+                bw2.close();
 
 
             // Lo enviamos.

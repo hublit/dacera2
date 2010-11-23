@@ -10,6 +10,8 @@ package neg;
  * @author depr102
  */
 import data.BeanCorreoCliente;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.util.Properties;
 
@@ -159,6 +161,11 @@ public class CSEnviarMailEntregado
             htmlText = htmlText +"</table></body>";
 
             message.setContent(htmlText, "text/html");
+
+             BufferedWriter bw2 = null;
+                bw2 = new BufferedWriter(new FileWriter("c://mailEntregado.html", false));
+                bw2.write(htmlText);
+                bw2.close();
 
 
             // Lo enviamos.
