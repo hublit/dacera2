@@ -246,7 +246,7 @@ public class CSEditarTarifaCliente extends JPanel
 
         jComboBoxServicio.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxServicio.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urbano", "Interurbano", "Provincial" }));
+        jComboBoxServicio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urbano", "Interurbano", "Provincial", "Urbano ITV", "Especial" }));
         jComboBoxServicio.setName("jComboBoxServicio"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
