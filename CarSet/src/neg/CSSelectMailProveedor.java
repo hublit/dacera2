@@ -229,7 +229,7 @@ public class CSSelectMailProveedor extends javax.swing.JPanel
             CSDesktop.nombreCliente.put(i,nombresMail.get(celda));
         }
 
-        CSDesktop.BuscaMailCliente.dispose();
+        CSDesktop.BuscaMailProveedor.dispose();
 }//GEN-LAST:event_jButtonSeleccionarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -241,7 +241,7 @@ public class CSSelectMailProveedor extends javax.swing.JPanel
             CSDesktop.nombreProveedor.put(i,nombresMail.get(celda));
         }
 
-        CSDesktop.BuscaMailCliente.dispose();
+        CSDesktop.BuscaMailProveedor.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
