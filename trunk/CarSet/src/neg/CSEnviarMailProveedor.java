@@ -114,12 +114,12 @@ public class CSEnviarMailProveedor
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(mailSession);
             message.setFrom(new InternetAddress("Operaciones CarSet <operaciones@carset.es>"));
-             message.addRecipient(
-                Message.RecipientType.TO,
-                new InternetAddress(email));
              /*message.addRecipient(
+                Message.RecipientType.TO,
+                new InternetAddress(email));*/
+             message.addRecipient(
                 Message.RecipientType.CC,
-                new InternetAddress("carset@carset.es"));*/
+                new InternetAddress("carset@carset.es"));
             message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
 
@@ -476,10 +476,10 @@ public class CSEnviarMailProveedor
 
             message.setContent(htmlText, "text/html");
 
-             BufferedWriter bw2 = null;
+             /*BufferedWriter bw2 = null;
                 bw2 = new BufferedWriter(new FileWriter("c://mailProcesoProveedor.html", false));
                 bw2.write(htmlText);
-                bw2.close();
+                bw2.close();*/
 
 
             // Lo enviamos.

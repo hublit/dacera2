@@ -112,13 +112,8 @@ public class CSSelectMailProveedor extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        try {
-            jButtonAceptar =(javax.swing.JButton)java.beans.Beans.instantiate(getClass().getClassLoader(), "neg.CSSelectMail_jButtonAceptar");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
+        jButtonSeleccionar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -153,9 +148,19 @@ public class CSSelectMailProveedor extends javax.swing.JPanel
             }
         });
 
-        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSeleccionar.setText("Seleccionar");
+        jButtonSeleccionar.setName("jButtonSeleccionar"); // NOI18N
+        jButtonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAceptarActionPerformed(evt);
+                jButtonSeleccionarActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Seleccionar");
+        jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -171,9 +176,14 @@ public class CSSelectMailProveedor extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
                         .addComponent(jButton1)
-                        .addGap(101, 101, 101)
-                        .addComponent(jButtonAceptar)))
+                        .addGap(118, 118, 118)
+                        .addComponent(jButton2)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(256, 256, 256)
+                    .addComponent(jButtonSeleccionar)
+                    .addContainerGap(257, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,8 +193,13 @@ public class CSSelectMailProveedor extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButtonAceptar))
+                    .addComponent(jButton2))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(138, 138, 138)
+                    .addComponent(jButtonSeleccionar)
+                    .addContainerGap(139, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -205,9 +220,34 @@ public class CSSelectMailProveedor extends javax.swing.JPanel
          CSDesktop.BuscaMailProveedor.dispose();
 }//GEN-LAST:event_jButtonAceptarActionPerformed
 
+    private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
+        int [] celdas1=jTable1.getSelectedRows();
+
+        for (int i=0;i<celdas1.length;i++) {
+            int celda=celdas1[i];
+            CSDesktop.mailCliente.put(i,datosMail.get(celda));
+            CSDesktop.nombreCliente.put(i,nombresMail.get(celda));
+        }
+
+        CSDesktop.BuscaMailCliente.dispose();
+}//GEN-LAST:event_jButtonSeleccionarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      int [] celdas1=jTable1.getSelectedRows();
+
+        for (int i=0;i<celdas1.length;i++) {
+            int celda=celdas1[i];
+            CSDesktop.mailProveedor.put(i,datosMail.get(celda));
+            CSDesktop.nombreProveedor.put(i,nombresMail.get(celda));
+        }
+
+        CSDesktop.BuscaMailCliente.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    public javax.swing.JButton jButtonAceptar;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonSeleccionar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
