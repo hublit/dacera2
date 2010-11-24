@@ -40,6 +40,10 @@ public class CSAnyadirPedido extends JPanel
     /** Creates new form ABAnyadirProveedores */
     public CSAnyadirPedido() throws SQLException
     {
+        CSDesktop.mailCliente.clear();
+        CSDesktop.nombreCliente.clear();
+        CSDesktop.mailProveedor.clear();
+        CSDesktop.nombreProveedor.clear();
         CSDesktop.menuNuevoPedido.setEnabled(false);
         this.setLayout(new GridBagLayout());
         Date hoy = new Date();
