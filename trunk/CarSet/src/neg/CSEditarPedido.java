@@ -36,6 +36,10 @@ public class CSEditarPedido extends javax.swing.JPanel
     public CSEditarPedido(int pedido) throws SQLException
     {
         CSDesktop.mailCliente.clear();
+        CSDesktop.nombreCliente.clear();
+        CSDesktop.mailProveedor.clear();
+        CSDesktop.nombreProveedor.clear();
+        
         initComponents();
         limitacionesCampos();
         getFactorCorrecion();
