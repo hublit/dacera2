@@ -112,13 +112,7 @@ public class CSSelectMailCliente extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        try {
-            jButtonAceptar =(javax.swing.JButton)java.beans.Beans.instantiate(getClass().getClassLoader(), "neg.CSSelectMail_jButtonAceptar");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
+        jButtonSeleccionar = new javax.swing.JButton();
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -153,9 +147,11 @@ public class CSSelectMailCliente extends javax.swing.JPanel
             }
         });
 
-        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSeleccionar.setText("Seleccionar");
+        jButtonSeleccionar.setName("jButtonSeleccionar"); // NOI18N
+        jButtonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAceptarActionPerformed1(evt);
+                jButtonSeleccionarActionPerformed(evt);
             }
         });
 
@@ -171,8 +167,8 @@ public class CSSelectMailCliente extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
                         .addComponent(jButton1)
-                        .addGap(101, 101, 101)
-                        .addComponent(jButtonAceptar)))
+                        .addGap(104, 104, 104)
+                        .addComponent(jButtonSeleccionar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -183,7 +179,7 @@ public class CSSelectMailCliente extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButtonAceptar))
+                    .addComponent(jButtonSeleccionar))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -191,12 +187,6 @@ public class CSSelectMailCliente extends javax.swing.JPanel
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CSDesktop.BuscaMailCliente.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-
-         
-         
-}//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jButtonAceptarActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed1
         int [] celdas1=jTable1.getSelectedRows();
@@ -211,9 +201,22 @@ public class CSSelectMailCliente extends javax.swing.JPanel
          CSDesktop.BuscaMailCliente.dispose();
     }//GEN-LAST:event_jButtonAceptarActionPerformed1
 
+    private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
+         int [] celdas1=jTable1.getSelectedRows();
+
+         for (int i=0;i<celdas1.length;i++)
+         {
+            int celda=celdas1[i];
+            CSDesktop.mailCliente.put(i,datosMail.get(celda));
+            CSDesktop.nombreCliente.put(i,nombresMail.get(celda));
+         }
+
+         CSDesktop.BuscaMailCliente.dispose();
+    }//GEN-LAST:event_jButtonSeleccionarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonAceptar;
+    private javax.swing.JButton jButtonSeleccionar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
