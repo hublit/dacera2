@@ -22,7 +22,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="jSeparator6" pref="792" max="32767" attributes="1"/>
+              <Component id="jSeparator6" pref="794" max="32767" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
@@ -55,12 +55,12 @@
               <Component id="jButtonPrev" min="-2" pref="147" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
-              <EmptySpace pref="245" max="32767" attributes="0"/>
+              <EmptySpace pref="247" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="jSeparator7" alignment="2" pref="792" max="32767" attributes="1"/>
+                  <Component id="jSeparator7" alignment="2" pref="794" max="32767" attributes="1"/>
                   <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>

@@ -37,11 +37,11 @@ public class DbConnection
                 String url="";
                 String IPReal="";
 
-        try {
+        /*try {
             @SuppressWarnings("static-access")
-            //InetAddress direccion = InetAddress.getLocalHost().getByName("luis1");
-            InetAddress direccion = InetAddress.getLocalHost().getByName("W5602969");
-            IPReal=direccion.getHostAddress();                        
+            InetAddress direccion = InetAddress.getLocalHost().getByName("luis1");
+            //InetAddress direccion = InetAddress.getLocalHost().getByName("W5602969");
+            IPReal=direccion.getHostAddress();
         } catch (UnknownHostException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
             System.exit(0);
@@ -54,13 +54,13 @@ public class DbConnection
                 System.out.println(InetAddress.getLocalHost().toString());
 		url = "jdbc:mysql://localhost/"+db;
                 //String url = "jdbc:mysql://10.25.11.22/"+db;
-                //String url = "jdbc:mysql://"+IPReal+":3306/"+db;
+                //url = "jdbc:mysql://"+IPReal+":3306/"+db;
         }
         else
-        {           
+        { */
                 //url = "jdbc:mysql://"+IPReal+":3306/"+db;
                 url = "jdbc:mysql://localhost/"+db;
-        }
+        //}
 	try
 	{
             //Instanciación del conextor jdbc
