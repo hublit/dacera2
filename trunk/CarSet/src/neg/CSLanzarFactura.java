@@ -3,6 +3,7 @@ package neg;
 //import con_reportes.presentacion;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.sql.Connection; 
 import java.sql.ResultSet;
@@ -23,6 +24,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport; 
 import utils.Utilidades;
 import data.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import javax.mail.PasswordAuthentication;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -109,7 +112,8 @@ public class CSLanzarFactura extends javax.swing.JPanel
             //VARIABLES CAMPA
             String importeEntradaCampaAux="";
             String importeDiasCampaAux="";
-            String labelCampa="";
+            String labelCampa1="";
+            String labelCampa2="";
             String finalCampaEntrada = "";
             String finalCampaDias = "";
             double importeCampaEntradaD=0;
@@ -280,28 +284,40 @@ public class CSLanzarFactura extends javax.swing.JPanel
             //SI EL CAMPO DIAS CAMPA VIENE CON EL VALOR DISTINTO DE 0
             else
             {
-                 String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
+                if(!beanFactura.getTarifaEsCliente().equals("-1"))
+                {
+                     soporte = "CAMPA";
+                     labelCampa1 = "CAMPA";
+                     finalCampaEntrada = "ENTRADA / DÍAS";
+                     importeCampaEntradaD=Double.parseDouble(beanFactura.getTarifaEsCliente());
+                }
+                else
+                {
+                    String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
 
-                 ResultSet rsCampa = CSDesktop.datos.select(queryCampa);
-                    while (rsCampa.next())
-                    {
-                        importeEntradaCampaAux = rsCampa.getString("sc_entrada_campa");
-                        importeDiasCampaAux = rsCampa.getString("sc_campa");
-                    }
+                    ResultSet rsCampa = CSDesktop.datos.select(queryCampa);
+                        while (rsCampa.next())
+                        {
+                            importeEntradaCampaAux = rsCampa.getString("sc_entrada_campa");
+                            importeDiasCampaAux = rsCampa.getString("sc_campa");
+                        }
 
-                soporte = "CAMPA";
-                labelCampa = "CAMPA";
-                finalCampaEntrada = "ENTRADA";
-                finalCampaDias = beanFactura.getDiasCampa()+ " DIAS * " + importeDiasCampaAux;
+                    soporte = "CAMPA";
+                    labelCampa1 = "CAMPA";
+                    labelCampa2 = "CAMPA";
+                    finalCampaEntrada = "ENTRADA";
+                    finalCampaDias = beanFactura.getDiasCampa()+ " DIAS * " + importeDiasCampaAux;
                 
-                importeCampaEntradaD=Double.parseDouble(importeEntradaCampaAux);
-                importeCampaDiasD=(Double.parseDouble(beanFactura.getDiasCampa()))*(Double.parseDouble(importeDiasCampaAux));
+                    importeCampaEntradaD=Double.parseDouble(importeEntradaCampaAux);
+                    importeCampaDiasD=(Double.parseDouble(beanFactura.getDiasCampa()))*(Double.parseDouble(importeDiasCampaAux));
 
-                importeCampaDias=String.valueOf(importeCampaDiasD);
+                    importeCampaDias=String.valueOf(importeCampaDiasD);
 
-                //LINEA DE FACTOR DE CORRECCION
-                ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
-                factorTexto = factorTarifa.get(0).toString();
+                   
+                }
+                 //LINEA DE FACTOR DE CORRECCION
+                     ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
+                     factorTexto = factorTarifa.get(0).toString();
 
                  if(!beanFactura.getServicioEspecial().equals(""))
                     {
@@ -521,8 +537,8 @@ public class CSLanzarFactura extends javax.swing.JPanel
             query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
                             "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTrasladoD+"','"+labelFactor+"'," +
                             "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+importeSupD+"'," +
-                            "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioD+"','"+labelOtros+"','"+importeServicioOtros+"','"+labelCampa+"','"+finalCampaEntrada+"'," +
-                            "'"+importeEntradaCampaAux+"','"+labelCampa+"','"+finalCampaDias+"','"+importeCampaDiasD+"','"+labelIda+"','"+textoIda+"','"+IdaVueltaDF+"','"+importeTotalAuxS+"','"+numCamion+"')";
+                            "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioD+"','"+labelOtros+"','"+importeServicioOtros+"','"+labelCampa1+"','"+finalCampaEntrada+"'," +
+                            "'"+importeCampaEntradaD+"','"+labelCampa2+"','"+finalCampaDias+"','"+importeCampaDiasD+"','"+labelIda+"','"+textoIda+"','"+IdaVueltaDF+"','"+importeTotalAuxS+"','"+numCamion+"')";
 
             System.out.println(query);
             boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
@@ -660,7 +676,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
             // GUARDAR LA FACTURA EN EL DIRECTORIO TEMPORAL DE WINDOWS
             String finalNumFactura2=finalNumFactura.replace("/","_");
-            nombreFichero=finalNumFactura2+"_"+beanCliente.getNombre()+".pdf";
+            nombreFichero=beanCliente.getNombre()+"_"+finalNumFactura2+".pdf";
             String property = "java.io.tmpdir";
             String tempDir = System.getProperty(property);
             System.out.println("OS current temporary directory is " + tempDir);
@@ -773,7 +789,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
         }
     }// FIN DE LA CLASE LANZAR
 
-  public void enviarMail(BeanCorreoCliente mail,String nombre,String email,String remitente)
+  public void enviarMail(BeanCorreoCliente mail,String nombre,String email,String remitente) throws IOException
   {
  
         try {
@@ -813,7 +829,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                         new InternetAddress(email));
                     message.addRecipient(
                         Message.RecipientType.CC,
-                        new InternetAddress("carset@carset.es"));
+                        new InternetAddress("operaciones@carset.es"));
                     message.setSubject("CarSet - Factura: " + mail.getNumPedido());
                     String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
            
@@ -892,6 +908,15 @@ public class CSLanzarFactura extends javax.swing.JPanel
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>www.carset.es</font></td></tr>";
             htmlText = htmlText +"</table></body>";
+
+            /* BufferedWriter bw2 = null;
+                bw2 = new BufferedWriter(new FileWriter("c://mailFactura.html", false));
+                try {
+                    bw2.write(htmlText);
+                } catch (IOException ex) {
+                    Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                bw2.close();*/
 
             // Fill the message
             messageBodyPart.setContent(htmlText, "text/html");
