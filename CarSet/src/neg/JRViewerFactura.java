@@ -704,9 +704,10 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
                 private void btnReloadActionPerformed(ActionEvent evt) {
 
                      Cliente finalCliente=new Cliente();
+
                     //String cliente = jTextCliente.getText();
                     //String cliente=mail.getCliente();
-                    String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID("HOLA");
+                    String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID(mail.getCliente());
 
 
                     CSDesktop.BuscaMailCliente = new JInternalFrame("Seleccionar Mail Cliente", true, false, false, true );

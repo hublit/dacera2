@@ -7,6 +7,7 @@
 package neg;
 
 import data.BeanCorreoCliente;
+import java.io.IOException;
 import utils.TablaModelo;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -209,7 +210,11 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
          for(int i=0;i<CSDesktop.mailCliente.size();i++)
          {
              CSLanzarFactura factura = new CSLanzarFactura();
-             factura.enviarMail(mailF,nombreF,CSDesktop.mailCliente.get(i).toString(),CSDesktop.nombreCliente.get(i).toString());
+            try {
+                factura.enviarMail(mailF, nombreF, CSDesktop.mailCliente.get(i).toString(), CSDesktop.nombreCliente.get(i).toString());
+            } catch (IOException ex) {
+                Logger.getLogger(CSSelectMailClienteFactura.class.getName()).log(Level.SEVERE, null, ex);
+            }
          }
          CSDesktop.BuscaMailCliente.dispose();
     }//GEN-LAST:event_jButtonMandarActionPerformed
