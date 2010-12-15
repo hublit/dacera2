@@ -340,7 +340,7 @@
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="460" y="33" width="331" height="20" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="458" y="33" width="331" height="20" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0" lineColor="#000000"/>
 					<topPen lineWidth="1.0" lineColor="#000000"/>
@@ -351,7 +351,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6" isBold="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[DATOS ORIGEN]]></text>
+				<text><![CDATA[DATOS DESTINO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="571" y="73" width="37" height="20" forecolor="#FFFFFF" backcolor="#006600"/>
