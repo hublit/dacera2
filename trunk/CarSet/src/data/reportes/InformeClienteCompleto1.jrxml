@@ -280,7 +280,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<text><![CDATA[FECHA PREVISTA ENTRREGA]]></text>
+				<text><![CDATA[FECHA PREVISTA ENTREGA]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="496" y="0" width="43" height="26" forecolor="#FFFFFF" backcolor="#006600"/>
