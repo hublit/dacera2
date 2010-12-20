@@ -172,10 +172,10 @@ public class CSEnviarMailEntregado
 
             message.setContent(htmlText, "text/html");
 
-             BufferedWriter bw2 = null;
+             /*BufferedWriter bw2 = null;
                 bw2 = new BufferedWriter(new FileWriter("c://mailEntregado.html", false));
                 bw2.write(htmlText);
-                bw2.close();
+                bw2.close();*/
 
 
             // Lo enviamos.
