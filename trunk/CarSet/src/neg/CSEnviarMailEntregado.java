@@ -13,6 +13,8 @@ import data.BeanCorreoCliente;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -91,7 +93,15 @@ public class CSEnviarMailEntregado
                  nombre=rsContacto.getString("cc_nombre");
                  email=rsContacto.getString("cc_email");
              }*/
-           
+            
+            String fechaRealEntrega=mail.getFechaEntrega();
+                String [] tempDestino = null;
+                    tempDestino = fechaRealEntrega.split("\\-");
+                    String anyoD=tempDestino[0];
+                    String mesD=tempDestino[1];
+                    String diaD=tempDestino[2];
+                    String nuevaD=diaD+"-"+mesD+"-"+anyoD;
+
            
             // Propiedades de la conexión
             Properties props = new Properties();
@@ -132,7 +142,7 @@ public class CSEnviarMailEntregado
             "<tr><td colspan='2'><br><br><font face='Helvetica'> Mediante la presente, le pasamos confirmaci&oacute;n del siguiente servicio realizado por nuestros transportistas: </font></td></tr>" +
             "<br><br>" +
             "<tr><td width='200'><font face='Helvetica'><u> Tipo de servicio : </u></font></td><td><font face='Helvetica'> Traslado servicio "+mail.getSoporte()+" </font></td></tr>" +            
-            "<tr><td width='200'><font face='Helvetica'><u> Fecha de entrega : </u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>" +
+            "<tr><td width='200'><font face='Helvetica'><u> Fecha de entrega : </u></font></td><td><font face='Helvetica'> "+nuevaD+" </font></td></tr>" +
             "<br>" +
             "<tr><td colspan='2'><table border='1' width='700'>" +
                                 "<tr><td width='100' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td  width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td  width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +
@@ -162,10 +172,10 @@ public class CSEnviarMailEntregado
 
             message.setContent(htmlText, "text/html");
 
-             /*BufferedWriter bw2 = null;
+             BufferedWriter bw2 = null;
                 bw2 = new BufferedWriter(new FileWriter("c://mailEntregado.html", false));
                 bw2.write(htmlText);
-                bw2.close();*/
+                bw2.close();
 
 
             // Lo enviamos.

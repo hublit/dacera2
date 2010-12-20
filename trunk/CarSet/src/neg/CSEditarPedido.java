@@ -1650,7 +1650,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                             mail.setFecha(fechaHoy2);
                             mail.setNumPedido(pedido);
                             mail.setSoporte(soporte);
-                            mail.setFechaEntrega(fechaEntrega);
+                            mail.setFechaEntrega(fechaRealDestino);
                             mail.setFechaRecogida(fechaRecogida);
                             mail.setMarca(marca);
                             mail.setModelo(modelo);
