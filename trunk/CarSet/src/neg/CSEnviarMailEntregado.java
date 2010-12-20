@@ -128,6 +128,7 @@ public class CSEnviarMailEntregado
                 new InternetAddress("carset@carset.es"));
             message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
             String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
+            
 
             //String htmlText ="<br><br><center><table>";
             //htmlText = htmlText + "<tr><td><img src=\"http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg\" width='50%></td></tr></table>";
