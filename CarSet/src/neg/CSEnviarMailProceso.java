@@ -494,10 +494,10 @@ public class CSEnviarMailProceso
                 message.setContent(htmlText, "text/html");
 
                 // PARA PRUEBAS EN SPEE, YA QUE NO SE PUEDE MANDAR UN MAIL, LO SACA A FICHERO
-                /*BufferedWriter bw2 = null;
+                BufferedWriter bw2 = null;
                 bw2 = new BufferedWriter(new FileWriter("c://mailProcesoCliente.html", false));
                 bw2.write(htmlText);
-                bw2.close();*/
+                bw2.close();
 
 
                 // Lo enviamos.
