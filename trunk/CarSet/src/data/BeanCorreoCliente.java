@@ -17,6 +17,7 @@ public class BeanCorreoCliente {
     private String soporte;
     private String fechaRecogida;
     private String fechaEntrega;
+    private String fechaRealEntrega;
     private String marca;
     private String modelo;
     private String matricula;
@@ -307,6 +308,13 @@ public class BeanCorreoCliente {
 
     public void setSuplemento(String suplemento) {
         this.suplemento = suplemento;
+    }
+      public String getFechaRealEntrega() {
+        return fechaRealEntrega;
+    }
+
+    public void setFechaRealEntrega(String fechaRealEntrega) {
+        this.fechaRealEntrega = fechaRealEntrega;
     }
 
 
