@@ -94,7 +94,7 @@ public class CSEnviarMailEntregado
                  email=rsContacto.getString("cc_email");
              }*/
             
-            String fechaRealEntrega=mail.getFechaEntrega();
+            String fechaRealEntrega=mail.getFechaRealEntrega();
                 String [] tempDestino = null;
                     tempDestino = fechaRealEntrega.split("\\-");
                     String anyoD=tempDestino[0];
