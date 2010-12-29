@@ -7,9 +7,12 @@
 package neg;
 
 //import utils.TablaModeloPedidos;
+import com.lowagie.text.pdf.ColumnText;
 import groovy.inspect.swingui.TableSorter;
 import utils.TablaModelo;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,11 +20,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -62,6 +67,11 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR","SUPLE","MG","F.REAL","ESTADO","OBSERVACIONES"});
 
         int numeroFila = 0;
+        double totalCliente = 0;
+        double totalProveedor = 0;
+        double totalSuplemento = 0;
+        double totalMargen = 0;
+
         try {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
@@ -88,22 +98,26 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                         {
                              ta_es_cl=rs.getDouble(k+1);
                              datosFila[j] = rs.getDouble(k + 1);
+                             totalCliente = totalCliente + ta_es_cl;
                         }
                         else if(k==12)
                         {
                             ta_es_pr=rs.getDouble(k+1);
                             datosFila[j] = rs.getDouble(k + 1);
+                            totalProveedor = totalProveedor + ta_es_pr;
                         }
                         else if (k==13)
                         {
                             suple=rs.getDouble(k+1);
                             datosFila[j] = rs.getDouble(k + 1);
+                            totalSuplemento = totalSuplemento + suple;
                         }
                         else if (k==14)
                         {
                             ganancia=ta_es_cl + suple - ta_es_pr;
                             double gananciaF=Utilidades.redondear(ganancia, 2);
                             datosFila[j] = gananciaF;
+                            totalMargen = Utilidades.redondear((totalMargen + gananciaF), 2);
                         }
                         else
                         {
@@ -111,12 +125,53 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                             System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         }
                         j++;
-                    } 
+                    }
+                    if ( j % 2 == 1 )
+                    {
+
+                       jTable1.getComponent(j).setBackground(Color.red);
+                    }
+                    else
+                    {
+                        jTable1.getComponent(j).setBackground(Color.green);
+                    }
                 }
+
                 modelo.addRow(datosFila);
                 numeroFila++;
             }
             rs.close();
+            Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
+            int i = 0;
+            for (int k = 0; k < 18; k++)
+            {
+                if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17) {
+                    if(k==10)
+                    {
+                        datosFilaTotal[i] = "TOTALES";
+                    }
+                    if(k==11)
+                    {
+                        datosFilaTotal[i] = totalCliente;
+                    }
+                    if(k==12)
+                    {
+                        datosFilaTotal[i] = totalProveedor;
+                    }
+                    if(k==13)
+                    {
+                        datosFilaTotal[i] = totalSuplemento;
+                    }
+                    if(k==14)
+                    {
+                        datosFilaTotal[i] = totalMargen;
+                    }
+                }
+                i++;
+           }
+       
+           modelo.addRow(datosFilaTotal);
+
         } catch (SQLException ex) {
             Logger.getLogger(CSResultBuscarProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -141,6 +196,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
         initComponents();
         jTable1.setModel(modelo);
+
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
         columna.setPreferredWidth(50);
@@ -240,6 +296,26 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
    {
       return new Dimension( 1100,650 );
     }
+
+     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                    boolean hasFocus, int row, int col)
+    {
+        int componente = table.getSelectedRow();
+     Component comp = getTableCellRendererComponent(table,  value, isSelected, hasFocus, row, col);
+
+     String s =  table.getModel().getValueAt(row, col ).toString();
+
+     if(s.equalsIgnoreCase("Fail"))
+     {
+         comp.setForeground(Color.red);
+     }
+     else 
+     {
+         comp.setForeground(null);
+     }
+
+     return( comp );
+ }
 
     /** This method is called from within the constructor to
      * initialize the form.
