@@ -20,6 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -104,6 +105,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                         {
                             ta_es_pr=rs.getDouble(k+1);
                             datosFila[j] = rs.getDouble(k + 1);
+                            System.out.println("Clase: " + datosFila[j].getClass().getName());
                             totalProveedor = totalProveedor + ta_es_pr;
                         }
                         else if (k==13)
@@ -125,16 +127,10 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                             System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         }
                         j++;
-                    }
-                    if ( j % 2 == 1 )
-                    {
 
-                       jTable1.getComponent(j).setBackground(Color.red);
+                        
                     }
-                    else
-                    {
-                        jTable1.getComponent(j).setBackground(Color.green);
-                    }
+                   
                 }
 
                 modelo.addRow(datosFila);
@@ -196,6 +192,11 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
         initComponents();
         jTable1.setModel(modelo);
+        jTable1.setDefaultRenderer (Object.class, new MiRender());
+        //jTable1.setDefaultRenderer (java.lang.Object.class, new MiRender());
+        //jTable1.setDefaultRenderer (java.util.Date.class, new MiRender());
+        //jTable1.setDefaultRenderer (java.lang.String.class, new MiRender());
+        //jTable1.setDefaultRenderer (java.lang.Double.class, new MiRender());
 
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
@@ -235,20 +236,19 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         TableColumn columna17 = jTable1.getColumnModel().getColumn(17);
         columna17.setPreferredWidth(500);
 
-
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
         DefaultTableCellRenderer tcrRight = new DefaultTableCellRenderer();
         tcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
 
 
-        jTable1.getColumnModel().getColumn(0).setCellRenderer(tcrCenter);
+        /*jTable1.getColumnModel().getColumn(0).setCellRenderer(tcrCenter);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(tcrCenter);
         jTable1.getColumnModel().getColumn(11).setCellRenderer(tcrRight);
         jTable1.getColumnModel().getColumn(12).setCellRenderer(tcrRight);
         jTable1.getColumnModel().getColumn(13).setCellRenderer(tcrRight);
         jTable1.getColumnModel().getColumn(14).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(15).setCellRenderer(tcrCenter);
+        jTable1.getColumnModel().getColumn(15).setCellRenderer(tcrCenter);*/
         //jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
 
         jTable1.setAutoCreateRowSorter(true);
@@ -397,4 +397,49 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
+
+    public class MiRender extends DefaultTableCellRenderer {
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+        {
+            Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+            //se centran los valores
+            if (column == 0 ||column == 1 || column == 15)
+            {
+                this. setHorizontalAlignment(SwingConstants.CENTER);
+            }
+            else if (column == 11 ||column == 12 || column == 13 || column == 14 )
+            {
+                this. setHorizontalAlignment(SwingConstants.RIGHT);
+            }
+            else
+            {
+                this. setHorizontalAlignment(SwingConstants.LEFT);
+            }
+            //se toman algunos valores especificos para mi programa
+            //double cantidad = Double. parseDouble(table. getValueAt(row, 11). toString());
+            //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
+            //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
+            //si cumplen x condicion se pintan
+            if (row % 2 ==1)
+            {
+                Color fondo = new  Color(206, 227, 242);
+                cell. setBackground(fondo);
+                cell. setForeground(Color.BLACK);
+            }
+            else
+            {
+                cell. setBackground(Color.white);
+                cell. setForeground(Color. BLACK);
+            }
+            //si no cumplen esa condicion pongo las celdas en color blanco
+            if (table. getValueAt(row, 10). toString().equals("TOTALES"))
+            {
+                Color fondo = new  Color(244, 144, 144);
+                cell. setBackground(fondo);
+                cell. setForeground(Color. BLACK);
+            }
+            return cell;
+        }
+    }
 }
