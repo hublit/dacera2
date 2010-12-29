@@ -86,9 +86,7 @@
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lTelefono" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextTelefono" linkSize="1" min="-2" pref="80" max="-2" attributes="1"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
                       <Component id="lFax" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextFax" linkSize="1" min="-2" pref="95" max="-2" attributes="0"/>
@@ -99,9 +97,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="lTelefono2" min="-2" pref="68" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextTelefono2" linkSize="1" pref="95" max="32767" attributes="1"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                       <Component id="lWeb" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextWeb" min="-2" pref="329" max="-2" attributes="0"/>
@@ -129,55 +125,55 @@
                       <Component id="lEstado" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jComboBoxPlazo" pref="91" max="32767" attributes="0"/>
+                      <Component id="jComboBoxPlazo" pref="101" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextDiasPlazo" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lDiasPlazo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jComboBoxEstado" min="-2" pref="139" max="-2" attributes="1"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="lFPago" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxFPago" min="-2" pref="110" max="-2" attributes="1"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="lTarifa" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxEstado" min="-2" pref="103" max="-2" attributes="1"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jComboBoxTarifa" min="-2" pref="62" max="-2" attributes="1"/>
+                      <Component id="lTipo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jComboBoxTipo" pref="137" max="32767" attributes="1"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lTarifa" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lFactura" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jDateChooserAlta" pref="114" max="32767" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="lNumCuenta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jTextEntidad" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jTextSucursal" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jComboBoxTarifa" min="-2" pref="62" max="-2" attributes="1"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lFactura" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jTextDigito" min="-2" pref="21" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jTextNumCuenta" min="-2" pref="79" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jDateChooserAlta" alignment="0" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -224,19 +220,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lPoblacion" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextPoblacion" min="-2" pref="440" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lProvincia" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBoxProvincia" pref="164" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lDireccion" min="-2" max="-2" attributes="0"/>
@@ -248,6 +231,25 @@
                       <Component id="lCodPostal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextCodPostal" min="-2" pref="45" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lPoblacion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextTelefono" linkSize="1" alignment="0" min="-2" pref="80" max="-2" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jTextPoblacion" min="-2" pref="440" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lProvincia" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jComboBoxProvincia" pref="164" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jTextTelefono2" linkSize="1" alignment="0" pref="95" max="32767" attributes="1"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -304,9 +306,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="lTelefono2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextTelefono2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextWeb" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lWeb" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextTelefono2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jComboBoxComercial" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -316,14 +318,14 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lPlazo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lDiasPlazo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextDiasPlazo" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="jComboBoxPlazo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextNumCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextDigito" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextSucursal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextEntidad" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lNumCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lDiasPlazo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextDiasPlazo" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="jComboBoxPlazo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBoxFPago" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lFPago" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -331,11 +333,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                       <Component id="lEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lFactura" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBoxTarifa" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lTarifa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jDateChooserAlta" min="-2" max="-2" attributes="0"/>
@@ -640,7 +644,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="    Tel&#xe9;fono2"/>
+        <Property name="text" type="java.lang.String" value="   Tel&#xe9;fono2"/>
         <Property name="name" type="java.lang.String" value="lTelefono2" noResource="true"/>
       </Properties>
     </Component>
@@ -1249,6 +1253,38 @@
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxTarifa" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lTipo">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="    Tipo"/>
+        <Property name="name" type="java.lang.String" value="lTipo" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxTipo">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="8">
+            <StringItem index="0" value="Empresa"/>
+            <StringItem index="1" value="Concesionario"/>
+            <StringItem index="2" value="Renting"/>
+            <StringItem index="3" value="Compraventa"/>
+            <StringItem index="4" value="Particular"/>
+            <StringItem index="5" value="Proveedor"/>
+            <StringItem index="6" value="Fabricante"/>
+            <StringItem index="7" value="Otros"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboBoxTipo" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
