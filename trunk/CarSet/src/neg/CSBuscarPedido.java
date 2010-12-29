@@ -709,7 +709,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
 
             if (!matricula.equals(""))
             {
-                query = query + "AND p.pe_ve_matricula like '%"+matricula+"%'";
+                query = query + " AND p.pe_ve_matricula like '%"+matricula+"%'";
             }
 
             if (!direccionOrigen.equals(""))
