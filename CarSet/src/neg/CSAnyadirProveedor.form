@@ -95,7 +95,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jTextPoblacion" pref="327" max="32767" attributes="0"/>
+                      <Component id="jTextPoblacion" pref="350" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lEmail" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextEmail" pref="254" max="32767" attributes="0"/>
+                              <Component id="jTextEmail" pref="277" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -618,8 +618,8 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
             <StringItem index="0" value="Empresa"/>
-            <StringItem index="1" value="R&#xe9;gimen General"/>
-            <StringItem index="2" value="Aut&#xf3;nomo"/>
+            <StringItem index="1" value="Aut&#xf3;nomo"/>
+            <StringItem index="2" value="Otros"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxRegimen" noResource="true"/>
@@ -634,12 +634,10 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Gruero"/>
-            <StringItem index="1" value="Conductor"/>
-            <StringItem index="2" value="Tren"/>
-            <StringItem index="3" value="Custodia"/>
-            <StringItem index="4" value="Global"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Provincial"/>
+            <StringItem index="1" value="Larga Distancia"/>
+            <StringItem index="2" value="Otros"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxTipo" noResource="true"/>

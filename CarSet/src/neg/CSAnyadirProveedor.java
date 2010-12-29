@@ -311,12 +311,12 @@ public class CSAnyadirProveedor extends JPanel
 
         jComboBoxRegimen.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxRegimen.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxRegimen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Empresa", "Régimen General", "Autónomo" }));
+        jComboBoxRegimen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Empresa", "Autónomo", "Otros" }));
         jComboBoxRegimen.setName("jComboBoxRegimen"); // NOI18N
 
         jComboBoxTipo.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxTipo.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gruero", "Conductor", "Tren", "Custodia", "Global" }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Provincial", "Larga Distancia", "Otros" }));
         jComboBoxTipo.setName("jComboBoxTipo"); // NOI18N
 
         lEmailCon.setForeground(new java.awt.Color(0, 0, 100));
@@ -616,7 +616,7 @@ public class CSAnyadirProveedor extends JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextPoblacion, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                        .addComponent(jTextPoblacion, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -670,7 +670,7 @@ public class CSAnyadirProveedor extends JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lEmail)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                                .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(lNumCuenta)
