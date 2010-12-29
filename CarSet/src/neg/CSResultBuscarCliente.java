@@ -8,6 +8,8 @@ package neg;
 
 import utils.TablaModelo;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,9 +20,11 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
+import neg.CSResultBuscarPedido.MiRender;
 
 /**
  *
@@ -77,6 +81,8 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
         }
         initComponents();
         tablaClientes.setModel(modelo);
+        tablaClientes.setDefaultRenderer (Object.class, new MiRender());
+
         TableColumn columna = tablaClientes.getColumnModel().getColumn(0);
         columna.setPreferredWidth(40);
         TableColumn columna1 = tablaClientes.getColumnModel().getColumn(1);
@@ -143,6 +149,29 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
    {
       return new Dimension( 1000,600 );
    }
+
+
+     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                    boolean hasFocus, int row, int col)
+    {
+        int componente = table.getSelectedRow();
+     Component comp = getTableCellRendererComponent(table,  value, isSelected, hasFocus, row, col);
+
+     String s =  table.getModel().getValueAt(row, col ).toString();
+
+     if(s.equalsIgnoreCase("Fail"))
+     {
+         comp.setForeground(Color.red);
+     }
+     else
+     {
+         comp.setForeground(null);
+     }
+
+     return( comp );
+ }
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -218,5 +247,34 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
+
+
+        public class MiRender extends DefaultTableCellRenderer {
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+        {
+            Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+            //se centran los valores
+            //se toman algunos valores especificos para mi programa
+            //double cantidad = Double. parseDouble(table. getValueAt(row, 11). toString());
+            //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
+            //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
+            //si cumplen x condicion se pintan
+            if (row % 2 ==1)
+            {
+                Color fondo = new  Color(206, 227, 242);
+                cell. setBackground(fondo);
+                cell. setForeground(Color.BLACK);
+            }
+            else
+            {
+                cell. setBackground(Color.white);
+                cell. setForeground(Color. BLACK);
+            }
+
+            return cell;
+        }
+    }
+
 
 }
