@@ -101,7 +101,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tablaClientes.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
-        tablaClientes.getTableHeader().setPreferredSize(new Dimension(tablaClientes.getTableHeader().getWidth(),26));
+        //tablaClientes.getTableHeader().setPreferredSize(new Dimension(tablaClientes.getTableHeader().getWidth(),26));
         tablaClientes.getTableHeader().setBackground(Color.GRAY);
         tablaClientes.getTableHeader().setForeground(Color.white);
 

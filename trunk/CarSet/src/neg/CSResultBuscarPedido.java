@@ -128,10 +128,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                             System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         }
                         j++;
-
-                        
                     }
-                   
                 }
 
                 modelo.addRow(datosFila);
@@ -242,7 +239,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         DefaultTableCellRenderer tcrRight = new DefaultTableCellRenderer();
         tcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
         jTable1.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
-        jTable1.getTableHeader().setPreferredSize(new Dimension(jTable1.getTableHeader().getWidth(),26));
+        //jTable1.getTableHeader().setPreferredSize(new Dimension(jTable1.getTableHeader().getWidth(),26));
         jTable1.getTableHeader().setBackground(Color.GRAY);
         jTable1.getTableHeader().setForeground(Color.white);        
 
