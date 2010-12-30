@@ -49,6 +49,7 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ABResultTarifasProveedor;
   public static JInternalFrame EditarCliente;
   public static JInternalFrame ResultPedido;
+  public static JInternalFrame ResultSPrPedido;
   public static JInternalFrame ResultFacturaPedido;
   public static JInternalFrame ResultBuscarMail;
   public static JInternalFrame ResultProveedor;

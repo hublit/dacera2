@@ -7,7 +7,10 @@ package neg;
 
 import utils.TablaModelo;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -19,9 +22,11 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
+import neg.CSResultBuscarCliente.MiRender;
 
 /**
  *
@@ -94,6 +99,12 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
         }
         initComponents();
         tablaProveedores.setModel(modelo);
+        tablaProveedores.setDefaultRenderer (Object.class, new MiRender());
+        tablaProveedores.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
+        //tablaProveedores.getTableHeader().setPreferredSize(new Dimension(tablaProveedores.getTableHeader().getWidth(),26));
+        tablaProveedores.getTableHeader().setBackground(Color.GRAY);
+        tablaProveedores.getTableHeader().setForeground(Color.white);
+
         TableColumn columna = tablaProveedores.getColumnModel().getColumn(0);
         columna.setPreferredWidth(50);
         TableColumn columna1 = tablaProveedores.getColumnModel().getColumn(1);
@@ -109,7 +120,6 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaProveedores.getColumnModel().getColumn(0).setCellRenderer(tcr);
 
         tablaProveedores.setAutoCreateRowSorter(true);
 
@@ -156,6 +166,26 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
    {
       return new Dimension( 850,600 );
     }
+
+     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                    boolean hasFocus, int row, int col)
+    {
+        int componente = table.getSelectedRow();
+     Component comp = getTableCellRendererComponent(table,  value, isSelected, hasFocus, row, col);
+
+     String s =  table.getModel().getValueAt(row, col ).toString();
+
+     if(s.equalsIgnoreCase("Fail"))
+     {
+         comp.setForeground(Color.red);
+     }
+     else
+     {
+         comp.setForeground(null);
+     }
+
+     return( comp );
+ }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -233,5 +263,44 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaProveedores;
     // End of variables declaration//GEN-END:variables
+
+    public class MiRender extends DefaultTableCellRenderer {
+
+    @SuppressWarnings("static-access")
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+    {
+        Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+        //se centran los valores
+        //se toman algunos valores especificos para mi programa
+        //double cantidad = Double. parseDouble(table. getValueAt(row, 11). toString());
+        //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
+        //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
+        //si cumplen x condicion se pintan
+        if (column == 0 ||column == 2)
+        {
+            this. setHorizontalAlignment(SwingConstants.CENTER);
+        }
+        else
+        {
+            this. setHorizontalAlignment(SwingConstants.LEFT);
+        }
+
+        tablaProveedores.setRowHeight(20);
+
+        if (row % 2 ==1)
+        {
+            Color fondo = new  Color(206, 227, 242);
+            cell. setBackground(fondo);
+            cell. setForeground(Color. DARK_GRAY);
+        }
+        else
+        {
+            cell. setBackground(Color.white);
+            cell. setForeground(Color. BLACK);
+        }
+
+        return cell;
+    }
+   }
 
 }
