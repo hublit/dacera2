@@ -660,7 +660,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "                         CarSet version 3.0",
+                  "                         CarSet version 3.1.0",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
 
