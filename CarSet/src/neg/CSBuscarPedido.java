@@ -149,6 +149,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
         jComboBoxServicioEspecial = new javax.swing.JComboBox();
         lComercial = new javax.swing.JLabel();
         jComboBoxComercial = new javax.swing.JComboBox();
+        jButtonBuscarSProv = new javax.swing.JButton();
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.setName("jButtonBuscar"); // NOI18N
@@ -399,6 +400,14 @@ public class CSBuscarPedido extends javax.swing.JPanel
         jComboBoxComercial.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxComercial.setName("jComboBoxComercial"); // NOI18N
 
+        jButtonBuscarSProv.setText("Pedidos sin Proveedor");
+        jButtonBuscarSProv.setName("jButtonBuscarSProv"); // NOI18N
+        jButtonBuscarSProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarSProvActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -409,7 +418,11 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 .addContainerGap(421, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonBuscarSProv)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,7 +614,9 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonCancelar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonBuscarSProv))
                 .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -859,6 +874,21 @@ public class CSBuscarPedido extends javax.swing.JPanel
         // TODO add your handling code here:
 }//GEN-LAST:event_jComboBoxServicioEspecialActionPerformed
 
+    private void jButtonBuscarSProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarSProvActionPerformed
+
+        String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
+                " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, p.pe_ta_es_cliente, " +
+                "p.pe_ta_es_proveedor,p.pe_suplemento,pe_solred,p.pe_fecha_real_destino," +
+                " p.pe_estado, p.pe_estado, p.pe_descripcion, cl.co_id" +
+                " FROM pe_pedidos p, pc_pedidos_clientes pc, fc_factores_correccion fc , pp_pedidos_proveedores pp" +
+                " INNER JOIN cl_clientes cl " +
+                " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = 0 AND p.pe_num = pc.pe_num AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
+
+            System.out.println(query);
+
+            CSResultBuscarSinPrPedido resultBuscarPedido = new CSResultBuscarSinPrPedido(query);
+    }//GEN-LAST:event_jButtonBuscarSProvActionPerformed
+
  public Dimension getPreferredSize()
    {
       return new Dimension( 1020,500 );
@@ -866,6 +896,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonBuscarSProv;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox jComboBoxComercial;
     private javax.swing.JComboBox jComboBoxEstado;
