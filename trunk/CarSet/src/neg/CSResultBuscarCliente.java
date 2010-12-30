@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -24,7 +25,6 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import neg.CSResultBuscarPedido.MiRender;
 
 /**
  *
@@ -100,9 +100,11 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaClientes.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaClientes.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        
+        tablaClientes.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
+        tablaClientes.getTableHeader().setPreferredSize(new Dimension(tablaClientes.getTableHeader().getWidth(),26));
+        tablaClientes.getTableHeader().setBackground(Color.GRAY);
+        tablaClientes.getTableHeader().setForeground(Color.white);
+
         tablaClientes.setAutoCreateRowSorter(true);
 
         tablaClientes.addMouseListener(new MouseAdapter()
@@ -202,6 +204,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
         ));
         tablaClientes.setGridColor(new java.awt.Color(204, 204, 255));
         tablaClientes.setName("tablaClientes"); // NOI18N
+        tablaClientes.setSurrendersFocusOnKeystroke(true);
         jScrollPane1.setViewportView(tablaClientes);
 
         jButton1.setForeground(new java.awt.Color(255, 0, 0));
@@ -251,6 +254,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
 
         public class MiRender extends DefaultTableCellRenderer {
 
+        @SuppressWarnings("static-access")
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
         {
             Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
@@ -260,11 +264,22 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
             //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
             //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
             //si cumplen x condicion se pintan
+            if (column == 0 ||column == 2)
+            {
+                this. setHorizontalAlignment(SwingConstants.CENTER);
+            }
+            else
+            {
+                this. setHorizontalAlignment(SwingConstants.LEFT);
+            }
+
+            tablaClientes.setRowHeight(20);
+
             if (row % 2 ==1)
             {
                 Color fondo = new  Color(206, 227, 242);
                 cell. setBackground(fondo);
-                cell. setForeground(Color.BLACK);
+                cell. setForeground(Color. DARK_GRAY);
             }
             else
             {

@@ -14,6 +14,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -240,6 +241,10 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
         DefaultTableCellRenderer tcrRight = new DefaultTableCellRenderer();
         tcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
+        jTable1.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
+        jTable1.getTableHeader().setPreferredSize(new Dimension(jTable1.getTableHeader().getWidth(),26));
+        jTable1.getTableHeader().setBackground(Color.GRAY);
+        jTable1.getTableHeader().setForeground(Color.white);        
 
 
         /*jTable1.getColumnModel().getColumn(0).setCellRenderer(tcrCenter);
@@ -401,6 +406,9 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         {
             Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
             //se centran los valores
+
+            jTable1.setRowHeight(20);
+
             if (column == 0 ||column == 1 || column == 15)
             {
                 this. setHorizontalAlignment(SwingConstants.CENTER);
@@ -422,7 +430,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
             {
                 Color fondo = new  Color(206, 227, 242);
                 cell. setBackground(fondo);
-                cell. setForeground(Color.BLACK);
+                cell. setForeground(Color.DARK_GRAY);
             }
             else
             {
@@ -435,6 +443,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                 Color fondo = new  Color(244, 144, 144);
                 cell. setBackground(fondo);
                 cell. setForeground(Color. BLACK);
+                cell.setFont(new Font(null, Font.BOLD, 12));
             }
             return cell;
         }
