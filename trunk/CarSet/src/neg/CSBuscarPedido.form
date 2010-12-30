@@ -23,7 +23,12 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jButtonCancelar" alignment="1" min="-2" pref="96" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonBuscarSProv" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -240,7 +245,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButtonBuscar" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonBuscarSProv" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -1038,6 +1046,15 @@
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxComercial" noResource="true"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonBuscarSProv">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pedidos sin Proveedor"/>
+        <Property name="name" type="java.lang.String" value="jButtonBuscarSProv" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuscarSProvActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
