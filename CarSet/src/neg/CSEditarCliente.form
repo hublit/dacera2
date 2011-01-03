@@ -25,10 +25,9 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,21 +61,6 @@
                           <Component id="lDNI" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jTextDNI" pref="84" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lTelefono" min="-2" pref="42" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jTextTelefono" min="-2" pref="102" max="-2" attributes="1"/>
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="lFax" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextFax" min="-2" pref="95" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="lEmail" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextEmail" pref="391" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -147,31 +131,35 @@
                           <Component id="jScrollPane1" pref="712" max="32767" attributes="0"/>
                       </Group>
                       <Component id="lPContacto" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jSeparator2" alignment="1" pref="712" max="32767" attributes="1"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="173" max="32767" attributes="0"/>
-                                  <Component id="jButtonModificar" min="-2" pref="109" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
-                                  <Component id="Eliminar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButtonCancelar1" min="-2" pref="99" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="173" max="32767" attributes="0"/>
+                          <Component id="jButtonModificar" min="-2" pref="109" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                          <Component id="Eliminar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jButtonCancelar1" min="-2" pref="99" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jSeparator2" pref="712" max="32767" attributes="1"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lTelefono2" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lTelefono" min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                   <Component id="lPlazo" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="lEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lTelefono2" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -190,16 +178,16 @@
                                           <Component id="jComboBoxFPago" min="-2" pref="110" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          <Component id="lTipo" min="-2" pref="22" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                          <Component id="lTipo" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jComboBoxTipo" pref="141" max="32767" attributes="1"/>
-                                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxTipo" pref="137" max="32767" attributes="1"/>
+                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                           <Component id="lTarifa" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="-4" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jComboBoxTarifa" min="-2" pref="58" max="-2" attributes="1"/>
@@ -224,7 +212,7 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextTelefono2" min="-2" pref="99" max="-2" attributes="1"/>
+                                  <Component id="jTextTelefono2" min="-2" pref="95" max="-2" attributes="1"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="lWeb" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -232,7 +220,18 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="lComercial" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxComercial" pref="120" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxComercial" pref="124" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jTextTelefono" min="-2" pref="96" max="-2" attributes="1"/>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  <Component id="lFax" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextFax" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="lEmail" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextEmail" pref="395" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -364,16 +363,16 @@
                   <Component id="lPContacto" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="89" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonCancelar1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Eliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -582,7 +581,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="64" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="    Tel&#xe9;fono2"/>
+            <Property name="text" type="java.lang.String" value="  Tel&#xe9;fono2"/>
             <Property name="name" type="java.lang.String" value="lTelefono2" noResource="true"/>
           </Properties>
         </Component>
@@ -1001,7 +1000,16 @@
               <Color blue="64" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[48, 14]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[48, 14]"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="lTelefono" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[48, 14]"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextTelefono">
@@ -1237,7 +1245,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="64" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tipo"/>
+            <Property name="text" type="java.lang.String" value="    Tipo"/>
             <Property name="name" type="java.lang.String" value="lTipo" noResource="true"/>
           </Properties>
         </Component>
