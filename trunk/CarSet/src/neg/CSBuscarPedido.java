@@ -668,14 +668,36 @@ public class CSBuscarPedido extends javax.swing.JPanel
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
         int comercial = (jComboBoxComercial.getSelectedIndex()+1);
 
-        //String query = "SELECT * FROM pe_pedidos pe ";
         String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
                 " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal," +
-                " p.pe_ta_es_cliente, p.pe_ta_es_proveedor,p.pe_suplemento,pe_solred,p.pe_fecha_real_destino," +
+                " p.pe_ta_es_cliente, p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred,p.pe_fecha_real_destino," +
                 " p.pe_estado, p.pe_descripcion, p.pe_estado, cl.co_id" +
                 " FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc " +
                 " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +
-                " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
+                " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " +
+                " AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
+
+//        String query = "SELECT DISTINCT p.pe_num, p.pe_fecha, p.pe_servicio_origen, p.pe_servicio_destino, " +
+//               "p.pe_servicio, p.pe_servicio_origen, p.pe_servicio_destino, p.pe_servicio_especial, " +
+//               "p.pe_dias_campa, p.pe_ida_vuelta, p.fc_id, p.pe_soporte, p.pe_ve_matricula, p.pe_ve_marca, " +
+//               "p.pe_ve_modelo, p.pe_ta_es_cliente, p.pe_ta_es_proveedor, p.pe_suplemento,p.pe_num_en_camion, " +
+//               "p.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " +
+//               "FROM pe_pedidos p, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
+//               "WHERE p.pe_num = pc.pe_num " +
+//               "AND sc.cl_id = pc.cl_id " +
+//               "AND tc.tc_fecha_hasta > p.pe_fecha " +
+//               "AND sc.sc_fecha_hasta > p.pe_fecha " +
+//               "AND tc.tc_servicio = p.pe_servicio " +
+//               "AND tc.cl_id = pc.cl_id " +
+//               "AND (tc.tc_servicio_origen = p.pe_servicio_origen " +
+//               "OR tc.tc_servicio_origen = p.pe_servicio_destino) " +
+//               "AND (tc.tc_servicio_destino = p.pe_servicio_destino " +
+//               "OR tc.tc_servicio_destino = p.pe_servicio_origen) " +
+//               "AND tc.tc_soporte = p.pe_soporte ";
+               //"AND (pe.pe_estado = 'Activo' OR pe.pe_estado = 'En Proceso' OR pe.pe_estado = 'Entregado')"  +
+               //"AND (pe.pe_estado != 'Entregado' OR pe.pe_estado = 'Fallido')"  +
+               //"AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
+               //"AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
         if (numero.equals("") && cliente.equals("") && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("") && matricula.equals("")))
         {
