@@ -66,11 +66,12 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR","SUPLE","MG","F.REAL","ESTADO","OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR", "SE" ,"SUPLE","MG","F.REAL","ESTADO","OBSERVACIONES"});
 
         int numeroFila = 0;
         double totalCliente = 0;
         double totalProveedor = 0;
+        double totalSEspecial = 0;
         double totalSuplemento = 0;
         double totalMargen = 0;
 
@@ -79,12 +80,13 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
                  double ta_es_cl=0;
-                        double ta_es_pr=0;
-                        double suple=0;
-                        double ganancia=0;
+                 double ta_es_pr=0;
+                 double s_especial=0;
+                 double suple=0;
+                 double ganancia=0;
                 for (int k = 0; k < 18; k++) {
-                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17) {
-                        if((k==1) || (k==15))
+                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17 || k==18) {
+                        if((k==1) || (k==16))
                         {
                             String fecha=(rs.getObject(k+1)).toString();
                              String [] temp = null;
@@ -111,16 +113,22 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                         }
                         else if (k==13)
                         {
+                            s_especial = rs.getDouble(k+1);
+                            datosFila[j] = rs.getDouble(k + 1);
+                            totalSEspecial = totalSEspecial + s_especial;
+                        }
+                        else if (k==14)
+                        {
                             suple=rs.getDouble(k+1);
                             datosFila[j] = rs.getDouble(k + 1);
                             totalSuplemento = totalSuplemento + suple;
                         }
-                        else if (k==14)
+                        else if (k==15)
                         {
-                            ganancia=ta_es_cl + suple - ta_es_pr;
                             double gananciaF=Utilidades.redondear(ganancia, 2);
                             datosFila[j] = gananciaF;
                             totalMargen = Utilidades.redondear((totalMargen + gananciaF), 2);
+                            ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
                         }
                         else
                         {
@@ -139,7 +147,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
             int i = 0;
             for (int k = 0; k < 18; k++)
             {
-                if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17) {
+                if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17|| k==18) {
                     if(k==10)
                     {
                         datosFilaTotal[i] = "TOTALES";
@@ -154,9 +162,13 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                     }
                     if(k==13)
                     {
-                        datosFilaTotal[i] = totalSuplemento;
+                        datosFilaTotal[i] = totalSEspecial;
                     }
                     if(k==14)
+                    {
+                        datosFilaTotal[i] = totalSuplemento;
+                    }
+                    if(k==15)
                     {
                         datosFilaTotal[i] = totalMargen;
                     }
@@ -228,11 +240,13 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         TableColumn columna14 = jTable1.getColumnModel().getColumn(14);
         columna14.setPreferredWidth(60);
         TableColumn columna15 = jTable1.getColumnModel().getColumn(15);
-        columna15.setPreferredWidth(80);
+        columna15.setPreferredWidth(60);
         TableColumn columna16 = jTable1.getColumnModel().getColumn(16);
-        columna16.setPreferredWidth(100);
+        columna16.setPreferredWidth(80);
         TableColumn columna17 = jTable1.getColumnModel().getColumn(17);
-        columna17.setPreferredWidth(500);
+        columna17.setPreferredWidth(100);
+        TableColumn columna18 = jTable1.getColumnModel().getColumn(18);
+        columna18.setPreferredWidth(500);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
