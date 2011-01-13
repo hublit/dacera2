@@ -47,16 +47,64 @@ public class Proveedor
       Object [][] data = new Object[registros][5];
       try
       {
-         ResultSet rs = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal FROM pr_proveedores ORDER BY pr_nombre_fiscal ");
+         ResultSet rs = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF FROM pr_proveedores ORDER BY pr_nombre_fiscal ");
 
          int i = 0;
          while(rs.next())
          {
             String estCodigo = rs.getString("pr_id");
             String estNombre = rs.getString("pr_nombre_fiscal");
+            String estDNI = rs.getString("pr_DNI_CIF");
 
             data[i][0] = estCodigo;
             data[i][1] = estNombre;
+            data[i][2] = estDNI;
+            i++;
+         }
+         rs.close();
+      }
+      catch(SQLException e)
+
+      {
+         System.out.println(e);
+      }
+      return data;
+
+   }
+
+
+    public Object[][] getProveedoresQuery(String condicion)
+   {
+      int registros = 0;
+      try
+      {
+
+         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM pr_proveedores WHERE  pr_nombre_fiscal like  '%"+condicion+"%' ");
+
+         rsTotal.next();
+         registros = rsTotal.getInt("cont");
+         rsTotal.close();
+      }
+      catch(SQLException e)
+      {
+         System.out.println(e);
+      }
+
+      Object [][] data = new Object[registros][5];
+      try
+      {
+         ResultSet rs = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF FROM pr_proveedores WHERE  pr_nombre_fiscal like  '%"+condicion+"%' ORDER BY pr_nombre_fiscal ");
+
+         int i = 0;
+         while(rs.next())
+         {
+            String estCodigo = rs.getString("pr_id");
+            String estNombre = rs.getString("pr_nombre_fiscal");
+            String estDNI = rs.getString("pr_DNI_CIF");
+
+            data[i][0] = estCodigo;
+            data[i][1] = estNombre;
+            data[i][2] = estDNI;
             i++;
          }
          rs.close();
