@@ -593,7 +593,7 @@ public class CSAnyadirTarifaCliente extends JPanel
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         int clienteID = 0;
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(jTextCliente);
+        CSSelectCliente panel = new CSSelectCliente(jTextCliente,"",true);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();
