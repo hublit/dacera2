@@ -264,7 +264,7 @@ public class CSFacturaProveedor extends JPanel
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
         CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectProveedor panel = new CSSelectProveedor(jTextProveedor);
+        CSSelectProveedor panel = new CSSelectProveedor(jTextProveedor,"",true);
         CSDesktop.BuscaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaProveedor.pack();
