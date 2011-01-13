@@ -128,7 +128,7 @@ public class CSEnviarMailProveedor
             String htmlText = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1//EN' 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'>" +
             "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='es'><head>" +
             "<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-15' /></head><body>" +
-            "<br><br><table width='700'>" +
+            "<table width='700'>" +
             "<tr><td width='100'><img src=\""+imagen+"\" width='100'></td>" +
             "<td><p><font face='Helvetica' size='+1'> CONFIRMACI&Oacute;N DE PEDIDO</p></font></td></tr>" +
             "<tr><td colspan='2'><br><br><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
