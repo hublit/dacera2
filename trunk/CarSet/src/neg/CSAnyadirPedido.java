@@ -1652,8 +1652,8 @@ public class CSAnyadirPedido extends JPanel
                             mail.setFecha(fechaHoy2);
                             mail.setNumPedido(pedido);
                             mail.setSoporte(soporte);
-                            mail.setFechaEntrega(fechaOrigen);
-                            mail.setFechaRecogida(fechaDestino);
+                            mail.setFechaEntrega(fechaDestino);
+                            mail.setFechaRecogida(fechaOrigen);
                             mail.setMarca(marca);
                             mail.setModelo(modelo);
                             mail.setMatricula(matricula);
