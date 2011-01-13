@@ -41,9 +41,11 @@ import utils.Utilidades;
  */
 public class CSResultBuscarPedido extends javax.swing.JPanel
 {
+    private  String consulta="";
     /** Creates new form ABResultBuscarPedido */
     public CSResultBuscarPedido(String query)
     {
+        consulta=query;
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = CSDesktop.datos.select(query);
 
@@ -284,7 +286,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                // adjuntar panel al panel de contenido del marco interno
                CSEditarPedido editarC = null;
                     try {
-                        editarC = new CSEditarPedido(proveedor);
+                        editarC = new CSEditarPedido(proveedor,consulta);
                     } catch (SQLException ex) {
                         Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
                     }

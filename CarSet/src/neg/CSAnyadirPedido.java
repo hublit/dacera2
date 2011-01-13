@@ -1307,37 +1307,37 @@ public class CSAnyadirPedido extends JPanel
         double suplementoN = 0;
         
         // CONVERSION DE LA FECHA
-        Calendar fechaCalendar = jDateFecha.getCalendar();
-        if (fechaCalendar!=null)
+        Calendar fechaCalendarFecha = jDateFecha.getCalendar();
+        if (fechaCalendarFecha!=null)
         {
-            Date fecha = fechaCalendar.getTime();
+            Date fecha = fechaCalendarFecha.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fecha2=formatoDeFecha.format(fecha);
         }
 
         // CONVERSION DE LA FECHA ORIGEN
-        fechaCalendar = jDateFechaOrigen.getCalendar();
-        if (fechaCalendar!=null)
+        Calendar fechaCalendarOrigen = jDateFechaOrigen.getCalendar();
+        if (fechaCalendarOrigen!=null)
         {
-            Date fecha = fechaCalendar.getTime();
+            Date fecha = fechaCalendarOrigen.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaOrigen=formatoDeFecha.format(fecha);
         }
-
+        
         // CONVERSION DE LA FECHA DESTINO
-        fechaCalendar = jDateFechaDestino.getCalendar();
-        if (fechaCalendar!=null)
+        Calendar fechaCalendarDestino = jDateFechaDestino.getCalendar();
+        if (fechaCalendarDestino!=null)
         {
-            Date fecha = fechaCalendar.getTime();
+            Date fecha = fechaCalendarDestino.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaDestino=formatoDeFecha.format(fecha);
         }
 
         // CONVERSION DE LA FECHA REAL DESTINO
-        fechaCalendar = jDateFechaRealDestino.getCalendar();
-        if (fechaCalendar!=null)
+        Calendar fechaCalendarRealDestino = jDateFechaRealDestino.getCalendar();
+        if (fechaCalendarRealDestino!=null)
         {
-            Date fecha = fechaCalendar.getTime();
+            Date fecha = fechaCalendarRealDestino.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaRealDestino=formatoDeFecha.format(fecha);
         }
@@ -1444,6 +1444,10 @@ public class CSAnyadirPedido extends JPanel
 
         if(soporte.equals("Selecciona"))
             soporte="";
+
+        int comparacion1=fechaCalendarFecha.compareTo(fechaCalendarOrigen);
+        int comparacion2=fechaCalendarOrigen.compareTo(fechaCalendarDestino);
+        int comparacion3=fechaCalendarRealDestino.compareTo(fechaCalendarOrigen);
         
         if (!Utilidades.campoObligatorio(fecha2,"Fecha").equals("OK"))
         {
@@ -1529,7 +1533,19 @@ public class CSAnyadirPedido extends JPanel
         else if(!Utilidades.formatoTelefono9(telefonoDestino).equals("OK"))
         {
              ValidarFormatos(Utilidades.formatoTelefono9(telefonoDestino));
-        }       
+        }
+        else if(comparacion1>0)
+        {
+            ValidarFormatos("Fecha Pedido tiene que ser <= Fecha Prevista Recogida");
+        }
+        else if(comparacion2>0)
+        {
+            ValidarFormatos("Fecha Prevista Recogida tiene que ser <= Fecha Prevista Entrega");
+        }
+        else if(comparacion3>0)
+        {
+            ValidarFormatos("Fecha Real Entrega tiene que ser <= Fecha Prevista Recogida");
+        }
         else
         {
               if(!cerrado)
