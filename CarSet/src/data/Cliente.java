@@ -47,16 +47,63 @@ public class Cliente
       Object [][] data = new Object[registros][5];
       try
       {
-         ResultSet rs = CSDesktop.datos.select("SELECT cl_id, cl_nombre  FROM cl_clientes ORDER BY cl_nombre ");
+         ResultSet rs = CSDesktop.datos.select("SELECT cl_id, cl_nombre,cl_DNI_CIF  FROM cl_clientes ORDER BY cl_nombre ");
 
          int i = 0;
          while(rs.next())
          {
             String estCodigo = rs.getString("cl_id");
             String estNombre = rs.getString("cl_nombre");
-
+            String estDNI = rs.getString("cl_DNi_CIF");
             data[i][0] = estCodigo;
             data[i][1] = estNombre;
+            data[i][2] = estDNI;
+            i++;
+         }
+         rs.close();
+      }
+      catch(SQLException e)
+
+      {
+         System.out.println(e);
+      }
+
+      return data;
+
+   }
+
+
+   public Object[][] getClientesQuery(String condicion)
+   {
+      int registros = 0;
+      try
+      {
+
+         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM cl_clientes WHERE  cl_nombre like  '%"+condicion+"%' ");
+
+         rsTotal.next();
+         registros = rsTotal.getInt("cont");
+         rsTotal.close();
+      }
+      catch(SQLException e)
+      {
+         System.out.println(e);
+      }
+
+      Object [][] data = new Object[registros][5];
+      try
+      {
+         ResultSet rs = CSDesktop.datos.select("SELECT cl_id, cl_nombre,cl_DNI_CIF  FROM cl_clientes WHERE  cl_nombre like  '%"+condicion+"%'  ORDER BY cl_nombre");
+
+         int i = 0;
+         while(rs.next())
+         {
+            String estCodigo = rs.getString("cl_id");
+            String estNombre = rs.getString("cl_nombre");
+            String estDNI = rs.getString("cl_DNI_CIF");
+            data[i][0] = estCodigo;
+            data[i][1] = estNombre;
+            data[i][2] = estDNI;
             i++;
          }
          rs.close();
