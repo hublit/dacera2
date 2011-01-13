@@ -1039,7 +1039,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                                                          "cl_cod_postal, cl_poblacion, cl_provincia, " +
                                                          "cl_telefono, cl_telefono2, cl_fax, cl_email, " +
                                                          "cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id,cl_direccion_fiscal,cl_cod_postal_fiscal, " +
-                                                         "cl_poblacion_fiscal,cl_provincia_fiscal,cl_fecha,cl_num_cuenta, cl_tipo_tarifa, cl_password) VALUES (";
+                                                         "cl_poblacion_fiscal,cl_provincia_fiscal,cl_fecha,cl_num_cuenta, cl_tipo_tarifa, cl_password, cl_tipo) VALUES (";
                 query = query + "'"+nombre+"','"+dni+"','"+direccion+"','"+codPostal+"','"+poblacion+"','"+provincia+"','"+telefono+"'";
                 query = query + " ,'"+telefono2+"','"+fax+"','"+email+"','"+web+"','"+plazo+"','"+dPlazo+"','"+fPago+"','"+estado+"'";
                 query = query + " ,'"+co_id+"','"+direccionFiscal+"','"+codPostalFiscal+"','"+poblacionFiscal+"','"+provinciaFiscal+"','"+fecha2+"'";
