@@ -192,7 +192,7 @@ public class CSResultBuscarSinPrPedido extends javax.swing.JPanel
                // adjuntar panel al panel de contenido del marco interno
                CSEditarPedido editarC = null;
                     try {
-                        editarC = new CSEditarPedido(proveedor);
+                        editarC = new CSEditarPedido(proveedor,"");
                     } catch (SQLException ex) {
                         Logger.getLogger(CSResultBuscarSinPrPedido.class.getName()).log(Level.SEVERE, null, ex);
                     }
