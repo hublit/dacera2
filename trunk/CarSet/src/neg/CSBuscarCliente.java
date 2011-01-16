@@ -383,7 +383,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
         }
         else
         {
-            String query = "SELECT cl.cl_id, cl.cl_nombre, cl.cl_tipo_tarifa, cl_provincia, cl.cl_plazo, fp.fp_tipo, co.co_nombre" +
+            String query = "SELECT cl.cl_id, cl.cl_nombre, cl.cl_tipo_tarifa, cl.cl_tipo, cl.cl_provincia, cl.cl_plazo, fp.fp_tipo, co.co_nombre" +
                            "  FROM cl_clientes cl, co_comerciales co, fp_forma_pago fp" +
                            " WHERE cl.co_id = co.co_id AND cl.fp_id = fp.fp_id";
 

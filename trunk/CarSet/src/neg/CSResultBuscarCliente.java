@@ -38,7 +38,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = CSDesktop.datos.select(query);
         
-        modelo.setColumnIdentifiers(new String[] {"NUM", "NOMBRE", "TIPO TARIFA", "PROVINCIA", "PLAZO DE PAGO", "FORMA DE PAGO", "COMERCIAL" });
+        modelo.setColumnIdentifiers(new String[] {"NUM", "NOMBRE", "TIPO TARIFA", "TIPO", "PROVINCIA", "PLAZO DE PAGO", "FORMA DE PAGO", "COMERCIAL" });
         int numeroFila = 0;
         try {
             while (rs.next()) {
@@ -46,7 +46,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
                 int j = 0;
                 for (int k = 0; k < 34; k++)
                 {
-                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k == 6 )
+                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k == 6 || k == 7 )
                     {
                         datosFila[j] = rs.getObject(k + 1);
                         System.out.println("Dato" + k + " " + rs.getObject(k + 1));
@@ -94,9 +94,11 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
         TableColumn columna4 = tablaClientes.getColumnModel().getColumn(4);
         columna4.setPreferredWidth(70);
         TableColumn columna5 = tablaClientes.getColumnModel().getColumn(5);
-        columna5.setPreferredWidth(100);
+        columna5.setPreferredWidth(70);
         TableColumn columna6 = tablaClientes.getColumnModel().getColumn(6);
         columna6.setPreferredWidth(100);
+        TableColumn columna7 = tablaClientes.getColumnModel().getColumn(7);
+        columna7.setPreferredWidth(100);
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -149,7 +151,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
 
      public Dimension getPreferredSize()
    {
-      return new Dimension( 1000,600 );
+      return new Dimension( 1100,600 );
    }
 
 
