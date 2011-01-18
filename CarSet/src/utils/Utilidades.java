@@ -3,7 +3,9 @@
 */
 package utils;
 
+import data.DbConnection;
 import java.io.UnsupportedEncodingException;
+import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
@@ -12,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import neg.CSDesktop;
 
 /**
@@ -823,8 +827,12 @@ public class Utilidades
      }
 
       public static String CalcularImporteServicioEspecial(String servicioEspecial, String cl_id, String fecha)
-        throws SQLException
+        throws SQLException, UnknownHostException
     {
+
+            DbConnection conexion = new DbConnection();
+
+        ResultSet rsSe;
         String campoServicio = "";
         String importeServicioEs = "";
         if(servicioEspecial.equals("Urgente"))
@@ -913,9 +921,10 @@ public class Utilidades
         if(!campoServicio.equals(""))
         {
             String querySe = (new StringBuilder()).append("SELECT ").append(campoServicio).append(" FROM sc_servicios_clientes WHERE cl_id = ").append(cl_id).append(" AND sc_fecha_hasta > '").append(fecha).append("' LIMIT 1").toString();
-            for(ResultSet rsSe = CSDesktop.datos.select(querySe); rsSe.next();)
+            for(rsSe = conexion.select(querySe); rsSe.next();)
                 importeServicioEs = rsSe.getString(campoServicio);
-
+            rsSe.close();
+            conexion.cerrarConexion();
         }
         return importeServicioEs;
     }
