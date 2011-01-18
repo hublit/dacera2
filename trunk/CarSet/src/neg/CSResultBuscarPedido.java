@@ -7,8 +7,7 @@
 package neg;
 
 //import utils.TablaModeloPedidos;
-import com.lowagie.text.pdf.ColumnText;
-import groovy.inspect.swingui.TableSorter;
+import java.net.UnknownHostException;
 import utils.TablaModelo;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,8 +20,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -32,7 +29,6 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableRowSorter;
 import utils.Utilidades;
 
 /**
@@ -43,7 +39,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 {
     private  String consulta="";
     /** Creates new form ABResultBuscarPedido */
-    public CSResultBuscarPedido(String query)
+    public CSResultBuscarPedido(String query) throws UnknownHostException
     {
         consulta=query;
         TablaModelo modelo = new TablaModelo();
@@ -84,9 +80,14 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                  double ta_es_cl=0;
                  double ta_es_pr=0;
                  double s_especial=0;
+                 double importeServicioD = 0;
                  double suple=0;
                  double ganancia=0;
-                for (int k = 0; k < 18; k++) {
+                 String cl_id = rs.getString("cl_id");
+                 System.out.println("Cliente: "+cl_id);
+                 String fechaPe = rs.getString("pe_fecha");
+                 System.out.println("Fecha: "+fechaPe);
+                for (int k = 0; k < 19; k++) {
                     if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17 || k==18) {
                         if((k==1) || (k==16))
                         {
@@ -115,22 +116,40 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                         }
                         else if (k==13)
                         {
-                            s_especial = rs.getDouble(k+1);
-                            datosFila[j] = rs.getDouble(k + 1);
-                            totalSEspecial = totalSEspecial + s_especial;
+//                            s_especial = rs.getDouble(k+1);
+//                            datosFila[j] = rs.getDouble(k + 1);
+//                            totalSEspecial = totalSEspecial + s_especial;
+
+                            if(!rs.getObject(k+1).equals(""))
+                            {
+                                if(!rs.getObject(k+1).equals("Otros"))
+                                {
+                                    String servicio = rs.getObject(k+1).toString();
+                                    String sEspecial = Utilidades.CalcularImporteServicioEspecial(servicio,cl_id, fechaPe);
+                                    if(!servicio.equals(""))
+                                    {
+                                        importeServicioD = Double.parseDouble(sEspecial);
+                                        importeServicioD = Utilidades.redondear(importeServicioD, 2);
+                                    }
+                                }
+                            }
+                            datosFila[j] = importeServicioD;
+                            totalSEspecial = totalSEspecial + importeServicioD;
                         }
                         else if (k==14)
                         {
-                            suple=rs.getDouble(k+1);
-                            datosFila[j] = rs.getDouble(k + 1);
+                            suple = rs.getDouble(k+1);
+                            datosFila[j] = suple;
                             totalSuplemento = totalSuplemento + suple;
                         }
                         else if (k==15)
                         {
+                            ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
                             double gananciaF=Utilidades.redondear(ganancia, 2);
                             datosFila[j] = gananciaF;
-                            totalMargen = Utilidades.redondear((totalMargen + gananciaF), 2);
-                            ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
+                           
+                            totalMargen = totalMargen + gananciaF;
+                            totalMargen = Utilidades.redondear((totalMargen), 2);
                         }
                         else
                         {
