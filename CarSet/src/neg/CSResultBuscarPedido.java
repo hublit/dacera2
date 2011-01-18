@@ -106,6 +106,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                              ta_es_cl=rs.getDouble(k+1);
                              datosFila[j] = rs.getDouble(k + 1);
                              totalCliente = totalCliente + ta_es_cl;
+                             totalCliente = Utilidades.redondear(totalCliente, 2);
                         }
                         else if(k==12)
                         {
@@ -113,6 +114,8 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                             datosFila[j] = rs.getDouble(k + 1);
                             System.out.println("Clase: " + datosFila[j].getClass().getName());
                             totalProveedor = totalProveedor + ta_es_pr;
+                           totalProveedor = Utilidades.redondear(totalProveedor, 2);
+
                         }
                         else if (k==13)
                         {
@@ -135,12 +138,15 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                             }
                             datosFila[j] = importeServicioD;
                             totalSEspecial = totalSEspecial + importeServicioD;
+                            totalSEspecial = Utilidades.redondear(totalSEspecial, 2);
+
                         }
                         else if (k==14)
                         {
                             suple = rs.getDouble(k+1);
                             datosFila[j] = suple;
                             totalSuplemento = totalSuplemento + suple;
+                            totalSuplemento = Utilidades.redondear(totalSuplemento, 2);
                         }
                         else if (k==15)
                         {

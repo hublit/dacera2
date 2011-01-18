@@ -11,6 +11,7 @@
 
 package neg;
 
+import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.LimitadorDeDocumento;
@@ -811,8 +812,11 @@ public class CSBuscarPedido extends javax.swing.JPanel
             query = query+" ORDER BY p.pe_fecha ASC";
 
             System.out.println(query);
-
-            CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(query);
+            try {
+                CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(query);
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 

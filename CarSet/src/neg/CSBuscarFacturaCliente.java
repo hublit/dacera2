@@ -6,6 +6,9 @@
 
 package neg;
 
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.LimitadorDeDocumento;
 import data.Cliente;
 import java.awt.BorderLayout;
@@ -541,8 +544,11 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
 
                 System.out.println(query+" ORDER BY pe.pe_num DESC");
                 query = query+" ORDER BY pe.pe_num ASC";
-
-                CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+        try {
+            CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(CSBuscarFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
