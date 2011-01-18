@@ -6,6 +6,9 @@
 package neg;
 
 import data.BeanCorreoCliente;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
 import data.Cliente;
@@ -1784,8 +1787,11 @@ public class CSEditarPedido extends javax.swing.JPanel
                     CSDesktop.EditarPedido.dispose();
                     CSDesktop.ResultPedido.dispose();
                     CSDesktop.menuBuscarPedido.setEnabled(true);
-
+                try {
                     CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(consulta);
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     
                 }                
     }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -1816,8 +1822,11 @@ public class CSEditarPedido extends javax.swing.JPanel
                     CSDesktop.EditarPedido.dispose();
                     CSDesktop.ResultPedido.dispose();
                     CSDesktop.menuBuscarPedido.setEnabled(true);
-
+                try {
                     CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(consulta);
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     
             }
         }
