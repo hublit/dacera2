@@ -16,6 +16,8 @@ import data.Cliente;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -38,6 +40,10 @@ public class CSSelectCliente extends javax.swing.JPanel
 
         TablaModelo modelo = new TablaModelo();
         Cliente client = new Cliente();
+
+
+         
+
 
         this.jTextCli = jTextC;
 
@@ -82,6 +88,33 @@ public class CSSelectCliente extends javax.swing.JPanel
       
 
         initComponents();
+
+        KeyListener l = new KeyListener()
+        {
+            public void keyTyped(KeyEvent e) {}
+            public void keyPressed(KeyEvent e)
+            {
+               if (e.getKeyCode() == KeyEvent.VK_ENTER)
+               {
+                    jButtonBuscar.doClick();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                    jButton1.doClick();
+                }
+            }
+            public void keyReleased(KeyEvent e) {}
+        };
+
+         for (int k = 0; k < this.getComponents().length; k ++)
+        {
+
+                this.getComponents()[k].addKeyListener(l);
+            
+        }
+
+        addKeyListener(l);
+        
         jTable1.setDefaultRenderer (Object.class, new MiRender());
         jTable1.setModel(modelo);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
@@ -114,7 +147,7 @@ public class CSSelectCliente extends javax.swing.JPanel
          }
         });
         
-
+        jTextField1.grabFocus();
     }
 
    
@@ -196,27 +229,27 @@ public class CSSelectCliente extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(71, 71, 71)
                         .addComponent(jButtonLimpiar)
-                        .addGap(36, 36, 36))))
+                        .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonLimpiar)
-                    .addComponent(jButton1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscar))
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jButtonLimpiar)
+                    .addComponent(jButton1))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

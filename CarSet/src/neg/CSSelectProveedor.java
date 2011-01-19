@@ -12,6 +12,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JInternalFrame;
@@ -75,6 +77,33 @@ public class CSSelectProveedor extends javax.swing.JPanel
         }
 
         initComponents();
+
+        KeyListener l = new KeyListener()
+        {
+            public void keyTyped(KeyEvent e) {}
+            public void keyPressed(KeyEvent e)
+            {
+               if (e.getKeyCode() == KeyEvent.VK_ENTER)
+               {
+                    jButtonBuscar.doClick();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+                {
+                    jButton2.doClick();
+                }
+            }
+            public void keyReleased(KeyEvent e) {}
+        };
+
+         for (int k = 0; k < this.getComponents().length; k ++)
+        {
+
+                this.getComponents()[k].addKeyListener(l);
+
+        }
+
+        addKeyListener(l);
+
         jTable1.setDefaultRenderer (Object.class, new MiRender());
         jTable1.setModel(modelo);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
@@ -190,24 +219,24 @@ public class CSSelectProveedor extends javax.swing.JPanel
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addGap(55, 55, 55)
                         .addComponent(jButton2)
-                        .addGap(71, 71, 71)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addComponent(jButtonLimpiar1)
                         .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLimpiar1)
-                    .addComponent(jButton2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscar))
-                .addContainerGap())
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
