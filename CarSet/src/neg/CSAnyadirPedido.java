@@ -1305,6 +1305,9 @@ public class CSAnyadirPedido extends JPanel
         double taescliN=-1;
         double taesproN=0;
         double suplementoN = 0;
+        int comparacion1 = -1;
+        int comparacion2 = -1;
+        int comparacion3 = -1;
         
         // CONVERSION DE LA FECHA
         Calendar fechaCalendarFecha = jDateFecha.getCalendar();
@@ -1445,9 +1448,15 @@ public class CSAnyadirPedido extends JPanel
         if(soporte.equals("Selecciona"))
             soporte="";
 
-        int comparacion1=fechaCalendarFecha.compareTo(fechaCalendarOrigen);
-        int comparacion2=fechaCalendarOrigen.compareTo(fechaCalendarDestino);
-        int comparacion3=fechaCalendarRealDestino.compareTo(fechaCalendarOrigen);
+        if((fechaCalendarOrigen != null) && (fechaCalendarDestino != null))
+        {
+            comparacion1=fechaCalendarFecha.compareTo(fechaCalendarOrigen);
+            comparacion2=fechaCalendarOrigen.compareTo(fechaCalendarDestino);           
+        }
+        if (fechaCalendarRealDestino != null)
+        {
+             comparacion3=fechaCalendarRealDestino.compareTo(fechaCalendarOrigen);
+        }
         
         if (!Utilidades.campoObligatorio(fecha2,"Fecha").equals("OK"))
         {
