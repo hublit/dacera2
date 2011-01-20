@@ -1552,17 +1552,17 @@ public class CSEditarPedido extends javax.swing.JPanel
         {
              ValidarFormatos(Utilidades.formatoTelefono9(telefonoDestino));
         }
-        else if(comparacion1>0)
+        else if(comparacion1 > 0)
         {
             ValidarFormatos("Fecha Pedido tiene que ser <= Fecha Prevista Recogida");
         }
-        else if(comparacion2>0)
+        else if(comparacion2 > 0)
         {
             ValidarFormatos("Fecha Prevista Recogida tiene que ser <= Fecha Prevista Entrega");
         }
-        else if(comparacion3>0)
+        else if(comparacion3 < 0)
         {
-            ValidarFormatos("Fecha Real Entrega tiene que ser <= Fecha Prevista Recogida");
+            ValidarFormatos("Fecha Real Entrega tiene que ser >= Fecha Prevista Recogida");
         }
         else
         {             
