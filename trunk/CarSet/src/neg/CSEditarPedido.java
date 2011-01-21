@@ -1578,7 +1578,7 @@ public class CSEditarPedido extends javax.swing.JPanel
 
                String query = "UPDATE pe_pedidos SET pe_fecha = '"+fecha2+"', " +
                             "pe_descripcion = '"+descripcion+"', pe_direccion_origen = '"+direccionOrigen+"', " +
-                            "pe_poblacion_origen = '"+poblacionOrigen+"', pe_provincia_origen = '"+provinciaOrigen+"', " +
+                            "pe_poblacion_origen = '"+poblacionOrigen+"', pe_provincia_origen = '"+provinciaOrigen+"', pe_cp_origen = '"+codigoPOrigen+"', " +
                             "pe_fecha_origen = '"+fechaOrigen+"', pe_hora_origen = '"+horaOrigen+"' , " +
                             "pe_tipo_origen = '"+tipoOrigen+"', pe_nombre_origen = '"+nombreOrigen+"', " +
                             "pe_telefono_origen='"+telefonoOrigen+"', pe_direccion_destino = '"+direccionDestino+"', pe_poblacion_destino = '"+poblacionDestino+"', " +
