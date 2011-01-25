@@ -11,6 +11,8 @@
 
 package neg;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -709,114 +711,85 @@ public class CSBuscarPedido extends javax.swing.JPanel
         }
         else
         {
-            if(!cliente.equals("") && !proveedor.equals(""))
-            {
-                Cliente cliente2 = new Cliente();
-                clienteID = cliente2.getClienteID(cliente);
-                Proveedor proveedor2 = new Proveedor();
-                proveedorID = proveedor2.getProveedorID(proveedor);
-
-                query = query + " AND pc.cl_id = "+clienteID+" AND pp.pr_id = "+proveedorID;
-
-            }
-            else if(!cliente.equals(""))
-            {
-                Cliente cliente2 = new Cliente();
-                clienteID = cliente2.getClienteID(cliente);
-
-                query = query + " AND pc.cl_id = "+clienteID;
-            }
-            else if(!proveedor.equals(""))
-            {
-                Proveedor proveedor2=new Proveedor();
-                proveedorID=proveedor2.getProveedorID(proveedor);
-
-                query = query + " AND pp.pr_id = "+proveedorID;
-            }
-
-            if ((!fechaI.equals(""))&& (!fechaF.equals("")) )
-            {
-
-                query = query + " AND p.pe_fecha >='"+fechaI+"' AND p.pe_fecha<='"+fechaF+"'";
-            }
-
-            if(numeroN != 0)
-            {
-                query = query + " AND p.pe_num = "+numeroN;
-            }
-
-            if (!matricula.equals(""))
-            {
-                query = query + " AND p.pe_ve_matricula like '%"+matricula+"%'";
-            }
-
-            if (!direccionOrigen.equals(""))
-            {
-                query = query + " AND p.pe_direccion_origen='"+direccionOrigen+"'";
-            }
-            if (!poblacionOrigen.equals(""))
-            {
-                query = query + " AND p.pe_poblacion_origen='"+poblacionOrigen+"'";
-            }
-            if (!provinciaOrigen.equals("Selecciona"))
-            {
-                query = query + " AND p.pe_provincia_origen='"+provinciaOrigen+"'";
-            }
-            if (!codPostalOrigen.equals(""))
-            {
-                query = query + " AND p.pe_cp_origen='"+codPostalOrigen+"'";
-            }
-             if (!direccionDestino.equals(""))
-            {
-                 query = query + " AND p.pe_direccion_destino='"+direccionDestino+"'";
-            }
-            if (!poblacionDestino.equals(""))
-            {
-                query = query + " AND p.pe_poblacion_destino='"+poblacionDestino+"'";
-            }
-            if (!provinciaDestino.equals("Selecciona"))
-            {
-                query = query + " AND p.pe_provincia_destino='"+provinciaDestino+"'";
-            }
-            if (!codPostalDestino.equals(""))
-            {
-                //query = query + " AND pe_cp_destino='"+codPostalDestino+"'";
-                query = query + " AND p.pe_cp_destino='"+codPostalDestino+"'";
-            }
-            if (!servicioFMad.equals("Selecciona"))
-            {
-                query = query + " AND p.pe_servicio_origen='"+servicioFMad+"'";
-            }
-            if (!servicioFMadDestino.equals("Selecciona"))
-            {
-                query = query + " AND p.pe_servicio_destino='"+servicioFMadDestino+"'";
-            }
-            if(!soporte.equals("Selecciona"))
-            {
-                query = query + " AND p.pe_soporte='"+soporte+"'";
-            }
-            if (factor != 0)
-            {
-                query = query + " AND fc.fc_id='"+factor+"'";
-            }
-
-            if (!estado.equals("Selecciona"))
-            {
-                query = query + " AND p.pe_estado='"+estado+"'";
-            }
-            if (comercial>1)
-            {
-                query = query + " AND co_id= '"+comercial+"'";
-            }
-
-            query = query+" ORDER BY p.pe_fecha ASC";
-
-            System.out.println(query);
             try {
+                if (!cliente.equals("") && !proveedor.equals("")) {
+                    Cliente cliente2 = new Cliente();
+                    clienteID = cliente2.getClienteID(cliente);
+                    Proveedor proveedor2 = new Proveedor();
+                    proveedorID = proveedor2.getProveedorID(proveedor);
+                    query = query + " AND pc.cl_id = " + clienteID + " AND pp.pr_id = " + proveedorID;
+                } else if (!cliente.equals("")) {
+                    Cliente cliente2 = new Cliente();
+                    clienteID = cliente2.getClienteID(cliente);
+                    query = query + " AND pc.cl_id = " + clienteID;
+                } else if (!proveedor.equals("")) {
+                    Proveedor proveedor2 = new Proveedor();
+                    proveedorID = proveedor2.getProveedorID(proveedor);
+                    query = query + " AND pp.pr_id = " + proveedorID;
+                }
+                if ((!fechaI.equals("")) && (!fechaF.equals(""))) {
+                    query = query + " AND p.pe_fecha >='" + fechaI + "' AND p.pe_fecha<='" + fechaF + "'";
+                }
+                if (numeroN != 0) {
+                    query = query + " AND p.pe_num = " + numeroN;
+                }
+                if (!matricula.equals("")) {
+                    query = query + " AND p.pe_ve_matricula like '%" + matricula + "%'";
+                }
+                if (!direccionOrigen.equals("")) {
+                    query = query + " AND p.pe_direccion_origen='" + direccionOrigen + "'";
+                }
+                if (!poblacionOrigen.equals("")) {
+                    query = query + " AND p.pe_poblacion_origen='" + poblacionOrigen + "'";
+                }
+                if (!provinciaOrigen.equals("Selecciona")) {
+                    query = query + " AND p.pe_provincia_origen='" + provinciaOrigen + "'";
+                }
+                if (!codPostalOrigen.equals("")) {
+                    query = query + " AND p.pe_cp_origen='" + codPostalOrigen + "'";
+                }
+                if (!direccionDestino.equals("")) {
+                    query = query + " AND p.pe_direccion_destino='" + direccionDestino + "'";
+                }
+                if (!poblacionDestino.equals("")) {
+                    query = query + " AND p.pe_poblacion_destino='" + poblacionDestino + "'";
+                }
+                if (!provinciaDestino.equals("Selecciona")) {
+                    query = query + " AND p.pe_provincia_destino='" + provinciaDestino + "'";
+                }
+                if (!codPostalDestino.equals("")) {
+                    //query = query + " AND pe_cp_destino='"+codPostalDestino+"'";
+                    query = query + " AND p.pe_cp_destino='" + codPostalDestino + "'";
+                }
+                if (!servicioFMad.equals("Selecciona")) {
+                    query = query + " AND p.pe_servicio_origen='" + servicioFMad + "'";
+                }
+                if (!servicioFMadDestino.equals("Selecciona")) {
+                    query = query + " AND p.pe_servicio_destino='" + servicioFMadDestino + "'";
+                }
+                if (!soporte.equals("Selecciona")) {
+                    query = query + " AND p.pe_soporte='" + soporte + "'";
+                }
+                if (factor != 0) {
+                    query = query + " AND fc.fc_id='" + factor + "'";
+                }
+                if (!estado.equals("Selecciona")) {
+                    query = query + " AND p.pe_estado='" + estado + "'";
+                }
+                if (comercial > 1) {
+                    query = query + " AND co_id= '" + comercial + "'";
+                }
+                query = query + " ORDER BY p.pe_fecha ASC";
+                System.out.println(query);
                 CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(query);
             } catch (UnknownHostException ex) {
                 Logger.getLogger(CSBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(CSBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(CSBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
+           
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 

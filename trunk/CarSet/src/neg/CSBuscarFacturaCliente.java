@@ -6,6 +6,8 @@
 
 package neg;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -384,171 +386,116 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
-
-        String fechaI="";
-        String fechaF="";
-
-         Calendar fechaCalendar = jDateFecha.getCalendar();
-        //String fecha = ConvertirFechaString(fechaCalendar);
-        if (fechaCalendar!=null)
-        {
-            Date fecha = fechaCalendar.getTime();
-            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-            fechaI=formatoDeFecha.format(fecha);
-        }
-
-        fechaCalendar = jDateFechaFin.getCalendar();
-        //String fecha = ConvertirFechaString(fechaCalendar);
-        if (fechaCalendar!=null)
-        {
-            Date fecha = fechaCalendar.getTime();
-            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-            fechaF=formatoDeFecha.format(fecha);
-        }
-        String cliente=new String(jTextCliente.getText());
-        boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
-        String servicio=new String(jComboBoxServicio.getSelectedItem().toString());
-        String servicioFMad=new String(jComboBoxServicioFMad.getSelectedItem().toString());
-        String servicioFMadDestino=new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
-        String soporte=new String(jComboBoxSoporte.getSelectedItem().toString());
-        String vehiculo=new String(jComboVehiculo.getSelectedItem().toString());
-        String matricula=new String(jTextMatricula.getText());
-        String estado=new String(jComboBoxEstado.getSelectedItem().toString());
-
-        boolean and = false;
-        String queryPe = "SELECT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
-                         "pe.pe_servicio, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " +
-                         "pe.pe_ida_vuelta, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_modelo, " +
-                         "pe.pe_ta_es_cliente, pe.pe_suplemento, pe.fc_id, tc.tc_tarifa " +
-                         "FROM pe_pedidos pe, tc_tarifas_clientes tc " +
-                         "WHERE pe.pe_soporte = tc.tc_soporte AND pe.pe_servicio = tc.tc_servicio " +
-                         "AND pe.pe_servicio_destino = tc.tc_servicio_destino;";
-
-        String query = "SELECT * FROM pe_pedidos pe ";
-
-
-        if(!cliente.equals(""))
-        {
-            Cliente cliente2=new Cliente();
-            clienteID=cliente2.getClienteID(cliente);
-
-            query = query + ", pc_pedidos_clientes pc WHERE pe.pe_num = pc.pe_num AND pc.cl_id = "+clienteID;
-            and=true;
-        }      
-        else
-        {
-            query = query + " WHERE ";
-        }
-       
-        if ((!fechaI.equals(""))&& (!fechaF.equals("")) )
-        {
-             if (and)
-             {
-                 query = query + " AND pe_fecha >='"+fechaI+"' and pe_fecha<='"+fechaF+"'";
-             }
-             else
-             {
-                  query = query + " pe_fecha >='"+fechaI+"' and pe_fecha<='"+fechaF+"'";
-                  and = true;
-             }
-        }
-        
-        if(!fueraMad)
-        {
-            if (and)
-            {
-                query = query + " AND pe_fuera_mad=0 AND pe_servicio='"+servicio+"'";
-            }
-             else
-             {
-                  query = query + " pe_fuera_mad=0 AND pe_servicio='"+servicio+"'";
-                  and = true;
-             }
-        }
-        else
-        {
-             if (and)
-                {
-                    query = query + " AND pe_fuera_mad=1 ";
-                }
-                 else
-                 {
-                      query = query + " pe_fuera_mad=1 ";
-                      and = true;
-                 }
-
-            if (!servicioFMad.equals("Selecciona"))
-            {
-                
-                    query = query + " AND pe_servicio='"+servicioFMad+"'";
-               
-            }
-
-             if (!servicioFMadDestino.equals("Selecciona"))
-             {
-               
-                    query = query + " AND pe_servicio_destino='"+servicioFMadDestino+"'";
-               
-            }
-
-        }
-        if(soporte.equals(""))
-        {
-            if (and)
-            {
-                query = query + " AND pe_soporte='"+soporte+"'";
-            }
-             else
-             {
-                  query = query + " pe_soporte='"+soporte+"'";
-                  and = true;
-             }
-        }
-         if (!vehiculo.equals("Selecciona"))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_vehiculo='"+vehiculo+"'";
-             }
-             else
-             {
-                  query = query + " pe_vehiculo='"+vehiculo+"'";
-                  and = true;
-             }
-        }
-        if (!matricula.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_matricula='"+matricula+"'";
-             }
-             else
-             {
-                  query = query + " pe_matricula='"+matricula+"'";
-                  and = true;
-             }
-        }
-        if (estado.equals(""))
-        {
-             if (and)
-             {
-                 query = query + " AND pe_estado='"+estado+"'";
-             }
-             else
-             {
-                  query = query + " pe_estado='"+estado+"'";
-                  and = true;
-             }
-        }
-
-                System.out.println(query+" ORDER BY pe.pe_num DESC");
-                query = query+" ORDER BY pe.pe_num ASC";
         try {
+            System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
+            String fechaI = "";
+            String fechaF = "";
+            Calendar fechaCalendar = jDateFecha.getCalendar();
+            //String fecha = ConvertirFechaString(fechaCalendar);
+            if (fechaCalendar != null) {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fechaI = formatoDeFecha.format(fecha);
+            }
+            fechaCalendar = jDateFechaFin.getCalendar();
+            //String fecha = ConvertirFechaString(fechaCalendar);
+            if (fechaCalendar != null) {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fechaF = formatoDeFecha.format(fecha);
+            }
+            String cliente = new String(jTextCliente.getText());
+            boolean fueraMad = new Boolean(jCheckBoxFMadrid.isSelected());
+            String servicio = new String(jComboBoxServicio.getSelectedItem().toString());
+            String servicioFMad = new String(jComboBoxServicioFMad.getSelectedItem().toString());
+            String servicioFMadDestino = new String(jComboBoxServicioFMadDestino.getSelectedItem().toString());
+            String soporte = new String(jComboBoxSoporte.getSelectedItem().toString());
+            String vehiculo = new String(jComboVehiculo.getSelectedItem().toString());
+            String matricula = new String(jTextMatricula.getText());
+            String estado = new String(jComboBoxEstado.getSelectedItem().toString());
+            boolean and = false;
+            String queryPe = "SELECT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " + "pe.pe_servicio, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, " + "pe.pe_ida_vuelta, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_modelo, " + "pe.pe_ta_es_cliente, pe.pe_suplemento, pe.fc_id, tc.tc_tarifa " + "FROM pe_pedidos pe, tc_tarifas_clientes tc " + "WHERE pe.pe_soporte = tc.tc_soporte AND pe.pe_servicio = tc.tc_servicio " + "AND pe.pe_servicio_destino = tc.tc_servicio_destino;";
+            String query = "SELECT * FROM pe_pedidos pe ";
+            if (!cliente.equals("")) {
+                Cliente cliente2 = new Cliente();
+                clienteID = cliente2.getClienteID(cliente);
+                query = query + ", pc_pedidos_clientes pc WHERE pe.pe_num = pc.pe_num AND pc.cl_id = " + clienteID;
+                and = true;
+            } else {
+                query = query + " WHERE ";
+            }
+            if ((!fechaI.equals("")) && (!fechaF.equals(""))) {
+                if (and) {
+                    query = query + " AND pe_fecha >='" + fechaI + "' and pe_fecha<='" + fechaF + "'";
+                } else {
+                    query = query + " pe_fecha >='" + fechaI + "' and pe_fecha<='" + fechaF + "'";
+                    and = true;
+                }
+            }
+            if (!fueraMad) {
+                if (and) {
+                    query = query + " AND pe_fuera_mad=0 AND pe_servicio='" + servicio + "'";
+                } else {
+                    query = query + " pe_fuera_mad=0 AND pe_servicio='" + servicio + "'";
+                    and = true;
+                }
+            } else {
+                if (and) {
+                    query = query + " AND pe_fuera_mad=1 ";
+                } else {
+                    query = query + " pe_fuera_mad=1 ";
+                    and = true;
+                }
+                if (!servicioFMad.equals("Selecciona")) {
+                    query = query + " AND pe_servicio='" + servicioFMad + "'";
+                }
+                if (!servicioFMadDestino.equals("Selecciona")) {
+                    query = query + " AND pe_servicio_destino='" + servicioFMadDestino + "'";
+                }
+            }
+            if (soporte.equals("")) {
+                if (and) {
+                    query = query + " AND pe_soporte='" + soporte + "'";
+                } else {
+                    query = query + " pe_soporte='" + soporte + "'";
+                    and = true;
+                }
+            }
+            if (!vehiculo.equals("Selecciona")) {
+                if (and) {
+                    query = query + " AND pe_vehiculo='" + vehiculo + "'";
+                } else {
+                    query = query + " pe_vehiculo='" + vehiculo + "'";
+                    and = true;
+                }
+            }
+            if (!matricula.equals("")) {
+                if (and) {
+                    query = query + " AND pe_matricula='" + matricula + "'";
+                } else {
+                    query = query + " pe_matricula='" + matricula + "'";
+                    and = true;
+                }
+            }
+            if (estado.equals("")) {
+                if (and) {
+                    query = query + " AND pe_estado='" + estado + "'";
+                } else {
+                    query = query + " pe_estado='" + estado + "'";
+                    and = true;
+                }
+            }
+            System.out.println(query + " ORDER BY pe.pe_num DESC");
+            query = query + " ORDER BY pe.pe_num ASC";
             CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
         } catch (UnknownHostException ex) {
             Logger.getLogger(CSBuscarFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CSBuscarFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CSBuscarFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jCheckBoxFMadridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxFMadridActionPerformed
