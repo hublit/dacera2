@@ -6,6 +6,8 @@
 package neg;
 
 import data.BeanCorreoCliente;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -1605,70 +1607,47 @@ public class CSEditarPedido extends javax.swing.JPanel
                 }
                 else
                 {
+                try {
                     Cliente cliente2 = new Cliente();
                     clienteID = cliente2.getClienteID(cliente);
-
-                    String queryCli = "UPDATE pc_pedidos_clientes set cl_id= '"+clienteID+"' WHERE pe_num = "+numero+"";
+                    String queryCli = "UPDATE pc_pedidos_clientes set cl_id= '" + clienteID + "' WHERE pe_num = " + numero + "";
                     boolean rsCli = CSDesktop.datos.manipuladorDatos(queryCli);
-                    if(rsCli)
-                    {
+                    if (rsCli) {
                         jButtonModificar.setEnabled(false);
                         JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-                        JOptionPane.showMessageDialog(null,errorFields);
+                        JOptionPane.showMessageDialog(null, errorFields);
                         jButtonModificar.setEnabled(true);
                     }
-
-                    Proveedor proveedor2=new Proveedor();
-                    proveedorID=proveedor2.getProveedorID(proveedor);
-
-                    String queryCon = "UPDATE pp_pedidos_proveedores set pr_id= '"+proveedorID+"' WHERE pe_num = "+numero+"";
+                    Proveedor proveedor2 = new Proveedor();
+                    proveedorID = proveedor2.getProveedorID(proveedor);
+                    String queryCon = "UPDATE pp_pedidos_proveedores set pr_id= '" + proveedorID + "' WHERE pe_num = " + numero + "";
                     boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
-                    if(rsCon)
-                    {
+                    if (rsCon) {
                         jButtonModificar.setEnabled(false);
                         JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-                        JOptionPane.showMessageDialog(null,errorFields);
+                        JOptionPane.showMessageDialog(null, errorFields);
                         jButtonModificar.setEnabled(true);
                     }
-
                     //Se manda el mail de confirmacion
-                    if (estado.equals("En Proceso") || (estado.equals("Entregado")))
-                    {
-                        String mails="\n";
-                        if(CSDesktop.mailCliente.size()>0)
-                        {
-                            for(int i=0;i<CSDesktop.mailCliente.size();i++)
-                            {
-                                mails=mails + CSDesktop.mailCliente.get(i);
-                                if(i!=CSDesktop.mailCliente.size()-1)
-                                {
-                                    mails=mails + "\n";
+                    if (estado.equals("En Proceso") || (estado.equals("Entregado"))) {
+                        String mails = "\n";
+                        if (CSDesktop.mailCliente.size() > 0) {
+                            for (int i = 0; i < CSDesktop.mailCliente.size(); i++) {
+                                mails = mails + CSDesktop.mailCliente.get(i);
+                                if (i != CSDesktop.mailCliente.size() - 1) {
+                                    mails = mails + "\n";
                                 }
                             }
-                            int seleccion = JOptionPane.showOptionDialog(
-                            CSEditarPedido.this,
-                            "¿Quieres mandar un mail al cliente " + mails + "?",
-                            "Atención",
-                            JOptionPane.YES_NO_CANCEL_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,
-                            null,    // null para icono por defecto.
-                            new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
-                            "SI");
-
-                            if(seleccion == 0)
-                            {
-                                BeanCorreoCliente mail= new BeanCorreoCliente();
-
+                            int seleccion = JOptionPane.showOptionDialog(CSEditarPedido.this, "¿Quieres mandar un mail al cliente " + mails + "?", "Atención", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"SI", "NO"}, "SI");
+                            if (seleccion == 0) {
+                                BeanCorreoCliente mail = new BeanCorreoCliente();
                                 //Para calcular la fecha
                                 Date fechaHoy = new Date(System.currentTimeMillis());
                                 SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
-                                String fechaHoy2=formatoDeFecha.format(fechaHoy);
-
+                                String fechaHoy2 = formatoDeFecha.format(fechaHoy);
                                 //Para el numero de pedido
-                                String numPedido=Utilidades.rellenarCeros(numero,5);
-                                String pedido=numPedido+"/"+fecha2.substring(2, 4);
-
-
+                                String numPedido = Utilidades.rellenarCeros(numero, 5);
+                                String pedido = numPedido + "/" + fecha2.substring(2, 4);
                                 mail.setCliente(cliente);
                                 mail.setFecha(fechaHoy2);
                                 mail.setNumPedido(pedido);
@@ -1692,106 +1671,81 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 mail.setNumero(numero);
                                 Cliente client = new Cliente();
                                 mail.setClienteID(String.valueOf(client.getClienteID(cliente)));
-
-                                if(estado.equals("En Proceso"))
-                                {
-                                    for(int i=0;i<CSDesktop.mailCliente.size();i++)
-                                    {
-                                        CSEnviarMailProceso.main(mail,CSDesktop.mailCliente.get(i).toString(),CSDesktop.nombreCliente.get(i).toString());
+                                if (estado.equals("En Proceso")) {
+                                    for (int i = 0; i < CSDesktop.mailCliente.size(); i++) {
+                                        CSEnviarMailProceso.main(mail, CSDesktop.mailCliente.get(i).toString(), CSDesktop.nombreCliente.get(i).toString());
                                     }
-                                }
-                                else if (estado.equals("Entregado"))
-                                {
-                                     for(int i=0;i<CSDesktop.mailCliente.size();i++)
-                                    {
-                                        CSEnviarMailEntregado.main(mail,CSDesktop.mailCliente.get(i).toString(),CSDesktop.nombreCliente.get(i).toString());
-                                     }
+                                } else if (estado.equals("Entregado")) {
+                                    for (int i = 0; i < CSDesktop.mailCliente.size(); i++) {
+                                        CSEnviarMailEntregado.main(mail, CSDesktop.mailCliente.get(i).toString(), CSDesktop.nombreCliente.get(i).toString());
+                                    }
                                 }
                             }
                         }
-                        if(estado.equals("En Proceso"))
-                        {
-                            String mailsP="\n";
-                            if(CSDesktop.mailProveedor.size()>0)
-                            {
-                                for(int i=0;i<CSDesktop.mailProveedor.size();i++)
-                                {
-                                    mailsP=mailsP + CSDesktop.mailProveedor.get(i);
-                                    if(i!=CSDesktop.mailProveedor.size()-1)
-                                    {
-                                        mailsP=mailsP + "\n";
+                        if (estado.equals("En Proceso")) {
+                            String mailsP = "\n";
+                            if (CSDesktop.mailProveedor.size() > 0) {
+                                for (int i = 0; i < CSDesktop.mailProveedor.size(); i++) {
+                                    mailsP = mailsP + CSDesktop.mailProveedor.get(i);
+                                    if (i != CSDesktop.mailProveedor.size() - 1) {
+                                        mailsP = mailsP + "\n";
                                     }
                                 }
-
-                                int seleccion2 = JOptionPane.showOptionDialog(
-                                CSEditarPedido.this,
-                            "¿Quieres mandar un mail al proveedor " + mailsP + "?",
-                            "Atención",
-                            JOptionPane.YES_NO_CANCEL_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,
-                            null,    // null para icono por defecto.
-                            new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
-                            "SI");
-
-                            if(seleccion2 == 0)
-                            {
-                                BeanCorreoCliente mail= new BeanCorreoCliente();
-
-                                //Para calcular la fecha
-                                Date fechaHoy = new Date(System.currentTimeMillis());
-                                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
-                                String fechaHoy2=formatoDeFecha.format(fechaHoy);
-
-                                //Para el numero de pedido
-                                String numPedido=Utilidades.rellenarCeros(numero,5);
-                                String pedido=numPedido+"/"+fecha2.substring(2, 4);
-
-
-                                mail.setCliente(proveedor);
-                                mail.setFecha(fechaHoy2);
-                                mail.setNumPedido(pedido);
-                                mail.setSoporte(soporte);
-                                mail.setFechaEntrega(fechaEntrega);
-                                mail.setFechaRecogida(fechaRecogida);
-                                mail.setMarca(marca);
-                                mail.setModelo(modelo);
-                                mail.setMatricula(matricula);
-                                mail.setDireccionOrigen(direccionOrigen);
-                                mail.setPoblacionOrigen(poblacionOrigen);
-                                mail.setProvinciaOrigen(provinciaOrigen);
-                                mail.setNombreOrigen(nombreOrigen);
-                                mail.setTelefonoOrigen(telefonoOrigen);
-                                mail.setDireccionDestino(direccionDestino);
-                                mail.setPoblacionDestino(poblacionDestino);
-                                mail.setProvinciaDestino(provinciaDestino);
-                                mail.setNombreDestino(nombreDestino);
-                                mail.setTelefonoDestino(telefonoDestino);
-                                mail.setNumero(numero);
-                                Proveedor proveed = new Proveedor();
-                                mail.setClienteID(String.valueOf(proveed.getProveedorID(proveedor)));
-
-                                for(int i=0;i<CSDesktop.mailProveedor.size();i++)
-                                {
-                                    CSEnviarMailProveedor.main(mail,CSDesktop.mailProveedor.get(i).toString(),CSDesktop.nombreProveedor.get(i).toString());
+                                int seleccion2 = JOptionPane.showOptionDialog(CSEditarPedido.this, "¿Quieres mandar un mail al proveedor " + mailsP + "?", "Atención", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"SI", "NO"}, "SI");
+                                if (seleccion2 == 0) {
+                                    BeanCorreoCliente mail = new BeanCorreoCliente();
+                                    //Para calcular la fecha
+                                    Date fechaHoy = new Date(System.currentTimeMillis());
+                                    SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+                                    String fechaHoy2 = formatoDeFecha.format(fechaHoy);
+                                    //Para el numero de pedido
+                                    String numPedido = Utilidades.rellenarCeros(numero, 5);
+                                    String pedido = numPedido + "/" + fecha2.substring(2, 4);
+                                    mail.setCliente(proveedor);
+                                    mail.setFecha(fechaHoy2);
+                                    mail.setNumPedido(pedido);
+                                    mail.setSoporte(soporte);
+                                    mail.setFechaEntrega(fechaEntrega);
+                                    mail.setFechaRecogida(fechaRecogida);
+                                    mail.setMarca(marca);
+                                    mail.setModelo(modelo);
+                                    mail.setMatricula(matricula);
+                                    mail.setDireccionOrigen(direccionOrigen);
+                                    mail.setPoblacionOrigen(poblacionOrigen);
+                                    mail.setProvinciaOrigen(provinciaOrigen);
+                                    mail.setNombreOrigen(nombreOrigen);
+                                    mail.setTelefonoOrigen(telefonoOrigen);
+                                    mail.setDireccionDestino(direccionDestino);
+                                    mail.setPoblacionDestino(poblacionDestino);
+                                    mail.setProvinciaDestino(provinciaDestino);
+                                    mail.setNombreDestino(nombreDestino);
+                                    mail.setTelefonoDestino(telefonoDestino);
+                                    mail.setNumero(numero);
+                                    Proveedor proveed = new Proveedor();
+                                    mail.setClienteID(String.valueOf(proveed.getProveedorID(proveedor)));
+                                    for (int i = 0; i < CSDesktop.mailProveedor.size(); i++) {
+                                        CSEnviarMailProveedor.main(mail, CSDesktop.mailProveedor.get(i).toString(), CSDesktop.nombreProveedor.get(i).toString());
+                                    }
                                 }
-                                 }
-
                             }
                         }
                     }
-
                     jButtonModificar.setEnabled(false);
                     JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
-                    JOptionPane.showMessageDialog(null,mensaje);
+                    JOptionPane.showMessageDialog(null, mensaje);
                     jButtonModificar.setEnabled(true);
                     CSDesktop.EditarPedido.dispose();
                     CSDesktop.ResultPedido.dispose();
                     CSDesktop.menuBuscarPedido.setEnabled(true);
-                try {
                     CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(consulta);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
+               
                     
                 }                
     }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -1815,18 +1769,23 @@ public class CSEditarPedido extends javax.swing.JPanel
             }
             else
             {
+                try {
                     jButtonModificar.setEnabled(false);
                     JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han borrado correctamente.</FONT></HTML>");
-                    JOptionPane.showMessageDialog(null,mensaje);
+                    JOptionPane.showMessageDialog(null, mensaje);
                     jButtonModificar.setEnabled(true);
                     CSDesktop.EditarPedido.dispose();
                     CSDesktop.ResultPedido.dispose();
                     CSDesktop.menuBuscarPedido.setEnabled(true);
-                try {
                     CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(consulta);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
                     
             }
         }
