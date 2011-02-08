@@ -49,6 +49,7 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ABResultTarifasProveedor;
   public static JInternalFrame EditarCliente;
   public static JInternalFrame ResultPedido;
+  public static JInternalFrame ResultRecFactura;
   public static JInternalFrame ResultSPrPedido;
   public static JInternalFrame ResultFacturaPedido;
   public static JInternalFrame ResultBuscarMail;
@@ -65,6 +66,7 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ServicioProveedor;
   public static JInternalFrame FacturaCliente;
   public static JInternalFrame FacturaClientePedido;
+  public static JInternalFrame RecuperarFacturaCliente;
   public static JInternalFrame FacturaProveedor;
   public static JInternalFrame InformeDetallado1;
   public static JInternalFrame InformeDetallado2;
@@ -96,6 +98,7 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuTarifaProveedor;
   public static JMenuItem menuFacturaCliente;
   public static JMenuItem menuFacturaClientePedido;
+  public static JMenuItem menuRecuperarFacturaCliente;
   public static JMenuItem menuFacturaProveedor;
   public static JMenuItem menuInformeDetallado1;
   public static JMenuItem menuInformeDetallado2;
@@ -522,6 +525,28 @@ public class CSDesktop extends JFrame
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
                FacturaProveedor.setVisible( true );
+            }
+         });
+
+       menuRecuperarFacturaCliente = new JMenuItem( "Recuperar Factura Cliente" );
+       menuRecuperarFacturaCliente.setMnemonic( 'x' );
+       menuFactura.add( menuRecuperarFacturaCliente );
+       menuRecuperarFacturaCliente.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               RecuperarFacturaCliente = new JInternalFrame("Recuperar Factura Cliente", true,false,false,true );
+
+               CSRecuperarFacturaCliente panel = null;
+               panel = new CSRecuperarFacturaCliente();
+               RecuperarFacturaCliente.getContentPane().add( panel,BorderLayout.CENTER);
+               RecuperarFacturaCliente.pack();
+               elEscritorio.add( RecuperarFacturaCliente );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = RecuperarFacturaCliente.getSize();
+               RecuperarFacturaCliente.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               RecuperarFacturaCliente.setVisible( true );
             }
          });
 

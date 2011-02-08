@@ -697,8 +697,8 @@ public class CSLanzarFactura extends javax.swing.JPanel
             else
             {
                 String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
-                        "fl_fecha_pago, fl_pagado) VALUES (";
-                query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0')";
+                        "fl_fecha_pago, fl_pagado, fl_fecha, fl_importe_total) VALUES (";
+                query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0','"+fechaFactura+"', "+totalIva+")";
                 System.out.println(query);
 
                  boolean rs = CSDesktop.datos.manipuladorDatos(query);
