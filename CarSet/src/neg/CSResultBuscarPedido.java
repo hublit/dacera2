@@ -500,6 +500,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
             }
             try {
                 elFichero.close();
+                elFichero.flush();
             } catch (IOException ex) {
                 Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
