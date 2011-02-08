@@ -1058,7 +1058,7 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
           break;
           case 2 :
               campo = "sc_industrial";
-              descripcion = "INDUSTRIAL";
+              descripcion = "INDUST/MONOV";
           break;
           case 3 :
               campo = "sc_todoterreno";
