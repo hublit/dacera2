@@ -673,7 +673,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
 
         String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
                 " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal," +
-                " p.pe_ta_es_cliente, p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred,p.pe_fecha_real_destino," +
+                " p.pe_ta_es_cliente, p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred,p.pe_fecha_origen,p.pe_fecha_destino,p.pe_fecha_real_destino," +
                 " p.pe_estado, p.pe_descripcion, p.pe_estado, cl.co_id, pc.cl_id" +
                 " FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc " +
                 " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +

@@ -10,7 +10,6 @@ package neg;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import net.sf.jasperreports.engine.JRException;
 import utils.TablaModelo;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,7 +20,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,6 +40,7 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 import utils.Utilidades;
 
 /**
@@ -80,7 +79,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR", "SE" ,"SUPLE","MG","F.REAL","ESTADO","OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR", "SE" ,"SUPLE","MG","F.RECOGIDA","F.ENTREGA","F.REAL","ESTADO","OBSERVACIONES"});
 
         int numeroFila = 0;
         double totalCliente = 0;
@@ -103,9 +102,9 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                  System.out.println("Cliente: "+cl_id);
                  String fechaPe = rs.getString("pe_fecha");
                  System.out.println("Fecha: "+fechaPe);
-                for (int k = 0; k < 19; k++) {
-                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17 || k==18) {
-                        if((k==1) || (k==16))
+                for (int k = 0; k < 21; k++) {
+                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17 || k==18 || k==19 || k==20) {
+                        if((k==1) || (k==16)|| (k==17) || (k==18))
                         {
                             String fecha=(rs.getObject(k+1)).toString();
                              String [] temp = null;
@@ -287,9 +286,13 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         TableColumn columna16 = jTable1.getColumnModel().getColumn(16);
         columna16.setPreferredWidth(80);
         TableColumn columna17 = jTable1.getColumnModel().getColumn(17);
-        columna17.setPreferredWidth(100);
+        columna17.setPreferredWidth(80);
         TableColumn columna18 = jTable1.getColumnModel().getColumn(18);
-        columna18.setPreferredWidth(500);
+        columna18.setPreferredWidth(80);
+         TableColumn columna19 = jTable1.getColumnModel().getColumn(19);
+        columna19.setPreferredWidth(100);
+        TableColumn columna20 = jTable1.getColumnModel().getColumn(20);
+        columna20.setPreferredWidth(500);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -462,7 +465,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     private void jButtonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarActionPerformed
-       
+        try {
             // Se crea el libro excel
             HSSFWorkbook libro = new HSSFWorkbook();
             //Se crea la hoja
@@ -472,51 +475,49 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
             crearCabeceraHojaExcel(libro, hoja);
 
             HSSFCellStyle cs2 = libro.createCellStyle();
-            cs2.setAlignment(cs2.ALIGN_CENTER);
+            cs2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+            cs2.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+            cs2.setBottomBorderColor(HSSFColor.BLACK.index);
+            cs2.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+            cs2.setLeftBorderColor(HSSFColor.BLACK.index);
+            cs2.setBorderRight(HSSFCellStyle.BORDER_THIN);
+            cs2.setRightBorderColor(HSSFColor.BLACK.index);
+            cs2.setBorderTop(HSSFCellStyle.BORDER_THIN);
+            cs2.setTopBorderColor(HSSFColor.BLACK.index);
 
-          
-
-
+            HSSFCellStyle cs3 = libro.createCellStyle();
+            cs3.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+            cs3.setBottomBorderColor(HSSFColor.BLACK.index);
+            cs3.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+            cs3.setLeftBorderColor(HSSFColor.BLACK.index);
+            cs3.setBorderRight(HSSFCellStyle.BORDER_THIN);
+            cs3.setRightBorderColor(HSSFColor.BLACK.index);
+            cs3.setBorderTop(HSSFCellStyle.BORDER_THIN);
+            cs3.setTopBorderColor(HSSFColor.BLACK.index);
             ResultSet rs = CSDesktop.datos.select(consulta);
-            try {
-            try {
-                crearFilaHojaExcel(libro, hoja, num_fila, rs, cs2);
-            } catch (UnknownHostException ex) {
-                Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            } catch (SQLException ex) {
-                Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            FileOutputStream elFichero = null;
-            try {
-                elFichero = new FileOutputStream("c:\\Pedidos.xls");
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                libro.write(elFichero);
-            } catch (IOException ex) {
-                Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                elFichero.close();
-                elFichero.flush();
-            } catch (IOException ex) {
-                Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           String file = new String("C:\\Pedidos.xls");
-           try
-            {
-                Process p = Runtime.getRuntime().exec ("rundll32 SHELL32.DLL,ShellExec_RunDLL "+file);
-            }
-            catch (Exception e)
-            {
-                System.out.println("Error al abrir el archivo " + file + "\n" + e.getMessage());
-            }
-        
-        
-    }//GEN-LAST:event_jButtonExportarActionPerformed
 
+            crearFilaHojaExcel(libro, hoja, num_fila, rs, cs2,cs3);
+            FileOutputStream elFichero = null;
+            elFichero = new FileOutputStream("c:\\Pedidos.xls");
+            libro.write(elFichero);
+            elFichero.close();
+            elFichero.flush();
+            String property = "java.io.tmpdir";
+            String tempDir = System.getProperty(property);
+            System.out.println("OS current temporary directory is " + tempDir);
+            String file = new String("C:\\Pedidos.xls");
+            Process p = Runtime.getRuntime().exec("rundll32 SHELL32.DLL,ShellExec_RunDLL " + file);
+
+    }//GEN-LAST:event_jButtonExportarActionPerformed
+        catch (SQLException ex) {
+            Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }          catch (IOException ex) {
+            Logger.getLogger(CSResultBuscarPedido.class.getName()).log(Level.SEVERE, null, ex);
+       
+    }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
@@ -535,11 +536,11 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
             jTable1.setRowHeight(20);
 
-            if (column == 0 ||column == 1 || column == 15)
+            if (column == 0 ||column == 1 || column == 16 || column == 17 || column == 18 )
             {
                 this. setHorizontalAlignment(SwingConstants.CENTER);
             }
-            else if (column == 11 ||column == 12 || column == 13 || column == 14 )
+            else if (column == 11 ||column == 12 || column == 13 || column == 14 || column == 15 )
             {
                 this. setHorizontalAlignment(SwingConstants.RIGHT);
             }
@@ -584,9 +585,21 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 		HSSFCellStyle cs = libro.createCellStyle();
 		HSSFFont f = libro.createFont();
 		f.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+                f.setColor(HSSFColor.WHITE.index);
 		cs.setFont(f);
+                //cs.setFillBackgroundColor(HSSFColor.GREEN.index);
+                cs.setFillForegroundColor(HSSFColor.GREEN.index);
+                cs.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+                cs.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
+                cs.setBottomBorderColor(HSSFColor.BLACK.index);
+                cs.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+                cs.setLeftBorderColor(HSSFColor.BLACK.index);
+                cs.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+                cs.setRightBorderColor(HSSFColor.BLACK.index);
+                cs.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+                cs.setTopBorderColor(HSSFColor.BLACK.index);
 
-                cs.setAlignment(cs.ALIGN_CENTER);
+                cs.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 
                 
                 
@@ -594,170 +607,130 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 		// Creamos la cabecera de las columnas
                 fila = hoja.createRow(0);
 
-        celda = fila.createCell( (short) 0);
-        celda.setCellStyle(cs);
-        HSSFRichTextString texto = new HSSFRichTextString("NUM");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 0, (short) ((50 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 0);
+                celda.setCellStyle(cs);
+                HSSFRichTextString texto = new HSSFRichTextString("NUM");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 0, (short) ((50 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 1);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("FECHA");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 1, (short) ((80 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 1);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("FECHA");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 1, (short) ((80 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 2);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("CLIENTE");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 2, (short) ((350 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 2);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("CLIENTE");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 2, (short) ((350 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 3);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("SERVICIO");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 3, (short) ((130 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 3);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("SERVICIO");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 3, (short) ((130 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 4);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("ORIGEN");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 4, (short) ((175 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 4);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("ORIGEN");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 4, (short) ((175 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 5);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("DESTINO");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 5, (short) ((175 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 5);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("DESTINO");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 5, (short) ((175 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 6);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("F.CORRECCION");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 6, (short) ((150 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 6);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("F.CORRECCION");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 6, (short) ((150 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 7);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("MATRICULA");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 7, (short) ((100 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 7);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("MATRICULA");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 7, (short) ((100 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 8);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("MARCA");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 8, (short) ((150 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 8);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("MARCA");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 8, (short) ((150 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("MODELO");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((150 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 9);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("MODELO");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 9, (short) ((150 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 10);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("PROVEEDOR");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 10, (short) ((350 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 10);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("PROVEEDOR");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 10, (short) ((350 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short)11);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("TAR.CL");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 11, (short) ((100 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short)11);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("TAR.CL");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 11, (short) ((100 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short)12);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("TAR.PR");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 12, (short) ((100 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short)12);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("TAR.PR");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 12, (short) ((100 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short)13);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("SERV.ES");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 13, (short) ((100 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short)13);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("SERV.ES");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 13, (short) ((100 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short)14);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("SUPLE");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 14, (short) ((100 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short)14);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("SUPLE");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 14, (short) ((100 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short)15);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("MG");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 15, (short) ((100 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short)15);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("MG");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 15, (short) ((100 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 16);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("FECHA REAL");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 16, (short) ((80 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 16);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("F.ENTREGA");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 16, (short) ((80 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 17);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("OBSERVACIONES");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 17, (short) ((180 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 17);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("F.RECOGIDA");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 17, (short) ((80 * 2) / ((double) 1 / 20)) );
 
-        /*celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("Proveedor");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((400 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 18);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("FECHA REAL");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 18, (short) ((80 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("Tar. Cliente");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((400 * 2) / ((double) 1 / 20)) );
+                celda = fila.createCell( (short) 19);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("OBSERVACIONES");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 19, (short) ((600 * 2) / ((double) 1 / 20)) );
 
-        celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("Tar. Proveedor");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((400 * 2) / ((double) 1 / 20)) );
-
-        celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("Serv. Especial");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((400 * 2) / ((double) 1 / 20)) );
-
-        celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("Suplemento");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((400 * 2) / ((double) 1 / 20)) );
-
-        celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("Ganancia");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((400 * 2) / ((double) 1 / 20)) );
-
-        celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("Fecha Real");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((400 * 2) / ((double) 1 / 20)) );
-
-        celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("Estado");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((400 * 2) / ((double) 1 / 20)) );
-
-        celda = fila.createCell( (short) 9);
-        celda.setCellStyle(cs);
-        texto = new HSSFRichTextString("Observaciones");
-        celda.setCellValue(texto);
-        hoja.setColumnWidth((short) 9, (short) ((400 * 2) / ((double) 1 / 20)) );*/
+        
 	}
 
-        private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, ResultSet rs, HSSFCellStyle cs) throws SQLException, UnknownHostException
+        private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, ResultSet rs, HSSFCellStyle cs2,HSSFCellStyle cs3) throws SQLException, UnknownHostException
 	{
 		HSSFRow fila = null;
 		HSSFCell celda = null;
@@ -775,7 +748,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                     //Celda del numero de pedido
                     celda = fila.createCell( (short) 0);
-                    celda.setCellStyle(cs);
+                    celda.setCellStyle(cs2);
                     celda.setCellValue(rs.getInt("pe_num"));
 
                     //Celda de la fecha del pedido
@@ -788,68 +761,87 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                              String dia=temp[2];
                              String nueva=dia+"-"+mes+"-"+anyo;
                     texto = new HSSFRichTextString(nueva);
-                    celda.setCellStyle(cs);
+                    celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
 
                     //Celda del Cliente
                     celda = fila.createCell( (short) 2);                  
                     String cliente=rs.getString("cl_nombre");
                     texto = new HSSFRichTextString(cliente);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda de Servicio
                     celda = fila.createCell( (short) 3);
                     String servicio=rs.getString("pe_servicio");
                     texto = new HSSFRichTextString(servicio);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda de Origen
                     celda = fila.createCell( (short) 4);
                     String origen=rs.getString("pe_servicio_origen");
                     texto = new HSSFRichTextString(origen);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda de Origen
                     celda = fila.createCell( (short) 5);
                     String destino=rs.getString("pe_servicio_destino");
                     texto = new HSSFRichTextString(destino);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda de Factor de Correccion
                     celda = fila.createCell( (short) 6);
                     String factor=rs.getString("fc_nombre");
                     texto = new HSSFRichTextString(factor);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda de Matricula
                     celda = fila.createCell( (short) 7);
                     String matricula=rs.getString("pe_ve_matricula");
                     texto = new HSSFRichTextString(matricula);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda de Marca
                     celda = fila.createCell( (short) 8);
                     String marca=rs.getString("pe_ve_marca");
                     texto = new HSSFRichTextString(marca);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda de Modelo
                     celda = fila.createCell( (short) 9);
                     String modelo=rs.getString("pe_ve_modelo");
                     texto = new HSSFRichTextString(modelo);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda del Proveedor
                     celda = fila.createCell( (short) 10);
                     String proveedor=rs.getString("pr_nombre_fiscal");
                     texto = new HSSFRichTextString(proveedor);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda del Tarifa Cliente
                     celda = fila.createCell( (short) 11);
                     HSSFDataFormat format = libro.createDataFormat();
                     HSSFCellStyle style = libro.createCellStyle();
+                    style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+                    style.setBottomBorderColor(HSSFColor.BLACK.index);
+                    style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+                    style.setLeftBorderColor(HSSFColor.BLACK.index);
+                    style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+                    style.setRightBorderColor(HSSFColor.BLACK.index);
+                    style.setBorderTop(HSSFCellStyle.BORDER_THIN);
+                    style.setTopBorderColor(HSSFColor.BLACK.index);
+
                     style.setDataFormat(format.getFormat("00.00"));
+
                     celda.setCellStyle(style);                                       
                     celda.setCellValue(rs.getDouble("pe_ta_es_cliente"));
 
@@ -893,20 +885,45 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                     //Celda de la fecha del pedido
                     celda = fila.createCell( (short) 16);
-                    String fechaReal=(rs.getObject("pe_fecha_real_destino")).toString();
+                    String fechaRecogida=(rs.getObject("pe_fecha_destino")).toString();
                              String [] tempR = null;
-                             tempR = fechaReal.split("\\-");
+                             tempR = fechaRecogida.split("\\-");
                              String anyoR=tempR[0];
                              String mesR=tempR[1];
                              String diaR=tempR[2];
                              String nuevaR=diaR+"-"+mesR+"-"+anyoR;
                     texto = new HSSFRichTextString(nuevaR);
-                    celda.setCellStyle(cs);
+                    celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
 
                     celda = fila.createCell( (short) 17);
+                    String fechaEntrega=(rs.getObject("pe_fecha_destino")).toString();
+                             tempR = null;
+                             tempR = fechaEntrega.split("\\-");
+                             anyoR=tempR[0];
+                             mesR=tempR[1];
+                             diaR=tempR[2];
+                             nuevaR=diaR+"-"+mesR+"-"+anyoR;
+                    texto = new HSSFRichTextString(nuevaR);
+                    celda.setCellStyle(cs2);
+                    celda.setCellValue(texto);
+
+                    celda = fila.createCell( (short) 18);
+                    String fechaReal=(rs.getObject("pe_fecha_real_destino")).toString();
+                             tempR = null;
+                             tempR = fechaReal.split("\\-");
+                             anyoR=tempR[0];
+                             mesR=tempR[1];
+                             diaR=tempR[2];
+                             nuevaR=diaR+"-"+mesR+"-"+anyoR;
+                    texto = new HSSFRichTextString(nuevaR);
+                    celda.setCellStyle(cs2);
+                    celda.setCellValue(texto);
+
+                    celda = fila.createCell( (short) 19);
                     String descripcion=rs.getString("pe_descripcion");
                     texto = new HSSFRichTextString(descripcion);
+                    celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
 
