@@ -534,7 +534,8 @@ public class CSEditarCliente extends javax.swing.JPanel
 
         jComboBoxTarifa.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxTarifa.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxTarifa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "  1", "  2", "  3", "  4", "  5", "  6", "  7", "  8", "  9", "10" }));
+        jComboBoxTarifa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        jComboBoxTarifa.setAlignmentX(2.0F);
         jComboBoxTarifa.setName("jComboBoxTarifa"); // NOI18N
 
         lTipo.setForeground(new java.awt.Color(0, 0, 100));
