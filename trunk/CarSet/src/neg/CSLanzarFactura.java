@@ -696,9 +696,12 @@ public class CSLanzarFactura extends javax.swing.JPanel
             // SI ES GENERACION, HAY QUE INTRODUCIR UN REGISTRO EN LA TABLA DE FACTURAS CLIENTES
             else
             {
+//                String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
+//                        "fl_fecha_pago, fl_pagado, fl_fecha, fl_importe_total) VALUES (";
+//                query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0','"+fechaFactura+"', "+totalIva+")";
                 String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
-                        "fl_fecha_pago, fl_pagado, fl_fecha, fl_importe_total) VALUES (";
-                query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0','"+fechaFactura+"', "+totalIva+")";
+                        "fl_fecha_pago, fl_pagado) VALUES (";
+                query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0')";
                 System.out.println(query);
 
                  boolean rs = CSDesktop.datos.manipuladorDatos(query);
