@@ -6,17 +6,15 @@
 
 package neg;
 
-
-import data.BeanFactura;
 import data.BeanProveedor;
 import data.Proveedor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.UnknownHostException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,8 +25,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import net.sf.jasperreports.engine.JRException;
-import utils.Utilidades;
 
 /**
  *
@@ -80,6 +76,7 @@ public class CSValidarPedido extends JPanel
         jDateFechaFin = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
 
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
@@ -143,21 +140,15 @@ public class CSValidarPedido extends JPanel
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator7.setName("jSeparator7"); // NOI18N
 
+        jLabel3.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel3.setText("Búsqueda de pedidos facturados a clientes");
+        jLabel3.setName("jLabel3"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
-                .addGap(357, 357, 357)
-                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(341, 341, 341))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137)
@@ -178,20 +169,35 @@ public class CSValidarPedido extends JPanel
                     .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                 .addGap(191, 191, 191))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(357, Short.MAX_VALUE)
+                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(356, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(315, 315, 315))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
-                    .addComponent(jLabel1))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
+                        .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addComponent(jLabel1)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(54, 54, 54)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -204,22 +210,33 @@ public class CSValidarPedido extends JPanel
                     .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonBuscar)
-                .addGap(31, 31, 31)
-                .addComponent(jButtonCancelar)
-                .addGap(28, 28, 28))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jButtonCancelar))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
-        System.out.println("\nBotón Buscar Pedidos en Validar Pedido.");
-
+        int proveedorID = 0;
         String fechaI="";
         String fechaF="";
+        String fechaFac="";
+        ArrayList lista=new ArrayList();
+
+        String proveedor = new String(jTextProveedor.getText());
+        Proveedor oProveedor = new Proveedor();
+        BeanProveedor beanProveedor = new BeanProveedor();
+
+        proveedorID = oProveedor.getProveedorID(proveedor);
+        beanProveedor = oProveedor.getDatosFacturaProveedor(proveedorID);
+        beanProveedor.setPr_id(String.valueOf(proveedorID));
 
         Calendar fechaCalendar = jDateFecha.getCalendar();
         //String fecha = ConvertirFechaString(fechaCalendar);
@@ -239,26 +256,41 @@ public class CSValidarPedido extends JPanel
             fechaF=formatoDeFecha.format(fecha);
         }
 
-        String proveedor=new String(jTextProveedor.getText());
 
-        if (proveedor.equals("") && fechaI.equals("") && fechaF.equals(""))
+        String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
+                " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal," +
+                " p.pe_ta_es_cliente, p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred,p.pe_fecha_origen,p.pe_fecha_destino,p.pe_fecha_real_destino," +
+                " p.pe_estado, p.pe_descripcion, p.pe_estado, cl.co_id, pc.cl_id" +
+                " FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc " +
+                " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +
+                " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " +
+                " AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
+
+        if (proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
         {
             jButtonBuscar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Proveedor y un período de fecha </FONT></HTML>");
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Proveedor o período de tiempo</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonBuscar.setEnabled(true);
-            //query = query + " WHERE ";
         }
-         else
+        else
         {
-             Proveedor proveedor2 = new Proveedor();
-             int proveedorID = proveedor2.getProveedorID(proveedor);
+             if (!proveedor.equals("")) {
+                Proveedor proveedor2 = new Proveedor();
+                proveedorID = proveedor2.getProveedorID(proveedor);
+                query = query + " AND pp.pr_id = " + proveedorID;
+            }
+            if ((!fechaI.equals("")) && (!fechaF.equals(""))) {
+                query = query + " AND p.pe_fecha >='" + fechaI + "' AND p.pe_fecha<='" + fechaF + "'";
+            }
 
-             String query = "SELECT * FROM pe_pedidos pe ";
-             query = query + " , pp_pedidos_proveedores pp WHERE "+
-                        " pe.pe_num = pp.pe_num AND pp.pr_id = "+proveedorID;
-
-              CSResultValidarPedido resultBuscarCliente = new CSResultValidarPedido(query);
+            query = query + " ORDER BY p.pe_fecha ASC";
+            System.out.println(query);
+            try {
+                CSValidarPedidosProveedor resultBuscarValidarPedido = new CSValidarPedidosProveedor(query);
+            } catch (IOException ex) {
+                Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -293,6 +325,7 @@ public class CSValidarPedido extends JPanel
     private com.toedter.calendar.JDateChooser jDateFecha;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
@@ -309,115 +342,6 @@ public class CSValidarPedido extends JPanel
          JLabel errorFields = new JLabel(accion);
          JOptionPane.showMessageDialog(null,errorFields);
          jButtonBuscar.setEnabled(true);
-    }
-
-    private void LanzarFactura(int numero) throws UnknownHostException
-    {
-        int proveedorID = 0;
-        String fechaI="";
-        String fechaF="";
-        String fechaFac="";
-        ArrayList lista=new ArrayList();
-      
-        String proveedor = new String(jTextProveedor.getText());
-        Proveedor oProveedor = new Proveedor();
-        BeanProveedor beanProveedor = new BeanProveedor();
-
-        proveedorID = oProveedor.getProveedorID(proveedor);
-        beanProveedor = oProveedor.getDatosFacturaProveedor(proveedorID);
-        beanProveedor.setPr_id(String.valueOf(proveedorID));
-
-        Calendar fechaCalendar = jDateFecha.getCalendar();
-        //String fecha = ConvertirFechaString(fechaCalendar);
-        if (fechaCalendar!=null)
-        {
-            Date fecha = fechaCalendar.getTime();
-            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-            fechaI=formatoDeFecha.format(fecha);
-        }
-
-        fechaCalendar = jDateFechaFin.getCalendar();
-        //String fecha = ConvertirFechaString(fechaCalendar);
-        if (fechaCalendar!=null)
-        {
-            Date fecha = fechaCalendar.getTime();
-            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-            fechaF=formatoDeFecha.format(fecha);
-        }
-
-        if (!Utilidades.campoObligatorio(proveedor, "Cliente").equals("OK"))
-        {
-                ValidarFormatos(Utilidades.campoObligatorio(proveedor, "Cliente"));
-        }
-        else
-        {
-           String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
-                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
-                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
-                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento, pe.pe_num_en_camion, " +
-                           "pe.pe_descripcion, tp.tp_tarifa, sp_entrada_campa, sp_campa, sp_suplemento " +
-                           "FROM pe_pedidos pe, pp_pedidos_proveedores pp, tp_tarifas_proveedores tp, sp_servicios_proveedores sp " +
-                           "WHERE pe.pe_num = pp.pe_num " +
-                           "AND sp.pr_id = pp.pr_id " +
-                           "AND tp.tp_fecha_hasta > pe.pe_fecha " +
-                           "AND tp.tp_servicio = pe.pe_servicio " +
-                           "AND tp.pr_id = pp.pr_id " +
-                           "AND (tp.tp_servicio_origen = pe.pe_servicio_origen " +
-                           "OR tp.tp_servicio_origen = pe.pe_servicio_destino) " +
-                           "AND (tp.tp_servicio_destino = pe.pe_servicio_destino " +
-                           "OR tp.tp_servicio_destino = pe.pe_servicio_origen) " +
-                           "AND tp.tp_soporte = pe.pe_soporte " +
-                           "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
-                           "AND pp.pr_id = "+proveedorID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
-
-System.out.println(query);
-            ResultSet rs = CSDesktop.datos.select(query);
-            try {
-                while (rs.next()) {
-                    BeanFactura nueva = new BeanFactura();
-
-                    nueva.setNumPedido(rs.getLong("pe_num"));
-                    nueva.setFecha(rs.getString("pe_fecha"));
-                    nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
-                    nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
-                    nueva.setServicio(rs.getString("pe_servicio"));
-                    nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
-                    nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
-                    nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
-                    nueva.setDiasCampa(rs.getString("pe_dias_campa"));
-                    nueva.setFactor(rs.getString("fc_id"));
-                    nueva.setSoporte(rs.getString("pe_soporte"));
-                    nueva.setMatricula(rs.getString("pe_ve_matricula"));
-                    nueva.setMarca(rs.getString("pe_ve_marca"));
-                    nueva.setModelo(rs.getString("pe_ve_modelo"));
-                    nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
-                    nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
-                    nueva.setSuplemento(rs.getString("pe_suplemento"));
-                    nueva.setDescripcion(rs.getString("pe_descripcion"));
-                    nueva.setTarifa(rs.getString("tp_tarifa"));
-                    nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
-                    nueva.setServicioSuplemento(rs.getString("sp_suplemento"));
-                    nueva.setNumCamion(rs.getString("pe_num_en_camion"));
-                    lista.add(nueva);
-                    }
-            } catch (SQLException ex) {
-                Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.println(query);
-            try {
-                try {
-                    CSLanzarFacturaProveedor factura=new CSLanzarFacturaProveedor();
-                    factura.lanzar(lista,beanProveedor,fechaF,numero,proveedorID,fechaI,fechaF);
-                } catch (JRException ex) {
-                    Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
-                }               
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //CSResultBuscarPedido resultBuscarCliente = new CSResultBuscarPedido(query);
-    }
     }
    
 }

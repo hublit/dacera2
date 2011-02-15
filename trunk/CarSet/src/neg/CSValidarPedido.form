@@ -20,20 +20,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="jButtonCancelar" alignment="2" min="-2" pref="96" max="-2" attributes="0"/>
-                  <Component id="jSeparator6" alignment="2" pref="806" max="32767" attributes="1"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="2" attributes="0">
-              <EmptySpace min="357" pref="357" max="357" attributes="0"/>
-              <Component id="jButtonBuscar" min="-2" pref="145" max="-2" attributes="0"/>
-              <EmptySpace min="341" pref="341" max="341" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="24" pref="24" max="24" attributes="0"/>
               <Component id="jSeparator4" min="-2" max="-2" attributes="1"/>
               <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
@@ -59,23 +46,43 @@
               <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="357" max="32767" attributes="0"/>
+              <Component id="jButtonBuscar" min="-2" pref="145" max="-2" attributes="0"/>
+              <EmptySpace pref="214" max="32767" attributes="0"/>
+              <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
+              <EmptySpace min="31" pref="31" max="31" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="356" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="315" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="jSeparator7" alignment="2" pref="806" max="32767" attributes="1"/>
-                  <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jSeparator7" alignment="0" pref="785" max="32767" attributes="1"/>
+                          <Component id="jSeparator6" alignment="0" pref="785" max="32767" attributes="1"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator7" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -90,13 +97,16 @@
                   <Component id="jDateFecha" alignment="0" max="32767" attributes="1"/>
                   <Component id="lFechaFin" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace pref="98" max="32767" attributes="0"/>
+              <EmptySpace pref="110" max="32767" attributes="0"/>
               <Component id="jSeparator6" min="-2" pref="18" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButtonBuscar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -211,6 +221,15 @@
           <Color blue="4" green="10" red="aa" type="rgb"/>
         </Property>
         <Property name="name" type="java.lang.String" value="jSeparator7" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="B&#xfa;squeda de pedidos facturados a clientes"/>
+        <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

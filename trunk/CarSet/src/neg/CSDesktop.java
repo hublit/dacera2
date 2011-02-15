@@ -77,6 +77,7 @@ public class CSDesktop extends JFrame
   public static JInternalFrame NuevoInformeDetallado2;
   public static JInternalFrame NuevoAlbaran;
   public static JInternalFrame ValidacionPedidos;
+  public static JInternalFrame InformeTesoreriaProveedor;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
   public static JMenu menuPedidos;
@@ -670,6 +671,29 @@ public class CSDesktop extends JFrame
             }
          });
 
+      menuTesoreriaProveedor = new JMenuItem( "Informe Proveedor" );
+      menuTesoreriaProveedor.setMnemonic( 'v' );
+      menuTesoreria.add( menuTesoreriaProveedor );
+      menuTesoreriaProveedor.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeTesoreriaProveedor = new JInternalFrame("Informe Tesorería Proveedor", true,false,false,true );
+               CSLanzarInformeTesoreriaProveedor panel = null;
+
+               panel = new CSLanzarInformeTesoreriaProveedor();
+
+               InformeTesoreriaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeTesoreriaProveedor.pack();
+               elEscritorio.add( InformeTesoreriaProveedor );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeTesoreriaProveedor.getSize();
+               InformeTesoreriaProveedor.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeTesoreriaProveedor.setVisible( true );
+            }
+         });
+
 
       menuAyuda.setMnemonic( 'A' );
 
@@ -702,10 +726,10 @@ public class CSDesktop extends JFrame
       barra.add( menuTarifa );
       barra.add( menuFactura );
       barra.add( menuInforme );
-      /*if (usuario.equals("4"))
+      if (usuario.equals("4"))
       {
         barra.add( menuTesoreria );
-      }*/
+      }
         barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
