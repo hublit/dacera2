@@ -385,12 +385,18 @@ System.out.println("En el result: "+query);
         jTextFieldNFa = new javax.swing.JTextField();
         jDateChooserFechaFa = new com.toedter.calendar.JDateChooser();
         jLabelFechaFa = new javax.swing.JLabel();
-        jLabelMesIva = new javax.swing.JLabel();
-        jComboBoxMesIva = new javax.swing.JComboBox();
+        jLabelAnyoIva = new javax.swing.JLabel();
+        jComboBoxAnyoIva = new javax.swing.JComboBox();
         jLabelObservaciones = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jSeparator4 = new javax.swing.JSeparator();
+        jLabelIvaTrimestre = new javax.swing.JLabel();
+        jComboBoxIvaTrimestre = new javax.swing.JComboBox();
+        jLabelIvaTipo = new javax.swing.JLabel();
+        jComboBoxIvaTipo = new javax.swing.JComboBox();
+        jLabelFechaCont = new javax.swing.JLabel();
+        jDateChooserFechaCont = new com.toedter.calendar.JDateChooser();
 
         setAutoscrolls(true);
 
@@ -420,7 +426,7 @@ System.out.println("En el result: "+query);
             }
         });
 
-        jButtonValidar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonValidar.setFont(new java.awt.Font("Tahoma", 1, 12));
         jButtonValidar.setForeground(new java.awt.Color(0, 0, 100));
         jButtonValidar.setText("Validar Pedidos");
         jButtonValidar.setName("jButtonValidar"); // NOI18N
@@ -447,12 +453,12 @@ System.out.println("En el result: "+query);
         jLabelFechaFa.setText("Fecha factura");
         jLabelFechaFa.setName("jLabelFechaFa"); // NOI18N
 
-        jLabelMesIva.setForeground(new java.awt.Color(0, 0, 100));
-        jLabelMesIva.setText("Mes IVA");
-        jLabelMesIva.setName("jLabelMesIva"); // NOI18N
+        jLabelAnyoIva.setForeground(new java.awt.Color(0, 0, 100));
+        jLabelAnyoIva.setText("IVA año");
+        jLabelAnyoIva.setName("jLabelAnyoIva"); // NOI18N
 
-        jComboBoxMesIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Mayo", "Septiembre", " " }));
-        jComboBoxMesIva.setName("jComboBoxMesIva"); // NOI18N
+        jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2011", "2010" }));
+        jComboBoxAnyoIva.setName("jComboBoxAnyoIva"); // NOI18N
 
         jLabelObservaciones.setForeground(new java.awt.Color(0, 0, 100));
         jLabelObservaciones.setText("Observaciones");
@@ -468,42 +474,78 @@ System.out.println("En el result: "+query);
         jSeparator4.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator4.setName("jSeparator4"); // NOI18N
 
+        jLabelIvaTrimestre.setForeground(new java.awt.Color(0, 0, 100));
+        jLabelIvaTrimestre.setText("IVA Trimestre");
+        jLabelIvaTrimestre.setName("jLabelIvaTrimestre"); // NOI18N
+
+        jComboBoxIvaTrimestre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 T", "2 T", "3 T", "4 T", " " }));
+        jComboBoxIvaTrimestre.setName("jComboBoxIvaTrimestre"); // NOI18N
+        jComboBoxIvaTrimestre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxIvaTrimestreActionPerformed(evt);
+            }
+        });
+
+        jLabelIvaTipo.setForeground(new java.awt.Color(0, 0, 100));
+        jLabelIvaTipo.setText("IVA Tipo");
+        jLabelIvaTipo.setName("jLabelIvaTipo"); // NOI18N
+
+        jComboBoxIvaTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18%", "8%", "4%", "5%", "2%", " " }));
+        jComboBoxIvaTipo.setName("jComboBoxIvaTipo"); // NOI18N
+
+        jLabelFechaCont.setForeground(new java.awt.Color(0, 0, 100));
+        jLabelFechaCont.setText("Fecha contabilización");
+        jLabelFechaCont.setName("jLabelFechaCont"); // NOI18N
+
+        jDateChooserFechaCont.setName("jDateChooserFechaCont"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(494, 494, 494)
-                .addComponent(jButtonValidar, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addComponent(jButtonValidar, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addGap(275, 275, 275)
                 .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1202, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 1074, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelNumFa, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldNFa, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabelFechaFa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDateChooserFechaFa, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabelMesIva, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxMesIva, 0, 79, Short.MAX_VALUE)
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabelObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                        .addComponent(jLabelFechaCont, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)))
+                        .addComponent(jDateChooserFechaCont, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelFechaFa, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooserFechaFa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabelNumFa, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldNFa, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelIvaTrimestre, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxIvaTrimestre, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelAnyoIva, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxAnyoIva, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabelIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
@@ -511,35 +553,34 @@ System.out.println("En el result: "+query);
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooserFechaFa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNFa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxMesIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateChooserFechaFa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooserFechaCont, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelNumFa)
+                                .addComponent(jTextFieldNFa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelIvaTrimestre)
+                                .addComponent(jComboBoxIvaTrimestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelAnyoIva)
+                                .addComponent(jComboBoxAnyoIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelIvaTipo)
+                                .addComponent(jComboBoxIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelObservaciones))
+                            .addComponent(jLabelFechaCont)
+                            .addComponent(jLabelFechaFa)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCerrar)
                     .addComponent(jButtonValidar))
                 .addGap(36, 36, 36))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(425, 425, 425)
-                .addComponent(jLabelFechaFa)
-                .addGap(217, 217, 217))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(425, 425, 425)
-                .addComponent(jLabelMesIva)
-                .addGap(217, 217, 217))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(425, 425, 425)
-                .addComponent(jLabelObservaciones)
-                .addGap(217, 217, 217))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(425, 425, 425)
-                .addComponent(jLabelNumFa)
-                .addGap(217, 217, 217))
         );
 
         jButtonCerrar.getAccessibleContext().setAccessibleParent(jScrollPane1);
@@ -559,14 +600,24 @@ System.out.println("En el result: "+query);
             // TODO add your handling code here:
         }//GEN-LAST:event_jTextFieldNFaActionPerformed
 
+        private void jComboBoxIvaTrimestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxIvaTrimestreActionPerformed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_jComboBoxIvaTrimestreActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonValidar;
-    private javax.swing.JComboBox jComboBoxMesIva;
+    private javax.swing.JComboBox jComboBoxAnyoIva;
+    private javax.swing.JComboBox jComboBoxIvaTipo;
+    private javax.swing.JComboBox jComboBoxIvaTrimestre;
+    private com.toedter.calendar.JDateChooser jDateChooserFechaCont;
     private com.toedter.calendar.JDateChooser jDateChooserFechaFa;
+    private javax.swing.JLabel jLabelAnyoIva;
+    private javax.swing.JLabel jLabelFechaCont;
     private javax.swing.JLabel jLabelFechaFa;
-    private javax.swing.JLabel jLabelMesIva;
+    private javax.swing.JLabel jLabelIvaTipo;
+    private javax.swing.JLabel jLabelIvaTrimestre;
     private javax.swing.JLabel jLabelNumFa;
     private javax.swing.JLabel jLabelObservaciones;
     private javax.swing.JScrollPane jScrollPane1;
