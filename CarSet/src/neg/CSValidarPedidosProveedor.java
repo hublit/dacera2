@@ -22,6 +22,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -304,43 +308,43 @@ System.out.println("En el result: "+query);
 
         jTable1.setAutoCreateRowSorter(true);
 
-        jTable1.addMouseListener(new MouseAdapter()
-        {
-        public void mouseClicked(MouseEvent e)
-        {
-            System.out.println("Estamos en el result");
-            int fila = jTable1.rowAtPoint(e.getPoint());
-            int columna = jTable1.columnAtPoint(e.getPoint());
-
-            if ((fila > -1) && (columna > -1))
-            {
-               int proveedor = Integer.parseInt((String)jTable1.getValueAt(fila,0).toString());
-               CSDesktop.EditarPedido = new JInternalFrame("Editar Pedido", true, false, false, true );
-               // adjuntar panel al panel de contenido del marco interno
-               CSEditarPedido editarC = null;
-                    try {
-                        editarC = new CSEditarPedido(proveedor,consulta);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-               CSDesktop.EditarPedido.getContentPane().add( editarC,BorderLayout.CENTER);
-               // establecer tama�o de marco interno en el tama�o de su contenido
-               CSDesktop.EditarPedido.pack();
-               // adjuntar marco interno al escritorio y mostrarlo
-               CSDesktop.elEscritorio.add( CSDesktop.EditarPedido );
-
-               Dimension pantalla = CSDesktop.elEscritorio.getSize();
-               Dimension ventana = CSDesktop.EditarPedido.getSize();
-               CSDesktop.EditarPedido.setLocation(
-                    (pantalla.width - ventana.width) / 2,
-                    (pantalla.height - ventana.height) / 2);
-               CSDesktop.EditarPedido.setVisible( true );
-               CSDesktop.ResultPedido.setVisible(false);
-
-            System.out.println(jTable1.getValueAt(fila,columna));
-         }
-        }
-        }    );
+//        jTable1.addMouseListener(new MouseAdapter()
+//        {
+//        public void mouseClicked(MouseEvent e)
+//        {
+//            System.out.println("Estamos en el result");
+//            int fila = jTable1.rowAtPoint(e.getPoint());
+//            int columna = jTable1.columnAtPoint(e.getPoint());
+//
+//            if ((fila > -1) && (columna > -1))
+//            {
+//               int proveedor = Integer.parseInt((String)jTable1.getValueAt(fila,0).toString());
+//               CSDesktop.EditarPedido = new JInternalFrame("Editar Pedido", true, false, false, true );
+//               // adjuntar panel al panel de contenido del marco interno
+//               CSEditarPedido editarC = null;
+//                    try {
+//                        editarC = new CSEditarPedido(proveedor,consulta);
+//                    } catch (SQLException ex) {
+//                        Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//               CSDesktop.EditarPedido.getContentPane().add( editarC,BorderLayout.CENTER);
+//               // establecer tama�o de marco interno en el tama�o de su contenido
+//               CSDesktop.EditarPedido.pack();
+//               // adjuntar marco interno al escritorio y mostrarlo
+//               CSDesktop.elEscritorio.add( CSDesktop.EditarPedido );
+//
+//               Dimension pantalla = CSDesktop.elEscritorio.getSize();
+//               Dimension ventana = CSDesktop.EditarPedido.getSize();
+//               CSDesktop.EditarPedido.setLocation(
+//                    (pantalla.width - ventana.width) / 2,
+//                    (pantalla.height - ventana.height) / 2);
+//               CSDesktop.EditarPedido.setVisible( true );
+//               CSDesktop.ResultPedido.setVisible(false);
+//
+//            System.out.println(jTable1.getValueAt(fila,columna));
+//         }
+//        }
+//        }    );
     }
 
      public Dimension getPreferredSize()
@@ -351,7 +355,8 @@ System.out.println("En el result: "+query);
      public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                                                     boolean hasFocus, int row, int col)
     {
-        int componente = table.getSelectedRow();
+     int componente = table.getSelectedRow();
+
      Component comp = getTableCellRendererComponent(table,  value, isSelected, hasFocus, row, col);
 
      String s =  table.getModel().getValueAt(row, col ).toString();
@@ -592,7 +597,65 @@ System.out.println("En el result: "+query);
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     private void jButtonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarActionPerformed
-        
+
+        int celdas = jTable1.getSelectedRowCount();
+        if(celdas == 0)
+        {
+            jButtonValidar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debes seleccionar algún pedido.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonValidar.setEnabled(true);
+        }
+
+        int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres validar los pedidos seleccionados?");
+
+        if (JOptionPane.OK_OPTION == confirmado)
+        {
+            int numero = 0;
+            String fechaFac = "";
+            String query = "Select max(fl_id) from tr_tesoreria_proveedor";
+            ResultSet rs = CSDesktop.datos.select(query);
+            try
+            {
+                while (rs.next())
+                {
+                    numero =Integer.valueOf(rs.getInt("max(fl_id)"));
+                }
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                System.out.println("Voy por aqui");
+                int longitud = jTable1.getSelectedRow();
+
+                Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
+                if (fechaCalendar!=null)
+                {
+                    Date fecha = fechaCalendar.getTime();
+                    SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                    fechaFac=formatoDeFecha.format(fecha);
+                }
+
+//                    BeanFactura factura = new BeanFactura();
+//                    factura=(BeanFactura)lista.get(longitud);
+//                    long pedido=(Long)pedidos.get(longitud);
+//                    ArrayList listaPedidos=new ArrayList();
+//                    listaPedidos.add(pedido);
+//                    ArrayList listaFacturas = new ArrayList();
+//                    listaFacturas.add(factura);
+//                    CSLanzarFactura facturaFinal = new CSLanzarFactura();
+//                    try {
+//
+//                        facturaFinal.lanzar(listaFacturas, bCliente, fechaFac, numero+1 , clienteID, fechaSI, fechaSF, listaPedidos,1);
+//                    } catch (ClassNotFoundException ex) {
+//                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
+//                    } catch (SQLException ex) {
+//                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
+//                    } catch (JRException ex) {
+//                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+         }
 
     }//GEN-LAST:event_jButtonValidarActionPerformed
 
@@ -628,9 +691,11 @@ System.out.println("En el result: "+query);
     private javax.swing.JTextField jTextFieldNFa;
     // End of variables declaration//GEN-END:variables
 
-
-    public class MiRender extends DefaultTableCellRenderer {
-
+    /**
+     *
+     */
+    public class MiRender extends DefaultTableCellRenderer
+    {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
         {
             Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
@@ -655,25 +720,26 @@ System.out.println("En el result: "+query);
             //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
             //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
             //si cumplen x condicion se pintan
-            if (row % 2 ==1)
-            {
-                Color fondo = new  Color(206, 227, 242);
-                cell. setBackground(fondo);
-                cell. setForeground(Color.DARK_GRAY);
-            }
-            else
-            {
-                cell. setBackground(Color.white);
-                cell. setForeground(Color. BLACK);
-            }
+//            if (row % 2 ==1)
+//            {
+//                Color fondo = new  Color(206, 227, 242);
+//                cell.setBackground(fondo);
+//                cell.setForeground(Color.DARK_GRAY);
+//            }
+//            else
+//            {
+//                cell.setBackground(Color.white);
+//                cell.setForeground(Color. BLACK);
+//            }
             //si no cumplen esa condicion pongo las celdas en color blanco
-            if (table. getValueAt(row, 10). toString().equals("TOTALES"))
+            if (table. getValueAt(row, 10).toString().equals("TOTALES"))
             {
                 Color fondo = new  Color(244, 144, 144);
                 cell. setBackground(fondo);
                 cell. setForeground(Color. BLACK);
                 cell.setFont(new Font(null, Font.BOLD, 12));
             }
+
             return cell;
         }
     }
