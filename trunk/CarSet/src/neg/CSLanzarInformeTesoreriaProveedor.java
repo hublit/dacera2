@@ -40,7 +40,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
             {
                if (e.getKeyCode() == KeyEvent.VK_ENTER)
                {
-                    jButtonGenerar.doClick();
+                    jButtonBuscar.doClick();
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
                 {
@@ -77,7 +77,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         numFc = new java.awt.Label();
         jTextNumFa = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        jButtonGenerar = new javax.swing.JButton();
+        jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
@@ -119,9 +119,9 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         jSeparator4.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator4.setName("jSeparator3"); // NOI18N
 
-        jButtonGenerar.setText("Generar Informe");
-        jButtonGenerar.setName("jButtonBuscar"); // NOI18N
-        jButtonGenerar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscar.setText("Generar Informe");
+        jButtonBuscar.setName("jButtonBuscar"); // NOI18N
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuscarActionPerformed(evt);
             }
@@ -179,7 +179,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                         .addComponent(jSeparator4))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(311, 311, 311)
-                        .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(203, 203, 203)
                         .addComponent(jButtonCancelar)))
                 .addGap(19, 19, 19))
@@ -213,9 +213,9 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGenerar)
+                    .addComponent(jButtonBuscar)
                     .addComponent(jButtonCancelar))
-                .addGap(43, 43, 43))
+                .addGap(42, 42, 42))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -244,8 +244,8 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonGenerar;
     private com.toedter.calendar.JDateChooser jDateFecha1;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private javax.swing.JLabel jLabel1;
@@ -261,10 +261,10 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 
     public void ValidarFormatos(String accion)
     {
-         jButtonGenerar.setEnabled(false);
+         jButtonBuscar.setEnabled(false);
          JLabel errorFields = new JLabel(accion);
          JOptionPane.showMessageDialog(null,errorFields);
-         jButtonGenerar.setEnabled(true);
+         jButtonBuscar.setEnabled(true);
     }
 
     /**
