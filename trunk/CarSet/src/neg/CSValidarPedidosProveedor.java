@@ -7,6 +7,7 @@
 package neg;
 
 //import utils.TablaModeloPedidos;
+import data.BeanTesoreriaProveedor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -614,57 +615,60 @@ System.out.println("En el result: "+query);
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonValidar.setEnabled(true);
         }
+            int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres validar los pedidos seleccionados?");
 
-        int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres validar los pedidos seleccionados?");
 
-        if (JOptionPane.OK_OPTION == confirmado)
-        {
-            int numero = 0;
-            String fechaFac = "";
-            String query = "Select max(fl_id) from tr_tesoreria_proveedor";
-            ResultSet rs = CSDesktop.datos.select(query);
-            try
+            if (JOptionPane.OK_OPTION == confirmado)
             {
-                while (rs.next())
+                int numero = 0;
+                String fechaFac = "";
+                String query = "Select max(tr_id) from tr_tesoreria_proveedor";
+                ResultSet rs = CSDesktop.datos.select(query);
+                try
                 {
-                    numero =Integer.valueOf(rs.getInt("max(fl_id)"));
+                    while (rs.next())
+                    {
+                        numero = Integer.valueOf(rs.getInt("max(tr_id)"));
+                    }
                 }
-            }
-            catch (SQLException ex)
-            {
-                Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                System.out.println("Voy por aqui");
-                int longitud = jTable1.getSelectedRow();
-
-                Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
-                if (fechaCalendar!=null)
+                catch (SQLException ex)
                 {
-                    Date fecha = fechaCalendar.getTime();
-                    SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-                    fechaFac=formatoDeFecha.format(fecha);
+                    Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                    System.out.println("Voy por aqui");
+                    int longitud = jTable1.getSelectedRow();
 
-//                    BeanFactura factura = new BeanFactura();
-//                    factura=(BeanFactura)lista.get(longitud);
-//                    long pedido=(Long)pedidos.get(longitud);
-//                    ArrayList listaPedidos=new ArrayList();
-//                    listaPedidos.add(pedido);
-//                    ArrayList listaFacturas = new ArrayList();
-//                    listaFacturas.add(factura);
-//                    CSLanzarFactura facturaFinal = new CSLanzarFactura();
-//                    try {
-//
-//                        facturaFinal.lanzar(listaFacturas, bCliente, fechaFac, numero+1 , clienteID, fechaSI, fechaSF, listaPedidos,1);
-//                    } catch (ClassNotFoundException ex) {
-//                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
-//                    } catch (SQLException ex) {
-//                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
-//                    } catch (JRException ex) {
-//                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-         }
+                    Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
+                    if (fechaCalendar!=null)
+                    {
+                        Date fecha = fechaCalendar.getTime();
+                        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                        fechaFac=formatoDeFecha.format(fecha);
+                    }
 
+                    BeanTesoreriaProveedor tsProveedor = new BeanTesoreriaProveedor();
+                    tsProveedor.setTr_id(numero);
+
+    //                    BeanFactura factura = new BeanFactura();
+    //                    factura=(BeanFactura)lista.get(longitud);
+    //                    long pedido=(Long)pedidos.get(longitud);
+    //                    ArrayList listaPedidos=new ArrayList();
+    //                    listaPedidos.add(pedido);
+    //                    ArrayList listaFacturas = new ArrayList();
+    //                    listaFacturas.add(factura);
+    //                    CSLanzarFactura facturaFinal = new CSLanzarFactura();
+    //                    try {
+    //
+    //                        facturaFinal.lanzar(listaFacturas, bCliente, fechaFac, numero+1 , clienteID, fechaSI, fechaSF, listaPedidos,1);
+    //                    } catch (ClassNotFoundException ex) {
+    //                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
+    //                    } catch (SQLException ex) {
+    //                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
+    //                    } catch (JRException ex) {
+    //                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
+    //                    }
+             }
+        
     }//GEN-LAST:event_jButtonValidarActionPerformed
 
         private void jTextFieldNFaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNFaActionPerformed
@@ -728,17 +732,24 @@ System.out.println("En el result: "+query);
             //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
             //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
             //si cumplen x condicion se pintan
-//            if (row % 2 ==1)
-//            {
-//                Color fondo = new  Color(206, 227, 242);
-//                cell.setBackground(fondo);
-//                cell.setForeground(Color.DARK_GRAY);
-//            }
-//            else
-//            {
-//                cell.setBackground(Color.white);
-//                cell.setForeground(Color. BLACK);
-//            }
+            if (row % 2 ==1)
+            {
+                Color fondo = new  Color(206, 227, 242);
+                cell.setBackground(fondo);
+                cell.setForeground(Color.DARK_GRAY);
+            }
+            else
+            {
+                cell.setBackground(Color.white);
+                cell.setForeground(Color. BLACK);
+            }
+
+            if(isSelected==true)
+            {
+                Color fondo = new  Color(247, 174, 40);
+                cell. setBackground(fondo);
+                cell. setForeground(Color.BLACK);
+            }
             //si no cumplen esa condicion pongo las celdas en color blanco
             if (table. getValueAt(row, 10).toString().equals("TOTALES"))
             {
