@@ -13,6 +13,7 @@ public class BeanTesoreriaProveedor
 {
     private int tr_id;
     private String tr_fecha;
+    private String tr_fh_vencimiento;
     private String tr_num;
     private String tr_num_carset;
     private String pr_num;
@@ -62,6 +63,14 @@ public class BeanTesoreriaProveedor
 
     public void setTr_fecha(String tr_fecha) {
         this.tr_fecha = tr_fecha;
+    }
+
+    public String getTr_fh_vencimiento() {
+        return tr_fh_vencimiento;
+    }
+
+    public void setTr_fh_vencimiento(String tr_fh_vencimiento) {
+        this.tr_fh_vencimiento = tr_fh_vencimiento;
     }
 
     public String getTr_fecha_pago() {
