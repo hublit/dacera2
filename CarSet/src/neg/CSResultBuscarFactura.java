@@ -16,6 +16,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -179,6 +181,7 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
         jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
         jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        
 
         bCliente=beanCliente;
         fechaSI=fechaI;
@@ -187,43 +190,7 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
         clienteID=Integer.parseInt(clienteSID);
 
         
-        /*jTable1.addMouseListener(new MouseAdapter()
-        {
-        public void mouseClicked(MouseEvent e)
-        {
-            System.out.println("Estamos en el result");
-            int fila = jTable1.rowAtPoint(e.getPoint());
-            int columna = jTable1.columnAtPoint(e.getPoint());
-
-            if ((fila > -1) && (columna > -1))
-            {
-               int proveedor = Integer.parseInt((String)jTable1.getValueAt(fila,0).toString());
-               CSDesktop.EditarPedido = new JInternalFrame("Editar Pedido", true, false, false, true );
-               // adjuntar panel al panel de contenido del marco interno
-               CSEditarPedido editarC = null;
-                    try {
-                        editarC = new CSEditarPedido(proveedor);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-               CSDesktop.EditarPedido.getContentPane().add( editarC,BorderLayout.CENTER);
-               // establecer tama�o de marco interno en el tama�o de su contenido
-               CSDesktop.EditarPedido.pack();
-               // adjuntar marco interno al escritorio y mostrarlo
-               CSDesktop.elEscritorio.add( CSDesktop.EditarPedido );
-
-               Dimension pantalla = CSDesktop.elEscritorio.getSize();
-               Dimension ventana = CSDesktop.EditarPedido.getSize();
-               CSDesktop.EditarPedido.setLocation(
-                    (pantalla.width - ventana.width) / 2,
-                    (pantalla.height - ventana.height) / 2);
-               CSDesktop.EditarPedido.setVisible( true );
-               CSDesktop.ResultPedido.setVisible(false);
-
-            System.out.println(jTable1.getValueAt(fila,columna));
-         }
-        }
-        }    );*/
+       
     }
 
      public Dimension getPreferredSize()

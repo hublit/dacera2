@@ -529,27 +529,27 @@ public class CSDesktop extends JFrame
             }
          });
 
-//       menuRecuperarFacturaCliente = new JMenuItem( "Recuperar Factura Cliente" );
-//       menuRecuperarFacturaCliente.setMnemonic( 'x' );
-//       menuFactura.add( menuRecuperarFacturaCliente );
-//       menuRecuperarFacturaCliente.addActionListener(
-//         new ActionListener() {
-//            public void actionPerformed( ActionEvent evento ) {
-//               RecuperarFacturaCliente = new JInternalFrame("Recuperar Factura Cliente", true,false,false,true );
-//
-//               CSRecuperarFacturaCliente panel = null;
-//               panel = new CSRecuperarFacturaCliente();
-//               RecuperarFacturaCliente.getContentPane().add( panel,BorderLayout.CENTER);
-//               RecuperarFacturaCliente.pack();
-//               elEscritorio.add( RecuperarFacturaCliente );
-//               Dimension pantalla = elEscritorio.getSize();
-//               Dimension ventana = RecuperarFacturaCliente.getSize();
-//               RecuperarFacturaCliente.setLocation(
-//                     (pantalla.width - ventana.width) / 2,
-//                     (pantalla.height - ventana.height) / 2);
-//               RecuperarFacturaCliente.setVisible( true );
-//            }
-//         });
+       menuRecuperarFacturaCliente = new JMenuItem( "Recuperar Factura Cliente" );
+       menuRecuperarFacturaCliente.setMnemonic( 'x' );
+       menuFactura.add( menuRecuperarFacturaCliente );
+       menuRecuperarFacturaCliente.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               RecuperarFacturaCliente = new JInternalFrame("Recuperar Factura Cliente", true,false,false,true );
+
+               CSRecuperarFacturaCliente panel = null;
+               panel = new CSRecuperarFacturaCliente();
+               RecuperarFacturaCliente.getContentPane().add( panel,BorderLayout.CENTER);
+               RecuperarFacturaCliente.pack();
+               elEscritorio.add( RecuperarFacturaCliente );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = RecuperarFacturaCliente.getSize();
+               RecuperarFacturaCliente.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               RecuperarFacturaCliente.setVisible( true );
+            }
+         });
 
 
 
