@@ -69,11 +69,11 @@
                       <Component id="jDateChooserFechaFa" min="-2" pref="108" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="jLabelNumFa" pref="72" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextFieldNFa" min="-2" pref="58" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <Component id="jTextFieldNFa" min="-2" pref="112" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabelObservaciones" pref="77" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="433" max="-2" attributes="0"/>
@@ -285,11 +285,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="jTextAreaObservaciones">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="name" type="java.lang.String" value="jTextArea1" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jTextAreaObservaciones" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>

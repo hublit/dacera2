@@ -8,6 +8,7 @@ package neg;
 
 //import utils.TablaModeloPedidos;
 import data.BeanTesoreriaProveedor;
+import data.Proveedor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -19,8 +20,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -44,14 +43,18 @@ import utils.Utilidades;
  */
 public class CSValidarPedidosProveedor extends javax.swing.JPanel
 {
-    private  String consulta="";
+    private  String consulta = "";
+    ArrayList pedidos = new ArrayList();
+    String pr_id = "";
     /** Creates new form ABResultBuscarPedido */
     public CSValidarPedidosProveedor(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
-
         consulta = query;
 System.out.println("En el result: "+query);
         TablaModelo modelo = new TablaModelo();
+        ArrayList lista=new ArrayList();
+        String fechaSI="";
+        String fechaSF="";
         ResultSet rs = CSDesktop.datos.select(query);
 
         KeyListener l = new KeyListener()
@@ -82,9 +85,13 @@ System.out.println("En el result: "+query);
         double totalSuplemento = 0;
         double totalMargen = 0;
 
-        try {
-            while (rs.next()) {
+        try
+        {
+            while (rs.next()) 
+            {
+                pedidos.add(rs.getLong("pe_num"));
                 Object[] datosFila = new Object[modelo.getColumnCount()];
+
                 int j = 0;
                  double ta_es_cl=0;
                  double ta_es_pr=0;
@@ -92,10 +99,8 @@ System.out.println("En el result: "+query);
                  double importeServicioD = 0;
                  double suple=0;
                  double ganancia=0;
-                 String cl_id = rs.getString("cl_id");
-                 System.out.println("Cliente: "+cl_id);
+                 pr_id = rs.getString("pr_id");
                  String fechaPe = rs.getString("pe_fecha");
-                 System.out.println("Fecha: "+fechaPe);
                 for (int k = 0; k < 21; k++) {
                     if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17 || k==18 || k==19 || k==20) {
                         if((k==1) || (k==16)|| (k==17) || (k==18))
@@ -124,30 +129,6 @@ System.out.println("En el result: "+query);
                             System.out.println("Clase: " + datosFila[j].getClass().getName());
                             totalProveedor = totalProveedor + ta_es_pr;
                            totalProveedor = Utilidades.redondear(totalProveedor, 2);
-
-                        }
-                        else if (k==13)
-                        {
-//                            s_especial = rs.getDouble(k+1);
-//                            datosFila[j] = rs.getDouble(k + 1);
-//                            totalSEspecial = totalSEspecial + s_especial;
-
-                            if(!rs.getObject(k+1).equals(""))
-                            {
-                                if(!rs.getObject(k+1).equals("Otros"))
-                                {
-                                    String servicio = rs.getObject(k+1).toString();
-                                    String sEspecial = Utilidades.CalcularImporteServicioEspecial(servicio,cl_id, fechaPe);
-                                    if(!servicio.equals(""))
-                                    {
-                                        importeServicioD = Double.parseDouble(sEspecial);
-                                        importeServicioD = Utilidades.redondear(importeServicioD, 2);
-                                    }
-                                }
-                            }
-                            datosFila[j] = importeServicioD;
-                            totalSEspecial = totalSEspecial + importeServicioD;
-                            totalSEspecial = Utilidades.redondear(totalSEspecial, 2);
 
                         }
                         else if (k==14)
@@ -395,7 +376,7 @@ System.out.println("En el result: "+query);
         jComboBoxAnyoIva = new javax.swing.JComboBox();
         jLabelObservaciones = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaObservaciones = new javax.swing.JTextArea();
         jSeparator4 = new javax.swing.JSeparator();
         jLabelIvaTrimestre = new javax.swing.JLabel();
         jComboBoxIvaTrimestre = new javax.swing.JComboBox();
@@ -472,10 +453,10 @@ System.out.println("En el result: "+query);
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setName("jTextArea1"); // NOI18N
-        jScrollPane2.setViewportView(jTextArea1);
+        jTextAreaObservaciones.setColumns(20);
+        jTextAreaObservaciones.setRows(5);
+        jTextAreaObservaciones.setName("jTextAreaObservaciones"); // NOI18N
+        jScrollPane2.setViewportView(jTextAreaObservaciones);
 
         jSeparator4.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator4.setName("jSeparator4"); // NOI18N
@@ -549,11 +530,11 @@ System.out.println("En el result: "+query);
                         .addComponent(jLabelFechaFa, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooserFechaFa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                .addGap(33, 33, 33)
                 .addComponent(jLabelNumFa, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldNFa, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addComponent(jTextFieldNFa, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabelObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -567,8 +548,7 @@ System.out.println("En el result: "+query);
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -645,28 +625,32 @@ System.out.println("En el result: "+query);
                         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
                         fechaFac=formatoDeFecha.format(fecha);
                     }
-
+                    String fechaFa = jDateChooserFechaFa.getDateFormatString();
+                    String fechaCont = jDateChooserFechaCont.getDateFormatString();
+                    String numFa = jTextFieldNFa.getText();
+                    String numCarset = "";
+                    String observaciones = jTextAreaObservaciones.getText();
                     BeanTesoreriaProveedor tsProveedor = new BeanTesoreriaProveedor();
                     tsProveedor.setTr_id(numero);
+                    tsProveedor.setTr_fecha(fechaFa);
+                    tsProveedor.setTr_fh_vencimiento(fechaCont);
+                    tsProveedor.setTr_num(numFa);
+                    tsProveedor.setTr_num_carset("");
+                    tsProveedor.setPr_num(pr_id);
+                    tsProveedor.setTr_importe("");
+                    tsProveedor.setTr_iva("");
+                    tsProveedor.setTr_irpf("");
+                    tsProveedor.setTr_importe_neto("");
+                    tsProveedor.setTr_observaciones(observaciones);
 
-    //                    BeanFactura factura = new BeanFactura();
-    //                    factura=(BeanFactura)lista.get(longitud);
-    //                    long pedido=(Long)pedidos.get(longitud);
-    //                    ArrayList listaPedidos=new ArrayList();
-    //                    listaPedidos.add(pedido);
-    //                    ArrayList listaFacturas = new ArrayList();
-    //                    listaFacturas.add(factura);
-    //                    CSLanzarFactura facturaFinal = new CSLanzarFactura();
-    //                    try {
-    //
-    //                        facturaFinal.lanzar(listaFacturas, bCliente, fechaFac, numero+1 , clienteID, fechaSI, fechaSF, listaPedidos,1);
-    //                    } catch (ClassNotFoundException ex) {
-    //                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
-    //                    } catch (SQLException ex) {
-    //                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
-    //                    } catch (JRException ex) {
-    //                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
-    //                    }
+                    for(int i = 0; i < pedidos.size(); i++)
+                    {
+                        String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado' WHERE pe_num = '"+pedidos.get(i)+"'";
+                        boolean rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
+                    }
+                    
+                    //guardamos los datos de la tesoreria
+                    guardarTesoreria(tsProveedor);
              }
         
     }//GEN-LAST:event_jButtonValidarActionPerformed
@@ -699,7 +683,7 @@ System.out.println("En el result: "+query);
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaObservaciones;
     private javax.swing.JTextField jTextFieldNFa;
     // End of variables declaration//GEN-END:variables
 
@@ -763,4 +747,18 @@ System.out.println("En el result: "+query);
         }
     }
 
+    /**
+     * Guardamos en la base de datos los datos seleccionados de tesorería
+     */
+    public void guardarTesoreria(BeanTesoreriaProveedor ts)
+    {
+        Proveedor pr = new Proveedor();
+        int pr_num = Integer.parseInt(ts.getPr_num());
+        String proveedor = pr.getProveedor(pr_num);
+
+        String query = "";
+        System.out.println(query);
+        boolean rsIn = CSDesktop.datos.manipuladorDatos(query);
+
+    }
 }
