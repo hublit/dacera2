@@ -85,9 +85,9 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                 int j = 0;
                 for (int k = 0; k < 7; k++) {
                     if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k == 6 ) {
-                        if((k==2) || (k==4)|| (k==4))
+                        if((k==2) || (k==4)|| (k==5))
                         {
-                            String fecha=(rs.getObject(k+1)).toString();
+                             String fecha=(rs.getObject(k+1)).toString();
                              String [] temp = null;
                              temp = fecha.split("\\-");
                              String anyo=temp[0];
@@ -167,6 +167,8 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
         jTable1.getTableHeader().setForeground(Color.white);        
 
 
+        
+
         /*jTable1.getColumnModel().getColumn(0).setCellRenderer(tcrCenter);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(tcrCenter);
         jTable1.getColumnModel().getColumn(11).setCellRenderer(tcrRight);
@@ -186,11 +188,11 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
       return new Dimension( 1100,650 );
     }
 
-     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-                                                    boolean hasFocus, int row, int col)
+     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col)
     {
         int componente = table.getSelectedRow();
-     Component comp = getTableCellRendererComponent(table,  value, isSelected, hasFocus, row, col);
+        Component comp = getTableCellRendererComponent(table,  value, true, hasFocus, row, col);
+
 
      String s =  table.getModel().getValueAt(row, col ).toString();
 
@@ -331,8 +333,11 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
         {
-            Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+
+            Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
             //se centran los valores
+
+
 
             jTable1.setRowHeight(20);
 
@@ -364,6 +369,13 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                 cell. setBackground(Color.white);
                 cell. setForeground(Color. BLACK);
             }
+            if(isSelected==true)
+            {
+                Color fondo = new  Color(247, 174, 40);
+                cell. setBackground(fondo);
+                cell. setForeground(Color.BLACK);
+            }
+
             //si no cumplen esa condicion pongo las celdas en color blanco
           
             return cell;
