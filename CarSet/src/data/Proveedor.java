@@ -72,9 +72,13 @@ public class Proveedor
 
    }
 
-
+  /**
+   *
+   * @param condicion
+   * @return
+   */
     public Object[][] getProveedoresQuery(String condicion)
-   {
+    {
       int registros = 0;
       try
       {
@@ -158,6 +162,11 @@ public class Proveedor
 
    }
 
+   /**
+    * Metodo para consultar el id del Proveedor a partir de su nombre
+    * @param proveedor
+    * @return int pr_id
+    */
    public int getProveedorID(String proveedor)
    {
        int proveedorID=0;
@@ -174,6 +183,11 @@ public class Proveedor
        return proveedorID;
    }
 
+   /**
+    * Metodo para consultar el nombre del proveedor a partir de si id
+    * @param proveedorID
+    * @return
+    */
    public String getProveedor(int proveedorID)
    {
        String proveedor="";
@@ -190,14 +204,16 @@ public class Proveedor
        return proveedor;
    }
 
-   public BeanProveedor getDatosFacturaProveedor(int proveedorID)
+   /**
+    *
+    * @param proveedorID
+    * @return
+    */
+   public BeanProveedor getDatosProveedor(int proveedorID)
    {
        BeanProveedor bProveedor = new BeanProveedor();
 
-       ResultSet rsCl = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF, pr_direccion, pr_cod_postal, " +
-                                  "pr_poblacion, pr_provincia, pr_direccion_fiscal, pr_cod_postal_fiscal, " +
-                                  "pr_poblacion_fiscal, pr_provincia_fiscal,pr_plazo, pr_dias_plazo " +
-                                  "FROM pr_proveedores WHERE pr_id = "+proveedorID);
+       ResultSet rsCl = CSDesktop.datos.select("SELECT * FROM pr_proveedores WHERE pr_id = "+proveedorID);
         try
         {
             while (rsCl.next())
@@ -214,6 +230,8 @@ public class Proveedor
                 bProveedor.setProvinciaFiscal(rsCl.getString("pr_provincia_fiscal"));
                 bProveedor.setPlazoPago(rsCl.getString("pr_plazo"));
                 bProveedor.setDiasPlazo(rsCl.getString("pr_dias_plazo"));
+                bProveedor.setNumCuenta("pr_num_cuenta");
+                bProveedor.setEmail("pr_email");
             }
             rsCl.close();
         }

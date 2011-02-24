@@ -19,6 +19,8 @@ public class BeanProveedor
     private String poblacion_fiscal;
     private String provincia_fiscal;
     private String plazoPago;
+    private String numCuenta;
+    private String email;
 
     public String getDiasPlazo() {
         return diasPlazo;
@@ -227,4 +229,21 @@ public class BeanProveedor
     {
             provincia_fiscal = p_provincia;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNumCuenta() {
+        return numCuenta;
+    }
+
+    public void setNumCuenta(String numCuenta) {
+        this.numCuenta = numCuenta;
+    }
+
 }
