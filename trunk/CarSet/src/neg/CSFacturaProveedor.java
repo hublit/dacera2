@@ -330,7 +330,7 @@ public class CSFacturaProveedor extends JPanel
         BeanProveedor beanProveedor = new BeanProveedor();
 
         proveedorID = oProveedor.getProveedorID(proveedor);
-        beanProveedor = oProveedor.getDatosFacturaProveedor(proveedorID);
+        beanProveedor = oProveedor.getDatosProveedor(proveedorID);
         beanProveedor.setPr_id(String.valueOf(proveedorID));
 
         Calendar fechaCalendar = jDateFecha.getCalendar();
