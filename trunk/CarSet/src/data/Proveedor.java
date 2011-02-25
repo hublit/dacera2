@@ -231,6 +231,7 @@ public class Proveedor
                 bProveedor.setPlazoPago(rsCl.getString("pr_plazo"));
                 bProveedor.setDiasPlazo(rsCl.getString("pr_dias_plazo"));
                 bProveedor.setNumCuenta("pr_num_cuenta");
+                bProveedor.setTipo("pr_tipo");
                 bProveedor.setEmail("pr_email");
             }
             rsCl.close();

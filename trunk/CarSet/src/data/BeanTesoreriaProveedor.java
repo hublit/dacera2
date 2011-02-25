@@ -5,6 +5,8 @@
 
 package data;
 
+import java.util.Calendar;
+
 /**
  * Bean de Tesoreria de Proveedor
  * @author depr73
@@ -12,8 +14,8 @@ package data;
 public class BeanTesoreriaProveedor
 {
     private int tr_id;
-    private String tr_fecha;
-    private String tr_fh_vencimiento;
+    private Calendar tr_fecha;
+    private Calendar tr_fh_vencimiento;
     private String tr_num;
     private String tr_num_carset;
     private String pr_num;
@@ -22,7 +24,7 @@ public class BeanTesoreriaProveedor
     private String tr_irpf;
     private String tr_importe;
     private String tr_estado;
-    private String tr_fecha_pago;
+    private Calendar tr_fecha_pago;
     private String tr_banco;
     private String tr_observaciones;
 
@@ -55,30 +57,6 @@ public class BeanTesoreriaProveedor
 
     public void setTr_estado(String tr_estado) {
         this.tr_estado = tr_estado;
-    }
-
-    public String getTr_fecha() {
-        return tr_fecha;
-    }
-
-    public void setTr_fecha(String tr_fecha) {
-        this.tr_fecha = tr_fecha;
-    }
-
-    public String getTr_fh_vencimiento() {
-        return tr_fh_vencimiento;
-    }
-
-    public void setTr_fh_vencimiento(String tr_fh_vencimiento) {
-        this.tr_fh_vencimiento = tr_fh_vencimiento;
-    }
-
-    public String getTr_fecha_pago() {
-        return tr_fecha_pago;
-    }
-
-    public void setTr_fecha_pago(String tr_fecha_pago) {
-        this.tr_fecha_pago = tr_fecha_pago;
     }
 
     public String getTr_importe() {
@@ -135,6 +113,30 @@ public class BeanTesoreriaProveedor
 
     public void setTr_observaciones(String tr_observaciones) {
         this.tr_observaciones = tr_observaciones;
+    }
+
+    public Calendar getTr_fecha() {
+        return tr_fecha;
+    }
+
+    public void setTr_fecha(Calendar tr_fecha) {
+        this.tr_fecha = tr_fecha;
+    }
+
+    public Calendar getTr_fecha_pago() {
+        return tr_fecha_pago;
+    }
+
+    public void setTr_fecha_pago(Calendar tr_fecha_pago) {
+        this.tr_fecha_pago = tr_fecha_pago;
+    }
+
+    public Calendar getTr_fh_vencimiento() {
+        return tr_fh_vencimiento;
+    }
+
+    public void setTr_fh_vencimiento(Calendar tr_fh_vencimiento) {
+        this.tr_fh_vencimiento = tr_fh_vencimiento;
     }
 
 }
