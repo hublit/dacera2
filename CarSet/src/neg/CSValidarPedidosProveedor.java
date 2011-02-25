@@ -7,6 +7,7 @@
 package neg;
 
 //import utils.TablaModeloPedidos;
+import data.BeanProveedor;
 import data.BeanTesoreriaProveedor;
 import data.Proveedor;
 import java.io.FileNotFoundException;
@@ -46,6 +47,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     private  String consulta = "";
     ArrayList pedidos = new ArrayList();
     String pr_id = "";
+    double totalProveedor = 0;
     /** Creates new form ABResultBuscarPedido */
     public CSValidarPedidosProveedor(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
@@ -80,8 +82,6 @@ System.out.println("En el result: "+query);
 
         int numeroFila = 0;
         double totalCliente = 0;
-        double totalProveedor = 0;
-        double totalSEspecial = 0;
         double totalSuplemento = 0;
         double totalMargen = 0;
 
@@ -176,10 +176,6 @@ System.out.println("En el result: "+query);
                     if(k==12)
                     {
                         datosFilaTotal[i] = totalProveedor;
-                    }
-                    if(k==13)
-                    {
-                        datosFilaTotal[i] = totalSEspecial;
                     }
                     if(k==14)
                     {
@@ -278,55 +274,8 @@ System.out.println("En el result: "+query);
         jTable1.getTableHeader().setBackground(Color.GRAY);
         jTable1.getTableHeader().setForeground(Color.white);        
 
-
-        /*jTable1.getColumnModel().getColumn(0).setCellRenderer(tcrCenter);
-        jTable1.getColumnModel().getColumn(1).setCellRenderer(tcrCenter);
-        jTable1.getColumnModel().getColumn(11).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(12).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(13).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(14).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(15).setCellRenderer(tcrCenter);*/
-        //jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
-
         jTable1.setAutoCreateRowSorter(true);
 
-//        jTable1.addMouseListener(new MouseAdapter()
-//        {
-//        public void mouseClicked(MouseEvent e)
-//        {
-//            System.out.println("Estamos en el result");
-//            int fila = jTable1.rowAtPoint(e.getPoint());
-//            int columna = jTable1.columnAtPoint(e.getPoint());
-//
-//            if ((fila > -1) && (columna > -1))
-//            {
-//               int proveedor = Integer.parseInt((String)jTable1.getValueAt(fila,0).toString());
-//               CSDesktop.EditarPedido = new JInternalFrame("Editar Pedido", true, false, false, true );
-//               // adjuntar panel al panel de contenido del marco interno
-//               CSEditarPedido editarC = null;
-//                    try {
-//                        editarC = new CSEditarPedido(proveedor,consulta);
-//                    } catch (SQLException ex) {
-//                        Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//               CSDesktop.EditarPedido.getContentPane().add( editarC,BorderLayout.CENTER);
-//               // establecer tama�o de marco interno en el tama�o de su contenido
-//               CSDesktop.EditarPedido.pack();
-//               // adjuntar marco interno al escritorio y mostrarlo
-//               CSDesktop.elEscritorio.add( CSDesktop.EditarPedido );
-//
-//               Dimension pantalla = CSDesktop.elEscritorio.getSize();
-//               Dimension ventana = CSDesktop.EditarPedido.getSize();
-//               CSDesktop.EditarPedido.setLocation(
-//                    (pantalla.width - ventana.width) / 2,
-//                    (pantalla.height - ventana.height) / 2);
-//               CSDesktop.EditarPedido.setVisible( true );
-//               CSDesktop.ResultPedido.setVisible(false);
-//
-//            System.out.println(jTable1.getValueAt(fila,columna));
-//         }
-//        }
-//        }    );
     }
 
      public Dimension getPreferredSize()
@@ -601,14 +550,17 @@ System.out.println("En el result: "+query);
             if (JOptionPane.OK_OPTION == confirmado)
             {
                 int numero = 0;
+                String num_carset = "";
                 String fechaFac = "";
-                String query = "Select max(tr_id) from tr_tesoreria_proveedor";
+                String fechaCont = "";
+                String query = "SELECT max(tr_id), tr_num_carset FROM tr_tesoreria_proveedor";
                 ResultSet rs = CSDesktop.datos.select(query);
                 try
                 {
                     while (rs.next())
                     {
                         numero = Integer.valueOf(rs.getInt("max(tr_id)"));
+                        num_carset = rs.getString("tr_num_carset");
                     }
                 }
                 catch (SQLException ex)
@@ -619,21 +571,30 @@ System.out.println("En el result: "+query);
                     int longitud = jTable1.getSelectedRow();
 
                     Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
-                    if (fechaCalendar!=null)
-                    {
-                        Date fecha = fechaCalendar.getTime();
-                        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-                        fechaFac=formatoDeFecha.format(fecha);
-                    }
-                    String fechaFa = jDateChooserFechaFa.getDateFormatString();
-                    String fechaCont = jDateChooserFechaCont.getDateFormatString();
+//                    if (fechaCalendar!=null)
+//                    {
+//                        Date fecha = fechaCalendar.getTime();
+//                        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+//                        fechaFac=formatoDeFecha.format(fecha);
+//                    }
+                    Calendar fechaConta = jDateChooserFechaCont.getCalendar();
+//                    if (fechaConta!=null)
+//                    {
+//                        Date fecha = fechaConta.getTime();
+//                        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+//                        fechaCont=formatoDeFecha.format(fecha);
+//                    }
                     String numFa = jTextFieldNFa.getText();
-                    String numCarset = "";
+
+                    String[] arrayNumCarset = num_carset.split("/");
+                    //Comprobar
+                    int numCarset = (Integer.parseInt(arrayNumCarset[2]) + 1);
+
                     String observaciones = jTextAreaObservaciones.getText();
                     BeanTesoreriaProveedor tsProveedor = new BeanTesoreriaProveedor();
                     tsProveedor.setTr_id(numero);
-                    tsProveedor.setTr_fecha(fechaFa);
-                    tsProveedor.setTr_fh_vencimiento(fechaCont);
+                    tsProveedor.setTr_fecha(fechaCalendar);
+                    tsProveedor.setTr_fh_vencimiento(fechaConta);
                     tsProveedor.setTr_num(numFa);
                     tsProveedor.setTr_num_carset("");
                     tsProveedor.setPr_num(pr_id);
@@ -645,7 +606,7 @@ System.out.println("En el result: "+query);
 
                     for(int i = 0; i < pedidos.size(); i++)
                     {
-                        String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado' WHERE pe_num = '"+pedidos.get(i)+"'";
+                        String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado, pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(i)+"'";
                         boolean rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
                     }
                     
@@ -747,16 +708,47 @@ System.out.println("En el result: "+query);
         }
     }
 
+
     /**
      * Guardamos en la base de datos los datos seleccionados de tesorería
+     * @param ts
+     * @param fechaFac
+     * @param fechaCont
+     * @param numFa
+     * @param numCarset
+     * @param observaciones
      */
     public void guardarTesoreria(BeanTesoreriaProveedor ts)
     {
         Proveedor pr = new Proveedor();
+        BeanProveedor beanPr = new BeanProveedor();
         int pr_num = Integer.parseInt(ts.getPr_num());
-        String proveedor = pr.getProveedor(pr_num);
+        beanPr = pr.getDatosProveedor(pr_num);
+        String proveedor = beanPr.getNombre();
+        String diasPlazo = beanPr.getPlazoPago();
+        String formaPago = beanPr.getFormaPago();
+        String numCuenta = beanPr.getNumCuenta();
+        String email = beanPr.getEmail();
+        String prTipo = beanPr.getTipo();
+        Double iva = Double.valueOf(ts.getTr_iva()).doubleValue();
+        Double irpf = 0.0;
+        if (prTipo.equals("Gruero"))
+        {
+            irpf = (totalProveedor * 1) /100;
+            irpf = Utilidades.redondear(irpf, 2);
+        }
+        Double totalImporte = totalProveedor + iva + irpf;
 
-        String query = "";
+        Calendar fechaPago = ts.getTr_fecha();//.add(Calendar.DAY_OF_MONTH, 6);
+
+
+        String query = "INSERT INTO tr_tesoreria_proveedor (tr_fecha, tr_num, tr_num_carset, pr_num, tr_importe_neto, " +
+                                                            "tr_iva, tr_irpf, tr_importe, tr_estado, tr_fecha_pago, " +
+                                                            "tr_banco, tr_observaciones) " +
+                                                            "VALUES ('"+ts.getTr_fecha()+"', '"+ts.getTr_num()+"', " +
+                                                            "'"+ts.getTr_num_carset()+"', '"+pr_num+"', '"+totalProveedor+"', " +
+                                                            "'"+iva+"', '"+irpf+"', '"+totalImporte+"', 'PTE', '"+fechaPago+"', " +
+                                                            "'"+numCuenta+"', '"+ts.getTr_observaciones()+"')";
         System.out.println(query);
         boolean rsIn = CSDesktop.datos.manipuladorDatos(query);
 

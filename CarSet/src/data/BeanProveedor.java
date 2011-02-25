@@ -19,6 +19,7 @@ public class BeanProveedor
     private String poblacion_fiscal;
     private String provincia_fiscal;
     private String plazoPago;
+    private String tipo;
     private String numCuenta;
     private String email;
 
@@ -244,6 +245,14 @@ public class BeanProveedor
 
     public void setNumCuenta(String numCuenta) {
         this.numCuenta = numCuenta;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 }
