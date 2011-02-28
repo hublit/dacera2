@@ -24,6 +24,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport; 
 import utils.Utilidades;
 import data.*;
+import data.BeanFactura;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import javax.mail.PasswordAuthentication;
@@ -654,6 +655,11 @@ public class CSLanzarFactura extends javax.swing.JPanel
             {
                 pars.put("NumFactura","PREV");
             }
+            else if (numero==1)
+            {
+                BeanFactura bean = (BeanFactura) lista.get(0);
+                pars.put("NumFactura",bean.getAux());
+            }
             // SI NO, HAY QUE GENERAR UN NUEVO NUMERO DE FACTURA
             else
             {
@@ -755,32 +761,35 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
 
                     //CAMBIAMOS LOS PEDIDOS DE ESTADO, SE PIDE CONFIRMACION
-                    if(pedidos.size()>0)
+                    if(numero!=1)
                     {
-                       int seleccion = JOptionPane.showOptionDialog(
-                            CSLanzarFactura.this,
-                            "¿Quieres cambiar el estado de los envíos a 'Facturado'?",
-                            "Atención",
-                            JOptionPane.YES_NO_CANCEL_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,
-                            null,
-                            new Object[] { "SI", "NO"},
-                            "SI");
-
-                        // SI LA RESPUESTA ES POSITIVA, SE CAMBIA EL ESTADO DE LOS PEDIDOS
-                        if(seleccion == 0)
+                        if(pedidos.size()>0)
                         {
-                            for (int i=0;i<pedidos.size();i++)
+                            int seleccion = JOptionPane.showOptionDialog(
+                                CSLanzarFactura.this,
+                                "¿Quieres cambiar el estado de los envíos a 'Facturado'?",
+                                "Atención",
+                                JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                new Object[] { "SI", "NO"},
+                                "SI");
+
+                            // SI LA RESPUESTA ES POSITIVA, SE CAMBIA EL ESTADO DE LOS PEDIDOS
+                            if(seleccion == 0)
                             {
-                                if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl="+ finalNumFactura +" WHERE pe_num="+ pedidos.get(i)));
-                            }
-                            if(codigo==1)
-                            {
-                                CSDesktop.ResultFacturaPedido.dispose();
-                                CSFacturaClientePedido facturaCliente = new CSFacturaClientePedido(beanCliente.getNombre(),fechaIni,fechaFin);
-                                CSDesktop.ResultFacturaPedido.toBack();
-                                CSDesktop.FacturaClientePedido.toBack();
-                                CSDesktop.NuevaFactura.toFront();
+                                for (int i=0;i<pedidos.size();i++)
+                                {
+                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)));
+                                }
+                                if(codigo==1)
+                                {
+                                    CSDesktop.ResultFacturaPedido.dispose();
+                                    CSFacturaClientePedido facturaCliente = new CSFacturaClientePedido(beanCliente.getNombre(),fechaIni,fechaFin);
+                                    CSDesktop.ResultFacturaPedido.toBack();
+                                    CSDesktop.FacturaClientePedido.toBack();
+                                    CSDesktop.NuevaFactura.toFront();
+                                }
                             }
                         }
                     }
