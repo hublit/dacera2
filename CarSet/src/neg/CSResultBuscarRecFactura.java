@@ -7,9 +7,14 @@
 package neg;
 
 //import utils.TablaModeloPedidos;
+import data.BeanCliente;
+import data.BeanFactura;
+import data.BeanRecFactura;
+import data.Cliente;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import net.sf.jasperreports.engine.JRException;
 import utils.TablaModelo;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,6 +28,7 @@ import java.awt.event.MouseEvent;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -49,11 +55,13 @@ import utils.Utilidades;
  */
 public class CSResultBuscarRecFactura extends javax.swing.JPanel
 {
-    
+    ArrayList facturas = new ArrayList();
+    ArrayList lista = new ArrayList();
+    ArrayList pedidos = new ArrayList();
     /** Creates new form ABResultBuscarPedido */
     public CSResultBuscarRecFactura(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
-    
+
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = CSDesktop.datos.select(query);
 
@@ -81,6 +89,18 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
         int numeroFila = 0;
         try {
             while (rs.next()) {
+
+                BeanRecFactura recFactura = new BeanRecFactura();
+
+                recFactura.setNumFactura(rs.getString("fl_num"));
+                recFactura.setFechaFactura(rs.getString("fl_fecha"));
+                recFactura.setCliente(rs.getString("cl_nombre"));
+                recFactura.setFechaDesde(rs.getString("fl_fecha_desde"));
+                recFactura.setFechaHasta(rs.getString("fl_fecha_hasta"));
+                recFactura.setImporte(rs.getString("fl_importe_total"));
+
+                facturas.add(recFactura);
+
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
                 for (int k = 0; k < 7; k++) {
@@ -311,12 +331,65 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
             jButtonCerrar.setEnabled(false);
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Sólo puedes seleccionar un pedido.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
-             jButtonRecuperar.setEnabled(true);
+            jButtonRecuperar.setEnabled(true);
             jButtonCerrar.setEnabled(true);
         }
          else if (celdas==1)
         {
-
+            try {
+                int seleccion = jTable1.getSelectedRow();
+                BeanRecFactura recFacturaAux = new BeanRecFactura();
+                recFacturaAux = (BeanRecFactura) facturas.get(seleccion);
+                Cliente cliente = new Cliente();
+                int cl_id = cliente.getClienteID(recFacturaAux.getCliente());
+                BeanCliente beanCliente = new BeanCliente();
+                beanCliente = cliente.getDatosFacturaCliente(cl_id);
+                beanCliente.setCl_id(String.valueOf(cl_id));
+                String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " + "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " + "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " + "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " + "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " + "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " + "WHERE pe.pe_num = pc.pe_num " + "AND sc.cl_id = pc.cl_id " + "AND tc.tc_fecha_hasta > pe.pe_fecha " + "AND sc.sc_fecha_hasta > pe.pe_fecha " + "AND tc.tc_servicio = pe.pe_servicio " + "AND tc.cl_id = pc.cl_id " + "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " + "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " + "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " + "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " + "AND tc.tc_soporte = pe.pe_soporte " + "AND pe.pe_estado = 'Facturado' " + "AND pe_fecha BETWEEN '" + recFacturaAux.getFechaDesde() + "' AND '" + recFacturaAux.getFechaHasta() + "' " + "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
+                System.out.println(query);
+                ResultSet rs = CSDesktop.datos.select(query);
+                try {
+                    while (rs.next()) {
+                        BeanFactura nueva = new BeanFactura();
+                        nueva.setNumPedido(rs.getLong("pe_num"));
+                        nueva.setFecha(rs.getString("pe_fecha"));
+                        nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
+                        nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
+                        nueva.setServicio(rs.getString("pe_servicio"));
+                        nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
+                        nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
+                        nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
+                        nueva.setDiasCampa(rs.getString("pe_dias_campa"));
+                        nueva.setFactor(rs.getString("fc_id"));
+                        nueva.setSoporte(rs.getString("pe_soporte"));
+                        nueva.setMatricula(rs.getString("pe_ve_matricula"));
+                        nueva.setMarca(rs.getString("pe_ve_marca"));
+                        nueva.setModelo(rs.getString("pe_ve_modelo"));
+                        nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
+                        nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
+                        nueva.setSuplemento(rs.getString("pe_suplemento"));
+                        nueva.setDescripcion(rs.getString("pe_descripcion"));
+                        nueva.setTarifa(rs.getString("tc_tarifa"));
+                        nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
+                        nueva.setNumCamion(rs.getString("pe_num_en_camion"));
+                        nueva.setAux(recFacturaAux.getNumFactura());
+                        lista.add(nueva);
+                        pedidos.add(rs.getLong("pe_num"));
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                CSLanzarFactura factura = new CSLanzarFactura();
+                factura.lanzar(lista, beanCliente, recFacturaAux.getFechaFactura(), 1, cl_id, recFacturaAux.getFechaDesde(), recFacturaAux.getFechaHasta(), pedidos, 0);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButtonRecuperarActionPerformed
        
