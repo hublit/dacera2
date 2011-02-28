@@ -12,7 +12,7 @@ package data;
 public class BeanFactura {
 
     private Long numPedido;
-     private String fecha;
+    private String fecha;
     private String provinciaOrigen;
     private String provinciaDestino;
     private String servicio;
@@ -28,11 +28,15 @@ public class BeanFactura {
     private String modelo;
     private String tarifaEsCliente;
     private String tarifaEsProveedor;
+
+   
     private String servicioSuplemento;
     private String numCamion;
     private String suplemento;
     private String descripcion;
     private String tarifa;
+    
+    private String aux;
 
     public String getEstado() {
         return estado;
@@ -253,6 +257,14 @@ public class BeanFactura {
 
     public void setNumCamion(String numCamion) {
         this.numCamion = numCamion;
+    }
+
+     public String getAux() {
+        return aux;
+    }
+
+    public void setAux(String aux) {
+        this.aux = aux;
     }
 
 
