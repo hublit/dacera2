@@ -230,9 +230,9 @@ public class Proveedor
                 bProveedor.setProvinciaFiscal(rsCl.getString("pr_provincia_fiscal"));
                 bProveedor.setPlazoPago(rsCl.getString("pr_plazo"));
                 bProveedor.setDiasPlazo(rsCl.getString("pr_dias_plazo"));
-                bProveedor.setNumCuenta("pr_num_cuenta");
-                bProveedor.setTipo("pr_tipo");
-                bProveedor.setEmail("pr_email");
+                bProveedor.setNumCuenta(rsCl.getString("pr_num_cuenta"));
+                bProveedor.setTipo(rsCl.getString("pr_tipo"));
+                bProveedor.setEmail(rsCl.getString("pr_email"));
             }
             rsCl.close();
         }
