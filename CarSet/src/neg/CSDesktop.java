@@ -535,7 +535,7 @@ public class CSDesktop extends JFrame
        menuRecuperarFacturaCliente.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-               RecuperarFacturaCliente = new JInternalFrame("Recuperar Factura Cliente", true,false,false,true );
+               RecuperarFacturaCliente = new JInternalFrame("Modificacion Facturas", true,false,false,true );
 
                CSRecuperarFacturaCliente panel = null;
                panel = new CSRecuperarFacturaCliente();
