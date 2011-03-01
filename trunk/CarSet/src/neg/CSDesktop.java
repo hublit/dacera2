@@ -76,8 +76,10 @@ public class CSDesktop extends JFrame
   public static JInternalFrame NuevoInformeDetallado1;
   public static JInternalFrame NuevoInformeDetallado2;
   public static JInternalFrame NuevoAlbaran;
-  public static JInternalFrame ValidacionPedidos;
-  public static JInternalFrame InformeTesoreriaProveedor;
+  public static JInternalFrame BuscarValidacionPedidos;
+  public static JInternalFrame ResultValidacionPedidos;
+  public static JInternalFrame BuscarTesoreriaProveedor;
+  public static JInternalFrame ResultTesoreriaProveedor;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
   public static JMenu menuPedidos;
@@ -654,20 +656,20 @@ public class CSDesktop extends JFrame
       menuTesoreriaValidacion.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-               ValidacionPedidos = new JInternalFrame("Validación de Pedidos", true,false,false,true );
+               BuscarValidacionPedidos = new JInternalFrame("Validación de Pedidos", true,false,false,true );
                CSValidarPedido panel = null;
 
                panel = new CSValidarPedido();
 
-               ValidacionPedidos.getContentPane().add( panel,BorderLayout.CENTER);
-               ValidacionPedidos.pack();
-               elEscritorio.add( ValidacionPedidos );
+               BuscarValidacionPedidos.getContentPane().add( panel,BorderLayout.CENTER);
+               BuscarValidacionPedidos.pack();
+               elEscritorio.add( BuscarValidacionPedidos );
                Dimension pantalla = elEscritorio.getSize();
-               Dimension ventana = ValidacionPedidos.getSize();
-               ValidacionPedidos.setLocation(
+               Dimension ventana = BuscarValidacionPedidos.getSize();
+               BuscarValidacionPedidos.setLocation(
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
-               ValidacionPedidos.setVisible( true );
+               BuscarValidacionPedidos.setVisible( true );
             }
          });
 
@@ -677,20 +679,20 @@ public class CSDesktop extends JFrame
       menuTesoreriaProveedor.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-               InformeTesoreriaProveedor = new JInternalFrame("Informe Tesorería Proveedor", true,false,false,true );
+              BuscarTesoreriaProveedor = new JInternalFrame("Informe Tesorería Proveedor", true,false,false,true );
                CSLanzarInformeTesoreriaProveedor panel = null;
 
                panel = new CSLanzarInformeTesoreriaProveedor();
 
-               InformeTesoreriaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
-               InformeTesoreriaProveedor.pack();
-               elEscritorio.add( InformeTesoreriaProveedor );
+               BuscarTesoreriaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
+               BuscarTesoreriaProveedor.pack();
+               elEscritorio.add( BuscarTesoreriaProveedor );
                Dimension pantalla = elEscritorio.getSize();
-               Dimension ventana = InformeTesoreriaProveedor.getSize();
-               InformeTesoreriaProveedor.setLocation(
+               Dimension ventana = BuscarTesoreriaProveedor.getSize();
+               BuscarTesoreriaProveedor.setLocation(
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
-               InformeTesoreriaProveedor.setVisible( true );
+               BuscarTesoreriaProveedor.setVisible( true );
             }
          });
 
