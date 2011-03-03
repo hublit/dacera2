@@ -102,7 +102,7 @@ public class CSResultValidarPedido extends javax.swing.JPanel
             CSDesktop.ResultPedido = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
             CSDesktop.ResultPedido.getContentPane().add( this, BorderLayout.CENTER );
             CSDesktop.ResultPedido.pack();
-            CSDesktop.ValidacionPedidos.dispose();
+            CSDesktop.BuscarValidacionPedidos.dispose();
             CSDesktop.elEscritorio.add( CSDesktop.ResultPedido );
             Dimension pantalla = CSDesktop.elEscritorio.getSize();
             Dimension ventana = CSDesktop.ResultPedido.getSize();

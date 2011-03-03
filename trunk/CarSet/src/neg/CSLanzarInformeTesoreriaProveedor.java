@@ -1,32 +1,30 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * ABBuscarProveedores.java
- *
- * Created on 07-oct-2009, 11:25:56
- */
 package neg;
 
+import data.BeanProveedor;
+import data.Proveedor;
 import java.awt.BorderLayout;
+import java.sql.SQLException;
 import utils.LimitadorDeDocumento;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author depr73
+ * @author raulin
  */
 public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 {
     private int proveedorID;
 
-    /** Creates new form ABBuscarProveedores */
     public CSLanzarInformeTesoreriaProveedor()
     {
         CSDesktop.menuBuscarProveedor.setEnabled(false);
@@ -72,7 +70,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         lCliente = new javax.swing.JLabel();
         lFechaIni = new javax.swing.JLabel();
         jDateFechaFin = new com.toedter.calendar.JDateChooser();
-        jDateFecha1 = new com.toedter.calendar.JDateChooser();
+        jDateFechaIni = new com.toedter.calendar.JDateChooser();
         jToggleButtonProveedor = new javax.swing.JToggleButton();
         numFc = new java.awt.Label();
         jTextNumFa = new javax.swing.JTextField();
@@ -81,6 +79,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         jButtonCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
+        lFechaFin = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(0, 0));
 
@@ -98,8 +97,8 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         jDateFechaFin.setDateFormatString("dd-MM-yyyy"); // NOI18N
         jDateFechaFin.setName("jDateFechaFin"); // NOI18N
 
-        jDateFecha1.setDateFormatString("dd-MM-yyyy"); // NOI18N
-        jDateFecha1.setName("jDateFecha1"); // NOI18N
+        jDateFechaIni.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFechaIni.setName("jDateFechaIni"); // NOI18N
 
         jToggleButtonProveedor.setText("Buscar Proveedor");
         jToggleButtonProveedor.setName("jToggleButtonProveedor"); // NOI18N
@@ -144,6 +143,10 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator7.setName("jSeparator7"); // NOI18N
 
+        lFechaFin.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaFin.setText("Fecha Hasta");
+        lFechaFin.setName("lFechaFin"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,8 +167,11 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
+                            .addComponent(jTextProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                                .addComponent(lFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -206,8 +212,9 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                     .addComponent(lCliente))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                     .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(jDateFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                     .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
                 .addGap(87, 87, 87)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,12 +227,85 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       CSDesktop.InformeTesoreriaProveedor.dispose();
-       CSDesktop.InformeTesoreriaProveedor.setEnabled(true);
+       CSDesktop.BuscarTesoreriaProveedor.dispose();
+       CSDesktop.menuTesoreriaProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
+
+        String fechaI="";
+        String fechaF="";
+
+        String proveedor = new String(jTextProveedor.getText());
+        Proveedor oProveedor = new Proveedor();
+        BeanProveedor beanProveedor = new BeanProveedor();
+
+        proveedorID = oProveedor.getProveedorID(proveedor);
+        try {
+            beanProveedor = oProveedor.getDatosProveedor(proveedorID);
+        } catch (SQLException ex) {
+            Logger.getLogger(CSLanzarInformeTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        beanProveedor.setPr_id(String.valueOf(proveedorID));
+
+        Calendar fechaCalendar = jDateFechaIni.getCalendar();
+        //String fecha = ConvertirFechaString(fechaCalendar);
+        if (fechaCalendar!=null)
+        {
+            Date fecha = fechaCalendar.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaI=formatoDeFecha.format(fecha);
+        }
+
+        fechaCalendar = jDateFechaFin.getCalendar();
+        //String fecha = ConvertirFechaString(fechaCalendar);
+        if (fechaCalendar!=null)
+        {
+            Date fecha = fechaCalendar.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaF=formatoDeFecha.format(fecha);
+        }
+
+
+//        String query="SELECT tr_fecha, tr_num, tr_num_carset, pr_num, tr_importe_neto, tr_iva, tr_irpf, " +
+//                     "tr_importe, tr_estado, tr_fecha_pago, tr_banco, tr_observaciones " +
+//                     "FROM tr_tesoreria_proveedor WHERE ";
+
+        String query = "SELECT tr.tr_fecha, tr.tr_num, tr.tr_num_carset, pr.pr_nombre_fiscal, tr.tr_importe_neto, tr.tr_iva, " +
+                       "tr.tr_irpf, tr.tr_importe, pr.pr_plazo, fp.fp_tipo, pr.pr_num_cuenta, tr.tr_estado, tr.tr_fecha_pago, " +
+                       "tr.tr_banco, pr.pr_email, tr.tr_observaciones " +
+                       "FROM tr_tesoreria_proveedor tr, pr_proveedores pr, fp_forma_pago fp " +
+                       "WHERE  tr.pr_num = pr.pr_id AND fp.fp_id = pr.fp_id";
+
+        Boolean and = false;
+        if (proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
+        {
+            jButtonBuscar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Proveedor o período de tiempo</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonBuscar.setEnabled(true);
+        }
+        else
+        {
+            if (!proveedor.equals("")) {
+                Proveedor proveedor2 = new Proveedor();
+                proveedorID = proveedor2.getProveedorID(proveedor);
+                query = query + " AND tr.pr_num = " + proveedorID;
+            }
+            if ((!fechaI.equals("")) && (!fechaF.equals(""))) 
+            {
+                query = query + " AND tr.tr_fecha >='" + fechaI + "' AND tr.tr_fecha<='" + fechaF + "'";
+            }
+
+            query = query + " ORDER BY tr.tr_id ASC";
+            System.out.println(query);
+            try {
+                CSResultBuscarTesoreriaProveedor resultBuscarValidarPedido = new CSResultBuscarTesoreriaProveedor(query);
+
+            } catch (IOException ex) {
+                Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jToggleButtonProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonProveedorActionPerformed
@@ -247,8 +327,8 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
-    private com.toedter.calendar.JDateChooser jDateFecha1;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
+    private com.toedter.calendar.JDateChooser jDateFechaIni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator7;
@@ -256,6 +336,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
     public javax.swing.JTextField jTextProveedor;
     private javax.swing.JToggleButton jToggleButtonProveedor;
     private javax.swing.JLabel lCliente;
+    private javax.swing.JLabel lFechaFin;
     private javax.swing.JLabel lFechaIni;
     private java.awt.Label numFc;
     // End of variables declaration//GEN-END:variables
