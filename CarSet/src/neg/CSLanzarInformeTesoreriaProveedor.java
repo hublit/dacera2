@@ -29,7 +29,6 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
     {
         CSDesktop.menuBuscarProveedor.setEnabled(false);
         initComponents();
-        limitacionesCampos();
 
         KeyListener l = new KeyListener()
         {
@@ -238,18 +237,10 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 
         String proveedor = new String(jTextProveedor.getText());
         Proveedor oProveedor = new Proveedor();
-        BeanProveedor beanProveedor = new BeanProveedor();
-
         proveedorID = oProveedor.getProveedorID(proveedor);
-        try {
-            beanProveedor = oProveedor.getDatosProveedor(proveedorID);
-        } catch (SQLException ex) {
-            Logger.getLogger(CSLanzarInformeTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        beanProveedor.setPr_id(String.valueOf(proveedorID));
 
         Calendar fechaCalendar = jDateFechaIni.getCalendar();
-        //String fecha = ConvertirFechaString(fechaCalendar);
+
         if (fechaCalendar!=null)
         {
             Date fecha = fechaCalendar.getTime();
@@ -258,7 +249,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         }
 
         fechaCalendar = jDateFechaFin.getCalendar();
-        //String fecha = ConvertirFechaString(fechaCalendar);
+
         if (fechaCalendar!=null)
         {
             Date fecha = fechaCalendar.getTime();
@@ -277,7 +268,6 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                        "FROM tr_tesoreria_proveedor tr, pr_proveedores pr, fp_forma_pago fp " +
                        "WHERE  tr.pr_num = pr.pr_id AND fp.fp_id = pr.fp_id";
 
-        Boolean and = false;
         if (proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
         {
             jButtonBuscar.setEnabled(false);
@@ -288,8 +278,6 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         else
         {
             if (!proveedor.equals("")) {
-                Proveedor proveedor2 = new Proveedor();
-                proveedorID = proveedor2.getProveedorID(proveedor);
                 query = query + " AND tr.pr_num = " + proveedorID;
             }
             if ((!fechaI.equals("")) && (!fechaF.equals(""))) 
@@ -349,13 +337,4 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
          jButtonBuscar.setEnabled(true);
     }
 
-    /**
-     * Función para la limitación de los campos
-     */
-    private void limitacionesCampos()
-    {
-        LimitadorDeDocumento limitadorDNI= new LimitadorDeDocumento(10);
-        LimitadorDeDocumento limitadorEmail= new LimitadorDeDocumento(50);
-        LimitadorDeDocumento limitadorNomC= new LimitadorDeDocumento(50);
-     }
 }
