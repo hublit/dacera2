@@ -1,8 +1,3 @@
-/*
- * ABResultBuscarPedido.java
- *
- * Created on 19-oct-2009, 15:58:57
- */
 
 package neg;
 
@@ -55,8 +50,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 System.out.println("En el result: "+query);
         TablaModelo modelo = new TablaModelo();
         ArrayList lista=new ArrayList();
-        String fechaSI="";
-        String fechaSF="";
         ResultSet rs = CSDesktop.datos.select(query);
 
         KeyListener l = new KeyListener()
@@ -101,59 +94,58 @@ System.out.println("En el result: "+query);
                  double ganancia=0;
                  pr_id = rs.getString("pr_id");
                  String fechaPe = rs.getString("pe_fecha");
-                for (int k = 0; k < 21; k++) {
-                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17 || k==18 || k==19 || k==20) {
-                        if((k==1) || (k==16)|| (k==17) || (k==18))
-                        {
-                            String fecha=(rs.getObject(k+1)).toString();
-                             String [] temp = null;
-                             temp = fecha.split("\\-");
-                             String anyo=temp[0];
-                             String mes=temp[1];
-                             String dia=temp[2];
-                             String nueva=dia+"-"+mes+"-"+anyo;
+                for (int k = 0; k < 21; k++)
+                {
+                    if((k==1) || (k==16)|| (k==17) || (k==18))
+                    {
+                        String fecha=(rs.getObject(k+1)).toString();
+                         String [] temp = null;
+                         temp = fecha.split("\\-");
+                         String anyo=temp[0];
+                         String mes=temp[1];
+                         String dia=temp[2];
+                         String nueva=dia+"-"+mes+"-"+anyo;
 
-                             datosFila[j] = nueva;
-                        }
-                        else if(k==11)
-                        {
-                             ta_es_cl=rs.getDouble(k+1);
-                             datosFila[j] = rs.getDouble(k + 1);
-                             totalCliente = totalCliente + ta_es_cl;
-                             totalCliente = Utilidades.redondear(totalCliente, 2);
-                        }
-                        else if(k==12)
-                        {
-                            ta_es_pr=rs.getDouble(k+1);
-                            datosFila[j] = rs.getDouble(k + 1);
-                            System.out.println("Clase: " + datosFila[j].getClass().getName());
-                            totalProveedor = totalProveedor + ta_es_pr;
-                           totalProveedor = Utilidades.redondear(totalProveedor, 2);
-
-                        }
-                        else if (k==14)
-                        {
-                            suple = rs.getDouble(k+1);
-                            datosFila[j] = suple;
-                            totalSuplemento = totalSuplemento + suple;
-                            totalSuplemento = Utilidades.redondear(totalSuplemento, 2);
-                        }
-                        else if (k==15)
-                        {
-                            ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
-                            double gananciaF=Utilidades.redondear(ganancia, 2);
-                            datosFila[j] = gananciaF;
-                           
-                            totalMargen = totalMargen + gananciaF;
-                            totalMargen = Utilidades.redondear((totalMargen), 2);
-                        }
-                        else
-                        {
-                            datosFila[j] = rs.getObject(k + 1);
-                            System.out.println("Dato" + k + " " + rs.getObject(k + 1));
-                        }
-                        j++;
+                         datosFila[j] = nueva;
                     }
+                    else if(k==11)
+                    {
+                         ta_es_cl=rs.getDouble(k+1);
+                         datosFila[j] = rs.getDouble(k + 1);
+                         totalCliente = totalCliente + ta_es_cl;
+                         totalCliente = Utilidades.redondear(totalCliente, 2);
+                    }
+                    else if(k==12)
+                    {
+                        ta_es_pr=rs.getDouble(k+1);
+                        datosFila[j] = rs.getDouble(k + 1);
+                        System.out.println("Clase: " + datosFila[j].getClass().getName());
+                        totalProveedor = totalProveedor + ta_es_pr;
+                       totalProveedor = Utilidades.redondear(totalProveedor, 2);
+
+                    }
+                    else if (k==14)
+                    {
+                        suple = rs.getDouble(k+1);
+                        datosFila[j] = suple;
+                        totalSuplemento = totalSuplemento + suple;
+                        totalSuplemento = Utilidades.redondear(totalSuplemento, 2);
+                    }
+                    else if (k==15)
+                    {
+                        ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
+                        double gananciaF=Utilidades.redondear(ganancia, 2);
+                        datosFila[j] = gananciaF;
+
+                        totalMargen = totalMargen + gananciaF;
+                        totalMargen = Utilidades.redondear((totalMargen), 2);
+                    }
+                    else
+                    {
+                        datosFila[j] = rs.getObject(k + 1);
+                        System.out.println("Dato" + k + " " + rs.getObject(k + 1));
+                    }
+                    j++;
                 }
 
                 modelo.addRow(datosFila);
@@ -164,28 +156,27 @@ System.out.println("En el result: "+query);
             int i = 0;
             for (int k = 0; k < 18; k++)
             {
-                if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17|| k==18) {
-                    if(k==10)
-                    {
-                        datosFilaTotal[i] = "TOTALES";
-                    }
-                    if(k==11)
-                    {
-                        datosFilaTotal[i] = totalCliente;
-                    }
-                    if(k==12)
-                    {
-                        datosFilaTotal[i] = totalProveedor;
-                    }
-                    if(k==14)
-                    {
-                        datosFilaTotal[i] = totalSuplemento;
-                    }
-                    if(k==15)
-                    {
-                        datosFilaTotal[i] = totalMargen;
-                    }
+                if(k==10)
+                {
+                    datosFilaTotal[i] = "TOTALES";
                 }
+                if(k==11)
+                {
+                    datosFilaTotal[i] = totalCliente;
+                }
+                if(k==12)
+                {
+                    datosFilaTotal[i] = totalProveedor;
+                }
+                if(k==14)
+                {
+                    datosFilaTotal[i] = totalSuplemento;
+                }
+                if(k==15)
+                {
+                    datosFilaTotal[i] = totalMargen;
+                }
+
                 i++;
            }
        
@@ -201,26 +192,20 @@ System.out.println("En el result: "+query);
         }
          else
         {
-            CSDesktop.ResultPedido = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
-            CSDesktop.ResultPedido.getContentPane().add( this, BorderLayout.CENTER );
-            CSDesktop.ResultPedido.pack();
-//            CSDesktop.BuscarPedido.dispose();
-            CSDesktop.elEscritorio.add( CSDesktop.ResultPedido );
+            CSDesktop.ResultValidacionPedidos = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
+            CSDesktop.ResultValidacionPedidos.getContentPane().add( this, BorderLayout.CENTER );
+            CSDesktop.ResultValidacionPedidos.pack();
+            CSDesktop.elEscritorio.add( CSDesktop.ResultValidacionPedidos );
             Dimension pantalla = CSDesktop.elEscritorio.getSize();
-            Dimension ventana = CSDesktop.ResultPedido.getSize();
-            CSDesktop.ResultPedido.setLocation(
+            Dimension ventana = CSDesktop.ResultValidacionPedidos.getSize();
+            CSDesktop.ResultValidacionPedidos.setLocation(
                (pantalla.width - ventana.width) / 2,
                (pantalla.height - ventana.height) / 2);
-            CSDesktop.ResultPedido.setVisible( true );
+            CSDesktop.ResultValidacionPedidos.setVisible( true );
         }
         initComponents();
         jTable1.setModel(modelo);
         jTable1.setDefaultRenderer (Object.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.lang.Object.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.util.Date.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.lang.String.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.lang.Double.class, new MiRender());
-
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
         columna.setPreferredWidth(50);
@@ -270,12 +255,10 @@ System.out.println("En el result: "+query);
         DefaultTableCellRenderer tcrRight = new DefaultTableCellRenderer();
         tcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
         jTable1.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
-        //jTable1.getTableHeader().setPreferredSize(new Dimension(jTable1.getTableHeader().getWidth(),26));
         jTable1.getTableHeader().setBackground(Color.GRAY);
         jTable1.getTableHeader().setForeground(Color.white);        
 
         jTable1.setAutoCreateRowSorter(true);
-
     }
 
      public Dimension getPreferredSize()
@@ -383,6 +366,7 @@ System.out.println("En el result: "+query);
             }
         });
 
+        jDateChooserFechaFa.setDateFormatString("dd-MM-yyyy"); // NOI18N
         jDateChooserFechaFa.setName("jDateChooserFechaFa"); // NOI18N
 
         jLabelFechaFa.setForeground(new java.awt.Color(0, 0, 100));
@@ -414,7 +398,7 @@ System.out.println("En el result: "+query);
         jLabelIvaTrimestre.setText("IVA Trimestre");
         jLabelIvaTrimestre.setName("jLabelIvaTrimestre"); // NOI18N
 
-        jComboBoxIvaTrimestre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 T", "2 T", "3 T", "4 T", " " }));
+        jComboBoxIvaTrimestre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1T", "2T", "3T", "4T", " " }));
         jComboBoxIvaTrimestre.setName("jComboBoxIvaTrimestre"); // NOI18N
         jComboBoxIvaTrimestre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -433,6 +417,7 @@ System.out.println("En el result: "+query);
         jLabelFechaCont.setText("Fecha contabilización");
         jLabelFechaCont.setName("jLabelFechaCont"); // NOI18N
 
+        jDateChooserFechaCont.setDateFormatString("dd-MM-yyyy"); // NOI18N
         jDateChooserFechaCont.setName("jDateChooserFechaCont"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -530,36 +515,37 @@ System.out.println("En el result: "+query);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
-        CSDesktop.ResultPedido.dispose();
+        CSDesktop.ResultValidacionPedidos.dispose();
         CSDesktop.menuBuscarPedido.setEnabled(true);
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     private void jButtonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarActionPerformed
 
-        int celdas = jTable1.getSelectedRowCount();
-        if(celdas == 0)
+        int longitud = jTable1.getSelectedRowCount();
+        int[] celdas = jTable1.getSelectedRows();
+        if(longitud == 0)
         {
             jButtonValidar.setEnabled(false);
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debes seleccionar algún pedido.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonValidar.setEnabled(true);
         }
-            int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres validar los pedidos seleccionados?");
+        else
+        {
 
+            int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres validar los pedidos seleccionados?");
 
             if (JOptionPane.OK_OPTION == confirmado)
             {
-                int numero = 0;
                 String num_carset = "";
                 String fechaFac = "";
                 String fechaCont = "";
-                String query = "SELECT max(tr_id), tr_num_carset FROM tr_tesoreria_proveedor";
+                String query = "SELECT tr_num_carset FROM tr_tesoreria_proveedor ORDER BY tr_id DESC LIMIT 1";
                 ResultSet rs = CSDesktop.datos.select(query);
                 try
                 {
                     while (rs.next())
                     {
-                        numero = Integer.valueOf(rs.getInt("max(tr_id)"));
                         num_carset = rs.getString("tr_num_carset");
                     }
                 }
@@ -568,52 +554,49 @@ System.out.println("En el result: "+query);
                     Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
                     System.out.println("Voy por aqui");
-                    int longitud = jTable1.getSelectedRow();
 
                     Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
-//                    if (fechaCalendar!=null)
-//                    {
-//                        Date fecha = fechaCalendar.getTime();
-//                        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-//                        fechaFac=formatoDeFecha.format(fecha);
-//                    }
                     Calendar fechaConta = jDateChooserFechaCont.getCalendar();
-//                    if (fechaConta!=null)
-//                    {
-//                        Date fecha = fechaConta.getTime();
-//                        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-//                        fechaCont=formatoDeFecha.format(fecha);
-//                    }
+                    String ivaTrimestre = jComboBoxIvaTrimestre.getSelectedItem().toString();
+                    String ivaAnyo = jComboBoxAnyoIva.getSelectedItem().toString();
                     String numFa = jTextFieldNFa.getText();
 
-                    String[] arrayNumCarset = num_carset.split("/");
-                    //Comprobar
-                    int numCarset = (Integer.parseInt(arrayNumCarset[2]) + 1);
+                    if (num_carset != null && !num_carset.equals(""))
+                    {
+                        String[] arrayNumCarset = num_carset.split("/");
+                        int numCarset = (Integer.parseInt(arrayNumCarset[2]) + 1);
+                        String numero = Utilidades.rellenarCeros(String.valueOf(numCarset), 4);
+                        num_carset = ivaTrimestre+"/"+ivaAnyo+"/"+numero;
+                    }
 
                     String observaciones = jTextAreaObservaciones.getText();
                     BeanTesoreriaProveedor tsProveedor = new BeanTesoreriaProveedor();
-                    tsProveedor.setTr_id(numero);
                     tsProveedor.setTr_fecha(fechaCalendar);
                     tsProveedor.setTr_fh_vencimiento(fechaConta);
                     tsProveedor.setTr_num(numFa);
-                    tsProveedor.setTr_num_carset("");
+                    tsProveedor.setTr_num_carset(num_carset);
                     tsProveedor.setPr_num(pr_id);
-                    tsProveedor.setTr_importe("");
-                    tsProveedor.setTr_iva("");
-                    tsProveedor.setTr_irpf("");
-                    tsProveedor.setTr_importe_neto("");
+                    tsProveedor.setTr_importe(totalProveedor);
+                    String[] textoIva =  (jComboBoxIvaTipo.getSelectedItem().toString()).split("%");
+                    Double iva = Double.valueOf(textoIva[0]);
+                    tsProveedor.setTr_iva(iva);
+                    tsProveedor.setTr_irpf(0.0);
+                    tsProveedor.setTr_importe_neto(0.0);
                     tsProveedor.setTr_observaciones(observaciones);
 
-                    for(int i = 0; i < pedidos.size(); i++)
+                    for(int i = 0; i < longitud; i++)
                     {
-                        String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado, pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(i)+"'";
-                        boolean rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
+                            String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado', pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(celdas[i])+"'";
+                           // boolean rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
                     }
-                    
+                try {
                     //guardamos los datos de la tesoreria
                     guardarTesoreria(tsProveedor);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
              }
-        
+        }
     }//GEN-LAST:event_jButtonValidarActionPerformed
 
         private void jTextFieldNFaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNFaActionPerformed
@@ -672,11 +655,7 @@ System.out.println("En el result: "+query);
             {
                 this. setHorizontalAlignment(SwingConstants.LEFT);
             }
-            //se toman algunos valores especificos para mi programa
-            //double cantidad = Double. parseDouble(table. getValueAt(row, 11). toString());
-            //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
-            //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
-            //si cumplen x condicion se pintan
+
             if (row % 2 ==1)
             {
                 Color fondo = new  Color(206, 227, 242);
@@ -718,39 +697,70 @@ System.out.println("En el result: "+query);
      * @param numCarset
      * @param observaciones
      */
-    public void guardarTesoreria(BeanTesoreriaProveedor ts)
+    public void guardarTesoreria(BeanTesoreriaProveedor ts) throws SQLException
     {
         Proveedor pr = new Proveedor();
         BeanProveedor beanPr = new BeanProveedor();
         int pr_num = Integer.parseInt(ts.getPr_num());
         beanPr = pr.getDatosProveedor(pr_num);
-        String proveedor = beanPr.getNombre();
-        String diasPlazo = beanPr.getPlazoPago();
-        String formaPago = beanPr.getFormaPago();
-        String numCuenta = beanPr.getNumCuenta();
-        String email = beanPr.getEmail();
+        String diasPlazo = beanPr.getPlazoPago().substring(0, 2);
+        String banco = "";
         String prTipo = beanPr.getTipo();
-        Double iva = Double.valueOf(ts.getTr_iva()).doubleValue();
+        Double importeProveedor = ts.getTr_importe();
+        Double iva = ts.getTr_iva();
+        Double totalIva  = (importeProveedor * iva) /100;
+        totalIva = Utilidades.redondear(totalIva, 2);
         Double irpf = 0.0;
-        if (prTipo.equals("Gruero"))
+
+        if (prTipo.equals("Gruero") || prTipo.equals("GRUERO"))
         {
-            irpf = (totalProveedor * 1) /100;
+            irpf = (importeProveedor * 1) /100;
             irpf = Utilidades.redondear(irpf, 2);
         }
-        Double totalImporte = totalProveedor + iva + irpf;
 
-        Calendar fechaPago = ts.getTr_fecha();//.add(Calendar.DAY_OF_MONTH, 6);
+        Double totalImporte = importeProveedor + totalIva + irpf;
+        //Fecha de factura
+        String fechaFactura = "";
+        if(ts.getTr_fecha() != null)
+        {
+            Date fecha = ts.getTr_fecha().getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaFactura=formatoDeFecha.format(fecha);
+        }
+        String fechaPago = "";
+        if (ts.getTr_fecha()!=null)
+        {
+            System.out.println("Plazo: "+ diasPlazo);
+            int plazo = Integer.parseInt(diasPlazo);
+            //sumamos a la fecha de la factura el plazo de pago del proveedor
+            ts.getTr_fecha().add(Calendar.DATE, plazo);
 
+            Date fecha = ts.getTr_fecha().getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaPago=formatoDeFecha.format(fecha);
+        }
 
         String query = "INSERT INTO tr_tesoreria_proveedor (tr_fecha, tr_num, tr_num_carset, pr_num, tr_importe_neto, " +
                                                             "tr_iva, tr_irpf, tr_importe, tr_estado, tr_fecha_pago, " +
                                                             "tr_banco, tr_observaciones) " +
-                                                            "VALUES ('"+ts.getTr_fecha()+"', '"+ts.getTr_num()+"', " +
-                                                            "'"+ts.getTr_num_carset()+"', '"+pr_num+"', '"+totalProveedor+"', " +
-                                                            "'"+iva+"', '"+irpf+"', '"+totalImporte+"', 'PTE', '"+fechaPago+"', " +
-                                                            "'"+numCuenta+"', '"+ts.getTr_observaciones()+"')";
+                                                            "VALUES ('"+fechaFactura+"', '"+ts.getTr_num()+"', " +
+                                                            "'"+ts.getTr_num_carset()+"', '"+pr_num+"', '"+importeProveedor+"', " +
+                                                            "'"+totalIva+"', '"+irpf+"', '"+totalImporte+"', 'PTE', '"+fechaPago+"', " +
+                                                            "'"+banco+"', '"+ts.getTr_observaciones()+"')";
         System.out.println(query);
         boolean rsIn = CSDesktop.datos.manipuladorDatos(query);
 
+        if(rsIn)
+        {
+            jButtonValidar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonValidar.setEnabled(true);
+        }
+        else
+        {
+            CSDesktop.ResultValidacionPedidos.dispose();
+            CSDesktop.menuTesoreriaValidacion.setEnabled(true);
+        }
     }
 }

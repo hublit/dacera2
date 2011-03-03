@@ -12,9 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -260,11 +258,11 @@ public class CSValidarPedido extends JPanel
         String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
                 " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal," +
                 " p.pe_ta_es_cliente, p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred,p.pe_fecha_origen,p.pe_fecha_destino,p.pe_fecha_real_destino," +
-                " p.pe_estado, p.pe_descripcion, p.pe_estado, cl.co_id, pc.cl_id" +
+                " p.pe_estado, p.pe_descripcion, p.pe_estado, cl.co_id, pc.cl_id, pp.pr_id" +
                 " FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc " +
                 " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +
                 " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " +
-                " AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
+                " AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id AND p.pe_estado = 'Facturado'";
 
         if (proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
         {
@@ -288,6 +286,7 @@ public class CSValidarPedido extends JPanel
             System.out.println(query);
             try {
                 CSValidarPedidosProveedor resultBuscarValidarPedido = new CSValidarPedidosProveedor(query);
+
             } catch (IOException ex) {
                 Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -310,7 +309,7 @@ public class CSValidarPedido extends JPanel
 }//GEN-LAST:event_jToggleButtonProveedorActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       CSDesktop.ValidacionPedidos.dispose();
+       CSDesktop.BuscarValidacionPedidos.dispose();
        CSDesktop.menuTesoreriaValidacion.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
