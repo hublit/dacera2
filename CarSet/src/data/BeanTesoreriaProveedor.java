@@ -19,10 +19,10 @@ public class BeanTesoreriaProveedor
     private String tr_num;
     private String tr_num_carset;
     private String pr_num;
-    private String tr_importe_neto;
-    private String tr_iva;
-    private String tr_irpf;
-    private String tr_importe;
+    private Double tr_importe_neto;
+    private Double tr_iva;
+    private Double tr_irpf;
+    private Double tr_importe;
     private String tr_estado;
     private Calendar tr_fecha_pago;
     private String tr_banco;
@@ -57,38 +57,6 @@ public class BeanTesoreriaProveedor
 
     public void setTr_estado(String tr_estado) {
         this.tr_estado = tr_estado;
-    }
-
-    public String getTr_importe() {
-        return tr_importe;
-    }
-
-    public void setTr_importe(String tr_importe) {
-        this.tr_importe = tr_importe;
-    }
-
-    public String getTr_importe_neto() {
-        return tr_importe_neto;
-    }
-
-    public void setTr_importe_neto(String tr_importe_neto) {
-        this.tr_importe_neto = tr_importe_neto;
-    }
-
-    public String getTr_irpf() {
-        return tr_irpf;
-    }
-
-    public void setTr_irpf(String tr_irpf) {
-        this.tr_irpf = tr_irpf;
-    }
-
-    public String getTr_iva() {
-        return tr_iva;
-    }
-
-    public void setTr_iva(String tr_iva) {
-        this.tr_iva = tr_iva;
     }
 
     public String getTr_num() {
@@ -137,6 +105,38 @@ public class BeanTesoreriaProveedor
 
     public void setTr_fh_vencimiento(Calendar tr_fh_vencimiento) {
         this.tr_fh_vencimiento = tr_fh_vencimiento;
+    }
+
+    public Double getTr_importe() {
+        return tr_importe;
+    }
+
+    public void setTr_importe(Double tr_importe) {
+        this.tr_importe = tr_importe;
+    }
+
+    public Double getTr_importe_neto() {
+        return tr_importe_neto;
+    }
+
+    public void setTr_importe_neto(Double tr_importe_neto) {
+        this.tr_importe_neto = tr_importe_neto;
+    }
+
+    public Double getTr_irpf() {
+        return tr_irpf;
+    }
+
+    public void setTr_irpf(Double tr_irpf) {
+        this.tr_irpf = tr_irpf;
+    }
+
+    public Double getTr_iva() {
+        return tr_iva;
+    }
+
+    public void setTr_iva(Double tr_iva) {
+        this.tr_iva = tr_iva;
     }
 
 }
