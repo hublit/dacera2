@@ -289,6 +289,13 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
                 cell. setForeground(Color. BLACK);
             }
 
+            if(isSelected==true)
+            {
+                Color fondo = new  Color(247, 174, 40);
+                cell. setBackground(fondo);
+                cell. setForeground(Color.BLACK);
+            }
+
             return cell;
         }
     }

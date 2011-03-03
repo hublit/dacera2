@@ -6,9 +6,6 @@
 
 package neg;
 
-//import utils.TablaModeloPedidos;
-import com.lowagie.text.pdf.ColumnText;
-import groovy.inspect.swingui.TableSorter;
 import utils.TablaModelo;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,8 +18,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -32,8 +27,6 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableRowSorter;
-import utils.Utilidades;
 
 /**
  *
@@ -69,19 +62,11 @@ public class CSResultBuscarSinPrPedido extends javax.swing.JPanel
         modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","ESTADO","OBSERVACIONES"});
 
         int numeroFila = 0;
-        double totalCliente = 0;
-        double totalProveedor = 0;
-        double totalSuplemento = 0;
-        double totalMargen = 0;
 
         try {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                 double ta_es_cl=0;
-                        double ta_es_pr=0;
-                        double suple=0;
-                        double ganancia=0;
                 for (int k = 0; k < 18; k++) {
                     if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==16 || k==17) {
                         if((k==1))
@@ -103,7 +88,6 @@ public class CSResultBuscarSinPrPedido extends javax.swing.JPanel
                         }
                         j++;
 
-                        
                     }
                    
                 }
@@ -336,11 +320,7 @@ public class CSResultBuscarSinPrPedido extends javax.swing.JPanel
             {
                 this. setHorizontalAlignment(SwingConstants.LEFT);
             }
-            //se toman algunos valores especificos para mi programa
-            //double cantidad = Double. parseDouble(table. getValueAt(row, 11). toString());
-            //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
-            //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
-            //si cumplen x condicion se pintan
+
             if (row % 2 ==1)
             {
                 Color fondo = new  Color(206, 227, 242);
@@ -351,6 +331,13 @@ public class CSResultBuscarSinPrPedido extends javax.swing.JPanel
             {
                 cell. setBackground(Color.white);
                 cell. setForeground(Color. BLACK);
+            }
+
+            if(isSelected==true)
+            {
+                Color fondo = new  Color(247, 174, 40);
+                cell. setBackground(fondo);
+                cell. setForeground(Color.BLACK);
             }
             return cell;
         }
