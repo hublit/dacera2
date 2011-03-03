@@ -209,7 +209,7 @@ public class Proveedor
     * @param proveedorID
     * @return
     */
-   public BeanProveedor getDatosProveedor(int proveedorID)
+   public BeanProveedor getDatosProveedor(int proveedorID) throws SQLException
    {
        BeanProveedor bProveedor = new BeanProveedor();
 
@@ -234,12 +234,13 @@ public class Proveedor
                 bProveedor.setTipo(rsCl.getString("pr_tipo"));
                 bProveedor.setEmail(rsCl.getString("pr_email"));
             }
-            rsCl.close();
         }
         catch (SQLException ex)
         {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        rsCl.close();
+
        return bProveedor;
    }
 }
