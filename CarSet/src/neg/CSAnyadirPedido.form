@@ -226,17 +226,6 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                              <Component id="jButtonMailCliente" min="-2" pref="115" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButtonMailProveedor" min="-2" pref="137" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jButtonGuardar" min="-2" pref="198" max="-2" attributes="0"/>
-                              <EmptySpace pref="224" max="32767" attributes="0"/>
-                              <Component id="jButtonCancelar1" min="-2" pref="95" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -333,7 +322,7 @@
               <Component id="lTarifaEsProv" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextTaEsProv" min="-2" pref="49" max="-2" attributes="0"/>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
               <Component id="lTarifaEsProv1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextSuplemento" min="-2" pref="49" max="-2" attributes="0"/>
@@ -341,18 +330,10 @@
               <Component id="lDescripción" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="185" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="lDescripción2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lDescripción1" min="-2" pref="71" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="191" max="-2" attributes="0"/>
+              <Component id="lObservaciones" min="-2" pref="91" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="185" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -367,6 +348,19 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <Component id="jButtonMailCliente" min="-2" pref="115" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonMailProveedor" min="-2" pref="137" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="jButtonGuardar" min="-2" pref="198" max="-2" attributes="0"/>
+              <EmptySpace pref="224" max="32767" attributes="0"/>
+              <Component id="jButtonCancelar1" min="-2" pref="95" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator8" pref="977" max="32767" attributes="1"/>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
           </Group>
@@ -375,231 +369,223 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lNumero" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jTextNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="jDateFecha" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jTextCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jToggleButtonCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jSeparator4" min="-2" pref="5" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Component id="lOrigen" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jTextDireccionOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lDireccionOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextCodPostalOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lCodPostalOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBoxProvinciaOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lProvinciaOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lPoblacionOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextPoblacionOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="lTipoOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboTipoOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lNombreOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextNombreOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lTelefonoOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextTelefonoOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lFechaOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="jTextHoraOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lHoraOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Component id="jSeparator2" min="-2" pref="5" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lDestino" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="jTextDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextCodPostalDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextPoblacionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lCodPostalDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lPoblacionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lProvinciaDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxProvinciaDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="lTipoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lNombreDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextNombreDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboTipoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lTelefonoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextTelefonoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lFechaDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="jTextHoraDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lHoraDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jDateFechaDestino" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Component id="jSeparator3" min="-2" pref="6" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextDiasCampa" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lServicio" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxServicioFMad" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lServicioFMad" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxServicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lServicioFMad2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxServicioEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxServicioFMadDestino" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="lServicioFMad1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="lSEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jCheckBoxIdaVuelta" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lMarca" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextMarca" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboFactor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="jTextModelo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lModelo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jSeparator5" min="-2" pref="7" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="jTextProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jToggleButtonProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="lSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextNumCamion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabelNcamion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jSeparator6" min="-2" pref="7" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jDateFechaOrigen" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lTarifaEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextTaEsCli" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lTarifaEsProv" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextTaEsProv" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lDescripción" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextSuplemento" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lTarifaEsProv1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lTarifaCli" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane1" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                      <Component id="lDescripción1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                      <Component id="lDescripción2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator7" min="-2" pref="7" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lEstado3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lViaje" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextViaje" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextSolred" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lSolred" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lFechaRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jDateFechaRealDestino" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonCancelar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonMailCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonMailProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lNumero" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="jTextNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jDateFecha" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jTextCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jToggleButtonCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jSeparator4" min="-2" pref="5" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+              <Component id="lOrigen" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jTextDireccionOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lDireccionOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextCodPostalOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lCodPostalOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxProvinciaOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lProvinciaOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lPoblacionOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextPoblacionOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="lTipoOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboTipoOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lNombreOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextNombreOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lTelefonoOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextTelefonoOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lFechaOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="jTextHoraOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lHoraOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="jSeparator2" min="-2" pref="5" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lDestino" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jTextDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lDireccionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextCodPostalDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextPoblacionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lCodPostalDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lPoblacionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lProvinciaDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxProvinciaDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="lTipoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lNombreDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextNombreDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboTipoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lTelefonoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextTelefonoDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lFechaDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="jTextHoraDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lHoraDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jDateFechaDestino" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="jSeparator3" min="-2" pref="6" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTextDiasCampa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lServicio" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="jComboBoxServicioFMad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lServicioFMad" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="jComboBoxServicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lServicioFMad2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxServicioEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxServicioFMadDestino" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="lServicioFMad1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="lSEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBoxIdaVuelta" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboFactor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jTextModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jSeparator5" min="-2" pref="7" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jTextProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jToggleButtonProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="lSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxSoporte" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextNumCamion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelNcamion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jSeparator6" min="-2" pref="7" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jDateFechaOrigen" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lTarifaEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextTaEsCli" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lTarifaEsProv" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextTaEsProv" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lDescripción" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextSuplemento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lTarifaEsProv1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lTarifaCli" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="535" max="-2" attributes="0"/>
-                      <Component id="jSeparator8" min="-2" pref="7" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane2" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lObservaciones" min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator7" min="-2" pref="7" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lEstado3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lViaje" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextViaje" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextSolred" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lSolred" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lFechaRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jDateFechaRealDestino" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jSeparator8" min="-2" pref="7" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonCancelar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonMailCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonMailProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -647,9 +633,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonGuardar">
       <Properties>
-        <Property name="background" type="java.awt.Color" noResource="true" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
-        </Property>
         <Property name="font" type="java.awt.Font" noResource="true" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="11" style="1"/>
         </Property>
@@ -1269,7 +1252,7 @@
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="8">
+          <StringArray count="9">
             <StringItem index="0" value="Activo"/>
             <StringItem index="1" value="En Proceso"/>
             <StringItem index="2" value="Entregado"/>
@@ -1277,7 +1260,8 @@
             <StringItem index="4" value="Cobrado"/>
             <StringItem index="5" value="Pagado"/>
             <StringItem index="6" value="Anulado"/>
-            <StringItem index="7" value="Fallido"/>
+            <StringItem index="7" value="Pedido Libre"/>
+            <StringItem index="8" value="Fallido"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxEstado" noResource="true"/>
@@ -1347,7 +1331,7 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="53">
+          <StringArray count="54">
             <StringItem index="0" value="Selecciona"/>
             <StringItem index="1" value="A CORU&#xd1;A"/>
             <StringItem index="2" value="&#xc1;LAVA"/>
@@ -1401,6 +1385,7 @@
             <StringItem index="50" value="VIZCAYA"/>
             <StringItem index="51" value="ZAMORA"/>
             <StringItem index="52" value="ZARAGOZA"/>
+            <StringItem index="53" value="OTROS"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxProvinciaOrigen" noResource="true"/>
@@ -1496,7 +1481,7 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="53">
+          <StringArray count="54">
             <StringItem index="0" value="Selecciona"/>
             <StringItem index="1" value="A CORU&#xd1;A"/>
             <StringItem index="2" value="&#xc1;LAVA"/>
@@ -1550,6 +1535,7 @@
             <StringItem index="50" value="VIZCAYA"/>
             <StringItem index="51" value="ZAMORA"/>
             <StringItem index="52" value="ZARAGOZA"/>
+            <StringItem index="53" value="OTROS"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxProvinciaDestino" noResource="true"/>
@@ -2020,13 +2006,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMailProveedorActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lDescripci&#xf3;n1">
+    <Component class="javax.swing.JLabel" name="lObservaciones">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Observaciones"/>
-        <Property name="name" type="java.lang.String" value="lDescripci&#xf3;n1" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="lObservaciones" noResource="true"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -2039,24 +2025,15 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextDescripcion1">
+        <Component class="javax.swing.JTextPane" name="jTextObservaciones">
           <Properties>
-            <Property name="name" type="java.lang.String" value="jTextDescripcion1" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jTextObservaciones" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextDescripcion1FocusLost"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextObservacionesFocusLost"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lDescripci&#xf3;n2">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="64" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Carset"/>
-        <Property name="name" type="java.lang.String" value="lDescripci&#xf3;n2" noResource="true"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>
