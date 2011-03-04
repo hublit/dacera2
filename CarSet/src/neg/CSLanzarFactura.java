@@ -25,10 +25,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import utils.Utilidades;
 import data.*;
 import data.BeanFactura;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import javax.mail.PasswordAuthentication;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -340,186 +337,9 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 labelOtros=beanFactura.getDescripcion().toUpperCase();
                             }
-                        }
-                        /*else
-                        {
-                            labelOtros=otro.getDescripcion().toUpperCase();
-                        }*/
-
+                        }                      
                     }
-           }
-
-            /*if(soporte.equals("Camion Completo"))
-            {
-
-            }*/
-
-            //PRIMERO SE COMPRUEBA SI TIENE LOS DIAS DE CAMPA O NO, PORQUE LA CAMPA ES UN PEDIDO
-
-            //SI NO TIENE DIAS CAMPA
-            //if(numCampa.equals("0"))
-            //{
-                //LINEA DE TRASLADO
-                //String servicio = otro.getServicio();
-                //String origen = otro.getProvinciaOrigen();
-                //String destino = otro.getProvinciaDestino();
-
-                //if((!origen.equals("Selecciona")) && (!destino.equals("Selecciona")))
-                //{
-                //    if(origen.equals(destino))
-                //    {
-                //        finalServicio=origen+" "+ servicio.toUpperCase();
-                //    }
-                //    else
-                //    {
-                //        finalServicio=origen+" - "+ destino;
-                //    }
-                //    labelTraslado="TRASLADO";
-                //}
-                //else
-                //{
-                //    finalServicio="MADRID" + servicio;
-                //}
-
-                //TARIFA
-                // SI NO HAY TARIFA ESPECIAL CLIENTE, LA TARIFA SE RECOGE DE LA TABLA DE TARIFAS
-                //if(otro.getTarifaEsCliente().equals("-1"))
-                //{
-                //    importeTraslado = otro.getTarifa();
-
-                    // SI EL SOPORTE ES CAMION COMPLETO Y SU NUMERO EN CAMION NO ES 1
-                    // EL IMPORTE ES 0 PORQUE SOLO LLEVA IMPORTE EL PRIMERO
-                    //if(soporte.equals("Camión completo") && !numCamion.equals("1"))
-                    //    importeTraslado="0";
-
-                //}
-                // SI HAY TARIFA ESPECIAL CLIENTE PUEDEN OCURRIR DOS CASOS
-                //else
-                //{
-                    //SI EL SERVICIO ESPECIAL NO ES "OTROS", LA TAFIFA ES LA TARIFA ESPECIAL
-                    //if (!otro.getServicioEspecial().equals("Otros"))
-                    //    importeTraslado = otro.getTarifaEsCliente();
-                    //SI EL SERVICIO ESPECIAL ES "OTROS", LA TARIFA SE COGE DE LA TABLA DE LAS TARIFAS
-                    //else
-                    //    importeTraslado=otro.getTarifa();
-                        // SI EL SOPORTE ES CAMION COMPLETO Y SU NUMERO EN CAMION NO ES 1
-                        // EL IMPORTE ES 0 PORQUE SOLO LLEVA IMPORTE EL PRIMERO
-                   //     if(soporte.equals("Camión completo") && !numCamion.equals("1"))
-                    //        importeTraslado="0";
-                //}
-                //importeTarifa = Double.parseDouble(importeTraslado);
-
-                //SI TIENE IDA Y VUELTA
-                //if(otro.getIdaVuelta().equals("1"))
-                //{
-                //   String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
-
-                //   ResultSet rsIv = CSDesktop.datos.select(queryIv);
-                //   while (rsIv.next())
-                //   {
-                //      IdaVuelta = rsIv.getString("sc_ida_vuelta");
-                //   }
-
-                //    labelIda="DESCUENTO";
-                //    textoIda="IDA-VUELTA ("+IdaVuelta+"%)";
-
-               //     IdaVueltaP=Double.parseDouble(IdaVuelta);
-
-               //     IdaVuelta2=(importeTarifa*IdaVueltaP)/100;
-
-                    //importeIda="- " + String.valueOf(IdaVuelta2);
-                //}
-
-                 //LINEA DE FACTOR DE CORRECCION
-                 //ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
-                 //factorTexto = factorTarifa.get(0).toString();
-
-                 // SI HAY TARIFA ESPECIAL CLIENTE NO SE APLICA EL FACTOR DE CORRECCION
-                 //if(otro.getTarifaEsCliente().equals("-1"))
-                 //{
-                    // SI EL SOPORTE ES GRUA, ES EL UNICO CASO EN EL QUE HAY FACTOR DE CORRECCION.
-                    //if(soporte.equals("Grúa"))
-                    //{
-                        //SI ES SIN FACTOR O TURISMO, Y EL IMPORTE NO ES VACIO, SE CALCULA EL FACTOR DE CORRECCION.
-                        //if((!factorTexto.equals("Sin factor") && (!factorTexto.equals("TURISMO")) )&& !importeTraslado.equals(""))
-                        //{
-                        //    labelFactor = "FACTOR DE CORRECCION";
-                        //    DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
-                        //    double ft = Double.parseDouble(factorTarifa.get(1).toString());
-                        //    importeFc = ((importeTarifa * ft) - importeTarifa);
-                        //    double nuevoImporteFactor=Utilidades.redondear(importeFc, 2);
-                        //    importeFactor = Double.toString(nuevoImporteFactor);
-                        //    factorTexto2=factorTarifa.get(0).toString();
-                        //}
-                    //}
-                // }
-                //SUPLEMENTO
-                //if(!otro.getSuplemento().equals("0"))
-                //{
-                //    labelSuplemento="SUPLEMENTO";
-                //    ServicioSuplemento = otro.getDescripcion();
-                //    importeSuplemento=otro.getSuplemento();
-                //    importeSup = Integer.parseInt(importeSuplemento);
-                //}
-            //}
-            //SI EL CAMPO DIAS CAMPA VIENE CON EL VALOR DISTINTO DE 0
-            //else
-            //{
-              //   String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
-
-              //     ResultSet rsCampa = CSDesktop.datos.select(queryCampa);
-              //     while (rsCampa.next())
-              //     {
-              //        importeCampaAux = rsCampa.getString("sc_entrada_campa");
-              //        importeCampa2Aux = rsCampa.getString("sc_campa");
-              //     }
-
-              //  soporte = "CAMPA";
-              //  labelCampa = "CAMPA";
-              //  labelCampa2 = "CAMPA";
-              //  finalCampa = "ENTRADA";
-              //  finalCampa2 = otro.getDiasCampa()+ " DIAS * " + importeCampa2Aux;
-              //  importeCampa=importeCampaAux;
-
-              //  importeCampa4=Double.parseDouble(importeCampa);
-             //   importeCampa5=(Double.parseDouble(otro.getDiasCampa()))*(Double.parseDouble(importeCampa2Aux));
-
-              //  importeCampa2=String.valueOf(importeCampa5);
-
-              //  ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
-              //  factorTexto = factorTarifa.get(0).toString();
-           // }
-
-             //SERVICIO ESPECIAL
-            // importeServicioEs=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,cl_id,fecha);
-            // if(!importeServicioEs.equals(""))
-             //   importeServicio = Double.parseDouble(importeServicioEs);
-
-            // SI SE HA SELECCIONADO UN SERVICIO ESPECIAL
-            //if(!otro.getServicioEspecial().equals(""))
-            //{
-                // SI EL SERVICIO ESPECIAL ES OTROS
-             //   if(otro.getServicioEspecial().equals("Otros"))
-             //   {
-                   //SE RECOGE EL MENSAJE DEL CAMPO DESCRIPCION Y SU VALOR ES LA TARIFA ESPECIAL CLIENTE
-              //     labelOtros=otro.getDescripcion().toUpperCase();
-              //     importeServicioOtros=Integer.parseInt(otro.getTarifaEsCliente());
-                   //importeServicioEsOtros=otro.getTarifaEsCliente();
-              //     importeServicioEsOtros="";
-              //    importeTraslado=otro.getTarifaEsCliente();
-              //     importeServicioOtros=0;
-               //    servicioEspecial="";
-
-              //  }
-                // SI EL SERVICIO ESPECIAL NO ES OTROS
-               // else
-              //  {
-              //     servicioEspecial=otro.getServicioEspecial().toUpperCase();
-              //     labelServicioEspecial="SERVICIO ESPECIAL";
-              //  }
-
-           // }
-
+           }          
             //TOTAL
             totalAux = importeTrasladoD - IdaVueltaDF + importeFc + importeServicioD + importeSupD + importeCampaEntradaD + importeCampaDiasD;
             importeTotalAuxS = Double.toString(totalAux);
@@ -554,7 +374,8 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
          //SE SUMA EL RESULTADO Y EL IVA
          totalIva = total + iva;
-         importeTotalIva = Double.toString(totalIva);
+         double totalIva2=Utilidades.redondear(totalIva, 2);
+         importeTotalIva = Double.toString(totalIva2);
 
          //SE GENERA LA FACTURA EN PDF
          JasperReport jasperReport = null;
@@ -671,12 +492,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 // SE LE PASA COMO PARAMETRO A LA FACUTA
                 pars.put("NumFactura",finalNumFactura);
             }
-
-            //ESTOS CAMPOS DE MOMENTO LOS VOY A COMENTAR PORQUE NO SE SI SIRVEN O NO
-            /*pars.put("TipoServicio","Probanso");
-            pars.put("Servicio","Prueba");
-            pars.put("Importe","Dinero");*/
-
+          
             // LLENAMOS EL REPORTE CON LA INFORMACION Y PARAMETROS NECESARIOS
             jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/Factura.jasper"), pars, con);
 
@@ -702,22 +518,21 @@ public class CSLanzarFactura extends javax.swing.JPanel
             // SI ES GENERACION, HAY QUE INTRODUCIR UN REGISTRO EN LA TABLA DE FACTURAS CLIENTES
             else
             {
-                String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
-                        "fl_fecha_pago, fl_pagado, fl_fecha, fl_importe_total) VALUES (";
-                query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0','"+fechaFactura+"', "+totalIva+")";
-                //String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
-                //        "fl_fecha_pago, fl_pagado) VALUES (";
-                //query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0')";
-                System.out.println(query);
+                if(numero!=1)
+                {
+                    String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
+                            "fl_fecha_pago, fl_pagado, fl_fecha, fl_importe_total) VALUES (";
+                    query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0','"+fechaFactura+"', "+totalIva2+")";
+                   
+                    System.out.println(query);
 
-                 boolean rs = CSDesktop.datos.manipuladorDatos(query);
-                 if(rs)
-                 {
-                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-                        JOptionPane.showMessageDialog(null,errorFields);
-                 }
-                 else
-                 {
+                     boolean rs = CSDesktop.datos.manipuladorDatos(query);
+                     if(rs)
+                     {
+                            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                            JOptionPane.showMessageDialog(null,errorFields);
+                     }
+                }
                      BeanCorreoCliente mail = new BeanCorreoCliente();
                      mail.setCliente(beanCliente.getNombre());
                      mail.setClienteID(beanCliente.getCl_id());
@@ -727,25 +542,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                      mail.setMarca(beanCliente.getPlazoPago());
                      mail.setModelo(beanCliente.getDiasPlazo());
                      mail.setMatricula(beanCliente.getFormaPago());
-
-                     /*SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
-                     Date datehora=null;
-                        try {
-                            datehora = sdf1.parse(nuevaFechaFactura);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                     // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
-                     Calendar myGDate=new GregorianCalendar();
-                     myGDate.setTime(datehora);
-                     myGDate.add(Calendar.DAY_OF_MONTH, 15);
-                     Date fechaActual = myGDate.getTime();
-                     SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
-                     String fecha2=formatoDeFecha.format(fechaActual);
-                     // SE INTRODUCE EL VALOR EN EL BEAN
-                     mail.setFechaEntrega(fecha2);*/
-
+                     
                      // SE LLAMA AL VISOR DE PDF´S
                      JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail,0);
                      CSDesktop.NuevaFactura = new JInternalFrame("Generación Factura Cliente", true, false, false, true );
@@ -785,14 +582,14 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                 if(codigo==1)
                                 {
                                     CSDesktop.ResultFacturaPedido.dispose();
-                                    CSFacturaClientePedido facturaCliente = new CSFacturaClientePedido(beanCliente.getNombre(),fechaIni,fechaFin);
+                                    CSFacturaClientePedido facturaCliente = new CSFacturaClientePedido(beanCliente.getNombre(),fechaIni,fechaFin,false);
                                     CSDesktop.ResultFacturaPedido.toBack();
                                     CSDesktop.FacturaClientePedido.toBack();
                                     CSDesktop.NuevaFactura.toFront();
                                 }
                             }
                         }
-                    }
+                    
                  }
             } // FIN DE GENERACION DE FACTURA
         }
@@ -806,22 +603,10 @@ public class CSLanzarFactura extends javax.swing.JPanel
   {
  
         try {
-            try {
-                    //SE RECOGE A QUIEN SE VA A ENVIAR EL MAIL
-                    /*String queryContacto="SELECT * FROM CC_CONTACTOS_CLIENTE WHERE CL_ID="+mail.getClienteID()+" LIMIT 1";
-                    ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
-                    String nombreContacto="";
-                    String email="";*/
-
+            try {                   
                     double importe=Utilidades.redondear(Double.parseDouble(mail.getTarifa()),2);
                     String importeS=String.valueOf(importe);
-
-                    /*while (rsContacto.next())
-                    {
-                        nombreContacto=rsContacto.getString("cc_nombre");
-                        email=rsContacto.getString("cc_email");
-                    }*/
-
+                   
                     Properties props = new Properties();
                     props.put("mail.transport.protocol","smtp");
                     props.put("mail.smtp.host", "smtp.e.telefonica.net");
@@ -987,4 +772,305 @@ public class CSLanzarFactura extends javax.swing.JPanel
            return new PasswordAuthentication(username, password);
         }
     }
+
+    public void lanzarLibre(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin,ArrayList pedidos, int codigo,String IVA, String labelIRPF) throws ClassNotFoundException, SQLException, JRException, UnknownHostException
+    {
+         double importeIva=0;
+         double importeIRPF=0;
+         double importeTotal =0;
+         double Iniciald=0;
+         String importeIvaS="";
+         String importeIRPFS="";
+         String importeTotalS ="";
+
+        // PRIMERO SE BORRA LA TABLA AUXILIAR PARA GENERAR LAS FACTURAS.
+        String queryDel = "DELETE FROM fa_facturas_aux";
+        boolean resDel = CSDesktop.datos.manipuladorDatos(queryDel);     
+        String cl_id = beanCliente.getCl_id();
+
+        for(int i = 0; i < lista.size(); i++)
+        {           
+            BeanFactura beanFactura = (BeanFactura)lista.get(i);
+
+            String numPedido=Long.valueOf(beanFactura.getNumPedido()).toString();
+            String finalNum=Utilidades.rellenarCeros(numPedido, 5);
+            String fecha=beanFactura.getFecha();
+            finalNum=finalNum +"/"+ fecha.substring(2, 4);            
+            String descripcion=beanFactura.getDescripcion();
+            String importeInicial=beanFactura.getTarifaEsCliente();
+
+            double IVAd=Double.parseDouble(IVA);
+            double IRPFd=Double.parseDouble(labelIRPF);
+            Iniciald=Double.parseDouble(importeInicial);
+            importeIva=Utilidades.redondear((Iniciald * IVAd)/100,2);
+            importeIRPF=Utilidades.redondear((Iniciald * IRPFd)/100,2);
+
+            importeTotal = Utilidades.redondear((Iniciald + importeIva - importeIRPF), 2);
+
+            importeIvaS=String.valueOf(importeIva);
+            importeIRPFS=String.valueOf(importeIRPF);
+            importeTotalS=String.valueOf(importeTotal);
+
+            String query = "INSERT INTO fa_facturas_aux (fa_num, fa_fecha, " +                                                                                                                                                                                                                                                                                        
+                                                        "fa_servicio_otro,fa_importe_servicio_otro) " +
+                                                        "VALUES (";
+            query = query + "'"+finalNum+"','"+fecha+"','"+descripcion+"','"+importeInicial+"')";
+
+            System.out.println(query);
+            boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
+
+            
+        } // FIN DEL FOR QUE COMPRUEBA SI EXISTEN MAS PEDIDOS
+                                  
+         //SE GENERA LA FACTURA EN PDF
+         JasperReport jasperReport = null;
+         Connection con = null;
+         String direccionFiscal="";
+         String poblacionFiscal="";
+         String provinciaFiscal="";
+         String codPostalFiscal="";
+         String finalNumFactura="";
+
+
+         try
+         {
+            // SE REALIZA LA CONEXION
+            DbConnection conexion=new DbConnection();
+            con=conexion.getConexion();
+
+            // COMPILAMOS EL ARCHIVO XML Y LO CARGAMOS EN MEMORIA
+            jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/FacturaLibre.jrxml"));
+
+            //SI VIENE INFORMADA LA DIRECCION FISCAL
+            if(beanCliente.getDireccion_fiscal().equals(""))
+            {
+                direccionFiscal=beanCliente.getDireccion();
+                poblacionFiscal=beanCliente.getPoblacion();
+                provinciaFiscal=beanCliente.getProvincia();
+                codPostalFiscal=beanCliente.getCod_postal();
+            }
+            // SINO SE PONE LA DIRECCION COMO DIRECCION FISCAL
+            else
+            {
+                direccionFiscal=beanCliente.getDireccion_fiscal();
+                poblacionFiscal=beanCliente.getPoblacion_fiscal();
+                provinciaFiscal=beanCliente.getProvinciaFiscal();
+                codPostalFiscal=beanCliente.getCod_postal_fiscal();
+            }
+
+            // SE PONE LA FECHA DE LA FACTURA EN EL FORMATO ELEGIDO
+            String [] tempOrigen = null;
+            tempOrigen = fechaFactura.split("\\-");
+            String nuevaFechaFactura=tempOrigen[2]+"/"+tempOrigen[1]+"/"+tempOrigen[0];
+
+             SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+             Date datehora=null;
+             try
+             {
+                datehora = sdf1.parse(nuevaFechaFactura);
+             } catch (ParseException ex) {
+                Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+             }
+
+            // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
+            String plazoPago=beanCliente.getPlazoPago();
+            int diasPlazo=0;
+            if (plazoPago.equals("Especial"))
+            {
+                diasPlazo=Integer.parseInt(beanCliente.getDiasPlazo());
+            }
+            else
+            {
+                diasPlazo=Integer.parseInt(plazoPago.substring(0,2));
+            }
+
+            Calendar myGDate=new GregorianCalendar();
+            myGDate.setTime(datehora);
+            myGDate.add(Calendar.DAY_OF_MONTH, diasPlazo );
+            Date fechaActual = myGDate.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+            String fecha2=formatoDeFecha.format(fechaActual);
+            // SE INTRODUCE EL VALOR EN EL BEAN
+            //mail.setFechaEntrega(fecha2);
+
+            IVA=IVA+" %";
+            labelIRPF=labelIRPF+" %";
+            // SE INTRODUCEN LOS VALORES DE LOS PARAMETROS DE LA FACTURA
+            Map pars = new HashMap();
+                pars.put("FechaFactura", nuevaFechaFactura);
+                pars.put("NombreCliente",beanCliente.getNombre());
+                pars.put("DireccionFiscal", direccionFiscal);
+                pars.put("Direccion", beanCliente.getDireccion());
+                pars.put("PoblacionFiscal", poblacionFiscal);
+                pars.put("Poblacion", beanCliente.getPoblacion());
+                pars.put("ProvinciaFiscal", provinciaFiscal);
+                pars.put("Provincia", beanCliente.getProvincia());
+                pars.put("CodPostalFiscal", codPostalFiscal);
+                pars.put("CodPostal", beanCliente.getCod_postal());
+                pars.put("CIF", beanCliente.getDNI_CIF());
+                pars.put("Query","SELECT * FROM pe_pedidos;");
+                pars.put("Blanco","");
+                pars.put("IVA",IVA);
+                pars.put("labelIRPF",labelIRPF);
+                pars.put("ImporteIVA",importeIva);
+                pars.put("ImporteIRPF", importeIRPFS);
+                pars.put("ImporteTotal", importeTotal);
+                pars.put("ImporteSinIVA",Iniciald);
+                pars.put("EURO","€");
+                pars.put("FechaVFactura",fecha2);
+
+            // SI EL NUMERO ES 0, SIGNIFICA QUE SE HA PULSADO EL BOTON PREVISUALIZAR
+            if(numero==0)
+            {
+                pars.put("NumFactura","PREV");
+            }
+            else if (numero==1)
+            {
+                BeanFactura bean = (BeanFactura) lista.get(0);
+                pars.put("NumFactura",bean.getAux());
+            }
+            // SI NO, HAY QUE GENERAR UN NUEVO NUMERO DE FACTURA
+            else
+            {
+                // EL NUMERO DE FACTURA SERIA DEL TIPO 00001/00001/10 (NUMERO FACTURA/NUMERO CLIENTE/AÑO)
+                String numFactura=Integer.valueOf(numero).toString();
+                finalNumFactura=Utilidades.rellenarCeros(numFactura,5);
+                String finalNumCliente=Utilidades.rellenarCeros(beanCliente.getCl_id(), 5);
+                finalNumFactura=nuevaFechaFactura.substring(8, 10)+"/"+ finalNumCliente +"/"+ finalNumFactura;
+                // SE LE PASA COMO PARAMETRO A LA FACUTA
+                pars.put("NumFactura",finalNumFactura);
+            }
+
+            //ESTOS CAMPOS DE MOMENTO LOS VOY A COMENTAR PORQUE NO SE SI SIRVEN O NO
+            /*pars.put("TipoServicio","Probanso");
+            pars.put("Servicio","Prueba");
+            pars.put("Importe","Dinero");*/
+
+            // LLENAMOS EL REPORTE CON LA INFORMACION Y PARAMETROS NECESARIOS
+            jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/FacturaLibre.jasper"), pars, con);
+
+            // GUARDAR LA FACTURA EN EL DIRECTORIO TEMPORAL DE WINDOWS
+            String finalNumFactura2=finalNumFactura.replace("/","_");
+            nombreFichero=beanCliente.getNombre()+"_"+finalNumFactura2+".pdf";
+            String property = "java.io.tmpdir";
+            String tempDir = System.getProperty(property);
+            System.out.println("OS current temporary directory is " + tempDir);
+
+            // SI ES LA PREVISUALIZACION, SE LLAMA A UN VISOR EN EL QUE NO EXISTEN ALGUNOS BOTONES
+            if(numero==0)
+            {
+                 JRViewerSin jrViewer = new JRViewerSin(jasperPrint);
+                 CSDesktop.NuevaFactura = new JInternalFrame("Previsualización Factura Cliente", true, false, false, true );
+                 CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+                 CSDesktop.NuevaFactura.pack();
+                 CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
+                 Dimension pantalla = CSDesktop.elEscritorio.getSize();
+                 CSDesktop.NuevaFactura.setSize(pantalla);
+                 CSDesktop.NuevaFactura.setVisible(true);
+            }
+            // SI ES GENERACION, HAY QUE INTRODUCIR UN REGISTRO EN LA TABLA DE FACTURAS CLIENTES
+            else
+            {
+                if(numero!=1)
+                {
+                    String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
+                            "fl_fecha_pago, fl_pagado, fl_fecha, fl_importe_total) VALUES (";
+                    query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0','"+fechaFactura+"', "+importeTotal+")";
+                    //String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
+                    //        "fl_fecha_pago, fl_pagado) VALUES (";
+                    //query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0')";
+                    System.out.println(query);
+
+                     boolean rs = CSDesktop.datos.manipuladorDatos(query);
+                     if(rs)
+                     {
+                            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                            JOptionPane.showMessageDialog(null,errorFields);
+                     }
+                }
+                     BeanCorreoCliente mail = new BeanCorreoCliente();
+                     mail.setCliente(beanCliente.getNombre());
+                     mail.setClienteID(beanCliente.getCl_id());
+                     mail.setFecha(nuevaFechaFactura);
+                     mail.setNumPedido(finalNumFactura);
+                     mail.setTarifa(String.valueOf(importeTotal));
+                     mail.setMarca(beanCliente.getPlazoPago());
+                     mail.setModelo(beanCliente.getDiasPlazo());
+                     mail.setMatricula(beanCliente.getFormaPago());
+
+                     /*SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+                     Date datehora=null;
+                        try {
+                            datehora = sdf1.parse(nuevaFechaFactura);
+                        } catch (ParseException ex) {
+                            Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                     // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
+                     Calendar myGDate=new GregorianCalendar();
+                     myGDate.setTime(datehora);
+                     myGDate.add(Calendar.DAY_OF_MONTH, 15);
+                     Date fechaActual = myGDate.getTime();
+                     SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+                     String fecha2=formatoDeFecha.format(fechaActual);
+                     // SE INTRODUCE EL VALOR EN EL BEAN
+                     mail.setFechaEntrega(fecha2);*/
+
+                     // SE LLAMA AL VISOR DE PDF´S
+                     JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail,0);
+                     CSDesktop.NuevaFactura = new JInternalFrame("Generación Factura Cliente", true, false, false, true );
+                     CSDesktop.NuevaFactura.getContentPane().add( jrViewer, BorderLayout.CENTER );
+                     CSDesktop.NuevaFactura.pack();
+                     CSDesktop.elEscritorio.add( CSDesktop.NuevaFactura );
+                     Dimension pantalla = CSDesktop.elEscritorio.getSize();
+                     CSDesktop.NuevaFactura.setSize(pantalla);
+                     CSDesktop.NuevaFactura.setVisible(true);
+
+                     // EXPORTAMOS EL REPORTE A PDF Y LO GUARDAMOS EN DISCO
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, tempDir+"/"+nombreFichero);
+
+
+                    //CAMBIAMOS LOS PEDIDOS DE ESTADO, SE PIDE CONFIRMACION
+                    if(numero!=1)
+                    {
+                        if(pedidos.size()>0)
+                        {
+                            int seleccion = JOptionPane.showOptionDialog(
+                                CSLanzarFactura.this,
+                                "¿Quieres cambiar el estado de los envíos a 'Facturado'?",
+                                "Atención",
+                                JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                new Object[] { "SI", "NO"},
+                                "SI");
+
+                            // SI LA RESPUESTA ES POSITIVA, SE CAMBIA EL ESTADO DE LOS PEDIDOS
+                            if(seleccion == 0)
+                            {
+                                for (int i=0;i<pedidos.size();i++)
+                                {
+                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)));
+                                }
+                                if(codigo==1)
+                                {
+                                    CSDesktop.ResultFacturaPedido.dispose();
+                                    CSFacturaClientePedido facturaCliente = new CSFacturaClientePedido(beanCliente.getNombre(),fechaIni,fechaFin,true);
+                                    CSDesktop.ResultFacturaPedido.toBack();
+                                    CSDesktop.FacturaClientePedido.toBack();
+                                    CSDesktop.NuevaFactura.toFront();
+                                }
+                            }
+                        }
+
+                 }
+            } // FIN DE GENERACION DE FACTURA
+        }
+        catch (JRException e)
+        {
+          e.printStackTrace();
+        }
+    }// FIN DE LA CLASE LANZAR
+
+
 }
