@@ -564,6 +564,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                 cell. setBackground(Color.white);
                 cell. setForeground(Color. BLACK);
             }
+
             //si no cumplen esa condicion pongo las celdas en color blanco
             if (table. getValueAt(row, 10). toString().equals("TOTALES"))
             {
@@ -572,6 +573,14 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                 cell. setForeground(Color. BLACK);
                 cell.setFont(new Font(null, Font.BOLD, 12));
             }
+
+            if(isSelected==true)
+            {
+                Color fondo = new  Color(247, 174, 40);
+                cell. setBackground(fondo);
+                cell. setForeground(Color.BLACK);
+            }
+
             return cell;
         }
     }

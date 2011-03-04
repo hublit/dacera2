@@ -3,7 +3,7 @@ package neg;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import utils.TablaModelo;
+import utils.TablaModeloTesoreria;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -16,12 +16,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -45,7 +49,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
     public CSResultBuscarTesoreriaProveedor(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
         consulta = query;
-        TablaModelo modelo = new TablaModelo();
+        TablaModeloTesoreria modelo = new TablaModeloTesoreria();
         ResultSet rs = CSDesktop.datos.select(query);
 
         KeyListener l = new KeyListener()
@@ -524,7 +528,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 cell. setForeground(Color. BLACK);
             }
 
-            if (column == 13 || column == 14 || column == 15 )
+            if (column == 12 || column == 13 || column == 14 )
             {
                 Color fondo = new  Color(255, 255, 157);
                 cell.setBackground(fondo);
@@ -545,29 +549,23 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 cell. setBackground(fondo);
                 cell. setForeground(Color.BLACK);
             }
-            //isCellEditable(row, column);
 
-            //table.editCellAt(1, 11);
+            // These are the combobox values
+            String[] values = new String[]{"LC", "OP"};
+
+            if (column == 14)
+            {
+                TableColumn col = table.getColumnModel().getColumn(column);
+                col.setCellEditor(new MyComboBoxEditor(values));
+                // If the cell should appear like a combobox in its
+                // non-editing state, also set the combobox renderer
+                col.setCellRenderer(new MyComboBoxRenderer(values));
+            }
+
             return cell;
         }
 
-        /**
-         *
-         * @param row
-         * @param column
-         * @return
-         */
-        public boolean isCellEditable (int row, int column)
-        {
-        if(column==11 || column==12 || column==13)
-            {
-                return (true);
-            }
-            else
-            {
-            return (false);
-            }
-        }
+
 
     }
 
@@ -928,4 +926,32 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
                 }
         }
+
+
+public class MyComboBoxRenderer extends JComboBox implements TableCellRenderer {
+    public MyComboBoxRenderer(String[] items) {
+        super(items);
+    }
+
+    public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+        if (isSelected) {
+            setForeground(table.getSelectionForeground());
+            super.setBackground(table.getSelectionBackground());
+        } else {
+            setForeground(table.getForeground());
+            setBackground(table.getBackground());
+        }
+
+        // Select the current value
+        setSelectedItem(value);
+        return this;
+    }
+}
+
+public class MyComboBoxEditor extends DefaultCellEditor {
+    public MyComboBoxEditor(String[] items) {
+        super(new JComboBox(items));
+    }
+}
 }
