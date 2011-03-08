@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -221,75 +222,57 @@ public class CSValidarPedido extends JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-
-        int proveedorID = 0;
-        String fechaI="";
-        String fechaF="";
-        String fechaFac="";
-        ArrayList lista=new ArrayList();
-
-        String proveedor = new String(jTextProveedor.getText());
-        Proveedor oProveedor = new Proveedor();
-        BeanProveedor beanProveedor = new BeanProveedor();
-
-        proveedorID = oProveedor.getProveedorID(proveedor);
-        beanProveedor = oProveedor.getDatosProveedor(proveedorID);
-        beanProveedor.setPr_id(String.valueOf(proveedorID));
-
-        Calendar fechaCalendar = jDateFecha.getCalendar();
-        //String fecha = ConvertirFechaString(fechaCalendar);
-        if (fechaCalendar!=null)
-        {
-            Date fecha = fechaCalendar.getTime();
-            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-            fechaI=formatoDeFecha.format(fecha);
-        }
-
-        fechaCalendar = jDateFechaFin.getCalendar();
-        //String fecha = ConvertirFechaString(fechaCalendar);
-        if (fechaCalendar!=null)
-        {
-            Date fecha = fechaCalendar.getTime();
-            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-            fechaF=formatoDeFecha.format(fecha);
-        }
-
-
-        String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
-                " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal," +
-                " p.pe_ta_es_cliente, p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred,p.pe_fecha_origen,p.pe_fecha_destino,p.pe_fecha_real_destino," +
-                " p.pe_estado, p.pe_descripcion, p.pe_estado, cl.co_id, pc.cl_id, pp.pr_id" +
-                " FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc " +
-                " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +
-                " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " +
-                " AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id AND p.pe_estado = 'Facturado'";
-
-        if (proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
-        {
-            jButtonBuscar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Proveedor o período de tiempo</FONT></HTML>");
-            JOptionPane.showMessageDialog(null,errorFields);
-            jButtonBuscar.setEnabled(true);
-        }
-        else
-        {
-             if (!proveedor.equals("")) {
-                Proveedor proveedor2 = new Proveedor();
-                proveedorID = proveedor2.getProveedorID(proveedor);
-                query = query + " AND pp.pr_id = " + proveedorID;
+        try {
+            int proveedorID = 0;
+            String fechaI = "";
+            String fechaF = "";
+            String fechaFac = "";
+            ArrayList lista = new ArrayList();
+            String proveedor = new String(jTextProveedor.getText());
+            Proveedor oProveedor = new Proveedor();
+            BeanProveedor beanProveedor = new BeanProveedor();
+            proveedorID = oProveedor.getProveedorID(proveedor);
+            beanProveedor = oProveedor.getDatosProveedor(proveedorID);
+            beanProveedor.setPr_id(String.valueOf(proveedorID));
+            Calendar fechaCalendar = jDateFecha.getCalendar();
+            //String fecha = ConvertirFechaString(fechaCalendar);
+            if (fechaCalendar != null) {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fechaI = formatoDeFecha.format(fecha);
             }
-            if ((!fechaI.equals("")) && (!fechaF.equals(""))) {
-                query = query + " AND p.pe_fecha >='" + fechaI + "' AND p.pe_fecha<='" + fechaF + "'";
+            fechaCalendar = jDateFechaFin.getCalendar();
+            //String fecha = ConvertirFechaString(fechaCalendar);
+            if (fechaCalendar != null) {
+                Date fecha = fechaCalendar.getTime();
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                fechaF = formatoDeFecha.format(fecha);
             }
-
-            query = query + " ORDER BY p.pe_fecha ASC";
-            System.out.println(query);
-            try {
-                CSValidarPedidosProveedor resultBuscarValidarPedido = new CSValidarPedidosProveedor(query);
-
-            } catch (IOException ex) {
-                Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
+            String query = "SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino," + " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal," + " p.pe_ta_es_cliente, p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred,p.pe_fecha_origen,p.pe_fecha_destino,p.pe_fecha_real_destino," + " p.pe_estado, p.pe_descripcion, p.pe_estado, cl.co_id, pc.cl_id, pp.pr_id" + " FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc " + " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " + " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " + " AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id AND p.pe_estado = 'Facturado'";
+            if (proveedor.equals("") && (fechaI.equals("") && fechaF.equals(""))) {
+                jButtonBuscar.setEnabled(false);
+                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Proveedor o período de tiempo</FONT></HTML>");
+                JOptionPane.showMessageDialog(null, errorFields);
+                jButtonBuscar.setEnabled(true);
+            } else {
+                if (!proveedor.equals("")) {
+                    Proveedor proveedor2 = new Proveedor();
+                    proveedorID = proveedor2.getProveedorID(proveedor);
+                    query = query + " AND pp.pr_id = " + proveedorID;
+                }
+                if ((!fechaI.equals("")) && (!fechaF.equals(""))) {
+                    query = query + " AND p.pe_fecha >='" + fechaI + "' AND p.pe_fecha<='" + fechaF + "'";
+                }
+                query = query + " ORDER BY p.pe_fecha ASC";
+                System.out.println(query);
+                try {
+                    CSValidarPedidosProveedor resultBuscarValidarPedido = new CSValidarPedidosProveedor(query);
+                } catch (IOException ex) {
+                    Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
