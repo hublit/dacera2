@@ -22,7 +22,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
@@ -289,7 +288,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         TableColumn columna13 = jTable1.getColumnModel().getColumn(13);
         columna13.setPreferredWidth(80);
         TableColumn columna14 = jTable1.getColumnModel().getColumn(14);
-        columna14.setPreferredWidth(40);
+        columna14.setPreferredWidth(60);
         TableColumn columna15 = jTable1.getColumnModel().getColumn(15);
         columna15.setPreferredWidth(80);
         TableColumn columna16 = jTable1.getColumnModel().getColumn(16);
@@ -534,14 +533,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 cell.setBackground(fondo);
                 cell. setForeground(Color.DARK_GRAY);
             }
-            //si no cumplen esa condicion pongo las celdas en color blanco
-            if (table. getValueAt(row, 4). toString().equals("TOTALES"))
-            {
-                Color fondo = new  Color(244, 144, 144);
-                cell. setBackground(fondo);
-                cell. setForeground(Color. BLACK);
-                cell.setFont(new Font(null, Font.BOLD, 12));
-            }
 
             if(isSelected==true)
             {
@@ -552,8 +543,9 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
             // These are the combobox values
             String[] values = new String[]{"LC", "OP"};
-
-            if (column == 14)
+            int fila = row + 1;
+            System.out.println(table.getRowCount()+" / "+fila);
+            if (column == 14 && (table.getRowCount() > fila))
             {
                 TableColumn col = table.getColumnModel().getColumn(column);
                 col.setCellEditor(new MyComboBoxEditor(values));
@@ -561,6 +553,18 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 // non-editing state, also set the combobox renderer
                 col.setCellRenderer(new MyComboBoxRenderer(values));
             }
+
+            //si no cumplen esa condicion pongo las celdas en color blanco
+            if (table. getValueAt(row, 4). toString().equals("TOTALES"))
+            {
+                Color fondo = new  Color(244, 144, 144);
+                cell. setBackground(fondo);
+                cell. setForeground(Color. BLACK);
+                cell.setFont(new Font(null, Font.BOLD, 12));
+                TableColumn col = table.getColumnModel().getColumn(column);
+                col.setCellEditor(null);
+            }
+
 
             return cell;
         }

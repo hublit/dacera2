@@ -3,6 +3,8 @@ package neg;
 import data.BeanProveedor;
 import data.Proveedor;
 import java.awt.BorderLayout;
+import java.io.FileNotFoundException;
+import java.net.UnknownHostException;
 import java.sql.SQLException;
 import utils.LimitadorDeDocumento;
 import java.awt.event.KeyEvent;
@@ -289,10 +291,14 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
             System.out.println(query);
             try {
                 CSResultBuscarTesoreriaProveedor resultBuscarValidarPedido = new CSResultBuscarTesoreriaProveedor(query);
-
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSLanzarInformeTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(CSLanzarInformeTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(CSValidarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CSLanzarInformeTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
