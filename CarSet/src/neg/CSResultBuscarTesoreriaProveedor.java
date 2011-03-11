@@ -26,6 +26,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+import javax.swing.text.TableView.TableRow;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
@@ -70,7 +71,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "F. VENCIMIENTO", "N.º FACTURA" , "N.º FACTURA CARSET" , "PROVEEDOR", "IMPORTE NETO", "IVA", "IRPF","IMPORTE","DIAS F.F.","F. PAGO","N.º CUENTA","ESTADO", "FECHA PAGO" ,"BANCO","EMAIL","OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET" , "PROVEEDOR", "NETO", "IVA", "IRPF","TOTAL","DIAS F.F.","F. PAGO","N.º CUENTA","ESTADO", "FECHA PAGO" ,"BANCO","EMAIL","OBSERVACIONES"});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -264,11 +265,11 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(80);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
-        columna2.setPreferredWidth(180);
+        columna2.setPreferredWidth(140);
         TableColumn columna3 = jTable1.getColumnModel().getColumn(3);
-        columna3.setPreferredWidth(90);
+        columna3.setPreferredWidth(100);
         TableColumn columna4 = jTable1.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(150);
+        columna4.setPreferredWidth(160);
         TableColumn columna5 = jTable1.getColumnModel().getColumn(5);
         columna5.setPreferredWidth(60);
         TableColumn columna6 = jTable1.getColumnModel().getColumn(6);
@@ -280,19 +281,19 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         TableColumn columna9 = jTable1.getColumnModel().getColumn(9);
         columna9.setPreferredWidth(70);
         TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
-        columna10.setPreferredWidth(70);
+        columna10.setPreferredWidth(80);
         TableColumn columna11 = jTable1.getColumnModel().getColumn(11);
         columna11.setPreferredWidth(120);
         TableColumn columna12 = jTable1.getColumnModel().getColumn(12);
-        columna12.setPreferredWidth(60);
+        columna12.setPreferredWidth(90);
         TableColumn columna13 = jTable1.getColumnModel().getColumn(13);
         columna13.setPreferredWidth(80);
         TableColumn columna14 = jTable1.getColumnModel().getColumn(14);
         columna14.setPreferredWidth(60);
         TableColumn columna15 = jTable1.getColumnModel().getColumn(15);
-        columna15.setPreferredWidth(80);
+        columna15.setPreferredWidth(150);
         TableColumn columna16 = jTable1.getColumnModel().getColumn(16);
-        columna16.setPreferredWidth(150);
+        columna16.setPreferredWidth(200);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -312,7 +313,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
      */
     public Dimension getPreferredSize()
     {
-      return new Dimension( 1000,650 );
+      return new Dimension( 1100,650 );
     }
 
    /**
@@ -542,18 +543,22 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
             }
 
             // These are the combobox values
-            String[] values = new String[]{"LC", "OP"};
+            String[] values = new String[]{"PTE", "PAGADO"};
+            String[] valuesBanco = new String[]{"LC", "OP"};
             int fila = row + 1;
-            System.out.println(table.getRowCount()+" / "+fila);
-            if (column == 14 && (table.getRowCount() > fila))
+            //System.out.println(table.getRowCount()+" / "+fila);
+            TableColumn col = table.getColumnModel().getColumn(column);
+            if (column == 12)
             {
-                TableColumn col = table.getColumnModel().getColumn(column);
                 col.setCellEditor(new MyComboBoxEditor(values));
-                // If the cell should appear like a combobox in its
-                // non-editing state, also set the combobox renderer
                 col.setCellRenderer(new MyComboBoxRenderer(values));
             }
-
+            else if(column == 14)
+            {
+                col.setCellEditor(new MyComboBoxEditor(valuesBanco));
+                col.setCellRenderer(new MyComboBoxRenderer(valuesBanco));
+            }
+            
             //si no cumplen esa condicion pongo las celdas en color blanco
             if (table. getValueAt(row, 4). toString().equals("TOTALES"))
             {
@@ -561,10 +566,8 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 cell. setBackground(fondo);
                 cell. setForeground(Color. BLACK);
                 cell.setFont(new Font(null, Font.BOLD, 12));
-                TableColumn col = table.getColumnModel().getColumn(column);
-                col.setCellEditor(null);
-            }
 
+            }
 
             return cell;
         }
