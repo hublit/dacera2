@@ -43,11 +43,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     ArrayList pedidos = new ArrayList();
     String pr_id = "";
     double totalProveedor = 0;
-    /** Creates new form ABResultBuscarPedido */
+
     public CSValidarPedidosProveedor(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
         consulta = query;
-System.out.println("En el result: "+query);
+//System.out.println("En el result: "+query);
         TablaModelo modelo = new TablaModelo();
         ArrayList lista=new ArrayList();
         ResultSet rs = CSDesktop.datos.select(query);
