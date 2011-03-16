@@ -71,7 +71,6 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         jDateFechaFin = new com.toedter.calendar.JDateChooser();
         jDateFechaIni = new com.toedter.calendar.JDateChooser();
         jToggleButtonCliente = new javax.swing.JToggleButton();
-        numFc = new java.awt.Label();
         jTextNumFa = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         jButtonBuscar = new javax.swing.JButton();
@@ -79,6 +78,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         jLabel1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         lFechaFin = new javax.swing.JLabel();
+        jLabelnumFc = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(0, 0));
 
@@ -106,11 +106,6 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                 jToggleButtonClienteActionPerformed(evt);
             }
         });
-
-        numFc.setFont(new java.awt.Font("Tahoma", 0, 11));
-        numFc.setForeground(new java.awt.Color(0, 0, 100));
-        numFc.setName("numFc"); // NOI18N
-        numFc.setText("Núm. factura");
 
         jTextNumFa.setName("jTextNumFa"); // NOI18N
 
@@ -146,6 +141,10 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         lFechaFin.setText("Fecha Hasta");
         lFechaFin.setName("lFechaFin"); // NOI18N
 
+        jLabelnumFc.setForeground(new java.awt.Color(0, 0, 100));
+        jLabelnumFc.setText("N.º Factura ");
+        jLabelnumFc.setName("jLabelnumFc"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,9 +159,9 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                 .addGap(154, 154, 154)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lFechaIni)
-                    .addComponent(numFc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lCliente)
+                    .addComponent(jLabelnumFc))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,14 +194,10 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                 .addComponent(jLabel1)
                 .addGap(16, 16, 16)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jTextNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(numFc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelnumFc))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,7 +251,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
         String query = "SELECT tr.tr_fecha, tr.tr_num, tr.tr_num_carset, pr.pr_nombre_fiscal, tr.tr_importe_neto, tr.tr_iva, " +
                        "tr.tr_irpf, tr.tr_importe, pr.pr_plazo, fp.fp_tipo, pr.pr_num_cuenta, tr.tr_estado, tr.tr_fecha_pago, " +
-                       "tr.tr_banco, pr.pr_email, tr.tr_observaciones, tr.tr_id " +
+                       "tr.tr_banco, pr.pr_email, tr.tr_observaciones, tr.tr_id, pr.pr_dias_plazo " +
                        "FROM tr_tesoreria_proveedor tr, pr_proveedores pr, fp_forma_pago fp " +
                        "WHERE  tr.pr_num = pr.pr_id AND fp.fp_id = pr.fp_id";
 
@@ -316,6 +311,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private com.toedter.calendar.JDateChooser jDateFechaIni;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelnumFc;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator7;
     public javax.swing.JTextField jTextCliente;
@@ -324,7 +320,6 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     private javax.swing.JLabel lCliente;
     private javax.swing.JLabel lFechaFin;
     private javax.swing.JLabel lFechaIni;
-    private java.awt.Label numFc;
     // End of variables declaration//GEN-END:variables
 
     public void ValidarFormatos(String accion)

@@ -10,10 +10,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import neg.CSDesktop;
@@ -685,6 +687,11 @@ public class Utilidades
         return valor;
     }
 
+    /**
+     *
+     * @param valor
+     * @return
+     */
      public static String formatoHora(String valor)
     {
         if(valor.length()!=5)
@@ -699,6 +706,26 @@ public class Utilidades
         return mensaje;
     }
 
+     /**
+      * Suma días a una fecha
+      * @param fecha
+      * @param dias
+      * @return String fecha
+      */
+     public static String sumarFecha(String fecha, int dias) throws ParseException
+     {
+        String fechaSuma;
+        Calendar caFecha =  new GregorianCalendar();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date feVe = sdf.parse(fecha);
+        caFecha.setTime(feVe);
+        caFecha.add(Calendar.DATE, dias);
+        Date vencimiento = caFecha.getTime();
+        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+        fechaSuma = formatoDeFecha.format(vencimiento);
+
+        return fechaSuma;
+     }
 
     /**
      * @since Validamos si hay algún elemento no numérico
