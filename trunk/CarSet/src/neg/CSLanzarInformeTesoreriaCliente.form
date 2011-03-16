@@ -33,10 +33,10 @@
               <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lFechaIni" min="-2" max="-2" attributes="0"/>
-                  <Component id="numFc" min="-2" max="-2" attributes="0"/>
                   <Component id="lCliente" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelnumFc" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jDateFechaIni" min="-2" pref="120" max="-2" attributes="0"/>
@@ -78,16 +78,10 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Component id="jSeparator7" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jTextNumFa" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="numFc" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jTextNumFa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelnumFc" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -163,18 +157,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonClienteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="java.awt.Label" name="numFc">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="11" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="64" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="name" type="java.lang.String" value="numFc" noResource="true"/>
-        <Property name="text" type="java.lang.String" value="N&#xfa;m. factura"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="jTextNumFa">
       <Properties>
         <Property name="name" type="java.lang.String" value="jTextNumFa" noResource="true"/>
@@ -236,6 +218,15 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Fecha Hasta"/>
         <Property name="name" type="java.lang.String" value="lFechaFin" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelnumFc">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="N.&#xba; Factura "/>
+        <Property name="name" type="java.lang.String" value="jLabelnumFc" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
