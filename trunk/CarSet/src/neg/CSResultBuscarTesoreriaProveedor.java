@@ -35,6 +35,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+import javax.swing.text.TableView.TableRow;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
@@ -969,13 +970,14 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
             //System.out.println(table.getRowCount()+" / "+fila);
             TableColumn col = table.getColumnModel().getColumn(column);
             TableColumn colB = table.getColumnModel().getColumn(column);
+
             if (column == 12)
             {
                 col.setCellEditor(new MyComboBoxEditor(values));
                 col.setCellRenderer(new MyComboBoxRenderer(values));
                 jTable1.setValueAt(value, row, column);
             }
-
+            
 //            if (column == 13)
 //            {
 //               col.setCellEditor(new DateEditer());

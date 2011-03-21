@@ -198,7 +198,10 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 // SI NO TIENE TARIFA ESPECIAL
                 else
                 {
-                    importeTraslado = beanFactura.getTarifa();                    
+                    //Se comenta de momento para que no busque las tarifas del cliente.
+                    //importeTraslado = beanFactura.getTarifa();
+                    importeTraslado = "0";
+
                     // SI EL SOPORTE ES CAMION COMPLETO Y SU NUMERO EN CAMION NO ES 1
                     // EL IMPORTE ES 0 PORQUE SOLO LLEVA IMPORTE EL PRIMERO
                     if(soporte.equals("Camión completo") && !numCamion.equals("1"))
