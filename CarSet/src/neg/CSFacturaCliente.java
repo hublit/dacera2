@@ -389,24 +389,37 @@ public class CSFacturaCliente extends JPanel
         }
         else
         {
-            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
+//            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
+//                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
+//                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
+//                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
+//                           "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " +
+//                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
+//                           "WHERE pe.pe_num = pc.pe_num " +
+//                           "AND sc.cl_id = pc.cl_id " +
+//                           "AND tc.tc_fecha_hasta > pe.pe_fecha " +
+//                           "AND sc.sc_fecha_hasta > pe.pe_fecha " +
+//                           "AND tc.tc_servicio = pe.pe_servicio " +
+//                           "AND tc.cl_id = pc.cl_id " +
+//                           "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " +
+//                           "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " +
+//                           "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
+//                           "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
+//                           "AND tc.tc_soporte = pe.pe_soporte " +
+//                           //"AND (pe.pe_estado = 'Activo' OR pe.pe_estado = 'En Proceso' OR pe.pe_estado = 'Entregado')"  +
+//                           "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
+//                           "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
+//                           "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
+
+                        String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
                            "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                            "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
                            "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
-                           "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " +
-                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
+                           "pe.pe_descripcion, sc_entrada_campa, sc_campa " +
+                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc " +
                            "WHERE pe.pe_num = pc.pe_num " +
                            "AND sc.cl_id = pc.cl_id " +
-                           "AND tc.tc_fecha_hasta > pe.pe_fecha " +
                            "AND sc.sc_fecha_hasta > pe.pe_fecha " +
-                           "AND tc.tc_servicio = pe.pe_servicio " +
-                           "AND tc.cl_id = pc.cl_id " +
-                           "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " + 
-                           "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " +
-                           "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
-                           "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
-                           "AND tc.tc_soporte = pe.pe_soporte " +
-                           //"AND (pe.pe_estado = 'Activo' OR pe.pe_estado = 'En Proceso' OR pe.pe_estado = 'Entregado')"  +
                            "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
                            "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
                            "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
@@ -435,7 +448,7 @@ public class CSFacturaCliente extends JPanel
                     nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
                     nueva.setSuplemento(rs.getString("pe_suplemento"));
                     nueva.setDescripcion(rs.getString("pe_descripcion"));
-                    nueva.setTarifa(rs.getString("tc_tarifa"));
+//                    nueva.setTarifa(rs.getString("tc_tarifa"));
                     nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                     nueva.setNumCamion(rs.getString("pe_num_en_camion"));
                     lista.add(nueva);
