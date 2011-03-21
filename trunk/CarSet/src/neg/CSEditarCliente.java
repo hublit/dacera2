@@ -1,5 +1,5 @@
 /*
- * ABEditarCliente.java
+ * CSEditarCliente.java
  *
  * Created on 06-oct-2009, 22:04:43
  */
@@ -170,6 +170,7 @@ public class CSEditarCliente extends javax.swing.JPanel
         jComboBoxTarifa = new javax.swing.JComboBox();
         lTipo = new javax.swing.JLabel();
         jComboBoxTipo = new javax.swing.JComboBox();
+        jCheckBoxCorreo = new javax.swing.JCheckBox();
 
         jPanel1.setName("jPanel1"); // NOI18N
 
@@ -547,6 +548,15 @@ public class CSEditarCliente extends javax.swing.JPanel
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Empresa", "Concesionario", "Renting", "Compraventa", "Particular", "Proveedor", "Fabricante", "Otros" }));
         jComboBoxTipo.setName("jComboBoxTipo"); // NOI18N
 
+        jCheckBoxCorreo.setForeground(new java.awt.Color(0, 0, 100));
+        jCheckBoxCorreo.setText("C. Ordinario");
+        jCheckBoxCorreo.setName("jCheckBoxCorreo"); // NOI18N
+        jCheckBoxCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxCorreoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -706,8 +716,8 @@ public class CSEditarCliente extends javax.swing.JPanel
                                 .addComponent(jTextWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lComercial)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxComercial, 0, 124, Short.MAX_VALUE))
+                                .addGap(43, 43, 43)
+                                .addComponent(jComboBoxComercial, 0, 91, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
@@ -717,7 +727,9 @@ public class CSEditarCliente extends javax.swing.JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lEmail)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)))))
+                                .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBoxCorreo)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -759,7 +771,8 @@ public class CSEditarCliente extends javax.swing.JPanel
                         .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lEmail)
                         .addComponent(lFax)
-                        .addComponent(jTextFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBoxCorreo)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -851,7 +864,7 @@ public class CSEditarCliente extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -958,6 +971,13 @@ public class CSEditarCliente extends javax.swing.JPanel
                 fecha2=formatoDeFecha.format(fecha);
             }
 
+            boolean correo = new Boolean(jCheckBoxCorreo.isSelected());
+            int iCorreo = 0;
+            if (correo)
+            {
+                iCorreo = 1;
+            }
+
             if (!Utilidades.campoObligatorio(nombre,"nombre").equals("OK")) {
                 ValidarFormatos(Utilidades.campoObligatorio(nombre,"nombre"));
             } else if (!Utilidades.campoObligatorio(dni,"DNI").equals("OK")) {
@@ -989,8 +1009,8 @@ public class CSEditarCliente extends javax.swing.JPanel
                                "cl_cod_postal_fiscal='"+codPostalFiscal+"', cl_poblacion_fiscal= '"+poblacionFiscal+"', " +
                                "cl_provincia_fiscal='"+provinciaFiscal+"', cl_telefono='"+telefono+"',cl_telefono2='"+telefono2+"', " +
                                "cl_fax='"+fax+"',cl_email='"+email+"', cl_web='"+web+"',cl_plazo='"+plazo+"', " +
-                               "cl_dias_plazo='"+diasPlazo+"',fp_id='"+fPago+"', cl_num_cuenta='"+numCuenta+"', " +
-                               "cl_estado='"+estado+"', co_id='"+co_id+"', cl_tipo_tarifa='"+tipoTarifa+"', cl_tipo='"+tipoCliente+"' " +
+                               "cl_dias_plazo='"+diasPlazo+"',fp_id='"+fPago+"', cl_num_cuenta='"+numCuenta+"', cl_estado='"+estado+"', " +
+                               "co_id='"+co_id+"', cl_tipo_tarifa='"+tipoTarifa+"', cl_tipo='"+tipoCliente+"' , cl_correo='"+iCorreo+"' " +
                                "WHERE cl_id='"+numero+"'";
 
                 System.out.println(query);
@@ -1098,6 +1118,10 @@ public class CSEditarCliente extends javax.swing.JPanel
         jTextPoblacionFiscal.setText(PoblacionFiscalConM);
 }//GEN-LAST:event_jTextPoblacionFiscalFocusLost
 
+    private void jCheckBoxCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxCorreoActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jCheckBoxCorreoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Eliminar;
@@ -1105,6 +1129,7 @@ public class CSEditarCliente extends javax.swing.JPanel
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonSEspeciales;
     private javax.swing.JButton jButtonTarifas;
+    private javax.swing.JCheckBox jCheckBoxCorreo;
     private javax.swing.JCheckBox jCheckIncremento;
     private javax.swing.JComboBox jComboBoxComercial;
     private javax.swing.JComboBox jComboBoxEstado;
@@ -1252,6 +1277,12 @@ public class CSEditarCliente extends javax.swing.JPanel
                 jComboBoxTarifa.setSelectedItem(rs.getString("cl_tipo_tarifa"));
                 jComboBoxTipo.setSelectedItem(rs.getString("cl_tipo"));
                 System.out.println("Tipo de tarifa: "+rs.getInt("cl_tipo_tarifa"));
+                boolean vCorreo = false;
+                if (rs.getInt("cl_correo") == 1)
+                {
+                    vCorreo = true;
+                }
+                jCheckBoxCorreo.setSelected(vCorreo);
                 numeroFila++;
             }
             rs.close();
