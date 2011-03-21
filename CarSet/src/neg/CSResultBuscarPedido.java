@@ -346,7 +346,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                     (pantalla.width - ventana.width) / 2,
                     (pantalla.height - ventana.height) / 2);
                CSDesktop.EditarPedido.setVisible( true );
-               CSDesktop.ResultPedido.setVisible(false);
+               //CSDesktop.ResultPedido.setVisible(false);
 
             System.out.println(jTable1.getValueAt(fila,columna));
          }

@@ -1613,7 +1613,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                 }
                 else
                 {
-                try {
+
                     Cliente cliente2 = new Cliente();
                     clienteID = cliente2.getClienteID(cliente);
                     String queryCli = "UPDATE pc_pedidos_clientes set cl_id= '" + clienteID + "' WHERE pe_num = " + numero + "";
@@ -1741,19 +1741,11 @@ public class CSEditarPedido extends javax.swing.JPanel
                     JOptionPane.showMessageDialog(null, mensaje);
                     jButtonModificar.setEnabled(true);
                     CSDesktop.EditarPedido.dispose();
-                    CSDesktop.ResultPedido.dispose();
+                    //CSDesktop.ResultPedido.dispose();
                     CSDesktop.menuBuscarPedido.setEnabled(true);
-                    CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(consulta);
-                } catch (UnknownHostException ex) {
-                    Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    //CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(consulta);
                
-                    
-                }                
+                }
     }//GEN-LAST:event_jButtonModificarActionPerformed
     }
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
