@@ -82,7 +82,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lTelefono2" min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                      <Component id="lWeb" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextWeb" min="-2" pref="329" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lComercial" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jComboBoxComercial" pref="124" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="1">
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lTelefono" min="-2" pref="50" max="-2" attributes="0"/>
@@ -93,18 +104,7 @@
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="lEmail" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextEmail" pref="382" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="lTelefono2" min="-2" pref="68" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                      <Component id="lWeb" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextWeb" min="-2" pref="329" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lComercial" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jComboBoxComercial" pref="124" max="32767" attributes="0"/>
+                      <Component id="jTextEmail" min="-2" pref="296" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -238,7 +238,11 @@
                       <Component id="lPoblacion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextTelefono" linkSize="1" alignment="0" min="-2" pref="80" max="-2" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jTextTelefono" linkSize="1" min="-2" pref="80" max="-2" attributes="1"/>
+                              <EmptySpace pref="489" max="32767" attributes="0"/>
+                              <Component id="jCheckBoxCorreo" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jTextPoblacion" min="-2" pref="440" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -300,6 +304,7 @@
                       <Component id="lEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lFax" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFax" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCheckBoxCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -395,7 +400,7 @@
                   <Component id="jButtonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -1286,6 +1291,18 @@
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxTipo" noResource="true"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxCorreo">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="C. Ordinario"/>
+        <Property name="name" type="java.lang.String" value="jCheckBoxCorreo" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxCorreoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

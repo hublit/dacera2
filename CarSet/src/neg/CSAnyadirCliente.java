@@ -1,5 +1,5 @@
 /*
- * ABAnyadirCliente.java
+ * CSAnyadirCliente.java
  *
  * Created on 03-oct-2009, 0:25:10
  */
@@ -172,6 +172,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jComboBoxTarifa = new javax.swing.JComboBox();
         lTipo = new javax.swing.JLabel();
         jComboBoxTipo = new javax.swing.JComboBox();
+        jCheckBoxCorreo = new javax.swing.JCheckBox();
 
         lNombre.setForeground(new java.awt.Color(0, 0, 100));
         lNombre.setText("Nombre");
@@ -539,6 +540,15 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Empresa", "Concesionario", "Renting", "Compraventa", "Particular", "Proveedor", "Fabricante", "Otros" }));
         jComboBoxTipo.setName("jComboBoxTipo"); // NOI18N
 
+        jCheckBoxCorreo.setForeground(new java.awt.Color(0, 0, 100));
+        jCheckBoxCorreo.setText("C. Ordinario");
+        jCheckBoxCorreo.setName("jCheckBoxCorreo"); // NOI18N
+        jCheckBoxCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxCorreoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -601,6 +611,16 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115)
+                        .addComponent(lWeb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lComercial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxComercial, 0, 124, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -611,17 +631,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addGap(16, 16, 16)
                         .addComponent(lEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(115, 115, 115)
-                        .addComponent(lWeb)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lComercial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxComercial, 0, 124, Short.MAX_VALUE)))
+                        .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -733,7 +743,10 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addComponent(lPoblacion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
+                                .addComponent(jCheckBoxCorreo))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextPoblacion, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -787,7 +800,8 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                         .addComponent(jTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lEmail)
                         .addComponent(lFax)
-                        .addComponent(jTextFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBoxCorreo)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -869,7 +883,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                     .addComponent(jLabel1)
                     .addComponent(jButtonGuardar)
                     .addComponent(jButtonCancelar))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -929,6 +943,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
             String fDepartamento = new String(Integer.valueOf(jComboBoxDepartamento.getSelectedIndex()+1).toString());
             String departamento = new String(jComboBoxDepartamento.getSelectedItem().toString());
             String  co_id = new String(Integer.valueOf(jComboBoxComercial.getSelectedIndex()+1).toString());
+
             String password = "";
             try {
                 password = Utilidades.MD5(dni);
@@ -938,6 +953,13 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                 Logger.getLogger(CSAnyadirCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println("password: "+password);
+
+            boolean correo = new Boolean(jCheckBoxCorreo.isSelected());
+            int iCorreo = 0;
+            if (correo)
+            {
+                iCorreo = 1;
+            }
 
             //CAMPOS OBLIGATORIOS
             if (!Utilidades.campoObligatorio(nombre,"Nombre").equals("OK"))
@@ -1039,11 +1061,12 @@ public class CSAnyadirCliente extends javax.swing.JPanel
                                                          "cl_cod_postal, cl_poblacion, cl_provincia, " +
                                                          "cl_telefono, cl_telefono2, cl_fax, cl_email, " +
                                                          "cl_web, cl_plazo, cl_dias_plazo, fp_id, cl_estado, co_id,cl_direccion_fiscal,cl_cod_postal_fiscal, " +
-                                                         "cl_poblacion_fiscal,cl_provincia_fiscal,cl_fecha,cl_num_cuenta, cl_tipo_tarifa, cl_password, cl_tipo) VALUES (";
+                                                         "cl_poblacion_fiscal,cl_provincia_fiscal,cl_fecha,cl_num_cuenta, cl_tipo_tarifa, cl_password, cl_tipo, cl_correo) " +
+                                                         "VALUES (";
                 query = query + "'"+nombre+"','"+dni+"','"+direccion+"','"+codPostal+"','"+poblacion+"','"+provincia+"','"+telefono+"'";
                 query = query + " ,'"+telefono2+"','"+fax+"','"+email+"','"+web+"','"+plazo+"','"+dPlazo+"','"+fPago+"','"+estado+"'";
                 query = query + " ,'"+co_id+"','"+direccionFiscal+"','"+codPostalFiscal+"','"+poblacionFiscal+"','"+provinciaFiscal+"','"+fecha2+"'";
-                query = query + " ,'"+numCuenta+"','"+tipoTarifa+"','"+password+"','"+tipoCliente+"')";
+                query = query + " ,'"+numCuenta+"','"+tipoTarifa+"','"+password+"','"+tipoCliente+"','"+iCorreo+"')";
                       
                 System.out.println(query);
                 //datos = new DbConnection();
@@ -1191,6 +1214,10 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         }
 }//GEN-LAST:event_jComboBoxFPagoActionPerformed
 
+    private void jCheckBoxCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxCorreoActionPerformed
+
     public Dimension getPreferredSize()
     {
       return new Dimension( 826,620 );
@@ -1199,6 +1226,7 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JCheckBox jCheckBoxCorreo;
     private javax.swing.JComboBox jComboBoxComercial;
     private javax.swing.JComboBox jComboBoxDepartamento;
     private javax.swing.JComboBox jComboBoxEstado;
