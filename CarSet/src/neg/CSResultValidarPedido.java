@@ -173,7 +173,7 @@ public class CSResultValidarPedido extends javax.swing.JPanel
 
      public Dimension getPreferredSize()
    {
-      return new Dimension( 1100,650 );
+      return new Dimension( 1400,650 );
     }
 
     /** This method is called from within the constructor to
