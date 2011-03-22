@@ -171,9 +171,10 @@ public class CSResultValidarPedido extends javax.swing.JPanel
         }    );
     }
 
-     public Dimension getPreferredSize()
-   {
-      return new Dimension( 1400,650 );
+    @Override
+    public Dimension getPreferredSize()
+    {
+      return new Dimension( 1200,650 );
     }
 
     /** This method is called from within the constructor to
@@ -188,6 +189,8 @@ public class CSResultValidarPedido extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonCerrar = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(1250, 650));
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 

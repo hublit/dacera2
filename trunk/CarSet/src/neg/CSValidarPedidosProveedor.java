@@ -263,7 +263,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
      public Dimension getPreferredSize()
    {
-      return new Dimension( 1150,650 );
+      return new Dimension( 1400,650 );
     }
 
      public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
@@ -318,6 +318,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jDateChooserFechaCont = new com.toedter.calendar.JDateChooser();
 
         setAutoscrolls(true);
+        setPreferredSize(new java.awt.Dimension(1400, 670));
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 

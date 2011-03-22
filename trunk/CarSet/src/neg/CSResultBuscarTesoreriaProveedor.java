@@ -867,7 +867,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     celda = fila.createCell( (short) 13);
                     String fecha_pago=(rs.getObject("tr_fecha_pago")).toString();
                          temp = null;
-                         temp = fecha.split("\\-");
+                         temp = fecha_pago.split("\\-");
                          anyo=temp[0];
                          mes=temp[1];
                          dia=temp[2];
@@ -924,11 +924,11 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
             //se centran los valores
             jTable1.setRowHeight(20);
 
-            if (column == 0 ||column == 1 || column == 16)
+            if (column == 0 || column == 1 || column == 13)
             {
                 this. setHorizontalAlignment(SwingConstants.CENTER);
             }
-            else if (column == 11 ||column == 12)
+            else if (column == 5 || column == 6 || column == 7 || column == 8)
             {
                 this. setHorizontalAlignment(SwingConstants.RIGHT);
             }
@@ -1110,6 +1110,10 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         }
         else
         {
+            jButtonModificar.setEnabled(false);
+            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null, mensaje);
+            jButtonModificar.setEnabled(true);
             CSDesktop.ResultTesoreriaProveedor.dispose();
             CSDesktop.menuTesoreriaProveedor.setEnabled(true);
         }
