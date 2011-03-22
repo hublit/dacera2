@@ -80,6 +80,8 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ResultValidacionPedidos;
   public static JInternalFrame BuscarTesoreriaProveedor;
   public static JInternalFrame ResultTesoreriaProveedor;
+  public static JInternalFrame BuscarTesoreriaCliente;
+  public static JInternalFrame ResultTesoreriaCliente;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
   public static JMenu menuPedidos;
@@ -674,7 +676,7 @@ public class CSDesktop extends JFrame
          });
 
       menuTesoreriaProveedor = new JMenuItem( "Informe Proveedor" );
-      menuTesoreriaProveedor.setMnemonic( 'v' );
+      menuTesoreriaProveedor.setMnemonic( 'r' );
       menuTesoreria.add( menuTesoreriaProveedor );
       menuTesoreriaProveedor.addActionListener(
          new ActionListener() {
@@ -696,7 +698,28 @@ public class CSDesktop extends JFrame
             }
          });
 
+      menuTesoreriaCliente = new JMenuItem( "Informe Cliente" );
+      menuTesoreriaCliente.setMnemonic( 'l' );
+      menuTesoreria.add( menuTesoreriaCliente );
+      menuTesoreriaCliente.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+              BuscarTesoreriaCliente = new JInternalFrame("Informe Tesorería Cliente", true,false,false,true );
+               CSLanzarInformeTesoreriaCliente panel = null;
 
+               panel = new CSLanzarInformeTesoreriaCliente();
+
+               BuscarTesoreriaCliente.getContentPane().add( panel,BorderLayout.CENTER);
+               BuscarTesoreriaCliente.pack();
+               elEscritorio.add( BuscarTesoreriaCliente );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = BuscarTesoreriaCliente.getSize();
+               BuscarTesoreriaCliente.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               BuscarTesoreriaCliente.setVisible( true );
+            }
+         });
       menuAyuda.setMnemonic( 'A' );
 
       //establecer elemento de men� Acerca de...
@@ -728,7 +751,7 @@ public class CSDesktop extends JFrame
       barra.add( menuTarifa );
       barra.add( menuFactura );
       barra.add( menuInforme );
-      if (usuario.equals("4"))
+      if (usuario.equals("2") || usuario.equals("4") || usuario.equals("7"))
       {
         barra.add( menuTesoreria );
       }
