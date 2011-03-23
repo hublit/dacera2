@@ -274,17 +274,17 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
             query = query + " ORDER BY tr.tr_id ASC";
             System.out.println(query);
-            try {
-                CSResultBuscarTesoreriaProveedor resultBuscarValidarPedido = new CSResultBuscarTesoreriaProveedor(query);
-            } catch (UnknownHostException ex) {
-                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                CSResultBuscarTesoreriaCliente resultBuscarTesoreriaCl = new CSResultBuscarTesoreriaCliente(query);
+//            } catch (UnknownHostException ex) {
+//                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (IOException ex) {
+//                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (ParseException ex) {
+//                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+//            }
 
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
