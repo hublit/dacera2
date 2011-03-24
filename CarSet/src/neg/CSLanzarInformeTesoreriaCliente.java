@@ -220,8 +220,8 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       CSDesktop.BuscarTesoreriaProveedor.dispose();
-       CSDesktop.menuTesoreriaProveedor.setEnabled(true);
+       CSDesktop.BuscarTesoreriaCliente.dispose();
+       CSDesktop.menuTesoreriaCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
