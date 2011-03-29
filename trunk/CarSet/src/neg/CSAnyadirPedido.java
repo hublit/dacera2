@@ -1309,6 +1309,8 @@ public class CSAnyadirPedido extends JPanel
         String fechaOrigen="";
         String fechaDestino="";
         String fechaRealDestino="";
+        String fechaEntrega = "";
+        String fechaRecogida = "";
         double solredN=0;
         double viajeN=0;
         double taescliN=-1;
@@ -1334,6 +1336,8 @@ public class CSAnyadirPedido extends JPanel
             Date fecha = fechaCalendarOrigen.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaOrigen=formatoDeFecha.format(fecha);
+            SimpleDateFormat formatoDeFecha2 = new SimpleDateFormat("dd-MM-yyyy");
+            fechaRecogida=formatoDeFecha2.format(fecha);
         }
         
         // CONVERSION DE LA FECHA DESTINO
@@ -1343,6 +1347,8 @@ public class CSAnyadirPedido extends JPanel
             Date fecha = fechaCalendarDestino.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaDestino=formatoDeFecha.format(fecha);
+            SimpleDateFormat formatoDeFecha2 = new SimpleDateFormat("dd-MM-yyyy");
+            fechaEntrega=formatoDeFecha2.format(fecha);
         }
 
         // CONVERSION DE LA FECHA REAL DESTINO
@@ -1682,8 +1688,8 @@ public class CSAnyadirPedido extends JPanel
                             mail.setFecha(fechaHoy2);
                             mail.setNumPedido(pedido);
                             mail.setSoporte(soporte);
-                            mail.setFechaEntrega(fechaDestino);
-                            mail.setFechaRecogida(fechaOrigen);
+                            mail.setFechaEntrega(fechaEntrega);
+                            mail.setFechaRecogida(fechaRecogida);
                             mail.setMarca(marca);
                             mail.setModelo(modelo);
                             mail.setMatricula(matricula);
