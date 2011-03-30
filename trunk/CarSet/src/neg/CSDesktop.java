@@ -751,7 +751,7 @@ public class CSDesktop extends JFrame
       barra.add( menuTarifa );
       barra.add( menuFactura );
       barra.add( menuInforme );
-      if (usuario.equals("2") || usuario.equals("4") || usuario.equals("7"))
+      if (usuario.equals("2") || usuario.equals("4") || usuario.equals("8"))
       {
         barra.add( menuTesoreria );
       }
