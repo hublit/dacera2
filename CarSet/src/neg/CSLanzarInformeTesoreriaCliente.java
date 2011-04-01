@@ -249,11 +249,11 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
             fechaF=formatoDeFecha.format(fecha);
         }
 
-        String query = "SELECT tr.tr_fecha, tr.tr_num, tr.tr_num_carset, pr.pr_nombre_fiscal, tr.tr_importe_neto, tr.tr_iva, " +
-                       "tr.tr_irpf, tr.tr_importe, pr.pr_plazo, fp.fp_tipo, pr.pr_num_cuenta, tr.tr_estado, tr.tr_fecha_pago, " +
-                       "tr.tr_banco, pr.pr_email, tr.tr_observaciones, tr.tr_id, pr.pr_dias_plazo " +
-                       "FROM tr_tesoreria_proveedor tr, pr_proveedores pr, fp_forma_pago fp " +
-                       "WHERE  tr.pr_num = pr.pr_id AND fp.fp_id = pr.fp_id";
+        String query = "SELECT fl.fl_id, fl.fl_num, fl.fl_fecha, cl.cl_nombre, " +
+                       "fl.fl_importe_total, fl.fl_iva, fl.fl_importe, cl.cl_plazo, " +
+                       "fp.fp_tipo, fl.fl_estado, fl.fl_fecha_pago, fl.fl_observaciones " +
+                       "FROM fl_factura_cliente fl, cl_clientes cl, fp_forma_pago fp " +
+                       "WHERE  fl.cl_id = cl.cl_id";
 
         if (cliente.equals("") && (fechaI.equals("") && fechaF.equals("")))
         {
@@ -265,26 +265,26 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         else
         {
             if (!cliente.equals("")) {
-                query = query + " AND tr.pr_num = " + clienteID;
+                query = query + " AND cl.cl_id = " + clienteID;
             }
             if ((!fechaI.equals("")) && (!fechaF.equals(""))) 
             {
-                query = query + " AND tr.tr_fecha >='" + fechaI + "' AND tr.tr_fecha<='" + fechaF + "'";
+                query = query + " AND fl.fl_fecha >= '" + fechaI + "' AND fl.fl_fecha <= '" + fechaF + "'";
             }
 
-            query = query + " ORDER BY tr.tr_id ASC";
+            query = query + " ORDER BY fl.fl_id ASC";
             System.out.println(query);
-//            try {
-//                CSResultBuscarTesoreriaCliente resultBuscarTesoreriaCl = new CSResultBuscarTesoreriaCliente(query);
-//            } catch (UnknownHostException ex) {
-//                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (IOException ex) {
-//                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (ParseException ex) {
-//                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            try {
+                CSResultBuscarTesoreriaCliente resultBuscarTesoreriaCl = new CSResultBuscarTesoreriaCliente(query);
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
