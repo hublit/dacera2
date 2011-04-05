@@ -1109,21 +1109,22 @@ public class CSAnyadirCliente extends javax.swing.JPanel
 
                     //Controlar posible error
                     //Creamos las tarifas de la plantilla
-                    boolean tarifas = false;
-                try {
-                    tarifas = crearTarifasCliente(cl_id);
-                } catch (UnknownHostException ex) {
-                    Logger.getLogger(CSAnyadirCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    //Creamos los servicios de la plantilla
+//                    boolean tarifas = false;
+//                    try {
+//                        tarifas = crearTarifasCliente(cl_id);
+//                    } catch (UnknownHostException ex) {
+//                        Logger.getLogger(CSAnyadirCliente.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+                        //Creamos los servicios de la plantilla
                     boolean servicios = false;
-                try {
-                    servicios = crearServiciosCliente(cl_id);
-                } catch (UnknownHostException ex) {
-                    Logger.getLogger(CSAnyadirCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    try {
+                        servicios = crearServiciosCliente(cl_id);
+                    } catch (UnknownHostException ex) {
+                        Logger.getLogger(CSAnyadirCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
-                    if(tarifas && servicios)
+                    //if(tarifas && servicios)
+                    if(servicios)
                     {
                         jButtonGuardar.setEnabled(false);
                         JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
