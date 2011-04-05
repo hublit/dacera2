@@ -7,6 +7,7 @@
 package neg;
 
 import data.BeanCorreoCliente;
+import java.text.ParseException;
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
 import data.Cliente;
@@ -38,7 +39,7 @@ public class CSAnyadirPedido extends JPanel
     int proveedorID=0;
 
     /** Creates new form ABAnyadirProveedores */
-    public CSAnyadirPedido() throws SQLException
+    public CSAnyadirPedido() throws SQLException, ParseException
     {
         CSDesktop.mailCliente.clear();
         CSDesktop.nombreCliente.clear();
@@ -49,6 +50,11 @@ public class CSAnyadirPedido extends JPanel
         Date hoy = new Date();
         initComponents();
         jDateFecha.setDate(hoy);
+        
+        String fechaRealDestino = "01-01-2050";               
+        SimpleDateFormat sdfRD= new SimpleDateFormat("dd-MM-yyyy");
+        Date dRD = sdfRD.parse(fechaRealDestino);
+        jDateFechaRealDestino.setDate(dRD);
         getFactorCorrecion();
         limitacionesCampos();
 
@@ -1319,7 +1325,7 @@ public class CSAnyadirPedido extends JPanel
         int comparacion1 = -1;
         int comparacion2 = -1;
         int comparacion3 = -1;
-        
+
         // CONVERSION DE LA FECHA
         Calendar fechaCalendarFecha = jDateFecha.getCalendar();
         if (fechaCalendarFecha!=null)
