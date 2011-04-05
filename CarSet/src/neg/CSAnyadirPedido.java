@@ -239,7 +239,7 @@ public class CSAnyadirPedido extends JPanel
         lNombreOrigen.setText("Nombre");
         lNombreOrigen.setName("lNombreOrigen"); // NOI18N
 
-        jButtonGuardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButtonGuardar.setFont(new java.awt.Font("Tahoma", 1, 11));
         jButtonGuardar.setText("GUARDAR");
         jButtonGuardar.setName("jButtonGuardar"); // NOI18N
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -809,8 +809,8 @@ public class CSAnyadirPedido extends JPanel
                 .addGap(11, 11, 11)
                 .addComponent(lEstado3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lHoraRealOrigen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)

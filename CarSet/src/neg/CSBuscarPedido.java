@@ -296,7 +296,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Activo", "En Proceso", "Entregado", "Facturado", "Cobrado", "Pagado", "Anulado", "Fallido" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Activo", "En Proceso", "Entregado", "Facturado", "Facturado y Validado", "Cobrado", "Pagado", "Anulado", "Fallido" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
 
         jTextCodPostalOrigen.setName("jTextCodPostalOrigen"); // NOI18N
@@ -449,8 +449,8 @@ public class CSBuscarPedido extends javax.swing.JPanel
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lEstado3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(568, 568, 568)
+                                .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(545, 545, 545)
                                 .addComponent(lComercial)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxComercial, 0, 143, Short.MAX_VALUE))

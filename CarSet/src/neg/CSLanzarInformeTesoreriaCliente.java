@@ -225,10 +225,16 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-
+        int numFl = 0;
         String fechaI="";
         String fechaF="";
 
+        String numero = new String(jTextNumFa.getText());
+        if(!numero.equals(""))
+        {
+            numFl = Integer.valueOf(numero);
+        }
+        
         String cliente = new String(jTextCliente.getText());
         Cliente cl = new Cliente();
         clienteID = cl.getClienteID(cliente);
@@ -249,21 +255,25 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
             fechaF=formatoDeFecha.format(fecha);
         }
 
-        String query = "SELECT fl.fl_id, fl.fl_num, fl.fl_fecha, cl.cl_nombre, " +
-                       "fl.fl_importe_total, fl.fl_iva, fl.fl_importe, cl.cl_plazo, " +
+        String query = "SELECT fl.fl_id, fl.fl_fecha, fl.fl_num, cl.cl_nombre, " +
+                       "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, " +
                        "fp.fp_tipo, fl.fl_estado, fl.fl_fecha_pago, fl.fl_observaciones " +
                        "FROM fl_factura_cliente fl, cl_clientes cl, fp_forma_pago fp " +
-                       "WHERE  fl.cl_id = cl.cl_id";
+                       "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id";
 
-        if (cliente.equals("") && (fechaI.equals("") && fechaF.equals("")))
+        if (numFl == 0 && cliente.equals("") && (fechaI.equals("") && fechaF.equals("")))
         {
             jButtonBuscar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Cliente o período de tiempo</FONT></HTML>");
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar número de factura, un Cliente o período de tiempo</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonBuscar.setEnabled(true);
         }
         else
         {
+            if (numFl != 0)
+            {
+                query = query + " AND fl.fl_id = " + numFl;
+            }
             if (!cliente.equals("")) {
                 query = query + " AND cl.cl_id = " + clienteID;
             }
