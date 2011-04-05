@@ -1,7 +1,6 @@
 package neg;
 
 import com.toedter.calendar.JDateChooser;
-import data.BeanTesoreriaProveedor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -514,7 +513,6 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
             int fila = 0;
             String nueva = "";
-            BeanTesoreriaProveedor campos = new BeanTesoreriaProveedor();
 
             for(int i = 0; i < lista.size(); i++)
             {
@@ -522,6 +520,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 int fl_id = Integer.parseInt(indices.get(i).toString());
                 String estado = (String) jTable1.getValueAt(fila, 9);
                 String fechaPago = (String) jTable1.getValueAt(fila, 10);
+                
                 if (!fechaPago.equals(""))
                 {
                      String [] temp = null;
