@@ -23,9 +23,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.FileOutputStream;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,16 +36,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import utils.Utilidades;
+
 
 /**
  *
@@ -241,6 +230,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
         jTable1 = new javax.swing.JTable();
         jButtonCerrar = new javax.swing.JButton();
         jButtonRecuperar = new javax.swing.JButton();
+        jButtonAbono = new javax.swing.JButton();
 
         setAutoscrolls(true);
 
@@ -278,6 +268,14 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
             }
         });
 
+        jButtonAbono.setText("Factura Rectificativa");
+        jButtonAbono.setName("jButtonAbono"); // NOI18N
+        jButtonAbono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAbonoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -289,10 +287,12 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133)
-                        .addComponent(jButtonCerrar)
-                        .addGap(390, 390, 390))))
+                        .addComponent(jButtonAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(170, 170, 170)
+                        .addComponent(jButtonRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(190, 190, 190)
+                        .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,6 +301,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAbono)
                     .addComponent(jButtonCerrar)
                     .addComponent(jButtonRecuperar))
                 .addContainerGap())
@@ -392,9 +393,89 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
             }
         }
     }//GEN-LAST:event_jButtonRecuperarActionPerformed
+
+    private void jButtonAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbonoActionPerformed
+      int celdas = jTable1.getSelectedRowCount();
+        if(celdas==0)
+        {
+            jButtonRecuperar.setEnabled(false);
+            jButtonCerrar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debes seleccionar algún pedido.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonRecuperar.setEnabled(true);
+            jButtonCerrar.setEnabled(true);
+        }
+         else if (celdas>1)
+        {
+            jButtonRecuperar.setEnabled(false);
+            jButtonCerrar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Sólo puedes seleccionar un pedido.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonRecuperar.setEnabled(true);
+            jButtonCerrar.setEnabled(true);
+        }
+         else if (celdas==1)
+        {
+            try {
+                int seleccion = jTable1.getSelectedRow();
+                BeanRecFactura recFacturaAux = new BeanRecFactura();
+                recFacturaAux = (BeanRecFactura) facturas.get(seleccion);
+                Cliente cliente = new Cliente();
+                int cl_id = cliente.getClienteID(recFacturaAux.getCliente());
+                BeanCliente beanCliente = new BeanCliente();
+                beanCliente = cliente.getDatosFacturaCliente(cl_id);
+                beanCliente.setCl_id(String.valueOf(cl_id));
+                String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " + "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " + "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " + "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " + "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " + "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " + "WHERE pe.pe_num = pc.pe_num " + "AND sc.cl_id = pc.cl_id " + "AND tc.tc_fecha_hasta > pe.pe_fecha " + "AND sc.sc_fecha_hasta > pe.pe_fecha " + "AND tc.tc_servicio = pe.pe_servicio " + "AND tc.cl_id = pc.cl_id " + "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " + "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " + "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " + "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " + "AND tc.tc_soporte = pe.pe_soporte " + "AND pe.pe_estado = 'Facturado' " + "AND pe_fecha BETWEEN '" + recFacturaAux.getFechaDesde() + "' AND '" + recFacturaAux.getFechaHasta() + "' " + "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
+                System.out.println(query);
+                ResultSet rs = CSDesktop.datos.select(query);
+                try {
+                    while (rs.next()) {
+                        BeanFactura nueva = new BeanFactura();
+                        nueva.setNumPedido(rs.getLong("pe_num"));
+                        nueva.setFecha(rs.getString("pe_fecha"));
+                        nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
+                        nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
+                        nueva.setServicio(rs.getString("pe_servicio"));
+                        nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
+                        nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
+                        nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
+                        nueva.setDiasCampa(rs.getString("pe_dias_campa"));
+                        nueva.setFactor(rs.getString("fc_id"));
+                        nueva.setSoporte(rs.getString("pe_soporte"));
+                        nueva.setMatricula(rs.getString("pe_ve_matricula"));
+                        nueva.setMarca(rs.getString("pe_ve_marca"));
+                        nueva.setModelo(rs.getString("pe_ve_modelo"));
+                        nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
+                        nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
+                        nueva.setSuplemento(rs.getString("pe_suplemento"));
+                        nueva.setDescripcion(rs.getString("pe_descripcion"));
+                        nueva.setTarifa(rs.getString("tc_tarifa"));
+                        nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
+                        nueva.setNumCamion(rs.getString("pe_num_en_camion"));
+                        nueva.setAux(recFacturaAux.getNumFactura());
+                        lista.add(nueva);
+                        pedidos.add(rs.getLong("pe_num"));
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                CSLanzarFactura factura = new CSLanzarFactura();
+                factura.lanzar(lista, beanCliente, recFacturaAux.getFechaFactura(), 1, cl_id, recFacturaAux.getFechaDesde(), recFacturaAux.getFechaHasta(), pedidos, 0);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButtonAbonoActionPerformed
        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAbono;
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonRecuperar;
     private javax.swing.JScrollPane jScrollPane1;
