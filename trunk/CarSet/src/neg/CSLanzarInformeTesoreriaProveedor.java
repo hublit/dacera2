@@ -79,6 +79,8 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         jSeparator7 = new javax.swing.JSeparator();
         lFechaFin = new javax.swing.JLabel();
         jLabelnumFc = new javax.swing.JLabel();
+        lEstado5 = new javax.swing.JLabel();
+        jComboBoxEstado = new javax.swing.JComboBox();
 
         setMaximumSize(new java.awt.Dimension(0, 0));
 
@@ -145,6 +147,15 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         jLabelnumFc.setText("N.º Factura ");
         jLabelnumFc.setName("jLabelnumFc"); // NOI18N
 
+        lEstado5.setForeground(new java.awt.Color(0, 0, 100));
+        lEstado5.setText("Estado");
+        lEstado5.setName("lEstado5"); // NOI18N
+
+        jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxEstado.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "PTE", "PAGADO" }));
+        jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,31 +167,6 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                     .addComponent(jLabel1))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lCliente)
-                            .addComponent(lFechaIni))
-                        .addGap(15, 15, 15))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelnumFc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                                .addComponent(lFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jTextNumTr, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(152, 152, 152))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(19, 19, 19)
@@ -191,6 +177,38 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                         .addGap(203, 203, 203)
                         .addComponent(jButtonCancelar)))
                 .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lEstado5)
+                        .addGap(44, 44, 44)
+                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(392, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lCliente)
+                                    .addComponent(lFechaIni))
+                                .addGap(15, 15, 15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelnumFc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                                        .addComponent(lFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jTextNumTr, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(152, 152, 152))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +232,11 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                     .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDateFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                     .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-                .addGap(87, 87, 87)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lEstado5))
+                .addGap(35, 35, 35)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -264,7 +286,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
             fechaF=formatoDeFecha.format(fecha);
         }
 
-
+        String estado = new String(jComboBoxEstado.getSelectedItem().toString());
 //        String query="SELECT tr_fecha, tr_num, tr_num_carset, pr_num, tr_importe_neto, tr_iva, tr_irpf, " +
 //                     "tr_importe, tr_estado, tr_fecha_pago, tr_banco, tr_observaciones " +
 //                     "FROM tr_tesoreria_proveedor WHERE ";
@@ -294,6 +316,10 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
             if ((!fechaI.equals("")) && (!fechaF.equals(""))) 
             {
                 query = query + " AND tr.tr_fecha >='" + fechaI + "' AND tr.tr_fecha<='" + fechaF + "'";
+            }
+            if (!estado.equals("Selecciona"))
+            {
+                query = query + " AND tr.tr_estado='" + estado + "'";
             }
 
             query = query + " ORDER BY tr.tr_id ASC";
@@ -333,6 +359,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JComboBox jComboBoxEstado;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private com.toedter.calendar.JDateChooser jDateFechaIni;
     private javax.swing.JLabel jLabel1;
@@ -343,6 +370,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
     public javax.swing.JTextField jTextProveedor;
     private javax.swing.JToggleButton jToggleButtonProveedor;
     private javax.swing.JLabel lCliente;
+    private javax.swing.JLabel lEstado5;
     private javax.swing.JLabel lFechaFin;
     private javax.swing.JLabel lFechaIni;
     // End of variables declaration//GEN-END:variables
