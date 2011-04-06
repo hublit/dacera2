@@ -203,7 +203,7 @@ public class Cliente
 
        ResultSet rsCl = CSDesktop.datos.select("SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, " +
                                   "cl_poblacion, cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, " +
-                                  "cl_poblacion_fiscal, cl_provincia_fiscal,cl_plazo,cl_dias_plazo,fp_id " +
+                                  "cl_poblacion_fiscal, cl_provincia_fiscal,cl_plazo,cl_dias_plazo,fp_id,cl_correo " +
                                   "FROM cl_clientes WHERE cl_id = "+clienteID);
         try
         {
@@ -222,7 +222,7 @@ public class Cliente
                 bCliente.setPlazoPago(rsCl.getString("cl_plazo"));
                 bCliente.setDiasPlazo(rsCl.getString("cl_dias_plazo"));
                 formaPago=rsCl.getInt("fp_id");
-               
+                bCliente.setCorreo(rsCl.getInt("cl_correo"));
             }
             rsCl.close();
             String fPago=getSFormaPago(formaPago);

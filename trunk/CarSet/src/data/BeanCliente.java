@@ -21,6 +21,8 @@ public class BeanCliente
     private String plazoPago;
     private String formaPago;
     private String diasPlazo;
+    private int correo;
+
     /**
      * @return cl_id
      */
@@ -219,4 +221,13 @@ public class BeanCliente
     public void setDiasPlazo(String diasPlazo) {
         this.diasPlazo = diasPlazo;
     }
+
+    public int getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(int correo) {
+        this.correo = correo;
+    }
+
 }
