@@ -703,39 +703,50 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
            
                 private void btnReloadActionPerformed(ActionEvent evt) {
 
-                     Cliente finalCliente=new Cliente();
+                     Cliente finalCliente = new Cliente();
+                     BeanCliente datosCl = new BeanCliente();
+                     datosCl = finalCliente.getDatosFacturaCliente(finalCliente.getClienteID(mail.getCliente()));
+                     //Comprobamos si se tienen que enviar la factura por email o correo ordinario
+                     if(datosCl.getCorreo() == 1)
+                     {
+                        JLabel errorFields = new JLabel("Las facturas para el cliente "+datosCl.getNombre()+" se envían mediante correo ordinario ");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                     }
+                     else
+                     {
+                        //String cliente = jTextCliente.getText();
+                        //String cliente=mail.getCliente();
 
-                    //String cliente = jTextCliente.getText();
-                    //String cliente=mail.getCliente();
-                    String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID(mail.getCliente());
+                        String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID(mail.getCliente());
 
 
-                    CSDesktop.BuscaMailCliente = new JInternalFrame("Seleccionar Mail Cliente", true, false, false, true );
-                    // adjuntar panel al panel de contenido del marco interno
-                    CSSelectMailClienteFactura panel = new CSSelectMailClienteFactura(query,mail,nombre);
-                    CSDesktop.BuscaMailCliente.getContentPane().add( panel,BorderLayout.CENTER);
-                    // establecer tama�o de marco interno en el tama�o de su contenido
-                    CSDesktop.BuscaMailCliente.pack();
-                    // adjuntar marco interno al escritorio y mostrarlo
-                    CSDesktop.elEscritorio.add( CSDesktop.BuscaMailCliente );
-                    CSDesktop.BuscaMailCliente.setLocation(150, 50);
-                    CSDesktop.BuscaMailCliente.setVisible( true );
+                        CSDesktop.BuscaMailCliente = new JInternalFrame("Seleccionar Mail Cliente", true, false, false, true );
+                        // adjuntar panel al panel de contenido del marco interno
+                        CSSelectMailClienteFactura panel = new CSSelectMailClienteFactura(query,mail,nombre);
+                        CSDesktop.BuscaMailCliente.getContentPane().add( panel,BorderLayout.CENTER);
+                        // establecer tama�o de marco interno en el tama�o de su contenido
+                        CSDesktop.BuscaMailCliente.pack();
+                        // adjuntar marco interno al escritorio y mostrarlo
+                        CSDesktop.elEscritorio.add( CSDesktop.BuscaMailCliente );
+                        CSDesktop.BuscaMailCliente.setLocation(150, 50);
+                        CSDesktop.BuscaMailCliente.setVisible( true );
 
-                    /*int seleccion = JOptionPane.showOptionDialog(
-                            JRViewerFactura.this,
-                            "¿Quieres mandar la factura por mail al cliente "+mail.getCliente()+"?",
-                            "Atención",
-                            JOptionPane.YES_NO_CANCEL_OPTION,
-                            JOptionPane.QUESTION_MESSAGE,
-                            null,    // null para icono por defecto.
-                            new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
-                            "SI");
+                        /*int seleccion = JOptionPane.showOptionDialog(
+                                JRViewerFactura.this,
+                                "¿Quieres mandar la factura por mail al cliente "+mail.getCliente()+"?",
+                                "Atención",
+                                JOptionPane.YES_NO_CANCEL_OPTION,
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,    // null para icono por defecto.
+                                new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
+                                "SI");
 
-                    if (seleccion==0)
-                    {                        
-                        CSLanzarFactura factura = new CSLanzarFactura();                           
-                        factura.enviarMail(mail,nombre);                                                   
-                    }*/
+                        if (seleccion==0)
+                        {
+                            CSLanzarFactura factura = new CSLanzarFactura();
+                            factura.enviarMail(mail,nombre);
+                        }*/
+                     }
                 }
         });
 
