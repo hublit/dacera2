@@ -55,7 +55,6 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 {
     private String consulta = "";
     ArrayList lista = new ArrayList();
-    ArrayList facturas = new ArrayList();
     static String fVencimiento = "";
 
     public CSResultBuscarTesoreriaCliente(String query) throws UnknownHostException, FileNotFoundException, IOException, ParseException
@@ -96,7 +95,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 Calendar cal = Calendar.getInstance();
                 Date fechaTs = null;
                 SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
-
+                ArrayList facturas = new ArrayList();
                 facturas.add(rs.getInt("fl_id"));
                 System.out.println("fl_id: "+rs.getInt("fl_id"));
                 facturas.add(rs.getString("fl_estado"));
@@ -513,40 +512,53 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
             int fila = 0;
             String nueva = "";
+            boolean tesoreria = false;
 
             for(int i = 0; i < lista.size(); i++)
             {
                 ArrayList indices = (ArrayList)lista.get(i);
-                int fl_id = Integer.parseInt(indices.get(i).toString());
-                String estado = (String) jTable1.getValueAt(fila, 9);
-                String fechaPago = (String) jTable1.getValueAt(fila, 10);
-                
-                if (!fechaPago.equals(""))
-                {
-                     String [] temp = null;
-                     temp = fechaPago.split("\\-");
-                     String anyo = temp[2];
-                     String mes = temp[1];
-                     String dia = temp[0];
-                     nueva = anyo+"-"+mes+"-"+dia;
-                }
-                
-                String observaciones = (String) jTable1.getValueAt(fila, 11);
+                    int fl_id = Integer.parseInt(indices.get(0).toString());
+                    String estado = (String) jTable1.getValueAt(fila, 9);
+                    String fechaPago = (String) jTable1.getValueAt(fila, 10);
 
-                System.out.println("fila: "+i);
-                fila ++;
+                    if (!fechaPago.equals(""))
+                    {
+                         String [] temp = null;
+                         temp = fechaPago.split("\\-");
+                         String anyo = temp[2];
+                         String mes = temp[1];
+                         String dia = temp[0];
+                         nueva = anyo+"-"+mes+"-"+dia;
+                    }
 
-                System.out.println("Elemento id: "+fl_id);
-                System.out.println("Elemento estado: "+estado);
-                System.out.println("Elemento fecha pago: "+fechaPago);
-                System.out.println("Elemento observaciones: "+observaciones);
+                    String observaciones = (String) jTable1.getValueAt(fila, 11);
 
-                try {
-                    //guardamos las modificaciones en la bd
-                    modificarTesoreria(fl_id, estado, nueva, observaciones);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CSResultBuscarTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    System.out.println("fila: "+i);
+                    fila ++;
+
+                    System.out.println("Elemento id: "+fl_id);
+                    System.out.println("Elemento estado: "+estado);
+                    System.out.println("Elemento fecha pago: "+fechaPago);
+                    System.out.println("Elemento observaciones: "+observaciones);
+
+                    try {
+                        //guardamos las modificaciones en la bd
+                      tesoreria = modificarTesoreria(fl_id, estado, nueva, observaciones);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CSResultBuscarTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+            if(tesoreria)
+            {
+                jButtonModificar.setEnabled(false);
+                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                JOptionPane.showMessageDialog(null,errorFields);
+                jButtonModificar.setEnabled(true);
+            }
+            else
+            {
+                CSDesktop.ResultTesoreriaCliente.dispose();
+                CSDesktop.menuTesoreriaCliente.setEnabled(true);
             }
 
         }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -608,7 +620,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 celda.setCellStyle(cs);
                 texto = new HSSFRichTextString("NETO");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 4, (short) ((250 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 4, (short) ((100 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 5);
                 celda.setCellStyle(cs);
@@ -867,10 +879,10 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 col.setCellEditor(new MyComboBoxEditor(values));
                 col.setCellRenderer(new MyComboBoxRenderer(values));
                 //Comprobar
-                if (table.getRowCount() == row+1)
-                {
-                    col.getCellEditor().removeCellEditorListener(table);
-                }
+//                if (table.getRowCount() == row+1)
+//                {
+//                    col.getCellEditor().removeCellEditorListener(table);
+//                }
                 jTable1.setValueAt(value, row, column);
             }
             
@@ -979,25 +991,15 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
      * @param ts
      * @throws SQLException
      */
-    public void modificarTesoreria(int fl_id, String estado, String fechaPago, String observaciones) throws SQLException
+    public boolean  modificarTesoreria(int fl_id, String estado, String fechaPago, String observaciones) throws SQLException
     {
         String query = "UPDATE fl_factura_cliente SET fl_estado = '"+estado+"', fl_fecha_pago = '"+fechaPago+"', " +
                        "fl_observaciones = '"+observaciones+"' WHERE fl_id = "+fl_id;
         System.out.println(query);
         boolean rsUpdate = CSDesktop.datos.manipuladorDatos(query);
 
-        if(rsUpdate)
-        {
-            jButtonModificar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-            JOptionPane.showMessageDialog(null,errorFields);
-            jButtonModificar.setEnabled(true);
-        }
-        else
-        {
-            CSDesktop.ResultTesoreriaCliente.dispose();
-            CSDesktop.menuTesoreriaCliente.setEnabled(true);
-        }
+        return rsUpdate;
+
     }
 
 }
