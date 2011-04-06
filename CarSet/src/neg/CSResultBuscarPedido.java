@@ -53,10 +53,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
     /** Creates new form ABResultBuscarPedido */
     public CSResultBuscarPedido(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
-
-        
-
-        consulta=query;
+        consulta = query;
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = CSDesktop.datos.select(query);
 
@@ -79,7 +76,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR", "SE" ,"SUPLE","MG","F.RECOGIDA","F.ENTREGA","F.REAL","ESTADO","OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR", "SE" ,"SUPLE","MG","F.RECOGIDA","F.ENTREGA","F.REAL","ESTADO", "F. CLIENTE", "F. PROVEEDOR","OBSERVACIONES"});
 
         int numeroFila = 0;
         double totalCliente = 0;
@@ -99,121 +96,111 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                  double suple=0;
                  double ganancia=0;
                  String cl_id = rs.getString("cl_id");
-                 System.out.println("Cliente: "+cl_id);
                  String fechaPe = rs.getString("pe_fecha");
-                 System.out.println("Fecha: "+fechaPe);
-                for (int k = 0; k < 21; k++) {
-                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17 || k==18 || k==19 || k==20) {
-                        if((k==1) || (k==16)|| (k==17) || (k==18))
-                        {
-                            String fecha=(rs.getObject(k+1)).toString();
-                             String [] temp = null;
-                             temp = fecha.split("\\-");
-                             String anyo=temp[0];
-                             String mes=temp[1];
-                             String dia=temp[2];
-                             String nueva=dia+"-"+mes+"-"+anyo;
 
-                             datosFila[j] = nueva;
-                        }
-                        else if(k==11)
-                        {
-                             ta_es_cl=rs.getDouble(k+1);
-                             datosFila[j] = rs.getDouble(k + 1);
-                             totalCliente = totalCliente + ta_es_cl;
-                             totalCliente = Utilidades.redondear(totalCliente, 2);
-                        }
-                        else if(k==12)
-                        {
-                            ta_es_pr=rs.getDouble(k+1);
-                            datosFila[j] = rs.getDouble(k + 1);
-                            System.out.println("Clase: " + datosFila[j].getClass().getName());
-                            totalProveedor = totalProveedor + ta_es_pr;
-                           totalProveedor = Utilidades.redondear(totalProveedor, 2);
+                for (int k = 0; k < 23; k++)
+                {
+                    if((k==1) || (k==16)|| (k==17) || (k==18))
+                    {
+                        String fecha=(rs.getObject(k+1)).toString();
+                         String [] temp = null;
+                         temp = fecha.split("\\-");
+                         String anyo=temp[0];
+                         String mes=temp[1];
+                         String dia=temp[2];
+                         String nueva=dia+"-"+mes+"-"+anyo;
 
-                        }
-                        else if (k==13)
-                        {
-//                            s_especial = rs.getDouble(k+1);
-//                            datosFila[j] = rs.getDouble(k + 1);
-//                            totalSEspecial = totalSEspecial + s_especial;
+                         datosFila[j] = nueva;
+                    }
+                    else if(k==11)
+                    {
+                         ta_es_cl=rs.getDouble(k+1);
+                         datosFila[j] = rs.getDouble(k + 1);
+                         totalCliente = totalCliente + ta_es_cl;
+                         totalCliente = Utilidades.redondear(totalCliente, 2);
+                    }
+                    else if(k==12)
+                    {
+                        ta_es_pr=rs.getDouble(k+1);
+                        datosFila[j] = rs.getDouble(k + 1);
+                        System.out.println("Clase: " + datosFila[j].getClass().getName());
+                        totalProveedor = totalProveedor + ta_es_pr;
+                       totalProveedor = Utilidades.redondear(totalProveedor, 2);
 
-                            if(!rs.getObject(k+1).equals(""))
+                    }
+                    else if (k==13)
+                    {
+                        if(!rs.getObject(k+1).equals(""))
+                        {
+                            if(!rs.getObject(k+1).equals("Otros"))
                             {
-                                if(!rs.getObject(k+1).equals("Otros"))
+                                String servicio = rs.getObject(k+1).toString();
+                                String sEspecial = Utilidades.CalcularImporteServicioEspecial(servicio,cl_id, fechaPe);
+                                if(!servicio.equals(""))
                                 {
-                                    String servicio = rs.getObject(k+1).toString();
-                                    String sEspecial = Utilidades.CalcularImporteServicioEspecial(servicio,cl_id, fechaPe);
-                                    if(!servicio.equals(""))
-                                    {
-                                        importeServicioD = Double.parseDouble(sEspecial);
-                                        importeServicioD = Utilidades.redondear(importeServicioD, 2);
-                                    }
+                                    importeServicioD = Double.parseDouble(sEspecial);
+                                    importeServicioD = Utilidades.redondear(importeServicioD, 2);
                                 }
                             }
-                            datosFila[j] = importeServicioD;
-                            totalSEspecial = totalSEspecial + importeServicioD;
-                            totalSEspecial = Utilidades.redondear(totalSEspecial, 2);
-
                         }
-                        else if (k==14)
-                        {
-                            suple = rs.getDouble(k+1);
-                            datosFila[j] = suple;
-                            totalSuplemento = totalSuplemento + suple;
-                            totalSuplemento = Utilidades.redondear(totalSuplemento, 2);
-                        }
-                        else if (k==15)
-                        {
-                            ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
-                            double gananciaF=Utilidades.redondear(ganancia, 2);
-                            datosFila[j] = gananciaF;
-                           
-                            totalMargen = totalMargen + gananciaF;
-                            totalMargen = Utilidades.redondear((totalMargen), 2);
-                        }
-                        else
-                        {
-                            datosFila[j] = rs.getObject(k + 1);
-                            System.out.println("Dato" + k + " " + rs.getObject(k + 1));
-                        }
-                        j++;
+                        datosFila[j] = importeServicioD;
+                        totalSEspecial = totalSEspecial + importeServicioD;
+                        totalSEspecial = Utilidades.redondear(totalSEspecial, 2);
                     }
-                }
+                    else if (k==14)
+                    {
+                        suple = rs.getDouble(k+1);
+                        datosFila[j] = suple;
+                        totalSuplemento = totalSuplemento + suple;
+                        totalSuplemento = Utilidades.redondear(totalSuplemento, 2);
+                    }
+                    else if (k==15)
+                    {
+                        ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
+                        double gananciaF=Utilidades.redondear(ganancia, 2);
+                        datosFila[j] = gananciaF;
 
+                        totalMargen = totalMargen + gananciaF;
+                        totalMargen = Utilidades.redondear((totalMargen), 2);
+                    }
+                    else
+                    {
+                        datosFila[j] = rs.getObject(k + 1);
+                        System.out.println("Dato" + k + " " + rs.getObject(k + 1));
+                    }
+                    j++;
+                }
                 modelo.addRow(datosFila);
                 numeroFila++;
             }
             rs.close();
             Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
             int i = 0;
-            for (int k = 0; k < 18; k++)
+            for (int k = 0; k < 23; k++)
             {
-                if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==10 || k==11 || k==12 || k==13 || k==14 || k==15 || k==16 || k==17|| k==18) {
-                    if(k==10)
-                    {
-                        datosFilaTotal[i] = "TOTALES";
-                    }
-                    if(k==11)
-                    {
-                        datosFilaTotal[i] = totalCliente;
-                    }
-                    if(k==12)
-                    {
-                        datosFilaTotal[i] = totalProveedor;
-                    }
-                    if(k==13)
-                    {
-                        datosFilaTotal[i] = totalSEspecial;
-                    }
-                    if(k==14)
-                    {
-                        datosFilaTotal[i] = totalSuplemento;
-                    }
-                    if(k==15)
-                    {
-                        datosFilaTotal[i] = totalMargen;
-                    }
+                if(k==10)
+                {
+                    datosFilaTotal[i] = "TOTALES";
+                }
+                if(k==11)
+                {
+                    datosFilaTotal[i] = totalCliente;
+                }
+                if(k==12)
+                {
+                    datosFilaTotal[i] = totalProveedor;
+                }
+                if(k==13)
+                {
+                    datosFilaTotal[i] = totalSEspecial;
+                }
+                if(k==14)
+                {
+                    datosFilaTotal[i] = totalSuplemento;
+                }
+                if(k==15)
+                {
+                    datosFilaTotal[i] = totalMargen;
                 }
                 i++;
            }
@@ -245,10 +232,6 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         initComponents();
         jTable1.setModel(modelo);
         jTable1.setDefaultRenderer (Object.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.lang.Object.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.util.Date.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.lang.String.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.lang.Double.class, new MiRender());
 
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
@@ -289,10 +272,14 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         columna17.setPreferredWidth(80);
         TableColumn columna18 = jTable1.getColumnModel().getColumn(18);
         columna18.setPreferredWidth(80);
-         TableColumn columna19 = jTable1.getColumnModel().getColumn(19);
+        TableColumn columna19 = jTable1.getColumnModel().getColumn(19);
         columna19.setPreferredWidth(100);
         TableColumn columna20 = jTable1.getColumnModel().getColumn(20);
-        columna20.setPreferredWidth(500);
+        columna20.setPreferredWidth(100);
+        TableColumn columna21 = jTable1.getColumnModel().getColumn(21);
+        columna21.setPreferredWidth(100);
+        TableColumn columna22 = jTable1.getColumnModel().getColumn(22);
+        columna22.setPreferredWidth(500);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -302,16 +289,6 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         //jTable1.getTableHeader().setPreferredSize(new Dimension(jTable1.getTableHeader().getWidth(),26));
         jTable1.getTableHeader().setBackground(Color.GRAY);
         jTable1.getTableHeader().setForeground(Color.white);        
-
-
-        /*jTable1.getColumnModel().getColumn(0).setCellRenderer(tcrCenter);
-        jTable1.getColumnModel().getColumn(1).setCellRenderer(tcrCenter);
-        jTable1.getColumnModel().getColumn(11).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(12).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(13).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(14).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(15).setCellRenderer(tcrCenter);*/
-        //jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
 
         jTable1.setAutoCreateRowSorter(true);
 
@@ -732,11 +709,22 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                 celda = fila.createCell( (short) 19);
                 celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("F. CLIENTE");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 19, (short) ((90 * 2) / ((double) 1 / 20)) );
+
+                celda = fila.createCell( (short) 20);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("F. PROVEEDOR");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 20, (short) ((90 * 2) / ((double) 1 / 20)) );
+                
+                celda = fila.createCell( (short) 21);
+                celda.setCellStyle(cs);
                 texto = new HSSFRichTextString("OBSERVACIONES");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 19, (short) ((600 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 21, (short) ((600 * 2) / ((double) 1 / 20)) );
 
-        
 	}
 
         private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, ResultSet rs, HSSFCellStyle cs2,HSSFCellStyle cs3) throws SQLException, UnknownHostException
@@ -929,12 +917,25 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                     celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
 
+                    //Celda del número de Factura de Cliente
                     celda = fila.createCell( (short) 19);
+                    String faCliente=rs.getString("pe_num_fa_cl");
+                    texto = new HSSFRichTextString(faCliente);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
+
+                    //Celda del número de Factura de Proveedor
+                    celda = fila.createCell( (short) 20);
+                    String faProveedor=rs.getString("pe_num_fa_pr");
+                    texto = new HSSFRichTextString(faProveedor);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
+
+                    celda = fila.createCell( (short) 21);
                     String descripcion=rs.getString("pe_descripcion");
                     texto = new HSSFRichTextString(descripcion);
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
-
 
                     //Se incrementa el numero de fila
                     num_fila++;
