@@ -101,7 +101,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
 
                 campos.setTr_id(rs.getInt("tr_id"));
-                System.out.println("tr_id: "+rs.getInt("tr_id"));
                 campos.setTr_estado(rs.getString("tr_estado"));
 
                 if (rs.getDate("tr_fecha_pago") != null)
@@ -112,7 +111,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 campos.setTr_fecha_pago(cal);
 
                 campos.setTr_banco(rs.getString("tr_banco"));
-                //campos.setTr_observaciones(rs.getString("tr_observaciones"));
 
                 lista.add(campos);
 
@@ -557,6 +555,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
             int fila = 0;
             String nueva = "";
+            boolean tesoreria = false;
             BeanTesoreriaProveedor campos = new BeanTesoreriaProveedor();
 
             for(int i = 0; i < lista.size(); i++)
@@ -580,17 +579,34 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 System.out.println("fila: "+i);
                 fila ++;
 
-                System.out.println("Elemento id: "+tr_id);
-                System.out.println("Elemento estado: "+estado);
-                System.out.println("Elemento fecha pago: "+fechaPago);
-                System.out.println("Elemento banco: "+banco);
+//                System.out.println("Elemento id: "+tr_id);
+//                System.out.println("Elemento estado: "+estado);
+//                System.out.println("Elemento fecha pago: "+fechaPago);
+//                System.out.println("Elemento banco: "+banco);
 
                 try {
                     //guardamos las modificaciones en la bd
-                    modificarTesoreria(tr_id, estado, nueva, banco);
+                   tesoreria =  modificarTesoreria(tr_id, estado, nueva, banco);
                 } catch (SQLException ex) {
                     Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }
+            if(tesoreria)
+            {
+                jButtonModificar.setEnabled(false);
+                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                JOptionPane.showMessageDialog(null,errorFields);
+                jButtonModificar.setEnabled(true);
+            }
+            else
+            {
+                jButtonModificar.setEnabled(false);
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
+                JOptionPane.showMessageDialog(null, mensaje);
+                jButtonModificar.setEnabled(true);
+                CSDesktop.ResultTesoreriaProveedor.dispose();
+                CSDesktop.BuscarTesoreriaProveedor.dispose();
+                CSDesktop.menuTesoreriaProveedor.setEnabled(true);
             }
 
         }//GEN-LAST:event_jButtonModificarActionPerformed
@@ -1094,29 +1110,15 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
      * @param ts
      * @throws SQLException
      */
-    public void modificarTesoreria(int tr_id, String estado, String fechaPago, String banco) throws SQLException
+    public boolean modificarTesoreria(int tr_id, String estado, String fechaPago, String banco) throws SQLException
     {
         String query = "UPDATE tr_tesoreria_proveedor SET tr_estado = '"+estado+"', tr_fecha_pago = '"+fechaPago+"', " +
                        "tr_banco = '"+banco+"' WHERE tr_id = "+tr_id;
         System.out.println(query);
         boolean rsUpdate = CSDesktop.datos.manipuladorDatos(query);
 
-        if(rsUpdate)
-        {
-            jButtonModificar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-            JOptionPane.showMessageDialog(null,errorFields);
-            jButtonModificar.setEnabled(true);
-        }
-        else
-        {
-            jButtonModificar.setEnabled(false);
-            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
-            JOptionPane.showMessageDialog(null, mensaje);
-            jButtonModificar.setEnabled(true);
-            CSDesktop.ResultTesoreriaProveedor.dispose();
-            CSDesktop.menuTesoreriaProveedor.setEnabled(true);
-        }
+        return rsUpdate;
+        
     }
 
 }
