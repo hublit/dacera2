@@ -47,9 +47,9 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     public CSValidarPedidosProveedor(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
         consulta = query;
-//System.out.println("En el result: "+query);
+
         TablaModelo modelo = new TablaModelo();
-        ArrayList lista=new ArrayList();
+        ArrayList lista = new ArrayList();
         ResultSet rs = CSDesktop.datos.select(query);
 
         KeyListener l = new KeyListener()
@@ -121,8 +121,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                         datosFila[j] = rs.getDouble(k + 1);
                         System.out.println("Clase: " + datosFila[j].getClass().getName());
                         totalProveedor = totalProveedor + ta_es_pr;
-                       totalProveedor = Utilidades.redondear(totalProveedor, 2);
-
+                        totalProveedor = Utilidades.redondear(totalProveedor, 2);
                     }
                     else if (k==14)
                     {
@@ -399,7 +398,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jLabelIvaTrimestre.setText("IVA Trimestre");
         jLabelIvaTrimestre.setName("jLabelIvaTrimestre"); // NOI18N
 
-        jComboBoxIvaTrimestre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1T", "2T", "3T", "4T", " " }));
+        jComboBoxIvaTrimestre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1T", "2T", "3T", "4T" }));
         jComboBoxIvaTrimestre.setName("jComboBoxIvaTrimestre"); // NOI18N
         jComboBoxIvaTrimestre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -427,27 +426,27 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1202, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1380, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(484, 484, 484)
-                        .addComponent(jButtonValidar, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                        .addComponent(jButtonValidar, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
                         .addGap(269, 269, 269)
                         .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE))
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1374, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelFechaCont, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                        .addComponent(jLabelFechaCont, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooserFechaCont, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelIvaTrimestre, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                        .addComponent(jLabelIvaTrimestre, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxIvaTrimestre, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
@@ -462,15 +461,15 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                         .addComponent(jComboBoxIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jLabelFechaFa, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                        .addComponent(jLabelFechaFa, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooserFechaFa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
-                .addComponent(jLabelNumFa, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addComponent(jLabelNumFa, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldNFa, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabelObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addComponent(jLabelObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -541,6 +540,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 String num_carset = "";
                 String fechaFac = "";
                 String fechaCont = "";
+                boolean rsUp = false;
                 String query = "SELECT tr_num_carset FROM tr_tesoreria_proveedor ORDER BY tr_id DESC LIMIT 1";
                 ResultSet rs = CSDesktop.datos.select(query);
                 try
@@ -554,7 +554,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 {
                     Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    System.out.println("Voy por aqui");
 
                     Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
                     Calendar fechaConta = jDateChooserFechaCont.getCalendar();
@@ -588,14 +587,20 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     for(int i = 0; i < longitud; i++)
                     {
                             String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado', pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(celdas[i])+"'";
-                           // boolean rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
+                            rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
                     }
-                try {
-                    //guardamos los datos de la tesoreria
-                    guardarTesoreria(tsProveedor);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
+                    if(rsUp)
+                    {
+                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al cambiar el estado de los pedidos</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                    }
+                    try {
+                        //guardamos los datos de la tesoreria
+                        guardarTesoreria(tsProveedor);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
              }
         }
     }//GEN-LAST:event_jButtonValidarActionPerformed
@@ -640,8 +645,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
         {
             Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
-            //se centran los valores
 
+            //se centran los valores
             jTable1.setRowHeight(20);
 
             if (column == 0 ||column == 1 || column == 16 || column == 17 || column == 18 )
@@ -761,6 +766,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         else
         {
             CSDesktop.ResultValidacionPedidos.dispose();
+            CSDesktop.BuscarValidacionPedidos.dispose();
             CSDesktop.menuTesoreriaValidacion.setEnabled(true);
         }
     }

@@ -24,7 +24,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="2" attributes="0">
               <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-              <Component id="jScrollPane1" pref="1202" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="1380" max="32767" attributes="0"/>
               <EmptySpace min="10" pref="10" max="10" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -32,11 +32,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="484" max="-2" attributes="0"/>
-                      <Component id="jButtonValidar" pref="314" max="32767" attributes="0"/>
+                      <Component id="jButtonValidar" pref="492" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="269" max="-2" attributes="0"/>
                       <Component id="jButtonCerrar" min="-2" pref="129" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jSeparator4" alignment="1" pref="1196" max="32767" attributes="0"/>
+                  <Component id="jSeparator4" alignment="1" pref="1374" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
@@ -44,12 +44,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jLabelFechaCont" pref="108" max="32767" attributes="0"/>
+                      <Component id="jLabelFechaCont" pref="152" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jDateChooserFechaCont" min="-2" pref="108" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabelIvaTrimestre" pref="72" max="32767" attributes="0"/>
+                      <Component id="jLabelIvaTrimestre" pref="116" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxIvaTrimestre" min="-2" pref="64" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -67,17 +67,17 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="jLabelFechaFa" pref="74" max="32767" attributes="0"/>
+                      <Component id="jLabelFechaFa" pref="118" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jDateChooserFechaFa" min="-2" pref="108" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Component id="jLabelNumFa" pref="72" max="32767" attributes="0"/>
+              <Component id="jLabelNumFa" pref="118" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextFieldNFa" min="-2" pref="112" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabelObservaciones" pref="77" max="32767" attributes="0"/>
+              <Component id="jLabelObservaciones" pref="121" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="433" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -318,12 +318,11 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxIvaTrimestre">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="4">
             <StringItem index="0" value="1T"/>
             <StringItem index="1" value="2T"/>
             <StringItem index="2" value="3T"/>
             <StringItem index="3" value="4T"/>
-            <StringItem index="4" value=" "/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxIvaTrimestre" noResource="true"/>

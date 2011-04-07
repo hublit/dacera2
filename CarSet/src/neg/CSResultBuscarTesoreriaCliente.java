@@ -536,10 +536,10 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     System.out.println("fila: "+i);
                     fila ++;
 
-                    System.out.println("Elemento id: "+fl_id);
-                    System.out.println("Elemento estado: "+estado);
-                    System.out.println("Elemento fecha pago: "+fechaPago);
-                    System.out.println("Elemento observaciones: "+observaciones);
+//                    System.out.println("Elemento id: "+fl_id);
+//                    System.out.println("Elemento estado: "+estado);
+//                    System.out.println("Elemento fecha pago: "+fechaPago);
+//                    System.out.println("Elemento observaciones: "+observaciones);
 
                     try {
                         //guardamos las modificaciones en la bd
@@ -557,7 +557,12 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
             }
             else
             {
+                jButtonModificar.setEnabled(false);
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
+                JOptionPane.showMessageDialog(null, mensaje);
+                jButtonModificar.setEnabled(true);
                 CSDesktop.ResultTesoreriaCliente.dispose();
+                CSDesktop.BuscarTesoreriaCliente.dispose();
                 CSDesktop.menuTesoreriaCliente.setEnabled(true);
             }
 
