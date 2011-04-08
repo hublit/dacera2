@@ -358,6 +358,8 @@ public class CSDesktop extends JFrame
                     NuevoPedido.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
                     NuevoPedido.setVisible(true);
                     
+                } catch (ParseException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -734,7 +736,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "                         CarSet version 3.1.1",
+                  "                         CarSet version 3.2.0",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
 
