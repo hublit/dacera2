@@ -20,36 +20,30 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="26" pref="26" max="26" attributes="0"/>
-              <Component id="jSeparator4" min="-2" max="-2" attributes="1"/>
-              <EmptySpace min="-2" pref="819" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="jSeparator7" alignment="2" pref="765" max="32767" attributes="1"/>
+                  <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jSeparator7" alignment="0" max="32767" attributes="1"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jButtonBuscar" min="-2" pref="145" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
-                              <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jSeparator6" alignment="0" pref="765" max="32767" attributes="1"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="27" pref="27" max="27" attributes="0"/>
+              <Component id="jSeparator6" pref="765" max="32767" attributes="1"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="346" max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
+              <EmptySpace pref="350" max="32767" attributes="0"/>
+              <Component id="jButtonBuscar" min="-2" pref="145" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+              <Component id="jButtonCancelar" min="-2" pref="96" max="-2" attributes="0"/>
+              <EmptySpace min="53" pref="53" max="53" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="27" pref="27" max="27" attributes="0"/>
+              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="613" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
@@ -73,6 +67,11 @@
                   <Component id="jDateFechaFin" alignment="0" min="-2" pref="126" max="-2" attributes="1"/>
               </Group>
               <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="26" pref="26" max="26" attributes="0"/>
+              <Component id="jSeparator4" min="-2" max="-2" attributes="1"/>
+              <EmptySpace min="-2" pref="819" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
