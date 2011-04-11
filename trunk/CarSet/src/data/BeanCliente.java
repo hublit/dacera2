@@ -18,6 +18,7 @@ public class BeanCliente
     private String cod_postal_fiscal;
     private String poblacion_fiscal;
     private String provincia_fiscal;
+    private String estado;
     private String plazoPago;
     private String formaPago;
     private String diasPlazo;
@@ -188,6 +189,14 @@ public class BeanCliente
     public String getProvinciaFiscal()
     {
             return provincia_fiscal;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getFormaPago() {

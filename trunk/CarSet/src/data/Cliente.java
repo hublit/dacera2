@@ -202,8 +202,8 @@ public class Cliente
        int formaPago=0;
 
        ResultSet rsCl = CSDesktop.datos.select("SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_direccion, cl_cod_postal, " +
-                                  "cl_poblacion, cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, " +
-                                  "cl_poblacion_fiscal, cl_provincia_fiscal,cl_plazo,cl_dias_plazo,fp_id,cl_correo " +
+                                  "cl_poblacion, cl_provincia, cl_direccion_fiscal, cl_cod_postal_fiscal, cl_poblacion_fiscal, " +
+                                  "cl_provincia_fiscal, cl_plazo, cl_dias_plazo, cl_estado, fp_id,cl_correo " +
                                   "FROM cl_clientes WHERE cl_id = "+clienteID);
         try
         {
@@ -220,6 +220,7 @@ public class Cliente
                 bCliente.setPoblacion_fiscal(rsCl.getString("cl_poblacion_fiscal"));
                 bCliente.setProvinciaFiscal(rsCl.getString("cl_provincia_fiscal"));
                 bCliente.setPlazoPago(rsCl.getString("cl_plazo"));
+                bCliente.setEstado(rsCl.getString("cl_estado"));
                 bCliente.setDiasPlazo(rsCl.getString("cl_dias_plazo"));
                 formaPago=rsCl.getInt("fp_id");
                 bCliente.setCorreo(rsCl.getInt("cl_correo"));
