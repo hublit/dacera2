@@ -5,6 +5,7 @@
  */
 package neg;
 
+import data.BeanCliente;
 import data.BeanCorreoCliente;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -340,7 +341,7 @@ public class CSEditarPedido extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Facturado y Validado", "Cobrado", "Pagado", "Anulado", "Fallido" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Facturado y Validado", "Pedido Libre", "Anulado", "Fallido" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
         jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1327,9 +1328,10 @@ public class CSEditarPedido extends javax.swing.JPanel
         int proveedorID = 0;
         String fechaEntrega = "";
         String fechaRecogida = "";
+        Cliente clienteId = new Cliente();
+        String estadoCliente = "Activo";
 
         String numero = new String(jTextNumero.getText());
-       
 
         Calendar fechaCalendarFecha = jDateFecha.getCalendar();
        
@@ -1376,6 +1378,15 @@ public class CSEditarPedido extends javax.swing.JPanel
         String observaciones = new String(jTextObservaciones.getText());
         int factor = new Integer(jComboFactor.getSelectedIndex());
         String cliente= new String(jTextCliente.getText());
+
+        if (Utilidades.campoObligatorio(cliente,"Cliente").equals("OK"))
+        {
+             clienteID = clienteId.getClienteID(cliente);
+             BeanCliente datosCl = new BeanCliente();
+             datosCl = clienteId.getDatosFacturaCliente(clienteID);
+             estadoCliente = datosCl.getEstado();
+        }
+
         String proveedor= new String(jTextProveedor.getText());
         
         String matricula=new String(jTextMatricula.getText());
@@ -1497,6 +1508,10 @@ public class CSEditarPedido extends javax.swing.JPanel
         {
             ValidarFormatos(Utilidades.campoObligatorio(cliente,"Cliente"));
         }
+        else if (estadoCliente.equals("Inactivo"))
+        {
+            ValidarFormatos("El Cliente seleccionado está Inactivo");
+        }
         else if (!Utilidades.campoObligatorio(direccionOrigen,"Direccion de Origen").equals("OK"))
         {
             ValidarFormatos(Utilidades.campoObligatorio(direccionOrigen,"Direccion de Origen"));
@@ -1614,8 +1629,6 @@ public class CSEditarPedido extends javax.swing.JPanel
                 else
                 {
 
-                    Cliente cliente2 = new Cliente();
-                    clienteID = cliente2.getClienteID(cliente);
                     String queryCli = "UPDATE pc_pedidos_clientes set cl_id= '" + clienteID + "' WHERE pe_num = " + numero + "";
                     boolean rsCli = CSDesktop.datos.manipuladorDatos(queryCli);
                     if (rsCli) {
