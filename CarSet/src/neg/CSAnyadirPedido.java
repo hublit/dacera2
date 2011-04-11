@@ -6,6 +6,7 @@
 
 package neg;
 
+import data.BeanCliente;
 import data.BeanCorreoCliente;
 import java.text.ParseException;
 import utils.Utilidades;
@@ -35,8 +36,8 @@ import javax.swing.JPanel;
  */
 public class CSAnyadirPedido extends JPanel
 {
-    int clienteID=0;
-    int proveedorID=0;
+    int clienteID = 0;
+    int proveedorID = 0;
 
     /** Creates new form ABAnyadirProveedores */
     public CSAnyadirPedido() throws SQLException, ParseException
@@ -524,7 +525,7 @@ public class CSAnyadirPedido extends JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Cobrado", "Pagado", "Anulado", "Pedido Libre", "Fallido" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Anulado", "Pedido Libre", "Fallido" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
         jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1325,6 +1326,8 @@ public class CSAnyadirPedido extends JPanel
         int comparacion1 = -1;
         int comparacion2 = -1;
         int comparacion3 = -1;
+        Cliente clienteId = new Cliente();
+        String estadoCliente = "Activo";
 
         // CONVERSION DE LA FECHA
         Calendar fechaCalendarFecha = jDateFecha.getCalendar();
@@ -1376,6 +1379,15 @@ public class CSAnyadirPedido extends JPanel
         String observaciones = new String(jTextObservaciones.getText());
         int factor = new Integer(jComboFactor.getSelectedIndex());
         String cliente= new String(jTextCliente.getText());
+
+        if (Utilidades.campoObligatorio(cliente,"Cliente").equals("OK"))
+        {
+             clienteID = clienteId.getClienteID(cliente);
+             BeanCliente datosCl = new BeanCliente();
+             datosCl = clienteId.getDatosFacturaCliente(clienteID);
+             estadoCliente = datosCl.getEstado();
+        }
+
         String proveedor= new String(jTextProveedor.getText());
         String matricula=new String(jTextMatricula.getText());
         String marca=new String(jTextMarca.getText());
@@ -1469,6 +1481,7 @@ public class CSAnyadirPedido extends JPanel
         if(soporte.equals("Selecciona"))
             soporte="";
 
+
         if((fechaCalendarOrigen != null) && (fechaCalendarDestino != null))
         {
             comparacion1=fechaCalendarFecha.compareTo(fechaCalendarOrigen);
@@ -1495,6 +1508,10 @@ public class CSAnyadirPedido extends JPanel
         else if (!Utilidades.campoObligatorio(cliente,"Cliente").equals("OK"))
         {
             ValidarFormatos(Utilidades.campoObligatorio(cliente,"Cliente"));
+        }
+        else if (estadoCliente.equals("Inactivo"))
+        {
+            ValidarFormatos("El Cliente seleccionado está Inactivo");
         }
         else if (!Utilidades.campoObligatorio(direccionOrigen,"Direccion de Origen").equals("OK"))
         {
@@ -1616,10 +1633,8 @@ public class CSAnyadirPedido extends JPanel
                 }
                 else
                 {
-                    Cliente cliente2=new Cliente();
-                    clienteID=cliente2.getClienteID(cliente);
-                    Proveedor proveedor2=new Proveedor();
-                    proveedorID=proveedor2.getProveedorID(proveedor);
+                    Proveedor proveedor2 = new Proveedor();
+                    proveedorID = proveedor2.getProveedorID(proveedor);
                     query = "select distinct last_insert_id() from pe_pedidos";
                     String pe_num="";
                     ResultSet rs2 = CSDesktop.datos.select(query);
