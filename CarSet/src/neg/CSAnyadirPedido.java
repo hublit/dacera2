@@ -1326,6 +1326,9 @@ public class CSAnyadirPedido extends JPanel
         int comparacion1 = -1;
         int comparacion2 = -1;
         int comparacion3 = -1;
+        String comparaFecha = "ko";
+        String comparaFechaOrig = "ko";
+        String comparaFechaDes = "ko";
         Cliente clienteId = new Cliente();
         String estadoCliente = "Activo";
 
@@ -1485,11 +1488,15 @@ public class CSAnyadirPedido extends JPanel
         if((fechaCalendarOrigen != null) && (fechaCalendarDestino != null))
         {
             comparacion1=fechaCalendarFecha.compareTo(fechaCalendarOrigen);
-            comparacion2=fechaCalendarOrigen.compareTo(fechaCalendarDestino);           
+            comparacion2=fechaCalendarOrigen.compareTo(fechaCalendarDestino);
+            comparaFecha = Utilidades.comparaFechaString(fecha2, fechaOrigen);
+            comparaFechaOrig = Utilidades.comparaFechaString(fechaOrigen, fechaDestino);
         }
         if (fechaCalendarRealDestino != null)
         {
              comparacion3=fechaCalendarRealDestino.compareTo(fechaCalendarOrigen);
+             comparaFechaDes = Utilidades.comparaFechaString(fechaOrigen, fechaRealDestino);
+
         }
         
         if (!Utilidades.campoObligatorio(fecha2,"Fecha").equals("OK"))
@@ -1581,15 +1588,18 @@ public class CSAnyadirPedido extends JPanel
         {
              ValidarFormatos(Utilidades.formatoTelefono9(telefonoDestino));
         }
-        else if(comparacion1 > 0)
+        //else if(comparacion1 > 0)
+        else if(comparaFecha.equals("ko"))
         {
             ValidarFormatos("Fecha Pedido tiene que ser <= Fecha Prevista Recogida");
         }
-        else if(comparacion2 > 0)
+        //else if(comparacion2 > 0)
+        else if(comparaFechaOrig.equals("ko"))
         {
             ValidarFormatos("Fecha Prevista Recogida tiene que ser <= Fecha Prevista Entrega");
         }
-        else if(comparacion3 < 0)
+        //else if(comparacion3 < 0)
+        else if(comparaFechaDes.equals("ko"))
         {
             ValidarFormatos("Fecha Real Entrega tiene que ser >= Fecha Prevista Recogida");
         }

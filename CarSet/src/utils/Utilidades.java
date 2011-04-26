@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import neg.CSDesktop;
 
 /**
@@ -1114,10 +1112,48 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
       }
 
       return factorSel;
-  }
-public static double redondear( double numero, int decimales ) {
-    return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
-  }
+    }
+    
+    public static double redondear( double numero, int decimales )
+    {
+        return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
+    }
 
+    /**
+     * Comparamos dos fechas mediante
+     * @param fecha
+     * @return
+     */
+    public static String comparaFechaString(String fechaIni, String fechaFin)
+    {
+        String resultado = "";
+
+        int diaIni = Integer.valueOf(fechaIni.substring(8,10)).intValue();
+        int mesIni = Integer.valueOf(fechaIni.substring(5,7)).intValue();
+        int yIni = Integer.valueOf(fechaIni.substring(0,4)).intValue();
+        
+        int diaFin = Integer.valueOf(fechaFin.substring(8,10)).intValue();
+        int mesFin = Integer.valueOf(fechaFin.substring(5,7)).intValue();
+        int yFin = Integer.valueOf(fechaFin.substring(0,4)).intValue();
+
+        if (yIni > yFin)
+        {
+            resultado = "ko";
+        }
+        else if ((yIni == yFin) && (mesIni > mesFin))
+        {
+            resultado = "ko";
+        }
+        else if((mesIni == mesFin) && (diaIni > diaFin))
+        {
+            resultado = "ko";
+        }
+        else
+        {
+            resultado = "ok";
+        }
+
+        return resultado;
+    }
 
 }
