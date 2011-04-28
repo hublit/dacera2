@@ -791,7 +791,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     celda = fila.createCell( (short) 10);
                     String fecha_pago=(rs.getObject("fl_fecha_pago")).toString();
                          temp = null;
-                         temp = fecha.split("\\-");
+                         temp = fecha_pago.split("\\-");
                          anyo=temp[0];
                          mes=temp[1];
                          dia=temp[2];
