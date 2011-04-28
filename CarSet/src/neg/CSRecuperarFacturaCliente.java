@@ -206,7 +206,7 @@ public class CSRecuperarFacturaCliente extends JPanel
                 Cliente client = new Cliente();
                 cl_id = client.getClienteID(cliente);
             }
-            String query = "SELECT fl.fl_id,fl.fl_num,fl.fl_fecha,cl.cl_nombre,fl.fl_fecha_desde,fl.fl_fecha_hasta, fl_importe_total "
+            String query = "SELECT fl.fl_id,fl.fl_num,fl.fl_fecha,cl.cl_nombre,fl.fl_fecha_desde,fl.fl_fecha_hasta, fl_importe_total,fl_tipo "
                           + "  FROM fl_factura_cliente fl INNER JOIN cl_clientes cl" + "  WHERE fl.cl_id= " + cl_id + " AND fl.cl_id = cl.cl_id ";
             query = query + " ORDER BY fl.fl_id ASC";
             System.out.println(query);
