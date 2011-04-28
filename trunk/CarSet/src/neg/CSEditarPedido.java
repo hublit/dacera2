@@ -2174,6 +2174,12 @@ public class CSEditarPedido extends javax.swing.JPanel
                 if(jComboBoxEstado.getSelectedItem().toString().equals("Facturado"))
                 {
                     jTextTaEsCli.setEditable(false);
+                    //jTextTaEsProv.setEditable(false);
+                    jTextSuplemento.setEditable(false);
+                }
+                if(jComboBoxEstado.getSelectedItem().toString().equals("Facturado y Validado"))
+                {
+                    jTextTaEsCli.setEditable(false);
                     jTextTaEsProv.setEditable(false);
                     jTextSuplemento.setEditable(false);
                 }
