@@ -28,13 +28,18 @@ public class BeanFactura {
     private String modelo;
     private String tarifaEsCliente;
     private String tarifaEsProveedor;
-
-   
+    private String vehiculo;
+    private String estado;
+    private String fecha_prevista_entrega;
+    private String fecha_prevista_recogida;
+    private String fecha_real_entrega;
     private String servicioSuplemento;
     private String numCamion;
     private String suplemento;
     private String descripcion;
     private String tarifa;
+    private String fechaAbono;
+    private String observaciones;
     
     private String aux;
 
@@ -44,6 +49,22 @@ public class BeanFactura {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getFechaAbono() {
+        return fechaAbono;
+    }
+
+    public void setFechaAbono(String fechaAbono) {
+        this.fechaAbono = fechaAbono;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
     public String getFecha_prevista_entrega() {
@@ -69,11 +90,7 @@ public class BeanFactura {
     public void setFecha_real_entrega(String fecha_real_entrega) {
         this.fecha_real_entrega = fecha_real_entrega;
     }
-    private String vehiculo;
-    private String estado;
-    private String fecha_prevista_entrega;
-    private String fecha_prevista_recogida;
-    private String fecha_real_entrega;
+    
 
     public String getTarifa() {
         return tarifa;

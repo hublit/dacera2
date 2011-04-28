@@ -18,6 +18,7 @@ public class BeanRecFactura {
     private String fechaDesde;
     private String fechaHasta;
     private String importe;
+    private String tipo;
 
     public String getCliente() {
         return cliente;
@@ -57,6 +58,14 @@ public class BeanRecFactura {
 
     public void setImporte(String importe) {
         this.importe = importe;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getNumFactura() {
