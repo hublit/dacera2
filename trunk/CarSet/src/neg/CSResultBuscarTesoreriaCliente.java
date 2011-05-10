@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractCellEditor;
@@ -29,7 +28,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
@@ -82,7 +80,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "CLIENTE", "NETO", "IVA","TOTAL","DIAS F.F.","F. PAGO","ESTADO", "FECHA PAGO" ,"OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "CLIENTE", "NETO", "IVA","TOTAL","DIAS F.F.","F. PAGO","ESTADO", "FECHA PAGO" , "N.º CUENTA", "OBSERVACIONES"});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -99,6 +97,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 facturas.add(rs.getInt("fl_id"));
                 System.out.println("fl_id: "+rs.getInt("fl_id"));
                 facturas.add(rs.getString("fl_estado"));
+                facturas.add(rs.getString("cl_num_cuenta"));
 
                 if (rs.getDate("fl_fecha_pago") != null)
                 {
@@ -114,7 +113,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 double iva = 0;
                 double importe = 0;
 
-                for (int k = 0; k < 12; k++)
+                for (int k = 0; k < 13; k++)
                 {
                     if(k==0)
                     {
@@ -301,7 +300,9 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
         columna10.setPreferredWidth(80);
         TableColumn columna11 = jTable1.getColumnModel().getColumn(11);
-        columna11.setPreferredWidth(250);
+        columna11.setPreferredWidth(130);
+        TableColumn columna12 = jTable1.getColumnModel().getColumn(12);
+        columna12.setPreferredWidth(250);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -665,9 +666,15 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
                 celda = fila.createCell( (short) 11);
                 celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("N.º CUENTA");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 11, (short) ((130 * 2) / ((double) 1 / 20)) );
+
+                celda = fila.createCell( (short) 12);
+                celda.setCellStyle(cs);
                 texto = new HSSFRichTextString("OBSERVACIONES");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 11, (short) ((600 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 12, (short) ((600 * 2) / ((double) 1 / 20)) );
 
 	}
 
@@ -802,6 +809,13 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
                     //Celda de las observaciones
                     celda = fila.createCell( (short) 11);
+                    String num_cuenta=rs.getString("cl_num_cuenta");
+                    texto = new HSSFRichTextString(num_cuenta);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
+
+                    //Celda de las observaciones
+                    celda = fila.createCell( (short) 12);
                     String observaciones=rs.getString("fl_observaciones");
                     texto = new HSSFRichTextString(observaciones);
                     celda.setCellStyle(cs3);
