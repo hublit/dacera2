@@ -30,16 +30,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/**
- *
- * @author lito
- */
+
 public class CSAnyadirPedido extends JPanel
 {
     int clienteID = 0;
     int proveedorID = 0;
 
-    /** Creates new form ABAnyadirProveedores */
+    
     public CSAnyadirPedido() throws SQLException, ParseException
     {
         CSDesktop.mailCliente.clear();
@@ -1783,9 +1780,17 @@ public class CSAnyadirPedido extends JPanel
 
                             //Para calcular la fecha
                             Date fechaHoy = new Date(System.currentTimeMillis());
-                            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+                            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
                             String fechaHoy2=formatoDeFecha.format(fechaHoy);
 
+                            //String fechaOrigen2=formatoDeFecha.format(fechaOrigen);
+                            //String fechaDestino2=formatoDeFecha.format(fechaDestino);
+                            String [] tempOrigen = null;
+                            tempOrigen = fechaOrigen.split("\\-");
+                            String fechaOrigen2=tempOrigen[2]+"/"+tempOrigen[1]+"/"+tempOrigen[0];
+                            String [] tempDestino = null;
+                            tempDestino = fechaDestino.split("\\-");
+                            String fechaDestino2=tempDestino[2]+"/"+tempDestino[1]+"/"+tempDestino[0];
                             //Para el numero de pedido
                             String numPedido=Utilidades.rellenarCeros(pe_num,5);
                             String pedido=numPedido+"/"+fecha2.substring(2, 4);
@@ -1795,8 +1800,8 @@ public class CSAnyadirPedido extends JPanel
                             mail.setFecha(fechaHoy2);
                             mail.setNumPedido(pedido);
                             mail.setSoporte(soporte);
-                            mail.setFechaEntrega(fechaOrigen);
-                            mail.setFechaRecogida(fechaDestino);
+                            mail.setFechaEntrega(fechaOrigen2);
+                            mail.setFechaRecogida(fechaDestino2);
                             mail.setMarca(marca);
                             mail.setModelo(modelo);
                             mail.setMatricula(matricula);
@@ -1986,9 +1991,11 @@ public class CSAnyadirPedido extends JPanel
 
         Cliente finalCliente=new Cliente();
         String cliente = jTextCliente.getText();
-        String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID(cliente);
+        
+       
+            String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID(cliente);
 
-
+            System.out.println(query);
         CSDesktop.BuscaMailCliente = new JInternalFrame("Seleccionar Mail Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
         CSSelectMailCliente panel = new CSSelectMailCliente(query);
@@ -1999,6 +2006,7 @@ public class CSAnyadirPedido extends JPanel
         CSDesktop.elEscritorio.add( CSDesktop.BuscaMailCliente );
         CSDesktop.BuscaMailCliente.setLocation(150, 50);
         CSDesktop.BuscaMailCliente.setVisible( true );
+        
 }//GEN-LAST:event_jButtonMailClienteActionPerformed
 
     private void jButtonMailProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMailProveedorActionPerformed
