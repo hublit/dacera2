@@ -54,15 +54,11 @@ public class CSEnviarMailProveedor
                       " pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial," +
                       " pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula," +
                       " pe.pe_ve_marca, pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, " +
-                      " pe.pe_suplemento, pe.pe_num_en_camion, pe.pe_descripcion, tp.tp_tarifa, sp_entrada_campa," +
+                      " pe.pe_suplemento, pe.pe_num_en_camion, pe.pe_descripcion, sp_entrada_campa," +
                       " sp_campa, sp_suplemento FROM pe_pedidos pe, pp_pedidos_proveedores pp, " +
-                      " tp_tarifas_proveedores tp, sp_servicios_proveedores sp " +
-                      " WHERE pe.pe_num = pp.pe_num AND sp.pr_id = pp.pr_id " +
-                      " AND tp.tp_fecha_hasta > pe.pe_fecha AND tp.tp_servicio = pe.pe_servicio " +
- //                     " AND tp.pr_id = pp.pr_id " +
-                      " AND (tp.tp_servicio_origen = pe.pe_servicio_origen OR tp.tp_servicio_origen = pe.pe_servicio_destino) " +
-                      " AND (tp.tp_servicio_destino = pe.pe_servicio_destino OR tp.tp_servicio_destino = pe.pe_servicio_origen)" +
-                      " AND tp.tp_soporte = pe.pe_soporte AND pe.pe_num ="+mail.getNumero();
+                      " sp_servicios_proveedores sp " +
+                      " WHERE pe.pe_num = pp.pe_num AND sp.pr_id = pp.pr_id " +                      
+                      " AND pe.pe_num ="+mail.getNumero();
             
             System.out.println(query);
 
@@ -78,7 +74,7 @@ public class CSEnviarMailProveedor
                 mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
                 mail.setDescripcion(rs_mail.getString("pe_descripcion"));
-                mail.setTarifa(rs_mail.getString("tp_tarifa"));
+                //mail.setTarifa(rs_mail.getString("tp_tarifa"));
                 mail.setEntradaCampa(rs_mail.getString("sp_entrada_campa"));
                 mail.setCampa(rs_mail.getString("sp_campa"));
                 mail.setSuplemento(rs_mail.getString("pe_suplemento"));
@@ -322,7 +318,7 @@ public class CSEnviarMailProveedor
                                 importeServicioD = Utilidades.redondear(importeServicioD, 2);
                                 //String servicioEspecial=mail.getServicioEspecial().toUpperCase();
                                 //String labelServicioEspecial="SERVICIO ESPECIAL";
-                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;"+importeServicioEs+" &euro;</font></td></tr>";
+                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;"+importeServicioD+" &euro;</font></td></tr>";
                                 importeTotal = importeTotal + importeServicioD;
                             }
                         }
@@ -476,10 +472,10 @@ public class CSEnviarMailProveedor
 
             message.setContent(htmlText, "text/html");
 
-             /*BufferedWriter bw2 = null;
+             BufferedWriter bw2 = null;
                 bw2 = new BufferedWriter(new FileWriter("c://mailProcesoProveedor.html", false));
                 bw2.write(htmlText);
-                bw2.close();*/
+                bw2.close();
 
 
             // Lo enviamos.

@@ -56,10 +56,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
     JasperPrint jasperPrint;
     String nombreFichero="";
-    /** 
-     * @param args the command line arguments 
-     */ 
-
+    
     public void lanzar(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin,ArrayList pedidos, int codigo) throws ClassNotFoundException, SQLException, JRException, UnknownHostException
     {
         // PRIMERO SE BORRA LA TABLA AUXILIAR PARA GENERAR LAS FACTURAS.
@@ -1075,7 +1072,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
         }
     }// FIN DE LA CLASE LANZAR
 
-        public void lanzarAbono(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin,ArrayList pedidos, int codigo,String observaciones) throws ClassNotFoundException, SQLException, JRException, UnknownHostException
+    public void lanzarAbono(ArrayList lista,BeanCliente beanCliente,String fechaFactura,int numero, int clienteID,String fechaIni, String fechaFin,ArrayList pedidos, int codigo,String observaciones) throws ClassNotFoundException, SQLException, JRException, UnknownHostException
     {
         // PRIMERO SE BORRA LA TABLA AUXILIAR PARA GENERAR LAS FACTURAS.
         String queryDel = "DELETE FROM fa_facturas_aux";
@@ -1486,9 +1483,12 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 pars.put("Query","SELECT * FROM pe_pedidos;");
                 pars.put("Blanco","");
                 pars.put("Factor","Turismo");
+                total=Utilidades.redondear(total, 2);
                 pars.put("ImporteTotal",total);
                 pars.put("IVA","18%");
+                iva=Utilidades.redondear(iva, 2);
                 pars.put("ImporteIVA", iva);
+                totalIva=Utilidades.redondear(totalIva, 2);
                 pars.put("ImporteTotalIVA", totalIva);
                 pars.put("EURO","€");
                 pars.put("FechaVFactura",fecha2);
