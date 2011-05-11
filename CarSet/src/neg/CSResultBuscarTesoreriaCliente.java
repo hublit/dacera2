@@ -873,7 +873,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 cell. setForeground(Color. BLACK);
             }
 
-            if (column == 9 || column == 10 || column == 11 )
+            if (column == 9 || column == 10 || column == 12 )
             {
                 Color fondo = new  Color(255, 255, 157);
                 cell.setBackground(fondo);
