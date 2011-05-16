@@ -25,12 +25,10 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -89,14 +87,6 @@ public class CSEditarPedido extends javax.swing.JPanel
             }
         }
         addKeyListener(l);
-        if (jComboBoxEstado.getSelectedItem().toString().equals("Facturado") ||
-            jComboBoxEstado.getSelectedItem().toString().equals("Facturado y Validado") ||
-            jComboBoxEstado.getSelectedItem().toString().equals("Cobrado") ||
-            jComboBoxEstado.getSelectedItem().toString().equals("Pagado"))
-        {
-            jTextTaEsCli.setEditable(false);
-            jTextTaEsProv.setEditable(false);
-        }
     }
 
     /** This method is called from within the constructor to
@@ -1825,7 +1815,20 @@ public class CSEditarPedido extends javax.swing.JPanel
 }//GEN-LAST:event_jComboBoxSoporteActionPerformed
 
     private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
-        // TODO add your handling code here:
+        if (jComboBoxEstado.getSelectedItem().toString().equals("Facturado"))
+        {
+            jTextTaEsCli.setEditable(false);
+        }
+        else if (jComboBoxEstado.getSelectedItem().toString().equals("Facturado y Validado"))
+        {
+            jTextTaEsCli.setEditable(false);
+            jTextTaEsProv.setEditable(false);
+        }
+        else
+        {
+            jTextTaEsCli.setEditable(true);
+            jTextTaEsProv.setEditable(true);
+        }
 }//GEN-LAST:event_jComboBoxEstadoActionPerformed
 
     private void jTextCodPostalOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCodPostalOrigenActionPerformed
