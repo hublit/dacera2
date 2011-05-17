@@ -26,7 +26,9 @@ import java.awt.event.KeyListener;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -50,7 +52,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
     /** Creates new form ABResultBuscarPedido */
     public CSResultBuscarRecFactura(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
-
+        
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = CSDesktop.datos.select(query);
 
@@ -144,6 +146,8 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
             CSDesktop.ResultRecFactura.setVisible( true );
         }
         initComponents();
+        Date hoy = new Date();
+        jDateFechaFactura.setDate(hoy);
         jTable1.setModel(modelo);
         jTable1.setDefaultRenderer (Object.class, new MiRender());
         //jTable1.setDefaultRenderer (java.lang.Object.class, new MiRender());
@@ -239,6 +243,8 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
         jTextObservaciones = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
         jButtonRecuperarFactura = new javax.swing.JButton();
+        jDateFechaFactura = new com.toedter.calendar.JDateChooser();
+        lFechaIni1 = new javax.swing.JLabel();
 
         setAutoscrolls(true);
 
@@ -313,6 +319,13 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
             }
         });
 
+        jDateFechaFactura.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFechaFactura.setName("jDateFechaFactura"); // NOI18N
+
+        lFechaIni1.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaIni1.setText("Fecha Abono ");
+        lFechaIni1.setName("lFechaIni1"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -335,9 +348,13 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                 .addComponent(jButtonAbonoPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(jButtonAbono, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(300, 300, 300)
+                                .addGap(44, 44, 44)
+                                .addComponent(lFechaIni1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateFechaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
                                 .addComponent(jButtonRecuperarFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
                                 .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
@@ -360,7 +377,9 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonAbonoPrev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAbono)
-                    .addComponent(jButtonRecuperarFactura))
+                    .addComponent(jButtonRecuperarFactura)
+                    .addComponent(lFechaIni1)
+                    .addComponent(jDateFechaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(616, 616, 616)
@@ -412,6 +431,9 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                     lista.clear();
                     pedidos.clear();
                     String observaciones=jTextObservaciones.getText();
+                    Date fechaAbono=jDateFechaFactura.getDate();
+                    SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                    String fechaFacturaAbono=formatoDeFecha.format(fechaAbono);
                     Cliente cliente = new Cliente();
                     try
                     {
@@ -435,16 +457,17 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                         beanCliente = cliente.getDatosFacturaCliente(cl_id);
                         beanCliente.setCl_id(String.valueOf(cl_id));
                         String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
-                            "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
-                            "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
-                            "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
-                            "pe.pe_descripcion, sc_entrada_campa, sc_campa " +
-                            "FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc " +
-                            "WHERE pe.pe_num = pc.pe_num  AND sc.cl_id = pc.cl_id " +
-                            "AND sc.sc_fecha_hasta > pe.pe_fecha " +
-                            "AND pe.pe_estado = 'Facturado' " +
-                            "AND pe_fecha BETWEEN '" + recFacturaAux.getFechaDesde() + "' AND '" + recFacturaAux.getFechaHasta() + "' " +
-                            "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
+                                    "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
+                                    "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
+                                    "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
+                                    "pe.pe_descripcion, sc_entrada_campa, sc_campa " +
+                                    "FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc " +
+                                    "WHERE pe.pe_num = pc.pe_num  AND sc.cl_id = pc.cl_id " +
+                                    "AND sc.sc_fecha_hasta > pe.pe_fecha " +
+                                    "AND (pe.pe_estado = 'Facturado' OR pe.pe_estado='Facturado y Validado') " +
+                                    //"AND pe_fecha BETWEEN '" + recFacturaAux.getFechaDesde() +
+                                    "AND '" + recFacturaAux.getFechaHasta() + "' " +
+                                    "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
                         System.out.println(query);
                         ResultSet rs = CSDesktop.datos.select(query);
                         try
@@ -481,7 +504,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                             Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         CSLanzarFactura factura = new CSLanzarFactura();
-                        factura.lanzarAbono(lista, beanCliente, recFacturaAux.getFechaFactura(), numero+1, cl_id, recFacturaAux.getFechaDesde(), recFacturaAux.getFechaHasta(), pedidos, 2,observaciones);
+                        factura.lanzarAbono(lista, beanCliente, fechaFacturaAbono, numero+1, cl_id, recFacturaAux.getFechaDesde(), recFacturaAux.getFechaHasta(), pedidos, 2,observaciones);
                         } catch (ClassNotFoundException ex) {
                             Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
@@ -535,6 +558,9 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                             lista.clear();
                             pedidos.clear();
                             String observaciones=jTextObservaciones.getText();
+                            Date fechaAbono=jDateFechaFactura.getDate();
+                            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                            String fechaFacturaAbono=formatoDeFecha.format(fechaAbono);
                             Cliente cliente = new Cliente();
                             int cl_id = cliente.getClienteID(recFacturaAux.getCliente());
                             BeanCliente beanCliente = new BeanCliente();
@@ -587,7 +613,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                             Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         CSLanzarFactura factura = new CSLanzarFactura();
-                        factura.lanzarAbono(lista, beanCliente, recFacturaAux.getFechaFactura(), 0, cl_id, recFacturaAux.getFechaDesde(), recFacturaAux.getFechaHasta(), pedidos, 2,observaciones);
+                        factura.lanzarAbono(lista, beanCliente, fechaFacturaAbono, 0, cl_id, recFacturaAux.getFechaDesde(), recFacturaAux.getFechaHasta(), pedidos, 2,observaciones);
                         } catch (ClassNotFoundException ex) {
                             Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (SQLException ex) {
@@ -716,11 +742,13 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
     private javax.swing.JButton jButtonAbonoPrev;
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonRecuperarFactura;
+    private com.toedter.calendar.JDateChooser jDateFechaFactura;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextPane jTextObservaciones;
+    private javax.swing.JLabel lFechaIni1;
     private javax.swing.JLabel lObservaciones;
     // End of variables declaration//GEN-END:variables
 
