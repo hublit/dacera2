@@ -882,7 +882,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                     //Celda de la fecha del pedido
                     celda = fila.createCell( (short) 16);
-                    String fechaRecogida=(rs.getObject("pe_fecha_destino")).toString();
+                    String fechaRecogida=(rs.getObject("pe_fecha_origen")).toString();
                              String [] tempR = null;
                              tempR = fechaRecogida.split("\\-");
                              String anyoR=tempR[0];
