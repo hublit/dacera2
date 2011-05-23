@@ -152,21 +152,11 @@ public class CSValidarPedido extends JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
                     .addComponent(jLabel1))
-                .addGap(53, 53, 53))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
-                .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(350, Short.MAX_VALUE)
-                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(201, 201, 201)
-                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(51, 51, 51))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
-                .addContainerGap(613, Short.MAX_VALUE))
+                .addContainerGap(611, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(155, 155, 155)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,6 +179,17 @@ public class CSValidarPedido extends JPanel
                 .addGap(26, 26, 26)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(819, 819, 819))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(350, Short.MAX_VALUE)
+                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(201, 201, 201)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,8 +215,8 @@ public class CSValidarPedido extends JPanel
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCancelar)
-                    .addComponent(jButtonBuscar))
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jButtonCancelar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(23, 23, 23))
@@ -299,7 +300,7 @@ public class CSValidarPedido extends JPanel
 
  public Dimension getPreferredSize()
    {
-      return new Dimension( 826,500 );
+      return new Dimension( 850,500 );
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
