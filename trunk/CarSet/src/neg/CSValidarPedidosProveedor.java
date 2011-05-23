@@ -41,6 +41,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 {
     private  String consulta = "";
     ArrayList pedidos = new ArrayList();
+    ArrayList importe = new ArrayList();
     String pr_id = "";
     double totalProveedor = 0;
 
@@ -119,6 +120,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     {
                         ta_es_pr=rs.getDouble(k+1);
                         datosFila[j] = rs.getDouble(k + 1);
+                        importe.add(rs.getDouble(k + 1));
                         System.out.println("Clase: " + datosFila[j].getClass().getName());
                         totalProveedor = totalProveedor + ta_es_pr;
                         totalProveedor = Utilidades.redondear(totalProveedor, 2);
@@ -262,7 +264,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
      public Dimension getPreferredSize()
    {
-      return new Dimension( 1400,650 );
+      return new Dimension( 1400,700 );
     }
 
      public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
@@ -576,19 +578,23 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     tsProveedor.setTr_num(numFa);
                     tsProveedor.setTr_num_carset(num_carset);
                     tsProveedor.setPr_num(pr_id);
-                    tsProveedor.setTr_importe(totalProveedor);
                     String[] textoIva =  (jComboBoxIvaTipo.getSelectedItem().toString()).split("%");
                     Double iva = Double.valueOf(textoIva[0]);
                     tsProveedor.setTr_iva(iva);
                     tsProveedor.setTr_irpf(0.0);
                     tsProveedor.setTr_importe_neto(0.0);
                     tsProveedor.setTr_observaciones(observaciones);
+                    double importe_pr = 0;
 
                     for(int i = 0; i < longitud; i++)
                     {
                             String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado', pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(celdas[i])+"'";
                             rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
+                            importe_pr = importe_pr + Double.parseDouble(importe.get(celdas[i]).toString());
+
                     }
+
+                    tsProveedor.setTr_importe(importe_pr);
 
                     if(rsUp)
                     {
