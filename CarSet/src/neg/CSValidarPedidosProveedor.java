@@ -752,28 +752,35 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             fechaPago=formatoDeFecha.format(fecha);
         }
 
-        String query = "INSERT INTO tr_tesoreria_proveedor (tr_fecha, tr_num, tr_num_carset, pr_num, tr_importe_neto, " +
+            int confirmado = JOptionPane.showConfirmDialog(this, "Importe '"+importeProveedor+"', Iva '"+totalIva+"',  Irpf '"+irpf+"', Total '"+totalImporte+"'");
+
+            if (JOptionPane.OK_OPTION == confirmado)
+            {
+
+                String query = "INSERT INTO tr_tesoreria_proveedor (tr_fecha, tr_num, tr_num_carset, pr_num, tr_importe_neto, " +
                                                             "tr_iva, tr_irpf, tr_importe, tr_estado, tr_fecha_pago, " +
                                                             "tr_banco, tr_observaciones) " +
                                                             "VALUES ('"+fechaFactura+"', '"+ts.getTr_num()+"', " +
                                                             "'"+ts.getTr_num_carset()+"', '"+pr_num+"', '"+importeProveedor+"', " +
                                                             "'"+totalIva+"', '"+irpf+"', '"+totalImporte+"', 'PTE', '"+fechaPago+"', " +
                                                             "'"+banco+"', '"+ts.getTr_observaciones()+"')";
-        System.out.println(query);
-        boolean rsIn = CSDesktop.datos.manipuladorDatos(query);
+                System.out.println(query);
+                boolean rsIn = CSDesktop.datos.manipuladorDatos(query);
 
-        if(rsIn)
-        {
-            jButtonValidar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-            JOptionPane.showMessageDialog(null,errorFields);
-            jButtonValidar.setEnabled(true);
-        }
-        else
-        {
-            CSDesktop.ResultValidacionPedidos.dispose();
-            CSDesktop.BuscarValidacionPedidos.dispose();
-            CSDesktop.menuTesoreriaValidacion.setEnabled(true);
-        }
+                if(rsIn)
+                {
+                    jButtonValidar.setEnabled(false);
+                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                    JOptionPane.showMessageDialog(null,errorFields);
+                    jButtonValidar.setEnabled(true);
+                }
+                else
+                {
+                    CSDesktop.ResultValidacionPedidos.dispose();
+                    CSDesktop.BuscarValidacionPedidos.dispose();
+                    CSDesktop.menuTesoreriaValidacion.setEnabled(true);
+                }
+
+            }
     }
 }
