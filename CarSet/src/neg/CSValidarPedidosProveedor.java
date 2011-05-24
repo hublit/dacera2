@@ -522,7 +522,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     private void jButtonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarActionPerformed
-
+        boolean informe = false;
         int longitud = jTable1.getSelectedRowCount();
         int[] celdas = jTable1.getSelectedRows();
         if(longitud == 0)
@@ -584,26 +584,35 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     tsProveedor.setTr_irpf(0.0);
                     tsProveedor.setTr_importe_neto(0.0);
                     tsProveedor.setTr_observaciones(observaciones);
+
+                    //importe para la nueva linea del informe
                     double importe_pr = 0;
 
                     for(int i = 0; i < longitud; i++)
                     {
-                            String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado', pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(celdas[i])+"'";
-                            rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
-                            importe_pr = importe_pr + Double.parseDouble(importe.get(celdas[i]).toString());
-
+                        importe_pr = importe_pr + Double.parseDouble(importe.get(celdas[i]).toString());
                     }
 
                     tsProveedor.setTr_importe(importe_pr);
 
-                    if(rsUp)
+                    try
                     {
-                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al cambiar el estado de los pedidos</FONT></HTML>");
-                        JOptionPane.showMessageDialog(null,errorFields);
-                    }
-                    try {
                         //guardamos los datos de la tesoreria
-                        guardarTesoreria(tsProveedor);
+                        informe = guardarTesoreria(tsProveedor);
+
+                        if (informe)
+                        {
+                            for(int i = 0; i < longitud; i++)
+                            {
+                                String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado', pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(celdas[i])+"'";
+                                rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
+                            }
+                            if(rsUp)
+                            {
+                                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al cambiar el estado de los pedidos</FONT></HTML>");
+                                JOptionPane.showMessageDialog(null,errorFields);
+                            }
+                        }
                     } catch (SQLException ex) {
                         Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -709,7 +718,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
      * @param numCarset
      * @param observaciones
      */
-    public void guardarTesoreria(BeanTesoreriaProveedor ts) throws SQLException
+    public boolean guardarTesoreria(BeanTesoreriaProveedor ts) throws SQLException
     {
         Proveedor pr = new Proveedor();
         BeanProveedor beanPr = new BeanProveedor();
@@ -752,7 +761,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             fechaPago=formatoDeFecha.format(fecha);
         }
 
-            int confirmado = JOptionPane.showConfirmDialog(this, "Importe '"+importeProveedor+"', Iva '"+totalIva+"',  Irpf '"+irpf+"', Total '"+totalImporte+"'");
+            int confirmado = JOptionPane.showConfirmDialog(this, " Importe = '"+importeProveedor+"' \n Iva = '"+totalIva+"' \n Irpf = '"+irpf+"' \n Total = '"+totalImporte+"'");
 
             if (JOptionPane.OK_OPTION == confirmado)
             {
@@ -773,14 +782,22 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
                     JOptionPane.showMessageDialog(null,errorFields);
                     jButtonValidar.setEnabled(true);
+
+                    return false;
                 }
                 else
                 {
                     CSDesktop.ResultValidacionPedidos.dispose();
                     CSDesktop.BuscarValidacionPedidos.dispose();
                     CSDesktop.menuTesoreriaValidacion.setEnabled(true);
+
+                    return true;
                 }
 
+            }
+            else
+            {
+                return false;
             }
     }
 }
