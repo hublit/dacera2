@@ -70,6 +70,12 @@ public class CSRecuperarFacturaCliente extends JPanel
         jLabel1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jButtonPrev = new javax.swing.JButton();
+        jDateFechaFin = new com.toedter.calendar.JDateChooser();
+        lFechaIni = new javax.swing.JLabel();
+        lFechaFin = new javax.swing.JLabel();
+        jDateFecha = new com.toedter.calendar.JDateChooser();
+        jTextNumero = new javax.swing.JTextField();
+        lNumero = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(400, 400));
         setRequestFocusEnabled(false);
@@ -120,59 +126,114 @@ public class CSRecuperarFacturaCliente extends JPanel
             }
         });
 
+        jDateFechaFin.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFechaFin.setName("jDateFechaFin"); // NOI18N
+
+        lFechaIni.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaIni.setText("Fecha Desde");
+        lFechaIni.setName("lFechaIni"); // NOI18N
+
+        lFechaFin.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaFin.setText("Fecha Hasta");
+        lFechaFin.setName("lFechaFin"); // NOI18N
+
+        jDateFecha.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFecha.setName("jDateFecha"); // NOI18N
+
+        jTextNumero.setName("jTextNumero"); // NOI18N
+
+        lNumero.setForeground(new java.awt.Color(0, 0, 100));
+        lNumero.setText("Núm. de factura ");
+        lNumero.setName("lNumero"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(129, 129, 129)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
+                        .addGap(182, 182, 182)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lNumero)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(429, 429, 429))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(157, 157, 157)
-                                .addComponent(lCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                .addComponent(lFechaFin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButtonCliente)
-                                .addGap(167, 167, 167))))
+                                .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lCliente)
+                                .addGap(33, 33, 33)
+                                .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jToggleButtonCliente)))
+                        .addGap(109, 109, 109))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(lFechaIni)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(388, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
+                        .addContainerGap(274, Short.MAX_VALUE)
                         .addComponent(jButtonPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(112, 112, 112)
-                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(207, 207, 207)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE))))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(219, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(199, 199, 199))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lCliente)
-                    .addComponent(jToggleButtonCliente))
+                    .addComponent(jToggleButtonCliente)
+                    .addComponent(lCliente))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lFechaFin)))
+                .addGap(36, 36, 36)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonPrev)
                     .addComponent(jButtonCancelar))
-                .addGap(63, 63, 63)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(239, 239, 239))
+                .addGap(68, 68, 68))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -200,14 +261,63 @@ public class CSRecuperarFacturaCliente extends JPanel
         try {
             System.out.println("\nBoton buscar Facturas.");
             String cliente = "";
+            String numFacturaS="";
+            int numFactura=0;
+            String fechaI="";
+            String fechaF="";
             int cl_id = 0;
-            if (!jTextCliente.getText().equals(null)) {
+
+
+
+        Calendar fechaCalendar = jDateFecha.getCalendar();
+        if (fechaCalendar!=null)
+        {
+            Date fecha = fechaCalendar.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaI=formatoDeFecha.format(fecha);
+        }
+
+        fechaCalendar = jDateFechaFin.getCalendar();
+        if (fechaCalendar!=null)
+        {
+            Date fecha = fechaCalendar.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaF=formatoDeFecha.format(fecha);
+        }
+
+           /* String query = "SELECT fl.fl_id,fl.fl_num,fl.fl_fecha,cl.cl_nombre,fl.fl_fecha_desde,fl.fl_fecha_hasta, fl_importe_total,fl_tipo " +
+                           "  FROM fl_factura_cliente fl "; */
+
+            String query = "SELECT fl.fl_id,fl.fl_num,fl.fl_fecha,cl.cl_nombre,fl.fl_fecha_desde,fl.fl_fecha_hasta, fl.fl_importe_total, fl.fl_tipo " +
+                           " FROM fl_factura_cliente fl, cl_clientes cl WHERE fl.cl_id = cl.cl_id ";
+
+            if (!jTextNumero.getText().equals(""))
+            {
+                numFacturaS= new String(jTextNumero.getText());
+                numFactura=Integer.parseInt(numFacturaS);         
+            }
+
+          if (!jTextCliente.getText().equals("")) {
                 cliente = new String(jTextCliente.getText());
                 Cliente client = new Cliente();
                 cl_id = client.getClienteID(cliente);
+                
+                
             }
-            String query = "SELECT fl.fl_id,fl.fl_num,fl.fl_fecha,cl.cl_nombre,fl.fl_fecha_desde,fl.fl_fecha_hasta, fl_importe_total,fl_tipo "
-                          + "  FROM fl_factura_cliente fl INNER JOIN cl_clientes cl" + "  WHERE fl.cl_id= " + cl_id + " AND fl.cl_id = cl.cl_id ";
+            if (numFactura != 0)
+            {
+                query = query + " AND fl.fl_id = " + numFactura;
+            }
+            else
+            {
+                if (!cliente.equals("")) {
+                    query = query + " AND fl.cl_id= " + cl_id;
+                }
+                if ((!fechaI.equals("")) && (!fechaF.equals("")))
+                {
+                    query = query + " AND fl.fl_fecha >= '" + fechaI + "' AND fl.fl_fecha <= '" + fechaF + "'";
+                }
+            }
             query = query + " ORDER BY fl.fl_id ASC";
             System.out.println(query);
             CSResultBuscarRecFactura resultBuscarCliente = new CSResultBuscarRecFactura(query);
@@ -223,19 +333,25 @@ public class CSRecuperarFacturaCliente extends JPanel
 
  public Dimension getPreferredSize()
    {
-      return new Dimension(800,300 );
+      return new Dimension(700,400 );
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonPrev;
+    private com.toedter.calendar.JDateChooser jDateFecha;
+    private com.toedter.calendar.JDateChooser jDateFechaFin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     public javax.swing.JTextField jTextCliente;
+    private javax.swing.JTextField jTextNumero;
     private javax.swing.JToggleButton jToggleButtonCliente;
     private javax.swing.JLabel lCliente;
+    private javax.swing.JLabel lFechaFin;
+    private javax.swing.JLabel lFechaIni;
+    private javax.swing.JLabel lNumero;
     // End of variables declaration//GEN-END:variables
 
     public void ValidarFormatos(String accion)
