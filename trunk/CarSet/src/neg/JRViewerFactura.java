@@ -212,7 +212,7 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 		};
 
 	protected List saveContributors = new ArrayList();
-	protected File lastFolder = null;
+	protected File lastFolder = new File("Z:\\SACO\\FACTURAS\\");
 	protected JRSaveContributor lastSaveContributor = null;
 
 	/** Creates new form JRViewer */
@@ -1068,7 +1068,8 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
 
 		if (lastFolder != null)
 		{
-			fileChooser.setCurrentDirectory(lastFolder);
+			//fileChooser.setCurrentDirectory(lastFolder);
+                        fileChooser.setCurrentDirectory(lastFolder);
 		}
 
 		int retValue = fileChooser.showSaveDialog(this);
