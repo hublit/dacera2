@@ -102,7 +102,7 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
                     campos.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
                     campos.setSuplemento(rs.getString("pe_suplemento"));
                     campos.setDescripcion(rs.getString("pe_descripcion"));
-                    campos.setTarifa(rs.getString("tc_tarifa"));
+                    //campos.setTarifa(rs.getString("tc_tarifa"));
                     campos.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                     campos.setNumCamion(rs.getString("pe_num_en_camion"));
                     lista.add(campos);

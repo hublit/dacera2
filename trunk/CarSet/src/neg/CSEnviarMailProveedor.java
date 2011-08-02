@@ -59,6 +59,8 @@ public class CSEnviarMailProveedor
                       " sp_servicios_proveedores sp " +
                       " WHERE pe.pe_num = pp.pe_num AND sp.pr_id = pp.pr_id " +                      
                       " AND pe.pe_num ="+mail.getNumero();
+
+     
             
             System.out.println(query);
 
@@ -311,7 +313,11 @@ public class CSEnviarMailProveedor
                     {
                         if(!mail.getServicioEspecial().equals("Otros"))
                         {
-                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),mail.getFecha());
+                            String [] tempOrigen = null;
+                            tempOrigen = mail.getFecha().split("\\/");
+                            String nuevaFecha=tempOrigen[2]+"-"+tempOrigen[1]+"-"+tempOrigen[0];
+
+                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),nuevaFecha);
                             if(!importeServicio.equals(""))
                             {
                                 double importeServicioD = Double.parseDouble(importeServicio);
@@ -350,14 +356,18 @@ public class CSEnviarMailProveedor
                     {
                         if(!mail.getServicioEspecial().equals("Otros"))
                         {
-                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),mail.getFecha());
+                            String [] tempOrigen = null;
+                            tempOrigen = mail.getFecha().split("\\/");
+                            String nuevaFecha=tempOrigen[2]+"-"+tempOrigen[1]+"-"+tempOrigen[0];
+
+                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),nuevaFecha);
                             if(!importeServicio.equals(""))
                             {
                                 double importeServicioD = Double.parseDouble(importeServicio);
                                 importeServicioD = Utilidades.redondear(importeServicioD, 2);
                                 //servicioEspecial=beanFactura.getServicioEspecial().toUpperCase();
                                 //labelServicioEspecial="SERVICIO ESPECIAL";
-                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeServicioEs+" &euro;</font></td></tr>";
+                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeServicioD+" &euro;</font></td></tr>";
                                 importeTotal = importeTotal + importeServicioD;
                             }
 

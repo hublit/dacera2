@@ -401,6 +401,11 @@ public class CSAnyadirCliente extends javax.swing.JPanel
         jComboBoxComercial.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxComercial.setForeground(new java.awt.Color(0, 0, 100));
         jComboBoxComercial.setName("jComboBoxComercial"); // NOI18N
+        jComboBoxComercial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxComercialActionPerformed(evt);
+            }
+        });
 
         lPContacto1.setFont(new java.awt.Font("Tahoma", 1, 11));
         lPContacto1.setForeground(new java.awt.Color(170, 16, 4));
@@ -1218,6 +1223,10 @@ public class CSAnyadirCliente extends javax.swing.JPanel
     private void jCheckBoxCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxCorreoActionPerformed
+
+    private void jComboBoxComercialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxComercialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxComercialActionPerformed
 
     public Dimension getPreferredSize()
     {
