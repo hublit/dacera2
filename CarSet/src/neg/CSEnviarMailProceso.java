@@ -17,7 +17,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.PasswordAuthentication;
@@ -51,7 +53,7 @@ public class CSEnviarMailProceso
         try
         {
 
-            String query="SELECT DISTINCT"+
+            /*String query="SELECT DISTINCT"+
             " pe.pe_num,pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio," +
             " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa,"+
             " pe.pe_ida_vuelta,pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_modelo," +
@@ -62,7 +64,18 @@ public class CSEnviarMailProceso
             " AND sc.sc_fecha_hasta > pe.pe_fecha AND tc.tc_servicio = pe.pe_servicio AND tc.cl_id = pc.cl_id" +
             " AND (tc.tc_servicio_origen = pe.pe_servicio_origen OR tc.tc_servicio_origen = pe.pe_servicio_destino)" +
             " AND (tc.tc_servicio_destino = pe.pe_servicio_destino OR tc.tc_servicio_destino = pe.pe_servicio_origen)" +
-            "AND tc.tc_soporte = pe.pe_soporte AND pe.pe_num="+mail.getNumero();
+            "AND tc.tc_soporte = pe.pe_soporte AND pe.pe_num="+mail.getNumero();*/
+
+             String query="SELECT DISTINCT"+
+            " pe.pe_num,pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio," +
+            " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa,"+
+            " pe.pe_ida_vuelta,pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_modelo," +
+            " pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor,pe.pe_suplemento,pe.pe_num_en_camion, pe.pe_descripcion," +
+            " sc_entrada_campa, sc_campa" +
+            " FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc" +
+            " WHERE pe.pe_num = pc.pe_num AND sc.cl_id = pc.cl_id" +
+            " AND sc.sc_fecha_hasta > pe.pe_fecha" +
+            " AND pe.pe_num="+mail.getNumero();
             
             System.out.println(query);
 
@@ -78,7 +91,7 @@ public class CSEnviarMailProceso
                 mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
                 mail.setDescripcion(rs_mail.getString("pe_descripcion"));
-                mail.setTarifa(rs_mail.getString("tc_tarifa"));
+                //mail.setTarifa(rs_mail.getString("tc_tarifa"));
                 mail.setEntradaCampa(rs_mail.getString("sc_entrada_campa"));
                 mail.setCampa(rs_mail.getString("sc_campa"));
                 mail.setSuplemento(rs_mail.getString("pe_suplemento"));
@@ -311,14 +324,19 @@ public class CSEnviarMailProceso
                     {
                         if(!mail.getServicioEspecial().equals("Otros"))
                         {
-                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),mail.getFecha());
+                            String [] tempOrigen = null;
+                            tempOrigen = mail.getFecha().split("\\-");
+                            String nuevaFecha=tempOrigen[2]+"-"+tempOrigen[1]+"-"+tempOrigen[0];
+
+                       
+                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),nuevaFecha);
                             if(!importeServicio.equals(""))
                             {
                                 double importeServicioD = Double.parseDouble(importeServicio);
                                 importeServicioD = Utilidades.redondear(importeServicioD, 2);
                                 //String servicioEspecial=mail.getServicioEspecial().toUpperCase();
                                 //String labelServicioEspecial="SERVICIO ESPECIAL";
-                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;"+importeServicioEs+" &euro;</font></td></tr>";
+                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;"+importeServicioD+" &euro;</font></td></tr>";
                                 importeTotal = importeTotal + importeServicioD;
                             }                            
                         }
@@ -350,14 +368,18 @@ public class CSEnviarMailProceso
                     {
                         if(!mail.getServicioEspecial().equals("Otros"))
                         {
-                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),mail.getFecha());
+                             String [] tempOrigen = null;
+                            tempOrigen = mail.getFecha().split("\\-");
+                            String nuevaFecha=tempOrigen[2]+"-"+tempOrigen[1]+"-"+tempOrigen[0];
+
+                            String importeServicio=Utilidades.CalcularImporteServicioEspecial(mail.getServicioEspecial(),mail.getClienteID(),nuevaFecha);
                             if(!importeServicio.equals(""))
                             {
                                 double importeServicioD = Double.parseDouble(importeServicio);
                                 importeServicioD = Utilidades.redondear(importeServicioD, 2);
                                 //servicioEspecial=beanFactura.getServicioEspecial().toUpperCase();
                                 //labelServicioEspecial="SERVICIO ESPECIAL";
-                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeServicioEs+" &euro;</font></td></tr>";
+                                htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeServicioD+" &euro;</font></td></tr>";
                                 importeTotal = importeTotal + importeServicioD;
                             }
                             

@@ -48,7 +48,7 @@ public class CSEnviarMailEntregado
         try
         {
 
-            String query="SELECT DISTINCT"+
+            /*String query="SELECT DISTINCT"+
             " pe.pe_servicio_especial,pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id,pe.pe_ta_es_cliente," +
             " pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion,pe.pe_descripcion, tc.tc_tarifa," +
             " sc_entrada_campa, sc_campa" +
@@ -62,6 +62,15 @@ public class CSEnviarMailEntregado
             " AND (tc.tc_servicio_destino = pe.pe_servicio_destino"+
             " OR tc.tc_servicio_destino = pe.pe_servicio_origen)"+
             " AND tc.tc_soporte = pe.pe_soporte"+
+            " GROUP BY pe.pe_num";*/
+
+            String query="SELECT DISTINCT"+
+            " pe.pe_servicio_especial,pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id,pe.pe_ta_es_cliente," +
+            " pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion,pe.pe_descripcion," +
+            " sc_entrada_campa, sc_campa" +
+            " FROM pe_pedidos pe, pc_pedidos_clientes pc,sc_servicios_clientes sc" +
+            " WHERE pe.pe_num =" +mail.getNumero()+""+
+            " AND sc.cl_id = pc.cl_id" +
             " GROUP BY pe.pe_num";
 
             System.out.println(query);
@@ -78,7 +87,7 @@ public class CSEnviarMailEntregado
                 mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
                 mail.setDescripcion(rs_mail.getString("pe_descripcion"));
-                mail.setTarifa(rs_mail.getString("tc_tarifa"));
+                //mail.setTarifa(rs_mail.getString("tc_tarifa"));
                 mail.setEntradaCampa(rs_mail.getString("sc_entrada_campa"));
                 mail.setCampa(rs_mail.getString("sc_campa"));
                 mail.setSuplemento(rs_mail.getString("pe_suplemento"));
@@ -173,8 +182,8 @@ public class CSEnviarMailEntregado
 
             message.setContent(htmlText, "text/html");
 
-             /*BufferedWriter bw2 = null;
-                bw2 = new BufferedWriter(new FileWriter("c://mailEntregado.html", false));
+            /* BufferedWriter bw2 = null;
+                bw2 = new BufferedWriter(new FileWriter("c://mailEntregadoCliente.html", false));
                 bw2.write(htmlText);
                 bw2.close();*/
 

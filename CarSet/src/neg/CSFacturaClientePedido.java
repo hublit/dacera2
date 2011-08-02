@@ -357,7 +357,7 @@ public class CSFacturaClientePedido extends JPanel
              String query="";
              if(libre==false)
              {
-             query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
+             /*query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
                            "pe.pe_servicio, pe.pe_servicio_especial, " +
                            "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
                            "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
@@ -374,6 +374,19 @@ public class CSFacturaClientePedido extends JPanel
                            "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
                            "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
                            "AND tc.tc_soporte = pe.pe_soporte " +
+                           "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
+                           "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
+                           "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";*/
+
+                  query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
+                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
+                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
+                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
+                           "pe.pe_descripcion, sc_entrada_campa, sc_campa " +
+                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc " +
+                           "WHERE pe.pe_num = pc.pe_num " +
+                           "AND sc.cl_id = pc.cl_id " +
+                           "AND sc.sc_fecha_hasta > pe.pe_fecha " +
                            "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
                            "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
                            "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
