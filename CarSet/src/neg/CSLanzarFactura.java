@@ -1573,7 +1573,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
                      if(CSDesktop.datos.manipuladorDatos("UPDATE fl_factura_cliente SET fl_tipo='Rectificada' WHERE fl_num='"+ numFacturaRec+"'"));
                 }
-                     String nuevofinal="-"+importeTotalIva;
+                     String nuevofinal="- "+importeTotalIva;
                      BeanCorreoCliente mail = new BeanCorreoCliente();
                      mail.setCliente(beanCliente.getNombre());
                      mail.setClienteID(beanCliente.getCl_id());
