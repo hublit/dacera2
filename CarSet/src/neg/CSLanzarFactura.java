@@ -25,6 +25,8 @@ import net.sf.jasperreports.engine.JasperReport;
 import utils.Utilidades;
 import data.*;
 import data.BeanFactura;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import javax.mail.PasswordAuthentication;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -621,7 +623,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     Transport transport = mailSession.getTransport();
 
                     MimeMessage message = new MimeMessage(mailSession);
-                    message.setFrom(new InternetAddress("Administración CarSet <carset@carset.es>"));
+                    message.setFrom(new InternetAddress("Operaciones CarSet <operaciones@carset.es>"));
                     message.addRecipient(
                         Message.RecipientType.TO,
                         new InternetAddress(email));
@@ -1530,7 +1532,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
             // GUARDAR LA FACTURA EN EL DIRECTORIO TEMPORAL DE WINDOWS
             String finalNumFactura2=finalNumFactura.replace("/","_");
-            nombreFichero=beanCliente.getNombre()+"_"+finalNumFactura2+".pdf";
+            nombreFichero=beanCliente.getNombre()+"_R"+finalNumFactura2+".pdf";
             String property = "java.io.tmpdir";
             String tempDir = System.getProperty(property);
             System.out.println("OS current temporary directory is " + tempDir);
@@ -1571,12 +1573,13 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
                      if(CSDesktop.datos.manipuladorDatos("UPDATE fl_factura_cliente SET fl_tipo='Rectificada' WHERE fl_num='"+ numFacturaRec+"'"));
                 }
+                     String nuevofinal="-"+importeTotalIva;
                      BeanCorreoCliente mail = new BeanCorreoCliente();
                      mail.setCliente(beanCliente.getNombre());
                      mail.setClienteID(beanCliente.getCl_id());
                      mail.setFecha(nuevaFechaFactura);
                      mail.setNumPedido(finalNumFactura);
-                     mail.setTarifa(importeTotalIva);
+                     mail.setTarifa(nuevofinal);
                      mail.setMarca(beanCliente.getPlazoPago());
                      mail.setModelo(beanCliente.getDiasPlazo());
                      mail.setMatricula(beanCliente.getFormaPago());
