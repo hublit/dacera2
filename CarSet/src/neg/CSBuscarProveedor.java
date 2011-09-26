@@ -47,16 +47,16 @@ public class CSBuscarProveedor extends javax.swing.JPanel
             public void keyReleased(KeyEvent e) {}
         };
 
-        for (int k = 0; k < this.getComponents().length; k ++)
+        for (int k = 0; k < jPanel1.getComponents().length; k ++)
         {
-            if (this.getComponents()[k] != jComboBoxRegimen &&
-                this.getComponents()[k] != jComboBoxTipo &&
-                this.getComponents()[k] != jComboBoxProvincia)
+            if (jPanel1.getComponents()[k] != jComboBoxRegimen &&
+                jPanel1.getComponents()[k] != jComboBoxTipo &&
+                jPanel1.getComponents()[k] != jComboBoxProvincia)
             {
-                this.getComponents()[k].addKeyListener(l);
+                jPanel1.getComponents()[k].addKeyListener(l);
             }
         }
-        jTextNumero.addKeyListener(l);
+        jPanel1.addKeyListener(l);
         addKeyListener(l);
     }
 
