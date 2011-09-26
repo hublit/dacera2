@@ -48,6 +48,10 @@ public class CSRecuperarFacturaCliente extends JPanel
             public void keyTyped(KeyEvent e) {}
             public void keyPressed(KeyEvent e)
             {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER)
+               {
+                    jButtonPrev.doClick();
+                }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
                 {
                     jButtonCancelar.doClick();
@@ -56,6 +60,10 @@ public class CSRecuperarFacturaCliente extends JPanel
             public void keyReleased(KeyEvent e) {}
         };
         jTextCliente.addKeyListener(l);
+        jToggleButtonCliente.addKeyListener(l);
+        jDateFecha.addKeyListener(l);
+        jDateFechaFin.addKeyListener(l);
+        jTextNumero.addKeyListener(l);
         addKeyListener(l);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
