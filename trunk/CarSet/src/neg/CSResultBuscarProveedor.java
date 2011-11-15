@@ -154,7 +154,7 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
                     (pantalla.width - ventana.width) / 2,
                     (pantalla.height - ventana.height) / 2);
                CSDesktop.EditarProveedor.setVisible( true );
-               CSDesktop.ResultProveedor.setVisible(false);
+               //CSDesktop.ResultProveedor.setVisible(false);
 
             System.out.println(tablaProveedores.getValueAt(fila,columna));
          }
