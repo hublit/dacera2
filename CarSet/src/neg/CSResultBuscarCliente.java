@@ -140,7 +140,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
                     (pantalla.width - ventana.width) / 2,
                     (pantalla.height - ventana.height) / 2);
                CSDesktop.EditarCliente.setVisible( true );
-               CSDesktop.ResultCliente.setVisible(false);
+               //CSDesktop.ResultCliente.setVisible(false);
 
 
             System.out.println(tablaClientes.getValueAt(fila,columna));
