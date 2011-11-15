@@ -30,6 +30,7 @@ public class CSSelectMailCliente extends javax.swing.JPanel
     private HashMap datosMail = new HashMap();
     private HashMap nombresMail = new HashMap();
 
+
     /** Creates new form BuscaClientesPanel */
     public CSSelectMailCliente(String query)
     {
@@ -191,6 +192,8 @@ public class CSSelectMailCliente extends javax.swing.JPanel
     private void jButtonAceptarActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed1
         int [] celdas1=jTable1.getSelectedRows();
 
+        CSDesktop.mailCliente.clear();
+        CSDesktop.nombreCliente.clear();
          for (int i=0;i<celdas1.length;i++)
          {
             int celda=celdas1[i];

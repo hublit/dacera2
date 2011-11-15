@@ -211,6 +211,8 @@ public class CSSelectMailProveedor extends javax.swing.JPanel
         
          int [] celdas1=jTable1.getSelectedRows();
 
+         CSDesktop.mailProveedor.clear();
+         CSDesktop.nombreProveedor.clear();
          for (int i=0;i<celdas1.length;i++)
          {
             int celda=celdas1[i];

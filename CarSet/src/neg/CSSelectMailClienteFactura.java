@@ -8,6 +8,7 @@ package neg;
 
 import data.BeanCorreoCliente;
 import java.io.IOException;
+import javax.mail.MessagingException;
 import utils.TablaModelo;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -201,6 +202,8 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
     private void jButtonMandarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMandarActionPerformed
          int [] celdas1=jTable1.getSelectedRows();
 
+         CSDesktop.mailCliente.clear();
+         CSDesktop.nombreCliente.clear();
          for (int i=0;i<celdas1.length;i++)
          {
             int celda=celdas1[i];
@@ -211,7 +214,11 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
          {
              CSLanzarFactura factura = new CSLanzarFactura();
             try {
-                factura.enviarMail(mailF, nombreF, CSDesktop.mailCliente.get(i).toString(), CSDesktop.nombreCliente.get(i).toString());
+                try {
+                    factura.enviarMail(mailF, nombreF, CSDesktop.mailCliente.get(i).toString(), CSDesktop.nombreCliente.get(i).toString());
+                } catch (MessagingException ex) {
+                    Logger.getLogger(CSSelectMailClienteFactura.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (IOException ex) {
                 Logger.getLogger(CSSelectMailClienteFactura.class.getName()).log(Level.SEVERE, null, ex);
             }
