@@ -907,7 +907,7 @@ public class CSEditarCliente extends javax.swing.JPanel
                 JOptionPane.showMessageDialog(null,mensaje);
                 jButtonModificar.setEnabled(true);
                 CSDesktop.EditarCliente.dispose();
-                CSDesktop.ResultCliente.dispose();
+                //CSDesktop.ResultCliente.dispose();
                 CSDesktop.menuBuscarCliente.setEnabled(true);
             }
         }
@@ -1037,7 +1037,7 @@ public class CSEditarCliente extends javax.swing.JPanel
                     jButtonModificar.setEnabled(true);
                     //cerramos la conexión antes de cerrar la ventana
                     CSDesktop.EditarCliente.dispose();
-                    CSDesktop.ResultCliente.dispose();
+                    //CSDesktop.ResultCliente.dispose();
                     CSDesktop.menuBuscarCliente.setEnabled(true);
                 }
         }

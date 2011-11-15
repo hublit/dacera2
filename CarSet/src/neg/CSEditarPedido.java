@@ -1582,6 +1582,13 @@ public class CSEditarPedido extends javax.swing.JPanel
         {
             ValidarFormatos("Fecha Real Entrega tiene que ser >= Fecha Prevista Recogida");
         }
+        else if(estadoCliente.equals("Inactivo"))
+        {
+            jButtonModificar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>El cliente está inactivo</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonModificar.setEnabled(true);
+        }
         else
         {                          
               if(!idaVuelta)
