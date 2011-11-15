@@ -1600,6 +1600,13 @@ public class CSAnyadirPedido extends JPanel
         {
             ValidarFormatos("Fecha Real Entrega tiene que ser >= Fecha Prevista Recogida");
         }
+        else if(estadoCliente.equals("Inactivo"))
+        {
+            jButtonGuardar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>El cliente está inactivo</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonGuardar.setEnabled(true);
+        }
         else
         {
                if(!idaVuelta)
