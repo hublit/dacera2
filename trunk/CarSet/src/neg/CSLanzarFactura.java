@@ -601,13 +601,21 @@ public class CSLanzarFactura extends javax.swing.JPanel
         }
     }// FIN DE LA CLASE LANZAR
 
-  public void enviarMail(BeanCorreoCliente mail,String nombre,String email,String remitente) throws IOException
+  public void enviarMail(BeanCorreoCliente mail,String nombre,String email,String remitente) throws IOException, MessagingException
   {
  
         try {
-            try {                   
-                    double importe=Utilidades.redondear(Double.parseDouble(mail.getTarifa()),2);
-                    String importeS=String.valueOf(importe);
+            
+                    String importeS="";
+                    if(mail.getTarifa().contains("-"))
+                    {
+                        importeS=mail.getTarifa();
+                    }
+                    else
+                    {
+                        double importe=Utilidades.redondear(Double.parseDouble(mail.getTarifa()),2);
+                        importeS=String.valueOf(importe);
+                    }
                    
                     Properties props = new Properties();
                     props.put("mail.transport.protocol","smtp");
@@ -754,12 +762,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail no ha podido ser enviado.</FONT></HTML>");
                 JOptionPane.showMessageDialog(null,mensaje);
                 e.printStackTrace();
-            }
-        }catch (MessagingException e1)
-            {
-                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail no ha podido ser enviado.</FONT></HTML>");
-                JOptionPane.showMessageDialog(null,mensaje);
-                e1.printStackTrace();
+
             }
     
 

@@ -551,7 +551,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{pe_direccion_origen}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pe_direccion_destino}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="571" y="0" width="37" height="20"/>
