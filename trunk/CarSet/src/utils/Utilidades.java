@@ -1128,6 +1128,8 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
     {
         String resultado = "";
 
+
+
         int diaIni = Integer.valueOf(fechaIni.substring(8,10)).intValue();
         int mesIni = Integer.valueOf(fechaIni.substring(5,7)).intValue();
         int yIni = Integer.valueOf(fechaIni.substring(0,4)).intValue();
@@ -1144,7 +1146,7 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
         {
             resultado = "ko";
         }
-        else if((mesIni == mesFin) && (diaIni > diaFin))
+        else if((mesIni == mesFin) && (diaIni > diaFin) && (yFin != 2050))
         {
             resultado = "ko";
         }
