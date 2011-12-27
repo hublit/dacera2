@@ -756,7 +756,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                              String anyo=temp[0];
                              String mes=temp[1];
                              String dia=temp[2];
-                             String nueva=dia+"-"+mes+"-"+anyo;
+                             String nueva=dia+"/"+mes+"/"+anyo;
                     texto = new HSSFRichTextString(nueva);
                     celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
@@ -888,7 +888,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                              String anyoR=tempR[0];
                              String mesR=tempR[1];
                              String diaR=tempR[2];
-                             String nuevaR=diaR+"-"+mesR+"-"+anyoR;
+                             String nuevaR=diaR+"/"+mesR+"/"+anyoR;
                     texto = new HSSFRichTextString(nuevaR);
                     celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
@@ -900,7 +900,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                              anyoR=tempR[0];
                              mesR=tempR[1];
                              diaR=tempR[2];
-                             nuevaR=diaR+"-"+mesR+"-"+anyoR;
+                             nuevaR=diaR+"/"+mesR+"/"+anyoR;
                     texto = new HSSFRichTextString(nuevaR);
                     celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
@@ -912,7 +912,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                              anyoR=tempR[0];
                              mesR=tempR[1];
                              diaR=tempR[2];
-                             nuevaR=diaR+"-"+mesR+"-"+anyoR;
+                             nuevaR=diaR+"/"+mesR+"/"+anyoR;
                     texto = new HSSFRichTextString(nuevaR);
                     celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
