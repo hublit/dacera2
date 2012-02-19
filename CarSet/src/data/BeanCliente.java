@@ -23,6 +23,7 @@ public class BeanCliente
     private String formaPago;
     private String diasPlazo;
     private int correo;
+    
 
     /**
      * @return cl_id
