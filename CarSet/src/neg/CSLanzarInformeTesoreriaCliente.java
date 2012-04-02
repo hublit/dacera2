@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,9 +27,10 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 {
     private int clienteID;
 
-    public CSLanzarInformeTesoreriaCliente()
+    public CSLanzarInformeTesoreriaCliente() throws SQLException
     {
         CSDesktop.menuBuscarProveedor.setEnabled(false);
+        getFPago();
         initComponents();
 
         KeyListener l = new KeyListener()
@@ -49,7 +52,11 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
         for (int k = 0; k < this.getComponents().length; k ++)
         {
-
+            if (this.getComponents()[k] != jComboBoxEstado &&
+                this.getComponents()[k] != jComboFPago)
+            {
+                this.addKeyListener(l);
+            }
                 this.getComponents()[k].addKeyListener(l);
         }
         jTextNumFa.addKeyListener(l);
@@ -81,6 +88,8 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         jLabelnumFc = new javax.swing.JLabel();
         lEstado5 = new javax.swing.JLabel();
         jComboBoxEstado = new javax.swing.JComboBox();
+        jComboFPago = new javax.swing.JComboBox();
+        lFPago = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(0, 0));
 
@@ -153,8 +162,21 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO", "APLAZADO IVA" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
+
+        jComboFPago.setBackground(new java.awt.Color(228, 229, 255));
+        jComboFPago.setForeground(new java.awt.Color(0, 0, 100));
+        jComboFPago.setName("jComboFPago"); // NOI18N
+        jComboFPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboFPagoActionPerformed(evt);
+            }
+        });
+
+        lFPago.setForeground(new java.awt.Color(0, 0, 100));
+        lFPago.setText("Forma de Pago");
+        lFPago.setName("lFPago"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -186,23 +208,24 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                     .addComponent(lEstado5))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToggleButtonCliente))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                                .addComponent(lFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButtonCliente)))
-                        .addGap(152, 152, 152))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                            .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lFPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lFechaFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jComboFPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))
+                .addGap(152, 152, 152))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +252,9 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lEstado5)
-                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboFPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lFPago))
                 .addGap(33, 33, 33)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -277,6 +302,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         }
 
         String estado = new String(jComboBoxEstado.getSelectedItem().toString());
+        String fPago = new String(jComboFPago.getSelectedItem().toString());
 
         String query = "SELECT fl.fl_id, fl.fl_fecha, fl.fl_num, cl.cl_nombre, " +
                        "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, fp.fp_tipo, " +
@@ -307,6 +333,10 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
             if (!estado.equals("Selecciona"))
             {
                 query = query + " AND fl.fl_estado='" + estado + "'";
+            }
+            if (!fPago.equals("Selecciona"))
+            {
+                query = query + " AND cl.fp_id='" + fPago + "'";
             }
 
             query = query + " ORDER BY fl.fl_id ASC";
@@ -341,11 +371,16 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         CSDesktop.BuscaCliente.setVisible( true );
 }//GEN-LAST:event_jToggleButtonClienteActionPerformed
 
+    private void jComboFPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboFPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboFPagoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox jComboBoxEstado;
+    private javax.swing.JComboBox jComboFPago;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private com.toedter.calendar.JDateChooser jDateFechaIni;
     private javax.swing.JLabel jLabel1;
@@ -356,12 +391,26 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     private javax.swing.JTextField jTextNumFa;
     private javax.swing.JToggleButton jToggleButtonCliente;
     private javax.swing.JLabel lCliente;
-    private javax.swing.JLabel lEstado3;
-    private javax.swing.JLabel lEstado4;
     private javax.swing.JLabel lEstado5;
+    private javax.swing.JLabel lFPago;
     private javax.swing.JLabel lFechaFin;
     private javax.swing.JLabel lFechaIni;
     // End of variables declaration//GEN-END:variables
+
+    private void getFPago() throws SQLException
+    {
+        ResultSet rs = CSDesktop.datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
+        int j = 0;
+        String valor = "";
+        while(rs.next())
+        {
+            valor = rs.getString("fp_tipo");
+
+            jComboFPago.addItem(valor);
+            //jComboBoxFPago.setSelectedIndex(index);
+            j++;
+        }
+     }
 
     public void ValidarFormatos(String accion)
     {
