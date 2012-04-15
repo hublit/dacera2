@@ -72,6 +72,8 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jTextCliente = new javax.swing.JTextField();
         lCliente = new javax.swing.JLabel();
         lFechaIni = new javax.swing.JLabel();
@@ -90,6 +92,18 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         jComboBoxEstado = new javax.swing.JComboBox();
         jComboFPago = new javax.swing.JComboBox();
         lFPago = new javax.swing.JLabel();
+        lServicio = new javax.swing.JLabel();
+        lFechaFin1 = new javax.swing.JLabel();
+        jDateFechaFinFc = new com.toedter.calendar.JDateChooser();
+        lFechaIni1 = new javax.swing.JLabel();
+        jDateFechaIniFc = new com.toedter.calendar.JDateChooser();
+        lServicio1 = new javax.swing.JLabel();
+
+        jLabel2.setText("jLabel2");
+        jLabel2.setName("jLabel2"); // NOI18N
+
+        jLabel3.setText("jLabel3");
+        jLabel3.setName("jLabel3"); // NOI18N
 
         setMaximumSize(new java.awt.Dimension(0, 0));
 
@@ -178,6 +192,30 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         lFPago.setText("Forma de Pago");
         lFPago.setName("lFPago"); // NOI18N
 
+        lServicio.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lServicio.setForeground(new java.awt.Color(170, 16, 4));
+        lServicio.setText("PEDIDOS");
+        lServicio.setName("lServicio"); // NOI18N
+
+        lFechaFin1.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaFin1.setText("Fecha Hasta");
+        lFechaFin1.setName("lFechaFin1"); // NOI18N
+
+        jDateFechaFinFc.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFechaFinFc.setName("jDateFechaFinFc"); // NOI18N
+
+        lFechaIni1.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaIni1.setText("Fecha Desde");
+        lFechaIni1.setName("lFechaIni1"); // NOI18N
+
+        jDateFechaIniFc.setDateFormatString("dd-MM-yyyy"); // NOI18N
+        jDateFechaIniFc.setName("jDateFechaIniFc"); // NOI18N
+
+        lServicio1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lServicio1.setForeground(new java.awt.Color(170, 16, 4));
+        lServicio1.setText("FACTURA");
+        lServicio1.setName("lServicio1"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,32 +238,53 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                         .addComponent(jButtonCancelar)))
                 .addGap(19, 19, 19))
             .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lFechaIni)
-                    .addComponent(lCliente)
                     .addComponent(jLabelnumFc)
-                    .addComponent(lEstado5))
-                .addGap(15, 15, 15)
+                    .addComponent(lServicio)
+                    .addComponent(lServicio1))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                        .addComponent(jTextNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(lCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jToggleButtonCliente))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lFechaIni1)
+                                .addGap(15, 15, 15)
+                                .addComponent(jDateFechaIniFc, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lFechaIni)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lEstado5)
+                                        .addGap(47, 47, 47)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lFPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lFechaFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jComboFPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))
-                .addGap(152, 152, 152))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDateFechaFinFc, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lFPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lFechaFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jComboFPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(119, 119, 119))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,28 +293,39 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                 .addComponent(jLabel1)
                 .addGap(16, 16, 16)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelnumFc))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelnumFc)
                     .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonCliente)
                     .addComponent(lCliente))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                    .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lFechaIni1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateFechaIniFc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lFechaFin1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateFechaFinFc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                .addComponent(lServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lEstado5)
-                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboFPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lFPago))
-                .addGap(33, 33, 33)
+                    .addComponent(lFPago)
+                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lEstado5))
+                .addGap(48, 48, 48)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -274,6 +344,8 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         int numFl = 0;
         String fechaI="";
         String fechaF="";
+        String fechaIFc="";
+        String fechaFFc="";
 
         String numero = new String(jTextNumFa.getText());
         if(!numero.equals(""))
@@ -293,12 +365,28 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
             fechaI=formatoDeFecha.format(fecha);
         }
 
-        fechaCalendar = jDateFechaFin.getCalendar();
+        Calendar fechaCalendarFin = jDateFechaFin.getCalendar();
         if (fechaCalendar!=null)
         {
-            Date fecha = fechaCalendar.getTime();
+            Date fecha = fechaCalendarFin.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaF=formatoDeFecha.format(fecha);
+        }
+
+       Calendar fechaCalendarIniFc = jDateFechaIniFc.getCalendar();
+        if (fechaCalendar!=null)
+        {
+            Date fecha = fechaCalendarIniFc.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaIFc=formatoDeFecha.format(fecha);
+        }
+
+        Calendar fechaCalendarFinFc = jDateFechaFin.getCalendar();
+        if (fechaCalendar!=null)
+        {
+            Date fecha = fechaCalendarFinFc.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaFFc=formatoDeFecha.format(fecha);
         }
 
         String estado = new String(jComboBoxEstado.getSelectedItem().toString());
@@ -328,7 +416,11 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
             }
             if ((!fechaI.equals("")) && (!fechaF.equals(""))) 
             {
-                query = query + " AND fl.fl_fecha >= '" + fechaI + "' AND fl.fl_fecha <= '" + fechaF + "'";
+                query = query + " AND pe.pe_fecha >= '" + fechaI + "' AND pe.pe_fecha <= '" + fechaF + "'";
+            }
+            if ((!fechaIFc.equals("")) && (!fechaFFc.equals(""))) 
+            {
+                query = query + " AND fl.fl_fecha >= '" + fechaIFc + "' AND fl.fl_fecha <= '" + fechaFFc + "'";
             }
             if (!estado.equals("Selecciona"))
             {
@@ -382,8 +474,12 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboFPago;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
+    private com.toedter.calendar.JDateChooser jDateFechaFinFc;
     private com.toedter.calendar.JDateChooser jDateFechaIni;
+    private com.toedter.calendar.JDateChooser jDateFechaIniFc;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelnumFc;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator7;
@@ -394,7 +490,12 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     private javax.swing.JLabel lEstado5;
     private javax.swing.JLabel lFPago;
     private javax.swing.JLabel lFechaFin;
+    private javax.swing.JLabel lFechaFin1;
     private javax.swing.JLabel lFechaIni;
+    private javax.swing.JLabel lFechaIni1;
+    private javax.swing.JLabel lOrigen;
+    private javax.swing.JLabel lServicio;
+    private javax.swing.JLabel lServicio1;
     // End of variables declaration//GEN-END:variables
 
     private void getFPago() throws SQLException
