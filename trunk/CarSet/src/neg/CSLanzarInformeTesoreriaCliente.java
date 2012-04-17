@@ -30,8 +30,8 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     public CSLanzarInformeTesoreriaCliente() throws SQLException
     {
         CSDesktop.menuBuscarProveedor.setEnabled(false);
-        getFPago();
         initComponents();
+        getFPago();
 
         KeyListener l = new KeyListener()
         {
@@ -366,7 +366,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         }
 
         Calendar fechaCalendarFin = jDateFechaFin.getCalendar();
-        if (fechaCalendar!=null)
+        if (fechaCalendarFin!=null)
         {
             Date fecha = fechaCalendarFin.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -374,15 +374,15 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         }
 
        Calendar fechaCalendarIniFc = jDateFechaIniFc.getCalendar();
-        if (fechaCalendar!=null)
+        if (fechaCalendarIniFc!=null)
         {
             Date fecha = fechaCalendarIniFc.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaIFc=formatoDeFecha.format(fecha);
         }
 
-        Calendar fechaCalendarFinFc = jDateFechaFin.getCalendar();
-        if (fechaCalendar!=null)
+        Calendar fechaCalendarFinFc = jDateFechaFinFc.getCalendar();
+        if (fechaCalendarFinFc!=null)
         {
             Date fecha = fechaCalendarFinFc.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -394,9 +394,9 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
         String query = "SELECT fl.fl_id, fl.fl_fecha, fl.fl_num, cl.cl_nombre, " +
                        "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, fp.fp_tipo, " +
-                       "fl.fl_estado, fl.fl_fecha_pago, cl.cl_num_cuenta,fl.fl_observaciones " +
-                       "FROM fl_factura_cliente fl, cl_clientes cl, fp_forma_pago fp " +
-                       "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id";
+                       "fl.fl_estado, fl.fl_fecha_pago, cl.cl_num_cuenta, fl.fl_observaciones " +
+                       "FROM fl_factura_cliente fl, pe_pedidos pe, cl_clientes cl, fp_forma_pago fp " +
+                       "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id AND fl.fl_num = pe.pe_num_fa_cl";
 
         if (numFl == 0 && cliente.equals("") && (fechaI.equals("") && fechaF.equals("")))
         {
@@ -502,11 +502,12 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     {
         ResultSet rs = CSDesktop.datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
         int j = 0;
-        String valor = "";
+        String valor = "Selecciona";
+
+        jComboFPago.addItem(valor);
         while(rs.next())
         {
             valor = rs.getString("fp_tipo");
-
             jComboFPago.addItem(valor);
             //jComboBoxFPago.setSelectedIndex(index);
             j++;
