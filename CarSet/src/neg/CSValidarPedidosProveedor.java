@@ -47,9 +47,10 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
     public CSValidarPedidosProveedor(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
+//        initComponents();
         consulta = query;
         Date hoy = new Date();
-        jDateChooserFechaCont.setDate(hoy);
+//        jDateChooserFechaCont.setDate(hoy);
 
         TablaModelo modelo = new TablaModelo();
         ArrayList lista = new ArrayList();
