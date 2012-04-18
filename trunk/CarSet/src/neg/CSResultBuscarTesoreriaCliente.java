@@ -648,7 +648,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
                 celda = fila.createCell( (short) 8);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("F. PAGO");
+                texto = new HSSFRichTextString("F. COBRO");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 8, (short) ((100 * 2) / ((double) 1 / 20)) );
 
@@ -660,7 +660,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
                 celda = fila.createCell( (short) 10);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("FECHA PAGO");
+                texto = new HSSFRichTextString("FECHA COBRO");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 10, (short) ((80 * 2) / ((double) 1 / 20)) );
 
@@ -888,7 +888,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
             }
 
             // These are the combobox values
-            String[] values = new String[]{"","PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO"};
+            String[] values = new String[]{"","PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO", "APLAZADO IVA"};
 
             //System.out.println(table.getRowCount()+" / "+fila);
             TableColumn col = table.getColumnModel().getColumn(column);
