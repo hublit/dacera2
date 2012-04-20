@@ -708,8 +708,11 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento ) {
               BuscarTesoreriaCliente = new JInternalFrame("Informe Tesorería Cliente", true,false,false,true );
                CSLanzarInformeTesoreriaCliente panel = null;
-
-               panel = new CSLanzarInformeTesoreriaCliente();
+                try {
+                    panel = new CSLanzarInformeTesoreriaCliente();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                BuscarTesoreriaCliente.getContentPane().add( panel,BorderLayout.CENTER);
                BuscarTesoreriaCliente.pack();
