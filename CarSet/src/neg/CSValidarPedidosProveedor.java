@@ -99,7 +99,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                  String fechaPe = rs.getString("pe_fecha");
                 for (int k = 0; k < 21; k++)
                 {
-                    if((k==1) || (k==16)|| (k==17) || (k==18))
+                    if((k==1) || (k==17)|| (k==18) || (k==19))
                     {
                         String fecha=(rs.getObject(k+1)).toString();
                          String [] temp = null;
@@ -111,14 +111,14 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
                          datosFila[j] = nueva;
                     }
-                    else if(k==11)
+                    else if(k==12)
                     {
                          ta_es_cl=rs.getDouble(k+1);
                          datosFila[j] = rs.getDouble(k + 1);
                          totalCliente = totalCliente + ta_es_cl;
                          totalCliente = Utilidades.redondear(totalCliente, 2);
                     }
-                    else if(k==12)
+                    else if(k==13)
                     {
                         ta_es_pr=rs.getDouble(k+1);
                         datosFila[j] = rs.getDouble(k + 1);
@@ -127,14 +127,14 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                         totalProveedor = totalProveedor + ta_es_pr;
                         totalProveedor = Utilidades.redondear(totalProveedor, 2);
                     }
-                    else if (k==14)
+                    else if (k==15)
                     {
                         suple = rs.getDouble(k+1);
                         datosFila[j] = suple;
                         totalSuplemento = totalSuplemento + suple;
                         totalSuplemento = Utilidades.redondear(totalSuplemento, 2);
                     }
-                    else if (k==15)
+                    else if (k==16)
                     {
                         ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
                         double gananciaF=Utilidades.redondear(ganancia, 2);
@@ -734,8 +734,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         Double totalIva  = (importeProveedor * iva) /100;
         totalIva = Utilidades.redondear(totalIva, 2);
         Double irpf = 0.0;
-
-        if (prTipo.equals("Gruero") || prTipo.equals("GRUERO"))
+       
+        if (pr.equals("Gruero") || prTipo.equals("GRUERO"))
         {
             irpf = (importeProveedor * 1) /100;
             irpf = Utilidades.redondear(irpf, 2);
