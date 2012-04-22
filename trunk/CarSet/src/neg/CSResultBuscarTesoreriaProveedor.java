@@ -83,7 +83,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET" , "PROVEEDOR", "NETO", "IVA", "IRPF","TOTAL","DIAS F.F.","F. PAGO","N.º CUENTA","ESTADO", "FECHA PAGO" ,"BANCO","EMAIL","OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET" , "PROVEEDOR", "NETO", "IVA", "IRPF", "TOTAL", "DIAS F.F.", "F. COBRO", "N.º CUENTA", "ESTADO", "FECHA COBRO" ,  "BANCO", "EMAIL", "OBSERVACIONES"});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -702,7 +702,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
                 celda = fila.createCell( (short) 10);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("F. PAGO");
+                texto = new HSSFRichTextString("F. COBRO");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 10, (short) ((80 * 2) / ((double) 1 / 20)) );
 
@@ -720,7 +720,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
                 celda = fila.createCell( (short)13);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("FECHA PAGO");
+                texto = new HSSFRichTextString("FECHA COBRO");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 13, (short) ((80 * 2) / ((double) 1 / 20)) );
 
