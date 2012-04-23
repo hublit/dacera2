@@ -46,10 +46,9 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
     public CSValidarPedidosProveedor(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
-//        initComponents();
+//       
         consulta = query;
-        Date hoy = new Date();
-//        jDateChooserFechaCont.setDate(hoy);
+       
 
         TablaModelo modelo = new TablaModelo();
         ArrayList lista = new ArrayList();
@@ -115,17 +114,18 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     {
                          ta_es_cl=rs.getDouble(k+1);
                          datosFila[j] = rs.getDouble(k + 1);
-                         totalCliente = totalCliente + ta_es_cl;
-                         totalCliente = Utilidades.redondear(totalCliente, 2);
+                         //totalCliente = totalCliente + ta_es_cl;
+                         //totalCliente = Utilidades.redondear(totalCliente, 2);
+                          importe.add(rs.getDouble(k + 1));
+                        System.out.println("Clase: " + datosFila[j].getClass().getName());
+                        totalProveedor = totalProveedor + ta_es_pr;
+                        totalProveedor = Utilidades.redondear(totalProveedor, 2);
                     }
                     else if(k==13)
                     {
                         ta_es_pr=rs.getDouble(k+1);
                         datosFila[j] = rs.getDouble(k + 1);
-                        importe.add(rs.getDouble(k + 1));
-                        System.out.println("Clase: " + datosFila[j].getClass().getName());
-                        totalProveedor = totalProveedor + ta_es_pr;
-                        totalProveedor = Utilidades.redondear(totalProveedor, 2);
+                       
                     }
                     else if (k==15)
                     {
@@ -207,6 +207,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             CSDesktop.ResultValidacionPedidos.setVisible( true );
         }
         initComponents();
+        Date hoy = new Date();
+        jDateChooserFechaCont.setDate(hoy);
         jTable1.setModel(modelo);
         jTable1.setDefaultRenderer (Object.class, new MiRender());
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
@@ -561,6 +563,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
                     Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
                     Calendar fechaConta = jDateChooserFechaCont.getCalendar();
+                    SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+                    String fechaContS=formatoDeFecha.format(fechaConta.getTime());
                     String ivaTrimestre = jComboBoxIvaTrimestre.getSelectedItem().toString();
                     String ivaAnyo = jComboBoxAnyoIva.getSelectedItem().toString();
                     String numFa = jTextFieldNFa.getText();
@@ -570,7 +574,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                         String[] arrayNumCarset = num_carset.split("/");
                         int numCarset = (Integer.parseInt(arrayNumCarset[2]) + 1);
                         String numero = Utilidades.rellenarCeros(String.valueOf(numCarset), 4);
-                        num_carset = ivaTrimestre+"/"+ivaAnyo+"/"+numero;
+                        String[] fecha = fechaContS.split("-");
+                        String anyo=fecha[0];
+                        num_carset = anyo + "/"+numero;
+
+                        //num_carset = ivaTrimestre+"/"+ivaAnyo+"/"+numero;
                     }
 
                     String observaciones = jTextAreaObservaciones.getText();
@@ -734,8 +742,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         Double totalIva  = (importeProveedor * iva) /100;
         totalIva = Utilidades.redondear(totalIva, 2);
         Double irpf = 0.0;
-       
-        if (pr.equals("Gruero") || prTipo.equals("GRUERO"))
+
+
+        //if (pr.equals("Gruero") || prTipo.equals("GRUERO"))
+
+        if(beanPr.getTipo().equalsIgnoreCase("Autonomo") || beanPr.getTipo().equalsIgnoreCase("Autónomo"))
         {
             irpf = (importeProveedor * 1) /100;
             irpf = Utilidades.redondear(irpf, 2);
@@ -776,7 +787,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             ValidarFormatos(Utilidades.campoObligatorio(fechaContabilizacion,"Fecha"));
         }
 
-            int confirmado = JOptionPane.showConfirmDialog(this, " Importe = '"+importeProveedor+"' \n Iva = '"+totalIva+"' \n Irpf = '"+irpf+"' \n Total = '"+totalImporte+"'");
+            int confirmado = JOptionPane.showConfirmDialog(this, " Importe = '"+importeProveedor+"' \n Iva = '"+totalIva+"' \n Irpf = '"+irpf+"' \n Total = '"+totalImporte+"'\n Factura = '"+ts.getTr_num_carset()+"'");
 
             if (JOptionPane.OK_OPTION == confirmado)
             {
