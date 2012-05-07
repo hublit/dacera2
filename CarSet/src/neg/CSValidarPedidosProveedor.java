@@ -7,8 +7,11 @@ import data.Proveedor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import utils.TablaModelo;
 import java.awt.BorderLayout;
+import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -23,6 +26,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -212,8 +217,13 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jTable1.setModel(modelo);
         jTable1.setDefaultRenderer (Object.class, new MiRender());
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
+
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(50);
+        JCheckBox checkbox = new JCheckBox();
+        columna.setCellEditor(new DefaultCellEditor(checkbox));
+
+//        TableColumn columna = jTable1.getColumnModel().getColumn(0);
+//        columna.setPreferredWidth(50);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(80);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
@@ -692,7 +702,18 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             //se centran los valores
             jTable1.setRowHeight(20);
 
-            if (column == 0 ||column == 1 || column == 16 || column == 17 || column == 18 )
+            TableColumn col = table.getColumnModel().getColumn(column);
+            if (column == 0)
+            {
+                col.setCellEditor(new MyCheckBoxEditor());
+                col.setCellRenderer(new MyCheckBoxRenderer());
+                
+                this. setHorizontalAlignment(SwingConstants.CENTER);
+
+                jTable1.setValueAt(value, row, column);
+            }
+
+            if (column == 1 || column == 16 || column == 17 || column == 18 )
             {
                 this. setHorizontalAlignment(SwingConstants.CENTER);
             }
@@ -852,4 +873,47 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
          JOptionPane.showMessageDialog(null,errorFields);
          jButtonValidar.setEnabled(true);
     }
+
+         /**
+     *
+     */
+    public class MyCheckBoxRenderer extends JCheckBox implements TableCellRenderer
+    {
+        public MyCheckBoxRenderer()
+        {
+            super();
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+        {
+            
+            if (isSelected)
+            {
+                setForeground(table.getSelectionForeground());
+                super.setBackground(table.getSelectionBackground());
+            }
+            else
+            {
+                setForeground(table.getForeground());
+                setBackground(table.getBackground());
+            }
+
+            setEnabled(true);
+
+            // Select the current value
+            return this;
+        }
+    }
+
+    /**
+     *
+     */
+    public class MyCheckBoxEditor extends DefaultCellEditor
+    {
+        public MyCheckBoxEditor()
+        {
+            super(new JCheckBox());
+        }
+    }
+
 }
