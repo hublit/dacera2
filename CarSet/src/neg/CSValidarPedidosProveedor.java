@@ -332,6 +332,10 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jLabelFechaCont = new javax.swing.JLabel();
         jDateChooserFechaCont = new com.toedter.calendar.JDateChooser();
         jButtonTriUno = new javax.swing.JButton();
+        jButtonTriDos = new javax.swing.JButton();
+        jButtonTriTres = new javax.swing.JButton();
+        jButtonTriCuatro = new javax.swing.JButton();
+        ltrimestre = new javax.swing.JLabel();
 
         setAutoscrolls(true);
         setPreferredSize(new java.awt.Dimension(1400, 670));
@@ -445,6 +449,35 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             }
         });
 
+        jButtonTriDos.setText("Trimestre 2");
+        jButtonTriDos.setName("jButtonTriDos"); // NOI18N
+        jButtonTriDos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTriDosActionPerformed(evt);
+            }
+        });
+
+        jButtonTriTres.setText("Trimestre 3");
+        jButtonTriTres.setName("jButtonTriTres"); // NOI18N
+        jButtonTriTres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTriTresActionPerformed(evt);
+            }
+        });
+
+        jButtonTriCuatro.setText("Trimestre 4");
+        jButtonTriCuatro.setName("jButtonTriCuatro"); // NOI18N
+        jButtonTriCuatro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTriCuatroActionPerformed(evt);
+            }
+        });
+
+        ltrimestre.setFont(new java.awt.Font("Tahoma", 1, 11));
+        ltrimestre.setForeground(new java.awt.Color(170, 16, 4));
+        ltrimestre.setText("Deshabilitar trimestres");
+        ltrimestre.setName("ltrimestre"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -498,7 +531,17 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonTriUno)
-                .addContainerGap(1303, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonTriDos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTriTres)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTriCuatro)
+                .addContainerGap(1020, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ltrimestre)
+                .addContainerGap(1259, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -520,7 +563,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIvaTrimestre)
                     .addComponent(jComboBoxAnyoIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -528,8 +571,14 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     .addComponent(jLabelAnyoIva)
                     .addComponent(jComboBoxIvaTrimestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jButtonTriUno)
+                .addGap(18, 18, 18)
+                .addComponent(ltrimestre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonTriUno)
+                    .addComponent(jButtonTriDos)
+                    .addComponent(jButtonTriTres)
+                    .addComponent(jButtonTriCuatro))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -663,11 +712,42 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         private void jButtonTriUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTriUnoActionPerformed
 
             int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres deshabilitar el primer trimestre?");
+            if (JOptionPane.OK_OPTION == confirmado)
+            {
+                jButtonTriUno.setEnabled(false);
+            }
         }//GEN-LAST:event_jButtonTriUnoActionPerformed
+
+        private void jButtonTriDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTriDosActionPerformed
+            int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres deshabilitar el segundo trimestre?");
+            if (JOptionPane.OK_OPTION == confirmado)
+            {
+                jButtonTriDos.setEnabled(false);
+            }
+        }//GEN-LAST:event_jButtonTriDosActionPerformed
+
+        private void jButtonTriTresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTriTresActionPerformed
+            int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres deshabilitar el tercer trimestre?");
+            if (JOptionPane.OK_OPTION == confirmado)
+            {
+                jButtonTriTres.setEnabled(false);
+            }
+        }//GEN-LAST:event_jButtonTriTresActionPerformed
+
+        private void jButtonTriCuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTriCuatroActionPerformed
+            int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres deshabilitar el cuarto trimestre?");
+            if (JOptionPane.OK_OPTION == confirmado)
+            {
+                jButtonTriCuatro.setEnabled(false);
+            }
+        }//GEN-LAST:event_jButtonTriCuatroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
+    private javax.swing.JButton jButtonTriCuatro;
+    private javax.swing.JButton jButtonTriDos;
+    private javax.swing.JButton jButtonTriTres;
     private javax.swing.JButton jButtonTriUno;
     private javax.swing.JButton jButtonValidar;
     private javax.swing.JComboBox jComboBoxAnyoIva;
@@ -688,6 +768,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextAreaObservaciones;
     private javax.swing.JTextField jTextFieldNFa;
+    private javax.swing.JLabel ltrimestre;
     // End of variables declaration//GEN-END:variables
 
     /**

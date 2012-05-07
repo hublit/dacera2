@@ -76,11 +76,6 @@ public class CSValidarPedido extends JPanel
         jLabel1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        lFechaIniC = new javax.swing.JLabel();
-        jDateFechaIniC = new com.toedter.calendar.JDateChooser();
-        jDateFechaCFin = new com.toedter.calendar.JDateChooser();
-        lFechaFinC = new javax.swing.JLabel();
-        lServicio3 = new javax.swing.JLabel();
 
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
@@ -148,49 +143,15 @@ public class CSValidarPedido extends JPanel
         jLabel3.setText("Búsqueda de pedidos facturados a clientes");
         jLabel3.setName("jLabel3"); // NOI18N
 
-        lFechaIniC.setForeground(new java.awt.Color(0, 0, 100));
-        lFechaIniC.setText("Fecha Desde");
-        lFechaIniC.setName("lFechaIniC"); // NOI18N
-
-        jDateFechaIniC.setDateFormatString("dd-MM-yyyy"); // NOI18N
-        jDateFechaIniC.setName("jDateFechaIniC"); // NOI18N
-
-        jDateFechaCFin.setDateFormatString("dd-MM-yyyy"); // NOI18N
-        jDateFechaCFin.setName("jDateFechaCFin"); // NOI18N
-
-        lFechaFinC.setForeground(new java.awt.Color(0, 0, 100));
-        lFechaFinC.setText("Fecha Hasta");
-        lFechaFinC.setName("lFechaFinC"); // NOI18N
-
-        lServicio3.setFont(new java.awt.Font("Tahoma", 1, 11));
-        lServicio3.setForeground(new java.awt.Color(170, 16, 4));
-        lServicio3.setText("FECHA CONTABILIZACIÓN");
-        lServicio3.setName("lServicio3"); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
-                    .addComponent(jLabel1))
-                .addGap(51, 51, 51))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel3)
-                .addContainerGap(613, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(350, Short.MAX_VALUE)
-                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(201, 201, 201)
-                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(350, Short.MAX_VALUE)
+                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(201, 201, 201)
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
@@ -198,42 +159,42 @@ public class CSValidarPedido extends JPanel
                 .addGap(129, 129, 129)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lServicio3)
+                        .addComponent(lFechaIni)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                        .addComponent(lFechaFin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(170, 170, 170))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(326, 326, 326)
+                .addComponent(jLabel1)
+                .addContainerGap(347, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lFechaIni)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
-                                        .addComponent(lFechaFin))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lCliente)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lFechaIniC)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateFechaIniC, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
-                                .addComponent(lFechaFinC)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateFechaCFin, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(170, 170, 170))))
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
+                        .addGap(35, 35, 35))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,16 +210,7 @@ public class CSValidarPedido extends JPanel
                             .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lFechaFin))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(lServicio3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jDateFechaCFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lFechaIniC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateFechaIniC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(lFechaFinC))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -276,8 +228,7 @@ public class CSValidarPedido extends JPanel
             String fechaI = "";
             String fechaF = "";
             String fechaFac = "";
-            String fechaIniCont = "";
-            String fechaFinCont = "";
+
 
             ArrayList lista = new ArrayList();
             String proveedor = new String(jTextProveedor.getText());
@@ -302,20 +253,7 @@ public class CSValidarPedido extends JPanel
                 fechaF = formatoDeFecha.format(fecha);
             }
 
-             Calendar fechaCalendarIniC = jDateFecha.getCalendar();
-            //String fecha = ConvertirFechaString(fechaCalendar);
-            if (fechaCalendarIniC != null) {
-                Date fecha = fechaCalendarIniC.getTime();
-                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-                fechaIniCont = formatoDeFecha.format(fecha);
-            }
-            Calendar fechaCalendar = jDateFechaFin.getCalendar();
-            //String fecha = ConvertirFechaString(fechaCalendar);
-            if (fechaCalendar != null) {
-                Date fecha = fechaCalendar.getTime();
-                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-                fechaFinCont = formatoDeFecha.format(fecha);
-            }
+
             String query = "SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen, " +
                            "p.pe_servicio_destino, fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, " +
                            "pe_ve_modelo, pr.pr_nombre_fiscal, pr.pr_regimen, p.pe_ta_es_cliente, " +
@@ -391,9 +329,7 @@ public class CSValidarPedido extends JPanel
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
     private com.toedter.calendar.JDateChooser jDateFecha;
-    private com.toedter.calendar.JDateChooser jDateFechaCFin;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
-    private com.toedter.calendar.JDateChooser jDateFechaIniC;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator4;
@@ -403,10 +339,7 @@ public class CSValidarPedido extends JPanel
     private javax.swing.JToggleButton jToggleButtonProveedor;
     private javax.swing.JLabel lCliente;
     private javax.swing.JLabel lFechaFin;
-    private javax.swing.JLabel lFechaFinC;
     private javax.swing.JLabel lFechaIni;
-    private javax.swing.JLabel lFechaIniC;
-    private javax.swing.JLabel lServicio3;
     // End of variables declaration//GEN-END:variables
 
     public void ValidarFormatos(String accion)
