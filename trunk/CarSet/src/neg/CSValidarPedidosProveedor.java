@@ -78,7 +78,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR", "SE" ,"SUPLE","MG","F.RECOGIDA","F.ENTREGA","F.REAL","ESTADO","OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"","NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO","PROVEEDOR","TAR.CL","TAR.PR", "SE" ,"SUPLE","MG","F.RECOGIDA","F.ENTREGA","F.REAL","ESTADO","OBSERVACIONES"});
 
         int numeroFila = 0;
         double totalCliente = 0;
@@ -92,7 +92,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 pedidos.add(rs.getLong("pe_num"));
                 Object[] datosFila = new Object[modelo.getColumnCount()];
 
-                int j = 0;
+                 int j = 1;
                  double ta_es_cl=0;
                  double ta_es_pr=0;
                  double s_especial=0;
@@ -103,7 +103,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                  String fechaPe = rs.getString("pe_fecha");
                 for (int k = 0; k < 21; k++)
                 {
-                    if((k==1) || (k==17)|| (k==18) || (k==19))
+                    if((k==1) || (k==16)|| (k==17) || (k==18))
                     {
                         String fecha=(rs.getObject(k+1)).toString();
                          String [] temp = null;
@@ -115,7 +115,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
                          datosFila[j] = nueva;
                     }
-                    else if(k==12)
+                    else if(k==11)
                     {
                          ta_es_cl=rs.getDouble(k+1);
                          datosFila[j] = rs.getDouble(k + 1);
@@ -126,20 +126,20 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                         totalProveedor = totalProveedor + ta_es_pr;
                         totalProveedor = Utilidades.redondear(totalProveedor, 2);
                     }
-                    else if(k==13)
+                    else if(k==12)
                     {
                         ta_es_pr=rs.getDouble(k+1);
                         datosFila[j] = rs.getDouble(k + 1);
                        
                     }
-                    else if (k==15)
+                    else if (k==14)
                     {
                         suple = rs.getDouble(k+1);
                         datosFila[j] = suple;
                         totalSuplemento = totalSuplemento + suple;
                         totalSuplemento = Utilidades.redondear(totalSuplemento, 2);
                     }
-                    else if (k==16)
+                    else if (k==15)
                     {
                         ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
                         double gananciaF=Utilidades.redondear(ganancia, 2);
@@ -162,25 +162,25 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             rs.close();
             Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
             int i = 0;
-            for (int k = 0; k < 18; k++)
+            for (int k = 0; k < 19; k++)
             {
-                if(k==10)
+                if(k==11)
                 {
                     datosFilaTotal[i] = "TOTALES";
                 }
-                if(k==11)
+                if(k==12)
                 {
                     datosFilaTotal[i] = totalCliente;
                 }
-                if(k==12)
+                if(k==13)
                 {
                     datosFilaTotal[i] = totalProveedor;
                 }
-                if(k==14)
+                if(k==15)
                 {
                     datosFilaTotal[i] = totalSuplemento;
                 }
-                if(k==15)
+                if(k==16)
                 {
                     datosFilaTotal[i] = totalMargen;
                 }
@@ -219,33 +219,29 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
 
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
-        JCheckBox checkbox = new JCheckBox();
-        columna.setCellEditor(new DefaultCellEditor(checkbox));
-
-//        TableColumn columna = jTable1.getColumnModel().getColumn(0);
-//        columna.setPreferredWidth(50);
+        columna.setPreferredWidth(25);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
-        columna1.setPreferredWidth(80);
+        columna1.setPreferredWidth(50);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
-        columna2.setPreferredWidth(200);
+        columna2.setPreferredWidth(80);
         TableColumn columna3 = jTable1.getColumnModel().getColumn(3);
-        columna3.setPreferredWidth(80);
+        columna3.setPreferredWidth(200);
         TableColumn columna4 = jTable1.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(120);
+        columna4.setPreferredWidth(80);
         TableColumn columna5 = jTable1.getColumnModel().getColumn(5);
         columna5.setPreferredWidth(120);
         TableColumn columna6 = jTable1.getColumnModel().getColumn(6);
-        columna6.setPreferredWidth(80);
+        columna6.setPreferredWidth(120);
         TableColumn columna7 = jTable1.getColumnModel().getColumn(7);
-        columna7.setPreferredWidth(100);
+        columna7.setPreferredWidth(80);
         TableColumn columna8 = jTable1.getColumnModel().getColumn(8);
         columna8.setPreferredWidth(100);
         TableColumn columna9 = jTable1.getColumnModel().getColumn(9);
-        columna9.setPreferredWidth(120);
+        columna9.setPreferredWidth(100);
         TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
-        columna10.setPreferredWidth(200);
+        columna10.setPreferredWidth(120);
         TableColumn columna11 = jTable1.getColumnModel().getColumn(11);
-        columna11.setPreferredWidth(60);
+        columna11.setPreferredWidth(200);
         TableColumn columna12 = jTable1.getColumnModel().getColumn(12);
         columna12.setPreferredWidth(60);
         TableColumn columna13 = jTable1.getColumnModel().getColumn(13);
@@ -255,15 +251,17 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         TableColumn columna15 = jTable1.getColumnModel().getColumn(15);
         columna15.setPreferredWidth(60);
         TableColumn columna16 = jTable1.getColumnModel().getColumn(16);
-        columna16.setPreferredWidth(80);
+        columna16.setPreferredWidth(60);
         TableColumn columna17 = jTable1.getColumnModel().getColumn(17);
         columna17.setPreferredWidth(80);
         TableColumn columna18 = jTable1.getColumnModel().getColumn(18);
         columna18.setPreferredWidth(80);
-         TableColumn columna19 = jTable1.getColumnModel().getColumn(19);
-        columna19.setPreferredWidth(100);
-        TableColumn columna20 = jTable1.getColumnModel().getColumn(20);
-        columna20.setPreferredWidth(500);
+        TableColumn columna19 = jTable1.getColumnModel().getColumn(19);
+        columna19.setPreferredWidth(80);
+         TableColumn columna20 = jTable1.getColumnModel().getColumn(20);
+        columna20.setPreferredWidth(100);
+        TableColumn columna21 = jTable1.getColumnModel().getColumn(21);
+        columna21.setPreferredWidth(500);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -600,12 +598,23 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         boolean informe = false;
         int longitud = jTable1.getSelectedRowCount();
         int[] celdas = jTable1.getSelectedRows();
+
+        String fechaFactura = jDateChooserFechaFa.getDateFormatString();
+        String fechaContabilizacion = jDateChooserFechaCont.getDateFormatString();
         if(longitud == 0)
         {
             jButtonValidar.setEnabled(false);
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debes seleccionar algún pedido.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonValidar.setEnabled(true);
+        }
+        else if (!Utilidades.campoObligatorio(fechaFactura,"Fecha Factura").equals("OK"))
+        {
+            ValidarFormatos(Utilidades.campoObligatorio(fechaFactura,"Fecha Factura"));
+        }
+        else if (!Utilidades.campoObligatorio(fechaContabilizacion,"Fecha Contabilización").equals("OK"))
+        {
+            ValidarFormatos(Utilidades.campoObligatorio(fechaContabilizacion,"Fecha COntabilización"));
         }
         else
         {
@@ -794,11 +803,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 jTable1.setValueAt(value, row, column);
             }
 
-            if (column == 1 || column == 16 || column == 17 || column == 18 )
+            if (column == 2 || column == 17 || column == 18 || column == 19 )
             {
                 this. setHorizontalAlignment(SwingConstants.CENTER);
             }
-            else if (column == 11 ||column == 12 || column == 13 || column == 14 || column == 15 )
+            else if (column == 12 ||column == 13 || column == 14 || column == 15 || column == 16 )
             {
                 this. setHorizontalAlignment(SwingConstants.RIGHT);
             }
@@ -826,7 +835,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 cell. setForeground(Color.BLACK);
             }
             //si no cumplen esa condicion pongo las celdas en color blanco
-            if (table. getValueAt(row, 10).toString().equals("TOTALES"))
+            if (table. getValueAt(row, 11).toString().equals("TOTALES"))
             {
                 Color fondo = new  Color(244, 144, 144);
                 cell. setBackground(fondo);
@@ -970,16 +979,18 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             
             if (isSelected)
             {
+                setSelected(true);
                 setForeground(table.getSelectionForeground());
                 super.setBackground(table.getSelectionBackground());
             }
             else
             {
+                setSelected(false);
                 setForeground(table.getForeground());
                 setBackground(table.getBackground());
             }
 
-            setEnabled(true);
+
 
             // Select the current value
             return this;

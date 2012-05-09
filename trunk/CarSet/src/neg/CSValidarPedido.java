@@ -256,10 +256,10 @@ public class CSValidarPedido extends JPanel
 
             String query = "SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen, " +
                            "p.pe_servicio_destino, fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, " +
-                           "pe_ve_modelo, pr.pr_nombre_fiscal, pr.pr_regimen, p.pe_ta_es_cliente, " +
+                           "pe_ve_modelo, pr.pr_nombre_fiscal, p.pe_ta_es_cliente, " +
                            "p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred, " +
                            "p.pe_fecha_origen, p.pe_fecha_destino,p.pe_fecha_real_destino, p.pe_estado, " +
-                           "p.pe_descripcion, p.pe_estado, cl.co_id, pc.cl_id, pp.pr_id " +
+                           "p.pe_descripcion, p.pe_estado, cl.co_id, pc.cl_id, pp.pr_id, pr.pr_regimen  " +
                            "FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, " +
                            "fc_factores_correccion fc  INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr  " +
                            "WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " +
@@ -283,7 +283,7 @@ public class CSValidarPedido extends JPanel
                 if ((!fechaI.equals("")) && (!fechaF.equals(""))) {
                     query = query + " AND p.pe_fecha >='" + fechaI + "' AND p.pe_fecha<='" + fechaF + "'";
                 }
-                query = query + " ORDER BY p.pe_fecha ASC";
+                query = query + " ORDER BY p.pe_num ASC";
                 System.out.println(query);
                 
                 try
