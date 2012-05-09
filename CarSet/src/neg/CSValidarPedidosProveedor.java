@@ -964,7 +964,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
          jButtonValidar.setEnabled(true);
     }
 
-         /**
+    /**
      *
      */
     public class MyCheckBoxRenderer extends JCheckBox implements TableCellRenderer
@@ -976,20 +976,17 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
         {
-            
+                 
             if (isSelected)
             {
-                setSelected(true);
                 setForeground(table.getSelectionForeground());
                 super.setBackground(table.getSelectionBackground());
             }
             else
             {
-                setSelected(false);
                 setForeground(table.getForeground());
                 setBackground(table.getBackground());
             }
-
 
 
             // Select the current value
@@ -1004,7 +1001,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     {
         public MyCheckBoxEditor()
         {
-            super(new JCheckBox());
+            super(new JCheckBox(pr_id, true));
         }
     }
 
