@@ -6,7 +6,7 @@ import data.BeanTesoreriaProveedor;
 import data.Proveedor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.UnknownHostException;
+import java.text.ParseException;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import utils.TablaModelo;
@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
@@ -43,17 +44,20 @@ import utils.Utilidades;
  */
 public class CSValidarPedidosProveedor extends javax.swing.JPanel
 {
+    Date hoy = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+    String anyo = sdf.format(hoy);
     private  String consulta = "";
     ArrayList pedidos = new ArrayList();
     ArrayList importe = new ArrayList();
     String pr_id = "";
     double totalProveedor = 0;
 
-    public CSValidarPedidosProveedor(String query) throws UnknownHostException, FileNotFoundException, IOException
+    public CSValidarPedidosProveedor(String query) throws FileNotFoundException, IOException, SQLException
     {
-//       
+        initComponents();
+        inicializarTrimestres();
         consulta = query;
-       
 
         TablaModelo modelo = new TablaModelo();
         ArrayList lista = new ArrayList();
@@ -601,6 +605,40 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
         String fechaFactura = jDateChooserFechaFa.getDateFormatString();
         String fechaContabilizacion = jDateChooserFechaCont.getDateFormatString();
+
+        //comprobamos los trimestres deshabilitados
+        boolean primerTimestre = false;
+
+        String sPrimer = "31/03/2012";
+        SimpleDateFormat sdft = new SimpleDateFormat("yyyy-MM-DD");
+        try {
+            Date calDate = sdft.parse(sPrimer);
+            int p = jDateChooserFechaCont.getDate().compareTo(calDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        boolean seguntoTimestre = false;
+        boolean tercerTimestre = false;
+
+        try {
+            primerTimestre = getTrimestreIva(anyo, "primero");
+        } catch (SQLException ex) {
+            Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            seguntoTimestre = getTrimestreIva(anyo, "segundo");
+        } catch (SQLException ex) {
+            Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            tercerTimestre = getTrimestreIva(anyo, "tercero");
+        } catch (SQLException ex) {
+            Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       //int results = d1.compareTo(d2);
+
         if(longitud == 0)
         {
             jButtonValidar.setEnabled(false);
@@ -640,7 +678,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 {
                     Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
                     Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
                     Calendar fechaConta = jDateChooserFechaCont.getCalendar();
                     SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -723,6 +760,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres deshabilitar el primer trimestre?");
             if (JOptionPane.OK_OPTION == confirmado)
             {
+                try {
+                    setTrimestreIva(anyo, "primero");
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 jButtonTriUno.setEnabled(false);
             }
         }//GEN-LAST:event_jButtonTriUnoActionPerformed
@@ -731,6 +773,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres deshabilitar el segundo trimestre?");
             if (JOptionPane.OK_OPTION == confirmado)
             {
+                try {
+                    setTrimestreIva(anyo, "segundo");
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 jButtonTriDos.setEnabled(false);
             }
         }//GEN-LAST:event_jButtonTriDosActionPerformed
@@ -739,6 +786,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres deshabilitar el tercer trimestre?");
             if (JOptionPane.OK_OPTION == confirmado)
             {
+                try {
+                    setTrimestreIva(anyo, "tercero");
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 jButtonTriTres.setEnabled(false);
             }
         }//GEN-LAST:event_jButtonTriTresActionPerformed
@@ -747,6 +799,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             int confirmado = JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres deshabilitar el cuarto trimestre?");
             if (JOptionPane.OK_OPTION == confirmado)
             {
+                try {
+                    setTrimestreIva(anyo, "cuarto");
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 jButtonTriCuatro.setEnabled(false);
             }
         }//GEN-LAST:event_jButtonTriCuatroActionPerformed
@@ -948,7 +1005,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
                     return true;
                 }
-
             }
             else
             {
@@ -979,16 +1035,16 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                  
             if (isSelected)
             {
+                setSelected(true);
                 setForeground(table.getSelectionForeground());
                 super.setBackground(table.getSelectionBackground());
             }
             else
             {
+                setSelected(false);
                 setForeground(table.getForeground());
                 setBackground(table.getBackground());
             }
-
-
             // Select the current value
             return this;
         }
@@ -1005,4 +1061,64 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         }
     }
 
+    /**
+     * Comprobar el estado del trimestre para Iva
+     * @param anyo
+     * @param trimestre
+     * @throws SQLException
+     */
+      private void inicializarTrimestres() throws SQLException
+      {
+        ResultSet rs = CSDesktop.datos.select("SELECT ti_id, ti_anyo, ti_trimestre, ti_estado FROM ti_trimestre_iva WHERE ti_anyo = "+anyo);
+        while(rs.next())
+        {
+            if (rs.getString("ti_trimestre").equals("primero") && rs.getBoolean("ti_estado"))
+            {
+                jButtonTriUno.setEnabled(false);
+            }
+            else if(rs.getString("ti_trimestre").equals("segundo") && rs.getBoolean("ti_estado"))
+            {
+                jButtonTriDos.setEnabled(false);
+            }
+            else if(rs.getString("ti_trimestre").equals("tercero") && rs.getBoolean("ti_estado"))
+            {
+                jButtonTriTres.setEnabled(false);
+            }
+            
+        }
+
+     }
+
+    /**
+     * Comprobar el estado del trimestre para Iva
+     * @param anyo
+     * @param trimestre
+     * @throws SQLException
+     */
+      private boolean getTrimestreIva(String anyo, String trimestre) throws SQLException
+      {
+
+        ResultSet rs = CSDesktop.datos.select("SELECT ti_id, ti_estado FROM ti_trimestre_iva WHERE ti_anyo = "+anyo+" AND ti_trimestre = "+trimestre);
+        Boolean valor = false;
+        while(rs.next())
+        {
+            valor = rs.getBoolean("ti_estado");
+        }
+
+        return valor;
+     }
+
+       /**
+     * Deshabilitamos el trimestre para Iva
+     * @param anyo
+     * @param trimestre
+     * @throws SQLException
+     */
+    private void setTrimestreIva(String anyo, String trimestre) throws SQLException
+    {
+        String query = "INSERT INTO ti_trimestre_iva (ti_anyo, ti_trimestre, ti_estado)" +
+                                             " VALUES ('"+anyo+"', '"+trimestre+"', 1)";
+        System.out.println(query);
+        boolean rsIn = CSDesktop.datos.manipuladorDatos(query);
+     }
 }
