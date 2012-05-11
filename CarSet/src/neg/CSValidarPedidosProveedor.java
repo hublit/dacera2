@@ -50,6 +50,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     private  String consulta = "";
     ArrayList pedidos = new ArrayList();
     ArrayList importe = new ArrayList();
+    String regimen = "";
     String pr_id = "";
     double totalProveedor = 0;
 
@@ -93,6 +94,9 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         {
             while (rs.next()) 
             {
+                //Asignamos regimen para el irpf, Cambiar
+                regimen = rs.getString("pr_regimen");
+
                 pedidos.add(rs.getLong("pe_num"));
                 Object[] datosFila = new Object[modelo.getColumnCount()];
 
@@ -606,38 +610,36 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         String fechaFactura = jDateChooserFechaFa.getDateFormatString();
         String fechaContabilizacion = jDateChooserFechaCont.getDateFormatString();
 
+        int mes = Integer.parseInt(jDateChooserFechaCont.getDateFormatString().substring(6, 2));
+        int anyoAnt = (Integer.parseInt(anyo) - 1);
+
         //comprobamos los trimestres deshabilitados
         boolean primerTimestre = false;
-
-        String sPrimer = "31/03/2012";
-        SimpleDateFormat sdft = new SimpleDateFormat("yyyy-MM-DD");
-        try {
-            Date calDate = sdft.parse(sPrimer);
-            int p = jDateChooserFechaCont.getDate().compareTo(calDate);
-        } catch (ParseException ex) {
-            Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        boolean seguntoTimestre = false;
+        boolean segundoTimestre = false;
         boolean tercerTimestre = false;
+        boolean cuartoTimestre = false;
 
         try {
-            primerTimestre = getTrimestreIva(anyo, "primero");
+            //Estado trimestres
+            if (getTrimestreIva(anyo, "primero") && mes < 4)
+            {
+                primerTimestre = true;
+            }
+            if (getTrimestreIva(anyo, "segundo") && mes < 7)
+            {
+                segundoTimestre = true;
+            }
+            if (getTrimestreIva(anyo, "tercero") && mes < 10)
+            {
+                tercerTimestre = true;
+            }
+            if (getTrimestreIva(String.valueOf(anyoAnt), "cuarto") && mes >= 1)
+            {
+                cuartoTimestre = true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            seguntoTimestre = getTrimestreIva(anyo, "segundo");
-        } catch (SQLException ex) {
-            Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            tercerTimestre = getTrimestreIva(anyo, "tercero");
-        } catch (SQLException ex) {
-            Logger.getLogger(CSValidarPedidosProveedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-       //int results = d1.compareTo(d2);
 
         if(longitud == 0)
         {
@@ -645,6 +647,10 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debes seleccionar algún pedido.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonValidar.setEnabled(true);
+        }
+        else if(primerTimestre )
+        {
+
         }
         else if (!Utilidades.campoObligatorio(fechaFactura,"Fecha Factura").equals("OK"))
         {
@@ -709,6 +715,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     Double iva = Double.valueOf(textoIva[0]);
                     tsProveedor.setTr_iva(iva);
                     tsProveedor.setTr_irpf(0.0);
+                    tsProveedor.setTr_regimen(regimen);
                     tsProveedor.setTr_importe_neto(0.0);
                     tsProveedor.setTr_observaciones(observaciones);
 
@@ -924,6 +931,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         String banco = "";
         String prTipo = beanPr.getTipo();
         Double importeProveedor = ts.getTr_importe();
+        String regPr = ts.getTr_regimen();
         Double iva = ts.getTr_iva();
         Double totalIva  = (importeProveedor * iva) /100;
         totalIva = Utilidades.redondear(totalIva, 2);
@@ -932,7 +940,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
         //if (pr.equals("Gruero") || prTipo.equals("GRUERO"))
 
-        if(beanPr.getTipo().equalsIgnoreCase("Autonomo") || beanPr.getTipo().equalsIgnoreCase("Autónomo"))
+        if(regPr.equalsIgnoreCase("Autonomo") ||regPr.equalsIgnoreCase("Autónomo"))
         {
             irpf = (importeProveedor * 1) /100;
             irpf = Utilidades.redondear(irpf, 2);

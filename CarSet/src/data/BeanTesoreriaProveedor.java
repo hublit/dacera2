@@ -27,6 +27,7 @@ public class BeanTesoreriaProveedor
     private Calendar tr_fecha_pago;
     private String tr_banco;
     private String tr_observaciones;
+    private String tr_regimen;
 
     public int getTr_id() {
         return tr_id;
@@ -137,6 +138,14 @@ public class BeanTesoreriaProveedor
 
     public void setTr_iva(Double tr_iva) {
         this.tr_iva = tr_iva;
+    }
+
+    public String getTr_regimen() {
+        return tr_regimen;
+    }
+
+    public void setTr_regimen(String tr_regimen) {
+        this.tr_regimen = tr_regimen;
     }
 
 }
