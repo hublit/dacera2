@@ -6,12 +6,9 @@ import data.BeanTesoreriaProveedor;
 import data.Proveedor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.ParseException;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import utils.TablaModelo;
 import java.awt.BorderLayout;
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -24,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
@@ -47,6 +43,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     Date hoy = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
     String anyo = sdf.format(hoy);
+    int anyoAnt = (Integer.parseInt(anyo) - 1);
     private  String consulta = "";
     ArrayList pedidos = new ArrayList();
     ArrayList importe = new ArrayList();
@@ -219,7 +216,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                (pantalla.height - ventana.height) / 2);
             CSDesktop.ResultValidacionPedidos.setVisible( true );
         }
-        initComponents();
+        //initComponents();
         Date hoy = new Date();
         jDateChooserFechaCont.setDate(hoy);
         jTable1.setModel(modelo);
@@ -492,22 +489,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1380, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelFechaCont, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                .addGap(130, 130, 130)
-                .addComponent(jLabelFechaFa, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
-                .addComponent(jDateChooserFechaFa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(jLabelNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldNFa, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(jLabelObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,35 +500,55 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 .addGap(16, 16, 16))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelIvaTrimestre, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooserFechaCont, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonTriUno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonTriDos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonTriTres)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonTriCuatro))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ltrimestre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(1020, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelFechaCont, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelIvaTrimestre, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                        .addGap(1, 1, 1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBoxIvaTrimestre, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(jLabelAnyoIva, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxAnyoIva, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jLabelIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBoxIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(872, 872, 872))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonTriUno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonTriDos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonTriTres)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonTriCuatro)
-                .addContainerGap(1020, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ltrimestre)
-                .addContainerGap(1259, Short.MAX_VALUE))
+                        .addComponent(jComboBoxIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(872, 872, 872))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jDateChooserFechaCont, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabelFechaFa, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jDateChooserFechaFa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabelNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldNFa, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabelObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,14 +570,14 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIvaTrimestre)
                     .addComponent(jComboBoxAnyoIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelIvaTipo)
                     .addComponent(jLabelAnyoIva)
-                    .addComponent(jComboBoxIvaTrimestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxIvaTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxIvaTrimestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(ltrimestre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
@@ -585,7 +586,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     .addComponent(jButtonTriDos)
                     .addComponent(jButtonTriTres)
                     .addComponent(jButtonTriCuatro))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -606,12 +607,28 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         boolean informe = false;
         int longitud = jTable1.getSelectedRowCount();
         int[] celdas = jTable1.getSelectedRows();
+        String fechaCo = "";
+        String fechaFac = "";
+        int mes = 0;
 
-        String fechaFactura = jDateChooserFechaFa.getDateFormatString();
-        String fechaContabilizacion = jDateChooserFechaCont.getDateFormatString();
+        Calendar fechaFa = jDateChooserFechaFa.getCalendar();
+        if (fechaFa != null) {
+            Date fecha = fechaFa.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaFac = formatoDeFecha.format(fecha);
+        }
 
-        int mes = Integer.parseInt(jDateChooserFechaCont.getDateFormatString().substring(6, 2));
-        int anyoAnt = (Integer.parseInt(anyo) - 1);
+        Calendar fechaContabilizacion = jDateChooserFechaCont.getCalendar();
+        String mesCo = "";
+        if (fechaContabilizacion != null) {
+            Date fecha = fechaContabilizacion.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            fechaCo = formatoDeFecha.format(fecha);
+            String[] arrayFaCo = fechaCo.split("-");
+            mesCo = arrayFaCo[1];
+        }
+
+        mes = (Integer.parseInt(mesCo));
 
         //comprobamos los trimestres deshabilitados
         boolean primerTimestre = false;
@@ -633,7 +650,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             {
                 tercerTimestre = true;
             }
-            if (getTrimestreIva(String.valueOf(anyoAnt), "cuarto") && mes >= 1)
+            if (getTrimestreIva(String.valueOf(anyoAnt), "cuarto") && mes > 10)
             {
                 cuartoTimestre = true;
             }
@@ -648,17 +665,20 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonValidar.setEnabled(true);
         }
-        else if(primerTimestre )
+        else if(primerTimestre || segundoTimestre || tercerTimestre || cuartoTimestre)
         {
-
+            jButtonValidar.setEnabled(false);
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>LA fecha de contabilización no puede ser menor a un trimestre deshabilitado.</FONT></HTML>");
+            JOptionPane.showMessageDialog(null,errorFields);
+            jButtonValidar.setEnabled(true);
         }
-        else if (!Utilidades.campoObligatorio(fechaFactura,"Fecha Factura").equals("OK"))
+        else if (!Utilidades.campoObligatorio(fechaFac,"Fecha Factura").equals("OK"))
         {
-            ValidarFormatos(Utilidades.campoObligatorio(fechaFactura,"Fecha Factura"));
+            ValidarFormatos(Utilidades.campoObligatorio(fechaFac,"Fecha Factura"));
         }
-        else if (!Utilidades.campoObligatorio(fechaContabilizacion,"Fecha Contabilización").equals("OK"))
+        else if (!Utilidades.campoObligatorio(fechaCo,"Fecha Contabilización").equals("OK"))
         {
-            ValidarFormatos(Utilidades.campoObligatorio(fechaContabilizacion,"Fecha COntabilización"));
+            ValidarFormatos(Utilidades.campoObligatorio(fechaCo,"Fecha COntabilización"));
         }
         else
         {
@@ -668,7 +688,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             if (JOptionPane.OK_OPTION == confirmado)
             {
                 String num_carset = "";
-                String fechaFac = "";
                 String fechaCont = "";
                 boolean rsUp = false;
                 String query = "SELECT tr_num_carset FROM tr_tesoreria_proveedor ORDER BY tr_id DESC LIMIT 1";
@@ -684,10 +703,10 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 {
                     Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
-                    Calendar fechaConta = jDateChooserFechaCont.getCalendar();
-                    SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-                    String fechaContS=formatoDeFecha.format(fechaConta.getTime());
+//                    Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
+//                    Calendar fechaConta = jDateChooserFechaCont.getCalendar();
+//                    SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");//
+//                    String fechaContS=formatoDeFecha.format(fechaConta.getTime());
                     String ivaTrimestre = jComboBoxIvaTrimestre.getSelectedItem().toString();
                     String ivaAnyo = jComboBoxAnyoIva.getSelectedItem().toString();
                     String numFa = jTextFieldNFa.getText();
@@ -697,17 +716,21 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                         String[] arrayNumCarset = num_carset.split("/");
                         int numCarset = (Integer.parseInt(arrayNumCarset[2]) + 1);
                         String numero = Utilidades.rellenarCeros(String.valueOf(numCarset), 4);
-                        String[] fecha = fechaContS.split("-");
+                        String[] fecha = fechaCo.split("-");
                         String anyo=fecha[0];
                         num_carset = anyo + "/"+numero;
 
                         //num_carset = ivaTrimestre+"/"+ivaAnyo+"/"+numero;
                     }
+                    else
+                    {
+                        num_carset = anyo + "/0001";
+                    }
 
                     String observaciones = jTextAreaObservaciones.getText();
                     BeanTesoreriaProveedor tsProveedor = new BeanTesoreriaProveedor();
-                    tsProveedor.setTr_fecha(fechaCalendar);
-                    tsProveedor.setTr_fh_vencimiento(fechaConta);
+                    tsProveedor.setTr_fecha(fechaFa);
+                    tsProveedor.setTr_fh_vencimiento(fechaContabilizacion);
                     tsProveedor.setTr_num(numFa);
                     tsProveedor.setTr_num_carset(num_carset);
                     tsProveedor.setPr_num(pr_id);
@@ -858,6 +881,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
             TableColumn col = table.getColumnModel().getColumn(column);
             if (column == 0)
+
             {
                 col.setCellEditor(new MyCheckBoxEditor());
                 col.setCellRenderer(new MyCheckBoxRenderer());
@@ -947,6 +971,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         }
 
         Double totalImporte = importeProveedor + totalIva + irpf;
+        totalImporte = Utilidades.redondear(totalImporte, 2);
         //Fecha de factura
         String fechaFactura = "";
         if(ts.getTr_fecha() != null)
@@ -973,7 +998,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         if (fechaCont!=null)
         {
             Date fecha = fechaCont.getTime();
-            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaContabilizacion = formatoDeFecha.format(fecha);
         }
         if (!Utilidades.campoObligatorio(fechaContabilizacion,"Fecha").equals("OK"))
@@ -988,11 +1013,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
                 String query = "INSERT INTO tr_tesoreria_proveedor (tr_fecha, tr_num, tr_num_carset, pr_num, tr_importe_neto, " +
                                                             "tr_iva, tr_irpf, tr_importe, tr_estado, tr_fecha_pago, " +
-                                                            "tr_banco, tr_observaciones) " +
+                                                            "tr_banco, tr_observaciones, tr_fecha_cont) " +
                                                             "VALUES ('"+fechaFactura+"', '"+ts.getTr_num()+"', " +
                                                             "'"+ts.getTr_num_carset()+"', '"+pr_num+"', '"+importeProveedor+"', " +
                                                             "'"+totalIva+"', '"+irpf+"', '"+totalImporte+"', 'PTE', '"+fechaPago+"', " +
-                                                            "'"+banco+"', '"+ts.getTr_observaciones()+"')";
+                                                            "'"+banco+"', '"+ts.getTr_observaciones()+"', '"+fechaContabilizacion+"')";
                 System.out.println(query);
                 boolean rsIn = CSDesktop.datos.manipuladorDatos(query);
 
@@ -1094,7 +1119,16 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             }
             
         }
-
+        rs.close();
+        ResultSet rsCuatro = CSDesktop.datos.select("SELECT ti_id, ti_anyo, ti_trimestre, ti_estado FROM ti_trimestre_iva WHERE ti_anyo = "+anyoAnt);
+        while(rsCuatro.next())
+        {
+            if (rs.getString("ti_trimestre").equals("cuarto") && rs.getBoolean("ti_estado"))
+            {
+                jButtonTriCuatro.setEnabled(false);
+            }
+        }
+        rsCuatro.close();
      }
 
     /**
@@ -1105,8 +1139,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
      */
       private boolean getTrimestreIva(String anyo, String trimestre) throws SQLException
       {
+        ResultSet rs = CSDesktop.datos.select("SELECT ti_id, ti_estado FROM ti_trimestre_iva WHERE ti_anyo = '"+anyo+"' AND ti_trimestre = '"+trimestre+"'");
 
-        ResultSet rs = CSDesktop.datos.select("SELECT ti_id, ti_estado FROM ti_trimestre_iva WHERE ti_anyo = "+anyo+" AND ti_trimestre = "+trimestre);
         Boolean valor = false;
         while(rs.next())
         {

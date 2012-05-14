@@ -345,7 +345,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         }
         Calendar fechaCalendarFinC = jDateFechaCFin.getCalendar();
         //String fecha = ConvertirFechaString(fechaCalendar);
-        if (fechaCalendar != null) {
+        if (fechaCalendarFinC != null) {
             Date fecha = fechaCalendarFinC.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaFinCont = formatoDeFecha.format(fecha);
@@ -383,7 +383,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
             }
             if ((!fechaIniCont.equals("")) && (!fechaFinCont.equals("")))
             {
-                query = query + " AND tr.tr_fecha_cont >='" + fechaI + "' AND tr.tr_fecha_cont<='" + fechaF + "'";
+                    query = query + " AND tr.tr_fecha_cont >='" + fechaIniCont + "' AND tr.tr_fecha_cont<='" + fechaFinCont + "'";
             }
 
             query = query + " ORDER BY tr.tr_id ASC";
