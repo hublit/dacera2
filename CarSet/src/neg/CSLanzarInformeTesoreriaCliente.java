@@ -392,7 +392,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         String estado = new String(jComboBoxEstado.getSelectedItem().toString());
         String fPago = new String(jComboFPago.getSelectedItem().toString());
 
-        String query = "SELECT fl.fl_id, fl.fl_fecha, fl.fl_num, cl.cl_nombre, " +
+        String query = "SELECT distinct(fl.fl_id), fl.fl_fecha, fl.fl_num, cl.cl_nombre, " +
                        "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, fp.fp_tipo, " +
                        "fl.fl_estado, fl.fl_fecha_pago, cl.cl_num_cuenta, fl.fl_observaciones " +
                        "FROM fl_factura_cliente fl, pe_pedidos pe, cl_clientes cl, fp_forma_pago fp " +
