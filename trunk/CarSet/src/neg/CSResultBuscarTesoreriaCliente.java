@@ -532,7 +532,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                          nueva = anyo+"-"+mes+"-"+dia;
                     }
 
-                    String observaciones = (String) jTable1.getValueAt(fila, 11);
+                    String observaciones = (String) jTable1.getValueAt(fila, 12);
 
                     System.out.println("fila: "+i);
                     fila ++;
@@ -540,7 +540,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 //                    System.out.println("Elemento id: "+fl_id);
 //                    System.out.println("Elemento estado: "+estado);
 //                    System.out.println("Elemento fecha pago: "+fechaPago);
-//                    System.out.println("Elemento observaciones: "+observaciones);
+//                  System.out.println("Elemento observaciones: "+observaciones);
 
                     try {
                         //guardamos las modificaciones en la bd
@@ -807,7 +807,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
 
-                    //Celda de las observaciones
+                    //Celda del nuemro de cuenta
                     celda = fila.createCell( (short) 11);
                     String num_cuenta=rs.getString("cl_num_cuenta");
                     texto = new HSSFRichTextString(num_cuenta);
