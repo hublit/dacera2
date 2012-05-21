@@ -511,16 +511,17 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
     
         private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
-            int fila = 0;
             String nueva = "";
             boolean tesoreria = false;
+            int longitud = jTable1.getSelectedRowCount();
+            int[] celdas = jTable1.getSelectedRows();
 
-            for(int i = 0; i < lista.size(); i++)
+            for(int i = 0; i < longitud; i++)
             {
-                ArrayList indices = (ArrayList)lista.get(i);
+                    ArrayList indices = (ArrayList)lista.get(celdas[i]);
                     int fl_id = Integer.parseInt(indices.get(0).toString());
-                    String estado = (String) jTable1.getValueAt(fila, 9);
-                    String fechaPago = (String) jTable1.getValueAt(fila, 10);
+                    String estado = (String) jTable1.getValueAt(celdas[i], 9);
+                    String fechaPago = (String) jTable1.getValueAt(celdas[i], 10);
 
                     if (!fechaPago.equals(""))
                     {
@@ -532,15 +533,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                          nueva = anyo+"-"+mes+"-"+dia;
                     }
 
-                    String observaciones = (String) jTable1.getValueAt(fila, 12);
-
-                    System.out.println("fila: "+i);
-                    fila ++;
-
-//                    System.out.println("Elemento id: "+fl_id);
-//                    System.out.println("Elemento estado: "+estado);
-//                    System.out.println("Elemento fecha pago: "+fechaPago);
-//                  System.out.println("Elemento observaciones: "+observaciones);
+                    String observaciones = (String) jTable1.getValueAt(celdas[i], 12);
 
                     try {
                         //guardamos las modificaciones en la bd
