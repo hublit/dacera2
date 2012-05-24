@@ -140,7 +140,6 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                             String[] tempVe = plazo.split("\\ ");
                             diasPlazo = Integer.parseInt(tempVe[0]);
                         }
-
                         else
                         {
                             diasPlazo = Integer.parseInt(rs.getString("cl_dias_plazo"));
@@ -153,7 +152,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     else if(k==4)
                     {
                         total_cl = rs.getDouble(k+1);
-                        datosFila[j] = rs.getDouble(k+1);
+                        datosFila[j] = Utilidades.redondear(total_cl, 2);
                         total = total + total_cl;
                         total = Utilidades.redondear(total, 2);
                         System.out.println("Dato" + k+1 + " " + datosFila[j]);
@@ -161,7 +160,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     else if(k==5)
                     {
                         iva = rs.getDouble(k+1);
-                        datosFila[j] = rs.getDouble(k+1);
+                        datosFila[j] = Utilidades.redondear(iva, 2);
                         totalIva = totalIva + iva;
                         totalIva = Utilidades.redondear(totalIva, 2);
                         System.out.println("Dato" + k+1+ " " + datosFila[j]);
@@ -169,7 +168,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     else if (k==6)
                     {
                         importe = rs.getDouble(k+1);
-                        datosFila[j] = rs.getDouble(k+1);
+                         datosFila[j] = Utilidades.redondear(importe, 2);
                         totalImporte = totalImporte + importe;
                         totalImporte = Utilidades.redondear(totalImporte, 2);
                         System.out.println("Dato" + k+1 + " " + datosFila[j]);
@@ -518,7 +517,8 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
             for(int i = 0; i < longitud; i++)
             {
-                    ArrayList indices = (ArrayList)lista.get(celdas[i]);
+                System.out.println("celda: "+lista.get(celdas[i]));
+                    ArrayList indices = (ArrayList) lista.get(celdas[i]);
                     int fl_id = Integer.parseInt(indices.get(0).toString());
                     String estado = (String) jTable1.getValueAt(celdas[i], 9);
                     String fechaPago = (String) jTable1.getValueAt(celdas[i], 10);
@@ -1011,7 +1011,6 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         boolean rsUpdate = CSDesktop.datos.manipuladorDatos(query);
 
         return rsUpdate;
-
     }
 
 }
