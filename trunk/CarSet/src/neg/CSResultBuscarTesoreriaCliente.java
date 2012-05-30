@@ -240,13 +240,6 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
            }
 
            modelo.addRow(datosFilaTotal);
-//                       Vector vector = new Vector();
-//            vector.add(3);
-//            vector.add(4);
-//            vector.add(5);
-//            vector.add(6);
-//     modelo.setColumnIdentifiers(vector);
-           //modelo.setRowFilter(RowFilter.regexFilter("2", 1));
 
 
         } catch (SQLException ex) {
@@ -534,7 +527,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     }
 
                     String observaciones = (String) jTable1.getValueAt(celdas[i], 12);
-
+                    
                     try {
                         //guardamos las modificaciones en la bd
                       tesoreria = modificarTesoreria(fl_id, estado, nueva, observaciones);
@@ -1005,10 +998,11 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
      */
     public boolean  modificarTesoreria(int fl_id, String estado, String fechaPago, String observaciones) throws SQLException
     {
+        boolean rsUpdate = false;
         String query = "UPDATE fl_factura_cliente SET fl_estado = '"+estado+"', fl_fecha_pago = '"+fechaPago+"', " +
                        "fl_observaciones = '"+observaciones+"' WHERE fl_id = "+fl_id;
         System.out.println(query);
-        boolean rsUpdate = CSDesktop.datos.manipuladorDatos(query);
+        rsUpdate = CSDesktop.datos.manipuladorDatos(query);
 
         return rsUpdate;
     }
