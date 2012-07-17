@@ -391,6 +391,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
         String estado = new String(jComboBoxEstado.getSelectedItem().toString());
         String fPago = new String(jComboFPago.getSelectedItem().toString());
+        int fPagoId = new Integer(jComboFPago.getSelectedIndex());
 
         String query = "SELECT distinct(fl.fl_id), fl.fl_fecha, fl.fl_num, cl.cl_nombre, " +
                        "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, fp.fp_tipo, " +
@@ -400,6 +401,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
         if (numFl == 0 && cliente.equals("") && (fechaI.equals("") && fechaF.equals("")) && (fechaIFc.equals("") && fechaFFc.equals("")))
         {
+            System.out.println("Entra");
             jButtonBuscar.setEnabled(false);
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar número de factura, un Cliente o período de tiempo</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
@@ -428,7 +430,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
             }
             if (!fPago.equals("Selecciona"))
             {
-                query = query + " AND cl.fp_id='" + fPago + "'";
+                query = query + " AND cl.fp_id='" + fPagoId + "'";
             }
 
             query = query + " ORDER BY fl.fl_fecha ASC";
@@ -512,6 +514,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
             j++;
         }
      }
+
 
     public void ValidarFormatos(String accion)
     {
