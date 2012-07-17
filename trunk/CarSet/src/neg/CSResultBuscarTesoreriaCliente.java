@@ -80,7 +80,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "CLIENTE", "NETO", "IVA","TOTAL","DIAS F.F.","F. PAGO","ESTADO", "FECHA PAGO" , "N.º CUENTA", "OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "CLIENTE", "NETO", "IVA","TOTAL","DIAS F.F.","F. PAGO","ESTADO", "FECHA COBRO" , "N.º CUENTA", "OBSERVACIONES"});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -506,15 +506,17 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
             String nueva = "";
             boolean tesoreria = false;
             int longitud = jTable1.getSelectedRowCount();
+
             int[] celdas = jTable1.getSelectedRows();
 
-            for(int i = 0; i < longitud; i++)
+            for(int i = 0; i < lista.size(); i++)
             {
-                System.out.println("celda: "+lista.get(celdas[i]));
-                    ArrayList indices = (ArrayList) lista.get(celdas[i]);
+                System.out.println("celda: "+lista.get(i));
+                    //ArrayList indices = (ArrayList) lista.get(celdas[i]);
+                    ArrayList indices = (ArrayList) lista.get(i);
                     int fl_id = Integer.parseInt(indices.get(0).toString());
-                    String estado = (String) jTable1.getValueAt(celdas[i], 9);
-                    String fechaPago = (String) jTable1.getValueAt(celdas[i], 10);
+                    String estado = (String) jTable1.getValueAt(i, 9);
+                    String fechaPago = (String) jTable1.getValueAt(i, 10);
 
                     if (!fechaPago.equals(""))
                     {
@@ -526,7 +528,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                          nueva = anyo+"-"+mes+"-"+dia;
                     }
 
-                    String observaciones = (String) jTable1.getValueAt(celdas[i], 12);
+                    String observaciones = (String) jTable1.getValueAt(i, 12);
                     
                     try {
                         //guardamos las modificaciones en la bd
