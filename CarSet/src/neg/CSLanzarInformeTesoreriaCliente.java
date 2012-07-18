@@ -346,7 +346,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         String fechaF="";
         String fechaIFc="";
         String fechaFFc="";
-
+System.out.println("Inicio");
         String numero = new String(jTextNumFa.getText());
         if(!numero.equals(""))
         {
@@ -391,7 +391,13 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
         String estado = new String(jComboBoxEstado.getSelectedItem().toString());
         String fPago = new String(jComboFPago.getSelectedItem().toString());
-        int fPagoId = new Integer(jComboFPago.getSelectedIndex());
+
+        int fPagoId = 0;
+        try {
+            fPagoId = getFPagoId(fPago);
+        } catch (SQLException ex) {
+            Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         String query = "SELECT distinct(fl.fl_id), fl.fl_fecha, fl.fl_num, cl.cl_nombre, " +
                        "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, fp.fp_tipo, " +
@@ -399,7 +405,10 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                        "FROM fl_factura_cliente fl, pe_pedidos pe, cl_clientes cl, fp_forma_pago fp " +
                        "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id AND fl.fl_num = pe.pe_num_fa_cl";
 
-        if (numFl == 0 && cliente.equals("") && (fechaI.equals("") && fechaF.equals("")) && (fechaIFc.equals("") && fechaFFc.equals("")))
+System.out.println("Entrando");
+        if (numFl == 0 && cliente.equals("") && 
+           (fechaI.equals("") && fechaF.equals("")) &&
+           (fechaIFc.equals("") && fechaFFc.equals("")))
         {
             System.out.println("Entra");
             jButtonBuscar.setEnabled(false);
@@ -513,6 +522,22 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
             //jComboBoxFPago.setSelectedIndex(index);
             j++;
         }
+     }
+
+    /**
+     *
+     * @throws SQLException
+     */
+    private int getFPagoId(String fPago) throws SQLException
+    {
+        ResultSet rs = CSDesktop.datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago WHERE fp_descripcion = '" + fPago + "'");
+        int valor = 0;
+        
+        while(rs.next())
+        {
+            valor = rs.getInt("fp_id");
+        }
+        return valor;
      }
 
 
