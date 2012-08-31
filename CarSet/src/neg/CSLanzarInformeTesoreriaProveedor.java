@@ -353,7 +353,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 
         String query = "SELECT tr.tr_fecha, tr.tr_num, tr.tr_num_carset, pr.pr_nombre_fiscal, tr.tr_importe_neto, tr.tr_iva, " +
                        "tr.tr_irpf, tr.tr_importe, pr.pr_plazo, fp.fp_tipo, pr.pr_num_cuenta, tr.tr_estado, tr.tr_fecha_pago, " +
-                       "tr.tr_banco, pr.pr_email, tr.tr_observaciones, tr_id " +
+                       "tr.tr_banco, pr.pr_email, tr.tr_observaciones, tr_id, pr_dias_plazo " +
                        "FROM tr_tesoreria_proveedor tr, pr_proveedores pr, fp_forma_pago fp " +
                        "WHERE  tr.pr_num = pr.pr_id AND fp.fp_id = pr.fp_id";
 

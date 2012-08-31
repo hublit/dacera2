@@ -371,7 +371,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
 
          //SE CALCULA EL IVA CORRESPONDIENTE
-         iva = ((total * 18) / 100.0);
+         iva = ((total * 21) / 100.0);
          importeIva = Double.toString(iva);
 
          //SE SUMA EL RESULTADO Y EL IVA
@@ -467,7 +467,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 pars.put("Blanco","");
                 pars.put("Factor","Turismo");
                 pars.put("ImporteTotal",total);
-                pars.put("IVA","18%");
+                pars.put("IVA","21%");
                 pars.put("ImporteIVA", iva);
                 pars.put("ImporteTotalIVA", totalIva);
                 pars.put("EURO","€");
@@ -1393,7 +1393,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
 
          //SE CALCULA EL IVA CORRESPONDIENTE
-         iva = ((total * 18) / 100.0);
+         iva = ((total * 21) / 100.0);
          importeIva = Double.toString(iva);
 
          //SE SUMA EL RESULTADO Y EL IVA
@@ -1490,7 +1490,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 pars.put("Factor","Turismo");
                 total=Utilidades.redondear(total, 2);
                 pars.put("ImporteTotal",total);
-                pars.put("IVA","18%");
+                pars.put("IVA","21%");
                 iva=Utilidades.redondear(iva, 2);
                 pars.put("ImporteIVA", iva);
                 totalIva=Utilidades.redondear(totalIva, 2);
