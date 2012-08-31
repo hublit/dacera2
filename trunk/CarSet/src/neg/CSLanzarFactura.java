@@ -369,11 +369,38 @@ public class CSLanzarFactura extends javax.swing.JPanel
             total=total + totalAux;
         } // FIN DEL FOR QUE COMPRUEBA SI EXISTEN MAS PEDIDOS
 
+        // SE PONE LA FECHA DE LA FACTURA EN EL FORMATO ELEGIDO
+            String [] tempOrigen = null;
+            tempOrigen = fechaFactura.split("\\-");
+            String nuevaFechaFactura=tempOrigen[2]+"/"+tempOrigen[1]+"/"+tempOrigen[0];
 
+             SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+             Date datehora=null;
+             Date datehora2=null;
+             try
+             {
+                datehora = sdf1.parse(nuevaFechaFactura);
+             } catch (ParseException ex) {
+                Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             try
+             {
+                datehora2 = sdf1.parse("01/09/2012");
+             } catch (ParseException ex) {
+                Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+             }
          //SE CALCULA EL IVA CORRESPONDIENTE
-         iva = ((total * 21) / 100.0);
-         importeIva = Double.toString(iva);
-
+       
+         if (datehora.before(datehora2))
+         {
+            iva = ((total * 18) / 100.0);
+            importeIva = Double.toString(iva);
+         }
+         else
+         {
+             iva = ((total * 21) / 100.0);
+            importeIva = Double.toString(iva);
+         }
          //SE SUMA EL RESULTADO Y EL IVA
          totalIva = total + iva;
          double totalIva2=Utilidades.redondear(totalIva, 2);
@@ -415,19 +442,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 codPostalFiscal=beanCliente.getCod_postal_fiscal();
             }
 
-            // SE PONE LA FECHA DE LA FACTURA EN EL FORMATO ELEGIDO
-            String [] tempOrigen = null;
-            tempOrigen = fechaFactura.split("\\-");
-            String nuevaFechaFactura=tempOrigen[2]+"/"+tempOrigen[1]+"/"+tempOrigen[0];
-
-             SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
-             Date datehora=null;
-             try
-             {
-                datehora = sdf1.parse(nuevaFechaFactura);
-             } catch (ParseException ex) {
-                Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
-             }
+            
 
             // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
             String plazoPago=beanCliente.getPlazoPago();
@@ -467,7 +482,10 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 pars.put("Blanco","");
                 pars.put("Factor","Turismo");
                 pars.put("ImporteTotal",total);
-                pars.put("IVA","21%");
+                if (datehora.before(datehora2))
+                    pars.put("IVA","18%");
+                else
+                   pars.put("IVA","21%");
                 pars.put("ImporteIVA", iva);
                 pars.put("ImporteTotalIVA", totalIva);
                 pars.put("EURO","€");
