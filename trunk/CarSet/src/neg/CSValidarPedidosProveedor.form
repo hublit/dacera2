@@ -51,10 +51,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonTriCuatro" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="ltrimestre" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="239" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="ltrimestre" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="1020" max="32767" attributes="0"/>
           </Group>
@@ -372,13 +369,14 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxIvaTipo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="18%"/>
-            <StringItem index="1" value="8%"/>
-            <StringItem index="2" value="4%"/>
-            <StringItem index="3" value="5%"/>
-            <StringItem index="4" value="2%"/>
-            <StringItem index="5" value=" "/>
+          <StringArray count="7">
+            <StringItem index="0" value="21%"/>
+            <StringItem index="1" value="18%"/>
+            <StringItem index="2" value="8%"/>
+            <StringItem index="3" value="4%"/>
+            <StringItem index="4" value="5%"/>
+            <StringItem index="5" value="2%"/>
+            <StringItem index="6" value=" "/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxIvaTipo" noResource="true"/>

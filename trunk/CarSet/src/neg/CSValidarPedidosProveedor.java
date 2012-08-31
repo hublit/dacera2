@@ -434,7 +434,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jLabelIvaTipo.setText("IVA Tipo");
         jLabelIvaTipo.setName("jLabelIvaTipo"); // NOI18N
 
-        jComboBoxIvaTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18%", "8%", "4%", "5%", "2%", " " }));
+        jComboBoxIvaTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21%", "18%", "8%", "4%", "5%", "2%", " " }));
         jComboBoxIvaTipo.setName("jComboBoxIvaTipo"); // NOI18N
 
         jLabelFechaCont.setForeground(new java.awt.Color(0, 0, 100));
@@ -509,9 +509,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                         .addComponent(jButtonTriTres)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonTriCuatro))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ltrimestre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(ltrimestre))
                 .addContainerGap(1020, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -610,6 +608,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         String fechaCo = "";
         String fechaFac = "";
         int mes = 0;
+        String numFa = jTextFieldNFa.getText();
 
         Calendar fechaFa = jDateChooserFechaFa.getCalendar();
         if (fechaFa != null) {
@@ -680,6 +679,10 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         {
             ValidarFormatos(Utilidades.campoObligatorio(fechaCo,"Fecha COntabilización"));
         }
+        else if (!Utilidades.campoObligatorio(numFa,"Número Factura").equals("OK"))
+        {
+            ValidarFormatos(Utilidades.campoObligatorio(numFa,"Número Factura"));
+        }
         else
         {
 
@@ -709,12 +712,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 //                    String fechaContS=formatoDeFecha.format(fechaConta.getTime());
                     String ivaTrimestre = jComboBoxIvaTrimestre.getSelectedItem().toString();
                     String ivaAnyo = jComboBoxAnyoIva.getSelectedItem().toString();
-                    String numFa = jTextFieldNFa.getText();
 
                     if (num_carset != null && !num_carset.equals(""))
                     {
                         String[] arrayNumCarset = num_carset.split("/");
-                        int numCarset = (Integer.parseInt(arrayNumCarset[2]) + 1);
+                        int numCarset = (Integer.parseInt(arrayNumCarset[1]));
                         String numero = Utilidades.rellenarCeros(String.valueOf(numCarset), 4);
                         String[] fecha = fechaCo.split("-");
                         String anyo=fecha[0];
@@ -984,6 +986,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         if (ts.getTr_fecha()!=null)
         {
             System.out.println("Plazo: "+ diasPlazo);
+
+            if (beanPr.getPlazoPago().equals("Especial"))
+            {
+                diasPlazo = beanPr.getDiasPlazo();
+            }
             int plazo = Integer.parseInt(diasPlazo);
             //sumamos a la fecha de la factura el plazo de pago del proveedor
             ts.getTr_fecha().add(Calendar.DATE, plazo);
