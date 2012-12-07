@@ -15,6 +15,7 @@ import java.awt.event.KeyListener;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -82,7 +83,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "CLIENTE", "NETO", "IVA","TOTAL","DIAS F.F.","F. PAGO","ESTADO", "FECHA COBRO" , "N.º CUENTA", "OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "CLIENTE", "NETO", "IVA","TOTAL","DIAS F.F.","F. COBRO","ESTADO", "FECHA COBRO" , "N.º CUENTA", "OBSERVACIONES"});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -154,7 +155,9 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     else if(k==4)
                     {
                         total_cl = rs.getDouble(k+1);
-                        datosFila[j] = Utilidades.redondear(total_cl, 2);
+
+                        Utilidades.separadorMiles(Double.toString(total));
+                        datosFila[j] = Utilidades.separadorMiles(Double.toString(total_cl));
                         total = total + total_cl;
                         total = Utilidades.redondear(total, 2);
                         System.out.println("Dato" + k+1 + " " + datosFila[j]);
@@ -162,7 +165,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     else if(k==5)
                     {
                         iva = rs.getDouble(k+1);
-                        datosFila[j] = Utilidades.redondear(iva, 2);
+                        datosFila[j] = Utilidades.separadorMiles(Double.toString(iva));
                         totalIva = totalIva + iva;
                         totalIva = Utilidades.redondear(totalIva, 2);
                         System.out.println("Dato" + k+1+ " " + datosFila[j]);
@@ -170,7 +173,10 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     else if (k==6)
                     {
                         importe = rs.getDouble(k+1);
-                         datosFila[j] = Utilidades.redondear(importe, 2);
+                        NumberFormat NF = NumberFormat.getInstance();
+                        NF.setMaximumFractionDigits(2); //3 decimales
+                        datosFila[j] = Utilidades.separadorMiles(Double.toString(importe));
+
                         totalImporte = totalImporte + importe;
                         totalImporte = Utilidades.redondear(totalImporte, 2);
                         System.out.println("Dato" + k+1 + " " + datosFila[j]);
@@ -228,15 +234,15 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     }
                     if(k==4)
                     {
-                        datosFilaTotal[i] = total;
+                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(total));
                     }
                     if(k==5)
                     {
-                        datosFilaTotal[i] = totalIva;
+                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIva));
                     }
                     if(k==6)
                     {
-                        datosFilaTotal[i] = totalImporte;
+                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalImporte));
                     }
                 i++;
            }
@@ -879,7 +885,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
             }
 
             // These are the combobox values
-            String[] values = new String[]{"","PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO", "APLAZADO IVA"};
+            String[] values = new String[]{"","PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO"};
 
             //System.out.println(table.getRowCount()+" / "+fila);
             TableColumn col = table.getColumnModel().getColumn(column);
