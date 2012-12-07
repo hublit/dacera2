@@ -22,6 +22,7 @@ public class BeanProveedor
     private String tipo;
     private String numCuenta;
     private String email;
+    private String regimen;
 
     public String getDiasPlazo() {
         return diasPlazo;
@@ -253,6 +254,14 @@ public class BeanProveedor
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getRegimen() {
+        return regimen;
+    }
+
+    public void setRegimen(String regimen) {
+        this.regimen = regimen;
     }
 
 }
