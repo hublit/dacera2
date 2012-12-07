@@ -161,7 +161,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     else if(k==5)
                     {
                         total_pr = rs.getDouble(k);
-                        datosFila[j] = rs.getDouble(k);
+                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         total = total + total_pr;
                         total = Utilidades.redondear(total, 2);
                         System.out.println("Dato" + k + " " + datosFila[j]);
@@ -170,7 +170,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     else if(k==6)
                     {
                         iva = rs.getDouble(k);
-                        datosFila[j] = rs.getDouble(k);
+                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalIva = totalIva + iva;
                         totalIva = Utilidades.redondear(totalIva, 2);
                         System.out.println("Dato" + k + " " + datosFila[j]);
@@ -179,7 +179,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     else if (k==7)
                     {
                         irpf = rs.getDouble(k);
-                        datosFila[j] = rs.getDouble(k);
+                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalIrpf = totalIrpf + irpf;
                         totalIrpf = Utilidades.redondear(totalIrpf, 2);
                         System.out.println("Dato" + k + " " + datosFila[j]);
@@ -187,7 +187,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     else if (k==8)
                     {
                         importe = rs.getDouble(k);
-                        datosFila[j] = rs.getDouble(k);
+                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalImporte = totalImporte + importe;
                         totalImporte = Utilidades.redondear(totalImporte, 2);
                         System.out.println("Dato" + k + " " + datosFila[j]);
@@ -263,19 +263,19 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     }
                     if(k==5)
                     {
-                        datosFilaTotal[i] = total;
+                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(total));
                     }
                     if(k==6)
                     {
-                        datosFilaTotal[i] = totalIva;
+                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIva));
                     }
                     if(k==7)
                     {
-                        datosFilaTotal[i] = totalIrpf;
+                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIrpf));
                     }
                     if(k==8)
                     {
-                        datosFilaTotal[i] = totalImporte;
+                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalImporte));
                     }
                 i++;
            }
@@ -353,7 +353,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         jTable1.getTableHeader().setBackground(Color.GRAY);
         jTable1.getTableHeader().setForeground(Color.white);        
         jTable1.setAutoCreateRowSorter(true);
-
     }
 
     /**

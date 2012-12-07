@@ -126,16 +126,15 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                          datosFila[j] = rs.getDouble(k + 1);
                          //totalCliente = totalCliente + ta_es_cl;
                          //totalCliente = Utilidades.redondear(totalCliente, 2);
-                          importe.add(rs.getDouble(k + 1));
-                        System.out.println("Clase: " + datosFila[j].getClass().getName());
-                        totalProveedor = totalProveedor + ta_es_pr;
-                        totalProveedor = Utilidades.redondear(totalProveedor, 2);
                     }
                     else if(k==12)
                     {
                         ta_es_pr=rs.getDouble(k+1);
                         datosFila[j] = rs.getDouble(k + 1);
-                       
+                        importe.add(rs.getDouble(k + 1));
+                        System.out.println("Clase: " + datosFila[j].getClass().getName());
+                        totalProveedor = totalProveedor + ta_es_pr;
+                        totalProveedor = Utilidades.redondear(totalProveedor, 2);
                     }
                     else if (k==14)
                     {
@@ -493,8 +492,9 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(484, 484, 484)
                         .addComponent(jButtonValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(397, 397, 397)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 397, Short.MAX_VALUE)
                         .addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1374, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
@@ -588,7 +588,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonValidar)
+                    .addComponent(jButtonValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCerrar))
                 .addGap(23, 23, 23))
         );
@@ -624,7 +624,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaCo = formatoDeFecha.format(fecha);
             String[] arrayFaCo = fechaCo.split("-");
-            mesCo = arrayFaCo[1];
+            mesCo = arrayFaCo[2];
         }
 
         mes = (Integer.parseInt(mesCo));
@@ -667,7 +667,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         else if(primerTimestre || segundoTimestre || tercerTimestre || cuartoTimestre)
         {
             jButtonValidar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>LA fecha de contabilización no puede ser menor a un trimestre deshabilitado.</FONT></HTML>");
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>La fecha de contabilización no puede ser menor a un trimestre deshabilitado.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonValidar.setEnabled(true);
         }
@@ -720,7 +720,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                         String numero = Utilidades.rellenarCeros(String.valueOf(numCarset), 4);
                         String[] fecha = fechaCo.split("-");
                         String anyo=fecha[0];
-                        num_carset = anyo + "/"+numero;
+                        num_carset = ivaTrimestre+ "/" +anyo + "/" +numero;
 
                         //num_carset = ivaTrimestre+"/"+ivaAnyo+"/"+numero;
                     }
@@ -1127,10 +1127,12 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             
         }
         rs.close();
-        ResultSet rsCuatro = CSDesktop.datos.select("SELECT ti_id, ti_anyo, ti_trimestre, ti_estado FROM ti_trimestre_iva WHERE ti_anyo = "+anyoAnt);
+        String query = "SELECT ti_id, ti_anyo, ti_trimestre, ti_estado FROM ti_trimestre_iva WHERE ti_trimestre = 'cuarto' AND ti_anyo = "+anyoAnt;
+        System.out.println(query);
+        ResultSet rsCuatro = CSDesktop.datos.select("SELECT ti_id, ti_anyo, ti_trimestre, ti_estado FROM ti_trimestre_iva WHERE ti_trimestre = 'cuarto' AND ti_trimestre = ti_anyo = "+anyoAnt);
         while(rsCuatro.next())
         {
-            if (rs.getString("ti_trimestre").equals("cuarto") && rs.getBoolean("ti_estado"))
+            if (rs.getBoolean("ti_estado"))
             {
                 jButtonTriCuatro.setEnabled(false);
             }
