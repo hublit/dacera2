@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.text.DecimalFormat;
 import neg.CSDesktop;
 
 /**
@@ -1157,5 +1158,24 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
 
         return resultado;
     }
+
+    /**
+     * Separador de miles
+     * @param number
+     * @return String number
+     */
+    public static String separadorMiles(String number)
+    {
+        double value;
+        String numberFormat = "###,###,###.##";
+        DecimalFormat formatter = new DecimalFormat(numberFormat);
+        try {
+        value = Double.parseDouble(number);
+        } catch (Throwable t) {
+        return null;
+        }
+        return formatter.format(value);
+    }
+
 
 }
