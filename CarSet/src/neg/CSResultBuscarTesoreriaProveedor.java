@@ -30,6 +30,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
@@ -1014,6 +1015,9 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 col.setCellEditor(null);
                 col.setCellRenderer(null);
             }
+
+                    jTable1.setRowSelectionAllowed(true);
+        jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
             return cell;
         }
