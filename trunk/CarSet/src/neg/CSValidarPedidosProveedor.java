@@ -25,13 +25,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
+import sun.awt.SunHints.Value;
 import utils.Utilidades;
 
 /**
@@ -223,7 +226,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
 
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(25);
+        columna.setPreferredWidth(80);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(50);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
@@ -276,6 +279,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jTable1.getTableHeader().setForeground(Color.white);        
 
         jTable1.setAutoCreateRowSorter(true);
+
     }
 
      public Dimension getPreferredSize()
@@ -303,6 +307,48 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
      return( comp );
  }
+  
+         /**
+     *
+     */
+    public class MyComboBoxRenderer extends JComboBox implements TableCellRenderer
+    {
+        public MyComboBoxRenderer(String[] items)
+        {
+            super(items);
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+        {
+            if (isSelected)
+            {
+                setForeground(table.getSelectionForeground());
+                super.setBackground(table.getSelectionBackground());
+            }
+            else
+            {
+                setForeground(table.getForeground());
+                setBackground(table.getBackground());
+            }
+
+            // Select the current value
+            setSelectedItem(value);
+            return this;
+        }
+    }
+     
+     /**
+     *
+     */
+    public class MyComboBoxEditor extends DefaultCellEditor
+    {
+        public MyComboBoxEditor(String[] items)
+        {
+            super(new JComboBox(items));
+
+        }
+        
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -881,9 +927,18 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             //se centran los valores
             jTable1.setRowHeight(20);
 
+            // These are the combobox values
+            String[] values = new String[]{"","SELECCIONADO"};
             TableColumn col = table.getColumnModel().getColumn(column);
+            
             if (column == 0)
+            {
+                col.setCellEditor(new MyComboBoxEditor(values));
+                col.setCellRenderer(new MyComboBoxRenderer(values));
+                jTable1.setValueAt(value, row, column);
+            }
 
+   /*         if (column == 0)
             {
                 col.setCellEditor(new MyCheckBoxEditor());
                 col.setCellRenderer(new MyCheckBoxRenderer());
@@ -892,7 +947,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
                 jTable1.setValueAt(value, row, column);
             }
-
+*/
             if (column == 2 || column == 17 || column == 18 || column == 19 )
             {
                 this. setHorizontalAlignment(SwingConstants.CENTER);
@@ -1058,47 +1113,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
          JLabel errorFields = new JLabel(accion);
          JOptionPane.showMessageDialog(null,errorFields);
          jButtonValidar.setEnabled(true);
-    }
-
-    /**
-     *
-     */
-    public class MyCheckBoxRenderer extends JCheckBox implements TableCellRenderer
-    {
-        public MyCheckBoxRenderer()
-        {
-            super();
-        }
-
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
-        {
-                 
-            if (isSelected)
-            {
-                setSelected(true);
-                setForeground(table.getSelectionForeground());
-                super.setBackground(table.getSelectionBackground());
-            }
-            else
-            {
-                setSelected(false);
-                setForeground(table.getForeground());
-                setBackground(table.getBackground());
-            }
-            // Select the current value
-            return this;
-        }
-    }
-
-    /**
-     *
-     */
-    public class MyCheckBoxEditor extends DefaultCellEditor
-    {
-        public MyCheckBoxEditor()
-        {
-            super(new JCheckBox(pr_id, true));
-        }
     }
 
     /**

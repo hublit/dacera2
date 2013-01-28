@@ -29,6 +29,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.RowFilter.ComparisonType;
 import javax.swing.SwingConstants;
@@ -313,8 +314,17 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         jTable1.getTableHeader().setForeground(Color.white);        
         jTable1.setAutoCreateRowSorter(true);
         RowFilter.dateFilter(ComparisonType.BEFORE, new Date(),0);
+
+        ListSelectionModel selectionModel =
+  jTable1.getSelectionModel();
+selectionModel.setSelectionInterval(0, 12);
+selectionModel.addSelectionInterval(0, 12);
+ jTable1.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
+ jTable1.setSelectionModel(selectionModel);
     }
 
+    
     /**
      *
      * @return
@@ -351,6 +361,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
          {
              comp.setForeground(null);
          }
+
 
          return( comp );
     }
