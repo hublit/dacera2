@@ -36,7 +36,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.text.TableView.TableRow;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
@@ -84,7 +83,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET" , "PROVEEDOR", "NETO", "IVA", "IRPF", "TOTAL", "DIAS F.F.", "F. COBRO", "N.º CUENTA", "ESTADO", "FECHA COBRO" ,  "BANCO", "EMAIL", "OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET" , "PROVEEDOR", "NETO", "IVA", "IRPF", "TOTAL", "DIAS F.F.", "F. PAGO", "N.º CUENTA", "ESTADO", "FECHA PAGO" ,  "BANCO", "EMAIL", "OBSERVACIONES"});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -137,7 +136,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                             String nueva=dia+"-"+mes+"-"+anyo;
 
                             datosFila[j] = nueva;
-                          System.out.println("Dato" + k + " " + datosFila[j]);
                          }
                     }
                     else if(k==1)
@@ -156,8 +154,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         //sumamos a la fecha el plazo en días
                         fVencimiento = Utilidades.sumarFecha(rs.getString("tr_fecha"), diasPlazo);
                         datosFila[j] = fVencimiento;
-                        System.out.println("Dato" + k + " " + fVencimiento);
-
                     }
                     else if(k==5)
                     {
@@ -174,8 +170,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalIva = totalIva + iva;
                         totalIva = Utilidades.redondear(totalIva, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
-
                     }
                     else if (k==7)
                     {
@@ -183,7 +177,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalIrpf = totalIrpf + irpf;
                         totalIrpf = Utilidades.redondear(totalIrpf, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==8)
                     {
@@ -191,27 +184,22 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalImporte = totalImporte + importe;
                         totalImporte = Utilidades.redondear(totalImporte, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==9)
                     {
                         datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==10)
                     {
                         datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==11)
                     {
                         datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==12)
                     {
                         datosFila[j] = rs.getObject(k );
-                        System.out.println("Dato" + k + " " + rs.getObject(k));
                     }
                     else if(k==13)
                     {
@@ -225,27 +213,20 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                             String dia=temp[2];
                             String nueva=dia+"-"+mes+"-"+anyo;
 
-//Modificaaaaaaaaar/////////////////
-                            datosFila[j] = rs.getObject(k); //
-///////////////////////
-                          datosFila[j] = nueva;
-                          System.out.println("Dato" + k + " " + datosFila[j]);
+                              datosFila[j] = nueva;
                          }
                     }
                     else if (k==14)
                     {
                         datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " + rs.getObject(k));
                     }
                     else if (k==15)
                     {
                         datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " +datosFila[j]);
                     }
                     else
                     {
                         datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " + rs.getObject(k));
                     }
                     j++;
                 }
@@ -264,19 +245,19 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     }
                     if(k==5)
                     {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(total));
+                        datosFilaTotal[i] = Utilidades.redondear(total, 2);
                     }
                     if(k==6)
                     {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIva));
+                        datosFilaTotal[i] = Utilidades.redondear(totalIva, 2);
                     }
                     if(k==7)
                     {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIrpf));
+                        datosFilaTotal[i] = Utilidades.redondear(totalIrpf, 2);
                     }
                     if(k==8)
                     {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalImporte));
+                        datosFilaTotal[i] = Utilidades.redondear(totalImporte, 2);
                     }
                 i++;
            }
@@ -965,7 +946,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 cell. setForeground(Color. BLACK);
             }
 
-            if (column == 12 || column == 13 || column == 14 )
+            if (column == 11 || column == 12 || column == 13 || column == 14 || column == 15 )
             {
                 Color fondo = new  Color(255, 255, 157);
                 cell.setBackground(fondo);

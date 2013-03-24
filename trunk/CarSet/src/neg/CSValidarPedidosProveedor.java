@@ -7,7 +7,6 @@ import data.Proveedor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.table.TableCellRenderer;
-import utils.TablaModelo;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -21,20 +20,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
-import javax.swing.JCheckBox;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import sun.awt.SunHints.Value;
+import utils.TablaModeloVPedidos;
 import utils.Utilidades;
 
 /**
@@ -54,13 +53,15 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     String pr_id = "";
     double totalProveedor = 0;
 
+            private DefaultListSelectionModel selectionModel;
+
     public CSValidarPedidosProveedor(String query) throws FileNotFoundException, IOException, SQLException
     {
         initComponents();
         inicializarTrimestres();
         consulta = query;
 
-        TablaModelo modelo = new TablaModelo();
+        TablaModeloVPedidos modelo = new TablaModeloVPedidos();
         ArrayList lista = new ArrayList();
         ResultSet rs = CSDesktop.datos.select(query);
 
@@ -127,15 +128,12 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     {
                          ta_es_cl=rs.getDouble(k+1);
                          datosFila[j] = rs.getDouble(k + 1);
-                         //totalCliente = totalCliente + ta_es_cl;
-                         //totalCliente = Utilidades.redondear(totalCliente, 2);
                     }
                     else if(k==12)
                     {
                         ta_es_pr=rs.getDouble(k+1);
                         datosFila[j] = rs.getDouble(k + 1);
                         importe.add(rs.getDouble(k + 1));
-                        System.out.println("Clase: " + datosFila[j].getClass().getName());
                         totalProveedor = totalProveedor + ta_es_pr;
                         totalProveedor = Utilidades.redondear(totalProveedor, 2);
                     }
@@ -158,11 +156,9 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                     else
                     {
                         datosFila[j] = rs.getObject(k + 1);
-                        System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                     }
                     j++;
                 }
-
                 modelo.addRow(datosFila);
                 numeroFila++;
             }
@@ -223,7 +219,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jDateChooserFechaCont.setDate(hoy);
         jTable1.setModel(modelo);
         jTable1.setDefaultRenderer (Object.class, new MiRender());
-        jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
+        //jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
 
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
         columna.setPreferredWidth(80);
@@ -276,7 +272,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         tcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
         jTable1.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
         jTable1.getTableHeader().setBackground(Color.GRAY);
-        jTable1.getTableHeader().setForeground(Color.white);        
+        jTable1.getTableHeader().setForeground(Color.white);
+
+        selectionModel = (DefaultListSelectionModel) jTable1.getSelectionModel();
+        jTable1.setRowSelectionAllowed(true);
+        jTable1.setSelectionMode(selectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         jTable1.setAutoCreateRowSorter(true);
 
@@ -322,13 +322,19 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         {
             if (isSelected)
             {
-                setForeground(table.getSelectionForeground());
-                super.setBackground(table.getSelectionBackground());
+                if(value.equals("SELECC.")){
+                    Color fondo = new  Color(247, 174, 40);
+                    setForeground(Color.BLACK);
+                    super.setBackground(fondo);
+                }else{
+                    setForeground(table.getSelectionForeground());
+                    super.setBackground(table.getSelectionBackground());
+                }
             }
             else
             {
-                setForeground(table.getForeground());
-                setBackground(table.getBackground());
+               setForeground(table.getForeground());
+               setBackground(table.getBackground());
             }
 
             // Select the current value
@@ -347,8 +353,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             super(new JComboBox(items));
 
         }
-        
     }
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -446,7 +452,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jLabelAnyoIva.setText("IVA año");
         jLabelAnyoIva.setName("jLabelAnyoIva"); // NOI18N
 
-        jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2012", "2011", "2010" }));
+        jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2016", "2015", "2014", "2013", "2012", "2011", "2010" }));
+        jComboBoxAnyoIva.setSelectedIndex(3);
         jComboBoxAnyoIva.setName("jComboBoxAnyoIva"); // NOI18N
 
         jLabelObservaciones.setForeground(new java.awt.Color(0, 0, 100));
@@ -479,7 +486,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jLabelIvaTipo.setText("IVA Tipo");
         jLabelIvaTipo.setName("jLabelIvaTipo"); // NOI18N
 
-        jComboBoxIvaTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21%", "18%", "8%", "4%", "5%", "2%", " " }));
+        jComboBoxIvaTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21%", "18%", "8%", "4%", "5%", "2%", "0%", " " }));
         jComboBoxIvaTipo.setName("jComboBoxIvaTipo"); // NOI18N
 
         jLabelFechaCont.setForeground(new java.awt.Color(0, 0, 100));
@@ -649,8 +656,28 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
     private void jButtonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarActionPerformed
         boolean informe = false;
-        int longitud = jTable1.getSelectedRowCount();
-        int[] celdas = jTable1.getSelectedRows();
+        //int filas = jTable1.getSelectedRowCount();
+        //int[] celdas = jTable1.getSelectedRows();
+        List <Integer>filas = new ArrayList<Integer>();
+        int longitud = 0;
+        for (int j= 1; j < jTable1.getRowCount(); j++)
+        {
+            String sel = "";
+            if((jTable1.getModel().getValueAt(j, 0)) != null){
+                sel = jTable1.getModel().getValueAt(j, 0).toString();
+            }
+            if (sel.equals("SELECC."))
+            {
+                filas.add(j);
+                longitud++;
+            }
+        }
+
+        int[] celdas = new int[filas.size()];
+        for(int i = 0;i < celdas.length;i++){
+            celdas[i] = filas.get(i);
+        }
+        System.out.println(longitud);
         String fechaCo = "";
         String fechaFac = "";
         int mes = 0;
@@ -752,17 +779,13 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 {
                     Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
-//                    Calendar fechaCalendar = jDateChooserFechaFa.getCalendar();
-//                    Calendar fechaConta = jDateChooserFechaCont.getCalendar();
-//                    SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");//
-//                    String fechaContS=formatoDeFecha.format(fechaConta.getTime());
                     String ivaTrimestre = jComboBoxIvaTrimestre.getSelectedItem().toString();
                     String ivaAnyo = jComboBoxAnyoIva.getSelectedItem().toString();
 
                     if (num_carset != null && !num_carset.equals(""))
                     {
                         String[] arrayNumCarset = num_carset.split("/");
-                        int numCarset = (Integer.parseInt(arrayNumCarset[1]));
+                        int numCarset = (Integer.parseInt(arrayNumCarset[2])) + 1;
                         String numero = Utilidades.rellenarCeros(String.valueOf(numCarset), 4);
                         String[] fecha = fechaCo.split("-");
                         String anyo=fecha[0];
@@ -928,7 +951,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             jTable1.setRowHeight(20);
 
             // These are the combobox values
-            String[] values = new String[]{"","SELECCIONADO"};
+            String[] values = new String[]{"","SELECC."};
+          
             TableColumn col = table.getColumnModel().getColumn(column);
             
             if (column == 0)
@@ -938,16 +962,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 jTable1.setValueAt(value, row, column);
             }
 
-   /*         if (column == 0)
-            {
-                col.setCellEditor(new MyCheckBoxEditor());
-                col.setCellRenderer(new MyCheckBoxRenderer());
-                
-                this. setHorizontalAlignment(SwingConstants.CENTER);
-
-                jTable1.setValueAt(value, row, column);
-            }
-*/
             if (column == 2 || column == 17 || column == 18 || column == 19 )
             {
                 this. setHorizontalAlignment(SwingConstants.CENTER);
@@ -979,6 +993,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 cell. setBackground(fondo);
                 cell. setForeground(Color.BLACK);
             }
+
             //si no cumplen esa condicion pongo las celdas en color blanco
             if (table. getValueAt(row, 11).toString().equals("TOTALES"))
             {
@@ -1018,16 +1033,13 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         totalIva = Utilidades.redondear(totalIva, 2);
         Double irpf = 0.0;
 
-
-        //if (pr.equals("Gruero") || prTipo.equals("GRUERO"))
-
         if(regPr.equalsIgnoreCase("Autonomo") ||regPr.equalsIgnoreCase("Autónomo"))
         {
             irpf = (importeProveedor * 1) /100;
             irpf = Utilidades.redondear(irpf, 2);
         }
 
-        Double totalImporte = importeProveedor + totalIva + irpf;
+        Double totalImporte = importeProveedor + totalIva - irpf;
         totalImporte = Utilidades.redondear(totalImporte, 2);
         //Fecha de factura
         String fechaFactura = "";
@@ -1040,8 +1052,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         String fechaPago = "";
         if (ts.getTr_fecha()!=null)
         {
-            System.out.println("Plazo: "+ diasPlazo);
-
             if (beanPr.getPlazoPago().equals("Especial"))
             {
                 diasPlazo = beanPr.getDiasPlazo();
@@ -1095,7 +1105,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 else
                 {
                     CSDesktop.ResultValidacionPedidos.dispose();
-                    CSDesktop.BuscarValidacionPedidos.dispose();
+                   //CSDesktop.BuscarValidacionPedidos.dispose();
                     CSDesktop.menuTesoreriaValidacion.setEnabled(true);
 
                     return true;
