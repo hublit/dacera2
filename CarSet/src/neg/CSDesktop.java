@@ -172,8 +172,6 @@ public class CSDesktop extends JFrame
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
                NuevoCliente.setVisible( true );
-               
-               
             }
          }); 
 
