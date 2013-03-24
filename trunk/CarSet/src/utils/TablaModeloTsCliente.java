@@ -15,7 +15,7 @@ public class TablaModeloTsCliente extends DefaultTableModel {
 
     public boolean isCellEditable (int row, int column)
     {
-        if (column == 9 || column == 10 || column == 12)
+        if (column == 9 || column == 10 || column == 11 || column == 12)
         {
             return true;
         }
