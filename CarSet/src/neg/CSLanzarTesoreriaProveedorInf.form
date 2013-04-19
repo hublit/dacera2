@@ -213,7 +213,7 @@
     <Component class="javax.swing.JTextField" name="jTextProveedor">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="name" type="java.lang.String" value="jTextProveedor"/>
+        <Property name="name" type="java.lang.String" value="jTextProveedor" noResource="true"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -222,7 +222,7 @@
     <Component class="javax.swing.JToggleButton" name="jToggleButtonProveedor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar Proveedor"/>
-        <Property name="name" type="java.lang.String" value="jToggleButtonProveedor"/>
+        <Property name="name" type="java.lang.String" value="jToggleButtonProveedor" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonProveedorActionPerformed"/>
@@ -234,13 +234,13 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Proveedor"/>
-        <Property name="name" type="java.lang.String" value="lCliente"/>
+        <Property name="name" type="java.lang.String" value="lCliente" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButtonCliente">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
-        <Property name="name" type="java.lang.String" value="jToggleButtonCliente"/>
+        <Property name="name" type="java.lang.String" value="jToggleButtonCliente" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonClienteActionPerformed"/>
@@ -252,13 +252,13 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cliente"/>
-        <Property name="name" type="java.lang.String" value="lCliente1"/>
+        <Property name="name" type="java.lang.String" value="lCliente1" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextCliente">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="name" type="java.lang.String" value="jTextCliente"/>
+        <Property name="name" type="java.lang.String" value="jTextCliente" noResource="true"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
