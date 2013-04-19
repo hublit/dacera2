@@ -18,6 +18,8 @@ public class BeanAuxInformeTesoreria {
     
     private int pedidosNoFacturados;
     
+    private int pedidosTotales;
+    
     private double importeFacturas;
     
     private double importeFacturasPagadas;
@@ -78,6 +80,14 @@ public class BeanAuxInformeTesoreria {
 
     public void setPedidosValidados(int pedidosValidados) {
         this.pedidosValidados = pedidosValidados;
+    }
+
+    public int getPedidosTotales() {
+        return pedidosTotales;
+    }
+
+    public void setPedidosTotales(int pedidosTotales) {
+        this.pedidosTotales = pedidosTotales;
     }
     
     

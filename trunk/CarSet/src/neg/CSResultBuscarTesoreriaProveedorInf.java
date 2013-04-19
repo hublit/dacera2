@@ -46,6 +46,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import utils.Utilidades;
+import data.BeanAuxInformeTesoreria;
 
 /**
  *
@@ -58,11 +59,11 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
     ArrayList pedidos=new ArrayList();
     static String fVencimiento = "";
 
-    public CSResultBuscarTesoreriaProveedorInf(String query) throws UnknownHostException, FileNotFoundException, IOException, ParseException
+    public CSResultBuscarTesoreriaProveedorInf(ArrayList listaResultados) throws UnknownHostException, FileNotFoundException, IOException, ParseException
     {
-        consulta = query;
+        //consulta = query;
         TablaModeloTesoreria modelo = new TablaModeloTesoreria();
-        ResultSet rs = CSDesktop.datos.select(query);
+        //ResultSet rs = CSDesktop.datos.select(query);
 
         KeyListener l = new KeyListener()
         {
@@ -92,8 +93,11 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
 
         try
         {
-            while (rs.next())
+            for(int i=0; i<listaResultados.size();i++)
+            //while (rs.next())
             {
+                BeanAuxInformeTesoreria beanAuxInfTesoreria = (BeanAuxInformeTesoreria) listaResultados.get(i);
+            
                 /*BeanTesoreriaProveedor campos = new BeanTesoreriaProveedor();
 
                 Calendar cal = Calendar.getInstance();
@@ -126,23 +130,13 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
 
                 for (int k = 0; k < 5; k++)
                 {
-                   /* if((k==0))
+                    if((k==0))
                     {
-                        String fecha=(rs.getObject(k+1)).toString();
-                         String [] temp = null;
-                         if (!fecha.equals(" "))
-                         {
-                            temp = fecha.split("\\-");
-                            String anyo=temp[0];
-                            String mes=temp[1];
-                            String dia=temp[2];
-                            String nueva=dia+"-"+mes+"-"+anyo;
-
-                            datosFila[j] = nueva;
-                          System.out.println("Dato" + k + " " + datosFila[j]);
-                         }
+                        datosFila[j] = beanAuxInfTesoreria.getNombreProveedor();
+                        System.out.println("Dato" + k + " " + datosFila[j]);
+                         
                     }
-                    else if(k==1)
+                   /* else if(k==1)
                     {
                         String plazo = rs.getString("pr_plazo");
                         int diasPlazo = 0;
@@ -246,8 +240,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                     }
                     else
                     {*/
-                        datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " + rs.getObject(k));
+                        //datosFila[j] = rs.getObject(k);
+                        //System.out.println("Dato" + k + " " + rs.getObject(k));
                     //}
                     j++;
                 }
@@ -255,7 +249,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                 modelo.addRow(datosFila);
                 numeroFila++;
             }
-            rs.close();
+           // rs.close();
             Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
             int i = 0;
             for (int k = 0; k < 17; k++)

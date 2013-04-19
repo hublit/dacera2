@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import utils.Utilidades;
 
 /**
  *
@@ -290,7 +291,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                        "FROM fl_factura_cliente fl, pe_pedidos pe, cl_clientes cl, fp_forma_pago fp " +
                        "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id AND fl.fl_num = pe.pe_num_fa_cl";*/
         
-        String query="SELECT pr.pr_nombre_fiscal, pr.pr_id , count(*),pe.pe_estado,sum(pe.pe_ta_es_proveedor) " +
+        String query="SELECT pr.pr_nombre_fiscal, pr.pr_id , count(*),pe.pe_estado,sum(pe.pe_ta_es_proveedor), pe.pe_fecha " +
                      "FROM pr_proveedores pr, pp_pedidos_proveedores pp , pe_pedidos pe " +
                      "WHERE pr.pr_id=pp.pr_id AND pp.pe_num = pe.pe_num AND (pe.pe_estado='Facturado' OR pe.pe_estado='Facturado y Validado') " +
                      "group by pr.pr_id,pe.pe_estado,pe.pe_fecha>= DATE_SUB(CURDATE(), INTERVAL 5 MONTH)" ;
@@ -333,41 +334,103 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
             }*/
 
             //query = query + " ORDER BY fl.fl_fecha ASC";
+            
+             SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+             Calendar cal = Calendar.getInstance();
+             cal.add(Calendar.MONTH, -5);    //Adding 1 month to current date
+             String newdate = dateformat.format(cal.getTime());
+             
+            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
+            //String strFecha = "2007-12-25";
+            Date fecha = null;
+            try {
+
+                fecha = formatoDelTexto.parse(newdate);
+
+            } catch (ParseException ex) {
+
+            ex.printStackTrace();
+
+            }
+            
             System.out.println(query);
             ResultSet rs = CSDesktop.datos.select(query);
             int pr_id_ant=0;
             List listaResultados = new ArrayList();
             try {
+                    int sumaTotalPedidos=0;
+                int sumaPedidosValidados=0;   
+                        int sumaPedidosNoFacturados=0;
+                        int sumaPedidosPendientes=0;
+               
                 while (rs.next())
-                {
-                    
+                {                    
                     int pr_id=rs.getInt("pr_id");
-                    if(pr_id != pr_id_ant)
+                  
+                    if ((pr_id == pr_id_ant) || (pr_id_ant == 0))
                     {
-                        BeanAuxInformeTesoreria dato = new BeanAuxInformeTesoreria();
-                        double sumaTotalPedidos=0;
-                        double sumaPedidosValidados=0;                        
+                        pr_id_ant = pr_id;
+                                                                                            
                         if(rs.getString("pe_estado").equals("Facturado y Validado"))
                         {
-                            sumaPedidosValidados =+ rs.getInt("count(*)");
-                            sumaTotalPedidos =+ rs.getInt("sum(pe.pa_ta_es_proveedor)");
-                            
+                            sumaPedidosValidados += rs.getInt("count(*)");                                                     
                         }
                         if(rs.getString("pe_estado").equals("Facturado"))
                         {
-                           /* if( rs.getDate("pe.pe_fecha")<= new Date ("2012-10-02") )
+                            Date fechaPedido = rs.getDate("pe.pe_fecha");
+                            //String fechaPedido=Utilidades.generarStringFecha(fecha);
+                            //String resultadoComparar=Utilidades.comparaFechaString(fechaPedido, newdate);
+                            if((fechaPedido.compareTo(fecha)<0))                         
                             {
-                                
-                            }*/
-                            sumaPedidosValidados =+ rs.getInt("count(*)");
-                            sumaTotalPedidos =+ rs.getInt("sum(pe.pa_ta_es_proveedor)");
-                            
+                                sumaPedidosNoFacturados = rs.getInt("count(*)");
+                                sumaTotalPedidos += sumaPedidosNoFacturados;
+                            }
+                            else
+                            {
+                                sumaPedidosPendientes = rs.getInt("count(*)");
+                                sumaTotalPedidos += sumaPedidosPendientes;
+                            }                                                                                   
                         }
                             
                     }
                     else
                     {
+                        sumaTotalPedidos += sumaPedidosValidados;
+                        BeanAuxInformeTesoreria dato = new BeanAuxInformeTesoreria();    
+                        dato.setPedidosValidados(sumaPedidosValidados);
+                        dato.setPedidosPendientes(sumaPedidosPendientes);
+                        dato.setPedidosNoFacturados(sumaPedidosNoFacturados);
+                        dato.setPedidosTotales(sumaTotalPedidos);
                         
+                        listaResultados.add(dato);
+                        
+                        sumaTotalPedidos=0;
+                        sumaPedidosValidados=0;   
+                        sumaPedidosNoFacturados=0;
+                        sumaPedidosPendientes=0;
+                        
+                         pr_id_ant = pr_id;
+                                                                                              
+                        if(rs.getString("pe_estado").equals("Facturado y Validado"))
+                        {
+                            sumaPedidosValidados += rs.getInt("count(*)");                                                     
+                        }
+                        if(rs.getString("pe_estado").equals("Facturado"))
+                        {
+                            Date fechaPedido = rs.getDate("pe.pe_fecha");
+                            //String fechaPedido=Utilidades.generarStringFecha(fecha);
+                            //String resultadoComparar=Utilidades.comparaFechaString(fechaPedido, newdate);
+                            if((fechaPedido.compareTo(fecha)<0))                         
+                            {
+                                sumaPedidosNoFacturados = rs.getInt("count(*)");
+                                sumaTotalPedidos += sumaPedidosNoFacturados;
+                            }
+                            else
+                            {
+                                sumaPedidosPendientes = rs.getInt("count(*)");
+                                sumaTotalPedidos += sumaPedidosPendientes;
+                            }                                                                                   
+                        }
                     }
                 }
             } catch (SQLException ex) {
@@ -376,7 +439,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
             
             
             try {
-                CSResultBuscarTesoreriaProveedorInf resultBuscarTesoreriaPrInf = new CSResultBuscarTesoreriaProveedorInf(query);
+                CSResultBuscarTesoreriaProveedorInf resultBuscarTesoreriaPrInf = new CSResultBuscarTesoreriaProveedorInf(listaResultados);
             } catch (UnknownHostException ex) {
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FileNotFoundException ex) {

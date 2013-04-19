@@ -81,6 +81,8 @@ public class CSDesktop extends JFrame
   public static JInternalFrame BuscarTesoreriaProveedor;
   public static JInternalFrame ResultTesoreriaProveedor;
   public static JInternalFrame BuscarTesoreriaCliente;
+  public static JInternalFrame BuscarTesoreriaClienteInf;
+  public static JInternalFrame BuscarTesoreriaProveedorInf;
   public static JInternalFrame ResultTesoreriaCliente;
   public static JMenu menuClientes;
   public static JMenu menuProveedores;
@@ -723,6 +725,113 @@ public class CSDesktop extends JFrame
                BuscarTesoreriaCliente.setVisible( true );
             }
          });
+
+		menuTesoreriaCliente = new JMenuItem( "Tesoreria Cliente" );
+      menuTesoreriaCliente.setMnemonic( 'c' );
+      menuTesoreria.add( menuTesoreriaCliente );
+      menuTesoreriaCliente.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+              BuscarTesoreriaClienteInf = new JInternalFrame("Tesorería Cliente", true,false,false,true );
+                CSLanzarTesoreriaClienteInf panel = null;
+                try {
+                    panel = new CSLanzarTesoreriaClienteInf();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+               BuscarTesoreriaClienteInf.getContentPane().add( panel,BorderLayout.CENTER);
+               BuscarTesoreriaClienteInf.pack();
+               elEscritorio.add( BuscarTesoreriaClienteInf );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = BuscarTesoreriaClienteInf.getSize();
+               BuscarTesoreriaClienteInf.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               BuscarTesoreriaClienteInf.setVisible( true );
+            }
+         });
+      
+      
+      menuTesoreriaProveedor = new JMenuItem( "Tesoreria Proveedor" );
+      menuTesoreriaProveedor.setMnemonic( 'c' );
+      menuTesoreria.add( menuTesoreriaProveedor );
+      menuTesoreriaProveedor.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+              BuscarTesoreriaProveedorInf = new JInternalFrame("Tesorería Proveedor", true,false,false,true );
+               CSLanzarTesoreriaProveedorInf panel = null;
+                try {
+                    panel = new CSLanzarTesoreriaProveedorInf();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+               BuscarTesoreriaProveedorInf.getContentPane().add( panel,BorderLayout.CENTER);
+               BuscarTesoreriaProveedorInf.pack();
+               elEscritorio.add( BuscarTesoreriaProveedorInf );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = BuscarTesoreriaProveedorInf.getSize();
+               BuscarTesoreriaProveedorInf.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               BuscarTesoreriaProveedorInf.setVisible( true );
+            }
+         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       menuAyuda.setMnemonic( 'A' );
 
       //establecer elemento de men� Acerca de...
