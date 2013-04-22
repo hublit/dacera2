@@ -47,6 +47,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import utils.Utilidades;
 import data.BeanAuxInformeTesoreria;
+import java.util.HashMap;
 
 /**
  *
@@ -59,7 +60,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
     ArrayList pedidos=new ArrayList();
     static String fVencimiento = "";
 
-    public CSResultBuscarTesoreriaProveedorInf(ArrayList listaResultados) throws UnknownHostException, FileNotFoundException, IOException, ParseException
+    public CSResultBuscarTesoreriaProveedorInf(HashMap <Integer, BeanAuxInformeTesoreria> listaResul,ArrayList listaResultados) throws UnknownHostException, FileNotFoundException, IOException, ParseException
     {
         //consulta = query;
         TablaModeloTesoreria modelo = new TablaModeloTesoreria();
@@ -84,51 +85,46 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"NOMBRE PROVEEDOR", "P.VALIDADOS", "P.PENDIENTES" , "P.NO FACTURADOS" , "TOTAL", "IMPORTE FACTURAS", "FACTURAS PAGADAS", "FACTURAS PENDIENTES", "FACTURAS CLIENTE", "COBROS CLIENTE", "DIFERENCIA"});
+        modelo.setColumnIdentifiers(new String[] {"NOMBRE PROVEEDOR", "P.VALIDADOS", "P.PENDIENTES" , "P.NO FACTURADOS" , "TOTAL", "IMP FACTURAS", "FACT PAGADAS", "FACT PENDIENTES", "FACT CLIENTE", "COBROS CL", "DIFERENCIA"});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
         double totalIrpf = 0;
         double totalImporte = 0;
 
-        try
-        {
+       
             for(int i=0; i<listaResultados.size();i++)
             //while (rs.next())
             {
-                BeanAuxInformeTesoreria beanAuxInfTesoreria = (BeanAuxInformeTesoreria) listaResultados.get(i);
+                BeanAuxInformeTesoreria beanAuxInfTesoreria = (BeanAuxInformeTesoreria) listaResul.get(listaResultados.get(i));
             
-                /*BeanTesoreriaProveedor campos = new BeanTesoreriaProveedor();
-
-                Calendar cal = Calendar.getInstance();
-                Date fechaTs = null;
-                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
-
-                campos.setTr_id(rs.getInt("tr_id"));
-                campos.setTr_estado(rs.getString("tr_estado"));
-
-                if (rs.getDate("tr_fecha_pago") != null)
-                {
-                    fechaTs = (Date)formatoDeFecha.parse(rs.getString("tr_fecha_pago"));
-                    cal.setTime(fechaTs);
-                }
-                campos.setTr_fecha_pago(cal);
-
-                campos.setTr_banco(rs.getString("tr_banco"));
-
-                lista.add(campos);
-
-                Object[] datosFila = new Object[modelo.getColumnCount()];
-                int j = 0;
-                double total_pr = 0;
-                double iva = 0;
-                double irpf = 0;
-                double importe = 0;*/
+               
                 
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-
-                for (int k = 0; k < 5; k++)
+                double pedidosValidados = 0;
+                double pedidosPendientes = 0;
+                double pedidosNoFacturados = 0;
+                double pedidosTotales = 0;
+                double pedidosValidadosR = 0;
+                double pedidosPendientesR = 0;
+                double pedidosNoFacturadosR = 0;
+                double pedidosTotalesR = 0;
+                double importeFacturas = 0;
+                double importeFacturasPagadas = 0;
+                double importeFacturasPendientes = 0;
+                double importeFacturasR = 0;
+                double importeFacturasPagadasR = 0;
+                double importeFacturasPendientesR = 0;
+                String resPedidosValidados="";
+                String resPedidosPendientes="";
+                String resPedidosNoFacturados="";
+                String resPedidosTotales="";
+                String resImporteFacturas="";
+                String resImporteFacturasPagadas="";
+                String resImporteFacturasPendientes="";
+                
+                for (int k = 0; k < 8; k++)
                 {
                     if((k==0))
                     {
@@ -136,113 +132,69 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }
-                   /* else if(k==1)
+                    else if((k==1))
                     {
-                        String plazo = rs.getString("pr_plazo");
-                        int diasPlazo = 0;
-                        if(!plazo.equals("Especial"))
-                        {
-                            String[] tempVe = plazo.split("\\ ");
-                            diasPlazo = Integer.parseInt(tempVe[0]);
-                        }
-                        else
-                        {
-                            diasPlazo = Integer.parseInt(rs.getString("pr_dias_plazo"));
-                        }
-                        //sumamos a la fecha el plazo en días
-                        fVencimiento = Utilidades.sumarFecha(rs.getString("tr_fecha"), diasPlazo);
-                        datosFila[j] = fVencimiento;
-                        System.out.println("Dato" + k + " " + fVencimiento);
-
-                    }
-                    else if(k==5)
-                    {
-                        total_pr = rs.getDouble(k);
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
-                        total = total + total_pr;
-                        total = Utilidades.redondear(total, 2);
+                        pedidosValidados = beanAuxInfTesoreria.getPedidosValidados();
+                        pedidosValidadosR=Utilidades.redondear(pedidosValidados, 2);
+                        resPedidosValidados=Utilidades.separadorMiles(String.valueOf(pedidosValidadosR));
+                        datosFila[j] = resPedidosValidados;
                         System.out.println("Dato" + k + " " + datosFila[j]);
-
+                         
                     }
-                    else if(k==6)
+                    else if((k==2))
                     {
-                        iva = rs.getDouble(k);
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
-                        totalIva = totalIva + iva;
-                        totalIva = Utilidades.redondear(totalIva, 2);
+                        pedidosPendientes = beanAuxInfTesoreria.getPedidosPendientes();
+                        pedidosPendientesR=Utilidades.redondear(pedidosPendientes, 2);
+                        resPedidosPendientes=Utilidades.separadorMiles(String.valueOf(pedidosPendientesR));
+                        datosFila[j] = resPedidosPendientes;
                         System.out.println("Dato" + k + " " + datosFila[j]);
-
+                         
                     }
-                    else if (k==7)
+                    else if((k==3))
                     {
-                        irpf = rs.getDouble(k);
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
-                        totalIrpf = totalIrpf + irpf;
-                        totalIrpf = Utilidades.redondear(totalIrpf, 2);
+                        pedidosNoFacturados = beanAuxInfTesoreria.getPedidosNoFacturados();
+                        pedidosNoFacturadosR=Utilidades.redondear(pedidosNoFacturados, 2);
+                        resPedidosNoFacturados=Utilidades.separadorMiles(String.valueOf(pedidosNoFacturadosR));
+                        datosFila[j] = resPedidosNoFacturados;
                         System.out.println("Dato" + k + " " + datosFila[j]);
+                         
                     }
-                    else if (k==8)
+                    else if((k==4))
                     {
-                        importe = rs.getDouble(k);
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
-                        totalImporte = totalImporte + importe;
-                        totalImporte = Utilidades.redondear(totalImporte, 2);
+                        pedidosTotales = pedidosValidados + pedidosPendientes + pedidosNoFacturados;
+                        pedidosTotalesR=Utilidades.redondear(pedidosTotales, 2);
+                        resPedidosTotales=Utilidades.separadorMiles(String.valueOf(pedidosTotalesR));
+                        datosFila[j] = resPedidosTotales;
                         System.out.println("Dato" + k + " " + datosFila[j]);
+                         
                     }
-                    else if (k==9)
+                    else if((k==5))
                     {
-                        datosFila[j] = rs.getObject(k);
+                        importeFacturas = beanAuxInfTesoreria.getImporteFacturas();
+                        importeFacturasR = Utilidades.redondear(importeFacturas,2 );
+                        resImporteFacturas=Utilidades.separadorMiles(String.valueOf(importeFacturasR));
+                        datosFila[j] = resImporteFacturas;
                         System.out.println("Dato" + k + " " + datosFila[j]);
+                         
                     }
-                    else if (k==10)
+                    else if((k==6))
                     {
-                        datosFila[j] = rs.getObject(k);
+                        importeFacturasPagadas = beanAuxInfTesoreria.getImporteFacturasPagadas();
+                        importeFacturasPagadasR = Utilidades.redondear(importeFacturasPagadas,2 );
+                        resImporteFacturasPagadas=Utilidades.separadorMiles(String.valueOf(importeFacturasPagadasR));
+                        datosFila[j] = resImporteFacturasPagadas;
                         System.out.println("Dato" + k + " " + datosFila[j]);
+                         
                     }
-                    else if (k==11)
+                    else if((k==7))
                     {
-                        datosFila[j] = rs.getObject(k);
+                        importeFacturasPendientes = importeFacturas - importeFacturasPagadas;
+                        importeFacturasPendientesR = Utilidades.redondear(importeFacturasPendientes,2 );
+                        resImporteFacturasPendientes=Utilidades.separadorMiles(String.valueOf(importeFacturasPendientesR));
+                        datosFila[j] = resImporteFacturasPendientes;
                         System.out.println("Dato" + k + " " + datosFila[j]);
-                    }
-                    else if (k==12)
-                    {
-                        datosFila[j] = rs.getObject(k );
-                        System.out.println("Dato" + k + " " + rs.getObject(k));
-                    }
-                    else if(k==13)
-                    {
-                        String fecha=(rs.getObject(k)).toString();
-                         String [] temp = null;
-                         if (!fecha.equals(" "))
-                         {
-                            temp = fecha.split("\\-");
-                            String anyo=temp[0];
-                            String mes=temp[1];
-                            String dia=temp[2];
-                            String nueva=dia+"-"+mes+"-"+anyo;
-
-//Modificaaaaaaaaar/////////////////
-                            datosFila[j] = rs.getObject(k); //
-///////////////////////
-                          datosFila[j] = nueva;
-                          System.out.println("Dato" + k + " " + datosFila[j]);
-                         }
-                    }
-                    else if (k==14)
-                    {
-                        datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " + rs.getObject(k));
-                    }
-                    else if (k==15)
-                    {
-                        datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " +datosFila[j]);
-                    }
-                    else
-                    {*/
-                        //datosFila[j] = rs.getObject(k);
-                        //System.out.println("Dato" + k + " " + rs.getObject(k));
-                    //}
+                         
+                    }                  
                     j++;
                 }
 
@@ -252,36 +204,11 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
            // rs.close();
             Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
             int i = 0;
-            for (int k = 0; k < 17; k++)
-            {
-                    if(k==4)
-                    {
-                        datosFilaTotal[i] = "TOTALES";
-                    }
-                    if(k==5)
-                    {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(total));
-                    }
-                    if(k==6)
-                    {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIva));
-                    }
-                    if(k==7)
-                    {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIrpf));
-                    }
-                    if(k==8)
-                    {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalImporte));
-                    }
-                i++;
-           }
+           
        
            modelo.addRow(datosFilaTotal);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(CSResultBuscarProveedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
          if (numeroFila == 0)
         {
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>No se han encontrado datos.</FONT></HTML>");
@@ -307,39 +234,24 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
 
         jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(80);
+        columna.setPreferredWidth(350);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(80);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
-        columna2.setPreferredWidth(140);
+        columna2.setPreferredWidth(80);
         TableColumn columna3 = jTable1.getColumnModel().getColumn(3);
-        columna3.setPreferredWidth(100);
+        columna3.setPreferredWidth(80);
         TableColumn columna4 = jTable1.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(160);
+        columna4.setPreferredWidth(80);
         TableColumn columna5 = jTable1.getColumnModel().getColumn(5);
-        columna5.setPreferredWidth(60);
+        columna5.setPreferredWidth(80);
         TableColumn columna6 = jTable1.getColumnModel().getColumn(6);
-        columna6.setPreferredWidth(60);
+        columna6.setPreferredWidth(80);
         TableColumn columna7 = jTable1.getColumnModel().getColumn(7);
-        columna7.setPreferredWidth(60);
+        columna7.setPreferredWidth(80);
         TableColumn columna8 = jTable1.getColumnModel().getColumn(8);
-        columna8.setPreferredWidth(60);
-        TableColumn columna9 = jTable1.getColumnModel().getColumn(9);
-        columna9.setPreferredWidth(70);
-        TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
-        columna10.setPreferredWidth(80);
-        TableColumn columna11 = jTable1.getColumnModel().getColumn(11);
-        columna11.setPreferredWidth(120);
-        TableColumn columna12 = jTable1.getColumnModel().getColumn(12);
-        columna12.setPreferredWidth(90);
-        TableColumn columna13 = jTable1.getColumnModel().getColumn(13);
-        columna13.setPreferredWidth(90);
-        TableColumn columna14 = jTable1.getColumnModel().getColumn(14);
-        columna14.setPreferredWidth(60);
-        TableColumn columna15 = jTable1.getColumnModel().getColumn(15);
-        columna15.setPreferredWidth(150);
-        TableColumn columna16 = jTable1.getColumnModel().getColumn(16);
-        columna16.setPreferredWidth(200);
+        columna8.setPreferredWidth(80);
+        
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -358,7 +270,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
      */
     public Dimension getPreferredSize()
     {
-      return new Dimension( 1100,650 );
+      return new Dimension( 1200,650 );
     }
 
    /**
@@ -580,12 +492,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
 //                System.out.println("Elemento fecha pago: "+fechaPago);
 //                System.out.println("Elemento banco: "+banco);
 
-                try {
-                    //guardamos las modificaciones en la bd
-                   tesoreria =  modificarTesoreria(tr_id, estado, nueva, banco);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
-                }
+               
             }
             if(tesoreria)
             {
@@ -935,12 +842,9 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
             Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
             //se centran los valores
             jTable1.setRowHeight(20);
-
-            if (column == 0 || column == 1 || column == 13)
-            {
-                this. setHorizontalAlignment(SwingConstants.CENTER);
-            }
-            else if (column == 5 || column == 6 || column == 7 || column == 8)
+            
+            
+            if (column == 1 || column == 2 ||column == 3 || column == 4 ||column == 5 || column == 6 || column == 7 || column == 8)
             {
                 this. setHorizontalAlignment(SwingConstants.RIGHT);
             }
@@ -1002,7 +906,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
             }
             
             //si no cumplen esa condicion pongo las celdas en color blanco
-            if (table. getValueAt(row, 4). toString().equals("TOTALES"))
+/*            if (table. getValueAt(row, 4). toString().equals("TOTALES"))
             {
                 Color fondo = new  Color(244, 144, 144);
                 cell. setBackground(fondo);
@@ -1011,7 +915,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                 col.setCellEditor(null);
                 col.setCellRenderer(null);
             }
-
+*/
             return cell;
         }
 
@@ -1099,22 +1003,4 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
         return theSpinner;
         }
     }
-
-
-    /**
-     * Modifica los campos de la tesorería del proveedor
-     * @param ts
-     * @throws SQLException
-     */
-    public boolean modificarTesoreria(int tr_id, String estado, String fechaPago, String banco) throws SQLException
-    {
-        String query = "UPDATE tr_tesoreria_proveedor SET tr_estado = '"+estado+"', tr_fecha_pago = '"+fechaPago+"', " +
-                       "tr_banco = '"+banco+"' WHERE tr_id = "+tr_id;
-        System.out.println(query);
-        boolean rsUpdate = CSDesktop.datos.manipuladorDatos(query);
-
-        return rsUpdate;
-        
-    }
-
 }
