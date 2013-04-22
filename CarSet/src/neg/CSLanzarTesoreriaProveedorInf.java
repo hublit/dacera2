@@ -449,11 +449,18 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                      String query2="SELECT pr_num,SUM(tr_importe),tr_estado, tr_fecha" + 
                      " FROM tr_tesoreria_proveedor" + 
                      " WHERE pr_num = " + pr_id;
-                     query2 = query2 + " GROUP BY tr_estado, pr_num " +
-                     " ORDER BY pr_num ";
+                     query2 = query2 + " GROUP BY tr_estado, pr_num " ;
+                   
               
+                     
+                      if  (fechaI.equals("") && fechaF.equals(""))
+                      {
+       
+                        query2 = query2 + " AND tr_fecha>='"+fechaI+"' AND tr_fecha<='"+fechaF+"' ";
                 
-               
+                      }
+                      
+                      query2 = query2 +   " ORDER BY pr_num ";
                
                 ResultSet rs2 = CSDesktop.datos.select(query2);
                 pr_id_ant=0;
