@@ -317,7 +317,6 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
         jTable1 = new javax.swing.JTable();
         jButtonCerrar = new javax.swing.JButton();
         jButtonExportar = new javax.swing.JButton();
-        jButtonModificar = new javax.swing.JButton();
 
         setAutoscrolls(true);
 
@@ -356,15 +355,6 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
             }
         });
 
-        jButtonModificar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButtonModificar.setText("Modificar");
-        jButtonModificar.setName("jButtonModificar"); // NOI18N
-        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModificarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -375,9 +365,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1115, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonExportar)
-                        .addGap(239, 239, 239)
-                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(201, 201, 201)
+                        .addGap(631, 631, 631)
                         .addComponent(jButtonCerrar)))
                 .addContainerGap())
         );
@@ -389,7 +377,6 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCerrar)
-                    .addComponent(jButtonModificar)
                     .addComponent(jButtonExportar))
                 .addContainerGap())
         );
@@ -409,7 +396,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
             // Se crea el libro excel
             HSSFWorkbook libro = new HSSFWorkbook();
             //Se crea la hoja
-            HSSFSheet hoja = libro.createSheet("Tesorería Proveedor");
+            HSSFSheet hoja = libro.createSheet("Tesorería Proveedor Informe");
             //Numero de fila de la hoja Excel
             int num_fila = 1;
             crearCabeceraHojaExcel(libro, hoja);
@@ -438,7 +425,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
 
             crearFilaHojaExcel(libro, hoja, num_fila, rs, cs2,cs3);
             FileOutputStream elFichero = null;
-            elFichero = new FileOutputStream("c:\\TesoreriaProveedor.xls");
+            elFichero = new FileOutputStream("c:\\TesoreriaProveedorInforme.xls");
             libro.write(elFichero);
             elFichero.close();
             elFichero.flush();
@@ -459,61 +446,6 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
     }
     }
     
-        private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-
-            int fila = 0;
-            String nueva = "";
-            boolean tesoreria = false;
-            BeanTesoreriaProveedor campos = new BeanTesoreriaProveedor();
-
-            for(int i = 0; i < lista.size(); i++)
-            {
-                campos =(BeanTesoreriaProveedor)lista.get(fila);
-                int tr_id = campos.getTr_id();
-                String estado = (String) jTable1.getValueAt(fila, 12);
-                String fechaPago = (String) jTable1.getValueAt(fila, 13);
-                if (!fechaPago.equals(""))
-                {
-                     String [] temp = null;
-                     temp = fechaPago.split("\\-");
-                     String anyo = temp[2];
-                     String mes = temp[1];
-                     String dia = temp[0];
-                     nueva = anyo+"-"+mes+"-"+dia;
-                }
-                
-                String banco = (String) jTable1.getValueAt(fila, 14);
-
-                System.out.println("fila: "+i);
-                fila ++;
-
-//                System.out.println("Elemento id: "+tr_id);
-//                System.out.println("Elemento estado: "+estado);
-//                System.out.println("Elemento fecha pago: "+fechaPago);
-//                System.out.println("Elemento banco: "+banco);
-
-               
-            }
-            if(tesoreria)
-            {
-                jButtonModificar.setEnabled(false);
-                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-                JOptionPane.showMessageDialog(null,errorFields);
-                jButtonModificar.setEnabled(true);
-            }
-            else
-            {
-                jButtonModificar.setEnabled(false);
-                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han guardado correctamente.</FONT></HTML>");
-                JOptionPane.showMessageDialog(null, mensaje);
-                jButtonModificar.setEnabled(true);
-                CSDesktop.ResultTesoreriaProveedor.dispose();
-                CSDesktop.BuscarTesoreriaProveedor.dispose();
-                CSDesktop.menuTesoreriaProveedor.setEnabled(true);
-            }
-
-        }//GEN-LAST:event_jButtonModificarActionPerformed
-
 
     private static void crearCabeceraHojaExcel(HSSFWorkbook libro, HSSFSheet hoja)
 	{
@@ -827,7 +759,6 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonExportar;
-    private javax.swing.JButton jButtonModificar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

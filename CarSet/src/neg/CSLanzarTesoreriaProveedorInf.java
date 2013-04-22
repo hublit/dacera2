@@ -317,7 +317,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
             }
             
 
-            query = query +  "group by pr.pr_id,pe.pe_estado,pe.pe_fecha>= DATE_SUB(CURDATE(), INTERVAL 5 MONTH)" ;
+            query = query +  " group by pr.pr_id,pe.pe_estado,pe.pe_fecha>= DATE_SUB(CURDATE(), INTERVAL 5 MONTH)" ;
             
              SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
              Calendar cal = Calendar.getInstance();
