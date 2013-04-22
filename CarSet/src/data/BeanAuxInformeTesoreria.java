@@ -12,13 +12,13 @@ public class BeanAuxInformeTesoreria {
     
     private String nombreProveedor;
     
-    private int pedidosValidados;
+    private double pedidosValidados;
     
-    private int pedidosPendientes;
+    private double pedidosPendientes;
     
-    private int pedidosNoFacturados;
+    private double pedidosNoFacturados;
     
-    private int pedidosTotales;
+    private double pedidosTotales;
     
     private double importeFacturas;
     
@@ -58,35 +58,35 @@ public class BeanAuxInformeTesoreria {
         this.nombreProveedor = nombreProveedor;
     }
 
-    public int getPedidosNoFacturados() {
+    public double getPedidosNoFacturados() {
         return pedidosNoFacturados;
     }
 
-    public void setPedidosNoFacturados(int pedidosNoFacturados) {
+    public void setPedidosNoFacturados(double pedidosNoFacturados) {
         this.pedidosNoFacturados = pedidosNoFacturados;
     }
 
-    public int getPedidosPendientes() {
+    public double getPedidosPendientes() {
         return pedidosPendientes;
     }
 
-    public void setPedidosPendientes(int pedidosPendientes) {
+    public void setPedidosPendientes(double pedidosPendientes) {
         this.pedidosPendientes = pedidosPendientes;
     }
 
-    public int getPedidosValidados() {
+    public double getPedidosValidados() {
         return pedidosValidados;
     }
 
-    public void setPedidosValidados(int pedidosValidados) {
+    public void setPedidosValidados(double pedidosValidados) {
         this.pedidosValidados = pedidosValidados;
     }
 
-    public int getPedidosTotales() {
+    public double getPedidosTotales() {
         return pedidosTotales;
     }
 
-    public void setPedidosTotales(int pedidosTotales) {
+    public void setPedidosTotales(double pedidosTotales) {
         this.pedidosTotales = pedidosTotales;
     }
     

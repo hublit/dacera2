@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -248,7 +249,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       //CSDesktop.BuscarTesoreriaProveedorInf .dispose();
+       CSDesktop.BuscarTesoreriaProveedorInf.dispose();
        CSDesktop.menuTesoreriaCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -293,47 +294,30 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
         
         String query="SELECT pr.pr_nombre_fiscal, pr.pr_id , count(*),pe.pe_estado,sum(pe.pe_ta_es_proveedor), pe.pe_fecha " +
                      "FROM pr_proveedores pr, pp_pedidos_proveedores pp , pe_pedidos pe " +
-                     "WHERE pr.pr_id=pp.pr_id AND pp.pe_num = pe.pe_num AND (pe.pe_estado='Facturado' OR pe.pe_estado='Facturado y Validado') " +
-                     "group by pr.pr_id,pe.pe_estado,pe.pe_fecha>= DATE_SUB(CURDATE(), INTERVAL 5 MONTH)" ;
+                     "WHERE pr.pr_id=pp.pr_id AND pp.pe_num = pe.pe_num AND (pe.pe_estado='Facturado' OR pe.pe_estado='Facturado y Validado') ";
+                    
 
         System.out.println("Entrando");
-        if (numFl == 0 && cliente.equals("") && 
-           (fechaI.equals("") && fechaF.equals("")) &&
-           (fechaIFc.equals("") && fechaFFc.equals("")))
+        
+        //Si no se introducen las fechas
+        if  (fechaI.equals("") && fechaF.equals(""))
         {
             System.out.println("Entra");
             jButtonBuscar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar número de factura, un Cliente o período de tiempo</FONT></HTML>");
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar período de tiempo</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonBuscar.setEnabled(true);
         }
         else
         {
-           /* if (numFl != 0)
-            {
-                query = query + " AND fl.fl_id = " + numFl;
+            query = query + " AND pe.pe_fecha>='"+fechaI+"' AND pe.pe_fecha<='"+fechaF+"' ";
+           
+            if (!proveedor.equals("")) {
+                query = query + " AND pr.pr_id = " + proveedorID;
             }
-            if (!cliente.equals("")) {
-                query = query + " AND cl.cl_id = " + clienteID;
-            }
-            if ((!fechaI.equals("")) && (!fechaF.equals(""))) 
-            {
-                query = query + " AND pe.pe_fecha >= '" + fechaI + "' AND pe.pe_fecha <= '" + fechaF + "'";
-            }
-            if ((!fechaIFc.equals("")) && (!fechaFFc.equals(""))) 
-            {
-                query = query + " AND fl.fl_fecha >= '" + fechaIFc + "' AND fl.fl_fecha <= '" + fechaFFc + "'";
-            }
-            if (!estado.equals("Selecciona"))
-            {
-                query = query + " AND fl.fl_estado='" + estado + "'";
-            }
-            if (!fPago.equals("Selecciona"))
-            {
-                query = query + " AND cl.fp_id='" + fPagoId + "'";
-            }*/
+            
 
-            //query = query + " ORDER BY fl.fl_fecha ASC";
+            query = query +  "group by pr.pr_id,pe.pe_estado,pe.pe_fecha>= DATE_SUB(CURDATE(), INTERVAL 5 MONTH)" ;
             
              SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
              Calendar cal = Calendar.getInstance();
@@ -348,32 +332,38 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                 fecha = formatoDelTexto.parse(newdate);
 
             } catch (ParseException ex) {
-
-            ex.printStackTrace();
-
+                ex.printStackTrace();
             }
             
             System.out.println(query);
             ResultSet rs = CSDesktop.datos.select(query);
             int pr_id_ant=0;
             List listaResultados = new ArrayList();
+            HashMap <Integer, BeanAuxInformeTesoreria> listaResul = new HashMap<Integer, BeanAuxInformeTesoreria>();
             try {
-                    int sumaTotalPedidos=0;
-                int sumaPedidosValidados=0;   
-                        int sumaPedidosNoFacturados=0;
-                        int sumaPedidosPendientes=0;
+                    double sumaTotalPedidos=0;
+                    double sumaPedidosValidados=0;   
+                    double sumaPedidosNoFacturados=0;
+                    double sumaPedidosPendientes=0;
+                    int flag=0;
+                    String nombreFiscal="";
+                    String nombreFiscalAnt="";
                
                 while (rs.next())
                 {                    
                     int pr_id=rs.getInt("pr_id");
+                    nombreFiscal = rs.getString("pr.pr_nombre_fiscal");
+                    flag=1;
                   
-                    if ((pr_id == pr_id_ant) || (pr_id_ant == 0))
+                    if ((pr_id == pr_id_ant) || (pr_id_ant == 0))                        
                     {
                         pr_id_ant = pr_id;
+                        nombreFiscalAnt = nombreFiscal;
+                       
                                                                                             
                         if(rs.getString("pe_estado").equals("Facturado y Validado"))
                         {
-                            sumaPedidosValidados += rs.getInt("count(*)");                                                     
+                            sumaPedidosValidados += rs.getDouble("sum(pe.pe_ta_es_proveedor)");                                                     
                         }
                         if(rs.getString("pe_estado").equals("Facturado"))
                         {
@@ -382,12 +372,12 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                             //String resultadoComparar=Utilidades.comparaFechaString(fechaPedido, newdate);
                             if((fechaPedido.compareTo(fecha)<0))                         
                             {
-                                sumaPedidosNoFacturados = rs.getInt("count(*)");
+                                sumaPedidosNoFacturados = rs.getDouble("sum(pe.pe_ta_es_proveedor)");
                                 sumaTotalPedidos += sumaPedidosNoFacturados;
                             }
                             else
                             {
-                                sumaPedidosPendientes = rs.getInt("count(*)");
+                                sumaPedidosPendientes = rs.getDouble("sum(pe.pe_ta_es_proveedor)");
                                 sumaTotalPedidos += sumaPedidosPendientes;
                             }                                                                                   
                         }
@@ -401,8 +391,11 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                         dato.setPedidosPendientes(sumaPedidosPendientes);
                         dato.setPedidosNoFacturados(sumaPedidosNoFacturados);
                         dato.setPedidosTotales(sumaTotalPedidos);
+                        dato.setNombreProveedor(nombreFiscalAnt);
                         
-                        listaResultados.add(dato);
+                        listaResultados.add(pr_id_ant);
+                        listaResul.put(pr_id_ant, dato);
+                        
                         
                         sumaTotalPedidos=0;
                         sumaPedidosValidados=0;   
@@ -410,10 +403,11 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                         sumaPedidosPendientes=0;
                         
                          pr_id_ant = pr_id;
+                         nombreFiscalAnt = nombreFiscal;
                                                                                               
                         if(rs.getString("pe_estado").equals("Facturado y Validado"))
                         {
-                            sumaPedidosValidados += rs.getInt("count(*)");                                                     
+                            sumaPedidosValidados += rs.getDouble("sum(pe.pe_ta_es_proveedor)");                                                     
                         }
                         if(rs.getString("pe_estado").equals("Facturado"))
                         {
@@ -422,24 +416,81 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                             //String resultadoComparar=Utilidades.comparaFechaString(fechaPedido, newdate);
                             if((fechaPedido.compareTo(fecha)<0))                         
                             {
-                                sumaPedidosNoFacturados = rs.getInt("count(*)");
+                                sumaPedidosNoFacturados = rs.getDouble("sum(pe.pe_ta_es_proveedor)");
                                 sumaTotalPedidos += sumaPedidosNoFacturados;
                             }
                             else
                             {
-                                sumaPedidosPendientes = rs.getInt("count(*)");
+                                sumaPedidosPendientes = rs.getDouble("sum(pe.pe_ta_es_proveedor)");
                                 sumaTotalPedidos += sumaPedidosPendientes;
                             }                                                                                   
                         }
                     }
                 }
+                
+                if(flag==1)
+                {
+                        sumaTotalPedidos += sumaPedidosValidados;
+                        BeanAuxInformeTesoreria dato = new BeanAuxInformeTesoreria();    
+                        dato.setPedidosValidados(sumaPedidosValidados);
+                        dato.setPedidosPendientes(sumaPedidosPendientes);
+                        dato.setPedidosNoFacturados(sumaPedidosNoFacturados);
+                        dato.setPedidosTotales(sumaTotalPedidos);
+                        dato.setNombreProveedor(nombreFiscal);
+                        
+                        listaResultados.add(pr_id_ant);
+                        listaResul.put(pr_id_ant, dato);
+                }
+                
+                for(int j=0;j<listaResultados.size();j++)
+                {
+                    int pr_id=new Integer(listaResultados.get(j).toString());
+                    
+                     String query2="SELECT pr_num,SUM(tr_importe),tr_estado, tr_fecha" + 
+                     " FROM tr_tesoreria_proveedor" + 
+                     " WHERE pr_num = " + pr_id;
+                     query2 = query2 + " GROUP BY tr_estado, pr_num " +
+                     " ORDER BY pr_num ";
+              
+                
+               
+               
+                ResultSet rs2 = CSDesktop.datos.select(query2);
+                pr_id_ant=0;
+                
+                double sumaImportesFacturas=0;
+                double sumaFacturasPagadas=0;
+                boolean flag2=false;
+                
+                while(rs2.next())
+                {                                                                                    
+                        if(rs2.getString("tr_estado").equals("PTE")) 
+                        {
+                            sumaImportesFacturas += rs2.getDouble("sum(tr_importe)");
+                        }
+                        if(rs2.getString("tr_estado").equals("PAGADO")) 
+                        {
+                            sumaFacturasPagadas += rs2.getDouble("sum(tr_importe)");
+                        }                                                                   
+                }
+              
+              
+                         BeanAuxInformeTesoreria datoAux=listaResul.get(pr_id);
+                         datoAux.setImporteFacturasPagadas(sumaFacturasPagadas);
+                         datoAux.setImporteFacturasPendientes(sumaFacturasPagadas);
+                         datoAux.setImporteFacturas(sumaImportesFacturas);
+                         
+                         listaResul.put(pr_id,datoAux); 
+                }
+                
+                
             } catch (SQLException ex) {
                 Logger.getLogger(CSLanzarTesoreriaProveedorInf.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             
             try {
-                CSResultBuscarTesoreriaProveedorInf resultBuscarTesoreriaPrInf = new CSResultBuscarTesoreriaProveedorInf(listaResultados);
+                CSResultBuscarTesoreriaProveedorInf resultBuscarTesoreriaPrInf = new CSResultBuscarTesoreriaProveedorInf(listaResul,(ArrayList)listaResultados);
             } catch (UnknownHostException ex) {
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FileNotFoundException ex) {

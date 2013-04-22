@@ -294,7 +294,7 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
 
             //query = query + " ORDER BY fl.fl_fecha ASC";
             System.out.println(query);
-            try {
+            /*try {
                 CSResultBuscarTesoreriaProveedorInf resultBuscarTesoreriaPrInf = new CSResultBuscarTesoreriaProveedorInf(query);
             } catch (UnknownHostException ex) {
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -304,7 +304,7 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
 
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
