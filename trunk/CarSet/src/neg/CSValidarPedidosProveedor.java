@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListSelectionModel;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -222,7 +223,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         //jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
 
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(80);
+        columna.setPreferredWidth(50);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(50);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
@@ -308,7 +309,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
      return( comp );
  }
   
-         /**
+    /**
      *
      */
     public class MyComboBoxRenderer extends JComboBox implements TableCellRenderer
@@ -351,7 +352,46 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         public MyComboBoxEditor(String[] items)
         {
             super(new JComboBox(items));
+        }
+    }
 
+    /**
+     *
+     */
+    public class MyCheckBoxRenderer extends JCheckBox implements TableCellRenderer
+    {
+        public MyCheckBoxRenderer()
+        {
+            super();
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+        {
+            if (isSelected)
+            {
+                setSelected(true);
+                setForeground(table.getSelectionForeground());
+                super.setBackground(table.getSelectionBackground());
+            }
+            else
+            {
+                setSelected(false);
+                setForeground(table.getForeground());
+                setBackground(table.getBackground());
+            }
+            // Select the current value
+            return this;
+        }
+    }
+
+    /**
+     *
+     */
+    public class MyCheckBoxEditor extends DefaultCellEditor
+    {
+        public MyCheckBoxEditor()
+        {
+            super(new JCheckBox(pr_id, true));
         }
     }
     
@@ -656,34 +696,15 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
 
     private void jButtonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidarActionPerformed
         boolean informe = false;
-        //int filas = jTable1.getSelectedRowCount();
-        //int[] celdas = jTable1.getSelectedRows();
-        List <Integer>filas = new ArrayList<Integer>();
-        int longitud = 0;
-        for (int j= 1; j < jTable1.getRowCount(); j++)
-        {
-            String sel = "";
-            if((jTable1.getModel().getValueAt(j, 0)) != null){
-                sel = jTable1.getModel().getValueAt(j, 0).toString();
-            }
-            if (sel.equals("SELECC."))
-            {
-                filas.add(j);
-                longitud++;
-            }
-        }
-
-        int[] celdas = new int[filas.size()];
-        for(int i = 0;i < celdas.length;i++){
-            celdas[i] = filas.get(i);
-        }
-        System.out.println(longitud);
+        int longitud = jTable1.getSelectedRowCount();
+        int[] celdas = jTable1.getSelectedRows();
         String fechaCo = "";
         String fechaFac = "";
         int mes = 0;
-        String numFa = jTextFieldNFa.getText();
 
+        String numFa = jTextFieldNFa.getText();
         Calendar fechaFa = jDateChooserFechaFa.getCalendar();
+
         if (fechaFa != null) {
             Date fecha = fechaFa.getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -951,7 +972,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             jTable1.setRowHeight(20);
 
             // These are the combobox values
-            String[] values = new String[]{"","SELECC."};
+/*            String[] values = new String[]{"","SELECC."};
           
             TableColumn col = table.getColumnModel().getColumn(column);
             
@@ -959,6 +980,17 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             {
                 col.setCellEditor(new MyComboBoxEditor(values));
                 col.setCellRenderer(new MyComboBoxRenderer(values));
+                jTable1.setValueAt(value, row, column);
+            }
+*/
+            TableColumn col = table.getColumnModel().getColumn(column);
+            if (column == 0)
+            {
+                col.setCellEditor(new MyCheckBoxEditor());
+                col.setCellRenderer(new MyCheckBoxRenderer());
+
+                this. setHorizontalAlignment(SwingConstants.CENTER);
+
                 jTable1.setValueAt(value, row, column);
             }
 
