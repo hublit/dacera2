@@ -86,9 +86,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
         jTextProveedor = new javax.swing.JTextField();
         jToggleButtonProveedor = new javax.swing.JToggleButton();
         lCliente = new javax.swing.JLabel();
-        jToggleButtonCliente = new javax.swing.JToggleButton();
-        lCliente1 = new javax.swing.JLabel();
-        jTextCliente = new javax.swing.JTextField();
+        jCheckBoxCliente = new javax.swing.JCheckBox();
 
         jLabel2.setText("jLabel2");
         jLabel2.setName("jLabel2"); // NOI18N
@@ -141,10 +139,10 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
         jDateFechaIni.setName("jDateFechaIni"); // NOI18N
 
         jTextProveedor.setEditable(false);
-        jTextProveedor.setName("jTextProveedor");
+        jTextProveedor.setName("jTextProveedor"); // NOI18N
 
         jToggleButtonProveedor.setText("Buscar Proveedor");
-        jToggleButtonProveedor.setName("jToggleButtonProveedor");
+        jToggleButtonProveedor.setName("jToggleButtonProveedor"); // NOI18N
         jToggleButtonProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButtonProveedorActionPerformed(evt);
@@ -153,22 +151,16 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
 
         lCliente.setForeground(new java.awt.Color(0, 0, 100));
         lCliente.setText("Proveedor");
-        lCliente.setName("lCliente");
+        lCliente.setName("lCliente"); // NOI18N
 
-        jToggleButtonCliente.setText("Buscar Cliente");
-        jToggleButtonCliente.setName("jToggleButtonCliente");
-        jToggleButtonCliente.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxCliente.setForeground(new java.awt.Color(0, 0, 100));
+        jCheckBoxCliente.setText("Cliente - Proveedor");
+        jCheckBoxCliente.setName("jCheckBoxCliente"); // NOI18N
+        jCheckBoxCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonClienteActionPerformed(evt);
+                jCheckBoxClienteActionPerformed(evt);
             }
         });
-
-        lCliente1.setForeground(new java.awt.Color(0, 0, 100));
-        lCliente1.setText("Cliente");
-        lCliente1.setName("lCliente1");
-
-        jTextCliente.setEditable(false);
-        jTextCliente.setName("jTextCliente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -181,30 +173,24 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lFechaIni1)
-                                    .addComponent(lCliente)
-                                    .addComponent(lCliente1))
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(95, 95, 95)
-                                        .addComponent(lFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jTextProveedor)
-                                                .addGap(50, 50, 50))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jCheckBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lFechaIni1)
+                                        .addComponent(lCliente))
+                                    .addGap(66, 66, 66)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(95, 95, 95)
+                                            .addComponent(lFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jTextProveedor)
+                                            .addGap(50, 50, 50)
+                                            .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(311, 311, 311)
                         .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,12 +219,9 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                     .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButtonProveedor)
                     .addComponent(lCliente))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButtonCliente)
-                    .addComponent(lCliente1)
-                    .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(jCheckBoxCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -260,12 +243,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
         String fechaIFc="";
         String fechaFFc="";
         System.out.println("Inicio");
-        
-        
-        String cliente = new String(jTextCliente.getText());
-        Cliente cl = new Cliente();
-        clienteID = cl.getClienteID(cliente);
-        
+              
         String proveedor = new String(jTextProveedor.getText());
         Proveedor pr = new Proveedor();
         proveedorID = pr.getProveedorID(proveedor);
@@ -495,6 +473,46 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                 Logger.getLogger(CSLanzarTesoreriaProveedorInf.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+             boolean isCliente = new Boolean(jCheckBoxCliente.isSelected());
+             
+             if (isCliente)
+             {
+                 String query3="SELECT * FROM fl_factura_cliente where cl_id="+ proveedorID;
+                 
+                 
+                  if  (fechaI.equals("") && fechaF.equals(""))
+                      {
+       
+                        query3 = query3 + " AND fl_fecha>='"+fechaI+"' AND fl_fecha<='"+fechaF+"' ";
+                
+                      }
+                  
+                   query3 = query3 +   " AND fl_tipo='Factura' ";
+                   
+                   ResultSet rs3 = CSDesktop.datos.select(query3);
+                   
+                   double sumaFacturasCobradas = 0;
+                   double sumaFacturasPendientes = 0;
+                   
+                   try {
+                     while (rs3.next())
+                     {
+                        if(rs.getString("fl_estado").equals("COBRADO"))                           
+                        {
+                           sumaFacturasCobradas += rs.getDouble("fl_importe_total");
+                        }
+                         if(rs.getString("fl_estado").equals("PTE"))                           
+                        {
+                           sumaFacturasPendientes += rs.getDouble("fl_importe_total");
+                        }
+                        
+                     }
+                   } catch (SQLException ex) {
+                     Logger.getLogger(CSLanzarTesoreriaProveedorInf.class.getName()).log(Level.SEVERE, null, ex);
+                   }
+                }
+            
+            
             
             try {
                 CSResultBuscarTesoreriaProveedorInf resultBuscarTesoreriaPrInf = new CSResultBuscarTesoreriaProveedorInf(listaResul,(ArrayList)listaResultados);
@@ -526,25 +544,15 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
         CSDesktop.BuscaProveedor.setVisible(true);
     }//GEN-LAST:event_jToggleButtonProveedorActionPerformed
 
-    private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
-
-        System.out.println("\nBotón Buscar Cliente.");
-        CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true);
-        // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(jTextCliente, "", true);
-        CSDesktop.BuscaCliente.getContentPane().add(panel, BorderLayout.CENTER);
-        // establecer tama�o de marco interno en el tama�o de su contenido
-        CSDesktop.BuscaCliente.pack();
-        // adjuntar marco interno al escritorio y mostrarlo
-        CSDesktop.elEscritorio.add(CSDesktop.BuscaCliente);
-        CSDesktop.BuscaCliente.setLocation(150, 50);
-        CSDesktop.BuscaCliente.setVisible(true);
-    }//GEN-LAST:event_jToggleButtonClienteActionPerformed
+    private void jCheckBoxClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JCheckBox jCheckBoxCliente;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private com.toedter.calendar.JDateChooser jDateFechaIni;
     private javax.swing.JLabel jLabel1;
@@ -552,12 +560,9 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator7;
-    public javax.swing.JTextField jTextCliente;
     public javax.swing.JTextField jTextProveedor;
-    private javax.swing.JToggleButton jToggleButtonCliente;
     private javax.swing.JToggleButton jToggleButtonProveedor;
     private javax.swing.JLabel lCliente;
-    private javax.swing.JLabel lCliente1;
     private javax.swing.JLabel lFechaFin1;
     private javax.swing.JLabel lFechaIni1;
     // End of variables declaration//GEN-END:variables
