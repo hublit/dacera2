@@ -133,7 +133,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                 String resImporteFacturasCobradasCliente="";
                 String resImporteFacturasCliente="";
                 
-                for (int k = 0; k < 8; k++)
+                for (int k = 0; k < 11; k++)
                 {
                     if((k==0))
                     {
@@ -287,6 +287,10 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
         columna7.setPreferredWidth(80);
         TableColumn columna8 = jTable1.getColumnModel().getColumn(8);
         columna8.setPreferredWidth(80);
+        TableColumn columna9 = jTable1.getColumnModel().getColumn(9);
+        columna9.setPreferredWidth(80);
+        TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
+        columna10.setPreferredWidth(80);
         
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
@@ -811,7 +815,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
             jTable1.setRowHeight(20);
             
             
-            if (column == 1 || column == 2 ||column == 3 || column == 4 ||column == 5 || column == 6 || column == 7 || column == 8)
+            if (column == 1 || column == 2 ||column == 3 || column == 4 ||column == 5 || column == 6 || column == 7 || column == 8|| column == 9|| column == 10)
             {
                 this. setHorizontalAlignment(SwingConstants.RIGHT);
             }
