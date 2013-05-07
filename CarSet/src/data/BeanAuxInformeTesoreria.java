@@ -25,9 +25,29 @@ public class BeanAuxInformeTesoreria {
     private double importeFacturasPagadas;
     
     private double importeFacturasPendientes;
+    
+    private double importeFacturasCobradasCliente;
+    
+    private double importeFacturasPendientesCliente;
 
     public double getImporteFacturas() {
         return importeFacturas;
+    }
+
+    public double getImporteFacturasCobradasCliente() {
+        return importeFacturasCobradasCliente;
+    }
+
+    public void setImporteFacturasCobradasCliente(double importeFacturasCobradasCliente) {
+        this.importeFacturasCobradasCliente = importeFacturasCobradasCliente;
+    }
+
+    public double getImporteFacturasPendientesCliente() {
+        return importeFacturasPendientesCliente;
+    }
+
+    public void setImporteFacturasPendientesCliente(double importeFacturasPendientesCliente) {
+        this.importeFacturasPendientesCliente = importeFacturasPendientesCliente;
     }
 
     public void setImporteFacturas(double importeFacturas) {
