@@ -247,6 +247,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
         String proveedor = new String(jTextProveedor.getText());
         Proveedor pr = new Proveedor();
         proveedorID = pr.getProveedorID(proveedor);
+        
 
         Calendar fechaCalendar = jDateFechaIni.getCalendar();
         if (fechaCalendar!=null)
@@ -477,7 +478,11 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
              
              if (isCliente)
              {
-                 String query3="SELECT * FROM fl_factura_cliente where cl_id="+ proveedorID;
+                 
+                 Cliente cl = new Cliente();
+                 clienteID = cl.getClienteID(proveedor);
+                 
+                 String query3="SELECT * FROM fl_factura_cliente where cl_id="+clienteID;
                  
                  
                   if  (fechaI.equals("") && fechaF.equals(""))
@@ -492,24 +497,32 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                    ResultSet rs3 = CSDesktop.datos.select(query3);
                    
                    double sumaFacturasCobradas = 0;
-                   double sumaFacturasPendientes = 0;
+                   double sumaFacturas = 0;
                    
                    try {
                      while (rs3.next())
                      {
-                        if(rs.getString("fl_estado").equals("COBRADO"))                           
+                        if(rs3.getString("fl_estado").equals("COBRADO"))                           
                         {
-                           sumaFacturasCobradas += rs.getDouble("fl_importe_total");
+                           sumaFacturasCobradas += rs3.getDouble("fl_importe_total");
+                           sumaFacturas += rs3.getDouble("fl_importe_total");
                         }
-                         if(rs.getString("fl_estado").equals("PTE"))                           
+                        else
                         {
-                           sumaFacturasPendientes += rs.getDouble("fl_importe_total");
+                           sumaFacturas += rs3.getDouble("fl_importe_total");
                         }
                         
                      }
                    } catch (SQLException ex) {
                      Logger.getLogger(CSLanzarTesoreriaProveedorInf.class.getName()).log(Level.SEVERE, null, ex);
                    }
+                   
+                   BeanAuxInformeTesoreria datoAux = listaResul.get(proveedorID);
+                   datoAux.setImporteFacturasCobradasCliente(sumaFacturasCobradas);
+                   datoAux.setImporteFacturasPendientesCliente(sumaFacturas);
+                   
+                    listaResul.put(proveedorID,datoAux);
+                   
                 }
             
             

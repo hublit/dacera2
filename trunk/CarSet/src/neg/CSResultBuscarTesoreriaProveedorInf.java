@@ -113,6 +113,12 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                 double importeFacturas = 0;
                 double importeFacturasPagadas = 0;
                 double importeFacturasPendientes = 0;
+                double importeFacturasPendientesCliente = 0;
+                double importeFacturasPendientesClienteR = 0;
+                double importeFacturasCobradasCliente = 0;
+                double importeFacturasCobradasClienteR = 0;
+                double importeFacturasCliente = 0;
+                double importeFacturasClienteR = 0;
                 double importeFacturasR = 0;
                 double importeFacturasPagadasR = 0;
                 double importeFacturasPendientesR = 0;
@@ -123,6 +129,9 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                 String resImporteFacturas="";
                 String resImporteFacturasPagadas="";
                 String resImporteFacturasPendientes="";
+                String resImporteFacturasPendientesCliente="";
+                String resImporteFacturasCobradasCliente="";
+                String resImporteFacturasCliente="";
                 
                 for (int k = 0; k < 8; k++)
                 {
@@ -194,7 +203,34 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         datosFila[j] = resImporteFacturasPendientes;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
-                    }                  
+                    }                               
+                    else if((k==8))
+                    {
+                        importeFacturasPendientesCliente = beanAuxInfTesoreria.getImporteFacturasPendientesCliente();
+                        importeFacturasPendientesClienteR = Utilidades.redondear(importeFacturasPendientesCliente,2 );
+                        resImporteFacturasPendientesCliente=Utilidades.separadorMiles(String.valueOf(importeFacturasPendientesClienteR));
+                        datosFila[j] = resImporteFacturasPendientesCliente;
+                        System.out.println("Dato" + k + " " + datosFila[j]);
+                         
+                    }    
+                    else if((k==9))
+                    {
+                        importeFacturasCobradasCliente = beanAuxInfTesoreria.getImporteFacturasCobradasCliente();
+                        importeFacturasCobradasClienteR = Utilidades.redondear(importeFacturasCobradasCliente,2 );
+                        resImporteFacturasCobradasCliente=Utilidades.separadorMiles(String.valueOf(importeFacturasCobradasClienteR));
+                        datosFila[j] = resImporteFacturasCobradasCliente;
+                        System.out.println("Dato" + k + " " + datosFila[j]);
+                         
+                    }
+                    else if((k==10))
+                    {
+                        importeFacturasCliente = importeFacturasPendientesCliente - importeFacturasCobradasCliente;
+                        importeFacturasClienteR = Utilidades.redondear(importeFacturasCliente,2 );
+                        resImporteFacturasCliente=Utilidades.separadorMiles(String.valueOf(importeFacturasCliente));
+                        datosFila[j] = resImporteFacturasCliente;
+                        System.out.println("Dato" + k + " " + datosFila[j]);
+                         
+                    }                    
                     j++;
                 }
 
