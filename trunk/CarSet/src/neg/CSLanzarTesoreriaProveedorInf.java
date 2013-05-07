@@ -479,39 +479,55 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
              if (isCliente)
              {
                  
-                 Cliente cl = new Cliente();
-                 clienteID = cl.getClienteID(proveedor);
+                if  (proveedor.equals(""))
+                {
+                    System.out.println("Entra");
+                    jButtonBuscar.setEnabled(false);
+                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un proveedor-cliente</FONT></HTML>");
+                    JOptionPane.showMessageDialog(null,errorFields);
+                    jButtonBuscar.setEnabled(true);
+                }
+                else
+                {
                  
-                 String query3="SELECT * FROM fl_factura_cliente where cl_id="+clienteID;
+                    Cliente cl = new Cliente();
+                    clienteID = cl.getClienteID(proveedor);
+                 
+                    String query3="SELECT * FROM fl_factura_cliente where cl_id="+clienteID;
                  
                  
-                  if  (fechaI.equals("") && fechaF.equals(""))
-                      {
+                    if  (fechaI.equals("") && fechaF.equals(""))
+                    {
        
                         query3 = query3 + " AND fl_fecha>='"+fechaI+"' AND fl_fecha<='"+fechaF+"' ";
                 
-                      }
+                    }
                   
-                   query3 = query3 +   " AND fl_tipo='Factura' ";
+                    query3 = query3 +   " AND fl_tipo='Factura' ";
                    
-                   ResultSet rs3 = CSDesktop.datos.select(query3);
+                    ResultSet rs3 = CSDesktop.datos.select(query3);
                    
-                   double sumaFacturasCobradas = 0;
-                   double sumaFacturas = 0;
+                    double sumaFacturasCobradas = 0;
+                    double sumaFacturas = 0;
                    
                    try {
-                     while (rs3.next())
+                       
+                     if(rs != null)
                      {
-                        if(rs3.getString("fl_estado").equals("COBRADO"))                           
+                       
+                        while (rs3.next())
                         {
-                           sumaFacturasCobradas += rs3.getDouble("fl_importe_total");
-                           sumaFacturas += rs3.getDouble("fl_importe_total");
-                        }
-                        else
-                        {
-                           sumaFacturas += rs3.getDouble("fl_importe_total");
-                        }
+                            if(rs3.getString("fl_estado").equals("COBRADO"))                           
+                            {
+                            sumaFacturasCobradas += rs3.getDouble("fl_importe_total");
+                            sumaFacturas += rs3.getDouble("fl_importe_total");
+                            }
+                            else
+                            {
+                            sumaFacturas += rs3.getDouble("fl_importe_total");
+                            }
                         
+                     }
                      }
                    } catch (SQLException ex) {
                      Logger.getLogger(CSLanzarTesoreriaProveedorInf.class.getName()).log(Level.SEVERE, null, ex);
@@ -524,7 +540,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                     listaResul.put(proveedorID,datoAux);
                    
                 }
-            
+             }
             
             
             try {
