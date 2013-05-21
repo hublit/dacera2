@@ -19,11 +19,10 @@ import javax.swing.JOptionPane;
 public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
 {
     private int clienteID;
-    private int proveedorID;
 
     public CSLanzarTesoreriaClienteInf() throws SQLException
     {
-        CSDesktop.menuBuscarProveedor.setEnabled(false);
+        CSDesktop.menuBuscarCliente.setEnabled(false);
         initComponents();
 
         KeyListener l = new KeyListener()
@@ -205,7 +204,7 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       //CSDesktop.BuscarTesoreriaProveedorInf .dispose();
+       CSDesktop.BuscarTesoreriaClienteInf .dispose();
        CSDesktop.menuTesoreriaCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -221,7 +220,6 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
         String cliente = new String(jTextCliente.getText());
         Cliente cl = new Cliente();
         clienteID = cl.getClienteID(cliente);
-        
         
         Calendar fechaCalendar = jDateFechaIni.getCalendar();
         if (fechaCalendar!=null)
@@ -286,8 +284,8 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
 
             //query = query + " ORDER BY fl.fl_fecha ASC";
             System.out.println(query);
-            /*try {
-                CSResultBuscarTesoreriaProveedorInf resultBuscarTesoreriaPrInf = new CSResultBuscarTesoreriaProveedorInf(query);
+            /**try {
+                CSResultBuscarTesoreriaClienteInf resultBuscarTesoreriaClInf = new CSResultBuscarTesoreriaClienteInf(listaResul,(ArrayList)listaResultados);
             } catch (UnknownHostException ex) {
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FileNotFoundException ex) {
@@ -297,7 +295,6 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
             } catch (ParseException ex) {
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }*/
-
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
