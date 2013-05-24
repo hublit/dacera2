@@ -59,6 +59,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
     ArrayList lista=new ArrayList();
     ArrayList pedidos=new ArrayList();
     static String fVencimiento = "";
+    static HashMap<Integer,BeanAuxInformeTesoreria> listaResultadosDefinitivos = new HashMap<Integer,BeanAuxInformeTesoreria>();
+    static ArrayList listaPedidosDefinitivos = new ArrayList();
 
     public CSResultBuscarTesoreriaProveedorInf(HashMap <Integer, BeanAuxInformeTesoreria> listaResul,ArrayList listaResultados) throws UnknownHostException, FileNotFoundException, IOException, ParseException
     {
@@ -66,6 +68,11 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
         TablaModeloTesoreria modelo = new TablaModeloTesoreria();
         //ResultSet rs = CSDesktop.datos.select(query);
 
+        //Paso la lista de resultados a una variable global para poder hacer la exportacion a Excell
+        listaResultadosDefinitivos = (HashMap <Integer, BeanAuxInformeTesoreria>)listaResul.clone();
+        listaPedidosDefinitivos = (ArrayList) listaResultados.clone();
+        
+        
         KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}
@@ -436,7 +443,7 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
             // Se crea el libro excel
             HSSFWorkbook libro = new HSSFWorkbook();
             //Se crea la hoja
-            HSSFSheet hoja = libro.createSheet("Tesorería Proveedor Informe");
+            HSSFSheet hoja = libro.createSheet("Informe Tesoreria Proveedor");
             //Numero de fila de la hoja Excel
             int num_fila = 1;
             crearCabeceraHojaExcel(libro, hoja);
@@ -461,9 +468,11 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
             cs3.setRightBorderColor(HSSFColor.BLACK.index);
             cs3.setBorderTop(HSSFCellStyle.BORDER_THIN);
             cs3.setTopBorderColor(HSSFColor.BLACK.index);
-            ResultSet rs = CSDesktop.datos.select(consulta);
+            
+            
+           // ResultSet rs = CSDesktop.datos.select(consulta);
 
-            crearFilaHojaExcel(libro, hoja, num_fila, rs, cs2,cs3);
+            crearFilaHojaExcel(libro, hoja, num_fila, cs2,cs3);
             FileOutputStream elFichero = null;
             elFichero = new FileOutputStream("c:\\TesoreriaProveedorInforme.xls");
             libro.write(elFichero);
@@ -517,177 +526,105 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                 fila = hoja.createRow(0);
                 celda = fila.createCell( (short) 0);
                 celda.setCellStyle(cs);
-                HSSFRichTextString texto = new HSSFRichTextString("F. FACTURA");
+                HSSFRichTextString texto = new HSSFRichTextString("NOMBRE PROVEEDOR");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 0, (short) ((80 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 1);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("VENCIMIENTO");
+                texto = new HSSFRichTextString("P.VALIDADOS");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 1, (short) ((80 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 2);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("N.º FACTURA");
+                texto = new HSSFRichTextString("P.PENDIENTES");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 2, (short) ((250 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 3);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("N.º F. CARSET");
+                texto = new HSSFRichTextString("P.NO FACTURADOS");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 3, (short) ((250 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 4);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("PROVEEDOR");
+                texto = new HSSFRichTextString("TOTAL");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 4, (short) ((250 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 5);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("NETO");
+                texto = new HSSFRichTextString("IMPORTE FACTURAS");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 5, (short) ((100 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 6);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("IVA");
+                texto = new HSSFRichTextString("FACTURAS CLIENTE");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 6, (short) ((100 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 7);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("IRPF");
+                texto = new HSSFRichTextString("COBROS CLIENTE");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 7, (short) ((100 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 8);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("TOTAL");
+                texto = new HSSFRichTextString("DIFERENCIA");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 8, (short) ((100 * 2) / ((double) 1 / 20)) );
-
-                celda = fila.createCell( (short) 9);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("DIAS F.F.");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 9, (short) ((100 * 2) / ((double) 1 / 20)) );
-
-                celda = fila.createCell( (short) 10);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("F. COBRO");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 10, (short) ((80 * 2) / ((double) 1 / 20)) );
-
-                celda = fila.createCell( (short)11);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("N.º CUENTA");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 11, (short) ((350 * 2) / ((double) 1 / 20)) );
-
-                celda = fila.createCell( (short)12);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("ESTADO");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 12, (short) ((100 * 2) / ((double) 1 / 20)) );
-
-                celda = fila.createCell( (short)13);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("FECHA COBRO");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 13, (short) ((80 * 2) / ((double) 1 / 20)) );
-
-                celda = fila.createCell( (short)14);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("BANCO");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 14, (short) ((100 * 2) / ((double) 1 / 20)) );
-
-                celda = fila.createCell( (short)15);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("EMAIL");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 15, (short) ((350 * 2) / ((double) 1 / 20)) );
-
-                celda = fila.createCell( (short) 16);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("OBSERVACIONES");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 16, (short) ((600 * 2) / ((double) 1 / 20)) );
-
+                hoja.setColumnWidth((short) 8, (short) ((100 * 2) / ((double) 1 / 20)) );              
 	}
 
-        private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, ResultSet rs, HSSFCellStyle cs2,HSSFCellStyle cs3) throws SQLException, UnknownHostException
+        private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, HSSFCellStyle cs2,HSSFCellStyle cs3) throws SQLException, UnknownHostException
 	{
 		HSSFRow fila = null;
 		HSSFCell celda = null;
 		HSSFRichTextString texto = null;
                 int num_fila_aux=2;
 
-                while (rs.next())
-                {
-                    String tr_id = rs.getString("tr_id");
-                    String fechaTr = rs.getString("tr_fecha");
-
+                for (int j=0;j<listaResultadosDefinitivos.size();j++)
+                {                    
+                    
+                    BeanAuxInformeTesoreria beanInforme = (BeanAuxInformeTesoreria) listaResultadosDefinitivos.get(listaPedidosDefinitivos.get(j));
+                    
                     // Se crea una fila dentro de la hoja
                     fila = hoja.createRow(num_fila);
 
-                    //Celda de la fecha
-                    celda = fila.createCell( (short) 0);
-                    String fecha=(rs.getObject("tr_fecha")).toString();
-                             String [] temp = null;
-                             temp = fecha.split("\\-");
-                             String anyo=temp[0];
-                             String mes=temp[1];
-                             String dia=temp[2];
-                             String nueva=dia+"-"+mes+"-"+anyo;
-                    texto = new HSSFRichTextString(nueva);
+                    //Celda de nombre del Proveedor
+                    celda = fila.createCell( (short) 0);                    
+                    texto = new HSSFRichTextString(beanInforme.getNombreProveedor());
                     celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
 
-                    //Plazo de pago
-                    String plazo = rs.getString("pr_plazo");
-                    int diasPlazo = 0;
-                    if(!plazo.equals("Especial"))
-                    {
-                        String[] tempVe = plazo.split("\\ ");
-                        diasPlazo = Integer.parseInt(tempVe[0]);
-                    }
-                    else
-                    {
-                        diasPlazo = Integer.parseInt(rs.getString("pr_dias_plazo"));
-                    }
-                    //Celda de la fecha vencimiento
-                    celda = fila.createCell( (short) 1);
-                    try {
-                        fVencimiento = Utilidades.sumarFecha(fecha, diasPlazo);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    texto = new HSSFRichTextString(fVencimiento);
+                    //Celda de pedidos validados                                        
+                    celda = fila.createCell( (short) 1);                  
+                    String pedidosValidados = String.valueOf(beanInforme.getPedidosValidados());
+                    texto = new HSSFRichTextString(pedidosValidados);
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
-                    //Celda numero
+                    //Celda de pedidos pendientes
                     celda = fila.createCell( (short) 2);
-                    String numero=rs.getString("tr_num");
-                    texto = new HSSFRichTextString(numero);
+                    String pedidosPendientes = String.valueOf(beanInforme.getPedidosPendientes());
+                    texto = new HSSFRichTextString(pedidosPendientes);
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
-                    //Celda numero Carset
+                    //Celda de pedidos no facturados
                     celda = fila.createCell( (short) 3);
-                    String numeroCarset=rs.getString("tr_num_carset");
-                    texto = new HSSFRichTextString(numeroCarset);
+                    String pedidosNoFacturados = String.valueOf(beanInforme.getPedidosNoFacturados());
+                    texto = new HSSFRichTextString(pedidosNoFacturados);
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
-                    //Celda del Proveedor
+                    //Celda de pedidos totales
                     celda = fila.createCell( (short) 4);
-                    String proveedor=rs.getString("pr_nombre_fiscal");
-                    texto = new HSSFRichTextString(proveedor);
+                    String pedidosTotal = String.valueOf(beanInforme.getPedidosTotales());
+                    texto = new HSSFRichTextString(pedidosTotal);
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
@@ -705,97 +642,39 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
 
                     //Celda Importe Neto
                     celda = fila.createCell( (short) 5);
-                    style.setDataFormat(format.getFormat("00.00"));
-                    celda.setCellStyle(style);
-                    celda.setCellValue(rs.getDouble("tr_importe_neto"));
+                    String importeFacturas = String.valueOf(beanInforme.getImporteFacturas());
+                    texto = new HSSFRichTextString(importeFacturas);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
 
                     //Celda IVA
                     celda = fila.createCell( (short) 6);
-                    style.setDataFormat(format.getFormat("00.00"));
-                    celda.setCellStyle(style);
-                    celda.setCellValue(rs.getDouble("tr_iva"));
-                    
+                    String importeFacturasCliente = String.valueOf(beanInforme.getImporteFacturasPendientesCliente());
+                    texto = new HSSFRichTextString(importeFacturasCliente);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
                     //Celda IRPF
                     celda = fila.createCell( (short) 7);
-                    style.setDataFormat(format.getFormat("00.00"));
-                    celda.setCellStyle(style);
-                    celda.setCellValue(rs.getDouble("tr_irpf"));
+                   String importeFacturasClienteCobradas = String.valueOf(beanInforme.getImporteFacturasCobradasCliente());
+                    texto = new HSSFRichTextString(importeFacturasClienteCobradas);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
   
                     //Celda Total
                     celda = fila.createCell( (short) 8);
-                    style.setDataFormat(format.getFormat("00.00"));
-                    celda.setCellStyle(style);
-                    celda.setCellValue(rs.getDouble("tr_importe"));
-                    
-                    //Celda del Plazo
-                    celda = fila.createCell( (short) 9);
-                    texto = new HSSFRichTextString(plazo);
+                     String importeFacturasDiferencia = String.valueOf(beanInforme.getImporteFacturasPendientes());
+                    texto = new HSSFRichTextString(importeFacturasDiferencia);
                     celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);
-
-                    //Celda del Tipo
-                    celda = fila.createCell( (short) 10);
-                    String tipo=rs.getString("fp_tipo");
-                    texto = new HSSFRichTextString(tipo);
-                    celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);
-
-                    //Celda de número de cuenta
-                    celda = fila.createCell( (short) 11);
-                    String numCuenta=rs.getString("pr_num_cuenta");
-                    texto = new HSSFRichTextString(numCuenta);
-                    celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);
-
-                    //Celda de Estado
-                    celda = fila.createCell( (short) 12);
-                    String estado=rs.getString("tr_estado");
-                    texto = new HSSFRichTextString(estado);
-                    celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);
-
-                    //Celda de la fecha de pago
-                    celda = fila.createCell( (short) 13);
-                    String fecha_pago=(rs.getObject("tr_fecha_pago")).toString();
-                         temp = null;
-                         temp = fecha_pago.split("\\-");
-                         anyo=temp[0];
-                         mes=temp[1];
-                         dia=temp[2];
-                         nueva=dia+"-"+mes+"-"+anyo;
-                    texto = new HSSFRichTextString(nueva);
-                    celda.setCellStyle(cs2);
-                    celda.setCellValue(texto);
-
-                    //Celda de Banco
-                    celda = fila.createCell( (short) 14);
-                    String banco=rs.getString("tr_banco");
-                    texto = new HSSFRichTextString(banco);
-                    celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);
-
-                    //Celda del Email
-                    celda = fila.createCell( (short) 15);
-                    String email=rs.getString("pr_email");
-                    texto = new HSSFRichTextString(email);
-                    celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);
-
-                    //Celda de las observaciones
-                    celda = fila.createCell( (short) 16);
-                    String observaciones=rs.getString("tr_observaciones");
-                    texto = new HSSFRichTextString(observaciones);
-                    celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);
+                    celda.setCellValue(texto);                                                                                                                                                                         
 
                     //Se incrementa el numero de fila
                     num_fila++;
                     num_fila_aux++;
 
-                }
+                
         }
 
-
+        }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonExportar;
