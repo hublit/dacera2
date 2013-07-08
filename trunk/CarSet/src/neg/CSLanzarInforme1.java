@@ -112,27 +112,27 @@ public class CSLanzarInforme1
             }
 
             // SI NO HAY TARIFA ESPECIAL CLIENTE
-            if(informe.getTarifaEsCliente().equals("-1"))
+            /*if(informe.getTarifaEsCliente().equals("-1"))
             {
                 importeTraslado = informe.getTarifa();
             }
             // SI HAY TARIFA ESPECIAL CLIENTE
             else
-            {
+            {*/
                 // SI EL CAMPO SERVICIO ESPECIAL NO ES OTROS
                 // EL IMPORTE DEL TRASLADO ES LA TARIFA ESPECIAL
-                if (!informe.getServicioEspecial().equals("Otros"))
+                //if (!informe.getServicioEspecial().equals("Otros"))
                         importeTraslado = informe.getTarifaEsCliente();
 
                 // SI EL CAMPO SERVICIO ESPECIAL ES OTROS
-                else
+              /*  else
                         importeTraslado=informe.getTarifa();
-                }
+                }*/
                 // SE PASA EL IMPORTE DEL TRASLADO A DOUBLE PARA PODER SUMARLO DESPUES
                 importeTarifa = Double.parseDouble(importeTraslado);
 
             //SI TIENE IDA Y VUELTA
-            if(informe.getIdaVuelta().equals("1"))
+/*            if(informe.getIdaVuelta().equals("1"))
             {
                 String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+clienteID;
 
@@ -147,7 +147,7 @@ public class CSLanzarInforme1
                 IdaVuelta2=(importeTarifa*IdaVueltaP)/100;
                 IdaVuelta2=redondear(IdaVuelta2, 2);
 
-            }
+            }*/
 
             // OBTENER EL FACTOR DE CORRECCION
             Vehiculo = obtenerFactor(informe.getFactor());

@@ -277,7 +277,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
             // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
             // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.
 
-            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
+            /*String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
                 " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, pe.pe_num_en_camion, "+
                 " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento, pe.pe_descripcion, pe.pe_estado, "+
                 " pe.pe_fecha_origen, pe.pe_fecha_destino, pe.pe_fecha_real_destino, " +
@@ -294,8 +294,21 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 " AND tc.tc_soporte = pe.pe_soporte"+
                 " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
                 " AND pc.cl_id = "+clienteID+" " +
-                " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
-  
+                " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";*/
+
+            String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
+                " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, pe.pe_num_en_camion, "+
+                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento, pe.pe_descripcion, " +
+                " pe.pe_estado, pe.pe_fecha_origen, pe.pe_fecha_destino, pe.pe_fecha_real_destino "+
+                " FROM carset.pe_pedidos pe, carset.pc_pedidos_clientes pc "+
+                " WHERE pc.pe_num = pe.pe_num ";
+                if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
+                    query = query + " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
+                }
+                query = query + " AND pc.cl_id = "+clienteID+" " +
+                        " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
+
+            
             System.out.println(query);
             ResultSet rs = CSDesktop.datos.select(query);
             try {
@@ -317,8 +330,8 @@ public class CSInformeDet1 extends javax.swing.JPanel
                     nueva.setMatricula(rs.getString("pe_ve_matricula"));                   
                     nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
                     nueva.setSuplemento(rs.getString("pe_suplemento"));                
-                    nueva.setTarifa(rs.getString("tc_tarifa"));
-                    nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
+                    //nueva.setTarifa(rs.getString("tc_tarifa"));
+                    //nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                     nueva.setNumCamion(rs.getString("pe_num_en_camion"));
                     nueva.setDescripcion(rs.getString("pe_descripcion"));
                     nueva.setEstado(rs.getString("pe_estado"));
