@@ -69,8 +69,8 @@ public class CSAnyadirPedidoArchivo extends JPanel
 
                     Integer column = 0;
                    if(cell.getColumn() == 4 || cell.getColumn() == 10){
+                        String cp = (cell.getContents().length()<5) ? "0"+cell.getContents() : cell.getContents();
                         System.out.println("cp: "+cell.getContents() +" / "+cell.getContents().length());
-                        String cp = (cell.getContents().length() <5) ? "0"+cell.getContents() : cell.getContents();
                         query += ""+ cp + ", ";
                    }else if(cell.getColumn() == 3 || cell.getColumn() == 9){
                         query += "'"+ cell.getContents().toUpperCase() + "', '"+ cell.getContents().toUpperCase() + "',";
