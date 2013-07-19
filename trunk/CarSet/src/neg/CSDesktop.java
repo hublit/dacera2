@@ -9,6 +9,7 @@ package neg;
  * Se utilizan botones del tipo creados en el ejemplo java1410, los 
  * cuales indican con im�genes su estado
  */
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.awt.*;
@@ -23,6 +24,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import jxl.read.biff.BiffException;
 import utils.*;
 import data.DbConnection;
 import java.util.HashMap;
@@ -38,6 +40,7 @@ public class CSDesktop extends JFrame
   public static JInternalFrame EditarContactoCliente;
   public static JInternalFrame NuevoPedido;
   public static JInternalFrame EditarPedido;
+  public static JInternalFrame NuevoPedidoArchivo;
   public static JInternalFrame BuscarPedido;
   public static JInternalFrame NuevoProveedor;
   public static JInternalFrame BuscarProveedor;
@@ -101,6 +104,7 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuContactoProveedor;
   public static JMenuItem menuNuevoPedido;
   public static JMenuItem menuBuscarPedido;
+  public static JMenuItem menuNuevoPedidoArchivo;
   public static JMenuItem menuTarifaCliente;
   public static JMenuItem menuTarifaProveedor;
   public static JMenuItem menuFacturaCliente;
@@ -396,6 +400,46 @@ public class CSDesktop extends JFrame
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
 
+      menuNuevoPedidoArchivo = new JMenuItem( "Pedido desde Archivo" );
+      menuNuevoPedidoArchivo.setMnemonic( 'a' );
+      menuPedidos.add( menuNuevoPedidoArchivo );
+      menuNuevoPedidoArchivo.addActionListener(
+
+         new ActionListener() {  // clase interna an�nima
+
+            // mostrar nueva ventana interna
+            public void actionPerformed( ActionEvent evento ) {
+                try {
+                    // crear marco interno
+                    NuevoPedidoArchivo = new JInternalFrame("Pedido desde Archivo", true, false, false, true);
+                    // adjuntar panel al panel de contenido del marco interno
+                    CSAnyadirPedidoArchivo panel = null;
+                    try {
+                        panel = new CSAnyadirPedidoArchivo();
+                    } catch (BiffException ex) {
+                        Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    NuevoPedidoArchivo.getContentPane().add(panel, BorderLayout.CENTER);
+                    // establecer tama�o de marco interno en el tama�o de su contenido
+                    NuevoPedidoArchivo.pack();
+                    // adjuntar marco interno al escritorio y mostrarlo
+                    elEscritorio.add(NuevoPedidoArchivo);
+                    Dimension pantalla = elEscritorio.getSize();
+                    Dimension ventana = NuevoPedidoArchivo.getSize();
+                    NuevoPedidoArchivo.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
+                    //NuevoPedidoArchivo.setVisible(true);
+                    NuevoPedidoArchivo.dispose();
+                } catch (IOException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+         } // fin de la clase interna an�nima
+      ); // fin de la llamada a addActionListener
+
      
       menuTarifa.setMnemonic( 'T' );
 
@@ -515,7 +559,7 @@ public class CSDesktop extends JFrame
 
       menuFacturaProveedor = new JMenuItem( "Albaran Proveedor" );
       menuFacturaProveedor.setMnemonic( 'x' );
-      menuFactura.add( menuFacturaProveedor );
+      //menuFactura.add( menuFacturaProveedor );
       menuFacturaProveedor.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
@@ -726,10 +770,10 @@ public class CSDesktop extends JFrame
             }
          });
 
-		menuTesoreriaCliente = new JMenuItem( "Tesoreria Cliente" );
-      menuTesoreriaCliente.setMnemonic( 'c' );
-      menuTesoreria.add( menuTesoreriaCliente );
-      menuTesoreriaCliente.addActionListener(
+       menuTesoreriaCliente = new JMenuItem( "Tesoreria Cliente" );
+       menuTesoreriaCliente.setMnemonic( 'c' );
+       menuTesoreria.add( menuTesoreriaCliente );
+       menuTesoreriaCliente.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
               BuscarTesoreriaClienteInf = new JInternalFrame("Tesorería Cliente", true,false,false,true );
@@ -778,58 +822,6 @@ public class CSDesktop extends JFrame
                BuscarTesoreriaProveedorInf.setVisible( true );
             }
          });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       menuAyuda.setMnemonic( 'A' );
