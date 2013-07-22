@@ -34,7 +34,6 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
 
     public CSLanzarTesoreriaClienteInf() throws SQLException
     {
-        CSDesktop.menuBuscarCliente.setEnabled(false);
         initComponents();
 
         getFPagoClientes();
@@ -366,14 +365,13 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
                             if (estado.equals("PTE") && hoy.before(fechaActual)) {
                                 sumaPendienteVencer += rs.getDouble("fl_importe_total");
                             }
-                            sumaTotalPendientesCobro += sumaFechaVencida + sumaPendienteVencer;
                             if (estado.equals("COBRADO")) {
                                 sumaFacturasCobradas += rs.getDouble("fl_importe_total");
                             }
                             if (estado.equals("INCOBRABLE")) {
                                 sumaFacturasIncobrables += rs.getDouble("fl_importe_total");
                             }
-                            if (estado.equals("DEVOLUCIÓN") || estado.equals("APLAZADO") || estado.equals("APLAZADO IVA")) {
+                            if (estado.equals("DEVOLUCIÓN") || estado.equals("APLAZADO")) {
                                 sumaFacturasAplazadas += rs.getDouble("fl_importe_total");
                             }
 
@@ -385,6 +383,7 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
                    System.out.println("sumaFechaVencida: "+sumaFechaVencida);
                                 dato.setImportePendienteVencer(sumaPendienteVencer);
                    System.out.println("sumaPendienteVencer: "+sumaPendienteVencer);
+                                sumaTotalPendientesCobro += sumaFechaVencida + sumaPendienteVencer;
                                 dato.setImporteTotalPendientesCobro(sumaTotalPendientesCobro);
                    System.out.println("sumaTotalPendientesCobro: "+sumaTotalPendientesCobro);
                                 dato.setImporteFacturasCobradas(sumaFacturasCobradas);
