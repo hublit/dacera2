@@ -176,8 +176,13 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO", "APLAZADO IVA" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO", "APLAZADO IVA", "INCOBRABLE" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
+        jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstadoActionPerformed(evt);
+            }
+        });
 
         jComboFPago.setBackground(new java.awt.Color(228, 229, 255));
         jComboFPago.setForeground(new java.awt.Color(0, 0, 100));
@@ -477,6 +482,10 @@ System.out.println("Entrando");
     private void jComboFPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboFPagoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboFPagoActionPerformed
+
+    private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxEstadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

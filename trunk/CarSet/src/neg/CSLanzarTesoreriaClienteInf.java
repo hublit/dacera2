@@ -1,16 +1,28 @@
 package neg;
 
+import data.BeanAuxInformeTesoreriaCliente;
 import data.Cliente;
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.UnknownHostException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,6 +36,8 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
     {
         CSDesktop.menuBuscarCliente.setEnabled(false);
         initComponents();
+
+        getFPagoClientes();
 
         KeyListener l = new KeyListener()
         {
@@ -72,6 +86,8 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
         jToggleButtonCliente = new javax.swing.JToggleButton();
         lCliente1 = new javax.swing.JLabel();
         jTextCliente = new javax.swing.JTextField();
+        lFPago = new javax.swing.JLabel();
+        jComboBoxFPago = new javax.swing.JComboBox();
 
         jLabel2.setText("jLabel2");
         jLabel2.setName("jLabel2"); // NOI18N
@@ -101,7 +117,7 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
         jLabel1.setText(" Tesorería Cliente");
         jLabel1.setName("jLabel1"); // NOI18N
@@ -124,7 +140,7 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
         jDateFechaIni.setName("jDateFechaIni"); // NOI18N
 
         jToggleButtonCliente.setText("Buscar Cliente");
-        jToggleButtonCliente.setName("jToggleButtonCliente");
+        jToggleButtonCliente.setName("jToggleButtonCliente"); // NOI18N
         jToggleButtonCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButtonClienteActionPerformed(evt);
@@ -133,69 +149,84 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
 
         lCliente1.setForeground(new java.awt.Color(0, 0, 100));
         lCliente1.setText("Cliente");
-        lCliente1.setName("lCliente1");
+        lCliente1.setName("lCliente1"); // NOI18N
 
         jTextCliente.setEditable(false);
-        jTextCliente.setName("jTextCliente");
+        jTextCliente.setName("jTextCliente"); // NOI18N
+
+        lFPago.setForeground(new java.awt.Color(0, 0, 100));
+        lFPago.setText("Forma de Pago");
+        lFPago.setName("lFPago"); // NOI18N
+
+        jComboBoxFPago.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxFPago.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxFPago.setName("jComboBoxFPago"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jSeparator4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lFechaIni1)
                                     .addComponent(lCliente1))
-                                .addGap(32, 32, 32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(11, 11, 11)
+                                .addComponent(jToggleButtonCliente)
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(16, 16, 16))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lFPago)
+                                        .addGap(15, 15, 15)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(95, 95, 95)
-                                        .addComponent(lFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jComboBoxFPago, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(311, 311, 311)
                         .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(203, 203, 203)
-                        .addComponent(jButtonCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCancelar)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(16, 16, 16)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lFechaIni1)
+                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDateFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCliente1)
                     .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxFPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lFPago)
                     .addComponent(jToggleButtonCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addGap(104, 104, 104)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBuscar)
                     .addComponent(jButtonCancelar))
@@ -204,23 +235,20 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-       CSDesktop.BuscarTesoreriaClienteInf .dispose();
+       CSDesktop.BuscarTesoreriaClienteInf.dispose();
        CSDesktop.menuTesoreriaCliente.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        int numFl = 0;
         String fechaI="";
         String fechaF="";
-        String fechaIFc="";
-        String fechaFFc="";
-        System.out.println("Inicio");
-        
         
         String cliente = new String(jTextCliente.getText());
         Cliente cl = new Cliente();
         clienteID = cl.getClienteID(cliente);
-        
+
+        int fPago = jComboBoxFPago.getSelectedIndex();
+
         Calendar fechaCalendar = jDateFechaIni.getCalendar();
         if (fechaCalendar!=null)
         {
@@ -236,55 +264,151 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaF=formatoDeFecha.format(fecha);
         }
-        
-        /*String query = "SELECT distinct(fl.fl_id), fl.fl_fecha, fl.fl_num, cl.cl_nombre, " +
-                       "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, fp.fp_tipo, " +
-                       "fl.fl_estado, fl.fl_fecha_pago, cl.cl_num_cuenta, fl.fl_observaciones, cl.cl_dias_plazo " +
-                       "FROM fl_factura_cliente fl, pe_pedidos pe, cl_clientes cl, fp_forma_pago fp " +
-                       "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id AND fl.fl_num = pe.pe_num_fa_cl";*/
-        
-        String query="";
 
-        System.out.println("Entrando");
-        if (numFl == 0 && cliente.equals("") && 
-           (fechaI.equals("") && fechaF.equals("")) &&
-           (fechaIFc.equals("") && fechaFFc.equals("")))
+        if (cliente.equals("") && 
+           (fechaI.equals("") && fechaF.equals("")))
         {
-            System.out.println("Entra");
             jButtonBuscar.setEnabled(false);
-            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar número de factura, un Cliente o período de tiempo</FONT></HTML>");
+            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar un Cliente o período de tiempo</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonBuscar.setEnabled(true);
         }
         else
         {
-           /* if (numFl != 0)
-            {
-                query = query + " AND fl.fl_id = " + numFl;
-            }
+            List listaResultados = new ArrayList();
+            HashMap<Integer, BeanAuxInformeTesoreriaCliente> listaResul = new HashMap<Integer, BeanAuxInformeTesoreriaCliente>();
+            String query_cl = "SELECT distinct(cl.cl_id) FROM fl_factura_cliente fl,cl_clientes cl WHERE  fl.cl_id = cl.cl_id";
             if (!cliente.equals("")) {
-                query = query + " AND cl.cl_id = " + clienteID;
+                query_cl = query_cl + " AND cl.cl_id = " + clienteID;
             }
-            if ((!fechaI.equals("")) && (!fechaF.equals(""))) 
+            if ((!fechaI.equals("")) && (!fechaF.equals("")))
             {
-                query = query + " AND pe.pe_fecha >= '" + fechaI + "' AND pe.pe_fecha <= '" + fechaF + "'";
+                query_cl = query_cl + " AND fl.fl_fecha >= '" + fechaI + "' AND fl.fl_fecha <= '" + fechaF + "'";
             }
-            if ((!fechaIFc.equals("")) && (!fechaFFc.equals(""))) 
-            {
-                query = query + " AND fl.fl_fecha >= '" + fechaIFc + "' AND fl.fl_fecha <= '" + fechaFFc + "'";
-            }
-            if (!estado.equals("Selecciona"))
-            {
-                query = query + " AND fl.fl_estado='" + estado + "'";
-            }
-            if (!fPago.equals("Selecciona"))
-            {
-                query = query + " AND cl.fp_id='" + fPagoId + "'";
-            }*/
+            System.out.println(query_cl);
+            
+            ResultSet rs_cl = CSDesktop.datos.select(query_cl);
+            try {
 
-            //query = query + " ORDER BY fl.fl_fecha ASC";
-            System.out.println(query);
-            /**try {
+                List aClientes = new ArrayList();
+                while (rs_cl.next()) {
+                    aClientes.add(rs_cl.getInt("cl_id"));
+                }
+                rs_cl.close();
+
+ 
+                for(int i = 0; i < aClientes.size(); i++){
+                    String query = "SELECT distinct(fl.fl_id), fl.fl_fecha, fl.fl_num, cl.cl_id, cl.cl_nombre, " +
+                                    "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, cl.cl_dias_plazo, fp.fp_tipo, " +
+                                    "fl.fl_estado, fl.fl_fecha_pago, cl.cl_num_cuenta, cl.cl_dias_plazo " +
+                                    "FROM fl_factura_cliente fl,cl_clientes cl, fp_forma_pago fp " +
+                                    "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id AND cl.cl_id = " + aClientes.get(i);
+
+                    if ((!fechaI.equals("")) && (!fechaF.equals(""))) {
+                        query = query + " AND fl.fl_fecha >= '" + fechaI + "' AND fl.fl_fecha <= '" + fechaF + "'";
+                    }
+                    if (fPago != 0) {
+                        query = query + " AND cl.fp_id='" + fPago + "'";
+                    }
+                    query = query + " ORDER BY fl.fl_fecha ASC";
+
+                    System.out.println(query);
+                    
+                    ResultSet rs = CSDesktop.datos.select(query);
+
+                    int size = 0;
+                    try {
+                        double sumaFechaVencida = 0;
+                        double sumaPendienteVencer = 0;
+                        double sumaTotalPendientesCobro = 0;
+                        double sumaFacturasCobradas = 0;
+                        double sumaFacturasIncobrables = 0;
+                        double sumaFacturasAplazadas = 0;
+
+                        //Count del resulset
+                        rs.last();
+                        size = rs.getRow();
+                        rs.beforeFirst();
+                        int cont = 0;
+
+                        System.out.println("size: " + size);
+                        
+                        while (rs.next())
+                        {
+                            // SE PONE LA FECHA DE LA FACTURA EN EL FORMATO ELEGIDO
+                            String[] tempOrigen = null;
+                            tempOrigen = (rs.getString("fl_fecha")).split("\\-");
+                            String nuevaFechaFactura = tempOrigen[2] + "/" + tempOrigen[1] + "/" + tempOrigen[0];
+                            SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+                            Date datehora = null;
+                            try {
+                                datehora = sdf1.parse(nuevaFechaFactura);
+                            } catch (ParseException ex) {
+                                Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
+                            String plazoPago = rs.getString("cl_plazo");
+                            int diasPlazo = 0;
+                            if (plazoPago.equals("Especial")) {
+                                diasPlazo = rs.getInt("cl_dias_plazo");
+                            } else {
+                                diasPlazo = Integer.parseInt(plazoPago.substring(0, 2));
+                            }
+                            Calendar myGDate = new GregorianCalendar();
+                            myGDate.setTime(datehora);
+                            myGDate.add(Calendar.DAY_OF_MONTH, diasPlazo);
+                            Date fechaActual = myGDate.getTime();
+                            String estado = rs.getString("fl_estado");
+                            Date hoy = new Date();
+                            if (estado.equals("PTE") && hoy.after(fechaActual)) {
+                                sumaFechaVencida += rs.getDouble("fl_importe_total");
+                            }
+                            if (estado.equals("PTE") && hoy.before(fechaActual)) {
+                                sumaPendienteVencer += rs.getDouble("fl_importe_total");
+                            }
+                            sumaTotalPendientesCobro += sumaFechaVencida + sumaPendienteVencer;
+                            if (estado.equals("COBRADO")) {
+                                sumaFacturasCobradas += rs.getDouble("fl_importe_total");
+                            }
+                            if (estado.equals("INCOBRABLE")) {
+                                sumaFacturasIncobrables += rs.getDouble("fl_importe_total");
+                            }
+                            if (estado.equals("DEVOLUCIÓN") || estado.equals("APLAZADO") || estado.equals("APLAZADO IVA")) {
+                                sumaFacturasAplazadas += rs.getDouble("fl_importe_total");
+                            }
+
+                            cont++;
+                            if(size == cont){
+                                BeanAuxInformeTesoreriaCliente dato = new BeanAuxInformeTesoreriaCliente();
+                                dato.setNombreCliente(rs.getString("cl.cl_nombre"));
+                                dato.setImporteFechaVencida(sumaFechaVencida);
+                   System.out.println("sumaFechaVencida: "+sumaFechaVencida);
+                                dato.setImportePendienteVencer(sumaPendienteVencer);
+                   System.out.println("sumaPendienteVencer: "+sumaPendienteVencer);
+                                dato.setImporteTotalPendientesCobro(sumaTotalPendientesCobro);
+                   System.out.println("sumaTotalPendientesCobro: "+sumaTotalPendientesCobro);
+                                dato.setImporteFacturasCobradas(sumaFacturasCobradas);
+                   System.out.println("sumaFacturasCobradas: "+sumaFacturasCobradas);
+                                dato.setImporteFacturasIncobrables(sumaFacturasIncobrables);
+                   System.out.println("sumaFacturasIncobrables: "+sumaFacturasIncobrables);
+                                dato.setImporteFacturasAplazadas(sumaFacturasAplazadas);
+                   System.out.println("sumaFacturasAplazadas: "+sumaFacturasAplazadas);
+
+                                listaResultados.add(rs.getInt("cl_id"));
+                                listaResul.put(rs.getInt("cl_id"), dato);
+
+                            }
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CSLanzarTesoreriaProveedorInf.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CSLanzarTesoreriaClienteInf.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
                 CSResultBuscarTesoreriaClienteInf resultBuscarTesoreriaClInf = new CSResultBuscarTesoreriaClienteInf(listaResul,(ArrayList)listaResultados);
             } catch (UnknownHostException ex) {
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -294,7 +418,7 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
                 Logger.getLogger(CSLanzarInformeTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+            }
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -317,6 +441,7 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JComboBox jComboBoxFPago;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private com.toedter.calendar.JDateChooser jDateFechaIni;
     private javax.swing.JLabel jLabel1;
@@ -327,19 +452,38 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
     public javax.swing.JTextField jTextCliente;
     private javax.swing.JToggleButton jToggleButtonCliente;
     private javax.swing.JLabel lCliente1;
+    private javax.swing.JLabel lFPago;
     private javax.swing.JLabel lFechaFin1;
     private javax.swing.JLabel lFechaIni1;
     // End of variables declaration//GEN-END:variables
-
-   
 
     /**
      *
      * @throws SQLException
      */
-   
+     private void getFPagoClientes() throws SQLException
+    {
+        ResultSet rs = CSDesktop.datos.select("SELECT fp_id, fp_tipo FROM fp_forma_pago");
+        int j = 0;
+        String valor = "";
+        jComboBoxFPago.addItem("Selecciona");
 
+        while(rs.next())
+        {
+            valor = rs.getString("fp_tipo");
+            jComboBoxFPago.addItem(valor);
+            jComboBoxFPago.setSelectedIndex(0);
 
+            //jCombPago.addItem(rs.getString("fp_tipo"))
+            j++;
+        }
+
+     }
+
+    /**
+     *
+     * @throws SQLException
+     */
     public void ValidarFormatos(String accion)
     {
          jButtonBuscar.setEnabled(false);
