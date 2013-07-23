@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeCliente1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f9dc404-34fc-4b48-9f9b-b7d969102c36">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeCliente1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<parameter name="Cliente" class="java.lang.String"/>
 	<parameter name="Blanco" class="java.lang.String"/>
 	<parameter name="SumaTarifa" class="java.lang.Double"/>
@@ -71,11 +68,11 @@
 	<title>
 		<band height="91" splitType="Stretch">
 			<image>
-				<reportElement uuid="08e9853f-9aad-4105-b966-6931ae820feb" x="38" y="5" width="139" height="80"/>
-				<imageExpression><![CDATA[(getClass().getResource("/images/logo_carset_200.jpg"))]]></imageExpression>
+				<reportElement x="38" y="5" width="139" height="80"/>
+				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_200.jpg"))]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement uuid="597fe07b-73db-4581-b79b-b04b4a625181" x="328" y="30" width="310" height="35"/>
+				<reportElement x="328" y="30" width="310" height="35"/>
 				<textElement>
 					<font fontName="Verdana" size="22" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 				</textElement>
@@ -86,7 +83,7 @@
 	<pageHeader>
 		<band height="34" splitType="Stretch">
 			<textField>
-				<reportElement uuid="ad4b30e2-4943-4509-8399-d7150ea7f15f" x="424" y="7" width="329" height="20"/>
+				<reportElement x="424" y="7" width="329" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
@@ -97,10 +94,10 @@
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana"/>
 				</textElement>
-				<textFieldExpression><![CDATA["  FECHA : " + $P{FechaInicio} + " --- " + $P{FechaFin}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["  FECHA : " + $P{FechaInicio} + " --- " + $P{FechaFin}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="ea783a5c-05e5-433d-b569-52eb201c7a89" x="39" y="7" width="325" height="20"/>
+				<reportElement x="39" y="7" width="325" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="0.0"/>
@@ -111,14 +108,14 @@
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana"/>
 				</textElement>
-				<textFieldExpression><![CDATA["  CLIENTE : " + $P{Cliente}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["  CLIENTE : " + $P{Cliente}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="39" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="e3ccd049-9a12-4285-a964-2af6ee43748d" mode="Opaque" x="318" y="0" width="52" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="318" y="0" width="52" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -132,7 +129,7 @@
 				<text><![CDATA[MATRICULA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="44a3db40-954e-4e42-b0e9-6d9506a46e81" mode="Opaque" x="33" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="33" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -146,7 +143,7 @@
 				<text><![CDATA[FECHA PEDIDO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="9cafc465-f78f-464a-b0d6-f8b634638b95" mode="Opaque" x="266" y="0" width="52" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="266" y="0" width="52" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -160,7 +157,7 @@
 				<text><![CDATA[TIPO VEHICULO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="1302120b-c4eb-41ca-b7e0-b2d453db3567" mode="Opaque" x="168" y="0" width="98" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="168" y="0" width="98" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -174,7 +171,7 @@
 				<text><![CDATA[ORIGEN - DESTINO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="137cc4be-8406-425a-818d-742ecd4c9811" mode="Opaque" x="0" y="0" width="33" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="0" y="0" width="33" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -188,7 +185,7 @@
 				<text><![CDATA[NUMERO PEDIDO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="7d3fc369-b1c1-4253-8703-6cc7d1ccdffd" mode="Opaque" x="508" y="0" width="294" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="508" y="0" width="294" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -202,7 +199,7 @@
 				<text><![CDATA[OBSERVACIONES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b3ae5f95-d7d4-49bf-bc1a-5f3adba9f777" mode="Opaque" x="413" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="413" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -216,7 +213,7 @@
 				<text><![CDATA[ESTADO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="c9d7af44-617a-4360-af67-1bcaad844a17" mode="Opaque" x="463" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="463" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -230,7 +227,7 @@
 				<text><![CDATA[FECHA REAL ENTREGA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="d62aa265-711d-4a68-a6e1-b0fc9b6b35b9" mode="Opaque" x="77" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="77" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -244,7 +241,7 @@
 				<text><![CDATA[FECHA PREVISTA RECOGIDA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="cb9fa11f-ab87-4e2b-a5f0-b0a1fde6046d" mode="Opaque" x="122" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="122" y="0" width="45" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -258,7 +255,7 @@
 				<text><![CDATA[FECHA PREVISTA ENTREGA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="0b515e79-2567-43ee-a991-03698329cccb" mode="Opaque" x="370" y="0" width="43" height="26" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="370" y="0" width="43" height="26" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="0.0"/>
@@ -272,7 +269,7 @@
 				<text><![CDATA[IMPORTE  TOTAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="e70cc07e-7c8a-4b2d-95d8-a2703b7c98cc" mode="Opaque" x="370" y="21" width="43" height="18" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="370" y="21" width="43" height="18" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="0.0"/>
@@ -290,7 +287,7 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement uuid="5a0c3e84-f849-40e8-bb16-ea2e3459e95a" x="0" y="0" width="33" height="20"/>
+				<reportElement x="0" y="0" width="33" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -301,10 +298,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fi_num}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fi_num}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="cce30913-6bcf-49e2-9cf5-6d60504a22ef" x="318" y="0" width="52" height="20"/>
+				<reportElement x="318" y="0" width="52" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -315,10 +312,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + $F{fi_matricula}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $F{fi_matricula}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement uuid="099d7ba6-1f41-4176-b496-84a91a42c37f" x="33" y="0" width="45" height="20"/>
+				<reportElement x="33" y="0" width="45" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -329,10 +326,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fi_fecha}]]></textFieldExpression>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fi_fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b7129f4f-6ab6-4ea7-9c5f-a887b3a36849" x="266" y="0" width="52" height="20"/>
+				<reportElement x="266" y="0" width="52" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -343,10 +340,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + $F{fi_vehiculo}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $F{fi_vehiculo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="de098863-9fd1-4601-98b8-e09cb65c79bd" x="168" y="0" width="98" height="20"/>
+				<reportElement x="168" y="0" width="98" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -357,10 +354,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + $F{fi_traslado}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $F{fi_traslado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="7f7751bb-2a56-435e-bbb1-538e245f1779" x="508" y="0" width="293" height="20"/>
+				<reportElement x="508" y="0" width="293" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -371,10 +368,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fi_observaciones}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fi_observaciones}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement uuid="c41338a6-a35c-4b80-b95b-c8e9b1c21190" x="462" y="0" width="45" height="20"/>
+				<reportElement x="462" y="0" width="45" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -385,10 +382,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[( $F{fi_fecha_real_entrega}.equals("01/01/2050") ? " " : $F{fi_fecha_real_entrega} )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[( $F{fi_fecha_real_entrega}.equals("01/01/2050") ? " " : $F{fi_fecha_real_entrega} )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="06b9c3a9-66ab-4e9a-8101-ac22faff786d" x="370" y="0" width="35" height="20"/>
+				<reportElement x="370" y="0" width="35" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -399,10 +396,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fi_neto}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{fi_neto}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement uuid="49335d31-024f-44fb-8a5e-4325b77665a9" x="78" y="0" width="44" height="20"/>
+				<reportElement x="78" y="0" width="44" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -413,10 +410,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fi_fecha_prevista_recogida}]]></textFieldExpression>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fi_fecha_prevista_recogida}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement uuid="7613ed7f-4a77-4c2a-846c-32bf7ae09469" x="122" y="0" width="46" height="20"/>
+				<reportElement x="122" y="0" width="46" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -427,10 +424,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fi_fecha_prevista_entrega}]]></textFieldExpression>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fi_fecha_prevista_entrega}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="ad554b4a-ee42-40b2-9c88-23b0ca90d877" x="412" y="0" width="50" height="20"/>
+				<reportElement x="412" y="0" width="50" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -441,10 +438,10 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + $F{fi_estado}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $F{fi_estado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="c20014c5-c64d-4510-9078-c319309ee4ca" x="404" y="0" width="8" height="20"/>
+				<reportElement x="404" y="0" width="8" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -458,7 +455,7 @@
 				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="229838c8-11aa-43be-9a9e-723138273f34" x="634" y="0" width="5" height="20"/>
+				<reportElement x="634" y="0" width="5" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -476,45 +473,45 @@
 	<pageFooter>
 		<band height="81" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="f7dd692c-62d5-4910-bdee-5e2fbf383d30" x="277" y="39" width="262" height="14"/>
+				<reportElement x="277" y="39" width="262" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<text><![CDATA[San Sebastián de los Reyes. 28700 - MADRID]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
-				<reportElement uuid="6c73430c-d05d-412b-a964-e324cf95f712" x="751" y="61" width="46" height="20"/>
+				<reportElement x="751" y="61" width="46" height="20"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="7dcb3885-ab17-4c43-ac2b-bec8115ed1f6" x="277" y="11" width="262" height="14"/>
+				<reportElement x="277" y="11" width="262" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[        CARSET Servicios Integrales, SL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="205aec23-1de3-4cf0-918c-46c3ef26c75a" x="277" y="53" width="262" height="14"/>
+				<reportElement x="277" y="53" width="262" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<text><![CDATA[CIF. B-85750727 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="801d5886-5ebc-470f-9a9a-d29b972fa362" x="277" y="25" width="262" height="14"/>
+				<reportElement x="277" y="25" width="262" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<text><![CDATA[Avda. Puente Cultural 5, Bloque A, Planta 3ª, Oficina 2]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="cfca7130-2d07-48cb-9819-880f3c9af80d" x="673" y="61" width="80" height="20"/>
+				<reportElement x="673" y="61" width="80" height="20"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="88b3a4bf-25ff-4a0a-be82-c641f876438f" x="277" y="67" width="262" height="14" forecolor="#006600"/>
+				<reportElement x="277" y="67" width="262" height="14" forecolor="#006600"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
@@ -525,7 +522,7 @@
 	<summary>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="0ccca8da-9f0b-454a-b4b8-8a4d829a0112" x="318" y="0" width="52" height="20"/>
+				<reportElement x="444" y="0" width="52" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -539,7 +536,7 @@
 				<text><![CDATA[TOTAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="1b170b5a-d30e-4326-8ddd-8c610787659a" x="404" y="0" width="8" height="20"/>
+				<reportElement x="531" y="0" width="8" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -553,7 +550,7 @@
 				<text><![CDATA[]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="cf884f8d-d104-40b1-b6d8-41c68415204d" x="370" y="0" width="35" height="20"/>
+				<reportElement x="496" y="0" width="35" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -564,7 +561,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{SumaNeto}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{SumaNeto}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
