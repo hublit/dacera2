@@ -856,7 +856,7 @@ public class Utilidades
         throws SQLException, UnknownHostException
     {
 
-            DbConnection conexion = new DbConnection();
+            
 
         ResultSet rsSe;
         String campoServicio = "";
@@ -946,6 +946,7 @@ public class Utilidades
             campoServicio = "sc_rotular_peg_dificil";
         if(!campoServicio.equals(""))
         {
+            DbConnection conexion = new DbConnection();
             String querySe = (new StringBuilder()).append("SELECT ").append(campoServicio).append(" FROM sc_servicios_clientes WHERE cl_id = ").append(cl_id).append(" AND sc_fecha_hasta > '").append(fecha).append("' LIMIT 1").toString();
             for(rsSe = conexion.select(querySe); rsSe.next();)
                 importeServicioEs = rsSe.getString(campoServicio);
@@ -953,6 +954,7 @@ public class Utilidades
             conexion.cerrarConexion();
         }
         return importeServicioEs;
+        
     }
 
     /**
