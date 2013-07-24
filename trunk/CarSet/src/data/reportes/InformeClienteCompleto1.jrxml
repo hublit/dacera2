@@ -357,7 +357,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[" " + $F{fi_traslado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="508" y="0" width="293" height="20"/>
+				<reportElement x="513" y="0" width="288" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -455,7 +455,7 @@
 				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="634" y="0" width="5" height="20"/>
+				<reportElement x="508" y="0" width="5" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -522,21 +522,7 @@
 	<summary>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="444" y="0" width="52" height="20"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="6" isBold="true"/>
-				</textElement>
-				<text><![CDATA[TOTAL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="531" y="0" width="8" height="20"/>
+				<reportElement x="404" y="0" width="8" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -550,7 +536,7 @@
 				<text><![CDATA[]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="496" y="0" width="35" height="20"/>
+				<reportElement x="370" y="0" width="35" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -563,6 +549,20 @@
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$P{SumaNeto}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="318" y="0" width="52" height="20"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
