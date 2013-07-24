@@ -1178,6 +1178,23 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
         }
         return formatter.format(value);
     }
+    
+    public static String dosDecimales(String numero)
+    {
+        if ((numero.lastIndexOf(","))==-1)
+        {
+             numero += ",00";
+        }
+        
+        else if(numero.substring(numero.lastIndexOf(",")+1).length()==1)
+        {
+            System.out.println("Valor CESAR " + numero.substring(numero.lastIndexOf(",")).length());
+            numero += "0";
+        }
+         
+        
+        return numero;
+    }
 
 
 }
