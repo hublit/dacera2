@@ -130,15 +130,25 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                 double importeFacturasPagadasR = 0;
                 double importeFacturasPendientesR = 0;
                 String resPedidosValidados="";
+                String resPedidosValidadosF="";
                 String resPedidosPendientes="";
+                String resPedidosPendientesF="";
                 String resPedidosNoFacturados="";
+                String resPedidosNoFacturadosF="";
                 String resPedidosTotales="";
+                String resPedidosTotalesF="";
                 String resImporteFacturas="";
+                String resImporteFacturasF="";
                 String resImporteFacturasPagadas="";
+                String resImporteFacturasPagadasF="";
                 String resImporteFacturasPendientes="";
+                String resImporteFacturasPendientesF="";
                 String resImporteFacturasPendientesCliente="";
+                String resImporteFacturasPendientesClienteF="";
                 String resImporteFacturasCobradasCliente="";
+                String resImporteFacturasCobradasClienteF="";
                 String resImporteFacturasCliente="";
+                String resImporteFacturasClienteF="";
                 
                 for (int k = 0; k < 11; k++)
                 {
@@ -153,7 +163,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         pedidosValidados = beanAuxInfTesoreria.getPedidosValidados();
                         pedidosValidadosR=Utilidades.redondear(pedidosValidados, 2);
                         resPedidosValidados=Utilidades.separadorMiles(String.valueOf(pedidosValidadosR));
-                        datosFila[j] = resPedidosValidados;
+                        resPedidosValidadosF=Utilidades.dosDecimales(resPedidosValidados);
+                        datosFila[j] = resPedidosValidadosF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }
@@ -162,7 +173,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         pedidosPendientes = beanAuxInfTesoreria.getPedidosPendientes();
                         pedidosPendientesR=Utilidades.redondear(pedidosPendientes, 2);
                         resPedidosPendientes=Utilidades.separadorMiles(String.valueOf(pedidosPendientesR));
-                        datosFila[j] = resPedidosPendientes;
+                        resPedidosPendientesF=Utilidades.dosDecimales(resPedidosPendientes);
+                        datosFila[j] = resPedidosPendientesF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }
@@ -171,7 +183,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         pedidosNoFacturados = beanAuxInfTesoreria.getPedidosNoFacturados();
                         pedidosNoFacturadosR=Utilidades.redondear(pedidosNoFacturados, 2);
                         resPedidosNoFacturados=Utilidades.separadorMiles(String.valueOf(pedidosNoFacturadosR));
-                        datosFila[j] = resPedidosNoFacturados;
+                        resPedidosNoFacturadosF=Utilidades.dosDecimales(resPedidosNoFacturados);
+                        datosFila[j] = resPedidosNoFacturadosF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }
@@ -180,7 +193,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         pedidosTotales = pedidosValidados + pedidosPendientes + pedidosNoFacturados;
                         pedidosTotalesR=Utilidades.redondear(pedidosTotales, 2);
                         resPedidosTotales=Utilidades.separadorMiles(String.valueOf(pedidosTotalesR));
-                        datosFila[j] = resPedidosTotales;
+                        resPedidosTotalesF=Utilidades.dosDecimales(resPedidosTotales);
+                        datosFila[j] = resPedidosTotalesF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }
@@ -189,7 +203,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         importeFacturas = beanAuxInfTesoreria.getImporteFacturas();
                         importeFacturasR = Utilidades.redondear(importeFacturas,2 );
                         resImporteFacturas=Utilidades.separadorMiles(String.valueOf(importeFacturasR));
-                        datosFila[j] = resImporteFacturas;
+                        resImporteFacturasF=Utilidades.dosDecimales(resImporteFacturas);
+                        datosFila[j] = resImporteFacturasF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }
@@ -198,7 +213,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         importeFacturasPagadas = beanAuxInfTesoreria.getImporteFacturasPagadas();
                         importeFacturasPagadasR = Utilidades.redondear(importeFacturasPagadas,2 );
                         resImporteFacturasPagadas=Utilidades.separadorMiles(String.valueOf(importeFacturasPagadasR));
-                        datosFila[j] = resImporteFacturasPagadas;
+                        resImporteFacturasPagadasF=Utilidades.dosDecimales(resImporteFacturasPagadas);
+                        datosFila[j] = resImporteFacturasPagadasF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }
@@ -207,7 +223,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         importeFacturasPendientes = importeFacturas - importeFacturasPagadas;
                         importeFacturasPendientesR = Utilidades.redondear(importeFacturasPendientes,2 );
                         resImporteFacturasPendientes=Utilidades.separadorMiles(String.valueOf(importeFacturasPendientesR));
-                        datosFila[j] = resImporteFacturasPendientes;
+                        resImporteFacturasPendientesF=Utilidades.dosDecimales(resImporteFacturasPendientes);
+                        datosFila[j] = resImporteFacturasPendientesF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }                               
@@ -216,7 +233,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         importeFacturasPendientesCliente = beanAuxInfTesoreria.getImporteFacturasPendientesCliente();
                         importeFacturasPendientesClienteR = Utilidades.redondear(importeFacturasPendientesCliente,2 );
                         resImporteFacturasPendientesCliente=Utilidades.separadorMiles(String.valueOf(importeFacturasPendientesClienteR));
-                        datosFila[j] = resImporteFacturasPendientesCliente;
+                        resImporteFacturasPendientesClienteF=Utilidades.dosDecimales(resImporteFacturasPendientesCliente);
+                        datosFila[j] = resImporteFacturasPendientesClienteF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }    
@@ -225,7 +243,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         importeFacturasCobradasCliente = beanAuxInfTesoreria.getImporteFacturasCobradasCliente();
                         importeFacturasCobradasClienteR = Utilidades.redondear(importeFacturasCobradasCliente,2 );
                         resImporteFacturasCobradasCliente=Utilidades.separadorMiles(String.valueOf(importeFacturasCobradasClienteR));
-                        datosFila[j] = resImporteFacturasCobradasCliente;
+                        resImporteFacturasCobradasClienteF=Utilidades.dosDecimales(resImporteFacturasCobradasCliente);
+                        datosFila[j] = resImporteFacturasCobradasClienteF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }
@@ -234,7 +253,8 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
                         importeFacturasCliente = importeFacturasPendientesCliente - importeFacturasCobradasCliente;
                         importeFacturasClienteR = Utilidades.redondear(importeFacturasCliente,2 );
                         resImporteFacturasCliente=Utilidades.separadorMiles(String.valueOf(importeFacturasCliente));
-                        datosFila[j] = resImporteFacturasCliente;
+                        resImporteFacturasClienteF=Utilidades.dosDecimales(resImporteFacturasCliente);
+                        datosFila[j] = resImporteFacturasClienteF;
                         System.out.println("Dato" + k + " " + datosFila[j]);
                          
                     }                    
