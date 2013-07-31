@@ -94,6 +94,7 @@ public class CSDesktop extends JFrame
   public static JMenu menuFactura;
   public static JMenu menuInforme;
   public static JMenu menuAyuda;
+  public static JMenu menuFacturasTesoreria;
   public static JMenu menuTesoreria;
   public static JMenuBar barra;
   public static JMenuItem menuNuevoCliente;
@@ -146,9 +147,10 @@ public class CSDesktop extends JFrame
       menuProveedores = new JMenu( "Proveedores" );
       menuPedidos = new JMenu( "Pedidos" );
       menuTarifa = new JMenu( "Tarifas" );
-      menuFactura = new JMenu( "Facturas" );
-      menuInforme = new JMenu("Informes");
-      menuTesoreria = new JMenu("Tesorería");
+      menuFactura = new JMenu( "Facturas Clientes" );
+      menuFacturasTesoreria = new JMenu("Relación Facturas");
+      menuInforme = new JMenu("Informes Comeciales");
+      menuTesoreria = new JMenu("Informes Tesorería");
       menuAyuda = new JMenu( "Ayuda" );
 
       //MENU DE CLIENTES
@@ -695,12 +697,12 @@ public class CSDesktop extends JFrame
             }
          });
 
-      //Tesorería
-      menuTesoreria.setMnemonic( 'E' );
+      //Relación Facturas Tesorería
+      menuFacturasTesoreria.setMnemonic( 'N' );
 
       menuTesoreriaValidacion = new JMenuItem( "Validación de Pedidos" );
       menuTesoreriaValidacion.setMnemonic( 'v' );
-      menuTesoreria.add( menuTesoreriaValidacion );
+      menuFacturasTesoreria.add( menuTesoreriaValidacion );
       menuTesoreriaValidacion.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
@@ -721,13 +723,13 @@ public class CSDesktop extends JFrame
             }
          });
 
-      menuTesoreriaProveedor = new JMenuItem( "Informe Proveedor" );
+      menuTesoreriaProveedor = new JMenuItem( "Relación F. Proveedor" );
       menuTesoreriaProveedor.setMnemonic( 'r' );
-      menuTesoreria.add( menuTesoreriaProveedor );
+      menuFacturasTesoreria.add( menuTesoreriaProveedor );
       menuTesoreriaProveedor.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-              BuscarTesoreriaProveedor = new JInternalFrame("Informe Tesorería Proveedor", true,false,false,true );
+              BuscarTesoreriaProveedor = new JInternalFrame("Relación F. Proveedores", true,false,false,true );
                CSLanzarInformeTesoreriaProveedor panel = null;
 
                panel = new CSLanzarInformeTesoreriaProveedor();
@@ -744,13 +746,13 @@ public class CSDesktop extends JFrame
             }
          });
 
-      menuTesoreriaCliente = new JMenuItem( "Informe Cliente" );
+      menuTesoreriaCliente = new JMenuItem( "Relación F. Cliente" );
       menuTesoreriaCliente.setMnemonic( 'l' );
-      menuTesoreria.add( menuTesoreriaCliente );
+      menuFacturasTesoreria.add( menuTesoreriaCliente );
       menuTesoreriaCliente.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-              BuscarTesoreriaCliente = new JInternalFrame("Informe Tesorería Cliente", true,false,false,true );
+              BuscarTesoreriaCliente = new JInternalFrame("Relación F. Cliente", true,false,false,true );
                CSLanzarInformeTesoreriaCliente panel = null;
                 try {
                     panel = new CSLanzarInformeTesoreriaCliente();
@@ -767,6 +769,38 @@ public class CSDesktop extends JFrame
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
                BuscarTesoreriaCliente.setVisible( true );
+            }
+         });
+
+   
+/////////////////////////////
+      //Tesorería
+      menuTesoreria.setMnemonic( 'E' );
+
+
+      menuTesoreriaProveedor = new JMenuItem( "Tesoreria Proveedor" );
+      menuTesoreriaProveedor.setMnemonic( 'c' );
+      menuTesoreria.add( menuTesoreriaProveedor );
+      menuTesoreriaProveedor.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+              BuscarTesoreriaProveedorInf = new JInternalFrame("Tesorería Proveedor", true,false,false,true );
+               CSLanzarTesoreriaProveedorInf panel = null;
+                try {
+                    panel = new CSLanzarTesoreriaProveedorInf();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+               BuscarTesoreriaProveedorInf.getContentPane().add( panel,BorderLayout.CENTER);
+               BuscarTesoreriaProveedorInf.pack();
+               elEscritorio.add( BuscarTesoreriaProveedorInf );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = BuscarTesoreriaProveedorInf.getSize();
+               BuscarTesoreriaProveedorInf.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               BuscarTesoreriaProveedorInf.setVisible( true );
             }
          });
 
@@ -795,35 +829,10 @@ public class CSDesktop extends JFrame
                BuscarTesoreriaClienteInf.setVisible( true );
             }
          });
-      
-      
-      menuTesoreriaProveedor = new JMenuItem( "Tesoreria Proveedor" );
-      menuTesoreriaProveedor.setMnemonic( 'c' );
-      menuTesoreria.add( menuTesoreriaProveedor );
-      menuTesoreriaProveedor.addActionListener(
-         new ActionListener() {
-            public void actionPerformed( ActionEvent evento ) {
-              BuscarTesoreriaProveedorInf = new JInternalFrame("Tesorería Proveedor", true,false,false,true );
-               CSLanzarTesoreriaProveedorInf panel = null;
-                try {
-                    panel = new CSLanzarTesoreriaProveedorInf();
-                } catch (SQLException ex) {
-                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
-                }
 
-               BuscarTesoreriaProveedorInf.getContentPane().add( panel,BorderLayout.CENTER);
-               BuscarTesoreriaProveedorInf.pack();
-               elEscritorio.add( BuscarTesoreriaProveedorInf );
-               Dimension pantalla = elEscritorio.getSize();
-               Dimension ventana = BuscarTesoreriaProveedorInf.getSize();
-               BuscarTesoreriaProveedorInf.setLocation(
-                     (pantalla.width - ventana.width) / 2,
-                     (pantalla.height - ventana.height) / 2);
-               BuscarTesoreriaProveedorInf.setVisible( true );
-            }
-         });
+/////////////////////////////
 
-
+      //Ayuda
       menuAyuda.setMnemonic( 'A' );
 
       //establecer elemento de men� Acerca de...
@@ -854,11 +863,12 @@ public class CSDesktop extends JFrame
       barra.add( menuPedidos );
       barra.add( menuTarifa );
       barra.add( menuFactura );
-      barra.add( menuInforme );
       if (usuario.equals("2") || usuario.equals("4") || usuario.equals("8"))
       {
+        barra.add( menuFacturasTesoreria );
         barra.add( menuTesoreria );
       }
+        barra.add( menuInforme );
         barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
