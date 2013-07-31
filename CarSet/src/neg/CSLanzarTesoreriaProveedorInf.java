@@ -36,7 +36,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
 
     public CSLanzarTesoreriaProveedorInf() throws SQLException
     {
-        CSDesktop.menuBuscarProveedor.setEnabled(false);
+        //CSDesktop.menuBuscarProveedor.setEnabled(false);
         initComponents();
 
         KeyListener l = new KeyListener()
