@@ -92,8 +92,9 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
         double totalImporte = 0;
 
        
-        for(int i=0; i<listaResultados.size();i++)
+        for(int i = 0; i < listaResultados.size(); i++)
         {
+            System.out.println("Lista resultados: "+listaResultados.get(i));
             BeanAuxInformeTesoreriaCliente beanAuxInfTesoreria = (BeanAuxInformeTesoreriaCliente) listaResul.get(listaResultados.get(i));
 
             Object[] datosFila = new Object[modelo.getColumnCount()];
@@ -859,6 +860,24 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
         return theSpinner;
         }
     }
+
+    /**
+     * Busca los campos de la tesorería del cliente
+     * @param ts
+     * @throws SQLException
+     */
+    public boolean  buscarTesoreria(int cl_id) throws SQLException
+    {
+        boolean result = false;
+        ResultSet rs = CSDesktop.datos.select("SELECT * FROM ts_tesoreria_informe WHERE cl_id = " + cl_id);
+        //Count del resulset
+        rs.last();
+        //size = rs.getRow();
+        rs.beforeFirst();
+
+        return result;
+    }
+
 
         /**
      * Modifica los campos de la tesorería del cliente o inserta si es la primera vez

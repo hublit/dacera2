@@ -380,18 +380,18 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
                                 BeanAuxInformeTesoreriaCliente dato = new BeanAuxInformeTesoreriaCliente();
                                 dato.setNombreCliente(rs.getString("cl.cl_nombre"));
                                 dato.setImporteFechaVencida(sumaFechaVencida);
-                   System.out.println("sumaFechaVencida: "+sumaFechaVencida);
+           System.out.println("sumaFechaVencida: "+sumaFechaVencida);
                                 dato.setImportePendienteVencer(sumaPendienteVencer);
-                   System.out.println("sumaPendienteVencer: "+sumaPendienteVencer);
+           System.out.println("sumaPendienteVencer: "+sumaPendienteVencer);
                                 sumaTotalPendientesCobro += sumaFechaVencida + sumaPendienteVencer;
                                 dato.setImporteTotalPendientesCobro(sumaTotalPendientesCobro);
-                   System.out.println("sumaTotalPendientesCobro: "+sumaTotalPendientesCobro);
+           System.out.println("sumaTotalPendientesCobro: "+sumaTotalPendientesCobro);
                                 dato.setImporteFacturasCobradas(sumaFacturasCobradas);
-                   System.out.println("sumaFacturasCobradas: "+sumaFacturasCobradas);
+           System.out.println("sumaFacturasCobradas: "+sumaFacturasCobradas);
                                 dato.setImporteFacturasIncobrables(sumaFacturasIncobrables);
-                   System.out.println("sumaFacturasIncobrables: "+sumaFacturasIncobrables);
+           System.out.println("sumaFacturasIncobrables: "+sumaFacturasIncobrables);
                                 dato.setImporteFacturasAplazadas(sumaFacturasAplazadas);
-                   System.out.println("sumaFacturasAplazadas: "+sumaFacturasAplazadas);
+           System.out.println("sumaFacturasAplazadas: "+sumaFacturasAplazadas);
 
                                 listaResultados.add(rs.getInt("cl_id"));
                                 listaResul.put(rs.getInt("cl_id"), dato);

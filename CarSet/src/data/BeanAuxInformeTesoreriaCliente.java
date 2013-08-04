@@ -23,6 +23,8 @@ public class BeanAuxInformeTesoreriaCliente {
     private double importeFacturasIncobrables;
     
     private double importeFacturasAplazadas;
+
+    private String email;
     
 
     public String getNombreCliente() {
@@ -79,6 +81,14 @@ public class BeanAuxInformeTesoreriaCliente {
 
     public void setImporteTotalPendientesCobro(double importeTotalPendientesCobro) {
         this.importeTotalPendientesCobro = importeTotalPendientesCobro;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }
