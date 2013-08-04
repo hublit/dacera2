@@ -23,7 +23,6 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import utils.Utilidades;
 
 /**
  *
@@ -344,7 +343,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                         {
                             sumaPedidosValidados += rs.getDouble("sum(pe.pe_ta_es_proveedor)");                                                     
                         }
-                        if(rs.getString("pe_estado").equals("Facturado"))
+                        else
                         {
                             Date fechaPedido = rs.getDate("pe.pe_fecha");
                             //String fechaPedido=Utilidades.generarStringFecha(fecha);
@@ -388,7 +387,7 @@ public class CSLanzarTesoreriaProveedorInf extends javax.swing.JPanel
                         {
                             sumaPedidosValidados += rs.getDouble("sum(pe.pe_ta_es_proveedor)");                                                     
                         }
-                        if(rs.getString("pe_estado").equals("Facturado"))
+                        else
                         {
                             Date fechaPedido = rs.getDate("pe.pe_fecha");
                             //String fechaPedido=Utilidades.generarStringFecha(fecha);
