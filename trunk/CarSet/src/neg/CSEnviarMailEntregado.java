@@ -178,6 +178,11 @@ public class CSEnviarMailEntregado
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 5 Bl.A - Pl .3 - Of. 2 </font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>www.carset.es</font></td></tr>";
+            if(mail.getServicioEspecial().equals("Otros"))
+            {
+                htmlText = htmlText +  "<tr><td colspan='2'><font face='Helvetica'>&nbsp;"+mail.getDescripcion().toUpperCase()+"</font></td></tr>";
+            }
+
             htmlText = htmlText +"</table></body>";
 
             message.setContent(htmlText, "text/html");

@@ -10,9 +10,6 @@ package neg;
  * @author depr102
  */
 import data.BeanCorreoCliente;
-import java.io.BufferedWriter;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import javax.mail.PasswordAuthentication;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
@@ -49,12 +46,11 @@ public class CSEnviarMailProveedor
         
         try
         {
-
          String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino," +
                       " pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial," +
                       " pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula," +
                       " pe.pe_ve_marca, pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, " +
-                      " pe.pe_suplemento, pe.pe_num_en_camion, pe.pe_descripcion, sp_entrada_campa," +
+                      " pe.pe_suplemento, pe.pe_num_en_camion, pe_observaciones_carset, sp_entrada_campa," +
                       " sp_campa, sp_suplemento FROM pe_pedidos pe, pp_pedidos_proveedores pp, " +
                       " sp_servicios_proveedores sp " +
                       " WHERE pe.pe_num = pp.pe_num AND sp.pr_id = pp.pr_id " +                      
@@ -75,7 +71,7 @@ public class CSEnviarMailProveedor
                 mail.setTarifaEspecialCliente(rs_mail.getString("pe_ta_es_cliente"));
                 mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
-                mail.setDescripcion(rs_mail.getString("pe_descripcion"));
+                mail.setObservaciones(rs_mail.getString("pe_observaciones_carset"));
                 //mail.setTarifa(rs_mail.getString("tp_tarifa"));
                 mail.setEntradaCampa(rs_mail.getString("sp_entrada_campa"));
                 mail.setCampa(rs_mail.getString("sp_campa"));
@@ -330,7 +326,7 @@ public class CSEnviarMailProveedor
                         }
                         else
                         {
-                            htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getDescripcion().toUpperCase()+"</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;</font></td></tr>";
+                            htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getObservaciones().toUpperCase()+"</font></td><td align='right' width='80'><font face='Helvetica'>&nbsp;</font></td></tr>";
                             //labelOtros=beanFactura.getDescripcion().toUpperCase();
                         }
                     }

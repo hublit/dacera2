@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JPanel;
-
-//import jxl.Cell;
 import jxl.CellType;
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.WorkbookSettings;
+
 import jxl.read.biff.BiffException;
 
 
@@ -28,8 +28,6 @@ public class CSAnyadirPedidoArchivo extends JPanel
     public CSAnyadirPedidoArchivo() throws SQLException, ParseException, IOException, BiffException
     {
         String file = new String("C:/AplicacionCarSet/pedidosInterpartner.xls");
-
-        List sheetData = new ArrayList();
         FileInputStream fis = null;
         Integer clientID = null;
         Integer proveedorID = null;
@@ -42,14 +40,15 @@ public class CSAnyadirPedidoArchivo extends JPanel
 
             if (JOptionPane.OK_OPTION == confirmado)
             {
-              w = Workbook.getWorkbook(inputWorkbook);
+              WorkbookSettings opciones= new WorkbookSettings();
+              opciones.setEncoding("iso-8859-1");
+              w = Workbook.getWorkbook(inputWorkbook, opciones);
               // Get the first sheet
               Sheet sheet = w.getSheet(0);
               // Loop over first 10 column and lines
 
               System.out.println("columnas: "+sheet.getColumns());
               System.out.println("filas: "+sheet.getRows());
-
 
               for (int i = 0; i < sheet.getRows(); i++)
               {
@@ -58,7 +57,7 @@ public class CSAnyadirPedidoArchivo extends JPanel
                 "pe_cp_origen, pe_nombre_origen, pe_telefono_origen, pe_direccion_destino, pe_poblacion_destino, " +
                 "pe_provincia_destino, pe_servicio_destino, pe_cp_destino, pe_nombre_destino, pe_telefono_destino, " +
                 "fc_id, pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pe_descripcion, pe_servicio_especial, " +
-                "pe_fecha_origen, pe_fecha_destino, pe_ta_es_cliente, pe_ta_es_proveedor, " +
+                "pe_fecha_origen, pe_fecha_destino, pe_ta_es_cliente, pe_ta_es_proveedor, pe_observaciones_carset, " +
                 "pe_tipo_origen, pe_tipo_destino, pe_servicio, pe_soporte, " +
                 "pe_fecha_real_destino, pe_estado) VALUES (";
 
@@ -102,22 +101,25 @@ public class CSAnyadirPedidoArchivo extends JPanel
                      }else if(cell.getColumn() == 17){
                         String especial = (cell.getContents().length() >0) ? "Otros" : "";
                         query += "'"+ cell.getContents().toUpperCase() + "', '"+ especial + "',";
+                     }else if(cell.getColumn() == 21 || cell.getColumn() == 22){
+                        String importe = cell.getContents().replace(",", ".");
+                         query += "'"+ importe + "',";
                      }else if(cell.getColumn() == 23){
                         clientID = Integer.parseInt(cell.getContents());
                      }else if(cell.getColumn() == 24){
                         proveedorID = Integer.parseInt(cell.getContents());
+                     }else if(cell.getColumn() == 25){
+                         String observaciones = (!cell.getContents().equals("")) ? cell.getContents().toUpperCase() : "";
+                         query += "'"+ observaciones + "',";
                      } else {
                         if (type == CellType.LABEL)
                         {
-                            System.out.println("I got a label "
-                            + cell.getContents());
+                            System.out.println("I got a label "+ cell.getContents());
                             query += "'"+cell.getContents().toUpperCase() + "', ";
                         }
-
                         if (type == CellType.NUMBER)
                         {
-                            System.out.println("I got a number "
-                            + Integer.parseInt(cell.getContents()));
+                            System.out.println("I got a number "+ Integer.parseInt(cell.getContents()));
                             query += "'"+Integer.parseInt(cell.getContents()) + "', ";
                         }
                      }
@@ -158,6 +160,8 @@ public class CSAnyadirPedidoArchivo extends JPanel
                                 }
                             }
                         } catch (SQLException ex) {
+                            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                            JOptionPane.showMessageDialog(null,errorFields);
                             ex.printStackTrace();
                         }
                     }
@@ -175,7 +179,14 @@ public class CSAnyadirPedidoArchivo extends JPanel
             CSDesktop.NuevoPedidoArchivo.pack();
             CSDesktop.NuevoPedidoArchivo.setVisible(false);
             e.printStackTrace();
-          } finally{
+          } catch (NumberFormatException en){
+            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue><center>Se ha producido un error al guardar los pedidos en la base de datos.<br> Compruebe el archivo con los pedidos.</center></FONT></HTML>");
+            JOptionPane.showMessageDialog(null,mensaje);
+            CSDesktop.NuevoPedidoArchivo.dispose();
+            CSDesktop.NuevoPedidoArchivo.pack();
+            CSDesktop.NuevoPedidoArchivo.setVisible(false);
+            en.printStackTrace();
+          }finally{
                 if (fis != null) {
                  fis.close();
                 }

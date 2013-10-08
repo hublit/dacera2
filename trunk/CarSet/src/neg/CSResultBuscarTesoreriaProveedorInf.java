@@ -1,7 +1,6 @@
 package neg;
 
 import com.toedter.calendar.JDateChooser;
-import data.BeanTesoreriaProveedor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;

@@ -145,7 +145,6 @@ public class CSEditarPedido extends javax.swing.JPanel
         lTarifaEspecial = new javax.swing.JLabel();
         jTextNumero = new javax.swing.JTextField();
         jComboTipoOrigen = new javax.swing.JComboBox();
-        lDescripción = new javax.swing.JLabel();
         jTextNombreOrigen = new javax.swing.JTextField();
         jTextTaEsCli = new javax.swing.JTextField();
         jTextTaEsProv = new javax.swing.JTextField();
@@ -222,9 +221,12 @@ public class CSEditarPedido extends javax.swing.JPanel
         jLabelNcamion = new javax.swing.JLabel();
         jButtonMailCliente = new javax.swing.JButton();
         jButtonMailProveedor = new javax.swing.JButton();
-        lObservaciones = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextObservaciones = new javax.swing.JTextPane();
+        lOClienteText = new javax.swing.JLabel();
+        lOCliente = new javax.swing.JLabel();
+        lOProveedor = new javax.swing.JLabel();
+        lOProveedorText = new javax.swing.JLabel();
 
         jButtonModificar.setFont(new java.awt.Font("Tahoma", 1, 11));
         jButtonModificar.setText("MODIFICAR");
@@ -436,10 +438,6 @@ public class CSEditarPedido extends javax.swing.JPanel
         jComboTipoOrigen.setForeground(new java.awt.Color(0, 0, 100));
         jComboTipoOrigen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Directivo", "Empleado", "Taller", "Particular", "Otros", " " }));
         jComboTipoOrigen.setName("jComboTipoOrigen"); // NOI18N
-
-        lDescripción.setForeground(new java.awt.Color(0, 0, 100));
-        lDescripción.setText("Descripción");
-        lDescripción.setName("lDescripción"); // NOI18N
 
         jTextNombreOrigen.setName("jTextNombreOrigen"); // NOI18N
         jTextNombreOrigen.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -798,10 +796,6 @@ public class CSEditarPedido extends javax.swing.JPanel
             }
         });
 
-        lObservaciones.setForeground(new java.awt.Color(0, 0, 100));
-        lObservaciones.setText("Observaciones");
-        lObservaciones.setName("lObservaciones"); // NOI18N
-
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         jTextObservaciones.setName("jTextObservaciones"); // NOI18N
@@ -811,6 +805,24 @@ public class CSEditarPedido extends javax.swing.JPanel
             }
         });
         jScrollPane2.setViewportView(jTextObservaciones);
+
+        lOClienteText.setForeground(new java.awt.Color(0, 0, 100));
+        lOClienteText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lOClienteText.setText("Cliente");
+        lOClienteText.setName("lOClienteText"); // NOI18N
+
+        lOCliente.setForeground(new java.awt.Color(0, 0, 100));
+        lOCliente.setText("Observaciones");
+        lOCliente.setName("lOCliente"); // NOI18N
+
+        lOProveedor.setForeground(new java.awt.Color(0, 0, 100));
+        lOProveedor.setText("Observaciones");
+        lOProveedor.setName("lOProveedor"); // NOI18N
+
+        lOProveedorText.setForeground(new java.awt.Color(0, 0, 100));
+        lOProveedorText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lOProveedorText.setText("Proveedor");
+        lOProveedorText.setName("lOProveedorText"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -829,9 +841,9 @@ public class CSEditarPedido extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                        .addComponent(lFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                        .addComponent(jDateFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                         .addGap(19, 19, 19)
                         .addComponent(lHoraRealDestino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -856,7 +868,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lDireccionOrigen)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                .addComponent(jTextDireccionOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -879,9 +891,9 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 .addGap(18, 18, 18)
                                 .addComponent(lNombreOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextNombreOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                                .addComponent(jTextNombreOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
                                 .addGap(2, 2, 2)
                                 .addComponent(lTelefonoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                                 .addGap(3, 3, 3)
@@ -896,8 +908,8 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 .addComponent(lHoraOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextCodPostalOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                            .addComponent(jTextHoraOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)))
+                            .addComponent(jTextCodPostalOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                            .addComponent(jTextHoraOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lTipoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(944, 944, 944))
@@ -953,15 +965,15 @@ public class CSEditarPedido extends javax.swing.JPanel
                                         .addGap(19, 19, 19)
                                         .addComponent(lNombreDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextNombreDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                                        .addComponent(jTextNombreDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 9, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lTelefonoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextTelefonoDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 9, Short.MAX_VALUE)
+                                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 12, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lFechaDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1022,17 +1034,21 @@ public class CSEditarPedido extends javax.swing.JPanel
                         .addComponent(lTarifaEsProv)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(lTarifaEsProv1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lOClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lOCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lOProveedorText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                            .addComponent(lOProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lDescripción)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
@@ -1254,18 +1270,25 @@ public class CSEditarPedido extends javax.swing.JPanel
                             .addComponent(jTextTaEsCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lTarifaEsProv)
                             .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lDescripción)
                             .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lTarifaEsProv1)
                             .addComponent(lTarifaCli)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lOCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lOClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lOProveedor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lOProveedorText, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1685,6 +1708,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 mail.setNombreDestino(nombreDestino);
                                 mail.setTelefonoDestino(telefonoDestino);
                                 mail.setNumero(numero);
+                                mail.setDescripcion(descripcion);
                                 Cliente client = new Cliente();
                                 mail.setClienteID(String.valueOf(client.getClienteID(cliente)));
                                 if (estado.equals("En Proceso")) {
@@ -1737,6 +1761,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                                     mail.setNombreDestino(nombreDestino);
                                     mail.setTelefonoDestino(telefonoDestino);
                                     mail.setNumero(numero);
+                                    mail.setObservaciones(observaciones);
                                     Proveedor proveed = new Proveedor();
                                     mail.setClienteID(String.valueOf(proveed.getProveedorID(proveedor)));
                                     for (int i = 0; i < CSDesktop.mailProveedor.size(); i++) {
@@ -2074,7 +2099,6 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JLabel lCliente;
     private javax.swing.JLabel lCodPostalDestino;
     private javax.swing.JLabel lCodPostalOrigen;
-    private javax.swing.JLabel lDescripción;
     private javax.swing.JLabel lDestino;
     private javax.swing.JLabel lDireccionDestino;
     private javax.swing.JLabel lDireccionOrigen;
@@ -2093,7 +2117,10 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JLabel lNombreDestino;
     private javax.swing.JLabel lNombreOrigen;
     private javax.swing.JLabel lNumero;
-    private javax.swing.JLabel lObservaciones;
+    private javax.swing.JLabel lOCliente;
+    private javax.swing.JLabel lOClienteText;
+    private javax.swing.JLabel lOProveedor;
+    private javax.swing.JLabel lOProveedorText;
     private javax.swing.JLabel lOrigen;
     private javax.swing.JLabel lPoblacionDestino;
     private javax.swing.JLabel lPoblacionOrigen;

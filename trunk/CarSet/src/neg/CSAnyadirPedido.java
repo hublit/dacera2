@@ -99,7 +99,6 @@ public class CSAnyadirPedido extends JPanel
         jTextTelefonoOrigen = new javax.swing.JTextField();
         lNombreOrigen = new javax.swing.JLabel();
         jButtonGuardar = new javax.swing.JButton();
-        lDescripción = new javax.swing.JLabel();
         lCodPostalOrigen = new javax.swing.JLabel();
         jTextCodPostalOrigen = new javax.swing.JTextField();
         lNumero = new javax.swing.JLabel();
@@ -216,9 +215,12 @@ public class CSAnyadirPedido extends JPanel
         jTextNumCamion = new javax.swing.JTextField();
         jButtonMailCliente = new javax.swing.JButton();
         jButtonMailProveedor = new javax.swing.JButton();
-        lObservaciones = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextObservaciones = new javax.swing.JTextPane();
+        lOProveedorText = new javax.swing.JLabel();
+        lOProveedor = new javax.swing.JLabel();
+        lOCliente = new javax.swing.JLabel();
+        lOClienteText = new javax.swing.JLabel();
 
         setForeground(new java.awt.Color(0, 0, 100));
 
@@ -251,10 +253,6 @@ public class CSAnyadirPedido extends JPanel
                 jButtonGuardarActionPerformed(evt);
             }
         });
-
-        lDescripción.setForeground(new java.awt.Color(0, 0, 100));
-        lDescripción.setText("Descripción");
-        lDescripción.setName("lDescripción"); // NOI18N
 
         lCodPostalOrigen.setForeground(new java.awt.Color(0, 0, 100));
         lCodPostalOrigen.setText("Cód. Postal");
@@ -791,10 +789,6 @@ public class CSAnyadirPedido extends JPanel
             }
         });
 
-        lObservaciones.setForeground(new java.awt.Color(0, 0, 100));
-        lObservaciones.setText("Observaciones");
-        lObservaciones.setName("lObservaciones"); // NOI18N
-
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         jTextObservaciones.setName("jTextObservaciones"); // NOI18N
@@ -804,6 +798,24 @@ public class CSAnyadirPedido extends JPanel
             }
         });
         jScrollPane2.setViewportView(jTextObservaciones);
+
+        lOProveedorText.setForeground(new java.awt.Color(0, 0, 100));
+        lOProveedorText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lOProveedorText.setText("Proveedor");
+        lOProveedorText.setName("lOProveedorText"); // NOI18N
+
+        lOProveedor.setForeground(new java.awt.Color(0, 0, 100));
+        lOProveedor.setText("Observaciones");
+        lOProveedor.setName("lOProveedor"); // NOI18N
+
+        lOCliente.setForeground(new java.awt.Color(0, 0, 100));
+        lOCliente.setText("Observaciones");
+        lOCliente.setName("lOCliente"); // NOI18N
+
+        lOClienteText.setForeground(new java.awt.Color(0, 0, 100));
+        lOClienteText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lOClienteText.setText("Cliente");
+        lOClienteText.setName("lOClienteText"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -1075,18 +1087,22 @@ public class CSAnyadirPedido extends JPanel
                 .addComponent(lTarifaEsProv)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addComponent(lTarifaEsProv1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lDescripción)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lOClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lOCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lOProveedorText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                    .addComponent(lOProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -1257,18 +1273,24 @@ public class CSAnyadirPedido extends JPanel
                             .addComponent(jTextTaEsCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lTarifaEsProv)
                             .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lDescripción)
                             .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lTarifaEsProv1)
                             .addComponent(lTarifaCli)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lOCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lOClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lOProveedor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lOProveedorText, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lObservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1973,11 +1995,6 @@ public class CSAnyadirPedido extends JPanel
        jTextModelo.setText(ModeloM);
     }//GEN-LAST:event_jTextModeloFocusLost
 
-    private void jTextDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDescripcionFocusLost
-       String DescripcionM = jTextDescripcion.getText().toUpperCase();
-       jTextDescripcion.setText(DescripcionM);
-    }//GEN-LAST:event_jTextDescripcionFocusLost
-
     private void jComboBoxSoporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSoporteActionPerformed
         String soporte = jComboBoxSoporte.getSelectedItem().toString();
         if (soporte.equals("Camión completo"))
@@ -2036,8 +2053,13 @@ public class CSAnyadirPedido extends JPanel
 
     private void jTextObservacionesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextObservacionesFocusLost
         String ObservacionesM = jTextObservaciones.getText().toUpperCase();
-       jTextObservaciones.setText(ObservacionesM);
-    }//GEN-LAST:event_jTextObservacionesFocusLost
+        jTextObservaciones.setText(ObservacionesM);
+}//GEN-LAST:event_jTextObservacionesFocusLost
+
+    private void jTextDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextDescripcionFocusLost
+        String DescripcionM = jTextDescripcion.getText().toUpperCase();
+        jTextDescripcion.setText(DescripcionM);
+}//GEN-LAST:event_jTextDescripcionFocusLost
  public Dimension getPreferredSize()
    {
       return new Dimension( 1100,650 );
@@ -2128,7 +2150,6 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JLabel lCliente;
     private javax.swing.JLabel lCodPostalDestino;
     private javax.swing.JLabel lCodPostalOrigen;
-    private javax.swing.JLabel lDescripción;
     private javax.swing.JLabel lDestino;
     private javax.swing.JLabel lDireccionDestino;
     private javax.swing.JLabel lDireccionOrigen;
@@ -2147,7 +2168,10 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JLabel lNombreDestino;
     private javax.swing.JLabel lNombreOrigen;
     private javax.swing.JLabel lNumero;
-    private javax.swing.JLabel lObservaciones;
+    private javax.swing.JLabel lOCliente;
+    private javax.swing.JLabel lOClienteText;
+    private javax.swing.JLabel lOProveedor;
+    private javax.swing.JLabel lOProveedorText;
     private javax.swing.JLabel lOrigen;
     private javax.swing.JLabel lPoblacionDestino;
     private javax.swing.JLabel lPoblacionOrigen;

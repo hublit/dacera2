@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.beanutils.BeanAccessLanguageException;
 
 /**
  *
@@ -296,7 +298,8 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
                 rs_cl.close();
 
  
-                for(int i = 0; i < aClientes.size(); i++){
+                for(int i = 0; i < aClientes.size(); i++)
+                {
                     String query = "SELECT distinct(fl.fl_id), fl.fl_fecha, fl.fl_num, cl.cl_id, cl.cl_nombre, " +
                                     "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, cl.cl_dias_plazo, fp.fp_tipo, " +
                                     "fl.fl_estado, fl.fl_fecha_pago, cl.cl_num_cuenta, cl.cl_dias_plazo " +
@@ -394,19 +397,25 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
            System.out.println("sumaFacturasAplazadas: "+sumaFacturasAplazadas);
 
                                 listaResultados.add(rs.getInt("cl_id"));
-                                listaResul.put(rs.getInt("cl_id"), dato);
+                               /* ArrayList aTsCl = datosInformeTesoreria(rs.getInt("cl_id"));
+                                if (aTsCl.size() > 0){
+                                    dato.setFecha((Date) aTsCl.get(0));
+                                    dato.setEmail(aTsCl.get(1).toString());
+                                    dato.setContacto(aTsCl.get(2).toString());
+                                    dato.setObservaciones(aTsCl.get(3).toString());
+                                    dato.setFormaPago(aTsCl.get(4).toString());
+                                }*/
 
+                                listaResul.put(rs.getInt("cl_id"), dato);
                             }
                         }
                     } catch (SQLException ex) {
                         Logger.getLogger(CSLanzarTesoreriaProveedorInf.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-
             } catch (SQLException ex) {
                 Logger.getLogger(CSLanzarTesoreriaClienteInf.class.getName()).log(Level.SEVERE, null, ex);
             }
-
             try {
                 CSResultBuscarTesoreriaClienteInf resultBuscarTesoreriaClInf = new CSResultBuscarTesoreriaClienteInf(listaResul,(ArrayList)listaResultados);
             } catch (UnknownHostException ex) {
@@ -476,8 +485,40 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
             //jCombPago.addItem(rs.getString("fp_tipo"))
             j++;
         }
-
      }
+
+     /**
+      * Método para recuperar los datos del la table Tesorería cliente
+      * @param cl_id
+      * @param fechaPago
+      * @param email
+      * @param contacto
+      * @param observaciones
+      * @param formaPago
+      * @return
+      * @throws SQLException
+      */
+     public ArrayList datosInformeTesoreria(int cl_id) throws SQLException
+     {
+         ArrayList aTsCl = new ArrayList();
+        System.out.println("Entra: "+ cl_id);
+        ResultSet rsTc = CSDesktop.datos.select("SELECT * FROM ts_tesoreria_informe WHERE cl_id = " + cl_id);
+
+        while(rsTc.next())
+        {
+            aTsCl.add(0, rsTc.getDate("ts_fecha"));
+            //dato.setFecha(rs.getDate("ts_fecha"));
+            aTsCl.add(1, rsTc.getString("ts_email"));
+            //dato.setEmail(rs.getString("ts_email"));
+            aTsCl.add(2, rsTc.getString("ts_contacto"));
+            //dato.setContacto(rs.getString("ts_contacto"));
+            aTsCl.add(3, rsTc.getString("ts_observaciones"));
+            //dato.setObservaciones(rs.getString("ts_observaciones"));
+            aTsCl.add(4, rsTc.getString("ts_forma_pago"));
+//            dato.setFormaPago(rs.getString("ts_forma_pago"));
+        }
+        return aTsCl;
+    }
 
     /**
      *
@@ -490,4 +531,5 @@ public class CSLanzarTesoreriaClienteInf extends javax.swing.JPanel
          JOptionPane.showMessageDialog(null,errorFields);
          jButtonBuscar.setEnabled(true);
     }
+
 }
