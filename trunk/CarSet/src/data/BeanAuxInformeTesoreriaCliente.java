@@ -4,6 +4,8 @@
  */
 package data;
 
+import java.util.Date;
+
 /**
  *
  * @author Raul
@@ -24,8 +26,16 @@ public class BeanAuxInformeTesoreriaCliente {
     
     private double importeFacturasAplazadas;
 
+    private Date fecha;
+
     private String email;
+
+    private String contacto;
+
+    private String observaciones;
     
+    private String formaPago;
+
 
     public String getNombreCliente() {
         return nombreCliente;
@@ -89,6 +99,38 @@ public class BeanAuxInformeTesoreriaCliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
 }
