@@ -45,6 +45,7 @@ public class BeanCorreoCliente {
     private String numero;
     private String clienteID;
     private String suplemento;
+    private String observaciones;
 
     public String getFecha() {
         return fecha;
@@ -317,5 +318,12 @@ public class BeanCorreoCliente {
         this.fechaRealEntrega = fechaRealEntrega;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
 
 }
