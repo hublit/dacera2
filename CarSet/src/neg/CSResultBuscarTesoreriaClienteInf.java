@@ -42,12 +42,14 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import utils.Utilidades;
 import data.BeanAuxInformeTesoreriaCliente;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import utils.TablaModeloTsClienteInf;
 
 /**
  *
- * @author depr102
+ * @author raul
  */
 public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
 {
@@ -87,16 +89,18 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
         modelo.setColumnIdentifiers(new String[] {"FACTURACIÓN CLIENTES", "F. VENCIDA", "F. PTE VENCER" , "TOTAL (F. PDTES. COBRO)" , "F. COBRADAS", "F. INCOBRABLES", "F. APLAZADAS/DEVOLUCIÓN", "FORMA DE PAGO", "EMAIL", "FECHA", "CONTACTO", "OBSERVACIONES"});
         int numeroFila = 0;
         double total = 0;
-        double totalIva = 0;
-        double totalIrpf = 0;
-        double totalImporte = 0;
-
+        ArrayList aTsCl = null;
        
         for(int i = 0; i < listaResultados.size(); i++)
         {
             System.out.println("Lista resultados: "+listaResultados.get(i));
             BeanAuxInformeTesoreriaCliente beanAuxInfTesoreria = (BeanAuxInformeTesoreriaCliente) listaResul.get(listaResultados.get(i));
-
+            int iCl = ((Integer) listaResultados.get(i)).intValue();
+            try {
+                aTsCl = datosInformeTesoreria(iCl);
+            } catch (SQLException ex) {
+                Logger.getLogger(CSResultBuscarTesoreriaClienteInf.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Object[] datosFila = new Object[modelo.getColumnCount()];
             int j = 0;
             double facturasValidadas = 0;
@@ -109,10 +113,6 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
             double facturasPteValidarR = 0;
             double pfacturasNoCobradasR = 0;
             double facturasCobradasR = 0;
-            double importeFacturasPendientesCliente = 0;
-            double importeFacturasPendientesClienteR = 0;
-            double importeFacturasCobradasCliente = 0;
-            double importeFacturasCobradasClienteR = 0;
             double facturasIncobrablesR = 0;
             double facturasAplazadasR = 0;
             String resFacturasValidadas="";
@@ -121,11 +121,8 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
             String resFacturasCobradas="";
             String resFacturasIncobrables="";
             String resFacturasAplazadas="";
-            String resImporteFacturasPendientesCliente="";
-            String resImporteFacturasCobradasCliente="";
-            String resImporteFacturasCliente="";
 
-            for (int k = 0; k < 11; k++)
+            for (int k = 0; k < 12; k++)
             {
                 if((k==0))
                 {
@@ -139,7 +136,6 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                     resFacturasValidadas = Utilidades.separadorMiles(String.valueOf(facturasValidadasR));
                     datosFila[j] = resFacturasValidadas;
                     System.out.println("Dato" + k + " " + datosFila[j]);
-
                 }
                 else if((k==2))
                 {
@@ -148,7 +144,6 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                     resFacturasPteValidar=Utilidades.separadorMiles(String.valueOf(facturasPteValidarR));
                     datosFila[j] = resFacturasPteValidar;
                     System.out.println("Dato" + k + " " + datosFila[j]);
-
                 }
                 else if((k==3))
                 {
@@ -157,7 +152,6 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                     resFacturasNoCobradas=Utilidades.separadorMiles(String.valueOf(pfacturasNoCobradasR));
                     datosFila[j] = resFacturasNoCobradas;
                     System.out.println("Dato" + k + " " + datosFila[j]);
-
                 }
                 else if((k==4))
                 {
@@ -166,7 +160,6 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                     resFacturasCobradas=Utilidades.separadorMiles(String.valueOf(facturasCobradasR));
                     datosFila[j] = resFacturasCobradas;
                     System.out.println("Dato" + k + " " + datosFila[j]);
-
                 }
                 else if((k==5))
                 {
@@ -175,7 +168,6 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                     resFacturasIncobrables=Utilidades.separadorMiles(String.valueOf(facturasIncobrablesR));
                     datosFila[j] = resFacturasIncobrables;
                     System.out.println("Dato" + k + " " + datosFila[j]);
-
                 }
                 else if((k==6))
                 {
@@ -184,18 +176,57 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                     resFacturasAplazadas=Utilidades.separadorMiles(String.valueOf(facturasAplazadasR));
                     datosFila[j] = resFacturasAplazadas;
                     System.out.println("Dato" + k + " " + datosFila[j]);
-
                 }
+                else if((k==7) && aTsCl.size() > 0)
+                {
+                    System.out.println("Size: "+aTsCl.size());
+                    datosFila[j] = aTsCl.get(0);
+                    System.out.println("Dato" + k + " " +aTsCl.get(0));
+                }
+                else if((k==8) && aTsCl.size() > 1)
+                {
+                    System.out.println("Size: "+aTsCl.size());
+                    datosFila[j] = aTsCl.get(1);
+                    System.out.println("Dato" + k + " " +aTsCl.get(1));
+                }
+                else if((k==9) && aTsCl.size() > 2)
+                {
+                    System.out.println("Size: "+aTsCl.size());
+                    String fecha = aTsCl.get(2).toString();
+                    String [] temp = null;
+                    if (!fecha.equals(""))
+                    {
+                        temp = fecha.split("\\-");
+                        String anyo=temp[0];
+                        String mes=temp[1];
+                        String dia=temp[2];
+                        String nueva = dia+"-"+mes+"-"+anyo;
+
+                        datosFila[j] = nueva;
+                    }
+                    System.out.println("Dato" + k + " " +aTsCl.get(2));
+                }
+                else if((k==10) && aTsCl.size() > 3)
+                {
+                    System.out.println("Size: "+aTsCl.size());
+                    datosFila[j] = aTsCl.get(3);
+                    System.out.println("Dato" + k + " " +aTsCl.get(3));
+                }
+                else if((k==11) && aTsCl.size() > 4)
+                {
+                    System.out.println("Size: "+aTsCl.size());
+                    datosFila[j] = aTsCl.get(4);
+                    System.out.println("Dato" + k + " " +aTsCl.get(4));
+                }
+
                 j++;
             }
-
             modelo.addRow(datosFila);
             numeroFila++;
         }
         Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
 
         modelo.addRow(datosFilaTotal);
-
        
         if (numeroFila == 0)
         {
@@ -424,9 +455,6 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
             cs3.setRightBorderColor(HSSFColor.BLACK.index);
             cs3.setBorderTop(HSSFCellStyle.BORDER_THIN);
             cs3.setTopBorderColor(HSSFColor.BLACK.index);
-            
-            
-           // ResultSet rs = CSDesktop.datos.select(consulta);
 
             crearFilaHojaExcel(libro, hoja, num_fila, cs2,cs3);
             FileOutputStream elFichero = null;
@@ -437,7 +465,7 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
             String property = "java.io.tmpdir";
             String tempDir = System.getProperty(property);
             System.out.println("OS current temporary directory is " + tempDir);
-            String file = new String("C:\\TesoreriaCliente.xls");
+            String file = new String("C:\\TesoreriaClienteInforme.xls");
             Process p = Runtime.getRuntime().exec("rundll32 SHELL32.DLL,ShellExec_RunDLL " + file);
 
         }catch (SQLException ex) {
@@ -446,15 +474,18 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
             Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }          catch (IOException ex) {
             Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
-
         }
-
     }//GEN-LAST:event_jButtonExportarActionPerformed
 
         private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
             String nueva = "";
             boolean tesoreria = false;
+            String formaPago = "";
+            String email = "";
+            String fechaPago = "";
+            String contacto = "";
+            String observaciones = "";
             int longitud = jTable1.getSelectedRowCount();
             int[] celdas = jTable1.getSelectedRows();
 
@@ -463,19 +494,25 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                 //ArrayList indices = (ArrayList) listaPedidosDefinitivos.get(celdas[i]);
                 ArrayList indices = (ArrayList) lista.get(i);
                 int cl_id = Integer.parseInt(indices.get(0).toString());
-                String formaPago = (String) jTable1.getValueAt(i, 7);
-                String email = (String) jTable1.getValueAt(i, 8);
-                String fechaPago = (String) jTable1.getValueAt(i, 9);
-                if (!fechaPago.equals("")) {
+                formaPago = (String) jTable1.getValueAt(i, 7);
+                email = (String) jTable1.getValueAt(i, 8);
+                fechaPago = (String) jTable1.getValueAt(i, 9);
+        //System.out.println("fecha: "+fechaPago+email);
+                if (fechaPago != null && !fechaPago.equals("")) {
                     String [] temp = null;
                     temp = fechaPago.split("\\-");
                     String anyo = temp[2];
                     String mes = temp[1];
                     String dia = temp[0];
                     nueva = anyo+"-"+mes+"-"+dia;
+                }else{
+                    DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    Date hoy = new Date();
+                    nueva = formatter.format(hoy);
                 }
-                String contacto = (String) jTable1.getValueAt(i, 10);
-                String observaciones = (String) jTable1.getValueAt(i, 11);
+                contacto = (String) jTable1.getValueAt(i, 10);
+                observaciones = (String) jTable1.getValueAt(i, 11);
+       //System.out.println("Observaciones: "+observaciones);
 
                 try {
                     //guardamos las modificaciones en la bd
@@ -513,7 +550,6 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
 		f.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
                 f.setColor(HSSFColor.WHITE.index);
 		cs.setFont(f);
-                //cs.setFillBackgroundColor(HSSFColor.GREEN.index);
                 cs.setFillForegroundColor(HSSFColor.GREEN.index);
                 cs.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
                 cs.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
@@ -572,7 +608,7 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
 
                 celda = fila.createCell( (short) 7);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("FORMA pAGO");
+                texto = new HSSFRichTextString("FORMA PAGO");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 7, (short) ((100 * 2) / ((double) 1 / 20)) );
 
@@ -609,8 +645,7 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                 int num_fila_aux=2;
 
                 for (int j=0;j<listaResultadosDefinitivos.size();j++)
-                {                    
-                    
+                {
                     BeanAuxInformeTesoreriaCliente beanInforme = (BeanAuxInformeTesoreriaCliente) listaResultadosDefinitivos.get(listaPedidosDefinitivos.get(j));
                     
                     // Se crea una fila dentro de la hoja
@@ -668,30 +703,9 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
-                    //Celda IVA
-                 /*   celda = fila.createCell( (short) 6);
-                    String importeFacturasCliente = String.valueOf(beanInforme.getImporteFacturasPendientesCliente());
-                    texto = new HSSFRichTextString(importeFacturasCliente);
-                    celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);
-                    //Celda IRPF
-                    celda = fila.createCell( (short) 7);
-                   String importeFacturasClienteCobradas = String.valueOf(beanInforme.getImporteFacturasCobradasCliente());
-                    texto = new HSSFRichTextString(importeFacturasClienteCobradas);
-                    celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);
-  
-                    //Celda Total
-                    celda = fila.createCell( (short) 8);
-                     String importeFacturasDiferencia = String.valueOf(beanInforme.getImporteFacturasPendientes());
-                    texto = new HSSFRichTextString(importeFacturasDiferencia);
-                    celda.setCellStyle(cs3);
-                    celda.setCellValue(texto);       */
-
                     //Se incrementa el numero de fila
                     num_fila++;
                     num_fila_aux++;
-
         }
 
         }
@@ -762,17 +776,6 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
                 jTable1.setValueAt(value, row, column);
             }
             
-            //si no cumplen esa condicion pongo las celdas en color blanco
-/*            if (table. getValueAt(row, 4). toString().equals("TOTALES"))
-            {
-                Color fondo = new  Color(244, 144, 144);
-                cell. setBackground(fondo);
-                cell. setForeground(Color. BLACK);
-                cell.setFont(new Font(null, Font.BOLD, 12));
-                col.setCellEditor(null);
-                col.setCellRenderer(null);
-            }
-*/
             return cell;
         }
 
@@ -878,6 +881,35 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
         return result;
     }
 
+         /**
+      * Método para recuperar los datos del la table Tesorería cliente
+      * @param cl_id
+      * @param fechaPago
+      * @param email
+      * @param contacto
+      * @param observaciones
+      * @param formaPago
+      * @return
+      * @throws SQLException
+      */
+     public ArrayList datosInformeTesoreria(int cl_id) throws SQLException
+     {
+         ArrayList aTsCl = new ArrayList();
+        System.out.println("Entra: "+ cl_id);
+        ResultSet rsTc = CSDesktop.datos.select("SELECT * FROM ts_tesoreria_informe WHERE cl_id = " + cl_id);
+
+        while(rsTc.next())
+        {
+            aTsCl.add(0, rsTc.getString("ts_forma_pago"));
+            aTsCl.add(1, rsTc.getString("ts_email"));
+            aTsCl.add(2, rsTc.getDate("ts_fecha"));
+            aTsCl.add(3, rsTc.getString("ts_contacto"));
+            aTsCl.add(4, rsTc.getString("ts_observaciones"));
+
+        }
+        return aTsCl;
+    }
+
 
         /**
      * Modifica los campos de la tesorería del cliente o inserta si es la primera vez
@@ -900,16 +932,16 @@ public class CSResultBuscarTesoreriaClienteInf extends javax.swing.JPanel
         if(size > 0){
             boolean rsUpdate = false;
             String query = "UPDATE ts_tesoreria_informe SET ts_fecha ='"+fechaPago+"', ts_email = '"+email+"', " +
-                           "ts_contacto = '"+contacto+", ts_observaciones = '"+observaciones+"', " +
-                           "'ts_forma_pago = '"+formaPago+"' WHERE cl:id = "+cl_id;
+                           "ts_contacto = '"+contacto+"', ts_observaciones = '"+observaciones+"', " +
+                           "ts_forma_pago = '"+formaPago+"' WHERE cl_id = "+cl_id;
             System.out.println(query);
             rsUpdate = CSDesktop.datos.manipuladorDatos(query);
 
             return rsUpdate;
         }else{
             String queryInsert =  "INSERT INTO ts_tesoreria_informe (cl_id, ts_fecha, ts_email, ts_contacto, ts_observaciones, ts_forma_pago) " +
-                            "VALUES ("+cl_id+"', '"+fechaPago+"', '"+email+"', " +
-                            "'"+observaciones+"', '"+formaPago+"'";
+                            "VALUES ("+cl_id+", '"+fechaPago+"', '"+email+"', " +
+                            "'"+contacto+"', '"+observaciones+"', '"+formaPago+"')";
             System.out.println(queryInsert);
             boolean rsInsert = CSDesktop.datos.manipuladorDatos(queryInsert);
             return rsInsert;
