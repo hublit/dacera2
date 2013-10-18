@@ -1698,6 +1698,18 @@ public class CSEditarPedido extends javax.swing.JPanel
                                 mail.setMatricula(matricula);
                                 mail.setDireccionOrigen(direccionOrigen);
                                 mail.setPoblacionOrigen(poblacionOrigen);
+                                if(finUnidoN == 1){
+                                    try {
+                                        BeanPedido pedidoOrigen = getPedidoUnido(pedido);
+                                        mail.setDireccionOrigen(pedidoOrigen.getDireccionOrigen());
+                                        mail.setPoblacionOrigen(pedidoOrigen.getPoblacionOrigen());
+                                        mail.setProvinciaOrigen(pedidoOrigen.getProvinciaOrigen());
+                                        mail.setNombreOrigen(pedidoOrigen.getNombreOrigen());
+                                        mail.setTelefonoOrigen(pedidoOrigen.getTelefonoOrigen());
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(CSAnyadirPedido.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
                                 mail.setProvinciaOrigen(provinciaOrigen);
                                 mail.setNombreOrigen(nombreOrigen);
                                 mail.setTelefonoOrigen(telefonoOrigen);
@@ -2371,7 +2383,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         //return oClient;
     }
 
-     private JComboBox getFactorCorrecion() throws SQLException
+    private JComboBox getFactorCorrecion() throws SQLException
     {
         ResultSet rs = CSDesktop.datos.select("SELECT fc_id, fc_nombre FROM fc_factores_correccion");
 
@@ -2389,7 +2401,28 @@ public class CSEditarPedido extends javax.swing.JPanel
         return jComboFactor;
      }
 
-      public void ValidarFormatos(String accion)
+    /**
+     * Buscamos la provincia de origen del pedido unido original
+     * @throws SQLException
+     */
+    private BeanPedido getPedidoUnido(String pe_num) throws SQLException
+    {
+        ResultSet rs = CSDesktop.datos.select("SELECT pe_fecha_origen, pe_direccion_origen, pe_poblacion_origen, " +
+                                              "pe_provincia_origen, pe_nombre_origen, pe_telefono_origen FROM pe_pedidos WHERE pe_num = '"+pe_num+"'");
+        BeanPedido pedidoUnido = new BeanPedido();
+        while(rs.next())
+        {
+            pedidoUnido.setFechaOrigen(rs.getString("pe_fecha_origen"));
+            pedidoUnido.setDireccionOrigen(rs.getString("pe_fecha_origen"));
+            pedidoUnido.setPoblacionOrigen(rs.getString("pe_poblacion_origen"));
+            pedidoUnido.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
+            pedidoUnido.setNombreOrigen(rs.getString("pe_nombre_origen"));
+            pedidoUnido.setTelefonoOrigen(rs.getString("pe_telefono_origen"));
+        }
+        return pedidoUnido;
+     }
+
+    public void ValidarFormatos(String accion)
     {
          jButtonModificar.setEnabled(false);
          JLabel errorFields = new JLabel(accion);
@@ -2397,7 +2430,7 @@ public class CSEditarPedido extends javax.swing.JPanel
          jButtonModificar.setEnabled(true);
     }
 
-       private void limitacionesCampos()
+    private void limitacionesCampos()
     {
        LimitadorDeDocumento limitadorDescripcion= new LimitadorDeDocumento(255);
        jTextDescripcion.setDocument(limitadorDescripcion);

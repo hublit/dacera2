@@ -15,7 +15,12 @@ public class BeanPedido
     private String modelo;
     private String observacionesCl;
     private String numUnido;
-
+    private String fechaOrigen;
+    private String direccionOrigen;
+    private String poblacionOrigen;
+    private String provinciaOrigen;
+    private String nombreOrigen;
+    private String telefonoOrigen;
 
     /**
      * @return cliente
@@ -86,6 +91,54 @@ public class BeanPedido
 
     public void setSoporte(String soporte) {
         this.soporte = soporte;
+    }
+
+    public String getFechaOrigen() {
+        return fechaOrigen;
+    }
+
+    public void setFechaOrigen(String fechaOrigen) {
+        this.fechaOrigen = fechaOrigen;
+    }
+
+    public String getDireccionOrigen() {
+        return direccionOrigen;
+    }
+
+    public void setDireccionOrigen(String direccionOrigen) {
+        this.direccionOrigen = direccionOrigen;
+    }
+
+    public String getNombreOrigen() {
+        return nombreOrigen;
+    }
+
+    public void setNombreOrigen(String nombreOrigen) {
+        this.nombreOrigen = nombreOrigen;
+    }
+
+    public String getPoblacionOrigen() {
+        return poblacionOrigen;
+    }
+
+    public void setPoblacionOrigen(String poblacionOrigen) {
+        this.poblacionOrigen = poblacionOrigen;
+    }
+
+    public String getProvinciaOrigen() {
+        return provinciaOrigen;
+    }
+
+    public void setProvinciaOrigen(String provinciaOrigen) {
+        this.provinciaOrigen = provinciaOrigen;
+    }
+
+    public String getTelefonoOrigen() {
+        return telefonoOrigen;
+    }
+
+    public void setTelefonoOrigen(String telefonoOrigen) {
+        this.telefonoOrigen = telefonoOrigen;
     }
 
 }

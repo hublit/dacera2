@@ -740,7 +740,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                 while (rs.next())
                 {
-                    if (peUnidos && !rs.getString("pe_num_unido").equals(""))
+                    if (peUnidos && rs.getString("pe_num_unido").equals("0"))
                     {
                         System.out.println("");
                     }else{
@@ -792,7 +792,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         //Celda de Destino
                         celda = fila.createCell( (short) 5);
-                        String destino = (!rs.getString("unido_destino").equals("")) ? rs.getString("unido_destino") : rs.getString("pe_servicio_destino");
+                        String destino = (rs.getString("destino_unido") != null) ? rs.getString("destino_unido") : rs.getString("pe_servicio_destino");
                         texto = new HSSFRichTextString(destino);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
@@ -901,7 +901,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         celda = fila.createCell( (short) 17);
                         //String fechaEntrega=(rs.getObject("pe_fecha_destino")).toString();
-                        String fechaEntrega = (!rs.getString("unido_destino").equals("")) ? rs.getString("unido_destino") : rs.getString("pe_fecha_destino");
+                        String fechaEntrega = (rs.getString("fecha_destino") != null) ? rs.getString("fecha_destino") : rs.getString("pe_fecha_destino");
                                  tempR = null;
                                  tempR = fechaEntrega.split("\\-");
                                  anyoR=tempR[0];
@@ -914,7 +914,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         celda = fila.createCell( (short) 18);
                         //String fechaReal=(rs.getObject("pe_fecha_real_destino")).toString();
-                        String fechaReal = (!rs.getString("unido_destino").equals("")) ? rs.getString("unido_destino") : rs.getString("pe_fecha_real_destino");
+                        String fechaReal = (rs.getString("real_destino") != null) ? rs.getString("real_destino") : rs.getString("pe_fecha_real_destino");
                                  tempR = null;
                                  tempR = fechaReal.split("\\-");
                                  anyoR=tempR[0];

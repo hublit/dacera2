@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.net.UnknownHostException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -72,7 +71,7 @@ public class CSLanzarInforme1
             String soporte = informe.getSoporte();
             String servicioEspecial = informe.getServicioEspecial();
             String sSuplemento = informe.getSuplemento();
-            dSuplemento = Double.parseDouble(sSuplemento);
+            dSuplemento = (!sSuplemento.equals("")) ? Double.parseDouble(sSuplemento) : dSuplemento;
             String numCamion = informe.getNumCamion();
             String observaciones = informe.getDescripcion();
             String estado = informe.getEstado();
