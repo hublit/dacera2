@@ -1481,7 +1481,6 @@ public class CSAnyadirPedido extends JPanel
         {
             numEnCamion = "0";
         }
-
         if(!suplemento.equals(""))
         {
             suplementoN=Double.valueOf(suplemento).doubleValue();
@@ -1761,7 +1760,6 @@ public class CSAnyadirPedido extends JPanel
                             String numPedido=Utilidades.rellenarCeros(pe_num,5);
                             String pedido=numPedido+"/"+fecha2.substring(2, 4);
 
-
                             mail.setCliente(cliente);
                             mail.setFecha(fechaHoy2);
                             mail.setNumPedido(pedido);
@@ -1776,6 +1774,18 @@ public class CSAnyadirPedido extends JPanel
                             mail.setProvinciaOrigen(provinciaOrigen);
                             mail.setNombreOrigen(nombreOrigen);
                             mail.setTelefonoOrigen(telefonoOrigen);
+                            if(finUnidoN == 1){
+                                try {
+                                    BeanPedido pedidoOrigen = getPedidoUnido(pedido);
+                                    mail.setDireccionOrigen(pedidoOrigen.getDireccionOrigen());
+                                    mail.setPoblacionOrigen(pedidoOrigen.getPoblacionOrigen());
+                                    mail.setProvinciaOrigen(pedidoOrigen.getProvinciaOrigen());
+                                    mail.setNombreOrigen(pedidoOrigen.getNombreOrigen());
+                                    mail.setTelefonoOrigen(pedidoOrigen.getTelefonoOrigen());
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(CSAnyadirPedido.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
                             mail.setDireccionDestino(direccionDestino);
                             mail.setPoblacionDestino(poblacionDestino);
                             mail.setProvinciaDestino(provinciaDestino);
@@ -1946,7 +1956,6 @@ public class CSAnyadirPedido extends JPanel
                     }
                 }
         }
-
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
@@ -1977,8 +1986,6 @@ public class CSAnyadirPedido extends JPanel
                CSDesktop.elEscritorio.add( CSDesktop.BuscaProveedor );
                CSDesktop.BuscaProveedor.setLocation(150, 50);
                CSDesktop.BuscaProveedor.setVisible( true );
-
-
     }//GEN-LAST:event_jToggleButtonProveedorActionPerformed
 
     private void jTextTaEsCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTaEsCliActionPerformed
@@ -2085,11 +2092,10 @@ public class CSAnyadirPedido extends JPanel
 
         Cliente finalCliente=new Cliente();
         String cliente = jTextCliente.getText();
-        
        
-            String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID(cliente);
+        String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID(cliente);
 
-            System.out.println(query);
+        System.out.println(query);
         CSDesktop.BuscaMailCliente = new JInternalFrame("Seleccionar Mail Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
         CSSelectMailCliente panel = new CSSelectMailCliente(query);
@@ -2333,6 +2339,27 @@ public class CSAnyadirPedido extends JPanel
             jComboFactor.setSelectedIndex(0);
             j++;
         }
+     }
+
+    /**
+     * Buscamos la provincia de origen del pedido unido original
+     * @throws SQLException
+     */
+    private BeanPedido getPedidoUnido(String pe_num) throws SQLException
+    {
+        ResultSet rs = CSDesktop.datos.select("SELECT pe_fecha_origen, pe_direccion_origen, pe_poblacion_origen, " +
+                                              "pe_provincia_origen, pe_nombre_origen, pe_telefono_origen FROM pe_pedidos WHERE pe_num = '"+pe_num+"'");
+        BeanPedido pedidoUnido = new BeanPedido();
+        while(rs.next())
+        {
+            pedidoUnido.setFechaOrigen(rs.getString("pe_fecha_origen"));
+            pedidoUnido.setDireccionOrigen(rs.getString("pe_fecha_origen"));
+            pedidoUnido.setPoblacionOrigen(rs.getString("pe_poblacion_origen"));
+            pedidoUnido.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
+            pedidoUnido.setNombreOrigen(rs.getString("pe_nombre_origen"));
+            pedidoUnido.setTelefonoOrigen(rs.getString("pe_telefono_origen"));
+        }
+        return pedidoUnido;
      }
 
     private void limitacionesCampos()
