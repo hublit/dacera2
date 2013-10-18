@@ -23,6 +23,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Group type="102" alignment="2" attributes="0">
+                      <Component id="jCheckBoxUnidos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="jButtonExportar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                       <Component id="jButtonCerrar" min="-2" max="-2" attributes="0"/>
@@ -42,6 +44,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonExportar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxUnidos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -132,6 +135,12 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExportarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxUnidos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pedidos Unidos"/>
+        <Property name="name" type="java.lang.String" value="jCheckBoxUnidos" noResource="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
