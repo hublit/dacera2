@@ -351,7 +351,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         String fechaF="";
         String fechaIFc="";
         String fechaFFc="";
-System.out.println("Inicio");
+
         String numero = new String(jTextNumFa.getText());
         if(!numero.equals(""))
         {
@@ -410,12 +410,12 @@ System.out.println("Inicio");
                        "FROM fl_factura_cliente fl, pe_pedidos pe, cl_clientes cl, fp_forma_pago fp " +
                        "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id AND fl.fl_num = pe.pe_num_fa_cl";
 
-System.out.println("Entrando");
+
         if (numFl == 0 && cliente.equals("") && 
            (fechaI.equals("") && fechaF.equals("")) &&
            (fechaIFc.equals("") && fechaFFc.equals("")))
         {
-            System.out.println("Entra");
+
             jButtonBuscar.setEnabled(false);
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar número de factura, un Cliente o período de tiempo</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);

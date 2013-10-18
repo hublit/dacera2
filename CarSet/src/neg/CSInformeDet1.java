@@ -276,70 +276,60 @@ public class CSInformeDet1 extends javax.swing.JPanel
 
             // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
             // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.
-
-            /*String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
-                " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, pe.pe_num_en_camion, "+
-                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento, pe.pe_descripcion, pe.pe_estado, "+
-                " pe.pe_fecha_origen, pe.pe_fecha_destino, pe.pe_fecha_real_destino, " +
-                " tc.tc_tarifa, sc.sc_ida_vuelta"+
-                " FROM carset.pe_pedidos pe, carset.pc_pedidos_clientes pc, carset.tc_tarifas_clientes tc,"+
-                " carset.sc_servicios_clientes sc"+
-                " WHERE pc.pe_num = pe.pe_num"+
-                " AND sc.cl_id = pc.cl_id"+
-                " AND tc.tc_fecha_hasta > pe.pe_fecha"+
-                " AND tc.tc_servicio = pe.pe_servicio"+
-                " AND tc.cl_id = pc.cl_id"+
-                " AND (tc.tc_servicio_origen = pe.pe_servicio_origen OR tc.tc_servicio_origen = pe.pe_servicio_destino)"+
-                " AND (tc.tc_servicio_destino = pe.pe_servicio_destino OR tc.tc_servicio_destino = pe.pe_servicio_origen)"+
-                " AND tc.tc_soporte = pe.pe_soporte"+
-                " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
-                " AND pc.cl_id = "+clienteID+" " +
-                " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";*/
-
             String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
                 " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, pe.pe_num_en_camion, "+
-                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento, pe.pe_descripcion, " +
-                " pe.pe_estado, pe.pe_fecha_origen, pe.pe_fecha_destino, pe.pe_fecha_real_destino "+
-                " FROM carset.pe_pedidos pe, carset.pc_pedidos_clientes pc "+
+                " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento, " +
+                "pe.pe_descripcion, pe.pe_estado, pe.pe_fecha_origen, pe.pe_fecha_destino, pe.pe_fecha_real_destino, " +
+                "pe.pe_num_unido, destino_unido, real_destino "+
+                "FROM (carset.pe_pedidos pe, carset.pc_pedidos_clientes pc) "+
+                "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino AS destino_unido, " +
+                "pe_fecha_real_destino as real_destino FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC limit 1) " +
+                "pe_unido ON pe.pe_num = pe_unido.num_unido " +
                 " WHERE pc.pe_num = pe.pe_num ";
                 if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
-                    query = query + " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
+                    query = query + " AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
                 }
                 query = query + " AND pc.cl_id = "+clienteID+" " +
                         " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
-            
             System.out.println(query);
             ResultSet rs = CSDesktop.datos.select(query);
             try {
                 while (rs.next()) {
                     // SE METEN LOS DATOS EN EL BEAN DE FACTURA PARA DESPUES RELLENAR LA TABLA AUXILIAR DE INFORMES
-                    BeanFactura nueva = new BeanFactura();
+                    if (rs.getLong("pe_num_unido") == 0 )
+                    {
+                        BeanFactura nueva = new BeanFactura();
 
-                    nueva.setNumPedido(rs.getLong("pe_num"));
-                    nueva.setFecha(rs.getString("pe_fecha"));
-                    nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
-                    nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
-                    nueva.setServicio(rs.getString("pe_servicio"));
-                    nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
-                    nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
-                    nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
-                    nueva.setDiasCampa(rs.getString("pe_dias_campa"));
-                    nueva.setFactor(rs.getString("fc_id"));
-                    nueva.setSoporte(rs.getString("pe_soporte"));
-                    nueva.setMatricula(rs.getString("pe_ve_matricula"));                   
-                    nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
-                    nueva.setSuplemento(rs.getString("pe_suplemento"));                
-                    //nueva.setTarifa(rs.getString("tc_tarifa"));
-                    //nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
-                    nueva.setNumCamion(rs.getString("pe_num_en_camion"));
-                    nueva.setDescripcion(rs.getString("pe_descripcion"));
-                    nueva.setEstado(rs.getString("pe_estado"));
-                    nueva.setFecha_prevista_recogida(rs.getString("pe_fecha_origen"));
-                    nueva.setFecha_prevista_entrega(rs.getString("pe_fecha_destino"));
-                    nueva.setFecha_real_entrega(rs.getString("pe_fecha_real_destino"));
-                    lista.add(nueva);
+                        nueva.setNumPedido(rs.getLong("pe_num"));
+                        nueva.setFecha(rs.getString("pe_fecha"));
+                        nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
+                        if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
+                            nueva.setProvinciaDestino(rs.getString("destino_unido"));
+                            nueva.setServicioDestino(rs.getString("destino_unido"));
+                            nueva.setFecha_real_entrega(rs.getString("real_destino"));
+                        }else{
+                            nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
+                            nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
+                            nueva.setFecha_real_entrega(rs.getString("pe_fecha_real_destino"));
+                        }
+                        nueva.setServicio(rs.getString("pe_servicio"));
+                        nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
+                        nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
+                        nueva.setDiasCampa(rs.getString("pe_dias_campa"));
+                        nueva.setFactor(rs.getString("fc_id"));
+                        nueva.setSoporte(rs.getString("pe_soporte"));
+                        nueva.setSuplemento(rs.getString("pe_suplemento"));
+                        nueva.setMatricula(rs.getString("pe_ve_matricula"));
+                        nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
+                        nueva.setNumCamion(rs.getString("pe_num_en_camion"));
+                        nueva.setDescripcion(rs.getString("pe_descripcion"));
+                        nueva.setEstado(rs.getString("pe_estado"));
+                        nueva.setFecha_prevista_recogida(rs.getString("pe_fecha_origen"));
+                        nueva.setFecha_prevista_entrega(rs.getString("pe_fecha_destino"));
+                        lista.add(nueva);
                     }
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -389,75 +389,64 @@ public class CSFacturaCliente extends JPanel
         }
         else
         {
-//            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
-//                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
-//                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
-//                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
-//                           "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " +
-//                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
-//                           "WHERE pe.pe_num = pc.pe_num " +
-//                           "AND sc.cl_id = pc.cl_id " +
-//                           "AND tc.tc_fecha_hasta > pe.pe_fecha " +
-//                           "AND sc.sc_fecha_hasta > pe.pe_fecha " +
-//                           "AND tc.tc_servicio = pe.pe_servicio " +
-//                           "AND tc.cl_id = pc.cl_id " +
-//                           "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " +
-//                           "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " +
-//                           "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
-//                           "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
-//                           "AND tc.tc_soporte = pe.pe_soporte " +
-//                           //"AND (pe.pe_estado = 'Activo' OR pe.pe_estado = 'En Proceso' OR pe.pe_estado = 'Entregado')"  +
-//                           "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
-//                           "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
-//                           "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
-
-                        String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
-                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
-                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
-                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
-                           "pe.pe_descripcion, sc_entrada_campa, sc_campa " +
-                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc " +
-                           "WHERE pe.pe_num = pc.pe_num " +
-                           "AND sc.cl_id = pc.cl_id " +
-                           "AND sc.sc_fecha_hasta > pe.pe_fecha " +
-                           "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
-                           "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
-                           "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
+           String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
+               "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
+               "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
+               "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
+               "pe.pe_descripcion, pe.pe_num_unido, sc_entrada_campa, sc_campa, pe_unido.destino_unido  " +
+               "FROM (pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc) " +
+               "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_servicio_destino AS destino_unido FROM pe_pedidos " +
+               "WHERE pe_fin_unido = 1 ORDER BY pe_num DESC LIMIT 1) " +
+               "pe_unido ON pe.pe_num = pe_unido.num_unido " +
+               "WHERE pe.pe_num = pc.pe_num " +
+               "AND sc.cl_id = pc.cl_id " +
+               "AND sc.sc_fecha_hasta > pe.pe_fecha " +
+               "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
+               "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
+               "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
             System.out.println(query);
             ResultSet rs = CSDesktop.datos.select(query);
             try {
                 while (rs.next()) {
-                    BeanFactura nueva = new BeanFactura();
+                    if (rs.getLong("pe_num_unido") == 0 )
+                    {
+                        BeanFactura nueva = new BeanFactura();
+                        nueva.setNumPedido(rs.getLong("pe_num"));
 
-                    nueva.setNumPedido(rs.getLong("pe_num"));
-                    nueva.setFecha(rs.getString("pe_fecha"));
-                    nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
-                    nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
-                    nueva.setServicio(rs.getString("pe_servicio"));
-                    nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
-                    nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
-                    nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
-                    nueva.setDiasCampa(rs.getString("pe_dias_campa"));
-                    nueva.setFactor(rs.getString("fc_id"));
-                    nueva.setSoporte(rs.getString("pe_soporte"));
-                    nueva.setMatricula(rs.getString("pe_ve_matricula"));
-                    nueva.setMarca(rs.getString("pe_ve_marca"));
-                    nueva.setModelo(rs.getString("pe_ve_modelo"));
-                    nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
-                    nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
-                    nueva.setSuplemento(rs.getString("pe_suplemento"));
-                    nueva.setDescripcion(rs.getString("pe_descripcion"));
-//                    nueva.setTarifa(rs.getString("tc_tarifa"));
-                    nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
-                    nueva.setNumCamion(rs.getString("pe_num_en_camion"));
-                    lista.add(nueva);
-                    pedidos.add(rs.getLong("pe_num"));
+                        nueva.setFecha(rs.getString("pe_fecha"));
+                        nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
+                        if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
+                            nueva.setProvinciaDestino(rs.getString("destino_unido"));
+                            nueva.setServicioDestino(rs.getString("destino_unido"));
+                        }else{
+                            nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
+                            nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
+                        }
+                        nueva.setServicio(rs.getString("pe_servicio"));
+                        nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
+                        nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
+                        nueva.setDiasCampa(rs.getString("pe_dias_campa"));
+                        nueva.setFactor(rs.getString("fc_id"));
+                        nueva.setSoporte(rs.getString("pe_soporte"));
+                        nueva.setMatricula(rs.getString("pe_ve_matricula"));
+                        nueva.setMarca(rs.getString("pe_ve_marca"));
+                        nueva.setModelo(rs.getString("pe_ve_modelo"));
+                        nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
+                        nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
+                        nueva.setSuplemento(rs.getString("pe_suplemento"));
+                        nueva.setDescripcion(rs.getString("pe_descripcion"));
+                        nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
+                        nueva.setNumCamion(rs.getString("pe_num_en_camion"));
+                        
+                        lista.add(nueva);
+                        pedidos.add(rs.getLong("pe_num"));
                     }
+                } 
+
             } catch (SQLException ex) {
                 Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(query);
             try {
                 try {
                     CSLanzarFactura factura = new CSLanzarFactura();
@@ -472,4 +461,5 @@ public class CSFacturaCliente extends JPanel
             }
         }
     }
+
 }

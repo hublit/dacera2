@@ -7,9 +7,11 @@ package neg;
 
 import data.BeanCliente;
 import data.BeanCorreoCliente;
+import data.BeanPedido;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.Utilidades;
@@ -37,7 +39,7 @@ import javax.swing.JOptionPane;
 public class CSEditarPedido extends javax.swing.JPanel
 {
     String consulta="";
-    /** Creates new form ABEditarPedido */
+    /** Creates new form EditarPedido */
     public CSEditarPedido(int pedido,String sql) throws SQLException
     {
         consulta=sql;
@@ -120,14 +122,10 @@ public class CSEditarPedido extends javax.swing.JPanel
         lEstado3 = new javax.swing.JLabel();
         jComboBoxSoporte = new javax.swing.JComboBox();
         jComboBoxEstado = new javax.swing.JComboBox();
-        jTextSolred = new javax.swing.JTextField();
-        lSolred = new javax.swing.JLabel();
         lTipoOrigen = new javax.swing.JLabel();
         lHoraOrigen = new javax.swing.JLabel();
         lFechaOrigen = new javax.swing.JLabel();
         lOrigen = new javax.swing.JLabel();
-        jTextViaje = new javax.swing.JTextField();
-        lViaje = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
@@ -227,6 +225,9 @@ public class CSEditarPedido extends javax.swing.JPanel
         lOCliente = new javax.swing.JLabel();
         lOProveedor = new javax.swing.JLabel();
         lOProveedorText = new javax.swing.JLabel();
+        jTextPeUnido = new javax.swing.JTextField();
+        jButtonUnirPedido = new javax.swing.JButton();
+        jCheckFinUnido = new javax.swing.JCheckBox();
 
         jButtonModificar.setFont(new java.awt.Font("Tahoma", 1, 11));
         jButtonModificar.setText("MODIFICAR");
@@ -341,12 +342,6 @@ public class CSEditarPedido extends javax.swing.JPanel
             }
         });
 
-        jTextSolred.setName("jTextSolred"); // NOI18N
-
-        lSolred.setForeground(new java.awt.Color(0, 0, 100));
-        lSolred.setText("Solred");
-        lSolred.setName("lSolred"); // NOI18N
-
         lTipoOrigen.setForeground(new java.awt.Color(0, 0, 100));
         lTipoOrigen.setText("    Tipo");
         lTipoOrigen.setName("lTipoOrigen"); // NOI18N
@@ -363,12 +358,6 @@ public class CSEditarPedido extends javax.swing.JPanel
         lOrigen.setForeground(new java.awt.Color(170, 16, 4));
         lOrigen.setText("DATOS DEL ORIGEN");
         lOrigen.setName("lOrigen"); // NOI18N
-
-        jTextViaje.setName("jTextViaje"); // NOI18N
-
-        lViaje.setForeground(new java.awt.Color(0, 0, 100));
-        lViaje.setText("Viaje");
-        lViaje.setName("lViaje"); // NOI18N
 
         jSeparator5.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator5.setName("jSeparator5"); // NOI18N
@@ -426,7 +415,7 @@ public class CSEditarPedido extends javax.swing.JPanel
         lNumero.setText("Número de pedido PE/");
         lNumero.setName("lNumero"); // NOI18N
 
-        lTarifaEspecial.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lTarifaEspecial.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lTarifaEspecial.setForeground(new java.awt.Color(170, 16, 4));
         lTarifaEspecial.setText(" TARIFA ESPECIAL ");
         lTarifaEspecial.setName("lTarifaEspecial"); // NOI18N
@@ -824,6 +813,32 @@ public class CSEditarPedido extends javax.swing.JPanel
         lOProveedorText.setText("Proveedor");
         lOProveedorText.setName("lOProveedorText"); // NOI18N
 
+        jTextPeUnido.setEditable(false);
+        jTextPeUnido.setName("jTextPeUnido"); // NOI18N
+        jTextPeUnido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextPeUnidoActionPerformed(evt);
+            }
+        });
+
+        jButtonUnirPedido.setForeground(new java.awt.Color(170, 16, 4));
+        jButtonUnirPedido.setText("UNIR PEDIDO");
+        jButtonUnirPedido.setName("jButtonUnirPedido"); // NOI18N
+        jButtonUnirPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUnirPedidoActionPerformed(evt);
+            }
+        });
+
+        jCheckFinUnido.setForeground(new java.awt.Color(0, 0, 100));
+        jCheckFinUnido.setText("Final");
+        jCheckFinUnido.setName("jCheckFinUnido"); // NOI18N
+        jCheckFinUnido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckFinUnidoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -841,21 +856,19 @@ public class CSEditarPedido extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                        .addComponent(lFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                        .addComponent(jDateFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                         .addGap(19, 19, 19)
                         .addComponent(lHoraRealDestino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextHoraRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(lSolred)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextSolred, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(lViaje)
+                        .addGap(21, 21, 21)
+                        .addComponent(jButtonUnirPedido)
+                        .addGap(10, 10, 10)
+                        .addComponent(jCheckFinUnido)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextPeUnido, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lOrigen)
@@ -1297,15 +1310,14 @@ public class CSEditarPedido extends javax.swing.JPanel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lEstado3)
                             .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lViaje)
-                            .addComponent(jTextViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lFechaRealDestino)
-                            .addComponent(jTextSolred, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lSolred)
                             .addComponent(jTextHoraRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lHoraRealDestino)
                             .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lHoraRealOrigen)))
+                            .addComponent(lHoraRealOrigen)
+                            .addComponent(jTextPeUnido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUnirPedido)
+                            .addComponent(jCheckFinUnido)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDateFechaRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1319,7 +1331,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                     .addComponent(jButtonMailProveedor)
                     .addComponent(jButtonModificar)
                     .addComponent(jLabel9))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1327,13 +1339,12 @@ public class CSEditarPedido extends javax.swing.JPanel
         System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
         int cerradoN = 0;
         int idaVueltaN = 0;
+        int finUnidoN=0;
         int diasCampaN = 0;
         String fecha2 = "";
         String fechaOrigen = "";
         String fechaDestino = "";
         String fechaRealDestino = "";
-        double solredN = 0;
-        double viajeN = 0;
         double taescliN = 0;
         double taesproN = 0;
         double suplementoN = 0;
@@ -1406,16 +1417,6 @@ public class CSEditarPedido extends javax.swing.JPanel
         String marca=new String(jTextMarca.getText());
         String modelo=new String(jTextModelo.getText());
         
-        String solred=new String(jTextSolred.getText());
-        if(!solred.equals(""))
-        {
-            solredN=Double.valueOf(solred).doubleValue();
-        }
-        String viaje=new String(jTextViaje.getText());
-        if(!viaje.equals(""))
-        {
-            viajeN=Double.valueOf(viaje).doubleValue();
-        }
         String tarifaCliente=new String(jTextTaEsCli.getText());
         if(!tarifaCliente.equals(""))
         {
@@ -1478,6 +1479,7 @@ public class CSEditarPedido extends javax.swing.JPanel
             diasCampaN=0;
         String servicioEspecial = new String(jComboBoxServicioEspecial.getSelectedItem().toString());
         boolean idaVuelta= new Boolean(jCheckBoxIdaVuelta.isSelected());
+        boolean finUnido = new Boolean(jCheckFinUnido.isSelected());
 
         if(tipoOrigen.equals("Selecciona"))
             tipoOrigen="";
@@ -1614,10 +1616,8 @@ public class CSEditarPedido extends javax.swing.JPanel
         }
         else
         {                          
-              if(!idaVuelta)
-                  idaVueltaN=0;
-              else
-                  idaVueltaN=1;
+            idaVueltaN = (!idaVuelta) ? 0 : 1;
+            finUnidoN = (!finUnido) ? 0 : 1;
 
                String query = "UPDATE pe_pedidos SET pe_fecha = '"+fecha2+"', " +
                             "pe_descripcion = '"+descripcion+"', pe_direccion_origen = '"+direccionOrigen+"', " +
@@ -1630,25 +1630,24 @@ public class CSEditarPedido extends javax.swing.JPanel
                             "pe_telefono_destino='"+telefonoDestino+"', pe_servicio = '"+servicio+"', pe_servicio_origen = '"+servicioFMad+"', " +
                             "pe_servicio_destino = '"+servicioFMadDestino+"',pe_soporte='"+soporte+"',pe_dias_campa='"+diasCampa+"', " +
                             "pe_ida_vuelta='"+idaVueltaN+"',pe_servicio_especial='"+servicioEspecial+"', pe_ve_matricula='"+matricula+"', " +
-                            "pe_ve_marca = '"+marca+"', pe_ve_modelo = '"+modelo+"', pe_solred='"+solredN+"', pe_viaje = '"+viajeN+"', " +
-                            "pe_ta_es_cliente = '"+taescliN+"', pe_ta_es_proveedor = '"+taesproN+"', pe_suplemento= '"+suplementoN+"', " +
-                            "fc_id = '"+factor+"', pe_estado = '"+estado+"' , pe_activo = '"+cerradoN+"',pe_hora_real_origen = '"+horarealOrigen+"', " +
-                            "pe_fecha_real_destino = '"+fechaRealDestino+"', pe_hora_real_destino='"+horarealDestino+"', pe_num_en_camion='"+numEnCamion+"', pe_observaciones_carset='"+observaciones+"'  WHERE pe_num = "+numero+"";
+                            "pe_ve_marca = '"+marca+"', pe_ve_modelo = '"+modelo+"', pe_ta_es_cliente = '"+taescliN+"', " +
+                            "pe_ta_es_proveedor = '"+taesproN+"', pe_suplemento= '"+suplementoN+"', fc_id = '"+factor+"', " +
+                            "pe_estado = '"+estado+"' , pe_activo = '"+cerradoN+"',pe_hora_real_origen = '"+horarealOrigen+"', " +
+                            "pe_fecha_real_destino = '"+fechaRealDestino+"', pe_hora_real_destino='"+horarealDestino+"', " +
+                            "pe_num_en_camion='"+numEnCamion+"', pe_observaciones_carset='"+observaciones+"', pe_fin_unido='"+finUnidoN+"' " +
+                            "WHERE pe_num = "+numero+"";
 
                 System.out.println(query);
                 boolean rs = CSDesktop.datos.manipuladorDatos(query);
-                System.out.println(rs);
                 if(rs)
                 {
                     jButtonModificar.setEnabled(false);
                     JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
                     JOptionPane.showMessageDialog(null,errorFields);
                     jButtonModificar.setEnabled(true);
-
                 }
                 else
                 {
-
                     String queryCli = "UPDATE pc_pedidos_clientes set cl_id= '" + clienteID + "' WHERE pe_num = " + numero + "";
                     boolean rsCli = CSDesktop.datos.manipuladorDatos(queryCli);
                     if (rsCli) {
@@ -1779,7 +1778,6 @@ public class CSEditarPedido extends javax.swing.JPanel
                     //CSDesktop.ResultPedido.dispose();
                     CSDesktop.menuBuscarPedido.setEnabled(true);
                     //CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(consulta);
-               
                 }
     }//GEN-LAST:event_jButtonModificarActionPerformed
     }
@@ -2008,6 +2006,58 @@ public class CSEditarPedido extends javax.swing.JPanel
         String ObservacionesM = jTextObservaciones.getText().toUpperCase();
         jTextObservaciones.setText(ObservacionesM);
 }//GEN-LAST:event_jTextObservacionesFocusLost
+
+    private void jTextPeUnidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPeUnidoActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jTextPeUnidoActionPerformed
+
+    private void jButtonUnirPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUnirPedidoActionPerformed
+
+        BeanPedido peUnido = new BeanPedido();
+        peUnido.setCliente(jTextCliente.getText());
+        Calendar fechaUnida = jDateFecha.getCalendar();
+
+        if (fechaUnida!=null)
+        {
+            Date fecha = fechaUnida.getTime();
+            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaU = formatoDeFecha.format(fecha);
+            peUnido.setFecha(fechaU);
+        }
+
+        peUnido.setSoporte(jComboBoxSoporte.getSelectedItem().toString());
+        peUnido.setMatricula(jTextMatricula.getText());
+        peUnido.setMarca(jTextMarca.getText());
+        peUnido.setModelo(jTextModelo.getText());
+        peUnido.setObservacionesCl(jTextDescripcion.getText());
+        peUnido.setNumUnido(jTextNumero.getText());
+        
+        try {
+
+            CSDesktop.NuevoPedido = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
+            
+            CSAnyadirPedido addPedido = new CSAnyadirPedido(peUnido);
+            CSDesktop.NuevoPedido.getContentPane().add( addPedido, BorderLayout.CENTER );
+            CSDesktop.NuevoPedido.pack();
+            CSDesktop.EditarPedido.dispose();
+            CSDesktop.elEscritorio.add( CSDesktop.NuevoPedido );
+            Dimension pantalla = CSDesktop.elEscritorio.getSize();
+            Dimension ventana = CSDesktop.NuevoPedido.getSize();
+            CSDesktop.NuevoPedido.setLocation(
+               (pantalla.width - ventana.width) / 2,
+               (pantalla.height - ventana.height) / 2);
+            CSDesktop.NuevoPedido.setVisible( true );
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonUnirPedidoActionPerformed
+
+    private void jCheckFinUnidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckFinUnidoActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jCheckFinUnidoActionPerformed
  public Dimension getPreferredSize()
    {
       return new Dimension( 1100,650 );
@@ -2019,7 +2069,9 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JButton jButtonMailCliente;
     private javax.swing.JButton jButtonMailProveedor;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonUnirPedido;
     private javax.swing.JCheckBox jCheckBoxIdaVuelta;
+    private javax.swing.JCheckBox jCheckFinUnido;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxProvinciaDestino;
     private javax.swing.JComboBox jComboBoxProvinciaOrigen;
@@ -2084,16 +2136,15 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JTextField jTextNumCamion;
     private javax.swing.JTextField jTextNumero;
     private javax.swing.JTextPane jTextObservaciones;
+    private javax.swing.JTextField jTextPeUnido;
     private javax.swing.JTextField jTextPoblacionDestino;
     private javax.swing.JTextField jTextPoblacionOrigen;
     private javax.swing.JTextField jTextProveedor;
-    private javax.swing.JTextField jTextSolred;
     private javax.swing.JTextField jTextSuplemento;
     private javax.swing.JTextField jTextTaEsCli;
     private javax.swing.JTextField jTextTaEsProv;
     private javax.swing.JTextField jTextTelefonoDestino;
     private javax.swing.JTextField jTextTelefonoOrigen;
-    private javax.swing.JTextField jTextViaje;
     private javax.swing.JToggleButton jToggleButtonCliente;
     private javax.swing.JToggleButton jToggleButtonProveedor;
     private javax.swing.JLabel lCliente;
@@ -2132,7 +2183,6 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JLabel lServicioFMad;
     private javax.swing.JLabel lServicioFMad1;
     private javax.swing.JLabel lServicioFMad2;
-    private javax.swing.JLabel lSolred;
     private javax.swing.JLabel lSoporte;
     private javax.swing.JLabel lTarifaCli;
     private javax.swing.JLabel lTarifaEsProv;
@@ -2142,7 +2192,6 @@ public class CSEditarPedido extends javax.swing.JPanel
     private javax.swing.JLabel lTelefonoOrigen;
     private javax.swing.JLabel lTipoDestino;
     private javax.swing.JLabel lTipoOrigen;
-    private javax.swing.JLabel lViaje;
     // End of variables declaration//GEN-END:variables
 
 
@@ -2244,8 +2293,6 @@ public class CSEditarPedido extends javax.swing.JPanel
                 jTextMatricula.setText(rs.getString("pe_ve_matricula"));
                 jTextMarca.setText(rs.getString("pe_ve_marca"));
                 jTextModelo.setText(rs.getString("pe_ve_modelo"));
-                jTextSolred.setText(String.valueOf(rs.getInt("pe_solred")));
-                jTextViaje.setText(String.valueOf(rs.getInt("pe_viaje")));
                 if(rs.getDouble("pe_ta_es_cliente")== -1)
                 {
                      jTextTaEsCli.setText("");
@@ -2273,6 +2320,16 @@ public class CSEditarPedido extends javax.swing.JPanel
                     jCheckBoxIdaVuelta.setSelected(true);
                 }
                 jComboBoxServicioEspecial.setSelectedItem(rs.getString("pe_servicio_especial"));
+                jTextPeUnido.setText(rs.getString("pe_num_unido"));
+                if(rs.getInt("pe_fin_unido")==0)
+                {
+                    jCheckFinUnido.setSelected(false);
+                }
+                else
+                {
+                    jCheckFinUnido.setSelected(true);
+                }
+
                 numeroFila++;
             }
             rs.close();

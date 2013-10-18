@@ -353,7 +353,7 @@ public class CSDesktop extends JFrame
                     // crear marco interno
                     NuevoPedido = new JInternalFrame("Nuevo Pedido", true, false, false, true);
                     // adjuntar panel al panel de contenido del marco interno
-                    CSAnyadirPedido panel = new CSAnyadirPedido();
+                    CSAnyadirPedido panel = new CSAnyadirPedido(null);
                     NuevoPedido.getContentPane().add(panel, BorderLayout.CENTER);
                     // establecer tama�o de marco interno en el tama�o de su contenido
                     NuevoPedido.pack();

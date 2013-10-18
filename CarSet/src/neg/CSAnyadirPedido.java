@@ -1,5 +1,5 @@
 /*
- * ABAnyadirProveedores.java
+ * AnyadirProveedores.java
  *
  * Created on 29-sep-2009, 21:04:18
  */
@@ -8,6 +8,7 @@ package neg;
 
 import data.BeanCliente;
 import data.BeanCorreoCliente;
+import data.BeanPedido;
 import java.text.ParseException;
 import utils.Utilidades;
 import utils.LimitadorDeDocumento;
@@ -35,9 +36,8 @@ public class CSAnyadirPedido extends JPanel
 {
     int clienteID = 0;
     int proveedorID = 0;
-
     
-    public CSAnyadirPedido() throws SQLException, ParseException
+    public CSAnyadirPedido(BeanPedido peUnido) throws SQLException, ParseException
     {
         CSDesktop.mailCliente.clear();
         CSDesktop.nombreCliente.clear();
@@ -89,6 +89,22 @@ public class CSAnyadirPedido extends JPanel
             }
         }
         addKeyListener(l);
+
+        //Datos para unir pedido desde la opción editar
+        if (peUnido != null)
+        {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar cal  = Calendar.getInstance();
+            cal.setTime(df.parse(peUnido.getFecha()));
+            jDateFecha.setCalendar(cal);
+            jTextCliente.setText(peUnido.getCliente());
+            jComboBoxSoporte.setSelectedItem(peUnido.getSoporte());
+            jTextMatricula.setText(peUnido.getMatricula());
+            jTextMarca.setText(peUnido.getMarca());
+            jTextModelo.setText(peUnido.getModelo());
+            jTextDescripcion.setText(peUnido.getObservacionesCl());
+            jTextPeUnido.setText(peUnido.getNumUnido());
+        }
     }   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -120,10 +136,6 @@ public class CSAnyadirPedido extends JPanel
         jTextMarca = new javax.swing.JTextField();
         lModelo = new javax.swing.JLabel();
         jTextModelo = new javax.swing.JTextField();
-        lSolred = new javax.swing.JLabel();
-        jTextSolred = new javax.swing.JTextField();
-        lViaje = new javax.swing.JLabel();
-        jTextViaje = new javax.swing.JTextField();
         lOrigen = new javax.swing.JLabel();
         lFechaOrigen = new javax.swing.JLabel();
         lHoraOrigen = new javax.swing.JLabel();
@@ -221,6 +233,9 @@ public class CSAnyadirPedido extends JPanel
         lOProveedor = new javax.swing.JLabel();
         lOCliente = new javax.swing.JLabel();
         lOClienteText = new javax.swing.JLabel();
+        jCheckBoxUnidos = new javax.swing.JCheckBox();
+        jTextPeUnido = new javax.swing.JTextField();
+        jCheckFinUnido = new javax.swing.JCheckBox();
 
         setForeground(new java.awt.Color(0, 0, 100));
 
@@ -361,18 +376,6 @@ public class CSAnyadirPedido extends JPanel
                 jTextModeloFocusLost(evt);
             }
         });
-
-        lSolred.setForeground(new java.awt.Color(0, 0, 100));
-        lSolred.setText("Solred");
-        lSolred.setName("lSolred"); // NOI18N
-
-        jTextSolred.setName("jTextSolred"); // NOI18N
-
-        lViaje.setForeground(new java.awt.Color(0, 0, 100));
-        lViaje.setText("Viaje");
-        lViaje.setName("lViaje"); // NOI18N
-
-        jTextViaje.setName("jTextViaje"); // NOI18N
 
         lOrigen.setFont(new java.awt.Font("Tahoma", 1, 11));
         lOrigen.setForeground(new java.awt.Color(170, 16, 4));
@@ -817,6 +820,33 @@ public class CSAnyadirPedido extends JPanel
         lOClienteText.setText("Cliente");
         lOClienteText.setName("lOClienteText"); // NOI18N
 
+        jCheckBoxUnidos.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jCheckBoxUnidos.setForeground(new java.awt.Color(170, 16, 4));
+        jCheckBoxUnidos.setText("  UNIR PEDIDO");
+        jCheckBoxUnidos.setName("jCheckBoxUnidos"); // NOI18N
+        jCheckBoxUnidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxUnidosActionPerformed(evt);
+            }
+        });
+
+        jTextPeUnido.setEditable(false);
+        jTextPeUnido.setName("jTextPeUnido"); // NOI18N
+        jTextPeUnido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextPeUnidoActionPerformed(evt);
+            }
+        });
+
+        jCheckFinUnido.setForeground(new java.awt.Color(0, 0, 100));
+        jCheckFinUnido.setText("Final");
+        jCheckFinUnido.setName("jCheckFinUnido"); // NOI18N
+        jCheckFinUnido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckFinUnidoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -831,21 +861,19 @@ public class CSAnyadirPedido extends JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addComponent(lFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                .addComponent(jDateFechaRealDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                 .addGap(27, 27, 27)
                 .addComponent(lHoraRealDestino)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextHoraRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(lSolred)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextSolred, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(lViaje)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBoxUnidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextViaje, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCheckFinUnido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextPeUnido, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -1076,42 +1104,10 @@ public class CSAnyadirPedido extends JPanel
                 .addGap(11, 11, 11)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(lTarifaEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lTarifaCli)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextTaEsCli, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lTarifaEsProv)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(lTarifaEsProv1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lOClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lOCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lOProveedorText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                    .addComponent(lOProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
@@ -1127,6 +1123,39 @@ public class CSAnyadirPedido extends JPanel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
+                .addGap(11, 11, 11))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lTarifaEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lTarifaCli)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextTaEsCli, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lTarifaEsProv)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(lTarifaEsProv1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextSuplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lOClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lOCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lOProveedorText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                            .addComponent(lOProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(3, 3, 3)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)))
                 .addGap(11, 11, 11))
         );
         layout.setVerticalGroup(
@@ -1282,15 +1311,16 @@ public class CSAnyadirPedido extends JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lOClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(lOProveedor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lOProveedorText, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lOProveedor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lOProveedorText, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1299,21 +1329,20 @@ public class CSAnyadirPedido extends JPanel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lEstado3)
                             .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lViaje)
-                            .addComponent(jTextViaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextSolred, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lSolred)
                             .addComponent(jTextHoraRealOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lHoraRealOrigen)
                             .addComponent(lFechaRealDestino)
                             .addComponent(jTextHoraRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lHoraRealDestino)))
+                            .addComponent(lHoraRealDestino)
+                            .addComponent(jTextPeUnido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBoxUnidos)
+                            .addComponent(jCheckFinUnido)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDateFechaRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar1)
                     .addComponent(jButtonGuardar)
@@ -1330,6 +1359,8 @@ public class CSAnyadirPedido extends JPanel
         //VARIABLES A UTILIZAR
         int cerradoN=0;
         int idaVueltaN=0;
+        int finUnidoN=0;
+        int pedidoUnidoN=0;
         int diasCampaN=0;
         String fecha2="";
         String fechaOrigen="";
@@ -1337,8 +1368,6 @@ public class CSAnyadirPedido extends JPanel
         String fechaRealDestino="";
         String fechaEntrega = "";
         String fechaRecogida = "";
-        double solredN=0;
-        double viajeN=0;
         double taescliN=-1;
         double taesproN=0;
         double suplementoN = 0;
@@ -1414,16 +1443,6 @@ public class CSAnyadirPedido extends JPanel
         String matricula=new String(jTextMatricula.getText());
         String marca=new String(jTextMarca.getText());
         String modelo=new String(jTextModelo.getText());
-        String solred=new String(jTextSolred.getText());
-        if(!solred.equals(""))
-        {
-            solredN=Double.valueOf(solred).doubleValue();
-        }
-        String viaje=new String(jTextViaje.getText());
-        if(!viaje.equals(""))
-        {
-            viajeN=Double.valueOf(viaje).doubleValue();
-        }
         String tarifaCliente=new String(jTextTaEsCli.getText());
         if(!tarifaCliente.equals(""))
         {
@@ -1478,6 +1497,12 @@ public class CSAnyadirPedido extends JPanel
         String horaRealOrigen = new String(jTextHoraRealOrigen.getText());
         String horaRealDestino = new String(jTextHoraRealDestino.getText());
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
+        boolean unirPedidos = new Boolean(jCheckBoxUnidos.isSelected());
+
+        if(!jTextPeUnido.getText().equals("")){
+            pedidoUnidoN = Integer.parseInt(jTextPeUnido.getText());
+        }
+        boolean finUnido = new Boolean(jCheckBoxUnidos.isSelected());
 
         if(tipoOrigen.equals("Selecciona"))
             tipoOrigen="";
@@ -1503,7 +1528,6 @@ public class CSAnyadirPedido extends JPanel
         if(soporte.equals("Selecciona"))
             soporte="";
 
-
         if((fechaCalendarOrigen != null) && (fechaCalendarDestino != null))
         {
             comparacion1=fechaCalendarFecha.compareTo(fechaCalendarOrigen);
@@ -1515,7 +1539,6 @@ public class CSAnyadirPedido extends JPanel
         {
              comparacion3=fechaCalendarRealDestino.compareTo(fechaCalendarOrigen);
              comparaFechaDes = Utilidades.comparaFechaString(fechaOrigen, fechaRealDestino);
-
         }
         
         if (!Utilidades.campoObligatorio(fecha2,"Fecha").equals("OK"))
@@ -1631,10 +1654,8 @@ public class CSAnyadirPedido extends JPanel
         }
         else
         {
-               if(!idaVuelta)
-                  idaVueltaN=0;
-              else
-                  idaVueltaN=1;
+            idaVueltaN = (!idaVuelta) ? 0 : 1;
+            finUnidoN = (!finUnido) ? 0 : 1;
 
               String query = "INSERT INTO pe_pedidos (pe_fecha, pe_descripcion, pe_direccion_origen, pe_poblacion_origen, " +
                                                          "pe_provincia_origen, pe_cp_origen, pe_fecha_origen, " +
@@ -1645,15 +1666,16 @@ public class CSAnyadirPedido extends JPanel
                                                          "pe_servicio_origen, pe_servicio_destino, pe_servicio_especial, " +
                                                          "pe_dias_campa,pe_ida_vuelta,pe_soporte, pe_ve_matricula,pe_ve_marca, " +
                                                          "pe_ve_modelo,pe_hora_real_origen,pe_fecha_real_destino,pe_hora_real_destino, " +
-                                                         "pe_solred, pe_viaje,pe_ta_es_cliente,pe_ta_es_proveedor,pe_suplemento, " +
-                                                         "fc_id, pe_estado,pe_activo,pe_num_en_camion,pe_observaciones_carset) VALUES (";
+                                                         "pe_ta_es_cliente,pe_ta_es_proveedor,pe_suplemento,fc_id, pe_estado, " +
+                                                         "pe_activo,pe_num_en_camion,pe_observaciones_carset, pe_num_unido, pe_fin_unido)" +
+                                                         " VALUES (";
 
               query = query + "'"+fecha2+"','"+descripcion+"','"+direccionOrigen+"','"+poblacionOrigen+"','"+provinciaOrigen+"','"+codigoPOrigen+"','"+fechaOrigen+"','"+horaOrigen+"'";
               query = query + " ,'"+tipoOrigen+"','"+nombreOrigen+"','"+telefonoOrigen+"','"+direccionDestino+"','"+poblacionDestino+"','"+provinciaDestino+"','"+codigoPDestino+"'";
               query = query + ", '"+fechaDestino+"','"+horaDestino+"','"+tipoDestino+"','"+nombreDestino+"','"+telefonoDestino+"'";
               query = query + " ,'"+servicio+"','"+servicioFMad+"','"+servicioFMadDestino+"','"+servicioEspecial+"','"+diasCampaN+"','"+idaVueltaN+"','"+soporte+"','"+matricula+"'";
-              query = query + ",'"+marca+"','"+modelo+"','"+horaRealOrigen+"','"+fechaRealDestino+"','"+horaRealDestino+"','"+solredN+"','"+viajeN+"'";
-              query = query + " ,'"+taescliN+"','"+taesproN+"','"+suplementoN+"','"+factor+"','"+estado+"','"+cerradoN+"','"+numEnCamion+"','"+observaciones+"')";
+              query = query + ",'"+marca+"','"+modelo+"','"+horaRealOrigen+"','"+fechaRealDestino+"','"+horaRealDestino+"','"+taescliN+"','"+taesproN+"'";
+              query = query + " ,'"+suplementoN+"','"+factor+"','"+estado+"','"+cerradoN+"','"+numEnCamion+"','"+observaciones+"','"+pedidoUnidoN+"','"+finUnidoN+"')";
 
 
                System.out.println(query);
@@ -1665,7 +1687,6 @@ public class CSAnyadirPedido extends JPanel
                     JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
                     JOptionPane.showMessageDialog(null,errorFields);
                     jButtonGuardar.setEnabled(true);
-
                 }
                 else
                 {
@@ -1705,7 +1726,7 @@ public class CSAnyadirPedido extends JPanel
                         }
 
                     // MANDAR MAIL AL CLIENTE
-                    if (estado.equals("En Proceso") || (estado.equals("Entregado")))
+                    if ((estado.equals("En Proceso") || (estado.equals("Entregado"))) &&  !unirPedidos)
                     {
                         String mails="\n";
                         for(int i=0;i<CSDesktop.mailCliente.size();i++)
@@ -1824,7 +1845,6 @@ public class CSAnyadirPedido extends JPanel
                             String numPedido=Utilidades.rellenarCeros(pe_num,5);
                             String pedido=numPedido+"/"+fecha2.substring(2, 4);
 
-
                             mail.setCliente(proveedor);
                             mail.setFecha(fechaHoy2);
                             mail.setNumPedido(pedido);
@@ -1855,24 +1875,74 @@ public class CSAnyadirPedido extends JPanel
                             {
                                 CSEnviarMailProveedor.main(mail,CSDesktop.mailProveedor.get(i).toString(),CSDesktop.nombreProveedor.get(i).toString());
                             }
-                             }
+                         }
+                       }
+                    }
 
+                    if(unirPedidos){
+                        int confirmado = JOptionPane.showConfirmDialog(this,"Los datos se han guardado correctamente, seha marcado la opción de unir pedidos, rellene los datos del pedido");
+
+                        if (JOptionPane.OK_OPTION == confirmado)
+                        {
+                            pedidoUnidoN = (pedidoUnidoN != 0) ? pedidoUnidoN : Integer.parseInt(pe_num);
+                            jTextPeUnido.setText(pe_num);
+                            jTextDireccionOrigen.setText("");
+                            jTextPoblacionOrigen.setText("");
+                            jComboBoxProvinciaOrigen.setSelectedItem("Selecciona");
+                            jTextCodPostalOrigen.setText("");
+                            jComboTipoOrigen.setSelectedItem("Selecciona");
+                            jTextNombreOrigen.setText("");
+                            jTextTelefonoOrigen.setText("");
+                            jDateFechaOrigen.setDate(null);
+                            jTextHoraOrigen.setText("");
+
+                            jTextDireccionDestino.setText("");
+                            jTextPoblacionDestino.setText("");
+                            jComboBoxProvinciaDestino.setSelectedItem("Selecciona");
+                            jTextCodPostalDestino.setText("");
+                            jComboTipoDestino.setSelectedItem("Selecciona");
+                            jTextNombreDestino.setText("");
+                            jTextTelefonoDestino.setText("");
+                            jDateFechaDestino.setDate(null);
+                            jTextHoraDestino.setText("");
+
+                            jComboBoxServicio.setSelectedItem("Selecciona");
+                            jComboBoxServicioFMad.setSelectedItem("Selecciona");
+                            jComboBoxServicioFMadDestino.setSelectedItem("Selecciona");
+                            jComboBoxServicioEspecial.setSelectedItem("Selecciona");
+                            jTextDiasCampa.setText("");
+                            jCheckBoxIdaVuelta.setSelected(false);
+                            jComboBoxSoporte.setSelectedItem("Selecciona");
+                            jTextNumCamion.setText("");
+                            jTextProveedor.setText("");
+                            jTextTaEsCli.setText("");
+                            jTextTaEsProv.setText("");
+                            jTextSuplemento.setText("");
+                            jTextObservaciones.setText("");
+                            jComboBoxEstado.setSelectedItem("Selecciona");
+                            jTextHoraRealOrigen.setText("");
+                            jDateFechaRealDestino.setDate(null);
+                            jCheckBoxUnidos.setSelected(false);
+
+                        }else{
+                            CSDesktop.NuevoPedido.dispose();
+                            CSDesktop.menuNuevoPedido.setEnabled(true);
                         }
-                    }
+                    }else{
+                        int confirmado = JOptionPane.showConfirmDialog(this,"Los datos se han guardado correctamente.¿Quieres introducir más pedidos para este cliente?");
 
-                    int confirmado = JOptionPane.showConfirmDialog(this,"Los datos se han guardado correctamente.¿Quieres introducir más pedidos para este cliente?");
-
-                    if (JOptionPane.OK_OPTION == confirmado)
-                    {
-                        jTextMatricula.setText("");
-                        jTextMarca.setText("");
-                        jTextModelo.setText("");
-                        jComboFactor.setSelectedItem("Ninguno");
-                    }
-                    else
-                    {
-                        CSDesktop.NuevoPedido.dispose();
-                        CSDesktop.menuNuevoPedido.setEnabled(true);
+                        if (JOptionPane.OK_OPTION == confirmado)
+                        {
+                            jTextMatricula.setText("");
+                            jTextMarca.setText("");
+                            jTextModelo.setText("");
+                            jComboFactor.setSelectedItem("Ninguno");
+                        }
+                        else
+                        {
+                            CSDesktop.NuevoPedido.dispose();
+                            CSDesktop.menuNuevoPedido.setEnabled(true);
+                        }
                     }
                 }
         }
@@ -2060,6 +2130,18 @@ public class CSAnyadirPedido extends JPanel
         String DescripcionM = jTextDescripcion.getText().toUpperCase();
         jTextDescripcion.setText(DescripcionM);
 }//GEN-LAST:event_jTextDescripcionFocusLost
+
+    private void jCheckBoxUnidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUnidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxUnidosActionPerformed
+
+    private void jTextPeUnidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPeUnidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextPeUnidoActionPerformed
+
+    private void jCheckFinUnidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckFinUnidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckFinUnidoActionPerformed
  public Dimension getPreferredSize()
    {
       return new Dimension( 1100,650 );
@@ -2071,6 +2153,8 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JButton jButtonMailCliente;
     private javax.swing.JButton jButtonMailProveedor;
     private javax.swing.JCheckBox jCheckBoxIdaVuelta;
+    private javax.swing.JCheckBox jCheckBoxUnidos;
+    private javax.swing.JCheckBox jCheckFinUnido;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxProvinciaDestino;
     private javax.swing.JComboBox jComboBoxProvinciaOrigen;
@@ -2135,16 +2219,15 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JTextField jTextNumCamion;
     private javax.swing.JTextField jTextNumero;
     private javax.swing.JTextPane jTextObservaciones;
+    private javax.swing.JTextField jTextPeUnido;
     private javax.swing.JTextField jTextPoblacionDestino;
     private javax.swing.JTextField jTextPoblacionOrigen;
     private javax.swing.JTextField jTextProveedor;
-    private javax.swing.JTextField jTextSolred;
     private javax.swing.JTextField jTextSuplemento;
     private javax.swing.JTextField jTextTaEsCli;
     private javax.swing.JTextField jTextTaEsProv;
     private javax.swing.JTextField jTextTelefonoDestino;
     private javax.swing.JTextField jTextTelefonoOrigen;
-    private javax.swing.JTextField jTextViaje;
     private javax.swing.JToggleButton jToggleButtonCliente;
     private javax.swing.JToggleButton jToggleButtonProveedor;
     private javax.swing.JLabel lCliente;
@@ -2183,7 +2266,6 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JLabel lServicioFMad;
     private javax.swing.JLabel lServicioFMad1;
     private javax.swing.JLabel lServicioFMad2;
-    private javax.swing.JLabel lSolred;
     private javax.swing.JLabel lSoporte;
     private javax.swing.JLabel lTarifaCli;
     private javax.swing.JLabel lTarifaEsProv;
@@ -2193,7 +2275,6 @@ public class CSAnyadirPedido extends JPanel
     private javax.swing.JLabel lTelefonoOrigen;
     private javax.swing.JLabel lTipoDestino;
     private javax.swing.JLabel lTipoOrigen;
-    private javax.swing.JLabel lViaje;
     // End of variables declaration//GEN-END:variables
 
  public void ValidarFormatos(String accion)

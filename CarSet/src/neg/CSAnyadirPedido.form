@@ -31,21 +31,19 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jTextHoraRealOrigen" min="-2" pref="50" max="-2" attributes="1"/>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="lFechaRealDestino" max="32767" attributes="0"/>
+              <Component id="lFechaRealDestino" pref="109" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jDateFechaRealDestino" pref="104" max="32767" attributes="0"/>
+              <Component id="jDateFechaRealDestino" pref="108" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="lHoraRealDestino" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jTextHoraRealDestino" min="-2" pref="53" max="-2" attributes="1"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="lSolred" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jTextSolred" min="-2" pref="58" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Component id="lViaje" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jCheckBoxUnidos" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextViaje" min="-2" pref="54" max="-2" attributes="0"/>
+              <Component id="jCheckFinUnido" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTextPeUnido" min="-2" pref="53" max="-2" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -311,46 +309,10 @@
               <Component id="jSeparator6" pref="977" max="32767" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Component id="lTarifaEspecial" min="-2" pref="106" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lTarifaCli" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextTaEsCli" min="-2" pref="48" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lTarifaEsProv" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextTaEsProv" min="-2" pref="49" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="lTarifaEsProv1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextSuplemento" min="-2" pref="49" max="-2" attributes="0"/>
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lOClienteText" min="-2" pref="77" max="-2" attributes="1"/>
-                  <Component id="lOCliente" min="-2" pref="92" max="-2" attributes="1"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="174" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lOProveedorText" pref="71" max="32767" attributes="1"/>
-                  <Component id="lOProveedor" alignment="0" max="32767" attributes="1"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="172" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator4" pref="978" max="32767" attributes="1"/>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator7" pref="977" max="32767" attributes="1"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
@@ -368,6 +330,45 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator8" pref="977" max="32767" attributes="1"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Component id="lTarifaEspecial" min="-2" pref="106" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lTarifaCli" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextTaEsCli" min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lTarifaEsProv" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextTaEsProv" min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="lTarifaEsProv1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextSuplemento" min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lOClienteText" min="-2" pref="77" max="-2" attributes="1"/>
+                          <Component id="lOCliente" min="-2" pref="92" max="-2" attributes="1"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="174" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lOProveedorText" pref="71" max="32767" attributes="1"/>
+                          <Component id="lOProveedor" alignment="0" max="32767" attributes="1"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" pref="172" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator7" pref="977" max="32767" attributes="1"/>
+                  </Group>
+              </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -551,16 +552,18 @@
                       <Component id="lOClienteText" min="-2" pref="9" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="lOProveedor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lOProveedorText" min="-2" pref="9" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lOProveedor" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lOProveedorText" min="-2" pref="9" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -572,15 +575,14 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lEstado3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lViaje" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextViaje" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextSolred" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lSolred" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lHoraRealOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lFechaRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lHoraRealDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextPeUnido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckBoxUnidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckFinUnido" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -590,7 +592,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator8" min="-2" pref="7" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonCancelar1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -844,34 +846,6 @@
       <Events>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextModeloFocusLost"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lSolred">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="64" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Solred"/>
-        <Property name="name" type="java.lang.String" value="lSolred" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextSolred">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="jTextSolred" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lViaje">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="64" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Viaje"/>
-        <Property name="name" type="java.lang.String" value="lViaje" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextViaje">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="jTextViaje" noResource="true"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lOrigen">
       <Properties>
@@ -2065,6 +2039,42 @@
         <Property name="text" type="java.lang.String" value="Cliente"/>
         <Property name="name" type="java.lang.String" value="lOClienteText" noResource="true"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxUnidos">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="  UNIR PEDIDO"/>
+        <Property name="name" type="java.lang.String" value="jCheckBoxUnidos" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxUnidosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextPeUnido">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="jTextPeUnido" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextPeUnidoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckFinUnido">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Final"/>
+        <Property name="name" type="java.lang.String" value="jCheckFinUnido" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckFinUnidoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
