@@ -1501,7 +1501,7 @@ public class CSAnyadirPedido extends JPanel
         if(!jTextPeUnido.getText().equals("")){
             pedidoUnidoN = Integer.parseInt(jTextPeUnido.getText());
         }
-        boolean finUnido = new Boolean(jCheckBoxUnidos.isSelected());
+        boolean finUnido = new Boolean(jCheckFinUnido.isSelected());
 
         if(tipoOrigen.equals("Selecciona"))
             tipoOrigen="";
@@ -1749,7 +1749,7 @@ public class CSAnyadirPedido extends JPanel
 
                         if(seleccion == 0)
                         {
-                            BeanCorreoCliente mail= new BeanCorreoCliente();
+                            BeanCorreoCliente mail = new BeanCorreoCliente();
 
                             //Para calcular la fecha
                             Date fechaHoy = new Date(System.currentTimeMillis());
@@ -1802,14 +1802,14 @@ public class CSAnyadirPedido extends JPanel
                             {
                                  for(int i=0;i<CSDesktop.mailCliente.size();i++)
                                  {
-                                    CSEnviarMailProceso.main(mail,CSDesktop.mailCliente.get(i).toString(),CSDesktop.nombreCliente.get(i).toString());
+                                    //CSEnviarMailProceso.main(mail,CSDesktop.mailCliente.get(i).toString(),CSDesktop.nombreCliente.get(i).toString());
                                  }
                             }
                             else if (estado.equals("Entregado"))
                             {
                                  for(int i=0;i<CSDesktop.mailCliente.size();i++)
                                  {
-                                    CSEnviarMailEntregado.main(mail,CSDesktop.mailCliente.get(i).toString(),CSDesktop.nombreCliente.get(i).toString());
+                                    //CSEnviarMailEntregado.main(mail,CSDesktop.mailCliente.get(i).toString(),CSDesktop.nombreCliente.get(i).toString());
                                  }
                             }
                         }
@@ -1931,7 +1931,6 @@ public class CSAnyadirPedido extends JPanel
                             jTextObservaciones.setText("");
                             jComboBoxEstado.setSelectedItem("Selecciona");
                             jTextHoraRealOrigen.setText("");
-                            jDateFechaRealDestino.setDate(null);
                             jCheckBoxUnidos.setSelected(false);
 
                         }else{

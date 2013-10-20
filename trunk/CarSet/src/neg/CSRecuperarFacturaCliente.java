@@ -6,9 +6,7 @@
 
 package neg;
 
-import data.BeanCliente;
 import data.Cliente;
-import data.BeanFactura;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -16,10 +14,7 @@ import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -28,16 +23,12 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import net.sf.jasperreports.engine.JRException;
-import utils.Utilidades;
-
 /**
  *
  * @author raul
  */
 public class CSRecuperarFacturaCliente extends JPanel
 {
-    
     public CSRecuperarFacturaCliente()
     {
         initComponents();
@@ -275,8 +266,6 @@ public class CSRecuperarFacturaCliente extends JPanel
             String fechaF="";
             int cl_id = 0;
 
-
-
         Calendar fechaCalendar = jDateFecha.getCalendar();
         if (fechaCalendar!=null)
         {
@@ -292,10 +281,6 @@ public class CSRecuperarFacturaCliente extends JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaF=formatoDeFecha.format(fecha);
         }
-
-           /* String query = "SELECT fl.fl_id,fl.fl_num,fl.fl_fecha,cl.cl_nombre,fl.fl_fecha_desde,fl.fl_fecha_hasta, fl_importe_total,fl_tipo " +
-                           "  FROM fl_factura_cliente fl "; */
-
             String query = "SELECT fl.fl_id,fl.fl_num,fl.fl_fecha,cl.cl_nombre,fl.fl_fecha_desde,fl.fl_fecha_hasta, fl.fl_importe_total, fl.fl_tipo " +
                            " FROM fl_factura_cliente fl, cl_clientes cl WHERE fl.cl_id = cl.cl_id ";
 
@@ -309,8 +294,7 @@ public class CSRecuperarFacturaCliente extends JPanel
                 cliente = new String(jTextCliente.getText());
                 Cliente client = new Cliente();
                 cl_id = client.getClienteID(cliente);
-                
-                
+
             }
             if (numFactura != 0)
             {
@@ -336,14 +320,12 @@ public class CSRecuperarFacturaCliente extends JPanel
         } catch (IOException ex) {
             Logger.getLogger(CSRecuperarFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButtonPrevActionPerformed
 
  public Dimension getPreferredSize()
    {
       return new Dimension(700,400 );
    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonPrev;
@@ -370,5 +352,4 @@ public class CSRecuperarFacturaCliente extends JPanel
          jButtonPrev.setEnabled(true);
     }
 
-   
 }
