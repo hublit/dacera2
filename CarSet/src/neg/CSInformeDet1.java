@@ -283,7 +283,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 "pe.pe_num_unido, destino_unido, real_destino "+
                 "FROM (carset.pe_pedidos pe, carset.pc_pedidos_clientes pc) "+
                 "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino AS destino_unido, " +
-                "pe_fecha_real_destino as real_destino FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC limit 1) " +
+                "pe_fecha_real_destino as real_destino FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC) " +
                 "pe_unido ON pe.pe_num = pe_unido.num_unido " +
                 " WHERE pc.pe_num = pe.pe_num ";
                 if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {

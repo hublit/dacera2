@@ -740,7 +740,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                 while (rs.next())
                 {
-                    if (peUnidos && rs.getString("pe_num_unido").equals("0"))
+                    if (peUnidos && !rs.getString("pe_num_unido").equals("0"))
                     {
                         System.out.println("");
                     }else{

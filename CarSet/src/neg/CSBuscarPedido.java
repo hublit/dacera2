@@ -676,7 +676,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 " cl.co_id, pc.cl_id, p.pe_num_unido, destino_unido, fecha_destino, real_destino "+
                 " FROM (pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc)" +
                 " LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino AS destino_unido, pe_fecha_destino AS fecha_destino," +
-                " pe_fecha_real_destino as real_destino FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC limit 1)" +
+                " pe_fecha_real_destino as real_destino FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC)" +
                 " pe_unido ON p.pe_num = pe_unido.num_unido " +
                 " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +
                 " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " +
