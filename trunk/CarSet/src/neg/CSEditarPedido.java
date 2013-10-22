@@ -1667,68 +1667,73 @@ public class CSEditarPedido extends javax.swing.JPanel
                         jButtonModificar.setEnabled(true);
                     }
                     //Se manda el mail de confirmacion
-                    if (estado.equals("En Proceso") || (estado.equals("Entregado"))) {
-                        String mails = "\n";
-                        if (CSDesktop.mailCliente.size() > 0) {
-                            for (int i = 0; i < CSDesktop.mailCliente.size(); i++) {
-                                mails = mails + CSDesktop.mailCliente.get(i);
-                                if (i != CSDesktop.mailCliente.size() - 1) {
-                                    mails = mails + "\n";
-                                }
-                            }
-                            int seleccion = JOptionPane.showOptionDialog(CSEditarPedido.this, "¿Quieres mandar un mail al cliente " + mails + "?", "Atención", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"SI", "NO"}, "SI");
-                            if (seleccion == 0) {
-                                BeanCorreoCliente mail = new BeanCorreoCliente();
-                                //Para calcular la fecha
-                                Date fechaHoy = new Date(System.currentTimeMillis());
-                                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
-                                String fechaHoy2 = formatoDeFecha.format(fechaHoy);
-                                //Para el numero de pedido
-                                String numPedido = Utilidades.rellenarCeros(numero, 5);
-                                String pedido = numPedido + "/" + fecha2.substring(2, 4);
-                                mail.setCliente(cliente);
-                                mail.setFecha(fechaHoy2);
-                                mail.setNumPedido(pedido);
-                                mail.setSoporte(soporte);
-                                mail.setFechaEntrega(fechaEntrega);
-                                mail.setFechaRecogida(fechaRecogida);
-                                mail.setFechaRealEntrega(fechaRealDestino);
-                                mail.setMarca(marca);
-                                mail.setModelo(modelo);
-                                mail.setMatricula(matricula);
-                                mail.setDireccionOrigen(direccionOrigen);
-                                mail.setPoblacionOrigen(poblacionOrigen);
-                                if(finUnidoN == 1){
-                                    try {
-                                        BeanPedido pedidoOrigen = getPedidoUnido(pedido);
-                                        mail.setDireccionOrigen(pedidoOrigen.getDireccionOrigen());
-                                        mail.setPoblacionOrigen(pedidoOrigen.getPoblacionOrigen());
-                                        mail.setProvinciaOrigen(pedidoOrigen.getProvinciaOrigen());
-                                        mail.setNombreOrigen(pedidoOrigen.getNombreOrigen());
-                                        mail.setTelefonoOrigen(pedidoOrigen.getTelefonoOrigen());
-                                    } catch (SQLException ex) {
-                                        Logger.getLogger(CSAnyadirPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    if (estado.equals("En Proceso") || (estado.equals("Entregado"))) 
+                    {
+                        if(finUnido)
+                        {
+                            String mails = "\n";
+                            if (CSDesktop.mailCliente.size() > 0) {
+                                for (int i = 0; i < CSDesktop.mailCliente.size(); i++) {
+                                    mails = mails + CSDesktop.mailCliente.get(i);
+                                    if (i != CSDesktop.mailCliente.size() - 1) {
+                                        mails = mails + "\n";
                                     }
                                 }
-                                mail.setProvinciaOrigen(provinciaOrigen);
-                                mail.setNombreOrigen(nombreOrigen);
-                                mail.setTelefonoOrigen(telefonoOrigen);
-                                mail.setDireccionDestino(direccionDestino);
-                                mail.setPoblacionDestino(poblacionDestino);
-                                mail.setProvinciaDestino(provinciaDestino);
-                                mail.setNombreDestino(nombreDestino);
-                                mail.setTelefonoDestino(telefonoDestino);
-                                mail.setNumero(numero);
-                                mail.setDescripcion(descripcion);
-                                Cliente client = new Cliente();
-                                mail.setClienteID(String.valueOf(client.getClienteID(cliente)));
-                                if (estado.equals("En Proceso")) {
-                                    for (int i = 0; i < CSDesktop.mailCliente.size(); i++) {
-                                        CSEnviarMailProceso.main(mail, CSDesktop.mailCliente.get(i).toString(), CSDesktop.nombreCliente.get(i).toString());
+                                int seleccion = JOptionPane.showOptionDialog(CSEditarPedido.this, "¿Quieres mandar un mail al cliente " + mails + "?", "Atención", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"SI", "NO"}, "SI");
+                                if (seleccion == 0) {
+                                    BeanCorreoCliente mail = new BeanCorreoCliente();
+                                    //Para calcular la fecha
+                                    Date fechaHoy = new Date(System.currentTimeMillis());
+                                    SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+                                    String fechaHoy2 = formatoDeFecha.format(fechaHoy);
+                                    //Para el numero de pedido
+                                    String numPedido = Utilidades.rellenarCeros(numero, 5);
+                                    String pedido = numPedido + "/" + fecha2.substring(2, 4);
+                                    mail.setCliente(cliente);
+                                    mail.setFecha(fechaHoy2);
+                                    mail.setNumPedido(pedido);
+                                    mail.setSoporte(soporte);
+                                    mail.setFechaEntrega(fechaEntrega);
+                                    mail.setFechaRecogida(fechaRecogida);
+                                    mail.setFechaRealEntrega(fechaRealDestino);
+                                    mail.setMarca(marca);
+                                    mail.setModelo(modelo);
+                                    mail.setMatricula(matricula);
+                                    mail.setDireccionOrigen(direccionOrigen);
+                                    mail.setPoblacionOrigen(poblacionOrigen);
+                                    if(finUnidoN == 1){
+                                        try {
+                                            BeanPedido pedidoOrigen = getPedidoUnido(jTextPeUnido.getText());
+                                            mail.setDireccionOrigen(pedidoOrigen.getDireccionOrigen());
+                                            mail.setPoblacionOrigen(pedidoOrigen.getPoblacionOrigen());
+                                            mail.setProvinciaOrigen(pedidoOrigen.getProvinciaOrigen());
+                                            mail.setNombreOrigen(pedidoOrigen.getNombreOrigen());
+                                            mail.setTelefonoOrigen(pedidoOrigen.getTelefonoOrigen());
+                                            mail.setObservaciones(pedidoOrigen.getObservacionesCl());
+                                        } catch (SQLException ex) {
+                                            Logger.getLogger(CSAnyadirPedido.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
                                     }
-                                } else if (estado.equals("Entregado")) {
-                                    for (int i = 0; i < CSDesktop.mailCliente.size(); i++) {
-                                        CSEnviarMailEntregado.main(mail, CSDesktop.mailCliente.get(i).toString(), CSDesktop.nombreCliente.get(i).toString());
+                                    mail.setProvinciaOrigen(provinciaOrigen);
+                                    mail.setNombreOrigen(nombreOrigen);
+                                    mail.setTelefonoOrigen(telefonoOrigen);
+                                    mail.setDireccionDestino(direccionDestino);
+                                    mail.setPoblacionDestino(poblacionDestino);
+                                    mail.setProvinciaDestino(provinciaDestino);
+                                    mail.setNombreDestino(nombreDestino);
+                                    mail.setTelefonoDestino(telefonoDestino);
+                                    mail.setNumero(numero);
+                                    mail.setDescripcion(descripcion);
+                                    Cliente client = new Cliente();
+                                    mail.setClienteID(String.valueOf(client.getClienteID(cliente)));
+                                    if (estado.equals("En Proceso")) {
+                                        for (int i = 0; i < CSDesktop.mailCliente.size(); i++) {
+                                            CSEnviarMailProceso.main(mail, CSDesktop.mailCliente.get(i).toString(), CSDesktop.nombreCliente.get(i).toString());
+                                        }
+                                    } else if (estado.equals("Entregado")) {
+                                        for (int i = 0; i < CSDesktop.mailCliente.size(); i++) {
+                                            CSEnviarMailEntregado.main(mail, CSDesktop.mailCliente.get(i).toString(), CSDesktop.nombreCliente.get(i).toString());
+                                        }
                                     }
                                 }
                             }

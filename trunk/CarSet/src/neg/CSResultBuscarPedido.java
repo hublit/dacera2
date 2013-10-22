@@ -778,7 +778,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         //Celda de Servicio
                         celda = fila.createCell( (short) 3);
-                        String servicio=rs.getString("pe_servicio");
+                        String servicio=(!peUnidos) ? rs.getString("pe_servicio") : "";
                         texto = new HSSFRichTextString(servicio);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
@@ -827,7 +827,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         //Celda del Proveedor
                         celda = fila.createCell( (short) 10);
-                        String proveedor=rs.getString("pr_nombre_fiscal");
+                        String proveedor=(!peUnidos) ? rs.getString("pr_nombre_fiscal") : "";
                         texto = new HSSFRichTextString(proveedor);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
@@ -853,8 +853,9 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                         celda = fila.createCell( (short) 12);
                         style.setDataFormat(format.getFormat("00.00"));
                         celda.setCellStyle(style);
-                        celda.setCellValue(rs.getDouble("pe_ta_es_proveedor"));
-
+                        if(!peUnidos){
+                            celda.setCellValue(rs.getDouble("pe_ta_es_proveedor"));
+                        }
                         celda = fila.createCell( (short) 13);
                         style.setDataFormat(format.getFormat("##.00"));
                         //style.setDataFormat(format.getFormat("00.00"));
@@ -934,7 +935,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         //Celda del número de Factura de Proveedor
                         celda = fila.createCell( (short) 20);
-                        String faProveedor=rs.getString("pe_num_fa_pr");
+                        String faProveedor=(!peUnidos) ? rs.getString("pe_num_fa_pr") : "";
                         texto = new HSSFRichTextString(faProveedor);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
