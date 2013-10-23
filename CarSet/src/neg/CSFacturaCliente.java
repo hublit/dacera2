@@ -393,9 +393,9 @@ public class CSFacturaCliente extends JPanel
                "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
                "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
-               "pe.pe_descripcion, pe.pe_num_unido, sc_entrada_campa, sc_campa, pe_unido.destino_unido, pe_unido.estado   " +
+               "pe.pe_descripcion, pe.pe_num_unido, sc_entrada_campa, sc_campa, pe_unido.destino_unido, pe_unido.estado  " +
                "FROM (pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc) " +
-               "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_servicio_destino AS destino_unido, pe_estado AS estado, " +
+               "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_servicio_destino AS destino_unido, pe_estado AS estado " +
                "FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC) " +
                "pe_unido ON pe.pe_num = pe_unido.num_unido " +
                "WHERE pe.pe_num = pc.pe_num " +

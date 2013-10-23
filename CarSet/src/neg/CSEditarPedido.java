@@ -1699,24 +1699,40 @@ public class CSEditarPedido extends javax.swing.JPanel
                                     mail.setMarca(marca);
                                     mail.setModelo(modelo);
                                     mail.setMatricula(matricula);
-                                    mail.setDireccionOrigen(direccionOrigen);
-                                    mail.setPoblacionOrigen(poblacionOrigen);
                                     if(finUnidoN == 1){
                                         try {
-                                            BeanPedido pedidoOrigen = getPedidoUnido(jTextPeUnido.getText());
-                                            mail.setDireccionOrigen(pedidoOrigen.getDireccionOrigen());
-                                            mail.setPoblacionOrigen(pedidoOrigen.getPoblacionOrigen());
-                                            mail.setProvinciaOrigen(pedidoOrigen.getProvinciaOrigen());
-                                            mail.setNombreOrigen(pedidoOrigen.getNombreOrigen());
-                                            mail.setTelefonoOrigen(pedidoOrigen.getTelefonoOrigen());
-                                            mail.setObservaciones(pedidoOrigen.getObservacionesCl());
-                                        } catch (SQLException ex) {
+                                        BeanPedido pedidoOrigen = getPedidoUnido(jTextPeUnido.getText());
+                                        numPedido = Utilidades.rellenarCeros(pedidoOrigen.getNum(), 5);
+                                        pedido = numPedido + "/" + fecha2.substring(2, 4);
+                                        mail.setNumPedido(pedido);
+                                        String fechaOrigenUnido = "";
+                                        if (pedidoOrigen!=null)
+                                        {
+                                            SimpleDateFormat formatoOrigenFecha = new SimpleDateFormat("yyyy-MM-dd");
+                                            Date fechaODestino=formatoOrigenFecha.parse(pedidoOrigen.getFechaOrigen());
+                                            SimpleDateFormat formatoOrigenFecha2 = new SimpleDateFormat("dd-MM-yyyy");
+                                            fechaOrigenUnido = formatoOrigenFecha2.format(fechaODestino);
+                                        }
+                                        mail.setFechaRecogida(fechaOrigenUnido);
+                                        mail.setDireccionOrigen(pedidoOrigen.getDireccionOrigen());
+                                        mail.setPoblacionOrigen(pedidoOrigen.getPoblacionOrigen());
+                                        mail.setProvinciaOrigen(pedidoOrigen.getProvinciaOrigen());
+                                        mail.setNombreOrigen(pedidoOrigen.getNombreOrigen());
+                                        mail.setTelefonoOrigen(pedidoOrigen.getTelefonoOrigen());
+                                        mail.setObservaciones(pedidoOrigen.getObservacionesCl());
+                                        mail.setTarifaEspecialCliente(pedidoOrigen.getTarifa());
+                                    } catch (ParseException ex) {
+                                        Logger.getLogger(CSEditarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (SQLException ex) {
                                             Logger.getLogger(CSAnyadirPedido.class.getName()).log(Level.SEVERE, null, ex);
                                         }
+                                    }else{
+                                        mail.setDireccionOrigen(direccionOrigen);
+                                        mail.setPoblacionOrigen(poblacionOrigen);
+                                        mail.setProvinciaOrigen(provinciaOrigen);
+                                        mail.setNombreOrigen(nombreOrigen);
+                                        mail.setTelefonoOrigen(telefonoOrigen);
                                     }
-                                    mail.setProvinciaOrigen(provinciaOrigen);
-                                    mail.setNombreOrigen(nombreOrigen);
-                                    mail.setTelefonoOrigen(telefonoOrigen);
                                     mail.setDireccionDestino(direccionDestino);
                                     mail.setPoblacionDestino(poblacionDestino);
                                     mail.setProvinciaDestino(provinciaDestino);
@@ -2412,17 +2428,19 @@ public class CSEditarPedido extends javax.swing.JPanel
      */
     private BeanPedido getPedidoUnido(String pe_num) throws SQLException
     {
-        ResultSet rs = CSDesktop.datos.select("SELECT pe_fecha_origen, pe_direccion_origen, pe_poblacion_origen, " +
-                                              "pe_provincia_origen, pe_nombre_origen, pe_telefono_origen FROM pe_pedidos WHERE pe_num = '"+pe_num+"'");
+        ResultSet rs = CSDesktop.datos.select("SELECT pe_num, pe_fecha_origen, pe_direccion_origen, pe_poblacion_origen, pe_provincia_origen, " +
+                                              "pe_nombre_origen, pe_telefono_origen, pe_ta_es_cliente FROM pe_pedidos WHERE pe_num = '"+pe_num+"'");
         BeanPedido pedidoUnido = new BeanPedido();
         while(rs.next())
         {
+            pedidoUnido.setNum(rs.getString("pe_num"));
             pedidoUnido.setFechaOrigen(rs.getString("pe_fecha_origen"));
-            pedidoUnido.setDireccionOrigen(rs.getString("pe_fecha_origen"));
+            pedidoUnido.setDireccionOrigen(rs.getString("pe_direccion_origen"));
             pedidoUnido.setPoblacionOrigen(rs.getString("pe_poblacion_origen"));
             pedidoUnido.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
             pedidoUnido.setNombreOrigen(rs.getString("pe_nombre_origen"));
             pedidoUnido.setTelefonoOrigen(rs.getString("pe_telefono_origen"));
+            pedidoUnido.setTarifa(rs.getString("pe_ta_es_cliente"));
         }
         return pedidoUnido;
      }
