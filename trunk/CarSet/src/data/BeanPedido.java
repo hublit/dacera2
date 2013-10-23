@@ -7,6 +7,7 @@ package data;
  */
 public class BeanPedido
 {
+    private String num;
     private String cliente;
     private String fecha;
     private String soporte;
@@ -21,6 +22,15 @@ public class BeanPedido
     private String provinciaOrigen;
     private String nombreOrigen;
     private String telefonoOrigen;
+    private String tarifa;
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
+    }
 
     /**
      * @return cliente
@@ -140,5 +150,15 @@ public class BeanPedido
     public void setTelefonoOrigen(String telefonoOrigen) {
         this.telefonoOrigen = telefonoOrigen;
     }
+
+    public String getTarifa() {
+        return tarifa;
+    }
+
+    public void setTarifa(String tarifa) {
+        this.tarifa = tarifa;
+    }
+
+
 
 }
