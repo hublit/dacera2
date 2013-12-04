@@ -78,7 +78,6 @@ public class Cliente
       int registros = 0;
       try
       {
-
          ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM cl_clientes WHERE  cl_nombre like  '%"+condicion+"%' ");
 
          rsTotal.next();
@@ -93,7 +92,7 @@ public class Cliente
       Object [][] data = new Object[registros][5];
       try
       {
-         ResultSet rs = CSDesktop.datos.select("SELECT cl_id, cl_nombre,cl_DNI_CIF  FROM cl_clientes WHERE  cl_nombre like  '%"+condicion+"%'  ORDER BY cl_nombre");
+         ResultSet rs = CSDesktop.datos.select("SELECT cl_id, cl_nombre, cl_DNI_CIF  FROM cl_clientes WHERE  cl_nombre like  '%"+condicion+"%' ORDER BY cl_nombre");
 
          int i = 0;
          while(rs.next())

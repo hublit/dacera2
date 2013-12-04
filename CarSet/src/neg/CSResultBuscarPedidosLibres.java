@@ -87,15 +87,16 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
 
                     campos.setNumPedido(rs.getLong("pe_num"));
                     campos.setFecha(rs.getString("pe_fecha"));                                                                                                                                                                                                                                                
-                    campos.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));                                        
+                    campos.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
+                    campos.setMatricula(rs.getString("pe_ve_matricula"));
                     campos.setDescripcion(rs.getString("pe_descripcion"));                                                            
                     lista.add(campos);
                     pedidos.add(rs.getLong("pe_num"));
 
                 datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                for (int k = 0; k < 5; k++) {
-                    if (k==0 ||k==1 || k == 2 || k==3 || k == 4) {
+                for (int k = 0; k < 20; k++) {
+                    if (k==0 ||k==1 || k == 2 || k == 3 || k == 11|| k==12 || k == 19) {
                         if(k==1)
                         {
                              String fecha=(rs.getObject(k+1)).toString();
@@ -108,7 +109,14 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
 
                              datosFila[j] = nueva;
                         }
-                       
+                        else if(k==3){
+                            if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
+                                datosFila[j] = rs.getString("destino_unido");
+                            }
+                            else{
+                                datosFila[j] = rs.getObject(k + 1);
+                            }
+                        }
                         else
                         {
                             datosFila[j] = rs.getObject(k + 1);

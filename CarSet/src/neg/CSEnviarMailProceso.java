@@ -11,15 +11,9 @@ package neg;
  */
 import data.BeanCorreoCliente;
 
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.PasswordAuthentication;
@@ -41,8 +35,6 @@ public class CSEnviarMailProceso
      * @param args Se ignoran.
      */
 
-   
-
     public static void main(BeanCorreoCliente mail,String email, String nombre)
     {
         String tarifa="";
@@ -52,20 +44,6 @@ public class CSEnviarMailProceso
 
         try
         {
-
-            /*String query="SELECT DISTINCT"+
-            " pe.pe_num,pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio," +
-            " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa,"+
-            " pe.pe_ida_vuelta,pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_modelo," +
-            " pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor,pe.pe_suplemento,pe.pe_num_en_camion, pe.pe_descripcion," +
-            " tc.tc_tarifa, sc_entrada_campa, sc_campa" +
-            " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc" +
-            " WHERE pe.pe_num = pc.pe_num AND sc.cl_id = pc.cl_id AND tc.tc_fecha_hasta > pe.pe_fecha" +
-            " AND sc.sc_fecha_hasta > pe.pe_fecha AND tc.tc_servicio = pe.pe_servicio AND tc.cl_id = pc.cl_id" +
-            " AND (tc.tc_servicio_origen = pe.pe_servicio_origen OR tc.tc_servicio_origen = pe.pe_servicio_destino)" +
-            " AND (tc.tc_servicio_destino = pe.pe_servicio_destino OR tc.tc_servicio_destino = pe.pe_servicio_origen)" +
-            "AND tc.tc_soporte = pe.pe_soporte AND pe.pe_num="+mail.getNumero();*/
-
              String query="SELECT DISTINCT"+
             " pe.pe_num,pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio," +
             " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa,"+
@@ -99,29 +77,21 @@ public class CSEnviarMailProceso
 
             if(rs_mail != null)
             {
-                //Se recoge el mail y el contacto del cliente
-                /*String queryContacto="SELECT * FROM CC_CONTACTOS_CLIENTE WHERE CL_ID="+mail.getClienteID()+" LIMIT 1";
-                ResultSet rsContacto = CSDesktop.datos.select(queryContacto);
-
-                while (rsContacto.next())  {
-                    nombre=rsContacto.getString("cc_nombre");
-                    email=rsContacto.getString("cc_email");
-                }*/
-
-           
                 // Propiedades de la conexión
                 Properties props = new Properties();
                 props.put("mail.transport.protocol","smtp");
-                props.put("mail.smtp.host", "smtp.e.telefonica.net");
+                //props.put("mail.smtp.host", "smtp.e.telefonica.net");
+                props.put("mail.smtp.host", "smtp.office365.com");
                 //props.put("mail.smtp.host", "localhost");
                 //props.put("mail.smtp.starttls.enable", "false");
-                props.put("mail.smtp.port", "25");
+                props.put("mail.smtp.starttls.enable", "true");
+                //props.put("mail.smtp.port", "25");
+                props.put("mail.smtp.port", "587");
                 props.put("mail.smtp.auth", "true");
 
                 SMTPAuthenticator auth = new SMTPAuthenticator();
                 Session mailSession = Session.getDefaultInstance(props, auth);
                 Transport transport = mailSession.getTransport();
-
 
                 // Construimos el mensaje
                 MimeMessage message = new MimeMessage(mailSession);
@@ -135,7 +105,6 @@ public class CSEnviarMailProceso
                 message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
                 String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
 
-           
                 String htmlText = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1//EN' 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'>" +
                     "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='es'><head>" +
                     "<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-15' /></head><body>" +
@@ -493,10 +462,6 @@ public class CSEnviarMailProceso
 
                 }*/
 
-
-
-
-
                 htmlText = htmlText +"<tr><td><font face='Helvetica'><b>&nbsp;TOTAL</b></font></td><td align='right'><font face='Helvetica'><b>&nbsp;"+importeTotal+" &euro;</b></font></td></tr>";
                 htmlText = htmlText +"</table><br>";
                 htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'> Estos precios no incluyen I.V.A </font></td></tr>";
@@ -553,7 +518,8 @@ public class CSEnviarMailProceso
         @Override
         public PasswordAuthentication getPasswordAuthentication() {
            String username = "operaciones@carset.e.telefonica.net";
-            String password = "912686953";
+            //String password = "912686953";
+            String password = "CAR11set";
            return new PasswordAuthentication(username, password);
         }
     }

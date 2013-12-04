@@ -1791,7 +1791,7 @@ public class CSAnyadirPedido extends JPanel
                                         mail.setProvinciaOrigen(pedidoOrigen.getProvinciaOrigen());
                                         mail.setNombreOrigen(pedidoOrigen.getNombreOrigen());
                                         mail.setTelefonoOrigen(pedidoOrigen.getTelefonoOrigen());
-                                        mail.setObservaciones(pedidoOrigen.getObservacionesCl());
+                                        mail.setDescripcion(pedidoOrigen.getObservacionesCl());
                                         mail.setTarifaEspecialCliente(pedidoOrigen.getTarifa());
                                     } catch (ParseException ex) {
                                         Logger.getLogger(CSAnyadirPedido.class.getName()).log(Level.SEVERE, null, ex);
@@ -1805,6 +1805,7 @@ public class CSAnyadirPedido extends JPanel
                                     mail.setNombreOrigen(nombreOrigen);
                                     mail.setTelefonoOrigen(telefonoOrigen);
                                     mail.setFechaRecogida(fechaRecogida);
+                                    mail.setDescripcion(descripcion);
                                 }
                                 mail.setDireccionDestino(direccionDestino);
                                 mail.setPoblacionDestino(poblacionDestino);
@@ -2368,7 +2369,8 @@ public class CSAnyadirPedido extends JPanel
     private BeanPedido getPedidoUnido(String pe_num) throws SQLException
     {
         ResultSet rs = CSDesktop.datos.select("SELECT pe_num, pe_fecha_origen, pe_direccion_origen, pe_poblacion_origen, pe_provincia_origen, " +
-                                              "pe_nombre_origen, pe_telefono_origen, pe_ta_es_cliente FROM pe_pedidos WHERE pe_num = '"+pe_num+"'");
+                                              "pe_nombre_origen, pe_telefono_origen, pe_ta_es_cliente, pe_descripcion " +
+                                              "FROM pe_pedidos WHERE pe_num = '"+pe_num+"'");
         BeanPedido pedidoUnido = new BeanPedido();
         while(rs.next())
         {
@@ -2379,6 +2381,7 @@ public class CSAnyadirPedido extends JPanel
             pedidoUnido.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
             pedidoUnido.setNombreOrigen(rs.getString("pe_nombre_origen"));
             pedidoUnido.setTelefonoOrigen(rs.getString("pe_telefono_origen"));
+            pedidoUnido.setObservacionesCl(rs.getString("pe_descripcion"));
             pedidoUnido.setTarifa(rs.getString("pe_ta_es_cliente"));
         }
         return pedidoUnido;

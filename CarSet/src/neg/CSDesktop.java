@@ -129,7 +129,7 @@ public class CSDesktop extends JFrame
   public  CSDesktop(String usuario) throws UnknownHostException
   {
 
-      datos=new DbConnection();
+      datos = new DbConnection();
       /*setDefaultCloseOperation(CSDesktop.DO_NOTHING_ON_CLOSE);
       addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent we) {
@@ -847,7 +847,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "                         CarSet version 3.3.1",
+                  "                         CarSet version 3.4.0",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
 

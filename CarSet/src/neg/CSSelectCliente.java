@@ -19,7 +19,6 @@ import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -32,18 +31,13 @@ public class CSSelectCliente extends javax.swing.JPanel
 {
     private JTextField jTextCli;
     private int cliID = 0;
-    
-    
+   
     /** Creates new form BuscaClientesPanel */
     public CSSelectCliente(JTextField jTextC,String busqueda,boolean inicial)
     {
 
         TablaModelo modelo = new TablaModelo();
         Cliente client = new Cliente();
-
-
-         
-
 
         this.jTextCli = jTextC;
 
@@ -149,8 +143,6 @@ public class CSSelectCliente extends javax.swing.JPanel
         
         jTextField1.grabFocus();
     }
-
-   
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -299,9 +291,7 @@ public class CSSelectCliente extends javax.swing.JPanel
             Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
             //se centran los valores
             //se toman algunos valores especificos para mi programa
-            //double cantidad = Double. parseDouble(table. getValueAt(row, 11). toString());
-            //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
-            //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
+
             //si cumplen x condicion se pintan
             if (column == 0 ||column == 2)
             {

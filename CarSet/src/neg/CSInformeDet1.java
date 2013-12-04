@@ -280,10 +280,10 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, pe.pe_num_en_camion, "+
                 " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_cliente, pe.pe_suplemento, " +
                 "pe.pe_descripcion, pe.pe_estado, pe.pe_fecha_origen, pe.pe_fecha_destino, pe.pe_fecha_real_destino, " +
-                "pe.pe_num_unido, destino_unido, real_destino, fecha_destino "+
+                "pe.pe_num_unido, destino_unido, real_destino, fecha_destino, estado "+
                 "FROM (carset.pe_pedidos pe, carset.pc_pedidos_clientes pc) "+
                 "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino AS destino_unido , pe_fecha_destino AS fecha_destino, " +
-                "pe_fecha_real_destino as real_destino FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC) " +
+                "pe_fecha_real_destino AS real_destino, pe_estado AS estado FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC) " +
                 "pe_unido ON pe.pe_num = pe_unido.num_unido " +
                 " WHERE pc.pe_num = pe.pe_num ";
                 if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
@@ -309,6 +309,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                             nueva.setProvinciaDestino(rs.getString("destino_unido"));
                             nueva.setServicioDestino(rs.getString("destino_unido"));
                             nueva.setFecha_real_entrega(rs.getString("real_destino"));
+                            nueva.setEstado(rs.getString("estado"));
                         }else{
                             nueva.setFecha_prevista_entrega(rs.getString("pe_fecha_destino"));
                             nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
@@ -326,7 +327,6 @@ public class CSInformeDet1 extends javax.swing.JPanel
                         nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
                         nueva.setNumCamion(rs.getString("pe_num_en_camion"));
                         nueva.setDescripcion(rs.getString("pe_descripcion"));
-                        nueva.setEstado(rs.getString("pe_estado"));
                         nueva.setFecha_prevista_recogida(rs.getString("pe_fecha_origen"));
                         lista.add(nueva);
                     }
