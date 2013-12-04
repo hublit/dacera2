@@ -10,11 +10,7 @@ package neg;
  * @author depr102
  */
 import data.BeanCorreoCliente;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -47,23 +43,6 @@ public class CSEnviarMailEntregado
         
         try
         {
-
-            /*String query="SELECT DISTINCT"+
-            " pe.pe_servicio_especial,pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id,pe.pe_ta_es_cliente," +
-            " pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion,pe.pe_descripcion, tc.tc_tarifa," +
-            " sc_entrada_campa, sc_campa" +
-            " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc" +
-            " WHERE pe.pe_num =" +mail.getNumero()+""+
-            " AND sc.cl_id = pc.cl_id" +
-            " AND tc.tc_servicio = pe.pe_servicio"+
-            " AND  tc.cl_id = pc.cl_id"+
-            " AND (tc.tc_servicio_origen = pe.pe_servicio_origen"+
-            " OR tc.tc_servicio_origen = pe.pe_servicio_destino)"+
-            " AND (tc.tc_servicio_destino = pe.pe_servicio_destino"+
-            " OR tc.tc_servicio_destino = pe.pe_servicio_origen)"+
-            " AND tc.tc_soporte = pe.pe_soporte"+
-            " GROUP BY pe.pe_num";*/
-
             String query="SELECT DISTINCT"+
             " pe.pe_servicio_especial,pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id,pe.pe_ta_es_cliente," +
             " pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion,pe.pe_descripcion," +
@@ -77,16 +56,16 @@ public class CSEnviarMailEntregado
 
             ResultSet rs_mail = CSDesktop.datos.select(query);
 
-            while (rs_mail.next())  {
-
+            while (rs_mail.next())
+            {
                 mail.setServicioEspecial(rs_mail.getString("pe_servicio_especial"));
                 mail.setDiasCampa(rs_mail.getString("pe_dias_campa"));
                 mail.setIdaVuelta(rs_mail.getString("pe_ida_vuelta"));
                 mail.setFactorCorrecccion(rs_mail.getString("fc_id"));
-                mail.setTarifaEspecialCliente(rs_mail.getString("pe_ta_es_cliente"));
+                //mail.setTarifaEspecialCliente(rs_mail.getString("pe_ta_es_cliente"));
                 mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
-                mail.setDescripcion(rs_mail.getString("pe_descripcion"));
+                //mail.setDescripcion(rs_mail.getString("pe_descripcion"));
                 //mail.setTarifa(rs_mail.getString("tc_tarifa"));
                 mail.setEntradaCampa(rs_mail.getString("sc_entrada_campa"));
                 mail.setCampa(rs_mail.getString("sc_campa"));
@@ -110,21 +89,22 @@ public class CSEnviarMailEntregado
                     String mesD=tempDestino[1];
                     String diaD=tempDestino[2];
                     String nuevaD=diaD+"-"+mesD+"-"+anyoD;
-
            
             // Propiedades de la conexión
             Properties props = new Properties();
             props.put("mail.transport.protocol","smtp");
-            props.put("mail.smtp.host", "smtp.e.telefonica.net");
+            //props.put("mail.smtp.host", "smtp.e.telefonica.net");
+            props.put("mail.smtp.host", "smtp.office365.com");
             //props.put("mail.smtp.host", "localhost");
             //props.put("mail.smtp.starttls.enable", "false");
-            props.put("mail.smtp.port", "25");
+            props.put("mail.smtp.starttls.enable", "true");
+            //props.put("mail.smtp.port", "25");
+            props.put("mail.smtp.port", "587");
             props.put("mail.smtp.auth", "true");
 
             SMTPAuthenticator auth = new SMTPAuthenticator();
             Session mailSession = Session.getDefaultInstance(props, auth);
             Transport transport = mailSession.getTransport();
-
             
             // Construimos el mensaje
             MimeMessage message = new MimeMessage(mailSession);
@@ -164,8 +144,12 @@ public class CSEnviarMailEntregado
                                 "<tr><td  width='100'><font face='Helvetica'><b>Poblaci&oacute;n</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getPoblacionOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getPoblacionDestino()+"</font></td>" +
                                 "<tr><td  width='100'><font face='Helvetica'><b>Provincia</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getProvinciaOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getProvinciaDestino()+"</font></td>" +
                                 "<tr><td width='100'><font face='Helvetica'><b>Contacto</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getNombreOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getNombreDestino()+"</font></td>" +
-                                "<tr><td  width='100'><font face='Helvetica'><b>Tel&eacute;fono</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getTelefonoOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getTelefonoDestino()+"</font></td>" +
-            "</table></td></tr>" +
+                                "<tr><td  width='100'><font face='Helvetica'><b>Tel&eacute;fono</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getTelefonoOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getTelefonoDestino()+"</font></td>";
+           if(mail.getServicioEspecial().equals("Otros"))
+            {
+                htmlText = htmlText +  "<tr><td  width='100'><font face='Helvetica'><b>Observaciones</b></font></td><td colspan='2'><font face='Helvetica'>&nbsp;"+mail.getDescripcion().toUpperCase()+"</font></td></tr>";
+            }
+            htmlText = htmlText + "</table></td></tr>" +
             "<br><br>";
             htmlText = htmlText +"<br><tr><td colspan='2'><br><br><font face='Helvetica'> Para cualquier consulta al respecto, no dude en ponerse en contacto con nuestro departamento de Operaciones (91.268.69.60). </font></td></tr>";
             htmlText = htmlText +"<br>";
@@ -178,10 +162,6 @@ public class CSEnviarMailEntregado
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 5 Bl.A - Pl .3 - Of. 2 </font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>www.carset.es</font></td></tr>";
-            if(mail.getServicioEspecial().equals("Otros"))
-            {
-                htmlText = htmlText +  "<tr><td colspan='2'><font face='Helvetica'>&nbsp;"+mail.getDescripcion().toUpperCase()+"</font></td></tr>";
-            }
 
             htmlText = htmlText +"</table></body>";
 
@@ -222,7 +202,8 @@ public class CSEnviarMailEntregado
         @Override
         public PasswordAuthentication getPasswordAuthentication() {
            String username = "operaciones@carset.e.telefonica.net";
-            String password = "912686953";
+            //String password = "912686953";
+            String password = "CAR11set";
            return new PasswordAuthentication(username, password);
         }
     }

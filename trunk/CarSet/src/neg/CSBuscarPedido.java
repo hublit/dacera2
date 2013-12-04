@@ -673,10 +673,10 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal, p.pe_ta_es_cliente," +
                 " p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred, p.pe_fecha_origen, p.pe_fecha_destino," +
                 " p.pe_fecha_real_destino, p.pe_estado, p.pe_num_fa_cl, p.pe_num_fa_pr, p.pe_descripcion, p.pe_estado, " +
-                " cl.co_id, pc.cl_id, p.pe_num_unido, destino_unido, fecha_destino, real_destino "+
+                " cl.co_id, pc.cl_id, p.pe_num_unido, destino_unido, fecha_destino, real_destino, estado_unido "+
                 " FROM (pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc)" +
                 " LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino AS destino_unido, pe_fecha_destino AS fecha_destino," +
-                " pe_fecha_real_destino as real_destino FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC)" +
+                " pe_fecha_real_destino as real_destino, pe_estado as estado_unido FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC)" +
                 " pe_unido ON p.pe_num = pe_unido.num_unido " +
                 " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +
                 " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " +

@@ -16,8 +16,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -84,13 +82,28 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
 
                 BeanFactura campos = new BeanFactura();
 
+                Boolean unidoEstado = true;
+                if (rs.getString("estado") != null){
+                    unidoEstado = (rs.getString("estado").equals("Entregado")) ? true : false;
+                }
+                if (rs.getLong("pe_num_unido") == 0 &&
+                   (rs.getString("pe_estado").equals("") || rs.getString("pe_estado").equals("Entregado")) &&
+                   unidoEstado)
+                {
+
                     campos.setNumPedido(rs.getLong("pe_num"));
                     campos.setFecha(rs.getString("pe_fecha"));
                     campos.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
-                    campos.setProvinciaDestino(rs.getString("pe_servicio_destino"));
+
+                    if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
+                        campos.setProvinciaDestino(rs.getString("destino_unido"));
+                        campos.setServicioDestino(rs.getString("destino_unido"));
+                    }else{
+                        campos.setProvinciaDestino(rs.getString("pe_servicio_destino"));
+                        campos.setServicioDestino(rs.getString("pe_servicio_destino"));
+                    }
                     campos.setServicio(rs.getString("pe_servicio"));
                     campos.setServicioOrigen(rs.getString("pe_servicio_origen"));
-                    campos.setServicioDestino(rs.getString("pe_servicio_destino"));
                     campos.setServicioEspecial(rs.getString("pe_servicio_especial"));
                     campos.setDiasCampa(rs.getString("pe_dias_campa"));
                     campos.setFactor(rs.getString("fc_id"));
@@ -105,35 +118,51 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
                     //campos.setTarifa(rs.getString("tc_tarifa"));
                     campos.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                     campos.setNumCamion(rs.getString("pe_num_en_camion"));
+
+
                     lista.add(campos);
                     pedidos.add(rs.getLong("pe_num"));
 
-                datosFila = new Object[modelo.getColumnCount()];
-                int j = 0;
-                for (int k = 0; k < 20; k++) {
-                    if (k==0 ||k==1 || k == 2 || k==3 || k == 9 || k==10 || k==17) {
-                        if(k==1)
-                        {
-                             String fecha=(rs.getObject(k+1)).toString();
-                             String [] temp = null;
-                             temp = fecha.split("\\-");
-                             String anyo=temp[0];
-                             String mes=temp[1];
-                             String dia=temp[2];
-                             String nueva=dia+"-"+mes+"-"+anyo;
 
-                             datosFila[j] = nueva;
+                    datosFila = new Object[modelo.getColumnCount()];
+
+                    int j = 0;
+                    for (int k = 0; k < 20; k++) {
+
+                        if (k==0 ||k==1 || k == 2 || k == 3 || k == 11 || k==12 || k==19) {
+                            if(k==1)
+                            {
+                                 String fecha=(rs.getObject(k+1)).toString();
+                                 String [] temp = null;
+                                 temp = fecha.split("\\-");
+                                 String anyo=temp[0];
+                                 String mes=temp[1];
+                                 String dia=temp[2];
+                                 String nueva=dia+"-"+mes+"-"+anyo;
+
+                                 datosFila[j] = nueva;
+                            }
+                            else if(k==3){
+
+                                if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
+                                    datosFila[j] = rs.getString("destino_unido");
+                                }
+                                else{
+                                    datosFila[j] = rs.getObject(k + 1);
+                                }
+                            }
+                            else
+                            {
+                                datosFila[j] = rs.getObject(k + 1);
+                                System.out.println("Dato" + k + " " + rs.getObject(k + 1));
+                            }
+                            j++;
                         }
-                        else
-                        {
-                            datosFila[j] = rs.getObject(k + 1);
-                            System.out.println("Dato" + k + " " + rs.getObject(k + 1));
-                        }
-                        j++;
-                    } 
+                    }
+
+                    modelo.addRow(datosFila);
+                    numeroFila++;
                 }
-                modelo.addRow(datosFila);
-                numeroFila++;
             }
             rs.close();
         } catch (SQLException ex) {

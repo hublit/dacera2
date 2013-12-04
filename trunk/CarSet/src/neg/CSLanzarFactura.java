@@ -637,10 +637,13 @@ public class CSLanzarFactura extends javax.swing.JPanel
                    
                     Properties props = new Properties();
                     props.put("mail.transport.protocol","smtp");
-                    props.put("mail.smtp.host", "smtp.e.telefonica.net");
+                    //props.put("mail.smtp.host", "smtp.e.telefonica.net");
+                    props.put("mail.smtp.host", "smtp.office365.com");
                     //props.put("mail.smtp.host", "localhost");
                     //props.put("mail.smtp.starttls.enable", "false");
-                    props.put("mail.smtp.port", "25");
+                    props.put("mail.smtp.starttls.enable", "true");
+                    //props.put("mail.smtp.port", "25");
+                    props.put("mail.smtp.port", "587");
                     props.put("mail.smtp.auth", "true");
             
 
@@ -791,7 +794,8 @@ public class CSLanzarFactura extends javax.swing.JPanel
         @Override
         public PasswordAuthentication getPasswordAuthentication() {
            String username = "operaciones@carset.e.telefonica.net";
-            String password = "912686953";
+           //String password = "912686953";
+           String password = "CAR11set";
            return new PasswordAuthentication(username, password);
         }
     }

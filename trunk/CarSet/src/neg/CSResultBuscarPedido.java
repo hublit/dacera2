@@ -694,17 +694,17 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 15, (short) ((100 * 2) / ((double) 1 / 20)) );
 
-                celda = fila.createCell( (short) 17);
+                celda = fila.createCell( (short) 16);
                 celda.setCellStyle(cs);
                 texto = new HSSFRichTextString("F.RECOGIDA");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 17, (short) ((80 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 16, (short) ((80 * 2) / ((double) 1 / 20)) );
 
-                celda = fila.createCell( (short) 16);
+                celda = fila.createCell( (short) 17);
                 celda.setCellStyle(cs);
                 texto = new HSSFRichTextString("F.ENTREGA");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 16, (short) ((80 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 17, (short) ((80 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 18);
                 celda.setCellStyle(cs);
@@ -720,15 +720,21 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                 celda = fila.createCell( (short) 20);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("F. PROVEEDOR");
+                texto = new HSSFRichTextString("ESTADO");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 20, (short) ((90 * 2) / ((double) 1 / 20)) );
-                
+
                 celda = fila.createCell( (short) 21);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("F. PROVEEDOR");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 21, (short) ((90 * 2) / ((double) 1 / 20)) );
+                
+                celda = fila.createCell( (short) 22);
                 celda.setCellStyle(cs);
                 texto = new HSSFRichTextString("OBSERVACIONES");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 21, (short) ((600 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 22, (short) ((600 * 2) / ((double) 1 / 20)) );
 	}
 
         private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, ResultSet rs, HSSFCellStyle cs2,HSSFCellStyle cs3) throws SQLException, UnknownHostException
@@ -740,6 +746,8 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                 while (rs.next())
                 {
+                    boolean unidos = (peUnidos && rs.getString("destino_unido") != null) ? true : false;
+
                     if (peUnidos && !rs.getString("pe_num_unido").equals("0"))
                     {
                         System.out.println("");
@@ -778,7 +786,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         //Celda de Servicio
                         celda = fila.createCell( (short) 3);
-                        String servicio=(!peUnidos) ? rs.getString("pe_servicio") : "";
+                        String servicio=(!unidos) ? rs.getString("pe_servicio") : "";
                         texto = new HSSFRichTextString(servicio);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
@@ -827,7 +835,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         //Celda del Proveedor
                         celda = fila.createCell( (short) 10);
-                        String proveedor=(!peUnidos) ? rs.getString("pr_nombre_fiscal") : "";
+                        String proveedor=(!unidos) ? rs.getString("pr_nombre_fiscal") : "";
                         texto = new HSSFRichTextString(proveedor);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
@@ -853,7 +861,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                         celda = fila.createCell( (short) 12);
                         style.setDataFormat(format.getFormat("00.00"));
                         celda.setCellStyle(style);
-                        if(!peUnidos){
+                        if(!unidos){
                             celda.setCellValue(rs.getDouble("pe_ta_es_proveedor"));
                         }
                         celda = fila.createCell( (short) 13);
@@ -884,7 +892,9 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                         //Columna de MG
                         celda = fila.createCell( (short) 15);
                         style.setDataFormat(format.getFormat("00.00"));
-                        celda.setCellFormula("L"+num_fila_aux+"-M"+num_fila_aux+"+N"+num_fila_aux+"+O"+num_fila_aux+"");
+                        if(!unidos){
+                            celda.setCellFormula("L"+num_fila_aux+"-M"+num_fila_aux+"+N"+num_fila_aux+"+O"+num_fila_aux+"");
+                        }
                         celda.setCellStyle(style);
 
                         //Celda de la fecha del pedido
@@ -933,14 +943,21 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
 
-                        //Celda del número de Factura de Proveedor
+                        //Celda del estado
                         celda = fila.createCell( (short) 20);
-                        String faProveedor=(!peUnidos) ? rs.getString("pe_num_fa_pr") : "";
+                        String estado = (rs.getString("estado_unido") != null) ? rs.getString("estado_unido") : rs.getString("pe_estado");
+                        texto = new HSSFRichTextString(estado);
+                        celda.setCellStyle(cs3);
+                        celda.setCellValue(texto);
+
+                        //Celda del número de Factura de Proveedor
+                        celda = fila.createCell( (short) 21);
+                        String faProveedor=(!unidos) ? rs.getString("pe_num_fa_pr") : "";
                         texto = new HSSFRichTextString(faProveedor);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
 
-                        celda = fila.createCell( (short) 21);
+                        celda = fila.createCell( (short) 22);
                         String descripcion=rs.getString("pe_descripcion");
                         texto = new HSSFRichTextString(descripcion);
 

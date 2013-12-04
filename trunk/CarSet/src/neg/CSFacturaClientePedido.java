@@ -355,52 +355,37 @@ public class CSFacturaClientePedido extends JPanel
              String query="";
              if(libre==false)
              {
-             /*query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
-                           "pe.pe_servicio, pe.pe_servicio_especial, " +
-                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
-                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
-                           "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " +
-                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " +
-                           "WHERE pe.pe_num = pc.pe_num " +
-                           "AND sc.cl_id = pc.cl_id " +
-                           "AND tc.tc_fecha_hasta > pe.pe_fecha " +
-                           "AND sc.sc_fecha_hasta > pe.pe_fecha " +
-                           "AND tc.tc_servicio = pe.pe_servicio " +
-                           "AND tc.cl_id = pc.cl_id " +
-                           "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " + 
-                           "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " +
-                           "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " +
-                           "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " +
-                           "AND tc.tc_soporte = pe.pe_soporte " +
-                           "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
-                           "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
-                           "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";*/
+               query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
+               "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_estado, " +
+               "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
+               "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
+               "pe.pe_descripcion, pe.pe_num_unido, sc_entrada_campa, sc_campa, pe_unido.destino_unido, pe_unido.estado  " +
+               "FROM (pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc) " +
+               "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_servicio_destino AS destino_unido, pe_estado AS estado " +
+               "FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC) " +
+               "pe_unido ON pe.pe_num = pe_unido.num_unido " +
+               "WHERE pe.pe_num = pc.pe_num " +
+               "AND sc.cl_id = pc.cl_id " +
+               "AND sc.sc_fecha_hasta > pe.pe_fecha " +
+               "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido') "  +
+               "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
+               "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
-                  query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
-                           "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
-                           "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
-                           "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
-                           "pe.pe_descripcion, sc_entrada_campa, sc_campa " +
-                           "FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc " +
-                           "WHERE pe.pe_num = pc.pe_num " +
-                           "AND sc.cl_id = pc.cl_id " +
-                           "AND sc.sc_fecha_hasta > pe.pe_fecha " +
-                           "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido')"  +
-                           "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
-                           "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
-
-                           CSResultBuscarFactura resultBuscarCliente = new CSResultBuscarFactura(query,beanCliente,fechaI,fechaF);
+               CSResultBuscarFactura resultBuscarCliente = new CSResultBuscarFactura(query,beanCliente,fechaI,fechaF);
              }
              else
              {
-                           query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, cl.cl_nombre, " +
-                           " pe.pe_descripcion, pe.pe_ta_es_cliente " +
-                           " FROM pe_pedidos pe, cl_clientes cl, pc_pedidos_clientes pc " +
-                           " WHERE pe.pe_estado = 'Pedido Libre' AND pc.cl_id = cl.cl_id"  +
-                           " AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
-                           " AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
+               query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, cl.cl_nombre, pe.pe_ve_matricula, pe.pe_descripcion, " +
+               " pe.pe_estado, pe.pe_descripcion, pe.pe_ta_es_cliente, pe_unido.destino_unido, pe_unido.estado " +
+               " FROM (pe_pedidos pe, cl_clientes cl, pc_pedidos_clientes pc) " +
+               " LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_servicio_destino AS destino_unido, pe_estado AS estado" +
+               " FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC)" +
+               " pe_unido ON pe.pe_num = pe_unido.num_unido " +
+               " WHERE pe.pe_estado = 'Pedido Libre' AND pc.cl_id = cl.cl_id"  +
+               " AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
+               " AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
-                           CSResultBuscarPedidosLibres resultBuscarCliente = new CSResultBuscarPedidosLibres(query,beanCliente,fechaI,fechaF);
+               CSResultBuscarPedidosLibres resultBuscarCliente = new CSResultBuscarPedidosLibres(query,beanCliente,fechaI,fechaF);
              }
 
             System.out.println(query);

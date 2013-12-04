@@ -771,7 +771,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         }
         else if (!Utilidades.campoObligatorio(fechaCo,"Fecha Contabilización").equals("OK"))
         {
-            ValidarFormatos(Utilidades.campoObligatorio(fechaCo,"Fecha COntabilización"));
+            ValidarFormatos(Utilidades.campoObligatorio(fechaCo,"Fecha Cntabilización"));
         }
         else if (!Utilidades.campoObligatorio(numFa,"Número Factura").equals("OK"))
         {
