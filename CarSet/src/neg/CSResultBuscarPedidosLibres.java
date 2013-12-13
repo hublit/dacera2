@@ -95,8 +95,8 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
 
                 datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
-                for (int k = 0; k < 20; k++) {
-                    if (k==0 ||k==1 || k == 2 || k == 3 || k == 11|| k==12 || k == 19) {
+                for (int k = 0; k < 9; k++) {
+                    if (k==0 ||k==1 || k == 2 || k == 5 || k == 6) {
                         if(k==1)
                         {
                              String fecha=(rs.getObject(k+1)).toString();
@@ -109,14 +109,14 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
 
                              datosFila[j] = nueva;
                         }
-                        else if(k==3){
+                        /*else if(k==7){
                             if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
                                 datosFila[j] = rs.getString("destino_unido");
                             }
                             else{
                                 datosFila[j] = rs.getObject(k + 1);
                             }
-                        }
+                        }*/
                         else
                         {
                             datosFila[j] = rs.getObject(k + 1);

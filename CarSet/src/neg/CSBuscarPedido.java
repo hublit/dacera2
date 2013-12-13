@@ -151,6 +151,9 @@ public class CSBuscarPedido extends javax.swing.JPanel
         lComercial = new javax.swing.JLabel();
         jComboBoxComercial = new javax.swing.JComboBox();
         jButtonBuscarSProv = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jTextDiasCampa = new javax.swing.JTextField();
+        jCheckBoxUnidos = new javax.swing.JCheckBox();
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.setName("jButtonBuscar"); // NOI18N
@@ -409,6 +412,21 @@ public class CSBuscarPedido extends javax.swing.JPanel
             }
         });
 
+        jLabel15.setForeground(new java.awt.Color(0, 0, 100));
+        jLabel15.setText("Días campa");
+        jLabel15.setName("jLabel15"); // NOI18N
+
+        jTextDiasCampa.setName("jTextDiasCampa"); // NOI18N
+
+        jCheckBoxUnidos.setForeground(new java.awt.Color(0, 0, 100));
+        jCheckBoxUnidos.setText("Pedidos Unidos");
+        jCheckBoxUnidos.setName("jCheckBoxUnidos"); // NOI18N
+        jCheckBoxUnidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxUnidosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -448,7 +466,13 @@ public class CSBuscarPedido extends javax.swing.JPanel
                                 .addComponent(lEstado3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(545, 545, 545)
+                                .addGap(107, 107, 107)
+                                .addComponent(jCheckBoxUnidos)
+                                .addGap(140, 140, 140)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(110, 110, 110)
                                 .addComponent(lComercial)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxComercial, 0, 143, Short.MAX_VALUE))
@@ -609,7 +633,10 @@ public class CSBuscarPedido extends javax.swing.JPanel
                     .addComponent(lEstado3)
                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lComercial))
+                    .addComponent(lComercial)
+                    .addComponent(jCheckBoxUnidos)
+                    .addComponent(jTextDiasCampa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -627,6 +654,8 @@ public class CSBuscarPedido extends javax.swing.JPanel
 
         String fechaI="";
         String fechaF="";
+        int diasCampaN=0;
+        int pedidoUnidoN=0;
 
         int numeroN=0;
         String numero = new String(jTextNumero.getText());
@@ -668,10 +697,19 @@ public class CSBuscarPedido extends javax.swing.JPanel
         String proveedor=new String(jTextProveedor.getText());
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
         int comercial = (jComboBoxComercial.getSelectedIndex()+1);
+        String diasCampa = new String(jTextDiasCampa.getText());
+        if(!diasCampa.equals(""))
+        {
+            diasCampaN=Integer.valueOf(diasCampa).intValue();
+        }
+        else{
+            diasCampaN=0;
+        }
+        boolean peUnidos = new Boolean(jCheckBoxUnidos.isSelected());
 
         String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
-                " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pr.pr_nombre_fiscal, p.pe_ta_es_cliente," +
-                " p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_solred, p.pe_fecha_origen, p.pe_fecha_destino," +
+                " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pe_dias_campa, pr.pr_nombre_fiscal, p.pe_ta_es_cliente," +
+                " p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento, p.pe_fecha_origen, p.pe_fecha_destino," +
                 " p.pe_fecha_real_destino, p.pe_estado, p.pe_num_fa_cl, p.pe_num_fa_pr, p.pe_descripcion, p.pe_estado, " +
                 " cl.co_id, pc.cl_id, p.pe_num_unido, destino_unido, fecha_destino, real_destino, estado_unido "+
                 " FROM (pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc)" +
@@ -758,6 +796,12 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 }
                 if (comercial > 1) {
                     query = query + " AND co_id= '" + comercial + "'";
+                }
+                if (diasCampaN > 0) {
+                    query = query + " AND pe_dias_campa = '" + diasCampaN + "'";
+                }
+                if (peUnidos) {
+                    query = query + " AND pe_num_unido != 0";
                 }
                 query = query + " ORDER BY p.pe_fecha ASC";
                 System.out.println(query);
@@ -868,6 +912,10 @@ public class CSBuscarPedido extends javax.swing.JPanel
             CSResultBuscarSinPrPedido resultBuscarPedido = new CSResultBuscarSinPrPedido(query);
     }//GEN-LAST:event_jButtonBuscarSProvActionPerformed
 
+    private void jCheckBoxUnidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxUnidosActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jCheckBoxUnidosActionPerformed
+
  public Dimension getPreferredSize()
    {
       return new Dimension( 1020,500 );
@@ -877,6 +925,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonBuscarSProv;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JCheckBox jCheckBoxUnidos;
     private javax.swing.JComboBox jComboBoxComercial;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxProvinciaDestino;
@@ -888,6 +937,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
     private javax.swing.JComboBox jComboFactor;
     private com.toedter.calendar.JDateChooser jDateFecha;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -896,6 +946,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
     public javax.swing.JTextField jTextCliente;
     private javax.swing.JTextField jTextCodPostalDestino;
     private javax.swing.JTextField jTextCodPostalOrigen;
+    private javax.swing.JTextField jTextDiasCampa;
     private javax.swing.JTextField jTextDireccionDestino1;
     private javax.swing.JTextField jTextDireccionOrigen1;
     private javax.swing.JTextField jTextMatricula;

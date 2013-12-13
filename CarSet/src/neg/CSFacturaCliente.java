@@ -447,8 +447,8 @@ public class CSFacturaCliente extends JPanel
                         nueva.setNumCamion(rs.getString("pe_num_en_camion"));
                         
                         lista.add(nueva);
-                        pedidos.add(rs.getLong("pe_num"));
                     }
+                    pedidos.add(rs.getLong("pe_num"));
                 } 
 
             } catch (SQLException ex) {

@@ -65,7 +65,7 @@ public class CSEnviarMailProceso
                 mail.setDiasCampa(rs_mail.getString("pe_dias_campa"));
                 mail.setIdaVuelta(rs_mail.getString("pe_ida_vuelta"));
                 mail.setFactorCorrecccion(rs_mail.getString("fc_id"));
-                mail.setTarifaEspecialCliente(rs_mail.getString("pe_ta_es_cliente"));
+                //mail.setTarifaEspecialCliente(rs_mail.getString("pe_ta_es_cliente"));
                 mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
                 mail.setDescripcion(rs_mail.getString("pe_descripcion"));
@@ -507,7 +507,7 @@ public class CSEnviarMailProceso
         }
         catch (Exception e)
             {
-                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail no ha podido ser enviado.</FONT></HTML>");
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = red>El e-mail no ha podido ser enviado.</FONT></HTML>");
                 JOptionPane.showMessageDialog(null,mensaje);
                 e.printStackTrace();
             }

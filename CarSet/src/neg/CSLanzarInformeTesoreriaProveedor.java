@@ -224,9 +224,9 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                             .addComponent(jDateFechaFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(9, 9, 9))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextNumTr, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextNumTr, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addComponent(lEstado5)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,17 +297,12 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
-        int numTr = 0;
         String fechaI="";
         String fechaF="";
         String fechaIniCont = "";
         String fechaFinCont = "";
 
-        String numero = new String(jTextNumTr.getText());
-        if(!numero.equals(""))
-        {
-            numTr = Integer.valueOf(numero);
-        }
+        String numeroFr = new String(jTextNumTr.getText());
 
         String proveedor = new String(jTextProveedor.getText());
         Proveedor oProveedor = new Proveedor();
@@ -357,7 +352,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                        "FROM tr_tesoreria_proveedor tr, pr_proveedores pr, fp_forma_pago fp " +
                        "WHERE  tr.pr_num = pr.pr_id AND fp.fp_id = pr.fp_id";
 
-        if (numTr == 0 && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
+        if (numeroFr.equals("") && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
         {
             jButtonBuscar.setEnabled(false);
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar número de informe, un Proveedor o período de tiempo</FONT></HTML>");
@@ -366,9 +361,9 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         }
         else
         {
-            if (numTr != 0)
+            if (!numeroFr.equals(""))
             {
-                query = query + " AND tr.tr_id = " + numTr;
+                query = query + " AND tr.tr_num like '%"+numeroFr+"%'";
             }
             if (!proveedor.equals("")) {
                 query = query + " AND tr.pr_num = " + proveedorID;

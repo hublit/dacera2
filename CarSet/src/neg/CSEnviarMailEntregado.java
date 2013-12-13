@@ -191,7 +191,7 @@ public class CSEnviarMailEntregado
         }
         catch (Exception e)
         {
-            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>El e-mail no ha podido ser enviado.</FONT></HTML>");
+            JLabel mensaje = new JLabel("<HTML><FONT COLOR = red>El e-mail no ha podido ser enviado.</FONT></HTML>");
             JOptionPane.showMessageDialog(null,mensaje);
             e.printStackTrace();
         }

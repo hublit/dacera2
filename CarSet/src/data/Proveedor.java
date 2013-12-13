@@ -33,7 +33,7 @@ public class Proveedor
       try
       {
 
-         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM pr_proveedores ");
+         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM pr_proveedores WHERE pr_estado = 'Activo'");
 
          rsTotal.next();
          registros = rsTotal.getInt("cont");
@@ -47,7 +47,7 @@ public class Proveedor
       Object [][] data = new Object[registros][5];
       try
       {
-         ResultSet rs = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF FROM pr_proveedores ORDER BY pr_nombre_fiscal ");
+         ResultSet rs = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF FROM pr_proveedores WHERE pr_estado = 'Activo' ORDER BY pr_nombre_fiscal ");
 
          int i = 0;
          while(rs.next())
@@ -83,7 +83,7 @@ public class Proveedor
       try
       {
 
-         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM pr_proveedores WHERE  pr_nombre_fiscal like  '%"+condicion+"%' ");
+         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM pr_proveedores WHERE pr_estado = 'Activo'AND pr_nombre_fiscal like  '%"+condicion+"%' ");
 
          rsTotal.next();
          registros = rsTotal.getInt("cont");
@@ -97,7 +97,7 @@ public class Proveedor
       Object [][] data = new Object[registros][5];
       try
       {
-         ResultSet rs = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF FROM pr_proveedores WHERE  pr_nombre_fiscal like  '%"+condicion+"%' ORDER BY pr_nombre_fiscal ");
+         ResultSet rs = CSDesktop.datos.select("SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF FROM pr_proveedores WHERE pr_estado = 'Activo' AND pr_nombre_fiscal like  '%"+condicion+"%' ORDER BY pr_nombre_fiscal ");
 
          int i = 0;
          while(rs.next())

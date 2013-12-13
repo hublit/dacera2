@@ -54,7 +54,13 @@
                               <Component id="lEstado3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jComboBoxEstado" min="-2" pref="145" max="-2" attributes="1"/>
-                              <EmptySpace min="-2" pref="545" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                              <Component id="jCheckBoxUnidos" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jTextDiasCampa" min="-2" pref="33" max="-2" attributes="1"/>
+                              <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                               <Component id="lComercial" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jComboBoxComercial" pref="143" max="32767" attributes="0"/>
@@ -239,6 +245,9 @@
                   <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBoxComercial" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxUnidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextDiasCampa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator6" min="-2" pref="10" max="-2" attributes="0"/>
@@ -1055,6 +1064,32 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuscarSProvActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel15">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="D&#xed;as campa"/>
+        <Property name="name" type="java.lang.String" value="jLabel15" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextDiasCampa">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jTextDiasCampa" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxUnidos">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Pedidos Unidos"/>
+        <Property name="name" type="java.lang.String" value="jCheckBoxUnidos" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxUnidosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
