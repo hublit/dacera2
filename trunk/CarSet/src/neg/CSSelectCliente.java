@@ -35,7 +35,6 @@ public class CSSelectCliente extends javax.swing.JPanel
     /** Creates new form BuscaClientesPanel */
     public CSSelectCliente(JTextField jTextC,String busqueda,boolean inicial)
     {
-
         TablaModelo modelo = new TablaModelo();
         Cliente client = new Cliente();
 

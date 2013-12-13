@@ -442,8 +442,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 codPostalFiscal=beanCliente.getCod_postal_fiscal();
             }
 
-            
-
             // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
             String plazoPago=beanCliente.getPlazoPago();
             int diasPlazo=0;

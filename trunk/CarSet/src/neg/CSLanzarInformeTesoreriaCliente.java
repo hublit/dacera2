@@ -251,8 +251,8 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addComponent(jTextNumFa, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(lCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,17 +346,13 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        int numFl = 0;
+
         String fechaI="";
         String fechaF="";
         String fechaIFc="";
         String fechaFFc="";
 
-        String numero = new String(jTextNumFa.getText());
-        if(!numero.equals(""))
-        {
-            numFl = Integer.valueOf(numero);
-        }
+        String numeroFr = new String(jTextNumFa.getText());
         
         String cliente = new String(jTextCliente.getText());
         Cliente cl = new Cliente();
@@ -408,14 +404,12 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                        "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, fp.fp_tipo, " +
                        "fl.fl_estado, fl.fl_fecha_pago, cl.cl_num_cuenta, fl.fl_observaciones, cl.cl_dias_plazo " +
                        "FROM fl_factura_cliente fl, pe_pedidos pe, cl_clientes cl, fp_forma_pago fp " +
-                       "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id AND fl.fl_num = pe.pe_num_fa_cl";
+                       "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id"; //AND fl.fl_num = pe.pe_num_fa_cl";
 
-
-        if (numFl == 0 && cliente.equals("") && 
+        if (numeroFr.equals("") && cliente.equals("") &&
            (fechaI.equals("") && fechaF.equals("")) &&
            (fechaIFc.equals("") && fechaFFc.equals("")))
         {
-
             jButtonBuscar.setEnabled(false);
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar número de factura, un Cliente o período de tiempo</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
@@ -423,9 +417,9 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         }
         else
         {
-            if (numFl != 0)
+            if (!numeroFr.equals(""))
             {
-                query = query + " AND fl.fl_id = " + numFl;
+                query = query + " AND fl.fl_num like '%"+numeroFr+"%'";
             }
             if (!cliente.equals("")) {
                 query = query + " AND cl.cl_id = " + clienteID;

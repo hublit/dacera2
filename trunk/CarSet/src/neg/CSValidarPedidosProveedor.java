@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
@@ -54,7 +53,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     String pr_id = "";
     double totalProveedor = 0;
 
-            private DefaultListSelectionModel selectionModel;
+    private DefaultListSelectionModel selectionModel;
 
     public CSValidarPedidosProveedor(String query) throws FileNotFoundException, IOException, SQLException
     {
@@ -495,6 +494,11 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2016", "2015", "2014", "2013", "2012", "2011", "2010" }));
         jComboBoxAnyoIva.setSelectedIndex(3);
         jComboBoxAnyoIva.setName("jComboBoxAnyoIva"); // NOI18N
+        jComboBoxAnyoIva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAnyoIvaActionPerformed(evt);
+            }
+        });
 
         jLabelObservaciones.setForeground(new java.awt.Color(0, 0, 100));
         jLabelObservaciones.setText("Observaciones");
@@ -718,7 +722,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaCo = formatoDeFecha.format(fecha);
             String[] arrayFaCo = fechaCo.split("-");
-            mesCo = arrayFaCo[2];
+            mesCo = arrayFaCo[1];
         }
 
         mes = (Integer.parseInt(mesCo));
@@ -743,7 +747,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             {
                 tercerTimestre = true;
             }
-            if (getTrimestreIva(String.valueOf(anyoAnt), "cuarto") && mes > 10)
+            //if (getTrimestreIva(String.valueOf(anyoAnt), "cuarto") && mes > 10)
+            if (getTrimestreIva(anyo, "cuarto") && mes > 10)
             {
                 cuartoTimestre = true;
             }
@@ -929,6 +934,10 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 jButtonTriCuatro.setEnabled(false);
             }
         }//GEN-LAST:event_jButtonTriCuatroActionPerformed
+
+        private void jComboBoxAnyoIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnyoIvaActionPerformed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_jComboBoxAnyoIvaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1171,14 +1180,19 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             if (rs.getString("ti_trimestre").equals("primero") && rs.getBoolean("ti_estado"))
             {
                 jButtonTriUno.setEnabled(false);
+                jComboBoxIvaTrimestre.setSelectedIndex(0);
             }
             else if(rs.getString("ti_trimestre").equals("segundo") && rs.getBoolean("ti_estado"))
             {
                 jButtonTriDos.setEnabled(false);
+                jComboBoxIvaTrimestre.setSelectedIndex(1);
             }
             else if(rs.getString("ti_trimestre").equals("tercero") && rs.getBoolean("ti_estado"))
             {
                 jButtonTriTres.setEnabled(false);
+                jComboBoxIvaTrimestre.setSelectedIndex(2);
+            }else{
+                jComboBoxIvaTrimestre.setSelectedIndex(3);
             }
             
         }

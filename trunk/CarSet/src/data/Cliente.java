@@ -33,7 +33,7 @@ public class Cliente
       try
       {
 
-         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM cl_clientes ");
+         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM cl_clientes WHERE cl_estado = 'Activo'");
 
          rsTotal.next();
          registros = rsTotal.getInt("cont");
@@ -47,23 +47,22 @@ public class Cliente
       Object [][] data = new Object[registros][5];
       try
       {
-         ResultSet rs = CSDesktop.datos.select("SELECT cl_id, cl_nombre,cl_DNI_CIF  FROM cl_clientes ORDER BY cl_nombre ");
+         ResultSet rsCl = CSDesktop.datos.select("SELECT cl_id, cl_nombre,cl_DNI_CIF  FROM cl_clientes WHERE cl_estado = 'Activo' ORDER BY cl_nombre");
 
          int i = 0;
-         while(rs.next())
+         while(rsCl.next())
          {
-            String estCodigo = rs.getString("cl_id");
-            String estNombre = rs.getString("cl_nombre");
-            String estDNI = rs.getString("cl_DNi_CIF");
+            String estCodigo = rsCl.getString("cl_id");
+            String estNombre = rsCl.getString("cl_nombre");
+            String estDNI = rsCl.getString("cl_DNi_CIF");
             data[i][0] = estCodigo;
             data[i][1] = estNombre;
             data[i][2] = estDNI;
             i++;
          }
-         rs.close();
+         rsCl.close();
       }
       catch(SQLException e)
-
       {
          System.out.println(e);
       }
@@ -78,7 +77,7 @@ public class Cliente
       int registros = 0;
       try
       {
-         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM cl_clientes WHERE  cl_nombre like  '%"+condicion+"%' ");
+         ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM cl_clientes WHERE cl_estado = 'Activo' AND cl_nombre like  '%"+condicion+"%' ");
 
          rsTotal.next();
          registros = rsTotal.getInt("cont");
@@ -92,7 +91,7 @@ public class Cliente
       Object [][] data = new Object[registros][5];
       try
       {
-         ResultSet rs = CSDesktop.datos.select("SELECT cl_id, cl_nombre, cl_DNI_CIF  FROM cl_clientes WHERE  cl_nombre like  '%"+condicion+"%' ORDER BY cl_nombre");
+         ResultSet rs = CSDesktop.datos.select("SELECT cl_id, cl_nombre, cl_DNI_CIF  FROM cl_clientes WHERE cl_estado = 'Activo' AND cl_nombre like  '%"+condicion+"%' ORDER BY cl_nombre");
 
          int i = 0;
          while(rs.next())
@@ -108,7 +107,6 @@ public class Cliente
          rs.close();
       }
       catch(SQLException e)
-
       {
          System.out.println(e);
       }

@@ -375,7 +375,7 @@ public class CSFacturaClientePedido extends JPanel
              }
              else
              {
-               query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, cl.cl_nombre, pe.pe_ve_matricula, pe.pe_descripcion, " +
+               query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, cl.cl_nombre, pe.pe_ve_matricula, " +
                " pe.pe_estado, pe.pe_descripcion, pe.pe_ta_es_cliente, pe_unido.destino_unido, pe_unido.estado " +
                " FROM (pe_pedidos pe, cl_clientes cl, pc_pedidos_clientes pc) " +
                " LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_servicio_destino AS destino_unido, pe_estado AS estado" +
