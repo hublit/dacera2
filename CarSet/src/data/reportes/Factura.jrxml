@@ -125,102 +125,12 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
-		<band height="181" splitType="Stretch">
-			<image>
-				<reportElement x="17" y="5" width="139" height="80"/>
-				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_200.jpg"))]]></imageExpression>
-			</image>
-			<staticText>
-				<reportElement x="297" y="4" width="212" height="52"/>
-				<textElement>
-					<font fontName="Verdana" size="36" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
-				</textElement>
-				<text><![CDATA[FACTURA]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="45" y="148" width="100" height="14"/>
-				<textElement>
-					<font fontName="Verdana" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="13" y="148" width="32" height="14"/>
-				<textElement>
-					<font fontName="Verdana" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[]]></textFieldExpression>
-			</textField>
-			<rectangle radius="10">
-				<reportElement x="13" y="113" width="262" height="64" backcolor="#FFFFFF"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="108" y="89" width="100" height="17"/>
-				<textElement/>
-				<text><![CDATA[DOMICILIO FISCAL]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="19" y="116" width="252" height="15"/>
-				<textElement>
-					<font fontName="Verdana" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{NombreCliente}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="297" y="96" width="243" height="20"/>
-				<textElement>
-					<font fontName="Verdana" size="8" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{NombreCliente}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="297" y="116" width="243" height="20"/>
-				<textElement>
-					<font fontName="Verdana" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{Direccion}.concat(". ").concat($P{Poblacion})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="297" y="155" width="94" height="20"/>
-				<textElement>
-					<font fontName="Verdana" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["CIF: " + $P{CIF}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="19" y="161" width="100" height="15"/>
-				<textElement>
-					<font fontName="Verdana" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["CIF: " +$P{CIF}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="297" y="136" width="243" height="20"/>
-				<textElement>
-					<font fontName="Verdana" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{CodPostal}.concat(". ").concat($P{Provincia})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="19" y="147" width="252" height="14"/>
-				<textElement>
-					<font fontName="Verdana" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{CodPostalFiscal}+". "+ $P{ProvinciaFiscal}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="19" y="131" width="252" height="17"/>
-				<textElement>
-					<font fontName="Verdana" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{DireccionFiscal}.concat(". ").concat( $P{PoblacionFiscal} )]]></textFieldExpression>
-			</textField>
-		</band>
+		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="62" splitType="Stretch">
+		<band height="252" splitType="Stretch">
 			<textField>
-				<reportElement x="83" y="33" width="100" height="20"/>
+				<reportElement x="87" y="226" width="100" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -234,7 +144,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{NumFactura}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="83" y="13" width="100" height="20"/>
+				<reportElement x="87" y="206" width="100" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -248,7 +158,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{FechaFactura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="33" width="70" height="20"/>
+				<reportElement x="17" y="226" width="70" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -262,7 +172,7 @@
 				<text><![CDATA[Nº Factura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="13" width="70" height="20"/>
+				<reportElement x="17" y="206" width="70" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -276,7 +186,7 @@
 				<text><![CDATA[Fecha Factura:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="374" y="13" width="166" height="20"/>
+				<reportElement x="378" y="206" width="166" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -290,7 +200,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{FechaVFactura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="271" y="33" width="103" height="20"/>
+				<reportElement x="275" y="226" width="103" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -304,7 +214,7 @@
 				<text><![CDATA[Nº CUENTA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="271" y="13" width="103" height="20"/>
+				<reportElement x="275" y="206" width="103" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -318,7 +228,7 @@
 				<text><![CDATA[FECHA VENCIMIENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="374" y="33" width="166" height="20"/>
+				<reportElement x="378" y="226" width="166" height="20"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -330,6 +240,81 @@
 					<font fontName="Verdana" size="8"/>
 				</textElement>
 				<text><![CDATA[2100-4024-61-2200077238]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="10" y="119" width="262" height="64" backcolor="#FFFFFF"/>
+			</rectangle>
+			<image>
+				<reportElement x="14" y="11" width="139" height="80"/>
+				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_200.jpg"))]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="16" y="122" width="252" height="15"/>
+				<textElement>
+					<font fontName="Verdana" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NombreCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="122" width="243" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{Direccion}.concat(". ").concat($P{Poblacion})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="16" y="153" width="252" height="14"/>
+				<textElement>
+					<font fontName="Verdana" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CodPostalFiscal}+". "+ $P{ProvinciaFiscal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="16" y="137" width="252" height="17"/>
+				<textElement>
+					<font fontName="Verdana" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{DireccionFiscal}.concat(". ").concat( $P{PoblacionFiscal} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="102" width="243" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="8" isBold="true" isUnderline="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{NombreCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="161" width="94" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["CIF: " + $P{CIF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="294" y="10" width="212" height="52"/>
+				<textElement>
+					<font fontName="Verdana" size="36" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="16" y="167" width="100" height="15"/>
+				<textElement>
+					<font fontName="Verdana" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["CIF: " +$P{CIF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="142" width="243" height="20"/>
+				<textElement>
+					<font fontName="Verdana" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{CodPostal}.concat(". ").concat($P{Provincia})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="105" y="95" width="100" height="17"/>
+				<textElement/>
+				<text><![CDATA[DOMICILIO FISCAL]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
