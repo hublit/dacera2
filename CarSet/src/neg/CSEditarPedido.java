@@ -1691,6 +1691,7 @@ public class CSEditarPedido extends javax.swing.JPanel
                                     mail.setNombreOrigen(nombreOrigen);
                                     mail.setTelefonoOrigen(telefonoOrigen);
                                     mail.setDescripcion(descripcion);
+                                    mail.setTarifaEspecialCliente(tarifaCliente);
                                 }
                                 mail.setDireccionDestino(direccionDestino);
                                 mail.setPoblacionDestino(poblacionDestino);

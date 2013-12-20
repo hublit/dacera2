@@ -122,7 +122,7 @@ public class CSAnyadirPedidoArchivo extends JPanel
                         }
                      }
                    }
-                    query += "'','', '', 'Grúa', '2050-01-01', 'En Proceso')";
+                    query += "'','','', '', 'Grúa', '2050-01-01', 'En Proceso')";
                     System.out.println(query);
 
                     boolean rs = CSDesktop.datos.manipuladorDatos(query);

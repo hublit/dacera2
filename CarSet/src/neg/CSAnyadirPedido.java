@@ -1780,6 +1780,7 @@ public class CSAnyadirPedido extends JPanel
                                     mail.setTelefonoOrigen(telefonoOrigen);
                                     mail.setFechaRecogida(fechaRecogida);
                                     mail.setDescripcion(descripcion);
+                                    mail.setTarifaEspecialCliente(tarifaCliente);
                                 }
                                 mail.setDireccionDestino(direccionDestino);
                                 mail.setPoblacionDestino(poblacionDestino);
