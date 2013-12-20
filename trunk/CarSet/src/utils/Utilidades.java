@@ -1085,20 +1085,28 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
               descripcion = "TURISMO";
           break;
           case 2 :
-              campo = "sc_industrial";
-              descripcion = "INDUST/MONOV";
+              descripcion = "FURGONETA LIGERA/MONOVOLUMEN";
           break;
           case 3 :
-              campo = "sc_todoterreno";
               descripcion = "TODOTERRENO";
           break;
           case 4 :
-              campo = "sc_furgonetas";
               descripcion = "FURGONETAS";
           break;
           case 5 :
-              campo = "sc_furgones";
               descripcion = "FURGONES";
+          break;
+          case 6 :
+              descripcion = "SUV";
+          break;
+          case 7 :
+              descripcion = "CARROZADOS/SOBREDI.";
+          break;
+          case 8 :
+              descripcion = "MOTO";
+          break;
+          case 9 :
+              descripcion = "ESPECIALES";
           break;
       }
        factorSel.add(descripcion);
