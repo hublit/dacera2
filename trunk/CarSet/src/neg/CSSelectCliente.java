@@ -18,6 +18,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -42,11 +44,46 @@ public class CSSelectCliente extends javax.swing.JPanel
 
         modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE", "DNI",});
 
-       int numeroFila = 0;
+        int numeroFila = 0;
 
-            if(inicial==true)
-            {
-                for (int i = 0; i < client.getClientes().length; i ++)
+        String query = "SELECT cl_id, cl_nombre, cl_DNI_CIF  FROM cl_clientes WHERE cl_estado = 'Activo' ORDER BY cl_nombre";
+
+        if(!inicial)
+        {
+
+    /////////////////////
+
+            query = "SELECT cl_id, cl_nombre, cl_DNI_CIF  FROM cl_clientes WHERE cl_estado = 'Activo' AND cl_nombre like  '%"+busqueda+"%' ORDER BY cl_nombre";
+        }
+        try
+        {
+         ResultSet rs = CSDesktop.datos.select(query);
+
+         int i = 0;
+         while(rs.next())
+         {
+            Object[] datosFila = new Object[modelo.getColumnCount()];
+            int j = 0;
+            for (int k = 0; k < 4; k++) {
+                if (k == 0 || k == 1 || k == 2) {
+                    datosFila[j] = rs.getObject(k + 1);
+                    j++;
+                }
+            }
+
+            modelo.addRow(datosFila);
+            numeroFila++;
+            i++;
+         }
+         System.out.println(i);
+         rs.close();
+      }
+      catch(SQLException e)
+      {
+         System.out.println(e);
+      }
+/////////////////////
+/*                for (int i = 0; i < client.getClientes().length; i ++)
                 {
                     Object[] datosFila2 = new Object[modelo.getColumnCount()];
                     int j = 0;
@@ -79,7 +116,7 @@ public class CSSelectCliente extends javax.swing.JPanel
                  }
             }
       
-
+        */
         initComponents();
 
         KeyListener l = new KeyListener()
