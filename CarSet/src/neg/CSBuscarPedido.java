@@ -146,8 +146,6 @@ public class CSBuscarPedido extends javax.swing.JPanel
         lServicioFMad = new javax.swing.JLabel();
         jComboBoxServicioFMadDestino = new javax.swing.JComboBox();
         lServicioFMad1 = new javax.swing.JLabel();
-        lSEspecial = new javax.swing.JLabel();
-        jComboBoxServicioEspecial = new javax.swing.JComboBox();
         lComercial = new javax.swing.JLabel();
         jComboBoxComercial = new javax.swing.JComboBox();
         jButtonBuscarSProv = new javax.swing.JButton();
@@ -381,21 +379,6 @@ public class CSBuscarPedido extends javax.swing.JPanel
         lServicioFMad1.setText("Destino");
         lServicioFMad1.setName("lServicioFMad1"); // NOI18N
 
-        lSEspecial.setForeground(new java.awt.Color(0, 0, 100));
-        lSEspecial.setText("Especial");
-        lSEspecial.setName("lSEspecial"); // NOI18N
-
-        jComboBoxServicioEspecial.setBackground(new java.awt.Color(228, 229, 255));
-        jComboBoxServicioEspecial.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxServicioEspecial.setMaximumRowCount(20);
-        jComboBoxServicioEspecial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urgente", "ITV", "Pre_ITV", "ITV + Pre_ITV", "Peritación", "Mano obra Mecánica/Chapa", "Chequeo", "Repostaje", " ", "LAVADO DOMICILIO", "LD Exterior", "LD Interior y Exterior", "LD Integral", "LD Interior/Exterior 4x4", "LD Integral 4x4", "LD Interior/Exterior Industrial", "LD Integral Industrial", " ", "LAVADO CAMPA", "LC Exterior", "LC Interior y Exterior", "LC Integral", "LC Interior/Exterior 4x4", "LC Integral 4x4", "LC Interior/Exterior Industrial", "LC Integral Industrial", " ", "Desrotular pegatinas fácil", "Desrotular pegatinas normal", "Desrotular pegatinas difícil", "Rotular pegatinas fácil", "Rotular pegatinas normal", "Rotular pegatinas difícil", "Otros" }));
-        jComboBoxServicioEspecial.setName("jComboBoxServicioEspecial"); // NOI18N
-        jComboBoxServicioEspecial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxServicioEspecialActionPerformed(evt);
-            }
-        });
-
         lComercial.setForeground(new java.awt.Color(0, 0, 100));
         lComercial.setText("Comercial");
         lComercial.setName("lComercial"); // NOI18N
@@ -475,27 +458,13 @@ public class CSBuscarPedido extends javax.swing.JPanel
                                 .addGap(110, 110, 110)
                                 .addComponent(lComercial)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxComercial, 0, 143, Short.MAX_VALUE))
-                            .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
-                            .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lVehiculo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                                .addComponent(lMatricula)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lProveedor)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBoxComercial, 0, 145, Short.MAX_VALUE))
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 922, Short.MAX_VALUE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 922, Short.MAX_VALUE)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 922, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lNumero)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -511,7 +480,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lCliente)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                                        .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(1, 1, 1))
@@ -538,24 +507,38 @@ public class CSBuscarPedido extends javax.swing.JPanel
                                             .addComponent(lCodPostalOrigen)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(jTextCodPostalOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lServicio)
-                                .addGap(22, 22, 22)
-                                .addComponent(lServicioFMad2)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lVehiculo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBoxSoporte, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                        .addComponent(lMatricula)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lProveedor))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lServicio)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(lServicioFMad2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(lServicioFMad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lServicioFMad1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxServicioFMadDestino, 0, 165, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lSEspecial)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lServicioFMad)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(114, 114, 114)
+                                        .addComponent(lServicioFMad1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxServicioFMadDestino, 0, 165, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
@@ -608,15 +591,13 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxServicioEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lServicioFMad2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lSEspecial)
                     .addComponent(jComboBoxServicioFMadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lServicioFMad1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lServicioFMad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lServicioFMad2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lVehiculo)
@@ -709,8 +690,8 @@ public class CSBuscarPedido extends javax.swing.JPanel
 
         String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
                 " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pe_dias_campa, pr.pr_nombre_fiscal, p.pe_ta_es_cliente," +
-                " p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento, p.pe_fecha_origen, p.pe_fecha_destino," +
-                " p.pe_fecha_real_destino, p.pe_estado, p.pe_num_fa_cl, p.pe_num_fa_pr, p.pe_descripcion, p.pe_estado, " +
+                " p.pe_ta_es_proveedor, p.pe_suplemento, p.pe_fecha_origen, p.pe_fecha_destino, p.pe_fecha_real_destino," +
+                " p.pe_estado, p.pe_num_fa_cl, p.pe_num_fa_pr, p.pe_descripcion, pe_observaciones_carset, p.pe_estado," +
                 " cl.co_id, pc.cl_id, p.pe_num_unido, destino_unido, fecha_destino, real_destino, estado_unido "+
                 " FROM (pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc)" +
                 " LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino AS destino_unido, pe_fecha_destino AS fecha_destino," +
@@ -893,10 +874,6 @@ public class CSBuscarPedido extends javax.swing.JPanel
        jTextMatricula.setText(MatriculaM);
     }//GEN-LAST:event_jTextMatriculaFocusLost
 
-    private void jComboBoxServicioEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServicioEspecialActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_jComboBoxServicioEspecialActionPerformed
-
     private void jButtonBuscarSProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarSProvActionPerformed
 
         String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
@@ -930,7 +907,6 @@ public class CSBuscarPedido extends javax.swing.JPanel
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxProvinciaDestino;
     private javax.swing.JComboBox jComboBoxProvinciaOrigen;
-    private javax.swing.JComboBox jComboBoxServicioEspecial;
     private javax.swing.JComboBox jComboBoxServicioFMad;
     private javax.swing.JComboBox jComboBoxServicioFMadDestino;
     private javax.swing.JComboBox jComboBoxSoporte;
@@ -974,7 +950,6 @@ public class CSBuscarPedido extends javax.swing.JPanel
     private javax.swing.JLabel lProveedor;
     private javax.swing.JLabel lProvinciaDestino;
     private javax.swing.JLabel lProvinciaOrigen;
-    private javax.swing.JLabel lSEspecial;
     private javax.swing.JLabel lServicio;
     private javax.swing.JLabel lServicioFMad;
     private javax.swing.JLabel lServicioFMad1;

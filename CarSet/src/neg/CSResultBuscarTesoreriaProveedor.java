@@ -83,7 +83,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET" , "PROVEEDOR", "NETO", "IVA", "IRPF", "TOTAL", "DIAS F.F.", "F. PAGO", "N.º CUENTA", "ESTADO", "FECHA PAGO" ,  "BANCO", "EMAIL", "OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET" , "PROVEEDOR", "NETO", "IVA", "IRPF", "TOTAL", "DIAS F.F.", "F. PAGO", "N.º CUENTA", "ESTADO", "FECHA PAGO" , "BANCO", "EMAIL", "OBSERVACIONES"});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -125,7 +125,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 {
                     if((k==0))
                     {
-                        String fecha=(rs.getObject(k+1)).toString();
+                        String fecha=rs.getString("tr_fecha");
                          String [] temp = null;
                          if (!fecha.equals(" "))
                          {
@@ -137,6 +137,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
                             datosFila[j] = nueva;
                          }
+                    System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if(k==1)
                     {
@@ -154,6 +155,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         //sumamos a la fecha el plazo en días
                         fVencimiento = Utilidades.sumarFecha(rs.getString("tr_fecha"), diasPlazo);
                         datosFila[j] = fVencimiento;
+                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if(k==5)
                     {
@@ -170,6 +172,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalIva = totalIva + iva;
                         totalIva = Utilidades.redondear(totalIva, 2);
+                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==7)
                     {
@@ -177,6 +180,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalIrpf = totalIrpf + irpf;
                         totalIrpf = Utilidades.redondear(totalIrpf, 2);
+                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==8)
                     {
@@ -184,51 +188,32 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalImporte = totalImporte + importe;
                         totalImporte = Utilidades.redondear(totalImporte, 2);
+                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
-                    else if (k==9)
+                    else if((k==13))
                     {
-                        datosFila[j] = rs.getObject(k);
-                    }
-                    else if (k==10)
-                    {
-                        datosFila[j] = rs.getObject(k);
-                    }
-                    else if (k==11)
-                    {
-                        datosFila[j] = rs.getObject(k);
-                    }
-                    else if (k==12)
-                    {
-                        datosFila[j] = rs.getObject(k );
-                    }
-                    else if(k==13)
-                    {
-                        String fecha=(rs.getObject(k)).toString();
-                         String [] temp = null;
-                         if (!fecha.equals(" "))
-                         {
-                            temp = fecha.split("\\-");
+                        String fechaPago = rs.getString("tr_fecha_pago");
+                        String [] temp = null;
+                        if (fechaPago != null && !fechaPago.equals(" "))
+                        {
+                            temp = fechaPago.split("\\-");
                             String anyo=temp[0];
                             String mes=temp[1];
                             String dia=temp[2];
-                            String nueva=dia+"-"+mes+"-"+anyo;
+                            String nuevaPago = dia+"-"+mes+"-"+anyo;
 
-                              datosFila[j] = nueva;
-                         }
-                    }
-                    else if (k==14)
-                    {
-                        datosFila[j] = rs.getObject(k);
-                    }
-                    else if (k==15)
-                    {
-                        datosFila[j] = rs.getObject(k);
+                            datosFila[j] = nuevaPago;
+                        }
+                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else
                     {
                         datosFila[j] = rs.getObject(k);
+                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     j++;
+
+               // System.out.println("Dato" + k + " " + datosFila[j]);
                 }
 
                 modelo.addRow(datosFila);
@@ -535,6 +520,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
             int fila = 0;
+            String estado = "PTE";
             String nueva = "";
             boolean tesoreria = false;
             BeanTesoreriaProveedor campos = new BeanTesoreriaProveedor();
@@ -543,9 +529,14 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
             {
                 campos =(BeanTesoreriaProveedor)lista.get(fila);
                 int tr_id = campos.getTr_id();
-                String estado = (String) jTable1.getValueAt(fila, 12);
+
+                System.out.println("Elemento estado: "+jTable1.getValueAt(fila, 12));
+
+                if(jTable1.getValueAt(fila, 12) != null){
+                 estado = (String) jTable1.getValueAt(fila, 12);
+                }
                 String fechaPago = (String) jTable1.getValueAt(fila, 13);
-                if (!fechaPago.equals(""))
+                if (fechaPago != null && !fechaPago.equals(""))
                 {
                      String [] temp = null;
                      temp = fechaPago.split("\\-");
@@ -557,7 +548,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 
                 String banco = (String) jTable1.getValueAt(fila, 14);
 
-                System.out.println("fila: "+i);
+//                System.out.println("fila: "+i);
                 fila ++;
 
 //                System.out.println("Elemento id: "+tr_id);
@@ -589,7 +580,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 CSDesktop.BuscarTesoreriaProveedor.dispose();
                 CSDesktop.menuTesoreriaProveedor.setEnabled(true);
             }
-
         }//GEN-LAST:event_jButtonModificarActionPerformed
 
 
@@ -862,13 +852,16 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
                     //Celda de la fecha de pago
                     celda = fila.createCell( (short) 13);
-                    String fecha_pago=(rs.getObject("tr_fecha_pago")).toString();
+                    String fecha_pago = rs.getString("tr_fecha_pago");
+                    if (fecha_pago != null && !fecha_pago.equals(" "))
+                    {
                          temp = null;
                          temp = fecha_pago.split("\\-");
                          anyo=temp[0];
                          mes=temp[1];
                          dia=temp[2];
                          nueva=dia+"-"+mes+"-"+anyo;
+                    }
                     texto = new HSSFRichTextString(nueva);
                     celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
@@ -962,7 +955,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
             // These are the combobox values
             String[] values = new String[]{"","PTE", "PAGADO"};
-            String[] valuesBanco = new String[]{"","LC", "OP"};
+            String[] valuesBanco = new String[]{"","LC", "OP", "OB"};
 
             //System.out.println(table.getRowCount()+" / "+fila);
             TableColumn col = table.getColumnModel().getColumn(column);
@@ -972,18 +965,14 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
             {
                 col.setCellEditor(new MyComboBoxEditor(values));
                 col.setCellRenderer(new MyComboBoxRenderer(values));
-                jTable1.setValueAt(value, row, column);
+                jTable1.setValueAt(values, row, column);
             }
-            
-//            if (column == 13)
-//            {
-//               col.setCellEditor(new DateEditer());
-//            }
+         
             else if(column == 14)
             {
                 colB.setCellEditor(new MyComboBoxEditor(valuesBanco));
                 colB.setCellRenderer(new MyComboBoxRenderer(valuesBanco));
-                jTable1.setValueAt(value, row, column);
+                jTable1.setValueAt(valuesBanco, row, column);
             }
             
             //si no cumplen esa condicion pongo las celdas en color blanco
@@ -1096,8 +1085,12 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
      */
     public boolean modificarTesoreria(int tr_id, String estado, String fechaPago, String banco) throws SQLException
     {
-        String query = "UPDATE tr_tesoreria_proveedor SET tr_estado = '"+estado+"', tr_fecha_pago = '"+fechaPago+"', " +
-                       "tr_banco = '"+banco+"' WHERE tr_id = "+tr_id;
+        String query = "UPDATE tr_tesoreria_proveedor SET tr_estado = '"+estado+"'";
+        if(!fechaPago.equals(""))
+        {
+            query = query + ", tr_fecha_pago = '"+fechaPago+"'";
+        }
+        query = query + ", tr_banco = '"+banco+"' WHERE tr_id = "+tr_id;
         System.out.println(query);
         boolean rsUpdate = CSDesktop.datos.manipuladorDatos(query);
 

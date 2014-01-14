@@ -156,7 +156,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("Informe Tesorería Cliente");
+        jLabel1.setText("Relacción Factura Cliente");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
@@ -406,9 +406,9 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                        "FROM fl_factura_cliente fl, pe_pedidos pe, cl_clientes cl, fp_forma_pago fp " +
                        "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id"; //AND fl.fl_num = pe.pe_num_fa_cl";
 
-        if (numeroFr.equals("") && cliente.equals("") &&
-           (fechaI.equals("") && fechaF.equals("")) &&
-           (fechaIFc.equals("") && fechaFFc.equals("")))
+        if (numeroFr.equals("")  &&
+           (fechaI.equals("") && fechaF.equals("") && cliente.equals("")) &&
+           (fechaIFc.equals("") && fechaFFc.equals("") && cliente.equals("")))
         {
             jButtonBuscar.setEnabled(false);
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Debe seleccionar número de factura, un Cliente o período de tiempo</FONT></HTML>");

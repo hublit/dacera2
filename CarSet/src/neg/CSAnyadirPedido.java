@@ -1887,7 +1887,7 @@ public class CSAnyadirPedido extends JPanel
                     }
 
                     if(unirPedidos){
-                        int confirmado = JOptionPane.showConfirmDialog(this,"Los datos se han guardado correctamente, seha marcado la opción de unir pedidos, rellene los datos del pedido");
+                        int confirmado = JOptionPane.showConfirmDialog(this,"Los datos se han guardado correctamente, se ha marcado la opción de unir pedidos, rellene los datos del pedido");
 
                         if (JOptionPane.OK_OPTION == confirmado)
                         {
