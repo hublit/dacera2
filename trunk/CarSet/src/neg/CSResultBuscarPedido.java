@@ -228,7 +228,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         }
          else
         {
-            CSDesktop.ResultPedido = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
+            CSDesktop.ResultPedido = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, true, true );
             CSDesktop.ResultPedido.getContentPane().add( this, BorderLayout.CENTER );
             CSDesktop.ResultPedido.pack();
             CSDesktop.BuscarPedido.dispose();

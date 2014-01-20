@@ -132,7 +132,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
                             datosFila[j] = nueva;
                          }
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if(k==1)
                     {
@@ -150,7 +150,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                         //sumamos a la fecha el plazo en días
                         fVencimiento = Utilidades.sumarFecha(rs.getString("fl_fecha"), diasPlazo);
                         datosFila[j] = fVencimiento;
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if(k==4)
                     {
@@ -160,7 +160,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(total_cl));
                         total = total + total_cl;
                         total = Utilidades.redondear(total, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if(k==5)
                     {
@@ -168,7 +168,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(iva));
                         totalIva = totalIva + iva;
                         totalIva = Utilidades.redondear(totalIva, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==6)
                     {
@@ -179,7 +179,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
                         totalImporte = totalImporte + importe;
                         totalImporte = Utilidades.redondear(totalImporte, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if(k==10)
                     {
@@ -195,12 +195,12 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
                             datosFila[j] = nueva;
                         }
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else
                     {
                         datosFila[j] = rs.getObject(k+1);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     j++;
                 }
@@ -211,24 +211,24 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
             rs.close();
             Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
             int i = 0;
-            for (int k = 0; k < 12; k++)
+            for (int k = 0; k < 13; k++)
             {
-                    if(k==3)
-                    {
-                        datosFilaTotal[i] = "TOTALES";
-                    }
-                    if(k==4)
-                    {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(total));
-                    }
-                    if(k==5)
-                    {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIva));
-                    }
-                    if(k==6)
-                    {
-                        datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalImporte));
-                    }
+                if(k==3)
+                {
+                    datosFilaTotal[i] = "TOTALES";
+                }
+                if(k==4)
+                {
+                    datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(total));
+                }
+                if(k==5)
+                {
+                    datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIva));
+                }
+                if(k==6)
+                {
+                    datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalImporte));
+                }
                 i++;
            }
 
@@ -245,7 +245,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         }
          else
         {
-            CSDesktop.ResultTesoreriaCliente = new JInternalFrame("Resultado Búsqueda Tesorería Cliente", true, false, false, true );
+            CSDesktop.ResultTesoreriaCliente = new JInternalFrame("Resultado Búsqueda Tesorería Cliente", true, false, true, true );
             CSDesktop.ResultTesoreriaCliente.getContentPane().add( this, BorderLayout.CENTER );
             CSDesktop.ResultTesoreriaCliente.pack();
             CSDesktop.ResultTesoreriaCliente.dispose();
@@ -329,8 +329,6 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                                                     boolean hasFocus, int row, int col)
     {
-         int componente = table.getSelectedRow();
-
          Component comp = getTableCellRendererComponent(table,  value, isSelected, hasFocus, row, col);
          
          String s =  table.getModel().getValueAt(row, col ).toString();
@@ -503,38 +501,36 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
             String nueva = "";
+            String estado = "";
             boolean tesoreria = false;
-            int longitud = jTable1.getSelectedRowCount();
-
-            int[] celdas = jTable1.getSelectedRows();
 
             for(int i = 0; i < lista.size(); i++)
             {
-                System.out.println("celda: "+lista.get(i));
-                    //ArrayList indices = (ArrayList) lista.get(celdas[i]);
-                    ArrayList indices = (ArrayList) lista.get(i);
-                    int fl_id = Integer.parseInt(indices.get(0).toString());
-                    String estado = (String) jTable1.getValueAt(i, 9);
-                    String fechaPago = (String) jTable1.getValueAt(i, 10);
+//               System.out.println("celda: "+lista.get(i));
+                //ArrayList indices = (ArrayList) lista.get(celdas[i]);
+                ArrayList indices = (ArrayList) lista.get(i);
+                int fl_id = Integer.parseInt(indices.get(0).toString());
+                estado = jTable1.getValueAt(i, 9).toString();
+                String fechaPago = jTable1.getValueAt(i, 10).toString();
 
-                    if (fechaPago != null && !fechaPago.equals(""))
-                    {
-                         String [] temp = null;
-                         temp = fechaPago.split("\\-");
-                         String anyo = temp[2];
-                         String mes = temp[1];
-                         String dia = temp[0];
-                         nueva = anyo+"-"+mes+"-"+dia;
-                    }
+                if (fechaPago != null && !fechaPago.equals(""))
+                {
+                     String [] temp = null;
+                     temp = fechaPago.split("\\-");
+                     String anyo = temp[2];
+                     String mes = temp[1];
+                     String dia = temp[0];
+                     nueva = anyo+"-"+mes+"-"+dia;
+                }
 
-                    String observaciones = (String) jTable1.getValueAt(i, 12);
-                    
-                    try {
-                        //guardamos las modificaciones en la bd
-                      tesoreria = modificarTesoreria(fl_id, estado, nueva, observaciones);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CSResultBuscarTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                String observaciones = jTable1.getValueAt(i, 12).toString();
+
+                try {
+                    //guardamos las modificaciones en la bd
+                  tesoreria = modificarTesoreria(fl_id, estado, nueva, observaciones);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSResultBuscarTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if(tesoreria)
             {
@@ -674,8 +670,8 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
                 while (rs.next())
                 {
-                    String tr_id = rs.getString("fl_id");
-                    String fechaTr = rs.getString("fl_fecha");
+//                    String tr_id = rs.getString("fl_id");
+//                    String fechaTr = rs.getString("fl_fecha");
 
                     // Se crea una fila dentro de la hoja
                     fila = hoja.createRow(num_fila);
@@ -831,6 +827,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
      */
     public class MiRender extends DefaultTableCellRenderer {
 
+        @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
         {
             Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
@@ -877,17 +874,17 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
             }
 
             // These are the combobox values
-            String[] values = new String[]{"","PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO", "INCOBRABLE"};
+            String[] valuesTc = new String[]{"","PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO", "INCOBRABLE"};
 
-            //System.out.println(table.getRowCount()+" / "+fila);
             TableColumn col = table.getColumnModel().getColumn(column);
 
             if (column == 9)
             {
-                col.setCellEditor(new MyComboBoxEditor(values));
-                col.setCellRenderer(new MyComboBoxRenderer(values));
-                jTable1.setValueAt(value, row, column);
+                col.setCellEditor(new MyComboBoxEditorTc(valuesTc));
+                col.setCellRenderer(new MyComboBoxRendererTc(valuesTc));
+                jTable1.setValueAt(valuesTc, row, column);
             }
+
             
             //si no cumplen esa condicion pongo las celdas en color blanco
             if (table. getValueAt(row, 3). toString().equals("TOTALES"))
@@ -900,17 +897,19 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 col.setCellRenderer(null);
             }
 
+            jTable1.setRowSelectionAllowed(true);
+            jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
             return cell;
         }
-
     }
 
     /**
      *
      */
-    public class MyComboBoxRenderer extends JComboBox implements TableCellRenderer
+    public class MyComboBoxRendererTc extends JComboBox implements TableCellRenderer
     {
-        public MyComboBoxRenderer(String[] items)
+        public MyComboBoxRendererTc(String[] items)
         {
             super(items);
         }
@@ -937,9 +936,9 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
     /**
      *
      */
-    public class MyComboBoxEditor extends DefaultCellEditor
+    public class MyComboBoxEditorTc extends DefaultCellEditor
     {
-        public MyComboBoxEditor(String[] items)
+        public MyComboBoxEditorTc(String[] items)
         {
             super(new JComboBox(items));
         }
@@ -950,7 +949,6 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
      */
     public class DateEditer extends AbstractCellEditor implements TableCellEditor
     {
-
         private JDateChooser theSpinner;
         protected Object value;
 

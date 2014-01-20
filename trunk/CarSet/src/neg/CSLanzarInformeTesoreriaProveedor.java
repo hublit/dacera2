@@ -27,7 +27,6 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 
     public CSLanzarInformeTesoreriaProveedor()
     {
-        CSDesktop.menuBuscarProveedor.setEnabled(false);
         initComponents();
 
         KeyListener l = new KeyListener()
@@ -138,7 +137,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("Informe Tesorería Proveedor");
+        jLabel1.setText("Relación Factura Proveedor");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
@@ -394,8 +393,6 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
             } catch (ParseException ex) {
                 Logger.getLogger(CSLanzarInformeTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 

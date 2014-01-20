@@ -137,7 +137,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
                             datosFila[j] = nueva;
                          }
-                    System.out.println("Dato" + k + " " + datosFila[j]);
+//                    System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if(k==1)
                     {
@@ -155,7 +155,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         //sumamos a la fecha el plazo en días
                         fVencimiento = Utilidades.sumarFecha(rs.getString("tr_fecha"), diasPlazo);
                         datosFila[j] = fVencimiento;
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if(k==5)
                     {
@@ -163,7 +163,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         total = total + total_pr;
                         total = Utilidades.redondear(total, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
 
                     }
                     else if(k==6)
@@ -172,7 +172,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalIva = totalIva + iva;
                         totalIva = Utilidades.redondear(totalIva, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==7)
                     {
@@ -180,7 +180,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalIrpf = totalIrpf + irpf;
                         totalIrpf = Utilidades.redondear(totalIrpf, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if (k==8)
                     {
@@ -188,7 +188,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
                         totalImporte = totalImporte + importe;
                         totalImporte = Utilidades.redondear(totalImporte, 2);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else if((k==13))
                     {
@@ -204,12 +204,12 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
                             datosFila[j] = nuevaPago;
                         }
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     else
                     {
                         datosFila[j] = rs.getObject(k);
-                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     j++;
 
@@ -259,7 +259,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         }
          else
         {
-            CSDesktop.ResultTesoreriaProveedor = new JInternalFrame("Resultado Búsqueda Tesorería Proveedor", true, false, false, true );
+            CSDesktop.ResultTesoreriaProveedor = new JInternalFrame("Resultado Búsqueda Tesorería Proveedor", true, false, true, true );
             CSDesktop.ResultTesoreriaProveedor.getContentPane().add( this, BorderLayout.CENTER );
             CSDesktop.ResultTesoreriaProveedor.pack();
             CSDesktop.ResultTesoreriaProveedor.dispose();
@@ -275,7 +275,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         jTable1.setModel(modelo);
         jTable1.setDefaultRenderer (Object.class, new MiRender());
 
-        jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
         columna.setPreferredWidth(80);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
@@ -316,7 +315,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         DefaultTableCellRenderer tcrRight = new DefaultTableCellRenderer();
         tcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
         jTable1.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
-        //jTable1.getTableHeader().setPreferredSize(new Dimension(jTable1.getTableHeader().getWidth(),26));
         jTable1.getTableHeader().setBackground(Color.GRAY);
         jTable1.getTableHeader().setForeground(Color.white);        
         jTable1.setAutoCreateRowSorter(true);
@@ -344,8 +342,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                                                     boolean hasFocus, int row, int col)
     {
-         int componente = table.getSelectedRow();
-
          Component comp = getTableCellRendererComponent(table,  value, isSelected, hasFocus, row, col);
 
          String s =  table.getModel().getValueAt(row, col ).toString();
@@ -461,7 +457,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
 
-
     private void jButtonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExportarActionPerformed
         try {
             // Se crea el libro excel
@@ -513,7 +508,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
             Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }          catch (IOException ex) {
             Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
-       
     }
     }
     
@@ -530,12 +524,10 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 campos =(BeanTesoreriaProveedor)lista.get(fila);
                 int tr_id = campos.getTr_id();
 
-                System.out.println("Elemento estado: "+jTable1.getValueAt(fila, 12));
-
                 if(jTable1.getValueAt(fila, 12) != null){
-                 estado = (String) jTable1.getValueAt(fila, 12);
+                 estado =  jTable1.getValueAt(fila, 12).toString();
                 }
-                String fechaPago = (String) jTable1.getValueAt(fila, 13);
+                String fechaPago = jTable1.getValueAt(fila, 13).toString();
                 if (fechaPago != null && !fechaPago.equals(""))
                 {
                      String [] temp = null;
@@ -545,10 +537,9 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                      String dia = temp[0];
                      nueva = anyo+"-"+mes+"-"+dia;
                 }
-                
-                String banco = (String) jTable1.getValueAt(fila, 14);
 
-//                System.out.println("fila: "+i);
+                String banco = (jTable1.getValueAt(fila, 14) != null) ? jTable1.getValueAt(fila, 14).toString() : "";
+
                 fila ++;
 
 //                System.out.println("Elemento id: "+tr_id);
@@ -607,7 +598,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 cs.setTopBorderColor(HSSFColor.BLACK.index);
 
                 cs.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-
 
 		// Creamos la cabecera de las columnas
                 fila = hoja.createRow(0);
@@ -712,7 +702,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 texto = new HSSFRichTextString("OBSERVACIONES");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 16, (short) ((600 * 2) / ((double) 1 / 20)) );
-
 	}
 
         private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, ResultSet rs, HSSFCellStyle cs2,HSSFCellStyle cs3) throws SQLException, UnknownHostException
@@ -724,8 +713,8 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
                 while (rs.next())
                 {
-                    String tr_id = rs.getString("tr_id");
-                    String fechaTr = rs.getString("tr_fecha");
+//                    String tr_id = rs.getString("tr_id");
+//                    String fechaTr = rs.getString("tr_fecha");
 
                     // Se crea una fila dentro de la hoja
                     fila = hoja.createRow(num_fila);
@@ -986,12 +975,11 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 col.setCellRenderer(null);
             }
 
-                    jTable1.setRowSelectionAllowed(true);
-        jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            jTable1.setRowSelectionAllowed(true);
+            jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
             return cell;
         }
-
     }
 
     /**

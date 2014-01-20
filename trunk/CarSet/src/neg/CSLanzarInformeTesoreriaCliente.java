@@ -29,7 +29,6 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
 
     public CSLanzarInformeTesoreriaCliente() throws SQLException
     {
-        CSDesktop.menuBuscarProveedor.setEnabled(false);
         initComponents();
         getFPago();
 
@@ -441,7 +440,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
                 query = query + " AND cl.fp_id='" + fPagoId + "'";
             }
 
-            query = query + " ORDER BY fl.fl_fecha ASC";
+            query = query + " ORDER BY fl.fl_num ASC";
             System.out.println(query);
             try {
                 CSResultBuscarTesoreriaCliente resultBuscarTesoreriaCl = new CSResultBuscarTesoreriaCliente(query);

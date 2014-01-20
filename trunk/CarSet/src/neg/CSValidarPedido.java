@@ -303,7 +303,7 @@ public class CSValidarPedido extends JPanel
     private void jToggleButtonProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonProveedorActionPerformed
 
         System.out.println("\nBotón Buscar Proveedor en Validar Pedido.");
-        CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
+        CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, true, true );
         // adjuntar panel al panel de contenido del marco interno
         CSSelectProveedor panel = new CSSelectProveedor(jTextProveedor,"",true);
         CSDesktop.BuscaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
