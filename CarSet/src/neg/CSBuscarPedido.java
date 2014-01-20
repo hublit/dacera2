@@ -782,7 +782,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
                     query = query + " AND pe_dias_campa = '" + diasCampaN + "'";
                 }
                 if (peUnidos) {
-                    query = query + " AND pe_num_unido != 0";
+                    query = query + " AND (pe_num_unido != 0 OR destino_unido IS NOT null)";
                 }
                 query = query + " ORDER BY p.pe_fecha ASC";
                 System.out.println(query);

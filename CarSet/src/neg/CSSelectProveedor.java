@@ -7,7 +7,6 @@
 package neg;
 
 import utils.TablaModelo;
-import data.Proveedor;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -16,6 +15,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -34,14 +35,45 @@ public class CSSelectProveedor extends javax.swing.JPanel
     public CSSelectProveedor(JTextField jTextC,String busqueda,boolean inicial)
     {
         TablaModelo modelo = new TablaModelo();
-        Proveedor prov = new Proveedor();
         this.jTextPro=jTextC;
 
         modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE", "DNI",});
 
         int numeroFila = 0;
+        String query = "";
+        if(inicial){
+           query = "SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF FROM pr_proveedores WHERE pr_estado = 'Activo' ORDER BY pr_nombre_fiscal";
+        }else{
+           query =  "SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF FROM pr_proveedores WHERE pr_estado = 'Activo' AND pr_nombre_fiscal like  '%"+busqueda+"%' ORDER BY pr_nombre_fiscal ";
+        }
+        try
+        {
+         ResultSet rs = CSDesktop.datos.select(query);
 
-        if(inicial==true)
+         int i = 0;
+         while(rs.next())
+         {
+            Object[] datosFila = new Object[modelo.getColumnCount()];
+            int j = 0;
+            for (int k = 0; k < 4; k++) {
+                if (k == 0 || k == 1 || k == 2) {
+                    datosFila[j] = rs.getObject(k + 1);
+                    j++;
+                }
+            }
+
+            modelo.addRow(datosFila);
+            numeroFila++;
+            i++;
+         }
+         System.out.println(i);
+         rs.close();
+      }
+      catch(SQLException e)
+      {
+         System.out.println(e);
+      }
+        /*if(inicial==true)
         {
             for (int i = 0; i < prov.getProveedores().length; i ++)
             {
@@ -74,7 +106,7 @@ public class CSSelectProveedor extends javax.swing.JPanel
                 modelo.addRow(datosFila);
                 numeroFila++;
             }
-        }
+        }*/
 
         initComponents();
 
@@ -95,11 +127,9 @@ public class CSSelectProveedor extends javax.swing.JPanel
             public void keyReleased(KeyEvent e) {}
         };
 
-         for (int k = 0; k < this.getComponents().length; k ++)
+        for (int k = 0; k < this.getComponents().length; k ++)
         {
-
-                this.getComponents()[k].addKeyListener(l);
-
+            this.getComponents()[k].addKeyListener(l);
         }
 
         addKeyListener(l);

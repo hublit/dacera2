@@ -244,7 +244,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="4" green="10" red="aa" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Informe Tesorer&#xed;a Proveedor"/>
+        <Property name="text" type="java.lang.String" value="Relaci&#xf3;n Factura Proveedor"/>
         <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
       </Properties>
     </Component>

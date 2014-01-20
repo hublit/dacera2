@@ -12,7 +12,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
-import data.Cliente;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -38,7 +37,6 @@ public class CSSelectCliente extends javax.swing.JPanel
     public CSSelectCliente(JTextField jTextC,String busqueda,boolean inicial)
     {
         TablaModelo modelo = new TablaModelo();
-        Cliente client = new Cliente();
 
         this.jTextCli = jTextC;
 
@@ -50,9 +48,6 @@ public class CSSelectCliente extends javax.swing.JPanel
 
         if(!inicial)
         {
-
-    /////////////////////
-
             query = "SELECT cl_id, cl_nombre, cl_DNI_CIF  FROM cl_clientes WHERE cl_estado = 'Activo' AND cl_nombre like  '%"+busqueda+"%' ORDER BY cl_nombre";
         }
         try
@@ -355,5 +350,4 @@ public class CSSelectCliente extends javax.swing.JPanel
             return cell;
         }
     }
-
 }
