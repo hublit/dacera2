@@ -25,8 +25,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import utils.Utilidades;
 import data.*;
 import data.BeanFactura;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import javax.mail.PasswordAuthentication;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -55,7 +53,6 @@ import net.sf.jasperreports.engine.JasperExportManager;
  */ 
 public class CSLanzarFactura extends javax.swing.JPanel
 {
-
     JasperPrint jasperPrint;
     String nombreFichero="";
     
@@ -279,15 +276,14 @@ public class CSLanzarFactura extends javax.swing.JPanel
                         importeSupD = Utilidades.redondear(importeSupD, 2);
                     }
                 }
-
             }
             //SI EL CAMPO DIAS CAMPA VIENE CON EL VALOR DISTINTO DE 0
             else
             {
                 if(!beanFactura.getTarifaEsCliente().equals("-1"))
                 {
-                     soporte = "CAMPA";
-                     labelCampa1 = "CAMPA";
+                     soporte = "Custodia";
+                     labelCampa1 = "Custodia";
                      finalCampaEntrada = "ENTRADA / DÍAS";
                      importeCampaEntradaD=Double.parseDouble(beanFactura.getTarifaEsCliente());
                 }
@@ -302,9 +298,9 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             importeDiasCampaAux = rsCampa.getString("sc_campa");
                         }
 
-                    soporte = "CAMPA";
-                    labelCampa1 = "CAMPA";
-                    labelCampa2 = "CAMPA";
+                    soporte = "Custodia";
+                    labelCampa1 = "Custodia";
+                    labelCampa2 = "Custodia";
                     finalCampaEntrada = "ENTRADA";
                     finalCampaDias = beanFactura.getDiasCampa()+ " DIAS * " + importeDiasCampaAux;
                 
@@ -312,7 +308,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     importeCampaDiasD=(Double.parseDouble(beanFactura.getDiasCampa()))*(Double.parseDouble(importeDiasCampaAux));
 
                     importeCampaDias=String.valueOf(importeCampaDiasD);
-
                    
                 }
                  //LINEA DE FACTOR DE CORRECCION
@@ -345,7 +340,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
             //TOTAL
             totalAux = importeTrasladoD - IdaVueltaDF + importeFc + importeServicioD + importeSupD + importeCampaEntradaD + importeCampaDiasD;
             importeTotalAuxS = Double.toString(totalAux);
-
 
 
             String query = "INSERT INTO fa_facturas_aux (fa_num, fa_fecha, fa_marca, fa_modelo, " +
@@ -414,7 +408,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
          String provinciaFiscal="";
          String codPostalFiscal="";
          String finalNumFactura="";
-
 
          try
          {
@@ -606,8 +599,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                     CSDesktop.NuevaFactura.toFront();
                                 }
                             }
-                        }
-                    
+                        }                    
                  }
             } // FIN DE GENERACION DE FACTURA
         }
@@ -1355,7 +1347,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
                     importeCampaDias=String.valueOf(importeCampaDiasD);
 
-
                 }
                  //LINEA DE FACTOR DE CORRECCION
                      ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
@@ -1457,7 +1448,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
          String codPostalFiscal="";
          String finalNumFactura="";
 
-
          try
          {
             // SE REALIZA LA CONEXION
@@ -1482,9 +1472,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 poblacionFiscal=beanCliente.getPoblacion_fiscal();
                 provinciaFiscal=beanCliente.getProvinciaFiscal();
                 codPostalFiscal=beanCliente.getCod_postal_fiscal();
-            }
-
-           
+            }           
 
             // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
             String plazoPago=beanCliente.getPlazoPago();
