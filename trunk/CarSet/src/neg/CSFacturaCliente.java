@@ -415,7 +415,7 @@ public class CSFacturaCliente extends JPanel
                         unidoEstado = (rs.getString("estado_unido").equals("Entregado")) ? true : false;
                     }
                     if (rs.getLong("pe_num_unido") == 0 &&
-                       (rs.getString("pe_estado").equals("") || rs.getString("pe_estado").equals("Entregado")) &&
+                       (rs.getString("pe_estado").equals("") || rs.getString("pe_estado").equals("Entregado") || rs.getString("pe_estado").equals("Fallido")) &&
                        unidoEstado)
                     {
                         BeanFactura nueva = new BeanFactura();
