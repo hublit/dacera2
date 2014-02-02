@@ -200,7 +200,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     else
                     {
                         datosFila[j] = rs.getObject(k+1);
-//                        System.out.println("Dato" + k + " " + datosFila[j]);
+//                       System.out.println("Dato" + k + " " + datosFila[j]);
                     }
                     j++;
                 }
@@ -305,7 +305,6 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         jTable1.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         jTable1.setSelectionModel(selectionModel);
     }
-
     
     /**
      *
@@ -515,14 +514,14 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
                 if (fechaPago != null && !fechaPago.equals(""))
                 {
-                     String [] temp = null;
-                     temp = fechaPago.split("\\-");
-                     String anyo = temp[2];
-                     String mes = temp[1];
-                     String dia = temp[0];
-                     nueva = anyo+"-"+mes+"-"+dia;
+                    String [] temp = null;
+                    temp = fechaPago.split("\\-");
+                    String anyo = temp[2];
+                    String mes = temp[1];
+                    String dia = temp[0];
+                    nueva = anyo+"-"+mes+"-"+dia;
                 }
-
+System.out.println("Fecha de pago: "+nueva);
                 String observaciones = jTable1.getValueAt(i, 12).toString();
 
                 try {
@@ -897,7 +896,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 col.setCellRenderer(null);
             }
 
-            jTable1.setRowSelectionAllowed(true);
+//            jTable1.setRowSelectionAllowed(true);
             jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
             return cell;

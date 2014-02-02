@@ -588,7 +588,10 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)));
+                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                    {
+                                        CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                    }
                                 }
                                 if(codigo==1)
                                 {
@@ -1067,7 +1070,10 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)));
+                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                    {
+                                        CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                    }
                                 }
                                 if(codigo==1)
                                 {
@@ -1320,8 +1326,8 @@ public class CSLanzarFactura extends javax.swing.JPanel
             {
                 if(!beanFactura.getTarifaEsCliente().equals("-1"))
                 {
-                     soporte = "CAMPA";
-                     labelCampa1 = "CAMPA";
+                     soporte = "Custodia";
+                     labelCampa1 = "Custodia";
                      finalCampaEntrada = "ENTRADA / DÍAS";
                      importeCampaEntradaD=Double.parseDouble(beanFactura.getTarifaEsCliente());
                 }
@@ -1336,9 +1342,9 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             importeDiasCampaAux = rsCampa.getString("sc_campa");
                         }
 
-                    soporte = "CAMPA";
-                    labelCampa1 = "CAMPA";
-                    labelCampa2 = "CAMPA";
+                    soporte = "Custodia";
+                    labelCampa1 = "Custodia";
+                    labelCampa2 = "Custodia";
                     finalCampaEntrada = "ENTRADA";
                     finalCampaDias = beanFactura.getDiasCampa()+ " DIAS * " + importeDiasCampaAux;
 
@@ -1647,7 +1653,10 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Entregado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)));
+                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Entregado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                    {
+                                        CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                    }
                                 }
                                 if(codigo==1)
                                 {
@@ -1662,11 +1671,15 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
                  }
             } // FIN DE GENERACION DE FACTURA
+
         }
         catch (JRException e)
         {
           e.printStackTrace();
         }
+
+
     }// FIN DE LA CLASE LANZAR
+
 
 }
