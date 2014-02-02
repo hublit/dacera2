@@ -211,7 +211,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
-				<text><![CDATA[Nº CUENTA]]></text>
+				<text><![CDATA[IBAN]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="275" y="206" width="103" height="20"/>
@@ -239,7 +239,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
-				<text><![CDATA[2100-4024-61-2200077238]]></text>
+				<text><![CDATA[ES23 2100-4024-61-2200077238]]></text>
 			</staticText>
 			<rectangle radius="10">
 				<reportElement x="10" y="119" width="262" height="64" backcolor="#FFFFFF"/>

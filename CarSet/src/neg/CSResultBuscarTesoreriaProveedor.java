@@ -538,18 +538,19 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                      nueva = anyo+"-"+mes+"-"+dia;
                 }
 
-                String banco = (jTable1.getValueAt(fila, 14) != null) ? jTable1.getValueAt(fila, 14).toString() : "";
+                String banco = (jTable1.getValueAt(fila, 14) != null || jTable1.getValueAt(fila, 14) != "")
+                               ? jTable1.getValueAt(fila, 14).toString() : "";
 
                 fila ++;
-
+//                System.out.println("N factura: "+jTable1.getValueAt(fila, 3));
 //                System.out.println("Elemento id: "+tr_id);
-//                System.out.println("Elemento estado: "+estado);
+//                System.out.println("Elemento estado: "+jTable1.getValueAt(fila, 12));
 //                System.out.println("Elemento fecha pago: "+fechaPago);
-//                System.out.println("Elemento banco: "+banco);
+//                System.out.println("Elemento banco: --"+jTable1.getValueAt(fila, 14)+"--");
 
                 try {
                     //guardamos las modificaciones en la bd
-                   tesoreria =  modificarTesoreria(tr_id, estado, nueva, banco);
+                   tesoreria =  modificarTesoreria(tr_id, jTable1.getValueAt(fila, 12), nueva, jTable1.getValueAt(fila, 14));
                 } catch (SQLException ex) {
                     Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1071,7 +1072,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
      * @param ts
      * @throws SQLException
      */
-    public boolean modificarTesoreria(int tr_id, String estado, String fechaPago, String banco) throws SQLException
+    public boolean modificarTesoreria(int tr_id, Object estado, String fechaPago, Object banco) throws SQLException
     {
         String query = "UPDATE tr_tesoreria_proveedor SET tr_estado = '"+estado+"'";
         if(!fechaPago.equals(""))

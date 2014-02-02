@@ -23,6 +23,7 @@ import java.awt.event.MouseEvent;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,7 +90,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 //        double totalSuplemento = 0;
         double totalMargen = 0;
         int totalDiasCampa = 0;
-
+        DecimalFormat df = new DecimalFormat("0.00");
         try {
             while (rs.next()) {
                 Object[] datosFila = new Object[modelo.getColumnCount()];
@@ -132,14 +133,14 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                     else if(k==12)
                     {
                          ta_es_cl=rs.getDouble(k+1);
-                         datosFila[j] = rs.getDouble(k + 1);
+                         datosFila[j] = df.format(rs.getDouble(k + 1));
                          totalCliente = totalCliente + ta_es_cl;
                          totalCliente = Utilidades.redondear(totalCliente, 2);
                     }
                     else if(k==13)
                     {
                         ta_es_pr=rs.getDouble(k+1);
-                        datosFila[j] = rs.getDouble(k + 1);
+                        datosFila[j] = df.format(rs.getDouble(k + 1));
 //                        System.out.println("Clase: " + datosFila[j].getClass().getName());
                         totalProveedor = totalProveedor + ta_es_pr;
                        totalProveedor = Utilidades.redondear(totalProveedor, 2);
@@ -168,8 +169,8 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                     else if (k==14)
                     {
                         ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
-                        double gananciaF=Utilidades.redondear(ganancia, 2);
-                        datosFila[j] = gananciaF;
+                        double gananciaF = Utilidades.redondear(ganancia, 2);
+                        datosFila[j] = df.format(gananciaF);
 
                         totalMargen = totalMargen + gananciaF;
                         totalMargen = Utilidades.redondear((totalMargen), 2);
@@ -199,11 +200,11 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                 }
                 if(k==12)
                 {
-                    datosFilaTotal[i] = Utilidades.redondear(totalCliente, 2);
+                    datosFilaTotal[i] = df.format(Utilidades.redondear(totalCliente, 2));
                 }
                 if(k==13)
                 {
-                    datosFilaTotal[i] = totalProveedor;
+                    datosFilaTotal[i] = df.format(totalProveedor);
                 }
                 /*if(k==14)
                 {
@@ -211,7 +212,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                 }*/
                 if(k==14)
                 {
-                    datosFilaTotal[i] = totalMargen;
+                    datosFilaTotal[i] = df.format(totalMargen);
                 }
                 i++;
            }
@@ -536,7 +537,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
             {
                 this. setHorizontalAlignment(SwingConstants.CENTER);
             }
-            else if (column == 11 ||column == 12 || column == 13 || column == 14 )
+            else if (column == 12 || column == 13 || column == 14 )
             {
                 this. setHorizontalAlignment(SwingConstants.RIGHT);
             }
@@ -816,7 +817,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         //Celda de Destino
                         celda = fila.createCell( (short) 5);
-                        String destino = (rs.getString("destino_unido") != null) ? rs.getString("destino_unido") : rs.getString("pe_servicio_destino");
+                        String destino = (rs.getString("destino_unido") != null  && peUnidos) ? rs.getString("destino_unido") : rs.getString("pe_servicio_destino");
                         texto = new HSSFRichTextString(destino);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
@@ -932,7 +933,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         celda = fila.createCell( (short) 16);
                         //String fechaEntrega=(rs.getObject("pe_fecha_destino")).toString();
-                        String fechaEntrega = (rs.getString("fecha_destino") != null) ? rs.getString("fecha_destino") : rs.getString("pe_fecha_destino");
+                        String fechaEntrega = (rs.getString("fecha_destino") != null && peUnidos) ? rs.getString("fecha_destino") : rs.getString("pe_fecha_destino");
                                  tempR = null;
                                  tempR = fechaEntrega.split("\\-");
                                  anyoR=tempR[0];
@@ -945,7 +946,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         celda = fila.createCell( (short) 17);
                         //String fechaReal=(rs.getObject("pe_fecha_real_destino")).toString();
-                        String fechaReal = (rs.getString("real_destino") != null) ? rs.getString("real_destino") : rs.getString("pe_fecha_real_destino");
+                        String fechaReal = (rs.getString("real_destino") != null && peUnidos) ? rs.getString("real_destino") : rs.getString("pe_fecha_real_destino");
                                  tempR = null;
                                  tempR = fechaReal.split("\\-");
                                  anyoR=tempR[0];
@@ -965,7 +966,8 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                         //Celda del estado
                         celda = fila.createCell( (short) 19);
-                        String estado = (rs.getString("estado_unido") != null) ? rs.getString("estado_unido") : rs.getString("pe_estado");
+
+                        String estado = (rs.getString("estado_unido") != null && peUnidos) ? rs.getString("estado_unido") : rs.getString("pe_estado");
                         texto = new HSSFRichTextString(estado);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);

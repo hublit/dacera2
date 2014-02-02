@@ -203,7 +203,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         }
          else
         {
-            CSDesktop.ResultValidacionPedidos = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
+            CSDesktop.ResultValidacionPedidos = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, true, true );
             CSDesktop.ResultValidacionPedidos.getContentPane().add( this, BorderLayout.CENTER );
             CSDesktop.ResultValidacionPedidos.pack();
             CSDesktop.elEscritorio.add( CSDesktop.ResultValidacionPedidos );
@@ -776,7 +776,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         }
         else if (!Utilidades.campoObligatorio(fechaCo,"Fecha Contabilización").equals("OK"))
         {
-            ValidarFormatos(Utilidades.campoObligatorio(fechaCo,"Fecha Cntabilización"));
+            ValidarFormatos(Utilidades.campoObligatorio(fechaCo,"Fecha Contabilización"));
         }
         else if (!Utilidades.campoObligatorio(numFa,"Número Factura").equals("OK"))
         {
@@ -1104,6 +1104,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             Date fecha = ts.getTr_fecha().getTime();
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaPago=formatoDeFecha.format(fecha);
+
+            fechaPago="01-01-2050"; //Fecha de pago por defecto
         }
 
         Calendar fechaCont = jDateChooserFechaCont.getCalendar();
