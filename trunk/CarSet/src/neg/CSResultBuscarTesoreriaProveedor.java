@@ -513,7 +513,6 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
     
         private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
-            int fila = 0;
             String estado = "PTE";
             String nueva = "";
             boolean tesoreria = false;
@@ -521,13 +520,14 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
             for(int i = 0; i < lista.size(); i++)
             {
-                campos =(BeanTesoreriaProveedor)lista.get(fila);
+                campos =(BeanTesoreriaProveedor)lista.get(i);
                 int tr_id = campos.getTr_id();
 
-                if(jTable1.getValueAt(fila, 12) != null){
-                 estado =  jTable1.getValueAt(fila, 12).toString();
+                if(jTable1.getValueAt(i, 12) != null){
+                 estado =  jTable1.getValueAt(i, 12).toString();
                 }
-                String fechaPago = jTable1.getValueAt(fila, 13).toString();
+                String fechaPago = jTable1.getValueAt(i, 13).toString();
+
                 if (fechaPago != null && !fechaPago.equals(""))
                 {
                      String [] temp = null;
@@ -538,10 +538,9 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                      nueva = anyo+"-"+mes+"-"+dia;
                 }
 
-                String banco = (jTable1.getValueAt(fila, 14) != null || jTable1.getValueAt(fila, 14) != "")
-                               ? jTable1.getValueAt(fila, 14).toString() : "";
+                String banco = (jTable1.getValueAt(i, 14) != null || jTable1.getValueAt(i, 14) != "")
+                               ? jTable1.getValueAt(i, 14).toString() : "";
 
-                fila ++;
 //                System.out.println("N factura: "+jTable1.getValueAt(fila, 3));
 //                System.out.println("Elemento id: "+tr_id);
 //                System.out.println("Elemento estado: "+jTable1.getValueAt(fila, 12));
@@ -550,7 +549,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
                 try {
                     //guardamos las modificaciones en la bd
-                   tesoreria =  modificarTesoreria(tr_id, jTable1.getValueAt(fila, 12), nueva, jTable1.getValueAt(fila, 14));
+                   tesoreria =  modificarTesoreria(tr_id, jTable1.getValueAt(i, 12), nueva, jTable1.getValueAt(i, 14));
                 } catch (SQLException ex) {
                     Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -944,27 +943,57 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
             }
 
             // These are the combobox values
-            String[] values = new String[]{"","PTE", "PAGADO"};
-            String[] valuesBanco = new String[]{"","LC", "OP", "OB"};
+            //String[] values = new String[]{"","PTE", "PAGADO"};
+            //String[] valuesBanco = new String[]{"","LC", "OP", "OB"};
 
             //System.out.println(table.getRowCount()+" / "+fila);
             TableColumn col = table.getColumnModel().getColumn(column);
             TableColumn colB = table.getColumnModel().getColumn(column);
 
-            if (column == 12)
+           /* if (column == 12)
             {
                 col.setCellEditor(new MyComboBoxEditor(values));
                 col.setCellRenderer(new MyComboBoxRenderer(values));
                 jTable1.setValueAt(values, row, column);
-            }
+            }*/
+
+if (column == 12){
+
+JComboBox comboBox = new JComboBox();
+comboBox.addItem("");
+comboBox.addItem("PTE");
+comboBox.addItem("PAGADO");
+col.setCellEditor(new DefaultCellEditor(comboBox));
+
+//Set up tool tips for the sport cells.
+DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+renderer.setToolTipText("Click for combo box");
+col.setCellRenderer(renderer);
+}
          
-            else if(column == 14)
+        /*    else if(column == 14)
             {
                 colB.setCellEditor(new MyComboBoxEditor(valuesBanco));
                 colB.setCellRenderer(new MyComboBoxRenderer(valuesBanco));
                 jTable1.setValueAt(valuesBanco, row, column);
             }
-            
+            */
+ if(column == 14){
+JComboBox comboBoxBc = new JComboBox();
+comboBoxBc.addItem("");
+comboBoxBc.addItem("LC");
+comboBoxBc.addItem("OP");
+comboBoxBc.addItem("OB");
+col.setCellEditor(new DefaultCellEditor(comboBoxBc));
+
+//Set up tool tips for the sport cells.
+DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+renderer.setToolTipText("Click for combo box");
+col.setCellRenderer(renderer);
+
+
+ }
+
             //si no cumplen esa condicion pongo las celdas en color blanco
             if (table. getValueAt(row, 4). toString().equals("TOTALES"))
             {

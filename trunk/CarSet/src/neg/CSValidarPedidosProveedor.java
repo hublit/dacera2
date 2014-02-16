@@ -492,7 +492,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jLabelAnyoIva.setName("jLabelAnyoIva"); // NOI18N
 
         jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2016", "2015", "2014", "2013", "2012", "2011", "2010" }));
-        jComboBoxAnyoIva.setSelectedIndex(3);
+        jComboBoxAnyoIva.setSelectedIndex(2);
         jComboBoxAnyoIva.setName("jComboBoxAnyoIva"); // NOI18N
         jComboBoxAnyoIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1105,7 +1105,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaPago=formatoDeFecha.format(fecha);
 
-            fechaPago="01-01-2050"; //Fecha de pago por defecto
+            fechaPago="2050-01-01"; //Fecha de pago por defecto
         }
 
         Calendar fechaCont = jDateChooserFechaCont.getCalendar();
