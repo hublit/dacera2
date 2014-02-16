@@ -298,7 +298,7 @@
             <StringItem index="6" value="2010"/>
           </StringArray>
         </Property>
-        <Property name="selectedIndex" type="int" value="3"/>
+        <Property name="selectedIndex" type="int" value="2"/>
         <Property name="name" type="java.lang.String" value="jComboBoxAnyoIva" noResource="true"/>
       </Properties>
       <Events>

@@ -107,7 +107,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
 
                 if (!rs.getString("pe_num_unido").equals("0") || rs.getString("destino_unido") != null){
                     marcaUnidos.add(rs.getInt("pe_num"));
-                    System.out.println(rs.getInt("pe_num"));
+//                    System.out.println(rs.getInt("pe_num"));
                 }
 
                  for (int k = 0; k < 23; k++)
@@ -232,7 +232,8 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
             CSDesktop.ResultPedido = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, true, true );
             CSDesktop.ResultPedido.getContentPane().add( this, BorderLayout.CENTER );
             CSDesktop.ResultPedido.pack();
-            CSDesktop.BuscarPedido.dispose();
+//no cierrra la ventana de búsqueda de pedidos, para poder ordenar por otro campo
+//            CSDesktop.BuscarPedido.dispose();
             CSDesktop.elEscritorio.add( CSDesktop.ResultPedido );
             Dimension pantalla = CSDesktop.elEscritorio.getSize();
             Dimension ventana = CSDesktop.ResultPedido.getSize();

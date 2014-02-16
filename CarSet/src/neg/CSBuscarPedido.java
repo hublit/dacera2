@@ -152,6 +152,8 @@ public class CSBuscarPedido extends javax.swing.JPanel
         jLabel15 = new javax.swing.JLabel();
         jTextDiasCampa = new javax.swing.JTextField();
         jCheckBoxUnidos = new javax.swing.JCheckBox();
+        jComboOrden = new javax.swing.JComboBox();
+        jLabelOrder = new javax.swing.JLabel();
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.setName("jButtonBuscar"); // NOI18N
@@ -361,7 +363,7 @@ public class CSBuscarPedido extends javax.swing.JPanel
         jComboFactor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Urbano", "Interurbano", "Provincial", "Urbano ITV", "Especial" }));
         jComboFactor.setName("jComboFactor"); // NOI18N
 
-        lServicio.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lServicio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lServicio.setForeground(new java.awt.Color(170, 16, 4));
         lServicio.setText("SERVICIOS");
         lServicio.setName("lServicio"); // NOI18N
@@ -410,14 +412,28 @@ public class CSBuscarPedido extends javax.swing.JPanel
             }
         });
 
+        jComboOrden.setBackground(new java.awt.Color(255, 255, 102));
+        jComboOrden.setForeground(new java.awt.Color(0, 0, 100));
+        jComboOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fecha Pedido", "Tarifa Cliente", "Tarifa Proveedor", "Fecha Origen", "Fecha Entrega" }));
+        jComboOrden.setName("jComboOrden"); // NOI18N
+
+        jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelOrder.setForeground(new java.awt.Color(170, 16, 4));
+        jLabelOrder.setText("Orden");
+        jLabelOrder.setName("jLabelOrder"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(441, 441, 441)
+                .addGap(25, 25, 25)
+                .addComponent(jLabelOrder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(232, 232, 232)
                 .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(421, Short.MAX_VALUE))
+                .addContainerGap(423, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -621,11 +637,16 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCancelar)
-                    .addComponent(jButtonBuscarSProv))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonCancelar)
+                            .addComponent(jButtonBuscarSProv)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelOrder)))
                 .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -784,7 +805,27 @@ public class CSBuscarPedido extends javax.swing.JPanel
                 if (peUnidos) {
                     query = query + " AND (pe_num_unido != 0 OR destino_unido IS NOT null)";
                 }
-                query = query + " ORDER BY p.pe_fecha ASC";
+
+                //Orden de la query
+                int orden = new Integer(jComboOrden.getSelectedIndex());
+
+                String order = "";
+                switch (orden) {
+                    case 0:  order = "p.pe_fecha";
+                             break;
+                    case 1:  order = "p.pe_ta_es_cliente";
+                             break;
+                    case 2:  order = "p.pe_ta_es_proveedor";
+                             break;
+                    case 3:  order = "p.pe_fecha_origen";
+                             break;
+                    case 4:  order = "p.pe_fecha_destino";
+                             break;
+                    default: order = "p.pe_fecha";
+                             break;
+                }
+
+                query = query + " ORDER BY " + order + " ASC";
                 System.out.println(query);
                 CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(query);
             } catch (UnknownHostException ex) {
@@ -911,9 +952,11 @@ public class CSBuscarPedido extends javax.swing.JPanel
     private javax.swing.JComboBox jComboBoxServicioFMadDestino;
     private javax.swing.JComboBox jComboBoxSoporte;
     private javax.swing.JComboBox jComboFactor;
+    private javax.swing.JComboBox jComboOrden;
     private com.toedter.calendar.JDateChooser jDateFecha;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabelOrder;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;

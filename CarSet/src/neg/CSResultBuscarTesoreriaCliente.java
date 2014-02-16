@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractCellEditor;
 import javax.swing.DefaultCellEditor;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -873,18 +874,36 @@ System.out.println("Fecha de pago: "+nueva);
             }
 
             // These are the combobox values
-            String[] valuesTc = new String[]{"","PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO", "INCOBRABLE"};
+/*            String[] values = new String[]{"","PTE", "COBRADO", "DEVOLUCIÓN", "APLAZADO", "INCOBRABLE"};
 
             TableColumn col = table.getColumnModel().getColumn(column);
 
             if (column == 9)
             {
-                col.setCellEditor(new MyComboBoxEditorTc(valuesTc));
-                col.setCellRenderer(new MyComboBoxRendererTc(valuesTc));
-                jTable1.setValueAt(valuesTc, row, column);
-            }
+                col.setCellEditor(new MyComboBoxEditor(values));
+                col.setCellRenderer(new MyComboBoxRenderer(values));
+                jTable1.setValueAt(values, row, column);
+            }*/
 
-            
+            TableColumn col = table.getColumnModel().getColumn(column);
+
+            if (column == 9)
+            {
+
+JComboBox comboBox = new JComboBox();
+comboBox.addItem("");
+comboBox.addItem("PTE");
+comboBox.addItem("COBRADO");
+comboBox.addItem("DEVOLUCIÓN");
+comboBox.addItem("APLAZADO");
+comboBox.addItem("INCOBRABLE");
+col.setCellEditor(new DefaultCellEditor(comboBox));
+
+//Set up tool tips for the sport cells.
+DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+renderer.setToolTipText("Click for combo box");
+col.setCellRenderer(renderer);
+            }
             //si no cumplen esa condicion pongo las celdas en color blanco
             if (table. getValueAt(row, 3). toString().equals("TOTALES"))
             {
@@ -894,6 +913,7 @@ System.out.println("Fecha de pago: "+nueva);
                 cell.setFont(new Font(null, Font.BOLD, 12));
                 col.setCellEditor(null);
                 col.setCellRenderer(null);
+                //table.getCellEditor(table.getRowCount(), 9).cancelCellEditing();
             }
 
 //            jTable1.setRowSelectionAllowed(true);
@@ -906,9 +926,9 @@ System.out.println("Fecha de pago: "+nueva);
     /**
      *
      */
-    public class MyComboBoxRendererTc extends JComboBox implements TableCellRenderer
+    public class MyComboBoxRenderer extends JComboBox implements TableCellRenderer
     {
-        public MyComboBoxRendererTc(String[] items)
+        public MyComboBoxRenderer(String[] items)
         {
             super(items);
         }
@@ -935,9 +955,9 @@ System.out.println("Fecha de pago: "+nueva);
     /**
      *
      */
-    public class MyComboBoxEditorTc extends DefaultCellEditor
+    public class MyComboBoxEditor extends DefaultCellEditor
     {
-        public MyComboBoxEditorTc(String[] items)
+        public MyComboBoxEditor(String[] items)
         {
             super(new JComboBox(items));
         }
