@@ -17,10 +17,12 @@ import java.awt.event.KeyListener;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractCellEditor;
@@ -89,6 +91,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         double totalIva = 0;
         double totalIrpf = 0;
         double totalImporte = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
 
         try
         {
@@ -160,7 +163,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     else if(k==5)
                     {
                         total_pr = rs.getDouble(k);
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
+                        datosFila[j] = df.format(rs.getDouble(k));
                         total = total + total_pr;
                         total = Utilidades.redondear(total, 2);
 //                        System.out.println("Dato" + k + " " + datosFila[j]);
@@ -169,7 +172,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     else if(k==6)
                     {
                         iva = rs.getDouble(k);
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
+                        datosFila[j] = df.format(rs.getDouble(k));
                         totalIva = totalIva + iva;
                         totalIva = Utilidades.redondear(totalIva, 2);
 //                        System.out.println("Dato" + k + " " + datosFila[j]);
@@ -177,7 +180,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     else if (k==7)
                     {
                         irpf = rs.getDouble(k);
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
+                        datosFila[j] = df.format(rs.getDouble(k));
                         totalIrpf = totalIrpf + irpf;
                         totalIrpf = Utilidades.redondear(totalIrpf, 2);
 //                        System.out.println("Dato" + k + " " + datosFila[j]);
@@ -185,7 +188,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     else if (k==8)
                     {
                         importe = rs.getDouble(k);
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(rs.getDouble(k)));
+                        datosFila[j] = df.format(rs.getDouble(k));
                         totalImporte = totalImporte + importe;
                         totalImporte = Utilidades.redondear(totalImporte, 2);
 //                        System.out.println("Dato" + k + " " + datosFila[j]);
@@ -230,19 +233,19 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     }
                     if(k==5)
                     {
-                        datosFilaTotal[i] = Utilidades.redondear(total, 2);
+                        datosFilaTotal[i] = df.format(Utilidades.redondear(total, 2));
                     }
                     if(k==6)
                     {
-                        datosFilaTotal[i] = Utilidades.redondear(totalIva, 2);
+                        datosFilaTotal[i] = df.format(Utilidades.redondear(totalIva, 2));
                     }
                     if(k==7)
                     {
-                        datosFilaTotal[i] = Utilidades.redondear(totalIrpf, 2);
+                        datosFilaTotal[i] = df.format(Utilidades.redondear(totalIrpf, 2));
                     }
                     if(k==8)
                     {
-                        datosFilaTotal[i] = Utilidades.redondear(totalImporte, 2);
+                        datosFilaTotal[i] = df.format(Utilidades.redondear(totalImporte, 2));
                     }
                 i++;
            }
@@ -547,9 +550,11 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 //                System.out.println("Elemento fecha pago: "+fechaPago);
 //                System.out.println("Elemento banco: --"+jTable1.getValueAt(fila, 14)+"--");
 
+               String observaciones = (String) jTable1.getValueAt(i, 16);
+
                 try {
                     //guardamos las modificaciones en la bd
-                   tesoreria =  modificarTesoreria(tr_id, jTable1.getValueAt(i, 12), nueva, jTable1.getValueAt(i, 14));
+                   tesoreria =  modificarTesoreria(tr_id, jTable1.getValueAt(i, 12), nueva, jTable1.getValueAt(i, 14), observaciones);
                 } catch (SQLException ex) {
                     Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -928,7 +933,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 cell. setForeground(Color. BLACK);
             }
 
-            if (column == 11 || column == 12 || column == 13 || column == 14 || column == 15 )
+            if (column == 12 || column == 13 || column == 14 || column == 16)
             {
                 Color fondo = new  Color(255, 255, 157);
                 cell.setBackground(fondo);
@@ -957,19 +962,47 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 jTable1.setValueAt(values, row, column);
             }*/
 
-if (column == 12){
+            if (column == 12){
 
-JComboBox comboBox = new JComboBox();
-comboBox.addItem("");
-comboBox.addItem("PTE");
-comboBox.addItem("PAGADO");
-col.setCellEditor(new DefaultCellEditor(comboBox));
+                JComboBox comboBox = new JComboBox();
+                comboBox.addItem("");
+                comboBox.addItem("PTE");
+                comboBox.addItem("PAGADO");
+                comboBox.addItem("DUDOSO");
+                col.setCellEditor(new DefaultCellEditor(comboBox));
 
-//Set up tool tips for the sport cells.
-DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-renderer.setToolTipText("Click for combo box");
-col.setCellRenderer(renderer);
-}
+                //Set up tool tips for the sport cells.
+                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+                renderer.setToolTipText("Click for combo box");
+                col.setCellRenderer(renderer);
+            }
+
+            //si no cumplen esa condicion pongo las celdas en color blanco
+            if (String.valueOf(table. getValueAt(row, 10)).equals("Recibo Domiciliado") ||
+                String.valueOf(table. getValueAt(row, 10)).equals("Pagaré"))
+            {
+                Color fondo = new  Color(0, 102, 204);
+                cell. setBackground(fondo);
+            }
+
+            if (column == 13 && value != null){
+                Calendar calendario = GregorianCalendar.getInstance();
+                Date fecha = calendario.getTime();
+
+                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    formatoDeFecha.format(fecha);
+
+                    String sValue = String.valueOf(value);
+                    Date fechaValor = formatoDeFecha.parse(sValue);
+                    if(fechaValor.compareTo(fecha) < 0){
+                        cell. setForeground(Color. RED);
+
+                    }
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                }
+            }
          
         /*    else if(column == 14)
             {
@@ -978,21 +1011,28 @@ col.setCellRenderer(renderer);
                 jTable1.setValueAt(valuesBanco, row, column);
             }
             */
- if(column == 14){
-JComboBox comboBoxBc = new JComboBox();
-comboBoxBc.addItem("");
-comboBoxBc.addItem("LC");
-comboBoxBc.addItem("OP");
-comboBoxBc.addItem("OB");
-col.setCellEditor(new DefaultCellEditor(comboBoxBc));
+             if(column == 14){
+                JComboBox comboBoxBc = new JComboBox();
+                comboBoxBc.addItem("");
+                comboBoxBc.addItem("LC");
+                comboBoxBc.addItem("OP");
+                comboBoxBc.addItem("1");
+                comboBoxBc.addItem("2");
+                comboBoxBc.addItem("3");
+                comboBoxBc.addItem("4");
+                comboBoxBc.addItem("5");
+                comboBoxBc.addItem("6");
+                comboBoxBc.addItem("7");
+                comboBoxBc.addItem("8");
+                comboBoxBc.addItem("9");
+                comboBoxBc.addItem("10");
+                col.setCellEditor(new DefaultCellEditor(comboBoxBc));
 
-//Set up tool tips for the sport cells.
-DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-renderer.setToolTipText("Click for combo box");
-col.setCellRenderer(renderer);
-
-
- }
+                //Set up tool tips for the sport cells.
+                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+                renderer.setToolTipText("Click for combo box");
+                col.setCellRenderer(renderer);
+             }
 
             //si no cumplen esa condicion pongo las celdas en color blanco
             if (table. getValueAt(row, 4). toString().equals("TOTALES"))
@@ -1101,9 +1141,9 @@ col.setCellRenderer(renderer);
      * @param ts
      * @throws SQLException
      */
-    public boolean modificarTesoreria(int tr_id, Object estado, String fechaPago, Object banco) throws SQLException
+    public boolean modificarTesoreria(int tr_id, Object estado, String fechaPago, Object banco, String observaciones) throws SQLException
     {
-        String query = "UPDATE tr_tesoreria_proveedor SET tr_estado = '"+estado+"'";
+        String query = "UPDATE tr_tesoreria_proveedor SET tr_estado = '"+estado+"', tr_observaciones = '"+observaciones+"'";
         if(!fechaPago.equals(""))
         {
             query = query + ", tr_fecha_pago = '"+fechaPago+"'";

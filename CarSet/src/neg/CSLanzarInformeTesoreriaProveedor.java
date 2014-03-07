@@ -85,6 +85,9 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         lServicio3 = new javax.swing.JLabel();
         lFechaIniC = new javax.swing.JLabel();
         jDateFechaIniC = new com.toedter.calendar.JDateChooser();
+        jComboOrden = new javax.swing.JComboBox();
+        jLabelOrder = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
 
         setMaximumSize(new java.awt.Dimension(0, 0));
 
@@ -179,28 +182,31 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
         jDateFechaIniC.setDateFormatString("dd-MM-yyyy"); // NOI18N
         jDateFechaIniC.setName("jDateFechaIniC"); // NOI18N
 
+        jComboOrden.setBackground(new java.awt.Color(255, 255, 102));
+        jComboOrden.setForeground(new java.awt.Color(0, 0, 100));
+        jComboOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nº. Factura Carset", "Fecha Vencimiento", "Fecha Factura", "Proveedor" }));
+        jComboOrden.setName("jComboOrden"); // NOI18N
+
+        jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabelOrder.setForeground(new java.awt.Color(170, 16, 4));
+        jLabelOrder.setText("Orden");
+        jLabelOrder.setName("jLabelOrder"); // NOI18N
+
+        jSeparator6.setForeground(new java.awt.Color(170, 16, 4));
+        jSeparator6.setName("jSeparator6"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel1)
                     .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
-                .addGap(302, 302, 302)
-                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203)
-                .addComponent(jButtonCancelar)
-                .addContainerGap(28, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
+                .addGap(164, 164, 164)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +238,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                         .addGap(11, 11, 11)))
                 .addGap(143, 143, 143))
             .addGroup(layout.createSequentialGroup()
-                .addGap(151, 151, 151)
+                .addGap(161, 161, 161)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lServicio3)
@@ -246,6 +252,26 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jDateFechaCFin, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                         .addGap(148, 148, 148))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+                        .addGap(28, 28, 28))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(105, 105, 105)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelOrder)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(124, 124, 124)
+                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(203, 203, 203)
+                        .addComponent(jButtonCancelar)
+                        .addContainerGap(28, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,11 +307,18 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                     .addComponent(lFechaIniC))
                 .addGap(25, 25, 25)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonBuscar)
-                    .addComponent(jButtonCancelar))
-                .addGap(21, 21, 21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonBuscar)
+                        .addComponent(jButtonCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelOrder)
+                            .addComponent(jComboOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -380,7 +413,22 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                     query = query + " AND tr.tr_fecha_cont >='" + fechaIniCont + "' AND tr.tr_fecha_cont<='" + fechaFinCont + "'";
             }
 
-            query = query + " ORDER BY tr.tr_id ASC";
+            //Orden de la query
+            int orden = new Integer(jComboOrden.getSelectedIndex());
+            String order = "";
+            switch (orden) {
+                case 0:  order = "tr_num_carset";
+                         break;
+                case 1:  order = "tr_fecha_pago";
+                         break;
+                case 2:  order = "tr_fecha";
+                         break;
+                case 3:  order = "pr.pr_nombre_fiscal";
+                         break;
+                default: order = "tr_num_carset";
+                         break;
+            }
+            query = query + " ORDER BY " + order + " ASC";
             System.out.println(query);
             try {
                 CSResultBuscarTesoreriaProveedor resultBuscarValidarPedido = new CSResultBuscarTesoreriaProveedor(query);
@@ -416,13 +464,16 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox jComboBoxEstado;
+    private javax.swing.JComboBox jComboOrden;
     private com.toedter.calendar.JDateChooser jDateFechaCFin;
     private com.toedter.calendar.JDateChooser jDateFechaFin;
     private com.toedter.calendar.JDateChooser jDateFechaIni;
     private com.toedter.calendar.JDateChooser jDateFechaIniC;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelOrder;
     private javax.swing.JLabel jLabelnumFc;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTextField jTextNumTr;
     public javax.swing.JTextField jTextProveedor;

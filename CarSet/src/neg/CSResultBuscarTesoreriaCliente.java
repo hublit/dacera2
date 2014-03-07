@@ -15,6 +15,7 @@ import java.awt.event.KeyListener;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractCellEditor;
 import javax.swing.DefaultCellEditor;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -90,6 +90,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         double total = 0;
         double totalIva = 0;
         double totalImporte = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
 
         try
         {
@@ -156,9 +157,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     else if(k==4)
                     {
                         total_cl = rs.getDouble(k+1);
-
-                        Utilidades.separadorMiles(Double.toString(total));
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(total_cl));
+                        datosFila[j] = df.format(total_cl);
                         total = total + total_cl;
                         total = Utilidades.redondear(total, 2);
 //                        System.out.println("Dato" + k + " " + datosFila[j]);
@@ -166,7 +165,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     else if(k==5)
                     {
                         iva = rs.getDouble(k+1);
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(iva));
+                        datosFila[j] = df.format(iva);
                         totalIva = totalIva + iva;
                         totalIva = Utilidades.redondear(totalIva, 2);
 //                        System.out.println("Dato" + k + " " + datosFila[j]);
@@ -176,7 +175,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                         importe = rs.getDouble(k+1);
                         NumberFormat NF = NumberFormat.getInstance();
                         NF.setMaximumFractionDigits(2); //3 decimales
-                        datosFila[j] = Utilidades.separadorMiles(Double.toString(importe));
+                        datosFila[j] = df.format(importe);
 
                         totalImporte = totalImporte + importe;
                         totalImporte = Utilidades.redondear(totalImporte, 2);
@@ -220,15 +219,15 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 }
                 if(k==4)
                 {
-                    datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(total));
+                    datosFilaTotal[i] = df.format(total);
                 }
                 if(k==5)
                 {
-                    datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalIva));
+                    datosFilaTotal[i] = df.format(totalIva);
                 }
                 if(k==6)
                 {
-                    datosFilaTotal[i] = Utilidades.separadorMiles(Double.toString(totalImporte));
+                    datosFilaTotal[i] = df.format(totalImporte);
                 }
                 i++;
            }
@@ -522,8 +521,8 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     String dia = temp[0];
                     nueva = anyo+"-"+mes+"-"+dia;
                 }
-System.out.println("Fecha de pago: "+nueva);
-                String observaciones = jTable1.getValueAt(i, 12).toString();
+
+                String observaciones = (String) jTable1.getValueAt(i, 12);
 
                 try {
                     //guardamos las modificaciones en la bd

@@ -22,27 +22,15 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="jSeparator7" alignment="2" min="-2" pref="720" max="-2" attributes="1"/>
               </Group>
               <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="20" max="32767" attributes="0"/>
-              <Component id="jSeparator4" min="-2" pref="720" max="-2" attributes="0"/>
-              <EmptySpace min="28" pref="28" max="28" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="302" max="-2" attributes="0"/>
-              <Component id="jButtonBuscar" min="-2" pref="160" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
-              <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -85,7 +73,7 @@
               <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lServicio3" min="-2" max="-2" attributes="0"/>
@@ -100,6 +88,33 @@
                       <EmptySpace pref="10" max="-2" attributes="0"/>
                       <Component id="jDateFechaCFin" pref="121" max="32767" attributes="1"/>
                       <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jSeparator4" pref="730" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                              <Component id="jSeparator6" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabelOrder" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jComboOrden" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                      <Component id="jButtonBuscar" min="-2" pref="160" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
+                      <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -143,12 +158,22 @@
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButtonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelOrder" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboOrden" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="jSeparator6" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -341,6 +366,45 @@
       <Properties>
         <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy" noResource="true"/>
         <Property name="name" type="java.lang.String" value="jDateFechaIniC" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboOrden">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="N&#xba;. Factura Carset"/>
+            <StringItem index="1" value="Fecha Vencimiento"/>
+            <StringItem index="2" value="Fecha Factura"/>
+            <StringItem index="3" value="Proveedor"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboOrden" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelOrder">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Orden"/>
+        <Property name="name" type="java.lang.String" value="jLabelOrder" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator6">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jSeparator6" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
