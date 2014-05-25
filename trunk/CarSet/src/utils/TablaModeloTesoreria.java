@@ -15,7 +15,7 @@ public class TablaModeloTesoreria extends DefaultTableModel {
 
     public boolean isCellEditable (int row, int column)
     {
-        if (column == 12 ||column == 13 || column == 14|| column == 16)
+        if (column == 2 ||column == 11 ||column == 12 ||column == 13 || column == 14|| column == 15|| column == 16)
         {
             return true;
         }
