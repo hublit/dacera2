@@ -75,7 +75,6 @@ public class CSBuscarProveedor extends javax.swing.JPanel
         jButtonCancelar = new javax.swing.JButton();
         lNombreCon = new javax.swing.JLabel();
         jTextNombreCon = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
         jTextPoblacion = new javax.swing.JTextField();
         lProvincia = new javax.swing.JLabel();
         jComboBoxProvincia = new javax.swing.JComboBox();
@@ -95,6 +94,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel
         lCodPostal = new javax.swing.JLabel();
         lTipo = new javax.swing.JLabel();
         lPContacto = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
 
         jPanel1.setForeground(new java.awt.Color(0, 0, 100));
         jPanel1.setName("jPanel1"); // NOI18N
@@ -129,9 +129,6 @@ public class CSBuscarProveedor extends javax.swing.JPanel
                 jTextNombreConFocusLost(evt);
             }
         });
-
-        jSeparator3.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator3.setName("jSeparator3"); // NOI18N
 
         jTextPoblacion.setName("jTextPoblacion"); // NOI18N
         jTextPoblacion.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -222,10 +219,21 @@ public class CSBuscarProveedor extends javax.swing.JPanel
         lPContacto.setText("PERSONA DE CONTACTO");
         lPContacto.setName("lPContacto"); // NOI18N
 
+        jSeparator8.setBackground(new java.awt.Color(0, 102, 51));
+        jSeparator8.setForeground(new java.awt.Color(0, 102, 51));
+        jSeparator8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 53), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51)));
+        jSeparator8.setName("jSeparator8"); // NOI18N
+        jSeparator8.setOpaque(true);
+        jSeparator8.setPreferredSize(new java.awt.Dimension(5, 5));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(342, Short.MAX_VALUE)
+                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(338, 338, 338))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +247,6 @@ public class CSBuscarProveedor extends javax.swing.JPanel
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -279,12 +286,9 @@ public class CSBuscarProveedor extends javax.swing.JPanel
                                 .addComponent(lDNI)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
-                            .addComponent(jButtonCancelar))
+                            .addComponent(jButtonCancelar)
+                            .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE))
                         .addGap(19, 19, 19))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(342, Short.MAX_VALUE)
-                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(338, 338, 338))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,13 +325,13 @@ public class CSBuscarProveedor extends javax.swing.JPanel
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lNombreCon)
                     .addComponent(jTextNombreCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCancelar)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jButtonCancelar))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -471,7 +475,8 @@ public class CSBuscarProveedor extends javax.swing.JPanel
     private javax.swing.JComboBox jComboBoxTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextField jTextCodPostal;
     private javax.swing.JTextField jTextDNI;
     private javax.swing.JTextField jTextDireccion;

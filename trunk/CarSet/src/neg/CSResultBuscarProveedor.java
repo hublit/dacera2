@@ -134,26 +134,26 @@ public class CSResultBuscarProveedor extends javax.swing.JPanel
             if ((fila > -1) && (columna > -1))
             {
                int proveedor = Integer.parseInt((String)tablaProveedores.getValueAt(fila,0).toString());
-               CSDesktop.EditarProveedor = new JInternalFrame("Editar Proveedor", true, false, false, true );
+               CSDesktop.EditarProveedorNew = new JInternalFrame("Editar Proveedor New", true, false, false, true );
                // adjuntar panel al panel de contenido del marco interno
-               CSEditarProveedor editarC = null;
+               CSEditarProveedorNew editarC = null;
                     try {
-                        editarC = new CSEditarProveedor(proveedor);
+                        editarC = new CSEditarProveedorNew(proveedor);
                     } catch (SQLException ex) {
                         Logger.getLogger(CSResultBuscarProveedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
-               CSDesktop.EditarProveedor.getContentPane().add( editarC,BorderLayout.CENTER);
+               CSDesktop.EditarProveedorNew.getContentPane().add( editarC,BorderLayout.CENTER);
                // establecer tama�o de marco interno en el tama�o de su contenido
-               CSDesktop.EditarProveedor.pack();
+               CSDesktop.EditarProveedorNew.pack();
                // adjuntar marco interno al escritorio y mostrarlo
-               CSDesktop.elEscritorio.add( CSDesktop.EditarProveedor );
+               CSDesktop.elEscritorio.add( CSDesktop.EditarProveedorNew );
 
                Dimension pantalla = CSDesktop.elEscritorio.getSize();
-               Dimension ventana = CSDesktop.EditarProveedor.getSize();
-               CSDesktop.EditarProveedor.setLocation(
+               Dimension ventana = CSDesktop.EditarProveedorNew.getSize();
+               CSDesktop.EditarProveedorNew.setLocation(
                     (pantalla.width - ventana.width) / 2,
                     (pantalla.height - ventana.height) / 2);
-               CSDesktop.EditarProveedor.setVisible( true );
+               CSDesktop.EditarProveedorNew.setVisible( true );
                //CSDesktop.ResultProveedor.setVisible(false);
 
             System.out.println(tablaProveedores.getValueAt(fila,columna));

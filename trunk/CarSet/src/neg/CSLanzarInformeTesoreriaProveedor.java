@@ -184,7 +184,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 
         jComboOrden.setBackground(new java.awt.Color(255, 255, 102));
         jComboOrden.setForeground(new java.awt.Color(0, 0, 100));
-        jComboOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nº. Factura Carset", "Fecha Vencimiento", "Fecha Factura", "Proveedor" }));
+        jComboOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fecha Vencimiento", "Proveedor", "Nº. Factura Carset", "Fecha Factura" }));
         jComboOrden.setName("jComboOrden"); // NOI18N
 
         jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11));
@@ -378,9 +378,12 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
             fechaFinCont = formatoDeFecha.format(fecha);
         }
 
-        String query = "SELECT tr.tr_fecha, tr.tr_num, tr.tr_num_carset, pr.pr_nombre_fiscal, tr.tr_importe_neto, tr.tr_iva, " +
+        String query = "SELECT tr.tr_fecha, tr.tr_num, tr.tr_num_carset, pr.pr_id, pr.pr_nombre_fiscal, tr.tr_importe_neto, tr.tr_iva, " +
                        "tr.tr_irpf, tr.tr_importe, pr.pr_plazo, fp.fp_tipo, pr.pr_num_cuenta, tr.tr_estado, tr.tr_fecha_pago, " +
-                       "tr.tr_banco, pr.pr_email, tr.tr_observaciones, tr_id, pr_dias_plazo " +
+                       "tr.tr_banco, pr.pr_email, tr.tr_observaciones, tr_id, pr_dias_plazo, " +
+                       "CASE WHEN pr.pr_plazo = 'Especial' THEN DATE_ADD(tr.tr_fecha, INTERVAL pr_dias_plazo DAY) " +
+                       "ELSE DATE_ADD(tr.tr_fecha, INTERVAL SUBSTRING(pr.pr_plazo,1,2) DAY) END AS fecha_vencimiento, " +
+                       "pr.pr_DNI_CIF, pr.pr_cod_postal " +
                        "FROM tr_tesoreria_proveedor tr, pr_proveedores pr, fp_forma_pago fp " +
                        "WHERE  tr.pr_num = pr.pr_id AND fp.fp_id = pr.fp_id";
 
@@ -417,15 +420,15 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
             int orden = new Integer(jComboOrden.getSelectedIndex());
             String order = "";
             switch (orden) {
-                case 0:  order = "tr_num_carset";
+                case 0:  order = "fecha_vencimiento";
                          break;
-                case 1:  order = "tr_fecha_pago";
+                case 1:  order = "pr.pr_nombre_fiscal";
                          break;
-                case 2:  order = "tr_fecha";
+                case 2:  order = "tr_num_carset";
                          break;
-                case 3:  order = "pr.pr_nombre_fiscal";
+                case 3:  order = "tr_fecha";
                          break;
-                default: order = "tr_num_carset";
+                default: order = "fecha_vencimiento";
                          break;
             }
             query = query + " ORDER BY " + order + " ASC";

@@ -309,13 +309,13 @@ public class CSInformeDet1 extends javax.swing.JPanel
                             nueva.setProvinciaDestino(rs.getString("destino_unido"));
                             nueva.setServicioDestino(rs.getString("destino_unido"));
                             nueva.setFecha_real_entrega(rs.getString("real_destino"));
-                            nueva.setEstado(rs.getString("estado"));
                         }else{
                             nueva.setFecha_prevista_entrega(rs.getString("pe_fecha_destino"));
                             nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
                             nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
                             nueva.setFecha_real_entrega(rs.getString("pe_fecha_real_destino"));
                         }
+                        nueva.setEstado(rs.getString("estado"));
                         nueva.setServicio(rs.getString("pe_servicio"));
                         nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
                         nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));

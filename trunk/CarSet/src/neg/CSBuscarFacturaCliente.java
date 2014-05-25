@@ -95,7 +95,6 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
         lEstado3 = new javax.swing.JLabel();
         lFechaIni = new javax.swing.JLabel();
         jComboBoxEstado = new javax.swing.JComboBox();
-        jSeparator6 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jTextCliente = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
@@ -108,6 +107,7 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
         lServicioFMad1 = new javax.swing.JLabel();
         jComboBoxServicioFMadDestino = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.setName("jButtonBuscar"); // NOI18N
@@ -202,9 +202,6 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
         jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo", "Pendiente" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
 
-        jSeparator6.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator6.setName("jSeparator6"); // NOI18N
-
         jSeparator5.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator5.setName("jSeparator5"); // NOI18N
 
@@ -248,10 +245,17 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
         jComboBoxServicioFMadDestino.setEnabled(false);
         jComboBoxServicioFMadDestino.setName("jComboBoxServicioFMadDestino"); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
         jLabel1.setText("GENERAR  FACTURA CLIENTE");
         jLabel1.setName("jLabel1"); // NOI18N
+
+        jSeparator8.setBackground(new java.awt.Color(0, 102, 51));
+        jSeparator8.setForeground(new java.awt.Color(0, 102, 51));
+        jSeparator8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 53), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51)));
+        jSeparator8.setName("jSeparator8"); // NOI18N
+        jSeparator8.setOpaque(true);
+        jSeparator8.setPreferredSize(new java.awt.Dimension(5, 5));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -265,9 +269,8 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lFuMadrid, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -283,7 +286,7 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
                                 .addGap(18, 18, 18)
                                 .addComponent(lServicioFMad1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxServicioFMadDestino, 0, 113, Short.MAX_VALUE)
+                                .addComponent(jComboBoxServicioFMadDestino, 0, 0, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lSoporte)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -300,8 +303,8 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
                                 .addComponent(lEstado3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 764, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lFechaIni)
                                 .addGap(3, 3, 3)
@@ -313,15 +316,16 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
                                 .addGap(29, 29, 29)
                                 .addComponent(lCliente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                                .addComponent(jTextCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(339, 339, 339)
                         .addComponent(jLabel1)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(822, Short.MAX_VALUE)
+                .addContainerGap(735, Short.MAX_VALUE)
                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -375,13 +379,13 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lEstado3)
                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(61, 61, 61)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jButtonBuscar)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCancelar)
-                .addGap(39, 39, 39))
+                .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -557,7 +561,7 @@ public class CSBuscarFacturaCliente extends javax.swing.JPanel
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator8;
     public javax.swing.JTextField jTextCliente;
     private javax.swing.JTextField jTextMatricula;
     private javax.swing.JToggleButton jToggleButtonCliente;

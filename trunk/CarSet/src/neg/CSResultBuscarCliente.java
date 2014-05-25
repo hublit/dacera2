@@ -120,26 +120,26 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
             if ((fila > -1) && (columna > -1))
             {               
                int cliente = Integer.parseInt((String)tablaClientes.getValueAt(fila,0).toString());
-               CSDesktop.EditarCliente = new JInternalFrame("Editar Cliente", true, false, false, true );
+               CSDesktop.EditarClienteNew = new JInternalFrame("Editar Cliente New", true, false, false, true );
                // adjuntar panel al panel de contenido del marco interno
-               CSEditarCliente editarC=null;
+               CSEditarClienteNew editarC=null;
                     try {
-                        editarC = new CSEditarCliente(cliente);
+                        editarC = new CSEditarClienteNew(cliente);
                     } catch (SQLException ex) {
                         Logger.getLogger(CSResultBuscarCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
-               CSDesktop.EditarCliente.getContentPane().add( editarC,BorderLayout.CENTER);
+               CSDesktop.EditarClienteNew.getContentPane().add( editarC,BorderLayout.CENTER);
                // establecer tama�o de marco interno en el tama�o de su contenido
-               CSDesktop.EditarCliente.pack();
+               CSDesktop.EditarClienteNew.pack();
                // adjuntar marco interno al escritorio y mostrarlo
-               CSDesktop.elEscritorio.add( CSDesktop.EditarCliente );
+               CSDesktop.elEscritorio.add( CSDesktop.EditarClienteNew );
                //ABDesktop.ResultCliente.dispose();
                Dimension pantalla = CSDesktop.elEscritorio.getSize();
-               Dimension ventana = CSDesktop.EditarCliente.getSize();
-               CSDesktop.EditarCliente.setLocation(
+               Dimension ventana = CSDesktop.EditarClienteNew.getSize();
+               CSDesktop.EditarClienteNew.setLocation(
                     (pantalla.width - ventana.width) / 2,
                     (pantalla.height - ventana.height) / 2);
-               CSDesktop.EditarCliente.setVisible( true );
+               CSDesktop.EditarClienteNew.setVisible( true );
                //CSDesktop.ResultCliente.setVisible(false);
 
 

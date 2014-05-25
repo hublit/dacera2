@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1050, 374]"/>
+    </Property>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace pref="568" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lProveedor" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTextProveedor" min="-2" pref="269" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lCliente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTextCliente" min="-2" pref="258" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="902" max="32767" attributes="0"/>
+              <Component id="jToggleButtonCliente" linkSize="6" min="-2" pref="137" max="-2" attributes="0"/>
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="902" max="32767" attributes="0"/>
+              <Component id="jToggleButtonProveedor" linkSize="6" pref="138" max="32767" attributes="1"/>
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <Component id="lPoblacionOrigen" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTextPoblacionOrigen" linkSize="13" min="-2" pref="193" max="-2" attributes="0"/>
+              <EmptySpace pref="779" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+              <Component id="lOrigen1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
+              <Component id="lDestino1" pref="253" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="266" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator5" pref="1030" max="32767" attributes="1"/>
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator3" pref="1030" max="32767" attributes="1"/>
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator9" pref="1030" max="32767" attributes="1"/>
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="426" pref="426" max="426" attributes="0"/>
+              <Component id="jButtonBuscar" min="-2" pref="149" max="-2" attributes="0"/>
+              <EmptySpace pref="245" max="32767" attributes="0"/>
+              <Component id="jButtonBuscarSProv" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="478" pref="478" max="478" attributes="0"/>
+              <Component id="jCheckBoxUnidos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="475" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="1">
+              <EmptySpace pref="825" max="32767" attributes="0"/>
+              <Component id="lComercial" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="179" pref="179" max="179" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jSeparator6" alignment="1" pref="1030" max="32767" attributes="1"/>
+                  <Component id="lServicio" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                      <Component id="lNumero" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextNumero" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="lFechaIni" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jDateFecha" min="-2" pref="122" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lFechaFin" min="-2" pref="56" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jDateFechaFin" min="-2" pref="115" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lEstado3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lincidencias" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                                      <Component id="jLabelOrder" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lServicioFMad2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jComboOrden" linkSize="8" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxEstado" linkSize="8" alignment="1" min="-2" pref="145" max="-2" attributes="1"/>
+                                  <Component id="jComboBoxIncidencias" linkSize="8" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="jComboFactor" linkSize="8" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="67" max="32767" attributes="0"/>
+                              <Component id="lVehiculo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lProvinciaOrigen" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jComboBoxSoporte" min="-2" pref="142" max="-2" attributes="0"/>
+                          <Component id="jComboBoxProvinciaOrigen" min="-2" pref="141" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lMatricula" min="-2" pref="0" max="-2" attributes="1"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lPoblacionDestino" alignment="0" pref="84" max="32767" attributes="0"/>
+                          <Component id="lMatricula1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" max="-2" attributes="1"/>
+                      <EmptySpace pref="600" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jTextPoblacionDestino" linkSize="13" min="-2" pref="211" max="-2" attributes="0"/>
+                  <Component id="jTextMatricula" linkSize="13" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lProvinciaDestino" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="lEstado4" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jComboBoxComercial" linkSize="10" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
+                  <Component id="jCBoxEstadoVehiculo" linkSize="10" alignment="1" min="-2" pref="147" max="-2" attributes="1"/>
+                  <Component id="jComboBoxProvinciaDestino" linkSize="10" alignment="1" min="-2" pref="148" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="lNumero" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="jDateFechaFin" alignment="2" min="-2" max="-2" attributes="1"/>
+                  <Component id="jDateFecha" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lFechaFin" alignment="2" pref="38" max="32767" attributes="1"/>
+                  <Component id="jTextNumero" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lFechaIni" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="jToggleButtonCliente" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextCliente" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lCliente" alignment="2" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lOrigen1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lDestino1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jTextPoblacionOrigen" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="lPoblacionDestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxProvinciaOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lProvinciaOrigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jTextPoblacionDestino" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jSeparator1" min="-2" max="-2" attributes="1"/>
+                  <Component id="jSeparator6" min="-2" max="-2" attributes="1"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lServicio" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="jComboFactor" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lServicioFMad2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="lMatricula1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxSoporte" linkSize="15" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lVehiculo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="jTextMatricula" linkSize="15" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="lEstado4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jCBoxEstadoVehiculo" linkSize="15" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jComboBoxIncidencias" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lincidencias" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jToggleButtonProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jSeparator5" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jComboBoxComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lEstado3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxUnidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="jSeparator9" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jButtonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonBuscarSProv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jLabelOrder" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboOrden" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="161" pref="161" max="161" attributes="0"/>
+              <Component id="lMatricula" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="199" pref="199" max="199" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="2" attributes="0">
+              <EmptySpace min="99" pref="99" max="99" attributes="0"/>
+              <Component id="lPoblacionOrigen" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="261" pref="261" max="261" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="2" attributes="0">
+              <EmptySpace min="96" pref="96" max="96" attributes="0"/>
+              <Component id="jComboBoxProvinciaDestino" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="258" pref="258" max="258" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="2" attributes="0">
+              <EmptySpace min="99" pref="99" max="99" attributes="0"/>
+              <Component id="lProvinciaDestino" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="261" pref="261" max="261" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="jButtonBuscar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="name" type="java.lang.String" value="jButtonBuscar" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuscarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonCancelar">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="name" type="java.lang.String" value="jButtonCancelar" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxSoporte">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="8">
+            <StringItem index="0" value="Selecciona"/>
+            <StringItem index="1" value="Portaveh&#xed;culos"/>
+            <StringItem index="2" value="Cami&#xf3;n completo"/>
+            <StringItem index="3" value="Conductor"/>
+            <StringItem index="4" value="Gr&#xfa;a Unitaria"/>
+            <StringItem index="5" value="Custodia"/>
+            <StringItem index="6" value="Veh&#xed;culo Pesado"/>
+            <StringItem index="7" value="Transporte Mar&#xed;timo"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboBoxSoporte" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lDestino1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="DATOS DEL DESTINO"/>
+        <Property name="name" type="java.lang.String" value="lDestino1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextMatricula">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jTextMatricula" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextMatriculaActionPerformed"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextMatriculaFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lMatricula">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Matr&#xed;cula / bastidor"/>
+        <Property name="name" type="java.lang.String" value="lMatricula" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lPoblacionDestino">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Poblaci&#xf3;n"/>
+        <Property name="name" type="java.lang.String" value="lPoblacionDestino" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lVehiculo">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Soporte"/>
+        <Property name="name" type="java.lang.String" value="lVehiculo" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jToggleButtonCliente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
+        <Property name="name" type="java.lang.String" value="jToggleButtonCliente" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonClienteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lCliente">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cliente"/>
+        <Property name="name" type="java.lang.String" value="lCliente" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lOrigen1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="DATOS DEL ORIGEN"/>
+        <Property name="name" type="java.lang.String" value="lOrigen1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jSeparator1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jToggleButtonProveedor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar Proveedor"/>
+        <Property name="name" type="java.lang.String" value="jToggleButtonProveedor" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonProveedorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lProvinciaOrigen">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Provincia"/>
+        <Property name="name" type="java.lang.String" value="lProvinciaOrigen" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextProveedor">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="jTextProveedor" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lNumero">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="N&#xfa;m. de pedido PE/"/>
+        <Property name="name" type="java.lang.String" value="lNumero" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextPoblacionOrigen">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jTextPoblacionOrigen" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextPoblacionOrigenFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lEstado3">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Estado"/>
+        <Property name="name" type="java.lang.String" value="lEstado3" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxProvinciaDestino">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="53">
+            <StringItem index="0" value="Selecciona"/>
+            <StringItem index="1" value="A CORU&#xd1;A"/>
+            <StringItem index="2" value="&#xc1;LAVA"/>
+            <StringItem index="3" value="ALBACETE"/>
+            <StringItem index="4" value="ALICANTE"/>
+            <StringItem index="5" value="ALMER&#xcd;A"/>
+            <StringItem index="6" value="ASTURIAS"/>
+            <StringItem index="7" value="&#xc1;VILA"/>
+            <StringItem index="8" value="BADAJOZ"/>
+            <StringItem index="9" value="BARCELONA"/>
+            <StringItem index="10" value="BURGOS"/>
+            <StringItem index="11" value="C&#xc1;CERES"/>
+            <StringItem index="12" value="C&#xc1;DIZ"/>
+            <StringItem index="13" value="CANTABRIA"/>
+            <StringItem index="14" value="CASTELL&#xd3;N"/>
+            <StringItem index="15" value="CEUTA"/>
+            <StringItem index="16" value="CIUDAD REAL"/>
+            <StringItem index="17" value="C&#xd3;RDOBA"/>
+            <StringItem index="18" value="CUENCA"/>
+            <StringItem index="19" value="GIRONA"/>
+            <StringItem index="20" value="GRANADA"/>
+            <StringItem index="21" value="GUADALAJARA"/>
+            <StringItem index="22" value="GUIP&#xda;ZCOA"/>
+            <StringItem index="23" value="HUELVA"/>
+            <StringItem index="24" value="HUESCA"/>
+            <StringItem index="25" value="ILLES BALEARS"/>
+            <StringItem index="26" value="JA&#xc9;N"/>
+            <StringItem index="27" value="LA RIOJA"/>
+            <StringItem index="28" value="LAS PALMAS"/>
+            <StringItem index="29" value="LE&#xd3;N"/>
+            <StringItem index="30" value="LLEIDA"/>
+            <StringItem index="31" value="LUGO"/>
+            <StringItem index="32" value="MADRID"/>
+            <StringItem index="33" value="M&#xc1;LAGA"/>
+            <StringItem index="34" value="MELILLA"/>
+            <StringItem index="35" value="MURCIA"/>
+            <StringItem index="36" value="NAVARRA"/>
+            <StringItem index="37" value="OURENSE"/>
+            <StringItem index="38" value="PALENCIA"/>
+            <StringItem index="39" value="PONTEVEDRA"/>
+            <StringItem index="40" value="SALAMANCA"/>
+            <StringItem index="41" value="SANTA CRUZ DE TENERIFE"/>
+            <StringItem index="42" value="SEGOVIA"/>
+            <StringItem index="43" value="SEVILLA"/>
+            <StringItem index="44" value="SORIA"/>
+            <StringItem index="45" value="TARRAGONA"/>
+            <StringItem index="46" value="TERUEL"/>
+            <StringItem index="47" value="TOLEDO"/>
+            <StringItem index="48" value="VALENCIA"/>
+            <StringItem index="49" value="VALLADOLID"/>
+            <StringItem index="50" value="VIZCAYA"/>
+            <StringItem index="51" value="ZAMORA"/>
+            <StringItem index="52" value="ZARAGOZA"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboBoxProvinciaDestino" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lFechaIni">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Fecha ini"/>
+        <Property name="name" type="java.lang.String" value="lFechaIni" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextPoblacionDestino">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jTextPoblacionDestino" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextPoblacionDestinoFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxEstado">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="10">
+            <StringItem index="0" value="Selecciona"/>
+            <StringItem index="1" value="Activo"/>
+            <StringItem index="2" value="En Proceso"/>
+            <StringItem index="3" value="Entregado"/>
+            <StringItem index="4" value="Facturado"/>
+            <StringItem index="5" value="Facturado y Validado"/>
+            <StringItem index="6" value="Cobrado"/>
+            <StringItem index="7" value="Pagado"/>
+            <StringItem index="8" value="Anulado"/>
+            <StringItem index="9" value="Fallido"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboBoxEstado" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxProvinciaOrigen">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="53">
+            <StringItem index="0" value="Selecciona"/>
+            <StringItem index="1" value="A CORU&#xd1;A"/>
+            <StringItem index="2" value="&#xc1;LAVA"/>
+            <StringItem index="3" value="ALBACETE"/>
+            <StringItem index="4" value="ALICANTE"/>
+            <StringItem index="5" value="ALMER&#xcd;A"/>
+            <StringItem index="6" value="ASTURIAS"/>
+            <StringItem index="7" value="&#xc1;VILA"/>
+            <StringItem index="8" value="BADAJOZ"/>
+            <StringItem index="9" value="BARCELONA"/>
+            <StringItem index="10" value="BURGOS"/>
+            <StringItem index="11" value="C&#xc1;CERES"/>
+            <StringItem index="12" value="C&#xc1;DIZ"/>
+            <StringItem index="13" value="CANTABRIA"/>
+            <StringItem index="14" value="CASTELL&#xd3;N"/>
+            <StringItem index="15" value="CEUTA"/>
+            <StringItem index="16" value="CIUDAD REAL"/>
+            <StringItem index="17" value="C&#xd3;RDOBA"/>
+            <StringItem index="18" value="CUENCA"/>
+            <StringItem index="19" value="GIRONA"/>
+            <StringItem index="20" value="GRANADA"/>
+            <StringItem index="21" value="GUADALAJARA"/>
+            <StringItem index="22" value="GUIP&#xda;ZCOA"/>
+            <StringItem index="23" value="HUELVA"/>
+            <StringItem index="24" value="HUESCA"/>
+            <StringItem index="25" value="ILLES BALEARS"/>
+            <StringItem index="26" value="JA&#xc9;N"/>
+            <StringItem index="27" value="LA RIOJA"/>
+            <StringItem index="28" value="LAS PALMAS"/>
+            <StringItem index="29" value="LE&#xd3;N"/>
+            <StringItem index="30" value="LLEIDA"/>
+            <StringItem index="31" value="LUGO"/>
+            <StringItem index="32" value="MADRID"/>
+            <StringItem index="33" value="M&#xc1;LAGA"/>
+            <StringItem index="34" value="MELILLA"/>
+            <StringItem index="35" value="MURCIA"/>
+            <StringItem index="36" value="NAVARRA"/>
+            <StringItem index="37" value="OURENSE"/>
+            <StringItem index="38" value="PALENCIA"/>
+            <StringItem index="39" value="PONTEVEDRA"/>
+            <StringItem index="40" value="SALAMANCA"/>
+            <StringItem index="41" value="SANTA CRUZ DE TENERIFE"/>
+            <StringItem index="42" value="SEGOVIA"/>
+            <StringItem index="43" value="SEVILLA"/>
+            <StringItem index="44" value="SORIA"/>
+            <StringItem index="45" value="TARRAGONA"/>
+            <StringItem index="46" value="TERUEL"/>
+            <StringItem index="47" value="TOLEDO"/>
+            <StringItem index="48" value="VALENCIA"/>
+            <StringItem index="49" value="VALLADOLID"/>
+            <StringItem index="50" value="VIZCAYA"/>
+            <StringItem index="51" value="ZAMORA"/>
+            <StringItem index="52" value="ZARAGOZA"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboBoxProvinciaOrigen" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator5">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jSeparator5" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextNumero">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jTextNumero" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextCliente">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="jTextCliente" noResource="true"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lPoblacionOrigen">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Poblaci&#xf3;n"/>
+        <Property name="name" type="java.lang.String" value="lPoblacionOrigen" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lProvinciaDestino">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Provincia"/>
+        <Property name="name" type="java.lang.String" value="lProvinciaDestino" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator3">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jSeparator3" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateFecha">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jDateFecha" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lFechaFin">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Fecha fin"/>
+        <Property name="name" type="java.lang.String" value="lFechaFin" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaFin">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jDateFechaFin" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lServicioFMad2">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tipo"/>
+        <Property name="name" type="java.lang.String" value="lServicioFMad2" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lServicio">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="PROVEEDOR"/>
+        <Property name="name" type="java.lang.String" value="lServicio" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lComercial">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Comercial"/>
+        <Property name="name" type="java.lang.String" value="lComercial" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxComercial">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboBoxComercial" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonBuscarSProv">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pedidos sin Proveedor"/>
+        <Property name="name" type="java.lang.String" value="jButtonBuscarSProv" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuscarSProvActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxUnidos">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Pedidos Unidos"/>
+        <Property name="name" type="java.lang.String" value="jCheckBoxUnidos" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxUnidosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboOrden">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="6">
+            <StringItem index="0" value="N&#xfa;mero de Pedido"/>
+            <StringItem index="1" value="Fecha Pedido"/>
+            <StringItem index="2" value="Tarifa Cliente"/>
+            <StringItem index="3" value="Tarifa Proveedor"/>
+            <StringItem index="4" value="Fecha Origen"/>
+            <StringItem index="5" value="Fecha Entrega"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboOrden" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboOrdenActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelOrder">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Orden"/>
+        <Property name="name" type="java.lang.String" value="jLabelOrder" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lEstado4">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Estado Ve"/>
+        <Property name="name" type="java.lang.String" value="lEstado4" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jCBoxEstadoVehiculo">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="5">
+            <StringItem index="0" value="Selecciona"/>
+            <StringItem index="1" value="Funciona"/>
+            <StringItem index="2" value="Aver&#xed;a Mec&#xe1;nica"/>
+            <StringItem index="3" value="Accidente Leve"/>
+            <StringItem index="4" value="Accidente Grave"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jCBoxEstadoVehiculo" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBoxEstadoVehiculoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator6">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="4" green="10" red="aa" type="rgb"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jSeparator6" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator9">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="66" red="0" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="66" red="0" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder>
+              <Color PropertyName="highlightOuter" blue="35" green="66" red="0" type="rgb"/>
+              <Color PropertyName="highlightInner" blue="33" green="66" red="0" type="rgb"/>
+              <Color PropertyName="shadowOuter" blue="33" green="66" red="0" type="rgb"/>
+              <Color PropertyName="shadowInner" blue="33" green="66" red="0" type="rgb"/>
+            </BevelBorder>
+          </Border>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jSeparator9" noResource="true"/>
+        <Property name="opaque" type="boolean" value="true"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[5, 5]"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboFactor">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboFactor" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboFactorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxIncidencias">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="e5" red="e4" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="8">
+            <StringItem index="0" value="Selecciona"/>
+            <StringItem index="1" value="Todas"/>
+            <StringItem index="2" value="I"/>
+            <StringItem index="3" value="IM"/>
+            <StringItem index="4" value="IRD"/>
+            <StringItem index="5" value="RFL"/>
+            <StringItem index="6" value="RP"/>
+            <StringItem index="7" value="RC"/>
+          </StringArray>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jComboBoxIncidencias" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxIncidenciasActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lincidencias">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Incidencias"/>
+        <Property name="name" type="java.lang.String" value="lincidencias" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lMatricula1">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Matr&#xed;cula/Bast"/>
+        <Property name="name" type="java.lang.String" value="lMatricula1" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lProveedor">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Proveedor"/>
+        <Property name="name" type="java.lang.String" value="lProveedor" noResource="true"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

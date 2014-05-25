@@ -80,7 +80,6 @@ public class CSContactoProveedor extends javax.swing.JPanel
         jTextTelefono = new javax.swing.JTextField();
         lEmail = new javax.swing.JLabel();
         jTextNombre = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
         jButtonGuardar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jTextEmail = new javax.swing.JTextField();
@@ -90,6 +89,7 @@ public class CSContactoProveedor extends javax.swing.JPanel
         jTextProveedor = new javax.swing.JTextField();
         lProveedor = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jSeparator9 = new javax.swing.JSeparator();
 
         lTelefono2.setForeground(new java.awt.Color(0, 0, 100));
         lTelefono2.setText("Teléfono 2");
@@ -144,9 +144,6 @@ public class CSContactoProveedor extends javax.swing.JPanel
             }
         });
 
-        jSeparator2.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator2.setName("jSeparator2"); // NOI18N
-
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.setName("jButtonGuardar"); // NOI18N
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -198,16 +195,17 @@ public class CSContactoProveedor extends javax.swing.JPanel
         jLabel17.setText("*");
         jLabel17.setName("jLabel17"); // NOI18N
 
+        jSeparator9.setBackground(new java.awt.Color(0, 102, 51));
+        jSeparator9.setForeground(new java.awt.Color(0, 102, 51));
+        jSeparator9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 53), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51)));
+        jSeparator9.setName("jSeparator9"); // NOI18N
+        jSeparator9.setOpaque(true);
+        jSeparator9.setPreferredSize(new java.awt.Dimension(5, 5));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabel7)
@@ -254,6 +252,14 @@ public class CSContactoProveedor extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 580, Short.MAX_VALUE)
                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator9, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(364, Short.MAX_VALUE)
+                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(340, 340, 340))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,9 +287,9 @@ public class CSContactoProveedor extends javax.swing.JPanel
                     .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lTelefono2)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jButtonGuardar)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -393,7 +399,8 @@ public class CSContactoProveedor extends javax.swing.JPanel
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextNombre;
     private javax.swing.JTextField jTextProveedor;

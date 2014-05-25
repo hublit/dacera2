@@ -6,49 +6,48 @@
 
 package neg;
 
-import java.awt.Font;
 import utils.TablaModelo;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JTextField;
-import javax.swing.table.TableColumn;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
  * @author depr102
  */
-public class CSSelectCliente extends javax.swing.JPanel
+public class CSSelectProveedorPedido extends javax.swing.JPanel
 {
-    private JTextField jTextCli;
-    private int cliID = 0;
-   
+    private JTextField jTextPro;
+    private JTextField jTextUrlPr;
+
     /** Creates new form BuscaClientesPanel */
-    public CSSelectCliente(JTextField jTextC,String busqueda,boolean inicial)
+    public CSSelectProveedorPedido(JTextField jTextC, JTextField urlTarifas, String busqueda, boolean inicial)
     {
         TablaModelo modelo = new TablaModelo();
+        this.jTextPro=jTextC;
+        this.jTextUrlPr = urlTarifas;
 
-        this.jTextCli = jTextC;
-
-        modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE", "DNI",});
+        modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE", "DNI", "URL"});
 
         int numeroFila = 0;
-
-        String query = "SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_tipo_tarifa  FROM cl_clientes WHERE cl_estado = 'Activo' ORDER BY cl_nombre";
-
-        if(!inicial)
-        {
-            query = "SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_tipo_tarifa  FROM cl_clientes WHERE cl_estado = 'Activo' AND cl_nombre like  '%"+busqueda+"%' ORDER BY cl_nombre";
+        String query = "";
+        if(inicial){
+           query = "SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF, pr_tarifa_url FROM pr_proveedores WHERE pr_estado = 'Activo' ORDER BY pr_nombre_fiscal";
+        }else{
+           query =  "SELECT pr_id, pr_nombre_fiscal, pr_DNI_CIF, pr_tarifa_url FROM pr_proveedores WHERE pr_estado = 'Activo' AND pr_nombre_fiscal like  '%"+busqueda+"%' ORDER BY pr_nombre_fiscal ";
         }
         try
         {
@@ -60,7 +59,7 @@ public class CSSelectCliente extends javax.swing.JPanel
             Object[] datosFila = new Object[modelo.getColumnCount()];
             int j = 0;
             for (int k = 0; k < 4; k++) {
-                if (k == 0 || k == 1 || k == 2) {
+                if (k == 0 || k == 1 || k == 2 || k == 3) {
                     datosFila[j] = rs.getObject(k + 1);
                     j++;
                 }
@@ -77,41 +76,7 @@ public class CSSelectCliente extends javax.swing.JPanel
       {
          System.out.println(e);
       }
-/////////////////////
-/*                for (int i = 0; i < client.getClientes().length; i ++)
-                {
-                    Object[] datosFila2 = new Object[modelo.getColumnCount()];
-                    int j = 0;
-                    for (int k = 0; k < 4; k++) {
-                        if (k == 0 || k == 1 || k == 2) {
-                            datosFila2[j] = client.getClientes()[i][k];
-                            //datosFila[j] = rs.getObject(k + 1);
-                            j++;
-                        }
-                    }
-                    modelo.addRow(datosFila2);
-                    numeroFila++;
-                 }
-            }
-            else if (inicial==false)
-            {
-                 for (int i = 0; i < client.getClientesQuery(busqueda).length; i ++)
-                {
-                    Object[] datosFila2 = new Object[modelo.getColumnCount()];
-                    int j = 0;
-                    for (int k = 0; k < 4; k++) {
-                        if (k == 0 || k == 1 || k == 2) {
-                            datosFila2[j] = client.getClientesQuery(busqueda)[i][k];
-                            //datosFila[j] = rs.getObject(k + 1);
-                            j++;
-                        }
-                    }
-                    modelo.addRow(datosFila2);
-                    numeroFila++;
-                 }
-            }
-      
-        */
+
         initComponents();
 
         KeyListener l = new KeyListener()
@@ -125,21 +90,19 @@ public class CSSelectCliente extends javax.swing.JPanel
                 }
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
                 {
-                    jButton1.doClick();
+                    jButton2.doClick();
                 }
             }
             public void keyReleased(KeyEvent e) {}
         };
 
-         for (int k = 0; k < this.getComponents().length; k ++)
+        for (int k = 0; k < this.getComponents().length; k ++)
         {
-
-                this.getComponents()[k].addKeyListener(l);
-            
+            this.getComponents()[k].addKeyListener(l);
         }
 
         addKeyListener(l);
-        
+
         jTable1.setDefaultRenderer (Object.class, new MiRender());
         jTable1.setModel(modelo);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
@@ -148,6 +111,8 @@ public class CSSelectCliente extends javax.swing.JPanel
         columna1.setPreferredWidth(300);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
         columna2.setPreferredWidth(100);
+        TableColumn columna3 = jTable1.getColumnModel().getColumn(3);
+        columna3.setPreferredWidth(100);
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         jTable1.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
@@ -165,13 +130,16 @@ public class CSSelectCliente extends javax.swing.JPanel
             int columna = jTable1.columnAtPoint(e.getPoint());
               if ((fila > -1) && (columna > -1))
             {
-               String cliente = ((String)jTable1.getValueAt(fila,1).toString());
-               jTextCli.setText(cliente);              
-               CSDesktop.BuscaCliente.dispose();
-              }                  
+               String proveedor = ((String)jTable1.getValueAt(fila,1).toString());
+               String urlTarifas = (jTable1.getValueAt(fila,3) != null) ? ((String)jTable1.getValueAt(fila,3).toString()) : "";
+
+               jTextPro.setText(proveedor);
+               jTextUrlPr.setText(urlTarifas);
+               
+               CSDesktop.BuscaProveedor.dispose();
+              }                    
          }
         });
-        
         jTextField1.grabFocus();
     }
 
@@ -186,10 +154,10 @@ public class CSSelectCliente extends javax.swing.JPanel
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButtonLimpiar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jButtonLimpiar1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -216,23 +184,21 @@ public class CSSelectCliente extends javax.swing.JPanel
         jTable1.setName("jTable1"); // NOI18N
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Cerrar");
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpiar1.setText("Limpiar");
+        jButtonLimpiar1.setName("jButtonLimpiar1"); // NOI18N
+        jButtonLimpiar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonLimpiar1ActionPerformed(evt);
             }
         });
 
-        jButtonLimpiar.setText("Limpiar");
-        jButtonLimpiar.setName("jButtonLimpiar"); // NOI18N
-        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Cerrar");
+        jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-
-        jTextField1.setName("jTextField1"); // NOI18N
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.setName("jButtonBuscar"); // NOI18N
@@ -241,6 +207,8 @@ public class CSSelectCliente extends javax.swing.JPanel
                 jButtonBuscarActionPerformed(evt);
             }
         });
+
+        jTextField1.setName("jTextField1"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -256,65 +224,64 @@ public class CSSelectCliente extends javax.swing.JPanel
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(71, 71, 71)
-                        .addComponent(jButtonLimpiar)
-                        .addGap(18, 18, 18))))
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addComponent(jButtonLimpiar1)
+                        .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonLimpiar1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBuscar)
-                    .addComponent(jButtonLimpiar)
-                    .addComponent(jButton1))
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CSDesktop.BuscaCliente.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonLimpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiar1ActionPerformed
+        jTextPro.setText("");
+        CSDesktop.BuscaProveedor.dispose();
+}//GEN-LAST:event_jButtonLimpiar1ActionPerformed
 
-    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-         jTextCli.setText("");
-         CSDesktop.BuscaCliente.dispose();
-}//GEN-LAST:event_jButtonLimpiarActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        CSDesktop.BuscaProveedor.dispose();
+}//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
         String letras=new String(jTextField1.getText());
 
-        CSDesktop.BuscaCliente.dispose();
-        CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
+        CSDesktop.BuscaProveedor.dispose();
+        CSDesktop.BuscaProveedor = new JInternalFrame("Seleccionar Proveedor", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(jTextCli,letras,false);
-        CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
+        CSSelectProveedorPedido panel = new CSSelectProveedorPedido(jTextPro,jTextUrlPr,letras,false);
+        CSDesktop.BuscaProveedor.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
-        CSDesktop.BuscaCliente.pack();
+        CSDesktop.BuscaProveedor.pack();
         // adjuntar marco interno al escritorio y mostrarlo
-        CSDesktop.elEscritorio.add( CSDesktop.BuscaCliente );
-        CSDesktop.BuscaCliente.setLocation(150, 50);
-        CSDesktop.BuscaCliente.setVisible( true );
-
+        CSDesktop.elEscritorio.add( CSDesktop.BuscaProveedor );
+        CSDesktop.BuscaProveedor.setLocation(150, 50);
+        CSDesktop.BuscaProveedor.setVisible( true );
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonBuscar;
-    private javax.swing.JButton jButtonLimpiar;
+    private javax.swing.JButton jButtonLimpiar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-
-    public class MiRender extends DefaultTableCellRenderer {
+     public class MiRender extends DefaultTableCellRenderer {
 
         @SuppressWarnings("static-access")
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
@@ -322,7 +289,9 @@ public class CSSelectCliente extends javax.swing.JPanel
             Component cell = super. getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
             //se centran los valores
             //se toman algunos valores especificos para mi programa
-
+            //double cantidad = Double. parseDouble(table. getValueAt(row, 11). toString());
+            //double stockMin = Double. parseDouble(table. getValueAt(row, 12). toString());
+            //double stockMax = Double. parseDouble(table. getValueAt(row, 13). toString());
             //si cumplen x condicion se pintan
             if (column == 0 ||column == 2)
             {
@@ -350,4 +319,7 @@ public class CSSelectCliente extends javax.swing.JPanel
             return cell;
         }
     }
+
+
+
 }
