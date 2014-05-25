@@ -23,6 +23,8 @@ public class BeanCliente
     private String formaPago;
     private String diasPlazo;
     private int correo;
+    private int tipoTarifa;
+    private String UrlTarifas;
     
 
     /**
@@ -240,4 +242,19 @@ public class BeanCliente
         this.correo = correo;
     }
 
+    public String getUrlTarifas() {
+        return UrlTarifas;
+    }
+
+    public void setUrlTarifas(String UrlTarifas) {
+        this.UrlTarifas = UrlTarifas;
+    }
+
+    public int getTipoTarifa() {
+        return tipoTarifa;
+    }
+
+    public void setTipoTarifa(int tipoTarifa) {
+        this.tipoTarifa = tipoTarifa;
+    }
 }

@@ -46,6 +46,12 @@ public class BeanCorreoCliente {
     private String clienteID;
     private String suplemento;
     private String observaciones;
+    private String veEstado;
+    private String kms;
+    private String tarifakmCliente;
+    private boolean obsClInmail;
+    private boolean obsPrInmail;
+    private boolean peUnido;
 
     public String getFecha() {
         return fecha;
@@ -326,4 +332,51 @@ public class BeanCorreoCliente {
         this.observaciones = observaciones;
     }
 
+    public String getVeEstado() {
+        return veEstado;
+    }
+
+    public void setVeEstado(String ve_estado) {
+        this.veEstado = ve_estado;
+    }
+
+    public String getKms() {
+        return kms;
+    }
+
+    public void setKms(String kms) {
+        this.kms = kms;
+    }
+
+    public boolean isObsClInmail() {
+        return obsClInmail;
+    }
+
+    public void setObsClInmail(boolean obsClInmail) {
+        this.obsClInmail = obsClInmail;
+    }
+
+    public boolean isObsPrInmail() {
+        return obsPrInmail;
+    }
+
+    public void setObsPrInmail(boolean obsPrInmail) {
+        this.obsPrInmail = obsPrInmail;
+    }
+
+    public String getTarifakmCliente() {
+        return tarifakmCliente;
+    }
+
+    public void setTarifakmCliente(String tarifakmCliente) {
+        this.tarifakmCliente = tarifakmCliente;
+    }
+
+    public boolean isPeUnido() {
+        return peUnido;
+    }
+
+    public void setPeUnido(boolean peUnido) {
+        this.peUnido = peUnido;
+    }
 }

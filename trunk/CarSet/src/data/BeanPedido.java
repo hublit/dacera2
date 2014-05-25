@@ -23,6 +23,7 @@ public class BeanPedido
     private String nombreOrigen;
     private String telefonoOrigen;
     private String tarifa;
+    private String kms;
 
     public String getNum() {
         return num;
@@ -159,6 +160,12 @@ public class BeanPedido
         this.tarifa = tarifa;
     }
 
+    public String getKms() {
+        return kms;
+    }
 
+    public void setKms(String kms) {
+        this.kms = kms;
+    }
 
 }
