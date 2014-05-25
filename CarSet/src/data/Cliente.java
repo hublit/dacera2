@@ -14,15 +14,11 @@ import neg.CSDesktop;
  *
  * @author lito
  */
-public class Cliente
-{
-
-
+public class Cliente{
    /** Constructor de DbUser */
-   public Cliente()
-   {
-   }
 
+   public Cliente(){
+   }
 
    /**
     * Método que trae todos los clientes
@@ -30,8 +26,8 @@ public class Cliente
    public Object[][] getClientes()
    {
       int registros = 0;
-      try
-      {
+
+      try{
 
          ResultSet rsTotal = CSDesktop.datos.select("SELECT count(1) as cont FROM cl_clientes WHERE cl_estado = 'Activo'");
 
@@ -249,6 +245,109 @@ public class Cliente
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
        return fPago;
+   }
+
+      /**
+    * Método para sacar los datos necesarios del cliente en el Pedido
+    * @param clienteID
+    * @return BeanCliente
+    */
+   public BeanCliente getDatosPedidoCliente(int clienteID)
+   {
+       BeanCliente bCliente = new BeanCliente();
+       int formaPago=0;
+
+       ResultSet rsCl = CSDesktop.datos.select("SELECT cl_id, cl_tipo_tarifa, cl_tarifa_url " +
+                                               "FROM cl_clientes WHERE cl_id = "+clienteID);
+        try
+        {
+            while (rsCl.next())
+            {
+                bCliente.setTipoTarifa(rsCl.getInt("cl_tipo_tarifa"));
+                bCliente.setUrlTarifas(rsCl.getString("cl_tarifa_url"));
+            }
+            rsCl.close();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       return bCliente;
+   }
+
+         /**
+    * Método para sacar los datos necesarios del cliente en el Pedido
+    * @param clienteID
+    * @return BeanCliente
+    */
+   public float getDatosServicioCliente(int clienteID, String servicio)
+   {
+       float precio = 0;
+
+       ResultSet rsCl = CSDesktop.datos.select("SELECT "+servicio+" FROM sv_servicios WHERE cl_id = "+clienteID);
+//System.out.println("SELECT "+servicio+" FROM sv_servicios WHERE cl_id = "+clienteID);
+        try
+        {
+            while (rsCl.next())
+            {
+                if(servicio.equals("sv_turismo")){
+                    precio = rsCl.getFloat("sv_turismo");
+                }else if(servicio.equals("sv_flm")){
+                    precio = rsCl.getFloat("sv_flm");
+                }else if(servicio.equals("sv_furgoneta")){
+                    precio = rsCl.getFloat("sv_furgoneta");
+                }else if(servicio.equals("sv_todoterreno")){
+                    precio = rsCl.getFloat("sv_todoterreno");
+                }else if(servicio.equals("sv_furgon")){
+                    precio = rsCl.getFloat("sv_furgon");
+                }else if(servicio.equals("sv_suv")){
+                    precio = rsCl.getFloat("sv_suv");
+                }else if(servicio.equals("sv_especial")){
+                    precio = rsCl.getFloat("sv_especial");
+                }else if(servicio.equals("sv_dias")){
+                    precio = rsCl.getFloat("sv_dias");
+                }else if(servicio.equals("sv_moto")){
+                    precio = rsCl.getFloat("sv_moto");
+                }else if(servicio.equals("sv_carro_sobredim")){
+                    precio = rsCl.getFloat("sv_carro_sobredim");
+                }
+        }
+            rsCl.close();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return precio;
+   }
+
+   /**
+    * Método para sacar los datos necesarios del cliente en el Pedido
+    * @param clienteID
+    * @return BeanCliente
+    */
+   public String getObservacionesCliente(int clienteID)
+   {
+       String observaciones = "";
+
+       ResultSet rsClObs = CSDesktop.datos.select("SELECT sv_text_asistencia FROM sv_servicios WHERE cl_id = "+clienteID);
+
+        try
+        {
+            while (rsClObs.next())
+            {
+                observaciones = rsClObs.getString("sv_text_asistencia");
+            }
+
+            rsClObs.close();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       return observaciones;
    }
 
 }

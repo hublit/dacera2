@@ -23,6 +23,7 @@ public class BeanProveedor
     private String numCuenta;
     private String email;
     private String regimen;
+    private String UrlTarifas;
 
     public String getDiasPlazo() {
         return diasPlazo;
@@ -264,4 +265,11 @@ public class BeanProveedor
         this.regimen = regimen;
     }
 
+    public String getUrlTarifas() {
+        return UrlTarifas;
+    }
+
+    public void setUrlTarifas(String UrlTarifas) {
+        this.UrlTarifas = UrlTarifas;
+    }
 }

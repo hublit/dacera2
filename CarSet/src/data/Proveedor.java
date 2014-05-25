@@ -243,4 +243,25 @@ public class Proveedor
 
        return bProveedor;
    }
+
+   /**
+    * Metodo para consultar la url de tarifas del proveedor a partir del id
+    * @param proveedorID
+    * @return url
+    */
+   public String getUrlTarifasProveedor(int proveedorID)
+   {
+       String url="";
+
+       ResultSet rsCl = CSDesktop.datos.select("SELECT pr_tarifa_url FROM pr_proveedores WHERE pr_id = "+proveedorID);
+        try {
+            while (rsCl.next()) {
+                url = rsCl.getString("pr_tarifa_url");
+            }
+            rsCl.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return url;
+   }
 }
