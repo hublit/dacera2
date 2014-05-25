@@ -104,6 +104,22 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuBuscarProveedor;
   public static JMenuItem menuContactoProveedor;
   public static JMenuItem menuNuevoPedido;
+
+  //////////////// NUEVO ////////////////////////
+  public static JInternalFrame NuevoPedidoPrueba;
+  public static JMenuItem menuNuevoPedidoPrueba;
+  public static JInternalFrame BuscarPedidoNew;
+  public static JInternalFrame ResultPedidoNew;
+  public static JMenuItem menuBuscarPedidoNew;
+  public static JMenuItem menuNuevoClienteNew;
+  public static JInternalFrame NuevoClienteNew;
+  public static JInternalFrame EditarClienteNew;
+  public static JInternalFrame NuevoProveedorNew;
+  public static JInternalFrame EditarProveedorNew;
+  public static JMenuItem menuNuevoProveedorNew;
+  public static JInternalFrame EditarPedidoNew;
+  /////////////////////////////////////////////
+
   public static JMenuItem menuBuscarPedido;
   public static JMenuItem menuNuevoPedidoArchivo;
   public static JMenuItem menuTarifaCliente;
@@ -128,7 +144,6 @@ public class CSDesktop extends JFrame
   
   public  CSDesktop(String usuario) throws UnknownHostException
   {
-
       datos = new DbConnection();
       /*setDefaultCloseOperation(CSDesktop.DO_NOTHING_ON_CLOSE);
       addWindowListener(new WindowAdapter() {
@@ -156,10 +171,137 @@ public class CSDesktop extends JFrame
       //MENU DE CLIENTES
       menuClientes.setMnemonic( 'C' );
 
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+      //Nuevo Cliente
+      menuNuevoClienteNew = new JMenuItem( "Nuevo Cliente" );
+      menuNuevoClienteNew.setMnemonic( 'g' );
+      menuClientes.add( menuNuevoClienteNew );
+      menuNuevoClienteNew.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               NuevoClienteNew = new JInternalFrame("Nuevo Cliente", true,false,false,true );
+
+               CSAnyadirClienteNew panel = null;
+                try {
+                    panel = new CSAnyadirClienteNew();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               NuevoClienteNew.getContentPane().add( panel,BorderLayout.CENTER);
+               NuevoClienteNew.pack();
+               elEscritorio.add( NuevoClienteNew );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = NuevoClienteNew.getSize();
+               NuevoClienteNew.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               NuevoClienteNew.setVisible( true );
+            }
+         });
+
+      menuNuevoPedidoPrueba = new JMenuItem( "Nuevo Pedido" );
+      menuNuevoPedidoPrueba.setMnemonic( 'u' );
+      menuPedidos.add( menuNuevoPedidoPrueba );
+      menuNuevoPedidoPrueba.addActionListener(
+
+         new ActionListener() {  // clase interna an�nima
+
+            // mostrar nueva ventana interna
+            public void actionPerformed( ActionEvent evento ) {
+                try {
+                    // crear marco interno
+                    NuevoPedidoPrueba = new JInternalFrame("Nuevo Pedido", true, false, false, true);
+                    // adjuntar panel al panel de contenido del marco interno
+                    CSAnyadirPedidoNew panel = new CSAnyadirPedidoNew(null);
+                    NuevoPedidoPrueba.getContentPane().add(panel, BorderLayout.CENTER);
+                    // establecer tama�o de marco interno en el tama�o de su contenido
+                    NuevoPedidoPrueba.pack();
+                    // adjuntar marco interno al escritorio y mostrarlo
+                    elEscritorio.add(NuevoPedidoPrueba);
+                    Dimension pantalla = elEscritorio.getSize();
+                    Dimension ventana = NuevoPedidoPrueba.getSize();
+                    NuevoPedidoPrueba.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 15);
+                    NuevoPedidoPrueba.setVisible(true);
+
+                } catch (ParseException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+         } // fin de la clase interna an�nima
+      ); // fin de la llamada a addActionListener
+
+      menuBuscarPedidoNew = new JMenuItem( "Buscar Pedido" );
+      menuBuscarPedidoNew.setMnemonic( 'b' );
+      menuPedidos.add( menuBuscarPedidoNew );
+      menuBuscarPedidoNew.addActionListener(
+
+         new ActionListener() {  // clase interna an�nima
+
+            // mostrar nueva ventana interna
+            public void actionPerformed( ActionEvent evento ) {
+               // crear marco interno
+               BuscarPedidoNew = new JInternalFrame("Buscar Pedido", true, false, false, true );
+               // adjuntar panel al panel de contenido del marco interno
+               CSBuscarPedidoNew panel = new CSBuscarPedidoNew();
+               BuscarPedidoNew.getContentPane().add( panel,BorderLayout.CENTER);
+               // establecer tama�o de marco interno en el tama�o de su contenido
+               BuscarPedidoNew.pack();
+               // adjuntar marco interno al escritorio y mostrarlo
+               elEscritorio.add( BuscarPedidoNew );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = BuscarPedidoNew.getSize();
+               BuscarPedidoNew.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               BuscarPedidoNew.setVisible( true );
+
+            }
+         } // fin de la clase interna an�nima
+      ); // fin de la llamada a addActionListener
+
+      menuNuevoProveedorNew = new JMenuItem( "Nuevo Proveedor" );
+      menuNuevoProveedorNew.setMnemonic( 'n' );
+      menuProveedores.add( menuNuevoProveedorNew );
+      menuNuevoProveedorNew.addActionListener(
+
+         new ActionListener() {  // clase interna an�nima
+
+            // mostrar nueva ventana interna
+            public void actionPerformed( ActionEvent evento ) {
+               // crear marco interno
+               NuevoProveedorNew = new JInternalFrame("Nuevo Proveedor", true,false,false, true );
+               // adjuntar panel al panel de contenido del marco interno
+               CSAnyadirProveedorNew panel=null;
+                try {
+                    panel = new CSAnyadirProveedorNew();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               NuevoProveedorNew.getContentPane().add( panel,BorderLayout.CENTER);
+               // establecer tama�o de marco interno en el tama�o de su contenido
+               NuevoProveedorNew.pack();
+               // adjuntar marco interno al escritorio y mostrarlo
+               elEscritorio.add( NuevoProveedorNew );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = NuevoProveedorNew.getSize();
+               NuevoProveedorNew.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               NuevoProveedorNew.setVisible( true );
+
+            }
+         } // fin de la clase interna an�nima
+      ); // fin de la llamada a addActionListener
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+
       //Nuevo Cliente
       menuNuevoCliente = new JMenuItem( "Nuevo Cliente" );
       menuNuevoCliente.setMnemonic( 'n' );
-      menuClientes.add( menuNuevoCliente );
+//Revisar
+//      menuClientes.add( menuNuevoCliente );
       menuNuevoCliente.addActionListener(
          new ActionListener() {          
             public void actionPerformed( ActionEvent evento ) {
@@ -249,7 +391,8 @@ public class CSDesktop extends JFrame
 
       menuNuevoProveedor = new JMenuItem( "Nuevo Proveedor" );
       menuNuevoProveedor.setMnemonic( 'n' );
-      menuProveedores.add( menuNuevoProveedor );
+//Revisar
+//      menuProveedores.add( menuNuevoProveedor );
       menuNuevoProveedor.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
@@ -275,7 +418,7 @@ public class CSDesktop extends JFrame
                NuevoProveedor.setLocation(
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
-               NuevoProveedor.setVisible( true );
+               NuevoProveedor.setVisible( false );
               
             }
          } // fin de la clase interna an�nima
@@ -342,7 +485,8 @@ public class CSDesktop extends JFrame
 
       menuNuevoPedido = new JMenuItem( "Nuevo Pedido" );
       menuNuevoPedido.setMnemonic( 'p' );
-      menuPedidos.add( menuNuevoPedido );
+//Revisar
+//      menuPedidos.add( menuNuevoPedido );
       menuNuevoPedido.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
@@ -362,7 +506,7 @@ public class CSDesktop extends JFrame
                     Dimension pantalla = elEscritorio.getSize();
                     Dimension ventana = NuevoPedido.getSize();
                     NuevoPedido.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
-                    NuevoPedido.setVisible(true);
+                    NuevoPedido.setVisible(false);
                     
                 } catch (ParseException ex) {
                     Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
@@ -375,7 +519,8 @@ public class CSDesktop extends JFrame
 
       menuBuscarPedido = new JMenuItem( "Buscar Pedido" );
       menuBuscarPedido.setMnemonic( 'b' );
-      menuPedidos.add( menuBuscarPedido );
+//Revisar
+//      menuPedidos.add( menuBuscarPedido );
       menuBuscarPedido.addActionListener(
 
          new ActionListener() {  // clase interna an�nima
@@ -396,8 +541,7 @@ public class CSDesktop extends JFrame
                BuscarPedido.setLocation(
                      (pantalla.width - ventana.width) / 2,
                      (pantalla.height - ventana.height) / 2);
-               BuscarPedido.setVisible( true );
-               
+               BuscarPedido.setVisible( false );
             }
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
@@ -771,12 +915,10 @@ public class CSDesktop extends JFrame
                BuscarTesoreriaCliente.setVisible( true );
             }
          });
-
    
 /////////////////////////////
       //Tesorería
       menuTesoreria.setMnemonic( 'E' );
-
 
       menuTesoreriaProveedor = new JMenuItem( "Tesoreria Proveedor" );
       menuTesoreriaProveedor.setMnemonic( 'c' );
@@ -847,29 +989,37 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "                         CarSet version 3.5.0",
+                  "CarSet version 4.0.1",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
-
           }  // fin de la clase interna an�nima
 
        ); // fin de la llamada a addActionListener
-
 
       
       setJMenuBar( barra );
       barra.add( menuClientes );
       barra.add( menuProveedores );
       barra.add( menuPedidos );
-      barra.add( menuTarifa );
-      barra.add( menuFactura );
-      if (usuario.equals("2") || usuario.equals("4") || usuario.equals("8"))
+      //barra.add( menuTarifa );
+      if (usuario.equals("2") ||
+          usuario.equals("3") ||
+          usuario.equals("4") ||
+          usuario.equals("5") ||
+          usuario.equals("7") ||
+          usuario.equals("8"))
+      {
+        barra.add( menuFactura );
+        barra.add( menuInforme );
+        barra.add( menuAyuda );
+      }
+      if (usuario.equals("2") || 
+          usuario.equals("4") ||
+          usuario.equals("8"))
       {
         barra.add( menuFacturasTesoreria );
         barra.add( menuTesoreria );
       }
-        barra.add( menuInforme );
-        barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
       Dimension ventana = this.getSize();

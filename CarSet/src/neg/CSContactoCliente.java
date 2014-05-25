@@ -117,7 +117,6 @@ public class CSContactoCliente extends javax.swing.JPanel
         jTextTelefono = new javax.swing.JTextField();
         lEmail = new javax.swing.JLabel();
         jTextNombre = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
         jButtonGuardar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jTextEmail = new javax.swing.JTextField();
@@ -127,6 +126,7 @@ public class CSContactoCliente extends javax.swing.JPanel
         jToggleButtonCliente = new javax.swing.JToggleButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jSeparator11 = new javax.swing.JSeparator();
 
         lTelefono2.setForeground(new java.awt.Color(0, 0, 100));
         lTelefono2.setText("Teléfono 2");
@@ -181,9 +181,6 @@ public class CSContactoCliente extends javax.swing.JPanel
             }
         });
 
-        jSeparator2.setForeground(new java.awt.Color(170, 16, 4));
-        jSeparator2.setName("jSeparator2"); // NOI18N
-
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.setName("jButtonGuardar"); // NOI18N
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -230,6 +227,13 @@ public class CSContactoCliente extends javax.swing.JPanel
         jLabel9.setText("*");
         jLabel9.setName("jLabel9"); // NOI18N
 
+        jSeparator11.setBackground(new java.awt.Color(0, 102, 51));
+        jSeparator11.setForeground(new java.awt.Color(0, 102, 51));
+        jSeparator11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 53), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51), new java.awt.Color(0, 102, 51)));
+        jSeparator11.setName("jSeparator11"); // NOI18N
+        jSeparator11.setOpaque(true);
+        jSeparator11.setPreferredSize(new java.awt.Dimension(5, 5));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,14 +242,8 @@ public class CSContactoCliente extends javax.swing.JPanel
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE))
+                    .addComponent(jSeparator11, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 606, Short.MAX_VALUE)
-                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,6 +284,12 @@ public class CSContactoCliente extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 606, Short.MAX_VALUE)
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,11 +317,11 @@ public class CSContactoCliente extends javax.swing.JPanel
                     .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lTelefono2)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(jButtonGuardar)
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButtonCancelar))
@@ -421,7 +425,10 @@ public class CSContactoCliente extends javax.swing.JPanel
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTextField jTextCliente;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextNombre;

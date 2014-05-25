@@ -980,18 +980,6 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             //se centran los valores
             jTable1.setRowHeight(20);
 
-            // These are the combobox values
-/*            String[] values = new String[]{"","SELECC."};
-          
-            TableColumn col = table.getColumnModel().getColumn(column);
-            
-            if (column == 0)
-            {
-                col.setCellEditor(new MyComboBoxEditor(values));
-                col.setCellRenderer(new MyComboBoxRenderer(values));
-                jTable1.setValueAt(value, row, column);
-            }
-*/
             TableColumn col = table.getColumnModel().getColumn(column);
             if (column == 0)
             {

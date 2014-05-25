@@ -6,6 +6,7 @@
 
 package neg;
 
+import data.Cliente;
 import java.awt.Font;
 import utils.TablaModelo;
 import java.awt.event.MouseAdapter;
@@ -21,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -28,27 +30,35 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author depr102
  */
-public class CSSelectCliente extends javax.swing.JPanel
+public class CSSelectClientePedido extends javax.swing.JPanel
 {
     private JTextField jTextCli;
-    private int cliID = 0;
+    private JTextField jTextTarifa;
+    private JTextField JTextUrl;
+    private JTextField jTextClId;
+    private JTextPane jTextObservaciones;
    
     /** Creates new form BuscaClientesPanel */
-    public CSSelectCliente(JTextField jTextC,String busqueda,boolean inicial)
+    public CSSelectClientePedido(JTextField JTextID, JTextField jTextC, JTextField jTextT, JTextField urlTarifas,
+                                 JTextPane jTextObs, String busqueda, boolean inicial)
     {
         TablaModelo modelo = new TablaModelo();
-
+        this.jTextClId = JTextID;
         this.jTextCli = jTextC;
-
-        modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE", "DNI",});
+        this.jTextTarifa = jTextT;
+        this.JTextUrl = urlTarifas;
+        this.jTextObservaciones = jTextObs;
+        modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE", "DNI", "TARIFA", "URL"});
 
         int numeroFila = 0;
 
-        String query = "SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_tipo_tarifa  FROM cl_clientes WHERE cl_estado = 'Activo' ORDER BY cl_nombre";
+        String query = "SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_tipo_tarifa, cl_tarifa_url " +
+                       "FROM cl_clientes  WHERE cl_estado = 'Activo' ORDER BY cl_nombre";
 
         if(!inicial)
         {
-            query = "SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_tipo_tarifa  FROM cl_clientes WHERE cl_estado = 'Activo' AND cl_nombre like  '%"+busqueda+"%' ORDER BY cl_nombre";
+            query = "SELECT cl_id, cl_nombre, cl_DNI_CIF, cl_tipo_tarifa, cl_tarifa_url " +
+                    "FROM cl_clientes cl WHERE cl_estado = 'Activo' AND cl_nombre like  '%"+busqueda+"%' ORDER BY cl_nombre";
         }
         try
         {
@@ -59,8 +69,8 @@ public class CSSelectCliente extends javax.swing.JPanel
          {
             Object[] datosFila = new Object[modelo.getColumnCount()];
             int j = 0;
-            for (int k = 0; k < 4; k++) {
-                if (k == 0 || k == 1 || k == 2) {
+            for (int k = 0; k < 5; k++) {
+                if (k == 0 || k == 1 || k == 2|| k == 3 || k == 4) {
                     datosFila[j] = rs.getObject(k + 1);
                     j++;
                 }
@@ -77,41 +87,7 @@ public class CSSelectCliente extends javax.swing.JPanel
       {
          System.out.println(e);
       }
-/////////////////////
-/*                for (int i = 0; i < client.getClientes().length; i ++)
-                {
-                    Object[] datosFila2 = new Object[modelo.getColumnCount()];
-                    int j = 0;
-                    for (int k = 0; k < 4; k++) {
-                        if (k == 0 || k == 1 || k == 2) {
-                            datosFila2[j] = client.getClientes()[i][k];
-                            //datosFila[j] = rs.getObject(k + 1);
-                            j++;
-                        }
-                    }
-                    modelo.addRow(datosFila2);
-                    numeroFila++;
-                 }
-            }
-            else if (inicial==false)
-            {
-                 for (int i = 0; i < client.getClientesQuery(busqueda).length; i ++)
-                {
-                    Object[] datosFila2 = new Object[modelo.getColumnCount()];
-                    int j = 0;
-                    for (int k = 0; k < 4; k++) {
-                        if (k == 0 || k == 1 || k == 2) {
-                            datosFila2[j] = client.getClientesQuery(busqueda)[i][k];
-                            //datosFila[j] = rs.getObject(k + 1);
-                            j++;
-                        }
-                    }
-                    modelo.addRow(datosFila2);
-                    numeroFila++;
-                 }
-            }
-      
-        */
+
         initComponents();
 
         KeyListener l = new KeyListener()
@@ -133,9 +109,7 @@ public class CSSelectCliente extends javax.swing.JPanel
 
          for (int k = 0; k < this.getComponents().length; k ++)
         {
-
-                this.getComponents()[k].addKeyListener(l);
-            
+                this.getComponents()[k].addKeyListener(l);   
         }
 
         addKeyListener(l);
@@ -163,10 +137,20 @@ public class CSSelectCliente extends javax.swing.JPanel
             System.out.println("Estamos en el result");
             int fila = jTable1.rowAtPoint(e.getPoint());
             int columna = jTable1.columnAtPoint(e.getPoint());
-              if ((fila > -1) && (columna > -1))
+            if ((fila > -1) && (columna > -1))
             {
-               String cliente = ((String)jTable1.getValueAt(fila,1).toString());
-               jTextCli.setText(cliente);              
+               Cliente cliente = new Cliente();
+               String cl = ((String)jTable1.getValueAt(fila,1).toString());
+               String tarifa = ((String)jTable1.getValueAt(fila,3).toString());
+               String urlTarifas = (jTable1.getValueAt(fila,4) != null) ? ((String)jTable1.getValueAt(fila,4).toString()) : "";
+               //String urlObservaciones = ((String)jTable1.getValueAt(fila,5).toString());
+               String clienteID = ((String)jTable1.getValueAt(fila,0).toString());
+               String urlObservaciones = cliente.getObservacionesCliente(Integer.parseInt(clienteID));
+               jTextCli.setText(cl);
+               jTextTarifa.setText(tarifa);
+               JTextUrl.setText(urlTarifas);
+               jTextClId.setText(clienteID);
+               jTextObservaciones.setText(urlObservaciones);
                CSDesktop.BuscaCliente.dispose();
               }                  
          }
@@ -293,7 +277,7 @@ public class CSSelectCliente extends javax.swing.JPanel
         CSDesktop.BuscaCliente.dispose();
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(jTextCli,letras,false);
+        CSSelectClientePedido panel = new CSSelectClientePedido(jTextClId,jTextCli,jTextTarifa,JTextUrl,jTextObservaciones,letras,false);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();

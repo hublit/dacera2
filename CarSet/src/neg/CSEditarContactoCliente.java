@@ -33,7 +33,7 @@ public class CSEditarContactoCliente extends javax.swing.JPanel
         getDepartamentoContacto();
         datosContactoCliente(contacto);
 
-        CSDesktop.EditarCliente.addInternalFrameListener(new InternalFrameListener() {
+        CSDesktop.EditarClienteNew.addInternalFrameListener(new InternalFrameListener() {
 
             public void internalFrameOpened(InternalFrameEvent e) {
             }

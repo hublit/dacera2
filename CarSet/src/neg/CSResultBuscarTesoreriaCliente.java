@@ -85,7 +85,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "CLIENTE", "NETO", "IVA","TOTAL","DIAS F.F.","F. COBRO","ESTADO", "FECHA COBRO" , "N.º CUENTA", "OBSERVACIONES"});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "CLIENTE", "NETO", "IVA","TOTAL","DIAS F.F.","F. COBRO","ESTADO", "FECHA COBRO", "BANCO" , "N.º CUENTA", "OBSERVACIONES", "CIF", "C.P."});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -118,7 +118,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 double iva = 0;
                 double importe = 0;
 
-                for (int k = 0; k < 13; k++)
+                for (int k = 0; k < 16; k++)
                 {
                     if(k==0)
                     {
@@ -197,6 +197,21 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                         }
 //                        System.out.println("Dato" + k + " " + datosFila[j]);
                     }
+                    else if(k==11)
+                    {
+                        String banco = rs.getString("fl_banco");
+                        datosFila[j] = banco;
+                    }
+                    else if(k==14)
+                    {
+                        String cif = rs.getString("cl_DNI_CIF");
+                        datosFila[j] = cif;
+                    }
+                    else if(k==15)
+                    {
+                        String cif = rs.getString("cl_cod_postal");
+                        datosFila[j] = cif;
+                    }                    
                     else
                     {
                         datosFila[j] = rs.getObject(k+1);
@@ -285,9 +300,11 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
         TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
         columna10.setPreferredWidth(80);
         TableColumn columna11 = jTable1.getColumnModel().getColumn(11);
-        columna11.setPreferredWidth(130);
+        columna11.setPreferredWidth(100);
         TableColumn columna12 = jTable1.getColumnModel().getColumn(12);
-        columna12.setPreferredWidth(250);
+        columna12.setPreferredWidth(130);
+        TableColumn columna13 = jTable1.getColumnModel().getColumn(13);
+        columna13.setPreferredWidth(250);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -522,11 +539,12 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     nueva = anyo+"-"+mes+"-"+dia;
                 }
 
+
                 String observaciones = (String) jTable1.getValueAt(i, 12);
 
                 try {
                     //guardamos las modificaciones en la bd
-                  tesoreria = modificarTesoreria(fl_id, estado, nueva, observaciones);
+                  tesoreria = modificarTesoreria(fl_id, estado, nueva, jTable1.getValueAt(i, 11), observaciones);
                 } catch (SQLException ex) {
                     Logger.getLogger(CSResultBuscarTesoreriaCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -545,7 +563,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 JOptionPane.showMessageDialog(null, mensaje);
                 jButtonModificar.setEnabled(true);
                 CSDesktop.ResultTesoreriaCliente.dispose();
-                CSDesktop.BuscarTesoreriaCliente.dispose();
+                //CSDesktop.BuscarTesoreriaCliente.dispose();
                 CSDesktop.menuTesoreriaCliente.setEnabled(true);
             }
 
@@ -646,17 +664,35 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 10, (short) ((80 * 2) / ((double) 1 / 20)) );
 
-                celda = fila.createCell( (short) 11);
+                celda = fila.createCell( (short)11);
                 celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("N.º CUENTA");
+                texto = new HSSFRichTextString("BANCO");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 11, (short) ((130 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 11, (short) ((100 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 12);
                 celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("N.º CUENTA");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 12, (short) ((130 * 2) / ((double) 1 / 20)) );
+
+                celda = fila.createCell( (short) 13);
+                celda.setCellStyle(cs);
                 texto = new HSSFRichTextString("OBSERVACIONES");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 12, (short) ((600 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 13, (short) ((600 * 2) / ((double) 1 / 20)) );
+
+                celda = fila.createCell( (short) 14);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("CIF");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 14, (short) ((80 * 2) / ((double) 1 / 20)) );
+
+                celda = fila.createCell( (short) 15);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("C.P.");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 15, (short) ((80 * 2) / ((double) 1 / 20)) );
 
 	}
 
@@ -791,17 +827,38 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                     celda.setCellStyle(cs2);
                     celda.setCellValue(texto);
 
-                    //Celda del nuemro de cuenta
+                    //Celda de Banco
                     celda = fila.createCell( (short) 11);
+                    String banco=rs.getString("fl_banco");
+                    texto = new HSSFRichTextString(banco);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
+
+                    //Celda del nuemro de cuenta
+                    celda = fila.createCell( (short) 12);
                     String num_cuenta=rs.getString("cl_num_cuenta");
                     texto = new HSSFRichTextString(num_cuenta);
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
                     //Celda de las observaciones
-                    celda = fila.createCell( (short) 12);
+                    celda = fila.createCell( (short) 13);
                     String observaciones=rs.getString("fl_observaciones");
                     texto = new HSSFRichTextString(observaciones);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
+
+                    //Celda CIF
+                    celda = fila.createCell( (short) 14);
+                    String cif=rs.getString("cl_DNI_CIF");
+                    texto = new HSSFRichTextString(cif);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
+
+                    //Celda CP
+                    celda = fila.createCell( (short) 15);
+                    String cp=rs.getString("cl_cod_postal");
+                    texto = new HSSFRichTextString(cp);
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
 
@@ -888,21 +945,42 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
             if (column == 9)
             {
+                JComboBox comboBox = new JComboBox();
+                comboBox.addItem("");
+                comboBox.addItem("PTE");
+                comboBox.addItem("COBRADO");
+                comboBox.addItem("DEVOLUCIÓN");
+                comboBox.addItem("APLAZADO");
+                comboBox.addItem("INCOBRABLE");
+                col.setCellEditor(new DefaultCellEditor(comboBox));
 
-JComboBox comboBox = new JComboBox();
-comboBox.addItem("");
-comboBox.addItem("PTE");
-comboBox.addItem("COBRADO");
-comboBox.addItem("DEVOLUCIÓN");
-comboBox.addItem("APLAZADO");
-comboBox.addItem("INCOBRABLE");
-col.setCellEditor(new DefaultCellEditor(comboBox));
-
-//Set up tool tips for the sport cells.
-DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-renderer.setToolTipText("Click for combo box");
-col.setCellRenderer(renderer);
+                //Set up tool tips for the sport cells.
+                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+                renderer.setToolTipText("Click for combo box");
+                col.setCellRenderer(renderer);
             }
+
+            if(column == 11){
+                JComboBox comboBoxBc = new JComboBox();
+                comboBoxBc.addItem("");
+                comboBoxBc.addItem("LC");
+                comboBoxBc.addItem("OB");
+                comboBoxBc.addItem("3");
+                comboBoxBc.addItem("4");
+                comboBoxBc.addItem("5");
+                comboBoxBc.addItem("6");
+                comboBoxBc.addItem("7");
+                comboBoxBc.addItem("8");
+                comboBoxBc.addItem("9");
+                comboBoxBc.addItem("10");
+                col.setCellEditor(new DefaultCellEditor(comboBoxBc));
+
+                //Set up tool tips for the sport cells.
+                DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+                renderer.setToolTipText("Click for combo box");
+                col.setCellRenderer(renderer);
+             }
+
             //si no cumplen esa condicion pongo las celdas en color blanco
             if (table. getValueAt(row, 3). toString().equals("TOTALES"))
             {
@@ -1010,7 +1088,7 @@ col.setCellRenderer(renderer);
      * @param ts
      * @throws SQLException
      */
-    public boolean  modificarTesoreria(int fl_id, String estado, String fechaPago, String observaciones) throws SQLException
+    public boolean  modificarTesoreria(int fl_id, String estado, String fechaPago, Object banco, String observaciones) throws SQLException
     {
         boolean rsUpdate = false;
         String query = "UPDATE fl_factura_cliente SET fl_estado = '"+estado+"'";
@@ -1018,8 +1096,8 @@ col.setCellRenderer(renderer);
         {
             query = query + ", fl_fecha_pago = '"+fechaPago+"'";
         }
-        query = query + " , fl_observaciones = '"+observaciones+"' WHERE fl_id = "+fl_id;
-        System.out.println(query);
+        query = query + ", fl_banco = '"+banco+"' , fl_observaciones = '"+observaciones+"' WHERE fl_id = "+fl_id;
+        //System.out.println(query);
         rsUpdate = CSDesktop.datos.manipuladorDatos(query);
 
         return rsUpdate;
