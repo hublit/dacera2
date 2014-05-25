@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.text.DecimalFormat;
+import java.util.List;
 import neg.CSDesktop;
 
 /**
@@ -209,6 +210,7 @@ public class Utilidades
                 {
                     if (telefono.substring(0, 1).equals("9") ||
                         telefono.substring(0, 1).equals("8") ||
+                        telefono.substring(0, 1).equals("7") ||
                         telefono.substring(0, 1).equals("6"))
                     {
                         mensaje = "OK";
@@ -1196,7 +1198,6 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
         
         else if(numero.substring(numero.lastIndexOf(",")+1).length()==1)
         {
-            System.out.println("Valor CESAR " + numero.substring(numero.lastIndexOf(",")).length());
             numero += "0";
         }
          
@@ -1205,4 +1206,88 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
     }
 
 
+    /**
+     * Cálculo de dias hábiles entre dos fechas
+     * @param String dateIni
+     * @param String dateEnd
+     * @return int cont
+     */
+    public static int calcularDiasHabiles(String dateIni, String dateEnd)
+    {
+        //DIFERENCIA DE DIAS ENTRE DOS FECHAS
+        int diaIni = Integer.parseInt(dateIni.substring(0, 2));
+        int mesIni = (Integer.parseInt(dateIni.substring(3, 5))-1);
+        int anyoIni = Integer.parseInt(dateIni.substring(6, 10));
+
+        int diaEnd = Integer.parseInt(dateEnd.substring(0, 2));
+        int mesEnd = (Integer.parseInt(dateEnd.substring(3, 5))-1);
+        int anyoEnd = Integer.parseInt(dateEnd.substring(6, 10));
+
+        System.out.println(diaIni+"/"+mesIni+"/"+anyoIni);
+        System.out.println(diaEnd+"/"+mesEnd+"/"+anyoEnd);
+        // Crear 2 instancias de Calendar
+        Calendar calIni = new GregorianCalendar();
+        Calendar calEnd = new GregorianCalendar();
+
+        // Establecer las fechas
+        calIni.set(anyoIni, mesIni, diaIni);
+        calEnd.set(anyoEnd, mesEnd, diaEnd);
+
+        // conseguir la representacion de la fecha en milisegundos
+        long milis1 = calIni.getTimeInMillis();
+        long milis2 = calEnd.getTimeInMillis();
+
+        // calcular la diferencia en milisengundos
+        long diff = milis2 - milis1;
+        // calcular la diferencia en dias
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+
+        // Establecer las fechas
+        //VALORAR SI CAMBIAR A BASE DE DATOS
+        List<String> list = new ArrayList<String>();
+        list.add("01-01-2014");
+        list.add("06-01-2014");
+        list.add("18-04-2014");
+        list.add("01-05-2014");
+        list.add("19-06-2014");
+        list.add("15-08-2014");
+        list.add("01-11-2014");
+        list.add("06-12-2014");
+        list.add("08-12-2014");
+        list.add("25-12-2014");
+
+        // Vamos al lunes siguiente si estamos en un fin de semana.
+        if (calEnd.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || calEnd.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+        {
+            calEnd.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        Integer iDays = (int) (long) diffDays;
+        Integer cont = 0;
+        for(int i = iDays; i > 0; i--)
+        {
+            calEnd.add(Calendar.DAY_OF_MONTH, -1);
+
+            if(calEnd.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || calEnd.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+            {
+                    //System.out.println(calEnd.get(Calendar.DAY_OF_WEEK)+"----"+Calendar.SATURDAY);
+                }else{
+                    String strdate = null;
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+                    if (calEnd != null) {
+                    strdate = sdf.format(calEnd.getTime());
+                    //System.out.println("strdate:" + strdate);
+                    }
+                    if (!list.contains(strdate)){
+
+                        System.out.println("festivo:" + strdate);
+                            cont++;
+                    }
+                }
+            }
+            System.out.println("Diferencia de días: "+ cont);
+        return cont;
+    }
 }
