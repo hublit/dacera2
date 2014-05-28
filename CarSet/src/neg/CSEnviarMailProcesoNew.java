@@ -29,12 +29,14 @@ public class CSEnviarMailProcesoNew
 {
     /**
      * main de prueba
-     * @param args Se ignoran.
+     * @param mail
+     * @param email
+     * @param nombre
      */
     public static void main(BeanCorreoCliente mail, String email, String nombre)
     {
-        String tarifa="";
-        double importeTotal=0;
+        String tarifa = "";
+        double importeTotal = 0;
 
         try{
             String query = "SELECT DISTINCT"+
@@ -109,17 +111,17 @@ public class CSEnviarMailProcesoNew
                         htmlText = htmlText + "<tr><td width='200'><font face='Helvetica'><u><b> Kilómetros : </b></u></font></td><td><font face='Helvetica'> "+mail.getKms()+" </font></td></tr>";
                     }
                     htmlText = htmlText + //"<br>" +
-                    "<tr><td colspan='2'><table border='1' width='750'>" +
-                    "<tr><td width='150' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +
-                    "<tr><td width='100'><font face='Helvetica'>&nbsp;"+mail.getMarca()+"</font></td><td width='300'><font face='Helvetica'>&nbsp;"+mail.getModelo()+"</font></td><td width='300'><font face='Helvetica'>&nbsp;"+mail.getMatricula()+"</font></td></table>" +
+                    "<tr><td colspan='2'><table border='1' width='700'>" +
+                    "<tr><td width='130' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td width='285'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td width='285'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +
+                    "<tr><td width='100'><font face='Helvetica'>&nbsp;"+mail.getMarca()+"</font></td><td width='285'><font face='Helvetica'>&nbsp;"+mail.getModelo()+"</font></td><td width='285'><font face='Helvetica'>&nbsp;"+mail.getMatricula()+"</font></td></table>" +
 
-                    "<tr><td colspan='2'><table border='1' width='750'>" +
-                    "<tr><td width='150' bgcolor='#BDBDBD'>&nbsp;</td><td width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE ORIGEN</b></font></td><td width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE DESTINO</b></font></td>" +
-                    "<tr><td width='150'><font face='Helvetica'><b>&nbsp;Direcci&oacute;n</b></font></td><td width='300'><font face='Helvetica'>"+mail.getDireccionOrigen()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getDireccionDestino()+"</font></td>" +
-                    "<tr><td width='150'><font face='Helvetica'><b>&nbsp;Poblaci&oacute;n</b></font></td><td width='300'><font face='Helvetica'>"+mail.getPoblacionOrigen()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getPoblacionDestino()+"</font></td>" +
-                    "<tr><td width='150'><font face='Helvetica'><b>&nbsp;Provincia</b></font></td><td width='300'><font face='Helvetica'>"+mail.getProvinciaOrigen()+"</font></td><td width='300'><font face='Helvetica'>"+mail.getProvinciaDestino()+"</font></td>" +
-                    "<tr><td width='150'><font face='Helvetica'><b>&nbsp;Contacto</b></font></td><td width='300'><font face='Helvetica'>"+mail.getNombreOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getNombreDestino()+"</font></td>" +
-                    "<tr><td width='150'><font face='Helvetica'><b>&nbsp;Tel&eacute;fono</b></font></td><td width='300'><font face='Helvetica'>"+mail.getTelefonoOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getTelefonoDestino()+"</font></td>";
+                    "<tr><td colspan='2'><table border='1' width='700'>" +
+                    "<tr><td width='130' bgcolor='#BDBDBD'>&nbsp;</td><td width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE ORIGEN</b></font></td><td width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE DESTINO</b></font></td>" +
+                    "<tr><td width='130'><font face='Helvetica'><b>&nbsp;Direcci&oacute;n</b></font></td><td width='285'><font face='Helvetica'>"+mail.getDireccionOrigen()+"</font></td><td width='285'><font face='Helvetica'>"+mail.getDireccionDestino()+"</font></td>" +
+                    "<tr><td width='130'><font face='Helvetica'><b>&nbsp;Poblaci&oacute;n</b></font></td><td width='285'><font face='Helvetica'>"+mail.getPoblacionOrigen()+"</font></td><td width='285'><font face='Helvetica'>"+mail.getPoblacionDestino()+"</font></td>" +
+                    "<tr><td width='130'><font face='Helvetica'><b>&nbsp;Provincia</b></font></td><td width='285'><font face='Helvetica'>"+mail.getProvinciaOrigen()+"</font></td><td width='285'><font face='Helvetica'>"+mail.getProvinciaDestino()+"</font></td>" +
+                    "<tr><td width='130'><font face='Helvetica'><b>&nbsp;Contacto</b></font></td><td width='285'><font face='Helvetica'>"+mail.getNombreOrigen()+"</font></td><td  width='285'><font face='Helvetica'>"+mail.getNombreDestino()+"</font></td>" +
+                    "<tr><td width='130'><font face='Helvetica'><b>&nbsp;Tel&eacute;fono</b></font></td><td width='285'><font face='Helvetica'>"+mail.getTelefonoOrigen()+"</font></td><td  width='285'><font face='Helvetica'>"+mail.getTelefonoDestino()+"</font></td>";
                     if(mail.isObsClInmail()){
                         htmlText = htmlText +  "<tr><td  width='100'><font face='Helvetica'><b>Observaciones</b></font></td><td colspan='2'><font face='Helvetica'>&nbsp;"+mail.getDescripcion().toUpperCase()+"</font></td></tr>";
                     }
@@ -177,7 +179,6 @@ public class CSEnviarMailProcesoNew
                                     htmlText = htmlText +  "<tr><td><font face='Helvetica'>&nbsp;"+mail.getServicioEspecial().toUpperCase()+"</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeServicioD+" &euro;</font></td></tr>";
                                     importeTotal = importeTotal + importeServicioD;
                                 }
-
                             }
                             // NO PUEDE TENER VALOR OTROS
                             else
@@ -189,7 +190,7 @@ public class CSEnviarMailProcesoNew
                                 }
                             }
                         }
-
+                        
                         //LINEA DE FACTOR DE CORRECCION
                         if(!mail.getFactorCorrecccion().equals("0"))
                         {
@@ -220,7 +221,7 @@ public class CSEnviarMailProcesoNew
                 htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'>Atentamente, </font></td></tr>";
                 htmlText = htmlText +"<br>";
                 htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'><b> Departamento de Operaciones<b></font></td></tr>";
-                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>CarSet - www.carset.es - Tlf: 91 268 69 60 - Fax: 91 268 69 64</font></td>";
+                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>Tlf: 91 268 69 60 - Fax: 91 268 69 64 - www.carset.es</font></td>";
 //                "<td><font face='Helvetica'>Tlf: 91 268 69 60 - Fax: 91 268 69 64</font></td></tr>";
                 htmlText = htmlText +"<tr><td colspan='3'><font face='Helvetica'>Avda. Puente Cultural, 10 Bl.B - Pl .4 - Of. 4 - " +
                 "<font face='Helvetica'>28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
@@ -261,5 +262,4 @@ public class CSEnviarMailProcesoNew
            return new PasswordAuthentication(username, password);
         }
     }
-
 }
