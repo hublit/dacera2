@@ -707,7 +707,8 @@ public class CSBuscarPedidoNew extends javax.swing.JPanel
                 "p.pe_fecha_real_destino, p.pe_estado, p.pe_incidencia, p.pe_in_f_mas, p.pe_in_f_menos, p.pe_incidencia, p.pe_descripcion, p.pe_observaciones_carset, " +
                 "p.pe_ob_general, p.pe_num_fa_cl, p.pe_num_fa_pr, cl.co_id, pc.cl_id, p.pe_num_unido, destino_unido, fecha_destino, real_destino, estado_unido, " +
                 "po_destino, sv.sv_dias, p.pe_fin_unido, ta_pr_unido, f_menos_un "+
-                " FROM (pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc, sv_servicios sv)" +
+                " FROM (pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, fc_factores_correccion fc)" +
+                " LEFT JOIN sv_servicios sv on sv.cl_id = pc.cl_id " +
                 " LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino AS destino_unido, pe_fecha_destino AS fecha_destino, pe_poblacion_destino AS po_destino, " +
                 " pe_fecha_real_destino as real_destino, pe_estado as estado_unido FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC)" +
                 " pe_unido ON p.pe_num = pe_unido.num_unido " +
@@ -716,7 +717,7 @@ public class CSBuscarPedidoNew extends javax.swing.JPanel
                 "tarifas_unido ON p.pe_num = tarifas_unido.ta_unido " +
                 " INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr " +
                 " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " +
-                " AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id AND sv.cl_id = cl.cl_id";
+                " AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
 
         if (numero.equals("") && cliente.equals("") && proveedor.equals("") && (fechaI.equals("") && fechaF.equals("") && matricula.equals("")))
         {

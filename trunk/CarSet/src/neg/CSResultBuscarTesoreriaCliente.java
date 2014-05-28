@@ -949,7 +949,8 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 comboBox.addItem("");
                 comboBox.addItem("PTE");
                 comboBox.addItem("COBRADO");
-                comboBox.addItem("DEVOLUCIÓN");
+                comboBox.addItem("DEVOLUCION");
+                comboBox.addItem("DUDOSO");
                 comboBox.addItem("APLAZADO");
                 comboBox.addItem("INCOBRABLE");
                 col.setCellEditor(new DefaultCellEditor(comboBox));

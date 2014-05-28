@@ -1518,7 +1518,6 @@ public class CSAnyadirClienteNew extends javax.swing.JPanel
                         jButtonGuardar.setEnabled(true);
                         tarifaOK=false;
                    }
-
             }
             da.cerrarConexion();
             rs.close();

@@ -160,7 +160,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "PTE", "PAGADO" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "PTE", "PAGADO", "DUDOSO" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
 
         jDateFechaCFin.setDateFormatString("dd-MM-yyyy"); // NOI18N

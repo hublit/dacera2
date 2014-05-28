@@ -992,7 +992,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
 
             TableColumn col = table.getColumnModel().getColumn(column);
 
-            if (column == 12){
+            if (column == 13){
                 JComboBox comboBox = new JComboBox();
                 comboBox.addItem("");
                 comboBox.addItem("PTE");
@@ -1031,7 +1031,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 }
             }
          
-             if(column == 14){
+             if(column == 15){
                 JComboBox comboBoxBc = new JComboBox();
                 comboBoxBc.addItem("");
                 comboBoxBc.addItem("LC");

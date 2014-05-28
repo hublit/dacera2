@@ -101,10 +101,11 @@ public class CSEnviarMailProcesoNew
                     "<tr><td colspan='2'><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
                     "<tr><td colspan='2'><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font>" +
                     "<br>" +
-                    "<tr><td colspan='2'><font face='Helvetica'> A continuaci&oacute;n y en contestaci&oacute;n a su solicitud, le remitimos la confirmaci&oacute;n del servicio solicitado:  </font></td></tr>" +
-
-                    "<tr><td width='200'><font face='Helvetica'><u><b> Soporte: </b></u></font></td><td><font face='Helvetica'> "+mail.getSoporte()+" </font></td></tr>" +
-                    "<tr><td width='200'><font face='Helvetica'><u><b> Fecha aprox. de recogida : </b></u></font></td><td><font face='Helvetica'> "+mail.getFechaRecogida()+" </font></td></tr>" +
+                    "<tr><td colspan='2'><font face='Helvetica'> A continuaci&oacute;n y en contestaci&oacute;n a su solicitud, le remitimos la confirmaci&oacute;n del servicio solicitado:  </font></td></tr>";
+                    if(!mail.isPeUnido()){
+                        htmlText = htmlText + "<tr><td width='200'><font face='Helvetica'><u><b> Soporte: </b></u></font></td><td><font face='Helvetica'> "+mail.getSoporte()+" </font></td></tr>";
+                    }
+                    htmlText = htmlText + "<tr><td width='200'><font face='Helvetica'><u><b> Fecha aprox. de recogida : </b></u></font></td><td><font face='Helvetica'> "+mail.getFechaRecogida()+" </font></td></tr>" +
                     "<tr><td width='200'><font face='Helvetica'><u><b> Fecha aprox. de entrega : </b></u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>" +
                     "<tr><td width='200'><font face='Helvetica'><u><b> Estado del vehículo : </b></u></font></td><td><font face='Helvetica'> "+mail.getVeEstado()+" </font></td></tr>";
                     if(!mail.getKms().equals("0")){
