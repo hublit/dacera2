@@ -378,7 +378,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                 int fila = jTable1.rowAtPoint(e.getPoint());
                 int columna = jTable1.columnAtPoint(e.getPoint());
 
-                if ((fila > -1) && (columna > -1) && (fila < (jTable1.getRowCount() - 1)))
+                if ((fila > -1) && (columna > -1) && (!jTable1.getValueAt(fila, 7).toString().equals("TOTALES")))
                 {
                    int proveedor = Integer.parseInt((String)jTable1.getValueAt(fila,0).toString());
                    CSDesktop.EditarPedidoNew = new JInternalFrame("Editar Pedido New", true, false, false, true );

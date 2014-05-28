@@ -2078,6 +2078,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                 mail.setTarifaEspecialCliente(pedidoOrigen.getTarifa());
                                 mail.setKms(pedidoOrigen.getKms());
                                 mail.setSoporte(pedidoOrigen.getSoporte());
+                                mail.setPeUnido(true);
                             } catch (ParseException ex) {
                                 Logger.getLogger(CSEditarPedidoNew.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (SQLException ex) {
@@ -2093,6 +2094,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                 mail.setTarifaEspecialCliente(tarifaCliente);
                                 mail.setKms(kilometros);
                                 mail.setSoporte(soporte);
+                                mail.setPeUnido(false);
                             }
                             mail.setDireccionDestino(direccionDestino);
                             mail.setPoblacionDestino(poblacionDestino);

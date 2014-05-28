@@ -115,19 +115,19 @@ public class CSEnviarMailProveedorNew
                 "<tr><td width='200'><font face='Helvetica'><u><b> Fecha aprox. de entrega : </b></u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>";
                 //"<tr><td width='200'><font face='Helvetica'><u> Estado del vehículo : </u></font></td><td><font face='Helvetica'> "+mail.getVeEstado()+" </font></td></tr>";
                 htmlText = htmlText + //"<br>" +
-                "<tr><td colspan='2'><table border='1' width='750'>" +
-                "<tr><td width='150' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td width='300'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +
-                "<tr><td width='150'><font face='Helvetica'>&nbsp;"+mail.getMarca()+"</font></td><td width='300'><font face='Helvetica'>&nbsp;"+mail.getModelo()+"</font></td><td width='300'><font face='Helvetica'>&nbsp;"+mail.getMatricula()+"</font></td></table>" +
+                "<tr><td colspan='2'><table border='1' width='700'>" +
+                "<tr><td width='130' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +
+                "<tr><td width='130'><font face='Helvetica'>&nbsp;"+mail.getMarca()+"</font></td><td width='285'><font face='Helvetica'>&nbsp;"+mail.getModelo()+"</font></td><td width='285'><font face='Helvetica'>&nbsp;"+mail.getMatricula()+"</font></td></table>" +
 //                "<br>" +
-                "<tr><td colspan='2'><table border='1' width='750'>" +
-                "<tr><td  width='150' bgcolor='#BDBDBD'>&nbsp;</td><td  width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE ORIGEN</b></font></td><td  width='300' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE DESTINO</b></font></td>" +
-                "<tr><td  width='150'><font face='Helvetica'><b>Direcci&oacute;n</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getDireccionOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getDireccionDestino()+"</font></td>" +
-                "<tr><td  width='150'><font face='Helvetica'><b>Poblaci&oacute;n</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getPoblacionOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getPoblacionDestino()+"</font></td>" +
-                "<tr><td  width='150'><font face='Helvetica'><b>Provincia</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getProvinciaOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getProvinciaDestino()+"</font></td>" +
-                "<tr><td  width='150'><font face='Helvetica'><b>Contacto</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getNombreOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getNombreDestino()+"</font></td>" +
-                "<tr><td  width='150'><font face='Helvetica'><b>Tel&eacute;fono</b></font></td><td  width='300'><font face='Helvetica'>"+mail.getTelefonoOrigen()+"</font></td><td  width='300'><font face='Helvetica'>"+mail.getTelefonoDestino()+"</font></td>";
+                "<tr><td colspan='2'><table border='1' width='700'>" +
+                "<tr><td  width='130' bgcolor='#BDBDBD'>&nbsp;</td><td  width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE ORIGEN</b></font></td><td  width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>DATOS DE DESTINO</b></font></td>" +
+                "<tr><td  width='130'><font face='Helvetica'><b>Direcci&oacute;n</b></font></td><td  width='285'><font face='Helvetica'>"+mail.getDireccionOrigen()+"</font></td><td  width='285'><font face='Helvetica'>"+mail.getDireccionDestino()+"</font></td>" +
+                "<tr><td  width='130'><font face='Helvetica'><b>Poblaci&oacute;n</b></font></td><td  width='285'><font face='Helvetica'>"+mail.getPoblacionOrigen()+"</font></td><td  width='285'><font face='Helvetica'>"+mail.getPoblacionDestino()+"</font></td>" +
+                "<tr><td  width='130'><font face='Helvetica'><b>Provincia</b></font></td><td  width='285'><font face='Helvetica'>"+mail.getProvinciaOrigen()+"</font></td><td  width='285'><font face='Helvetica'>"+mail.getProvinciaDestino()+"</font></td>" +
+                "<tr><td  width='130'><font face='Helvetica'><b>Contacto</b></font></td><td  width='285'><font face='Helvetica'>"+mail.getNombreOrigen()+"</font></td><td  width='285'><font face='Helvetica'>"+mail.getNombreDestino()+"</font></td>" +
+                "<tr><td  width='130'><font face='Helvetica'><b>Tel&eacute;fono</b></font></td><td  width='285'><font face='Helvetica'>"+mail.getTelefonoOrigen()+"</font></td><td  width='285'><font face='Helvetica'>"+mail.getTelefonoDestino()+"</font></td>";
                 if(mail.isObsPrInmail()){
-                    htmlText = htmlText +  "<tr><td  width='150'><font face='Helvetica'><b>Observaciones</b></font></td><td colspan='2'><font face='Helvetica'>&nbsp;"+mail.getObservaciones().toUpperCase()+"</font></td></tr>";
+                    htmlText = htmlText +  "<tr><td  width='130'><font face='Helvetica'><b>Observaciones</b></font></td><td colspan='2'><font face='Helvetica'>&nbsp;"+mail.getObservaciones().toUpperCase()+"</font></td></tr>";
                 }
                 htmlText = htmlText + "</table></td></tr>" +
 //                "<br>" +
@@ -246,10 +246,11 @@ public class CSEnviarMailProveedorNew
                 htmlText = htmlText +"</table>";
                 htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Estos precios no incluyen I.V.A </font></td></tr>";
                 htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Para cualquier consulta, no dude en ponerse en contacto con nuestro dpto. de Operaciones. </font></td></tr>";
+                htmlText = htmlText +"<br>";
                 htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Atentamente, </font></td></tr>";
                 htmlText = htmlText +"<br>";
                 htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'><b> Departamento de Operaciones<b></font></td></tr>";
-                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>CarSet www.carset.es - Tlf: 91 268 69 60 - Fax: 91 268 69 64</font></td></tr>";
+                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>Tlf: 91 268 69 60 - Fax: 91 268 69 64 - www.carset.es</font></td></tr>";
                 htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 10 Bl.B - Pl .4 - Of. 4 - 28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
                 htmlText = htmlText +"</table></body>";
 
