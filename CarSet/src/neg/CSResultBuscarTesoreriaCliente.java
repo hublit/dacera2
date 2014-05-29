@@ -202,6 +202,16 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                         String banco = rs.getString("fl_banco");
                         datosFila[j] = banco;
                     }
+                    else if(k==12)
+                    {
+                        String numCuenta = rs.getString("cl_num_cuenta");
+                        datosFila[j] = numCuenta;
+                    }
+                    else if(k==13)
+                    {
+                        String observaciones= rs.getString("fl_observaciones");
+                        datosFila[j] = observaciones;
+                    }                     
                     else if(k==14)
                     {
                         String cif = rs.getString("cl_DNI_CIF");
@@ -540,7 +550,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 }
 
 
-                String observaciones = (String) jTable1.getValueAt(i, 12);
+                String observaciones = (String) jTable1.getValueAt(i, 13);
 
                 try {
                     //guardamos las modificaciones en la bd
@@ -1086,8 +1096,12 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
 
     /**
      * Modifica los campos de la tesorería del cliente
-     * @param ts
-     * @throws SQLException
+     * @param fl_id
+     * @param estado
+     * @param fechaPago
+     * @param banco
+     * @param observaciones
+     * @return @throws SQLException
      */
     public boolean  modificarTesoreria(int fl_id, String estado, String fechaPago, Object banco, String observaciones) throws SQLException
     {
@@ -1098,7 +1112,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
             query = query + ", fl_fecha_pago = '"+fechaPago+"'";
         }
         query = query + ", fl_banco = '"+banco+"' , fl_observaciones = '"+observaciones+"' WHERE fl_id = "+fl_id;
-        //System.out.println(query);
+        System.out.println(query);
         rsUpdate = CSDesktop.datos.manipuladorDatos(query);
 
         return rsUpdate;

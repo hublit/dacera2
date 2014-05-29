@@ -542,10 +542,10 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 campos =(BeanTesoreriaProveedor)lista.get(i);
                 int tr_id = campos.getTr_id();
 
-                if(jTable1.getValueAt(i, 12) != null){
-                 estado =  jTable1.getValueAt(i, 12).toString();
+                if(jTable1.getValueAt(i, 13) != null){
+                 estado =  jTable1.getValueAt(i, 13).toString();
                 }
-                String fechaPago = jTable1.getValueAt(i, 13).toString();
+                String fechaPago = jTable1.getValueAt(i, 14).toString();
 
                 if (fechaPago != null && !fechaPago.equals(""))
                 {
@@ -557,14 +557,14 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                      nueva = anyo+"-"+mes+"-"+dia;
                 }
 
-                String banco = (jTable1.getValueAt(i, 14) != null || jTable1.getValueAt(i, 14) != "")
-                               ? jTable1.getValueAt(i, 14).toString() : "";
+                String banco = (jTable1.getValueAt(i, 15) != null || jTable1.getValueAt(i, 15) != "")
+                               ? jTable1.getValueAt(i, 15).toString() : "";
 
-               String observaciones = (String) jTable1.getValueAt(i, 16);
+               String observaciones = (String) jTable1.getValueAt(i, 17);
 
                 try {
                     //guardamos las modificaciones en la bd
-                   tesoreria =  modificarTesoreria(tr_id, jTable1.getValueAt(i, 12), nueva, jTable1.getValueAt(i, 14), observaciones);
+                   tesoreria =  modificarTesoreria(tr_id, jTable1.getValueAt(i, 13), nueva, jTable1.getValueAt(i, 15), observaciones);
                 } catch (SQLException ex) {
                     Logger.getLogger(CSResultBuscarTesoreriaProveedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
