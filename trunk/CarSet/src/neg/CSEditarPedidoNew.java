@@ -2204,9 +2204,9 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                     JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los datos se han borrado correctamente.</FONT></HTML>");
                     JOptionPane.showMessageDialog(null, mensaje);
                     jButtonModificar.setEnabled(true);
-                    CSDesktop.EditarPedido.dispose();
-                    CSDesktop.ResultPedido.dispose();
-                    CSDesktop.menuBuscarPedido.setEnabled(true);
+                    CSDesktop.EditarPedidoNew.dispose();
+                    //CSDesktop.ResultPedidoNew.dispose();
+                    CSDesktop.menuBuscarPedidoNew.setEnabled(true);
                     CSResultBuscarPedido resultBuscarPedido = new CSResultBuscarPedido(consulta);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(CSEditarPedidoNew.class.getName()).log(Level.SEVERE, null, ex);
@@ -2221,7 +2221,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.EditarPedidoNew.dispose();
-        CSDesktop.ResultPedido.setVisible(true);
+        CSDesktop.ResultPedidoNew.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonMailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMailClienteActionPerformed
