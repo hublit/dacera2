@@ -1282,12 +1282,12 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
                     }
                     if (!list.contains(strdate)){
 
-                        System.out.println("festivo:" + strdate);
-                            cont++;
+                        //System.out.println("festivo:" + strdate);
+                        cont++;
                     }
                 }
             }
-            System.out.println("Diferencia de días: "+ cont);
+            //System.out.println("Diferencia de días: "+ cont);
         return cont;
     }
 }
