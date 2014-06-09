@@ -62,7 +62,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         consulta = query;
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = CSDesktop.datos.select(query);
-
+        boolean acceso = (CSDesktop.user.equals("9") || CSDesktop.user.equals("10") || CSDesktop.user.equals("11")) ? false : true;
         KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}
@@ -98,6 +98,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         String fechaPeUnido = "";
 
         DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat dfTotal = new DecimalFormat("#,###.### ¤");
 
         try {
             while (rs.next()) {
@@ -248,15 +249,21 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                 }
                 if(k==16)
                 {
-                    datosFilaTotal[i] = df.format(Utilidades.redondear(totalCliente, 2));
+                    if(acceso){
+                        datosFilaTotal[i] = dfTotal.format(Utilidades.redondear(totalCliente, 2));
+                    }
                 }
                 if(k==17)
                 {
-                    datosFilaTotal[i] = df.format(totalProveedor);
+                    if(acceso){
+                        datosFilaTotal[i] = dfTotal.format(totalProveedor);
+                    }
                 }
                 if(k==18)
                 {
-                    datosFilaTotal[i] = df.format(totalMargen);
+                    if(acceso){
+                        datosFilaTotal[i] = dfTotal.format(totalMargen);
+                    }
                 }
                 if(k==26 && totalIncidencias > 0)
                 {
@@ -296,23 +303,23 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         jTable1.setDefaultRenderer (Object.class, new MiRender());
 
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(50);
+        columna.setPreferredWidth(80);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
-        columna1.setPreferredWidth(80);
+        columna1.setPreferredWidth(120);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
-        columna2.setPreferredWidth(200);
+        columna2.setPreferredWidth(300);
         TableColumn columna3 = jTable1.getColumnModel().getColumn(3);
-        columna3.setPreferredWidth(80);
+        columna3.setPreferredWidth(120);
         TableColumn columna4 = jTable1.getColumnModel().getColumn(4);
-        columna4.setPreferredWidth(120);
+        columna4.setPreferredWidth(30);
         TableColumn columna5 = jTable1.getColumnModel().getColumn(5);
         columna5.setPreferredWidth(120);
         TableColumn columna6 = jTable1.getColumnModel().getColumn(6);
-        columna6.setPreferredWidth(80);
+        columna6.setPreferredWidth(30);
         TableColumn columna7 = jTable1.getColumnModel().getColumn(7);
         columna7.setPreferredWidth(80);
         TableColumn columna8 = jTable1.getColumnModel().getColumn(8);
-        columna8.setPreferredWidth(80);
+        columna8.setPreferredWidth(70);
         TableColumn columna9 = jTable1.getColumnModel().getColumn(9);
         columna9.setPreferredWidth(80);
         TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
@@ -326,7 +333,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         TableColumn columna14 = jTable1.getColumnModel().getColumn(14);
         columna14.setPreferredWidth(60);
         TableColumn columna15 = jTable1.getColumnModel().getColumn(15);
-        columna15.setPreferredWidth(60);
+        columna15.setPreferredWidth(120);
         TableColumn columna16 = jTable1.getColumnModel().getColumn(16);
         columna16.setPreferredWidth(80);
         TableColumn columna17 = jTable1.getColumnModel().getColumn(17);
@@ -336,19 +343,19 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         TableColumn columna19 = jTable1.getColumnModel().getColumn(19);
         columna19.setPreferredWidth(100);
         TableColumn columna20 = jTable1.getColumnModel().getColumn(20);
-        columna20.setPreferredWidth(60);
+        columna20.setPreferredWidth(100);
         TableColumn columna21 = jTable1.getColumnModel().getColumn(21);
-        columna21.setPreferredWidth(60);
+        columna21.setPreferredWidth(100);
         TableColumn columna22 = jTable1.getColumnModel().getColumn(22);
-        columna22.setPreferredWidth(60);
+        columna22.setPreferredWidth(100);
         TableColumn columna23 = jTable1.getColumnModel().getColumn(23);
-        columna23.setPreferredWidth(60);
+        columna23.setPreferredWidth(50);
         TableColumn columna24 = jTable1.getColumnModel().getColumn(24);
-        columna24.setPreferredWidth(60);
+        columna24.setPreferredWidth(50);
         TableColumn columna25 = jTable1.getColumnModel().getColumn(25);
-        columna25.setPreferredWidth(60);
+        columna25.setPreferredWidth(50);
         TableColumn columna26 = jTable1.getColumnModel().getColumn(26);
-        columna26.setPreferredWidth(60);
+        columna26.setPreferredWidth(50);
         TableColumn columna27 = jTable1.getColumnModel().getColumn(27);
         columna27.setPreferredWidth(100);
         TableColumn columna28 = jTable1.getColumnModel().getColumn(28);
@@ -356,9 +363,9 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         TableColumn columna29 = jTable1.getColumnModel().getColumn(29);
         columna29.setPreferredWidth(100);
         TableColumn columna30 = jTable1.getColumnModel().getColumn(30);
-        columna30.setPreferredWidth(100);
+        columna30.setPreferredWidth(40);
         TableColumn columna31 = jTable1.getColumnModel().getColumn(31);
-        columna31.setPreferredWidth(60);
+        columna31.setPreferredWidth(40);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -687,13 +694,13 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                 celda.setCellStyle(cs);
                 HSSFRichTextString texto = new HSSFRichTextString("NUM");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 0, (short) ((40 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 0, (short) ((60 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 1);
                 celda.setCellStyle(cs);
                 texto = new HSSFRichTextString("FECHA");
                 celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 1, (short) ((70 * 2) / ((double) 1 / 20)) );
+                hoja.setColumnWidth((short) 1, (short) ((80 * 2) / ((double) 1 / 20)) );
 
                 celda = fila.createCell( (short) 2);
                 celda.setCellStyle(cs);
@@ -884,6 +891,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                 int num_fila_aux=2;
                 String fechaPeUnido = "";
                 int fMenos = 0;
+                int iFmenosUn = 0;
                 while (rs.next())
                 {
                     boolean unidos = (peUnidos && rs.getString("destino_unido") != null) ? true : false;
@@ -915,7 +923,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
 
                         if (rs.getString("destino_unido") != null){
                              fechaPeUnido = nueva;
-                             //System.out.println("fecha Pedido Unido Exportar " + " " + fechaPeUnido);
+                             iFmenosUn = (rs.getString("f_menos_un") != null) ? Integer.parseInt(rs.getString("f_menos_un")) : 0;
                         }
 
                         //Celda del Cliente
@@ -1126,24 +1134,23 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
 
- /*                       String fDif = "";
+                        String fDif = "";
                         int dif = 0;
-                        int iFmenosUn = 0;
+                        
+                        int iFmenos = (!rs.getString("pe_in_f_menos").equals("")) ? Integer.parseInt(rs.getString("pe_in_f_menos")) : 0;
+                        if (rs.getString("destino_unido") != null || !rs.getString("pe_num_unido").equals("0")){
+                            fMenos = fMenos + iFmenos;
+                        }
+
                         if (rs.getString("pe_estado").equals("Entregado") && rs.getString("pe_incidencia") != null &&
-                        (rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido"))){
-                            int iFmenos = (!rs.getString("pe_in_f_menos").equals("")) ? Integer.parseInt(rs.getString("pe_in_f_menos")) : 0;
-                            iFmenosUn = (rs.getString("f_menos_un") != null) ? Integer.parseInt(rs.getString("f_menos_un")) : 0;
-                            
-                            if(peUnidos && rs.getString("pe_num_unido").equals("0")){
+                           (rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido")))
+                        {
+                            if(peUnidos && rs.getString("destino_unido") != null){
                                 fMenos = iFmenos + iFmenosUn;
                                 dif = (!nueva.equals("") && !nuevaR.equals("")) ? Utilidades.calcularDiasHabiles(nueva, nuevaR) : 0;
                                 dif = dif - fMenos;
                             }else{
-                                dif = (!nueva.equals("") && !nuevaR.equals("")) ? Utilidades.calcularDiasHabiles(nueva, nuevaR) : 0;
-                                fMenos = iFmenos;
-                                if(rs.getString("destino_unido") != null){
-                                    fMenos = iFmenos + iFmenosUn;
-                                }
+ 
                                 if(rs.getBoolean("pe_fin_unido")){
                                     System.out.println("fechaPeUnido: " + fechaPeUnido);
                                     dif = (!fechaPeUnido.equals("") && !nuevaR.equals("")) ? Utilidades.calcularDiasHabiles(fechaPeUnido, nuevaR) : 0;
@@ -1151,37 +1158,22 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                                     fechaPeUnido = "";
                                     fMenos = 0;
                                  }else{
-                                    dif = (!nueva.equals("") && !nuevaR.equals("")) ? Utilidades.calcularDiasHabiles(nueva, nuevaR) : 0;
-                                    dif = dif - Integer.parseInt(rs.getString("pe_in_f_menos"));
+                                    if(rs.getString("destino_unido") == null){
+                                        dif = (!nueva.equals("") && !nuevaR.equals("")) ? Utilidades.calcularDiasHabiles(nueva, nuevaR) : 0;
+                                        dif = dif - Integer.parseInt(rs.getString("pe_in_f_menos"));
+                                    }
                                 }
                             }
 
-                            fDif = String.valueOf(dif);
+                            fDif = (dif != 0) ? String.valueOf(dif) : "";
                         }
- /*                       if (rs.getString("pe_estado").equals("Entregado") && rs.getString("pe_incidencia") != null &&
-                            (rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido"))){
-                            dif = (!nueva.equals("") && !nuevaR.equals("")) ? Utilidades.calcularDiasHabiles(nueva, nuevaR) : 0;
-System.out.println("fechas :" +nueva+ "----" + nuevaR + " Dif: "+ dif);
-System.out.println(rs.getInt("pe_num") +" destino_unido :"+rs.getString("destino_unido"));
-                            if(peUnidos && !rs.getString("destino_unido").equals("")){
-                                int f = Integer.parseInt(rs.getString("pe_in_f_menos")) + Integer.parseInt(rs.getString("f_menos_un"));
-                                dif = dif - f;
-                                System.out.println("compuesto: "+Integer.parseInt(rs.getString("pe_in_f_menos")) + "--" +Integer.parseInt(rs.getString("f_menos_un")));
-                                System.out.println("dif compuesto: "+dif);
-                            }else{
-                                dif = dif - Integer.parseInt(rs.getString("pe_in_f_menos"));
-                                System.out.println("normal: "+Integer.parseInt(rs.getString("pe_in_f_menos")));
-                                System.out.println("dif normal: "+dif);
-                            }
-                            fDif = String.valueOf(dif);
-                        }*/
                         
                         //Celda de diferencia de días en la incidencia
- /*                       celda = fila.createCell( (short) 26);
+                        celda = fila.createCell( (short) 26);
                         texto = new HSSFRichTextString(fDif);
                         celda.setCellStyle(cs3);
                         celda.setCellValue(texto);
-*/
+
                         celda = fila.createCell( (short) 27);
                         String descripcion=rs.getString("pe_descripcion");
                         texto = new HSSFRichTextString(descripcion);

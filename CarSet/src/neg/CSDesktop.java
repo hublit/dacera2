@@ -141,6 +141,7 @@ public class CSDesktop extends JFrame
   public static HashMap mailProveedor = new HashMap();
   public static HashMap nombreCliente = new HashMap();
   public static HashMap nombreProveedor = new HashMap();
+  public static String user;
   
   public  CSDesktop(String usuario) throws UnknownHostException
   {
@@ -152,6 +153,7 @@ public class CSDesktop extends JFrame
             confirmarCierre();
         }
         });*/
+      user = usuario;
 
       elEscritorio = new DesktopConFondo("/images/fondo_desktop.jpg");
       getContentPane().add( elEscritorio );
@@ -989,7 +991,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "CarSet version 4.0.1",
+                  "CarSet version 4.0.2",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
           }  // fin de la clase interna an�nima
@@ -1010,8 +1012,6 @@ public class CSDesktop extends JFrame
           usuario.equals("8"))
       {
         barra.add( menuFactura );
-        barra.add( menuInforme );
-        barra.add( menuAyuda );
       }
       if (usuario.equals("2") || 
           usuario.equals("4") ||
@@ -1020,6 +1020,8 @@ public class CSDesktop extends JFrame
         barra.add( menuFacturasTesoreria );
         barra.add( menuTesoreria );
       }
+      barra.add( menuInforme );
+      barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
       Dimension ventana = this.getSize();

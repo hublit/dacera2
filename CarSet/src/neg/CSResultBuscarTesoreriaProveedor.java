@@ -976,7 +976,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 cell. setForeground(Color. BLACK);
             }
 
-            if (column == 12 || column == 13 || column == 14 || column == 16)
+            if (column == 12 || column == 13 || column == 14 || column == 16 || column == 17)
             {
                 Color fondo = new  Color(255, 255, 157);
                 cell.setBackground(fondo);
