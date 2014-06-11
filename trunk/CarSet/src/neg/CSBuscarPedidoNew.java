@@ -269,7 +269,7 @@ public class CSBuscarPedidoNew extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Activo", "En Proceso", "Entregado", "Facturado", "Facturado y Validado", "Cobrado", "Pagado", "Anulado", "Fallido" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Activo", "En Proceso", "Entregado", "Facturado", "Facturado y Validado", "Anulado", "Fallido" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
 
         jComboBoxProvinciaOrigen.setBackground(new java.awt.Color(228, 229, 255));
