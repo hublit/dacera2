@@ -420,7 +420,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Anulado", "Pedido Libre", "Fallido" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Facturado y Validado", "Anulado", "Pedido Libre", "Fallido" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
         jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1986,8 +1986,8 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                             "pe_num_en_camion='"+numEnCamion+"', pe_observaciones_carset='"+observaciones+"', pe_fin_unido='"+finUnidoN+"', " +
                             "pe_ve_estado='"+estado_ve+"', pe_incidencia='"+incidencia+"', pe_in_f_mas='"+fMas+"', pe_in_f_menos='"+fMenos+"', " +
                             "pe_ob_general='"+obs_general+"', pe_kms= '"+kms+"', pe_ob_cl_mail='"+inMailCl+"', pe_ob_pr_mail='"+inMailPr+"'";
-            query = (!fechaRealOrigen.equals("")) ? query + ", pe_fecha_real_origen = '"+fechaRealOrigen+"'" : query;
-            query = (!fechaRealDestino.equals("")) ? query + ", pe_fecha_real_destino = '"+fechaRealDestino+"'" : query;
+            query = (!fechaRealOrigen.equals("")) ? query + ", pe_fecha_real_origen = '"+fechaRealOrigen+"'" : query + ", pe_fecha_real_origen = NULL";
+            query = (!fechaRealDestino.equals("")) ? query + ", pe_fecha_real_destino = '"+fechaRealDestino+"'" : query + ", pe_fecha_real_destino = NULL";
                             //pe_fecha_real_destino = '"+fechaRealDestino+"'
             query = query + " WHERE pe_num = "+numero+"";
 
@@ -2221,7 +2221,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.EditarPedidoNew.dispose();
-        CSDesktop.ResultPedidoNew.setVisible(true);
+        CSDesktop.ResultPedido.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonMailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMailClienteActionPerformed
