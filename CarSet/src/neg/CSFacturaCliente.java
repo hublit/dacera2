@@ -392,7 +392,7 @@ public class CSFacturaCliente extends JPanel
            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
                "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_estado, " +
                "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
-               "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
+               "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, pe_ob_cl_mail, " +
                "pe.pe_descripcion, pe.pe_num_unido, sc_entrada_campa, sc_campa, pe_unido.destino_unido, pe_unido.estado_unido  " +
                "FROM (pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc) " +
                "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_servicio_destino AS destino_unido, pe_estado AS estado_unido " +
@@ -445,6 +445,7 @@ public class CSFacturaCliente extends JPanel
                         nueva.setDescripcion(rs.getString("pe_descripcion"));
                         nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                         nueva.setNumCamion(rs.getString("pe_num_en_camion"));
+                        nueva.setObsInFactura(rs.getBoolean("pe_ob_cl_mail"));
                         
                         lista.add(nueva);
                     }

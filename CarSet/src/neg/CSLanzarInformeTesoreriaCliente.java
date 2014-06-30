@@ -341,7 +341,7 @@ public class CSLanzarInformeTesoreriaCliente extends javax.swing.JPanel
         String query = "SELECT distinct(fl.fl_id), fl.fl_fecha, fl.fl_num, cl.cl_nombre, " +
                        "fl.fl_importe, fl.fl_iva, fl.fl_importe_total, cl.cl_plazo, fp.fp_tipo, fl.fl_estado, " +
                        "fl.fl_fecha_pago, cl.cl_num_cuenta, fl.fl_observaciones, cl.cl_dias_plazo, fl_banco, " +
-                       "cl.cl_DNI_CIF, cl.cl_cod_postal " +
+                       "cl.cl_DNI_CIF, cl.cl_cod_postal, fl.date_modified " +
                        "FROM fl_factura_cliente fl, cl_clientes cl, fp_forma_pago fp " +
                        "WHERE  fl.cl_id = cl.cl_id AND cl.fp_id = fp.fp_id"; //AND fl.fl_num = pe.pe_num_fa_cl";
 

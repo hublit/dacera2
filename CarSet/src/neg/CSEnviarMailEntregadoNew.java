@@ -123,9 +123,9 @@ public class CSEnviarMailEntregadoNew
             "<tr><td colspan='2'><font face='Helvetica'> Mediante la presente, le pasamos confirmaci&oacute;n del siguiente servicio realizado por nuestros transportistas: </font></td></tr>";
             //"<br>" +
             if(mail.isPeUnido()){
-                htmlText = "<tr><td width='200'><font face='Helvetica'><u><b> Soporte: </b></u></font></td><td><font face='Helvetica'> "+mail.getSoporte()+" </font></td></tr>";
+                htmlText = htmlText + "<tr><td width='200'><font face='Helvetica'><u><b> Soporte: </b></u></font></td><td><font face='Helvetica'> "+mail.getSoporte()+" </font></td></tr>";
             }
-            htmlText = "<tr><td width='200'><font face='Helvetica'><u><b> Fecha de entrega: </b></u></font></td><td><font face='Helvetica'> "+nuevaD+" </font></td></tr>" +
+            htmlText = htmlText + "<tr><td width='200'><font face='Helvetica'><u><b> Fecha de entrega: </b></u></font></td><td><font face='Helvetica'> "+nuevaD+" </font></td></tr>" +
             //"<br>" +
             "<tr><td colspan='2'><table border='1' width='700'>" +
                                 "<tr><td width='130' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td  width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td  width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +

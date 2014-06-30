@@ -84,7 +84,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET", "CÓDIGO" , "PROVEEDOR", "NETO", "IVA", "IRPF", "TOTAL", "DIAS F.F.", "F. PAGO", "N.º CUENTA", "ESTADO", "FECHA PAGO" , "BANCO", "EMAIL", "OBSERVACIONES", "CIF", "C.P."});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET", "CÓDIGO" , "PROVEEDOR", "NETO", "IVA", "IRPF", "TOTAL", "DIAS F.F.", "F. PAGO", "N.º CUENTA", "ESTADO", "FECHA PAGO" , "BANCO", "EMAIL", "OBSERVACIONES", "CIF", "C.P.", "ACTUALIZADO"});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -123,7 +123,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 double irpf = 0;
                 double importe = 0;
 
-                for (int k = 0; k < 20; k++)
+                for (int k = 0; k < 21; k++)
                 {
                     if((k==0))
                     {
@@ -222,6 +222,26 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     {
                         String cif = rs.getString("pr_cod_postal");
                         datosFila[j] = cif;
+                    }
+                    else if(k==20)
+                    {
+                        String actualizado = rs.getString("date_modified");
+                        String [] temp = null;
+                        String [] tempHora = null;
+                        if (actualizado !=null && !actualizado.equals(""))
+                        {
+                            temp = actualizado.split("\\-");
+                            String anyo=temp[0];
+                            String mes=temp[1];
+                            String dia=temp[2].substring(0,2);
+
+                            tempHora = actualizado.split("\\ ");
+                            String hora = tempHora[1].substring(0,5);
+
+                            String nueva=anyo+"-"+mes+"-"+dia+" "+hora;
+
+                            datosFila[j] = nueva;
+                        }
                     }
                     else
                     {
@@ -328,6 +348,12 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         columna16.setPreferredWidth(150);
         TableColumn columna17 = jTable1.getColumnModel().getColumn(17);
         columna17.setPreferredWidth(200);
+        TableColumn columna18 = jTable1.getColumnModel().getColumn(18);
+        columna18.setPreferredWidth(80);
+        TableColumn columna19 = jTable1.getColumnModel().getColumn(19);
+        columna19.setPreferredWidth(80);
+        TableColumn columna20 = jTable1.getColumnModel().getColumn(20);
+        columna20.setPreferredWidth(90);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -735,6 +761,12 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 texto = new HSSFRichTextString("C.P.");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 19, (short) ((80 * 2) / ((double) 1 / 20)) );
+
+                celda = fila.createCell( (short) 20);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("ACTUALIZADO");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 20, (short) ((90 * 2) / ((double) 1 / 20)) );
 	}
 
         private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, ResultSet rs, HSSFCellStyle cs2,HSSFCellStyle cs3) throws SQLException, UnknownHostException
@@ -923,6 +955,28 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                     texto = new HSSFRichTextString(cp);
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
+
+                   //Celda de la fecha de MODIFICACIÓN
+                    celda = fila.createCell( (short) 20);
+                    String actualizado = rs.getString("date_modified");
+                    temp = null;
+                    String [] tempHora = null;
+                    if (actualizado !=null && !actualizado.equals(""))
+                    {
+                        temp = actualizado.split("\\-");
+                        anyo=temp[0];
+                        mes=temp[1];
+                        dia=temp[2].substring(0,2);
+
+                        tempHora = actualizado.split("\\ ");
+                        String hora = tempHora[1].substring(0,5);
+
+                        nueva=anyo+"-"+mes+"-"+dia+" "+hora;
+
+                        texto = new HSSFRichTextString(nueva);
+                        celda.setCellStyle(cs2);
+                        celda.setCellValue(texto);
+                    }
 
                     //Se incrementa el numero de fila
                     num_fila++;
