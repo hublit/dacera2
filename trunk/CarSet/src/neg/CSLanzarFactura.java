@@ -169,6 +169,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     importeTrasladoD = Double.parseDouble(importeTraslado);
                     importeTrasladoD=Utilidades.redondear(importeTrasladoD, 2);
                     //SERVICIO ESPECIAL
+
                     if(!beanFactura.getServicioEspecial().equals(""))
                     {
                         if(!beanFactura.getServicioEspecial().equals("Otros"))
@@ -182,10 +183,14 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             servicioEspecial=beanFactura.getServicioEspecial().toUpperCase();
                             labelServicioEspecial="SERVICIO ESPECIAL";
                         }
-                        else
+                        /*else
                         {
                             labelOtros=beanFactura.getDescripcion().toUpperCase();
-                        }
+                        }*/
+                    }
+
+                    if(beanFactura.isObsInFactura()){
+                        labelOtros=beanFactura.getDescripcion().toUpperCase();
                     }
                     // FACTOR DE CORRECCION
                     ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
