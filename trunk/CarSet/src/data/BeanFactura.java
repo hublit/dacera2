@@ -40,6 +40,7 @@ public class BeanFactura {
     private String tarifa;
     private String fechaAbono;
     private String observaciones;
+    private Boolean obsInFactura;
     
     private String aux;
 
@@ -284,5 +285,12 @@ public class BeanFactura {
         this.aux = aux;
     }
 
+    public Boolean isObsInFactura() {
+        return obsInFactura;
+    }
+
+    public void setObsInFactura(Boolean obsInFactura) {
+        this.obsInFactura = obsInFactura;
+    }
 
 }
