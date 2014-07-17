@@ -89,14 +89,16 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
                     campos.setFecha(rs.getString("pe_fecha"));                                                                                                                                                                                                                                                
                     campos.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
                     campos.setMatricula(rs.getString("pe_ve_matricula"));
-                    campos.setDescripcion(rs.getString("pe_descripcion"));                                                            
+                    campos.setDescripcion(rs.getString("pe_descripcion"));
+                    campos.setAtt(rs.getString("cl_email"));
+
                     lista.add(campos);
                     pedidos.add(rs.getLong("pe_num"));
 
                 datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
                 for (int k = 0; k < 9; k++) {
-                    if (k==0 ||k==1 || k == 2 || k == 5 || k == 6) {
+                    if (k==0 ||k==1 || k == 2 || k == 6 || k == 7) {
                         if(k==1)
                         {
                              String fecha=(rs.getObject(k+1)).toString();
@@ -109,14 +111,6 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
 
                              datosFila[j] = nueva;
                         }
-                        /*else if(k==7){
-                            if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
-                                datosFila[j] = rs.getString("destino_unido");
-                            }
-                            else{
-                                datosFila[j] = rs.getObject(k + 1);
-                            }
-                        }*/
                         else
                         {
                             datosFila[j] = rs.getObject(k + 1);
@@ -164,8 +158,6 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
         columna3.setPreferredWidth(400);
         TableColumn columna4 = jTable1.getColumnModel().getColumn(4);
         columna4.setPreferredWidth(30);
-        
-       
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);

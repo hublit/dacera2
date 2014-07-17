@@ -1,6 +1,5 @@
 package neg; 
 
-//import con_reportes.presentacion;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -65,7 +64,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
         double total=0;
         double iva = 0;
         double totalIva = 0;
-        String importeTotal = "";
+        //String importeTotal = "";
         String importeTotalIva = "";
         String importeIva = "";
         String cl_id = beanCliente.getCl_id();
@@ -83,16 +82,11 @@ public class CSLanzarFactura extends javax.swing.JPanel
             String labelServicioEspecial="";
             //VARIABLES OTROS
             String labelOtros="";
+            Integer obsEnFactura = 0;
             String importeServicioOtros="";
             //VARIABLES FACTOR DE CORRECCION
             String factorTexto="";
-            //VARIABLES IDA VUELTA
-            String IdaVuelta="";
-            String labelIda="";
-            String textoIda="";
-            String importeIda="";
-            double IdaVueltaD=0;
-            double IdaVueltaDF=0;
+
             //VARIBLES FACTOR
             String labelFactor="";
             double importeFc = 0;
@@ -131,15 +125,22 @@ public class CSLanzarFactura extends javax.swing.JPanel
             String numCampa=beanFactura.getDiasCampa();
             String servicioEspecial = beanFactura.getServicioEspecial();
             String numCamion=beanFactura.getNumCamion();
+            String kms = "";
+            if (beanFactura.getKms() != null){
+                kms = (!beanFactura.getKms().equals("0")) ? beanFactura.getKms() + " KMS." : "";
+            }
+            String att = beanFactura.getAtt();
+            String veEstado = beanFactura.getVe_estado();
 
             //NUEVA LOGICA DE FACTURACION
 
             if (numCampa.equals("0"))
             {
                 //LINEA DE TRASLADO
-                String servicio = beanFactura.getServicio();
-                String origen = beanFactura.getProvinciaOrigen();
-                String destino = beanFactura.getProvinciaDestino();
+                String servicio = (beanFactura.getServicio().equals("Selecciona")) ? "" : beanFactura.getServicio();
+
+                String origen = beanFactura.getProvinciaOrigen() + "(" + beanFactura.getPoblacionOrigen()+ ")";
+                String destino = beanFactura.getProvinciaDestino() + "(" + beanFactura.getPoblacionDestino()+ ")";
 
                 if((!origen.equals("Selecciona")) && (!destino.equals("Selecciona")))
                 {
@@ -153,10 +154,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     }
                     labelTraslado="TRASLADO";
                 }
-                else
-                {
-                    finalServicio="MADRID" + servicio;
-                }
+
                 // SI TIENE TARIFA ESPECIAL CLIENTE
                 if(!beanFactura.getTarifaEsCliente().equals("-1"))
                 {
@@ -189,9 +187,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                         }*/
                     }
 
-                    if(beanFactura.isObsInFactura()){
-                        labelOtros=beanFactura.getDescripcion().toUpperCase();
-                    }
                     // FACTOR DE CORRECCION
                     ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
                     factorTexto = factorTarifa.get(0).toString();
@@ -231,27 +226,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             }
                         }                        
                     }
-                    //SI TIENE IDA Y VUELTA
-                    if(beanFactura.getIdaVuelta().equals("1"))
-                    {
-                        String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
 
-                        ResultSet rsIv = CSDesktop.datos.select(queryIv);
-                        while (rsIv.next())
-                        {
-                            IdaVuelta = rsIv.getString("sc_ida_vuelta");
-                        }
-
-                        labelIda="DESCUENTO";
-                        textoIda="IDA-VUELTA ("+IdaVuelta+"%)";
-
-                        IdaVueltaD=Double.parseDouble(IdaVuelta);
-
-                        IdaVueltaDF=(importeTrasladoD*IdaVueltaD)/100;
-                        IdaVueltaDF = Utilidades.redondear(IdaVueltaDF, 2);
-
-                        importeIda="- " + String.valueOf(IdaVueltaDF);
-                    }
                     //LINEA DE FACTOR DE CORRECCION
                     ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
                     factorTexto = factorTarifa.get(0).toString();
@@ -285,7 +260,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
             //SI EL CAMPO DIAS CAMPA VIENE CON EL VALOR DISTINTO DE 0
             else
             {
-                if(!beanFactura.getTarifaEsCliente().equals("-1"))
+                if(beanFactura.getTarifaEsCliente().equals("-1"))
                 {
                      soporte = "Custodia";
                      labelCampa1 = "Custodia";
@@ -294,25 +269,26 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 }
                 else
                 {
-                    String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
+                    /*String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
 
                     ResultSet rsCampa = CSDesktop.datos.select(queryCampa);
-                        while (rsCampa.next())
-                        {
-                            importeEntradaCampaAux = rsCampa.getString("sc_entrada_campa");
-                            importeDiasCampaAux = rsCampa.getString("sc_campa");
-                        }
-
+                    while (rsCampa.next())
+                    {
+                        importeEntradaCampaAux = rsCampa.getString("sc_entrada_campa");
+                        importeDiasCampaAux = rsCampa.getString("sc_campa");
+                    }*/
                     soporte = "Custodia";
                     labelCampa1 = "Custodia";
                     labelCampa2 = "Custodia";
                     finalCampaEntrada = "ENTRADA";
-                    finalCampaDias = beanFactura.getDiasCampa()+ " DIAS * " + importeDiasCampaAux;
-                
-                    importeCampaEntradaD=Double.parseDouble(importeEntradaCampaAux);
-                    importeCampaDiasD=(Double.parseDouble(beanFactura.getDiasCampa()))*(Double.parseDouble(importeDiasCampaAux));
+                    //finalCampaDias = beanFactura.getDiasCampa()+ " DIAS * " + importeDiasCampaAux;
+                    finalCampaDias = beanFactura.getDiasCampa()+ " DIAS";
+                    importeCampaEntradaD = Double.parseDouble(beanFactura.getTarifaEsCliente());
+                    importeTrasladoD = Double.parseDouble(beanFactura.getTarifaEsCliente());
+                    //importeCampaEntradaD=Double.parseDouble(importeEntradaCampaAux);
+                    //importeCampaDiasD=(Double.parseDouble(beanFactura.getDiasCampa()))*(Double.parseDouble(importeDiasCampaAux));
 
-                    importeCampaDias=String.valueOf(importeCampaDiasD);
+                    //importeCampaDias=String.valueOf(importeCampaDiasD);
                    
                 }
                  //LINEA DE FACTOR DE CORRECCION
@@ -341,26 +317,30 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             }
                         }                      
                     }
-           }          
+           }
+
+            if(beanFactura.isObsInFactura()){
+                labelOtros = beanFactura.getDescripcion().toUpperCase();
+                obsEnFactura = 1;
+            }
             //TOTAL
-            totalAux = importeTrasladoD - IdaVueltaDF + importeFc + importeServicioD + importeSupD + importeCampaEntradaD + importeCampaDiasD;
+            totalAux = importeTrasladoD + importeFc + importeServicioD + importeSupD + importeCampaEntradaD + importeCampaDiasD;
             importeTotalAuxS = Double.toString(totalAux);
 
-
-            String query = "INSERT INTO fa_facturas_aux (fa_num, fa_fecha, fa_marca, fa_modelo, " +
-                                                        "fa_matricula, fa_factor, fa_soporte, fa_traslado, " +
-                                                        "fa_texto_traslado, fa_importe_traslado, fa_factor_correccion, " +
-                                                        "fa_texto_factor_correccion, fa_importe_factor_correccion, " +
-                                                        "fa_suplemento, fa_texto_suplemento, fa_importe_suplemento, " +
-                                                        "fa_servicio_adicional, fa_texto_servicio_adicional, " +
-                                                        "fa_importe_servicio_adicional, fa_servicio_otro,fa_importe_servicio_otro,fa_campa,fa_texto_campa, fa_importe_campa, " +
-                                                        "fa_campa2, fa_texto_campa2, fa_importe_campa2,fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total, fa_num_en_camion) " +
+            String query = "INSERT INTO fa_facturas_aux (fa_num, fa_fecha, fa_marca, fa_modelo, fa_matricula, fa_factor, fa_soporte, " +
+                                                        "fa_traslado, fa_texto_traslado, fa_importe_traslado, fa_factor_correccion, " +
+                                                        "fa_texto_factor_correccion, fa_importe_factor_correccion, fa_suplemento, " +
+                                                        "fa_texto_suplemento, fa_importe_suplemento, fa_servicio_adicional, fa_ve_estado, " +
+                                                        "fa_texto_servicio_adicional, fa_importe_servicio_adicional, fa_servicio_otro, " +
+                                                        "fa_con_observaciones, fa_importe_servicio_otro, fa_campa, fa_texto_campa, " +
+                                                        "fa_importe_campa, fa_campa2, fa_texto_campa2, fa_importe_campa2, " +
+                                                        "fa_kms, fa_att, fa_importe_total, fa_num_en_camion) " +
                                                         "VALUES (";
-            query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
-                            "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTrasladoD+"','"+labelFactor+"'," +
-                            "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+importeSupD+"'," +
-                            "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioD+"','"+labelOtros+"','"+importeServicioOtros+"','"+labelCampa1+"','"+finalCampaEntrada+"'," +
-                            "'"+importeCampaEntradaD+"','"+labelCampa2+"','"+finalCampaDias+"','"+importeCampaDiasD+"','"+labelIda+"','"+textoIda+"','"+IdaVueltaDF+"','"+importeTotalAuxS+"','"+numCamion+"')";
+            query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"','"+soporte+"','"+labelTraslado+"'," +
+                            "'"+finalServicio+"','"+importeTrasladoD+"','"+labelFactor+"','"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"'," +
+                            "'"+ServicioSuplemento+"','"+importeSupD+"','"+labelServicioEspecial+"', '"+veEstado+"','"+servicioEspecial+"','"+importeServicioD+"'," +
+                            "'"+labelOtros+"','"+obsEnFactura+"','"+importeServicioOtros+"','"+labelCampa1+"','"+finalCampaEntrada+"','"+importeCampaEntradaD+"'," +
+                            "'"+labelCampa2+"','"+finalCampaDias+"','"+importeCampaDiasD+"','"+kms+"','"+att+"','"+importeTotalAuxS+"','"+numCamion+"')";
 
             System.out.println(query);
             boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
@@ -658,7 +638,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                         Message.RecipientType.CC,
                         new InternetAddress("operaciones@carset.es"));
                     message.setSubject("CarSet - Factura: " + mail.getNumPedido());
-                    String imagen = "http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg";
+                    String imagen ="http://carset.e.telefonica.net/images/logo_carset_trans.gif";
            
                     // Create the message part
                     BodyPart messageBodyPart = new MimeBodyPart();
@@ -669,10 +649,10 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     "<br><br><table width='700'>" +
                     "<tr><td width='100'><img src=\""+imagen+"\" width='100'></td>" +
                     "<td align='center'><p><font face='Helvetica' size='+1'> ENVIO DE FACTURA </p></font></td></tr>" +
-                    "<tr><td colspan='2'><br><br><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Factura:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
-                    "<tr><td colspan='2'><br><br><font face='Helvetica'> Estimado Sr./Sra.: "+remitente+"</font>" +
-                    "<tr><td colspan='2'><br><br><font face='Helvetica'> A continuaci&oacute;n, le adjuntamos la factura correspondiente a los servicios contratados hasta la fecha con nuestra empresa. </font></td></tr>" +
-                    "<tr><td colspan='2'><br><br><font face='Helvetica'> En caso de necesitar una copia de esta factura en papel, háganoslo saber y se la remitiremos por correo a la mayor brevedad. </font></td></tr>" +
+                    "<tr><td colspan='2'><br><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Factura:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
+                    "<tr><td colspan='2'><br><font face='Helvetica'> Estimado Sr./Sra.: "+remitente+"</font>" +
+                    "<tr><td colspan='2'><br><font face='Helvetica'> A continuaci&oacute;n, le adjuntamos la factura correspondiente a los servicios contratados hasta la fecha con nuestra empresa. </font></td></tr>" +
+                    "<tr><td colspan='2'><br><font face='Helvetica'> En caso de necesitar una copia de esta factura en papel, háganoslo saber y se la remitiremos por correo a la mayor brevedad. </font></td></tr>" +
                     "<tr><td colspan='2'><br><table border='1' width='400'>" +
                     "<tr><td width='200' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td><td width='200'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td>" +
                     "<tr><td width='200'><font face='Helvetica'>&nbsp;Importe (Con IVA)</font></td><td width='200'><font face='Helvetica'>&nbsp;"+importeS+"</font></td>" +
@@ -724,16 +704,13 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Nº Cuenta CarSet</font></td><td width='200'><font face='Helvetica'>2100 4024 61 2200077238 (La Caixa)</font></td>" ;
             }
             htmlText = htmlText + "<tr><td width='200' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td><td width='200'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td></table>";
-            htmlText = htmlText + "<tr><td colspan='2'><br><font face='Helvetica'>No dude en ponerse en contacto con nuestro departamento de administración para cualquier aclaración al respecto. </font></td></tr>" ;
-            htmlText = htmlText + "<tr><td colspan='2'><br><font face='Helvetica'> Atentamente, </font></td></tr>" ;
-            htmlText = htmlText +"<br><br>";
-            htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'><b> Departamento de Administracion<b></font></td></tr>";
-            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' size='+1' color='#088A08'>CarSet</font></td></tr>";
-            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Tlf: 91 268 69 60</font></td></tr>";
-            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Movil: 606 33 96 56</font></td></tr>";
-            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 5 Bl.A - Pl .3 - Of. 2 </font></td></tr>";
-            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
-            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>www.carset.es</font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Para cualquier consulta, no dude en ponerse en contacto con nuestro dpto. de Operaciones. </font></td></tr>";
+            htmlText = htmlText +"<br>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Atentamente, </font></td></tr>";
+            htmlText = htmlText +"<br>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'><b> Departamento de Operaciones<b></font></td></tr>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>Tlf: 91 268 69 60 - Fax: 91 268 69 64 - www.carset.es</font></td>";
+            htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 10 Bl.B - Pl .4 - Of. 4  - 28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
             htmlText = htmlText +"</table></body>";
 
             /* BufferedWriter bw2 = null;
@@ -836,10 +813,12 @@ public class CSLanzarFactura extends javax.swing.JPanel
             importeIRPFS=String.valueOf(importeIRPF);
             importeTotalS=String.valueOf(importeTotal);
 
-            String query = "INSERT INTO fa_facturas_aux (fa_num, fa_fecha, " +                                                                                                                                                                                                                                                                                        
-                                                        "fa_servicio_otro,fa_importe_servicio_otro) " +
+            String att = beanFactura.getAtt();
+
+            String query = "INSERT INTO fa_facturas_aux (fa_num, fa_fecha, fa_servicio_otro, " +
+                                                        "fa_importe_servicio_otro, fa_att) " +
                                                         "VALUES (";
-            query = query + "'"+finalNum+"','"+fecha+"','"+descripcion+"','"+importeInicial+"')";
+            query = query + "'"+finalNum+"','"+fecha+"','"+descripcion+"','"+importeInicial+"','"+att+"')";
 
             System.out.println(query);
             boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
@@ -855,7 +834,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
          String provinciaFiscal="";
          String codPostalFiscal="";
          String finalNumFactura="";
-
 
          try
          {
@@ -1023,24 +1001,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                      mail.setModelo(beanCliente.getDiasPlazo());
                      mail.setMatricula(beanCliente.getFormaPago());
 
-                     /*SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
-                     Date datehora=null;
-                        try {
-                            datehora = sdf1.parse(nuevaFechaFactura);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                     // PARA PONER UNA FECHA ENTREGA, DEPENDIENDO DEL PERIODO DE FACTURACION DEL CLIENTE.
-                     Calendar myGDate=new GregorianCalendar();
-                     myGDate.setTime(datehora);
-                     myGDate.add(Calendar.DAY_OF_MONTH, 15);
-                     Date fechaActual = myGDate.getTime();
-                     SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd-MM-yyyy");
-                     String fecha2=formatoDeFecha.format(fechaActual);
-                     // SE INTRODUCE EL VALOR EN EL BEAN
-                     mail.setFechaEntrega(fecha2);*/
-
                      // SE LLAMA AL VISOR DE PDF´S
                      JRViewerFactura jrViewer = new JRViewerFactura(jasperPrint,nombreFichero,mail,0);
                      CSDesktop.NuevaFactura = new JInternalFrame("Generación Factura Cliente", true, false, false, true );
@@ -1090,7 +1050,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                 }
                             }
                         }
-
                  }
             } // FIN DE GENERACION DE FACTURA
         }
@@ -1115,7 +1074,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
         String cl_id = beanCliente.getCl_id();
         String numFacturaRec="";
         
-
         for(int i = 0; i < lista.size(); i++)
         {
             //VARIABLES TRASLADO
@@ -1178,7 +1136,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
             String servicioEspecial = beanFactura.getServicioEspecial();
             String numCamion=beanFactura.getNumCamion();
             numFacturaRec=beanFactura.getAux();
-
 
             //NUEVA LOGICA DE FACTURACION
 
@@ -1324,7 +1281,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                         importeSupD = Utilidades.redondear(importeSupD, 2);
                     }
                 }
-
             }
             //SI EL CAMPO DIAS CAMPA VIENE CON EL VALOR DISTINTO DE 0
             else
@@ -1536,28 +1492,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 pars.put("FechaVFactura",fecha2);
                 pars.put("Observaciones",observaciones);
                 pars.put("FacturaRec",numFacturaRec);
-
-            // SI EL NUMERO ES 0, SIGNIFICA QUE SE HA PULSADO EL BOTON PREVISUALIZAR
-            /*if(numero==0)
-            {
-                pars.put("NumFactura","PREV");
-            }
-            else if (numero==1)
-            {
-                BeanFactura bean = (BeanFactura) lista.get(0);
-                pars.put("NumFactura",bean.getAux());
-            }
-            // SI NO, HAY QUE GENERAR UN NUEVO NUMERO DE FACTURA
-            else
-            {
-                // EL NUMERO DE FACTURA SERIA DEL TIPO 00001/00001/10 (NUMERO FACTURA/NUMERO CLIENTE/AÑO)
-                String numFactura=Integer.valueOf(numero).toString();
-                finalNumFactura=Utilidades.rellenarCeros(numFactura,5);
-                String finalNumCliente=Utilidades.rellenarCeros(beanCliente.getCl_id(), 5);
-                finalNumFactura=nuevaFechaFactura.substring(8, 10)+"/"+ finalNumCliente +"/"+ finalNumFactura;
-                // SE LE PASA COMO PARAMETRO A LA FACUTA
-                pars.put("NumFactura",finalNumFactura);
-            }*/
 
             // COMO NO HAY PREVISUALIZACION SIEMPRE GENERAMOS UN NUMERO DE FACTURA
                 String numFactura=Integer.valueOf(numero).toString();

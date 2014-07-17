@@ -93,14 +93,16 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
 
                     campos.setNumPedido(rs.getLong("pe_num"));
                     campos.setFecha(rs.getString("pe_fecha"));
-                    campos.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
-
+                    campos.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
+                    campos.setPoblacionOrigen(rs.getString("pe_poblacion_origen"));
                     if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
                         campos.setProvinciaDestino(rs.getString("destino_unido"));
                         campos.setServicioDestino(rs.getString("destino_unido"));
+                        campos.setPoblacionDestino(rs.getString("pob_unido"));
                     }else{
-                        campos.setProvinciaDestino(rs.getString("pe_servicio_destino"));
-                        campos.setServicioDestino(rs.getString("pe_servicio_destino"));
+                        campos.setProvinciaDestino(rs.getString("pe_provincia_destino"));
+                        campos.setServicioDestino(rs.getString("pe_provincia_destino"));
+                        campos.setPoblacionDestino(rs.getString("pe_poblacion_destino"));
                     }
                     campos.setServicio(rs.getString("pe_servicio"));
                     campos.setServicioOrigen(rs.getString("pe_servicio_origen"));
@@ -118,7 +120,10 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
                     //campos.setTarifa(rs.getString("tc_tarifa"));
                     campos.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                     campos.setNumCamion(rs.getString("pe_num_en_camion"));
-
+                    campos.setObsInFactura(rs.getBoolean("pe_ob_cl_mail"));
+                    campos.setKms(rs.getString("pe_kms"));
+                    campos.setAtt(rs.getString("cl_email"));
+                    campos.setVe_estado(rs.getString("pe_ve_estado"));
 
                     lista.add(campos);
                     pedidos.add(rs.getLong("pe_num"));
@@ -129,7 +134,7 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
                     int j = 0;
                     for (int k = 0; k < 20; k++) {
 
-                        if (k==0 ||k==1 || k == 2 || k == 3 || k == 11 || k==12 || k==19) {
+                        if (k==0 ||k==1 || k == 2 || k == 3 || k == 14 || k==15 || k==24) {
                             if(k==1)
                             {
                                  String fecha=(rs.getObject(k+1)).toString();

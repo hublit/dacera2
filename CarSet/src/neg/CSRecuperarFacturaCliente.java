@@ -281,7 +281,7 @@ public class CSRecuperarFacturaCliente extends JPanel
             SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
             fechaF=formatoDeFecha.format(fecha);
         }
-            String query = "SELECT fl.fl_id,fl.fl_num,fl.fl_fecha,cl.cl_nombre,fl.fl_fecha_desde,fl.fl_fecha_hasta, fl.fl_importe_total, fl.fl_tipo " +
+            String query = "SELECT fl.fl_id,fl.fl_num, fl.fl_fecha,cl.cl_nombre,fl.fl_fecha_desde,fl.fl_fecha_hasta, fl.fl_importe_total, fl.fl_tipo " +
                            " FROM fl_factura_cliente fl, cl_clientes cl WHERE fl.cl_id = cl.cl_id ";
 
             if (!jTextNumero.getText().equals(""))

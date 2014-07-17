@@ -894,13 +894,12 @@ public class CSBuscarPedidoNew extends javax.swing.JPanel
 
     private void jButtonBuscarSProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarSProvActionPerformed
 
-        String query="SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen,p.pe_servicio_destino,"+
-                " fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, p.pe_ta_es_cliente, " +
-                "p.pe_ta_es_proveedor,p.pe_suplemento,pe_solred,p.pe_fecha_real_destino," +
-                " p.pe_estado, p.pe_estado, p.pe_descripcion, cl.co_id" +
-                " FROM pe_pedidos p, pc_pedidos_clientes pc, fc_factores_correccion fc , pp_pedidos_proveedores pp" +
-                " INNER JOIN cl_clientes cl " +
-                " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = 0 AND p.pe_num = pc.pe_num AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
+        String query="SELECT p.pe_num, p.pe_fecha, cl.cl_nombre, p.pe_servicio, p.pe_provincia_origen, p.pe_provincia_destino, " +
+                    "fc.fc_nombre, p.pe_ve_matricula, pe_ve_marca, pe_ve_modelo, p.pe_ta_es_cliente, p.pe_ta_es_proveedor, " +
+                    "p.pe_suplemento, p.pe_fecha_real_destino, p.pe_estado, p.pe_estado, p.pe_descripcion, cl.co_id" +
+                    " FROM pe_pedidos p, pc_pedidos_clientes pc, fc_factores_correccion fc , pp_pedidos_proveedores pp" +
+                    " INNER JOIN cl_clientes cl " +
+                    " WHERE pc.cl_id = cl.cl_id AND pp.pr_id = 0 AND p.pe_num = pc.pe_num AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id";
 
             System.out.println(query);
 

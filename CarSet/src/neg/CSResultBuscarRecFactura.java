@@ -182,21 +182,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
         jTable1.getTableHeader().setBackground(Color.GRAY);
         jTable1.getTableHeader().setForeground(Color.white);        
 
-
-        
-
-        /*jTable1.getColumnModel().getColumn(0).setCellRenderer(tcrCenter);
-        jTable1.getColumnModel().getColumn(1).setCellRenderer(tcrCenter);
-        jTable1.getColumnModel().getColumn(11).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(12).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(13).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(14).setCellRenderer(tcrRight);
-        jTable1.getColumnModel().getColumn(15).setCellRenderer(tcrCenter);*/
-        //jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
-
         jTable1.setAutoCreateRowSorter(true);
-
-        
     }
 
      public Dimension getPreferredSize()
@@ -456,16 +442,15 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                         BeanCliente beanCliente = new BeanCliente();
                         beanCliente = cliente.getDatosFacturaCliente(cl_id);
                         beanCliente.setCl_id(String.valueOf(cl_id));
-                        String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
+                        String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
                                     "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                                     "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
                                     "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
-                                    "pe.pe_descripcion, sc_entrada_campa, sc_campa " +
-                                    "FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc " +
-                                    "WHERE pe.pe_num = pc.pe_num  AND sc.cl_id = pc.cl_id " +
-                                    "AND sc.sc_fecha_hasta > pe.pe_fecha " +
+                                    "pe.pe_descripcion, pe.pe_kms, cl.cl_email, pe.pe_ve_estado " +
+                                    "FROM pe_pedidos pe, pc_pedidos_clientes pc, cl_clientes cl " +
+                                    "WHERE pe.pe_num = pc.pe_num " +
+                                    "AND pc.cl_id = cl.cl_id " +
                                     "AND (pe.pe_estado = 'Facturado' OR pe.pe_estado='Facturado y Validado') " +
-                                    //"AND pe_fecha BETWEEN '" + recFacturaAux.getFechaDesde() +
                                     "AND '" + recFacturaAux.getFechaHasta() + "' " +
                                     "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
                         System.out.println(query);
@@ -477,7 +462,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                 BeanFactura nueva = new BeanFactura();
                                 nueva.setNumPedido(rs.getLong("pe_num"));
                                 nueva.setFecha(rs.getString("pe_fecha"));
-                                nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
+                                nueva.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
                                 nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
                                 nueva.setServicio(rs.getString("pe_servicio"));
                                 nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
@@ -496,6 +481,9 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                 //nueva.setTarifa(rs.getString("tc_tarifa"));
                                 nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                                 nueva.setNumCamion(rs.getString("pe_num_en_camion"));
+                                nueva.setKms(rs.getString("pe_kms"));
+                                nueva.setAtt(rs.getString("cl_email"));
+                                nueva.setVe_estado(rs.getString("pe_ve_estado"));
                                 nueva.setAux(recFacturaAux.getNumFactura());
                                 lista.add(nueva);
                                 pedidos.add(rs.getLong("pe_num"));
@@ -566,16 +554,15 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                             BeanCliente beanCliente = new BeanCliente();
                             beanCliente = cliente.getDatosFacturaCliente(cl_id);
                             beanCliente.setCl_id(String.valueOf(cl_id));
-                            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
-                                    "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
+                            String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_poblacion_origen, " +
+                                    "pe.pe_poblacion_destino, pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                                     "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
                                     "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " +
-                                    "pe.pe_descripcion, sc_entrada_campa, sc_campa " +
-                                    "FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc " +
-                                    "WHERE pe.pe_num = pc.pe_num  AND sc.cl_id = pc.cl_id " +
-                                    "AND sc.sc_fecha_hasta > pe.pe_fecha " +
+                                    "pe.pe_descripcion, pe.pe_ve_estado, pe.pe_kms, cl.cl_email, pe.pe_poblacion_origen, pe.pe_poblacion_destino " +
+                                    "FROM pe_pedidos pe, pc_pedidos_clientes pc, cl_clientes cl " +
+                                    "WHERE pe.pe_num = pc.pe_num " +
+                                    "AND pc.cl_id = cl.cl_id " +
                                     "AND (pe.pe_estado = 'Facturado' OR pe.pe_estado='Facturado y Validado') " +
-                                    //"AND pe_fecha BETWEEN '" + recFacturaAux.getFechaDesde() +
                                     "AND '" + recFacturaAux.getFechaHasta() + "' " +
                                     "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
                             System.out.println(query);
@@ -587,11 +574,13 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                     BeanFactura nueva = new BeanFactura();
                                     nueva.setNumPedido(rs.getLong("pe_num"));
                                     nueva.setFecha(rs.getString("pe_fecha"));
-                                    nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
-                                    nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
+                                    nueva.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
+                                    nueva.setPoblacionOrigen(rs.getString("pe_poblacion_origen"));
+                                    nueva.setServicioOrigen(rs.getString("pe_provincia_origen"));
+                                    nueva.setProvinciaDestino(rs.getString("pe_provincia_destino"));
+                                    nueva.setServicioDestino(rs.getString("pe_provincia_destino"));
+                                    nueva.setPoblacionDestino(rs.getString("pe_poblacion_destino"));
                                     nueva.setServicio(rs.getString("pe_servicio"));
-                                    nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
-                                    nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
                                     nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
                                     nueva.setDiasCampa(rs.getString("pe_dias_campa"));
                                     nueva.setFactor(rs.getString("fc_id"));
@@ -605,6 +594,9 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                     nueva.setDescripcion(rs.getString("pe_descripcion"));
                                     nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                                     nueva.setNumCamion(rs.getString("pe_num_en_camion"));
+                                    nueva.setKms(rs.getString("pe_kms"));
+                                    nueva.setAtt(rs.getString("cl_email"));
+                                    nueva.setVe_estado(rs.getString("pe_ve_estado"));
                                     nueva.setAux(recFacturaAux.getNumFactura());
                                     lista.add(nueva);
                                     pedidos.add(rs.getLong("pe_num"));
@@ -674,13 +666,14 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                         BeanCliente beanCliente = new BeanCliente();
                         beanCliente = cliente.getDatosFacturaCliente(cl_id);
                         beanCliente.setCl_id(String.valueOf(cl_id));
-                        //String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " + "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " + "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " + "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, " + "pe.pe_descripcion, tc.tc_tarifa, sc_entrada_campa, sc_campa " + "FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc, sc_servicios_clientes sc " + "WHERE pe.pe_num = pc.pe_num " + "AND sc.cl_id = pc.cl_id " + "AND tc.tc_fecha_hasta > pe.pe_fecha " + "AND sc.sc_fecha_hasta > pe.pe_fecha " + "AND tc.tc_servicio = pe.pe_servicio " + "AND tc.cl_id = pc.cl_id " + "AND (tc.tc_servicio_origen = pe.pe_servicio_origen " + "OR tc.tc_servicio_origen = pe.pe_servicio_destino) " + "AND (tc.tc_servicio_destino = pe.pe_servicio_destino " + "OR tc.tc_servicio_destino = pe.pe_servicio_origen) " + "AND tc.tc_soporte = pe.pe_soporte " + "AND pe.pe_estado = 'Facturado' " + "AND pe_fecha BETWEEN '" + recFacturaAux.getFechaDesde() + "' AND '" + recFacturaAux.getFechaHasta() + "' " + "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
-                        String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio, pe.pe_servicio_origen," +
-                        " pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula," +
-                        " pe.pe_ve_marca, pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, pe.pe_descripcion," +
-                        " sc.sc_entrada_campa, sc.sc_campa FROM pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc " +
-                        " WHERE pe.pe_num = pc.pe_num AND sc.cl_id = pc.cl_id" +
-                        " AND sc.sc_fecha_hasta > pe.pe_fecha" +
+
+                        String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio, " +
+                        "pe.pe_poblacion_origen, pe.pe_poblacion_destino, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
+                        "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_modelo, pe.pe_ta_es_cliente, " +
+                        "pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, pe.pe_descripcion, pe.pe_ve_estado, pe_ob_cl_mail, pe.pe_kms, cl.cl_email" +
+                        " FROM pe_pedidos pe, pc_pedidos_clientes pc, cl_clientes cl " +
+                        " WHERE pe.pe_num = pc.pe_num " +
+                        "AND pc.cl_id = cl.cl_id " +
                         " AND (pe.pe_estado = 'Facturado y Validado' OR pe.pe_estado='Facturado') AND pc.cl_id = " + cl_id + " AND pe.pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
                         System.out.println(query);
@@ -692,11 +685,13 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                     BeanFactura nueva = new BeanFactura();
                                     nueva.setNumPedido(rs.getLong("pe_num"));
                                     nueva.setFecha(rs.getString("pe_fecha"));
-                                    nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
-                                    nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
+                                    nueva.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
+                                    nueva.setPoblacionOrigen(rs.getString("pe_poblacion_origen"));
+                                    nueva.setServicioOrigen(rs.getString("pe_provincia_origen"));
+                                    nueva.setProvinciaDestino(rs.getString("pe_provincia_destino"));
+                                    nueva.setServicioDestino(rs.getString("pe_provincia_destino"));
+                                    nueva.setPoblacionDestino(rs.getString("pe_poblacion_destino"));
                                     nueva.setServicio(rs.getString("pe_servicio"));
-                                    nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
-                                    nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
                                     nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
                                     nueva.setDiasCampa(rs.getString("pe_dias_campa"));
                                     nueva.setFactor(rs.getString("fc_id"));
@@ -711,6 +706,10 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                     //nueva.setTarifa(rs.getString("tc_tarifa"));
                                     nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                                     nueva.setNumCamion(rs.getString("pe_num_en_camion"));
+                                    nueva.setObsInFactura(rs.getBoolean("pe_ob_cl_mail"));
+                                    nueva.setKms(rs.getString("pe_kms"));
+                                    nueva.setAtt(rs.getString("cl_email"));
+                                    nueva.setVe_estado(rs.getString("pe_ve_estado"));
                                     nueva.setAux(recFacturaAux.getNumFactura());
                                     lista.add(nueva);
                                     pedidos.add(rs.getLong("pe_num"));
@@ -731,7 +730,6 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                         } catch (UnknownHostException ex) {
                             Logger.getLogger(CSResultBuscarRecFactura.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
                 }
         }
     }//GEN-LAST:event_jButtonRecuperarFacturaActionPerformed
@@ -760,8 +758,6 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
 
             Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
             //se centran los valores
-
-
 
             jTable1.setRowHeight(20);
 

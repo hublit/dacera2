@@ -1966,6 +1966,14 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>El cliente está inactivo</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonModificar.setEnabled(true);
+        } else if((jComboFactor.getSelectedItem().toString()).equals("Ninguno")){
+            ValidarFormatos("Seleccione Tipo de Vehículo");
+        }
+        else if(estado_ve.equals("Selecciona")){
+            ValidarFormatos("Seleccione Estado del Vehículo");
+        }
+        else if(soporte.equals("Selecciona")){
+            ValidarFormatos("Seleccione Soporte del Proveedor");
         }
         else
         {                          
@@ -2221,7 +2229,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.EditarPedidoNew.dispose();
-        CSDesktop.ResultPedido.setVisible(true);
+        CSDesktop.ResultPedidoNew.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonMailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMailClienteActionPerformed
@@ -2803,12 +2811,12 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
                     jDateFechaRealDestino.setDate(dRD);
                 }
-                if(jComboBoxEstado.getSelectedItem().toString().equals("Facturado"))
+                if(rs.getString("pe_estado").equals("Facturado"))
                 {
                     jTextTaEsCli.setEditable(false);
                     //jTextTaEsProv.setEditable(false);
                 }
-                if(jComboBoxEstado.getSelectedItem().toString().equals("Facturado y Validado"))
+                if(rs.getString("pe_estado").equals("Facturado y Validado"))
                 {
                     jTextTaEsCli.setEditable(false);
                     jTextTaEsProv.setEditable(false);
