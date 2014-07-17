@@ -254,8 +254,8 @@ public class CSValidarPedido extends JPanel
             }
 
 
-            String query = "SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_servicio_origen, " +
-                           "p.pe_servicio_destino, fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, " +
+            String query = "SELECT p.pe_num,p.pe_fecha,cl.cl_nombre,p.pe_servicio,p.pe_provincia_origen, " +
+                           "p.pe_provincia_destino, fc.fc_nombre,p.pe_ve_matricula, pe_ve_marca, " +
                            "pe_ve_modelo, pr.pr_nombre_fiscal, p.pe_ta_es_cliente, " +
                            "p.pe_ta_es_proveedor, p.pe_servicio_especial, p.pe_suplemento,pe_kms, " +
                            "p.pe_fecha_origen, p.pe_fecha_destino,p.pe_fecha_real_destino, p.pe_estado, " +

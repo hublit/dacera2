@@ -58,6 +58,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
     ArrayList lista=new ArrayList();
     ArrayList pedidos=new ArrayList();
     static String fVencimiento = "";
+    static String fConta = "";
 
     public CSResultBuscarTesoreriaProveedor(String query) throws UnknownHostException, FileNotFoundException, IOException, ParseException
     {
@@ -84,7 +85,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         }
         addKeyListener(l);
 
-        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET", "CÓDIGO" , "PROVEEDOR", "NETO", "IVA", "IRPF", "TOTAL", "DIAS F.F.", "F. PAGO", "N.º CUENTA", "ESTADO", "FECHA PAGO" , "BANCO", "EMAIL", "OBSERVACIONES", "CIF", "C.P.", "ACTUALIZADO"});
+        modelo.setColumnIdentifiers(new String[] {"F. FACTURA", "VENCIMIENTO", "N.º FACTURA" , "N.º F. CARSET", "CÓDIGO" , "PROVEEDOR", "NETO", "IVA", "IRPF", "TOTAL", "DIAS F.F.", "F. PAGO", "N.º CUENTA", "ESTADO", "FECHA PAGO" , "BANCO", "EMAIL", "OBSERVACIONES", "CIF", "C.P.", "ACTUALIZADO", "F. CONT."});
         int numeroFila = 0;
         double total = 0;
         double totalIva = 0;
@@ -123,7 +124,7 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 double irpf = 0;
                 double importe = 0;
 
-                for (int k = 0; k < 21; k++)
+                for (int k = 0; k < 22; k++)
                 {
                     if((k==0))
                     {
@@ -243,6 +244,23 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                             datosFila[j] = nueva;
                         }
                     }
+                    else if(k==21)
+                    {
+                        String plazo = rs.getString("tr_fecha_cont");
+
+                         String [] temp = null;
+                         if (!plazo.equals(" "))
+                         {
+                            temp = plazo.split("\\-");
+                            String anyo=temp[0];
+                            String mes=temp[1];
+                            String dia=temp[2];
+                            fConta=dia+"-"+mes+"-"+anyo;
+
+                            datosFila[j] = fConta;
+                         }
+//                        System.out.println("Dato" + k + " " + datosFila[j]);
+                    }
                     else
                     {
                         datosFila[j] = rs.getObject(k);
@@ -354,6 +372,8 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
         columna19.setPreferredWidth(80);
         TableColumn columna20 = jTable1.getColumnModel().getColumn(20);
         columna20.setPreferredWidth(90);
+        TableColumn columna21 = jTable1.getColumnModel().getColumn(21);
+        columna21.setPreferredWidth(80);     
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -767,6 +787,12 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                 texto = new HSSFRichTextString("ACTUALIZADO");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 20, (short) ((90 * 2) / ((double) 1 / 20)) );
+
+                celda = fila.createCell( (short) 21);
+                celda.setCellStyle(cs);
+                texto = new HSSFRichTextString("F. CONT.");
+                celda.setCellValue(texto);
+                hoja.setColumnWidth((short) 21, (short) ((80 * 2) / ((double) 1 / 20)) );
 	}
 
         private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, ResultSet rs, HSSFCellStyle cs2,HSSFCellStyle cs3) throws SQLException, UnknownHostException
@@ -977,6 +1003,22 @@ public class CSResultBuscarTesoreriaProveedor extends javax.swing.JPanel
                         celda.setCellStyle(cs2);
                         celda.setCellValue(texto);
                     }
+
+                    //Celda de la fecha de contabilizacion
+                    celda = fila.createCell( (short) 21);
+                    String fechaConta = rs.getString("tr_fecha_cont");
+                    temp = null;
+                    if (!fechaVencimiento.equals(" "))
+                    {
+                        temp = fechaConta.split("\\-");
+                        anyo=temp[0];
+                        mes=temp[1];
+                        dia=temp[2];
+                        nueva=dia+"-"+mes+"-"+anyo;
+                    }
+                    texto = new HSSFRichTextString(nueva);
+                    celda.setCellStyle(cs3);
+                    celda.setCellValue(texto);
 
                     //Se incrementa el numero de fila
                     num_fila++;

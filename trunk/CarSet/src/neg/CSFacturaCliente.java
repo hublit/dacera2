@@ -389,18 +389,17 @@ public class CSFacturaCliente extends JPanel
         }
         else
         {
-           String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_servicio_origen, pe.pe_servicio_destino, " +
-               "pe.pe_servicio, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_estado, " +
-               "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, " +
-               "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, pe_ob_cl_mail, " +
-               "pe.pe_descripcion, pe.pe_num_unido, sc_entrada_campa, sc_campa, pe_unido.destino_unido, pe_unido.estado_unido  " +
-               "FROM (pe_pedidos pe, pc_pedidos_clientes pc, sc_servicios_clientes sc) " +
-               "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_servicio_destino AS destino_unido, pe_estado AS estado_unido " +
+           String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
+               "pe.pe_servicio, pe.pe_poblacion_origen, pe.pe_poblacion_destino, pe.pe_servicio_especial, pe.pe_estado, " +
+               "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_estado, " +
+               "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento, pe.pe_num_en_camion, pe.pe_ob_cl_mail, " +
+               "pe.pe_descripcion, pe.pe_num_unido, pe_unido.destino_unido, pe_unido.estado_unido, pe_unido.pob_unido, pe.pe_kms, cl.cl_email  " +
+               "FROM (pe_pedidos pe, pc_pedidos_clientes pc, cl_clientes cl) " +
+               "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino, pe_provincia_destino AS destino_unido, pe_poblacion_destino AS pob_unido, pe_estado AS estado_unido " +
                "FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC) " +
                "pe_unido ON pe.pe_num = pe_unido.num_unido " +
                "WHERE pe.pe_num = pc.pe_num " +
-               "AND sc.cl_id = pc.cl_id " +
-               "AND sc.sc_fecha_hasta > pe.pe_fecha " +
+               "AND pc.cl_id = cl.cl_id " +
                "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido') "  +
                "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
                "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
@@ -422,16 +421,19 @@ public class CSFacturaCliente extends JPanel
                         nueva.setNumPedido(rs.getLong("pe_num"));
 
                         nueva.setFecha(rs.getString("pe_fecha"));
-                        nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
+                        nueva.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
+                        nueva.setPoblacionOrigen(rs.getString("pe_poblacion_origen"));
                         if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
                             nueva.setProvinciaDestino(rs.getString("destino_unido"));
                             nueva.setServicioDestino(rs.getString("destino_unido"));
+                            nueva.setPoblacionDestino(rs.getString("pob_unido"));
                         }else{
-                            nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
-                            nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
+                            nueva.setProvinciaDestino(rs.getString("pe_provincia_destino"));
+                            nueva.setServicioDestino(rs.getString("pe_provincia_destino"));
+                            nueva.setPoblacionDestino(rs.getString("pe_poblacion_destino"));
                         }
                         nueva.setServicio(rs.getString("pe_servicio"));
-                        nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
+                        nueva.setServicioOrigen(rs.getString("pe_provincia_origen"));
                         nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
                         nueva.setDiasCampa(rs.getString("pe_dias_campa"));
                         nueva.setFactor(rs.getString("fc_id"));
@@ -446,6 +448,9 @@ public class CSFacturaCliente extends JPanel
                         nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                         nueva.setNumCamion(rs.getString("pe_num_en_camion"));
                         nueva.setObsInFactura(rs.getBoolean("pe_ob_cl_mail"));
+                        nueva.setKms(rs.getString("pe_kms"));
+                        nueva.setAtt(rs.getString("cl_email"));
+                        nueva.setVe_estado(rs.getString("pe_ve_estado"));
                         
                         lista.add(nueva);
                     }

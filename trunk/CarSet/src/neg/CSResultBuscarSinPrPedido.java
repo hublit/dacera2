@@ -68,7 +68,7 @@ public class CSResultBuscarSinPrPedido extends javax.swing.JPanel
                 Object[] datosFila = new Object[modelo.getColumnCount()];
                 int j = 0;
                 for (int k = 0; k < 18; k++) {
-                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==16 || k==17) {
+                    if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k==6 || k == 7 || k == 8 || k==9 || k==15 || k==16) {
                         if((k==1))
                         {
                             String fecha=(rs.getObject(k+1)).toString();
@@ -108,17 +108,17 @@ public class CSResultBuscarSinPrPedido extends javax.swing.JPanel
         }
          else
         {
-            CSDesktop.ResultPedido = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
-            CSDesktop.ResultPedido.getContentPane().add( this, BorderLayout.CENTER );
-            CSDesktop.ResultPedido.pack();
-            CSDesktop.BuscarPedido.dispose();
-            CSDesktop.elEscritorio.add( CSDesktop.ResultPedido );
+            CSDesktop.ResultPedidoNew = new JInternalFrame("Resultado Búsqueda Pedidos", true, false, false, true );
+            CSDesktop.ResultPedidoNew.getContentPane().add( this, BorderLayout.CENTER );
+            CSDesktop.ResultPedidoNew.pack();
+            CSDesktop.BuscarPedidoNew.dispose();
+            CSDesktop.elEscritorio.add( CSDesktop.ResultPedidoNew );
             Dimension pantalla = CSDesktop.elEscritorio.getSize();
-            Dimension ventana = CSDesktop.ResultPedido.getSize();
-            CSDesktop.ResultPedido.setLocation(
+            Dimension ventana = CSDesktop.ResultPedidoNew.getSize();
+            CSDesktop.ResultPedidoNew.setLocation(
                (pantalla.width - ventana.width) / 2,
                (pantalla.height - ventana.height) / 2);
-            CSDesktop.ResultPedido.setVisible( true );
+            CSDesktop.ResultPedidoNew.setVisible( true );
         }
         initComponents();
         jTable1.setModel(modelo);
@@ -172,27 +172,27 @@ public class CSResultBuscarSinPrPedido extends javax.swing.JPanel
             if ((fila > -1) && (columna > -1))
             {
                int proveedor = Integer.parseInt((String)jTable1.getValueAt(fila,0).toString());
-               CSDesktop.EditarPedido = new JInternalFrame("Editar Pedido", true, false, false, true );
+               CSDesktop.EditarPedidoNew = new JInternalFrame("Editar Pedido", true, false, false, true );
                // adjuntar panel al panel de contenido del marco interno
-               CSEditarPedido editarC = null;
+               CSEditarPedidoNew editarC = null;
                     try {
-                        editarC = new CSEditarPedido(proveedor,"");
+                        editarC = new CSEditarPedidoNew(proveedor,"");
                     } catch (SQLException ex) {
                         Logger.getLogger(CSResultBuscarSinPrPedido.class.getName()).log(Level.SEVERE, null, ex);
                     }
-               CSDesktop.EditarPedido.getContentPane().add( editarC,BorderLayout.CENTER);
+               CSDesktop.EditarPedidoNew.getContentPane().add( editarC,BorderLayout.CENTER);
                // establecer tama�o de marco interno en el tama�o de su contenido
-               CSDesktop.EditarPedido.pack();
+               CSDesktop.EditarPedidoNew.pack();
                // adjuntar marco interno al escritorio y mostrarlo
-               CSDesktop.elEscritorio.add( CSDesktop.EditarPedido );
+               CSDesktop.elEscritorio.add( CSDesktop.EditarPedidoNew );
 
                Dimension pantalla = CSDesktop.elEscritorio.getSize();
-               Dimension ventana = CSDesktop.EditarPedido.getSize();
-               CSDesktop.EditarPedido.setLocation(
+               Dimension ventana = CSDesktop.EditarPedidoNew.getSize();
+               CSDesktop.EditarPedidoNew.setLocation(
                     (pantalla.width - ventana.width) / 2,
                     (pantalla.height - ventana.height) / 2);
-               CSDesktop.EditarPedido.setVisible( true );
-               CSDesktop.ResultPedido.setVisible(false);
+               CSDesktop.EditarPedidoNew.setVisible( true );
+               CSDesktop.ResultPedidoNew.setVisible(false);
 
             System.out.println(jTable1.getValueAt(fila,columna));
          }
@@ -291,8 +291,8 @@ public class CSResultBuscarSinPrPedido extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
-        CSDesktop.ResultPedido.dispose();
-        CSDesktop.menuBuscarPedido.setEnabled(true);
+        CSDesktop.ResultPedidoNew.dispose();
+        CSDesktop.menuBuscarPedidoNew.setEnabled(true);
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
 

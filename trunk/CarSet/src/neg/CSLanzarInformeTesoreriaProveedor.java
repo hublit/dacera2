@@ -383,7 +383,7 @@ public class CSLanzarInformeTesoreriaProveedor extends javax.swing.JPanel
                        "tr.tr_banco, pr.pr_email, tr.tr_observaciones, tr_id, pr_dias_plazo, " +
                        "CASE WHEN pr.pr_plazo = 'Especial' THEN DATE_ADD(tr.tr_fecha, INTERVAL pr_dias_plazo DAY) " +
                        "ELSE DATE_ADD(tr.tr_fecha, INTERVAL SUBSTRING(pr.pr_plazo,1,2) DAY) END AS fecha_vencimiento, " +
-                       "pr.pr_DNI_CIF, pr.pr_cod_postal, tr.date_modified " +
+                       "pr.pr_DNI_CIF, pr.pr_cod_postal, tr.date_modified, tr.tr_fecha_cont " +
                        "FROM tr_tesoreria_proveedor tr, pr_proveedores pr, fp_forma_pago fp " +
                        "WHERE  tr.pr_num = pr.pr_id AND fp.fp_id = pr.fp_id";
 

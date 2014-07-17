@@ -189,9 +189,11 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
 //                        System.out.println("fMenosUno: " + fMenos);
                         datosFila[j] = rs.getObject(k + 1);
                     }
-                    else if (k==26 && rs.getString("pe_incidencia") != null)
+                    else if (k==26)// && rs.getString("pe_incidencia") != null)
                     {
-                        if (rs.getString("pe_estado").equals("Entregado") && rs.getString("destino_unido") == null &&
+                 //System.out.println("Estado pedido: " + rs.getString("pe_num_unido"));
+                        if ((rs.getString("pe_estado").equals("Entregado") || rs.getString("pe_estado").equals("Facturado") || rs.getString("pe_estado").equals("Facturado y Validado"))
+                            && rs.getString("destino_unido") == null &&
                            (rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido"))){
 
                             if(rs.getBoolean("pe_fin_unido")){
@@ -207,8 +209,8 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                             datosFila[j] = difDias;
                             incidencias = (difDias != 0 ) ? incidencias + 1 : incidencias;
                             totalIncidencias = (difDias != 0 ) ? totalIncidencias + difDias : totalIncidencias;
-//                            System.out.println("F" + k + " " + difDias + " Incidencias: " + incidencias);
-//                            System.out.println("Dias max: " + rs.getInt("sv_dias"));
+                           // System.out.println("F" + k + " " + difDias + " Incidencias: " + incidencias);
+                            //System.out.println("Dias max: " + rs.getInt("sv_dias"));
                             if (difDias > rs.getInt("sv_dias")){
                                 peMaxFecha.add(numeroFila);
                             }else{
@@ -1142,8 +1144,9 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                             fMenos = fMenos + iFmenos;
                         }
 
-                        if (rs.getString("pe_estado").equals("Entregado") && rs.getString("pe_incidencia") != null &&
-                           (rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido")))
+                        if ((rs.getString("pe_estado").equals("Entregado") || rs.getString("pe_estado").equals("Facturado") || rs.getString("pe_estado").equals("Facturado y Validado"))
+                          //   && rs.getString("pe_incidencia") != null &&
+                           &&(rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido")))
                         {
                             if(peUnidos && rs.getString("destino_unido") != null){
                                 fMenos = iFmenos + iFmenosUn;

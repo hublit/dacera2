@@ -1970,6 +1970,14 @@ public class CSAnyadirPedidoNew extends JPanel
             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>El cliente está inactivo</FONT></HTML>");
             JOptionPane.showMessageDialog(null,errorFields);
             jButtonGuardar.setEnabled(true);
+        } else if((jComboFactor.getSelectedItem().toString()).equals("Ninguno")){
+            ValidarFormatos("Seleccione Tipo de Vehículo");
+        }
+        else if(estado_ve.equals("Selecciona")){
+            ValidarFormatos("Seleccione Estado del Vehículo");
+        }
+        else if(soporte.equals("Selecciona")){
+            ValidarFormatos("Seleccione Soporte del Proveedor");
         }
         else
         {
