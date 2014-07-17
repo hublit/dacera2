@@ -14,7 +14,9 @@ public class BeanFactura {
     private Long numPedido;
     private String fecha;
     private String provinciaOrigen;
+    private String poblacionOrigen;
     private String provinciaDestino;
+    private String poblacionDestino;
     private String servicio;
     private String servicioOrigen;
     private String servicioDestino;
@@ -41,6 +43,9 @@ public class BeanFactura {
     private String fechaAbono;
     private String observaciones;
     private Boolean obsInFactura;
+    private String kms;
+    private String att;
+    private String ve_estado;
     
     private String aux;
 
@@ -151,6 +156,22 @@ public class BeanFactura {
 
     public void setProvinciaOrigen(String provinciaOrigen) {
         this.provinciaOrigen = provinciaOrigen;
+    }
+
+    public String getPoblacionDestino() {
+        return poblacionDestino;
+    }
+
+    public void setPoblacionDestino(String poblacionDestino) {
+        this.poblacionDestino = poblacionDestino;
+    }
+
+    public String getPoblacionOrigen() {
+        return poblacionOrigen;
+    }
+
+    public void setPoblacionOrigen(String poblacionOrigen) {
+        this.poblacionOrigen = poblacionOrigen;
     }
 
     public void setServicio(String servicio) {
@@ -291,6 +312,30 @@ public class BeanFactura {
 
     public void setObsInFactura(Boolean obsInFactura) {
         this.obsInFactura = obsInFactura;
+    }
+
+    public String getAtt() {
+        return att;
+    }
+
+    public void setAtt(String att) {
+        this.att = att;
+    }
+
+    public String getKms() {
+        return kms;
+    }
+
+    public void setKms(String kms) {
+        this.kms = kms;
+    }
+
+    public String getVe_estado() {
+        return ve_estado;
+    }
+
+    public void setVe_estado(String ve_estado) {
+        this.ve_estado = ve_estado;
     }
 
 }
