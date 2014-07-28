@@ -52,7 +52,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
 {
     private static boolean peUnidos;
     private  String consulta="";
-    private static int difDias = 0;
+    private static int difDias;
     ArrayList<Integer> marcaUnidos = new ArrayList<Integer>();
     ArrayList<Integer> peMaxFecha = new ArrayList<Integer>();
 
@@ -92,9 +92,11 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         double totalMargen = 0;
         int totalDiasCampa = 0;
         int incidencias = 0;
+        int totalUnidos =0;
         int fMenos = 0;
         int totalIncidExced = 0;
         int totalIncidencias = 0;
+        int totalDiasExced =0;
         String fechaPeUnido = "";
 
         DecimalFormat df = new DecimalFormat("0.00");
@@ -111,6 +113,8 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                 int diasCampa = 0;
                 String fechaPe = "";
                 String fechaReal = "";
+                difDias = 0;
+                totalDiasExced = 0;
 
                 if (!rs.getString("pe_num_unido").equals("0") || rs.getString("destino_unido") != null){
                     marcaUnidos.add(rs.getInt("pe_num"));
@@ -191,30 +195,41 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                     }
                     else if (k==26)// && rs.getString("pe_incidencia") != null)
                     {
+                        int iFmenos = (!rs.getString("pe_in_f_menos").equals("")) ? Integer.parseInt(rs.getString("pe_in_f_menos")) : 0;
+                        if (rs.getString("destino_unido") != null || !rs.getString("pe_num_unido").equals("0")){
+                            fMenos = fMenos + iFmenos;
+                        }
+
                  //System.out.println("Estado pedido: " + rs.getString("pe_num_unido"));
                         if ((rs.getString("pe_estado").equals("Entregado") || rs.getString("pe_estado").equals("Facturado") || rs.getString("pe_estado").equals("Facturado y Validado"))
-                            && rs.getString("destino_unido") == null &&
-                           (rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido"))){
+//                            && rs.getString("destino_unido") == null &&
+                           &&(rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido"))){
 
-                            if(rs.getBoolean("pe_fin_unido")){
+//                            if(rs.getBoolean("pe_fin_unido")){
+                              if(rs.getBoolean("destino_unido")){
 //                                System.out.println("fechaPeUnido: " + fechaPeUnido);
                                 difDias = (!fechaPeUnido.equals("") && !fechaReal.equals("")) ? Utilidades.calcularDiasHabiles(fechaPeUnido, fechaReal) : 0;
                                 difDias = difDias - fMenos;
                                 fechaPeUnido = "";
                                 fMenos = 0;
                             }else{
-                                difDias = (!fechaPe.equals("") && !fechaReal.equals("")) ? Utilidades.calcularDiasHabiles(fechaPe, fechaReal) : 0;
-                                difDias = difDias - rs.getInt(k);
+                                if(rs.getString("destino_unido") == null){
+                                    difDias = (!fechaPe.equals("") && !fechaReal.equals("")) ? Utilidades.calcularDiasHabiles(fechaPe, fechaReal) : 0;
+                                    difDias = difDias - rs.getInt(k);
+                                }
                             }
-                            datosFila[j] = difDias;
+                           datosFila[j] = difDias;
                             incidencias = (difDias != 0 ) ? incidencias + 1 : incidencias;
                             totalIncidencias = (difDias != 0 ) ? totalIncidencias + difDias : totalIncidencias;
                            // System.out.println("F" + k + " " + difDias + " Incidencias: " + incidencias);
                             //System.out.println("Dias max: " + rs.getInt("sv_dias"));
                             if (difDias > rs.getInt("sv_dias")){
                                 peMaxFecha.add(numeroFila);
+                                totalDiasExced++;
                             }else{
-                                totalIncidExced = totalIncidExced + 1;
+                                if(rs.getString("pe_num_unido").equals("0")){
+                                    totalIncidExced = totalIncidExced + 1;
+                                }
                             }
                         }
                     }
@@ -223,10 +238,20 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                         datosFila[j] = rs.getObject(k + 1);
                         //System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                     }
+
                     j++;
                 }
+System.out.println("Total incidencias exced: " + totalIncidExced);
+System.out.println("Total unidos" + totalUnidos);
                 modelo.addRow(datosFila);
+
+                //Para total F y %
+                if(rs.getString("pe_num_unido").equals("0")){
+                    totalUnidos++;
+                }
+                totalIncidExced = totalIncidExced - totalDiasExced;
                 numeroFila++;
+System.out.println("Número de filas" + numeroFila);
             }
             rs.close();
             Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
@@ -269,11 +294,11 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                 }
                 if(k==26 && totalIncidencias > 0)
                 {
-                    datosFilaTotal[i] = Utilidades.redondear((double) totalIncidencias / incidencias, 2);
+                    datosFilaTotal[i] = Utilidades.redondear((double) totalIncidencias / totalUnidos, 2);
                 }
                 if(k==27 && totalIncidExced > 0)
                 {
-                    datosFilaTotal[i] = ((double) totalIncidExced / incidencias) * 100;
+                    datosFilaTotal[i] = ((double) totalIncidExced / totalUnidos) * 100;
                 }
                 i++;
            }
