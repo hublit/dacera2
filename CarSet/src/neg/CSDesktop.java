@@ -561,9 +561,9 @@ public class CSDesktop extends JFrame
                     // crear marco interno
                     NuevoPedidoArchivo = new JInternalFrame("Pedido desde Archivo", true, false, false, true);
                     // adjuntar panel al panel de contenido del marco interno
-                    CSAnyadirPedidoArchivo panel = null;
+                    CSAnyadirPedidoArchivoNew panel = null;
                     try {
-                        panel = new CSAnyadirPedidoArchivo();
+                        panel = new CSAnyadirPedidoArchivoNew();
                     } catch (BiffException ex) {
                         Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
                     }

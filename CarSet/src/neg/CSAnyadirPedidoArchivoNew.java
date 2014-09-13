@@ -36,6 +36,7 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
         {
             int confirmado = JOptionPane.showConfirmDialog(this,"¿Cargar pedidos desde el Archivo?");
             String pe_num = "";
+            String numUnido = "0";
             if (JOptionPane.OK_OPTION == confirmado)
             {
               WorkbookSettings opciones= new WorkbookSettings();
@@ -124,15 +125,16 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                          String observaciones = (!cell.getContents().equals("")) ? cell.getContents().toUpperCase() : "";
                          query += "'"+ observaciones + "',";
                      }else if (cell.getColumn() == 33){
-                         int obClMail = (!cell.getContents().equals("SI")) ? 1 : 0;
+                         int obClMail = (!cell.getContents().equals("SI")) ? 0 : 1;
                          query += "'"+ obClMail + "',";
                      }else if (cell.getColumn() == 34){
-                         int obPrMail = (!cell.getContents().equals("SI")) ? 1 : 0;
+                         int obPrMail = (!cell.getContents().equals("SI")) ? 0 : 1;
                          query += "'"+ obPrMail + "',";
                      }else if (cell.getColumn() == 35){
-                         String numUnido = (cell.getContents().equals("UNIR PEDIDO")) ? pe_num : "0";
+                         numUnido = (cell.getContents().equals("UNIR PEDIDO") && numUnido.equals("0")) ? pe_num : numUnido;
                          int finUnido = (cell.getContents().equals("FINAL")) ? 1 : 0;
                          query += "'"+ numUnido + "', '"+ finUnido + "', ";
+                         numUnido = (cell.getContents().equals("FINAL")) ? "0" : numUnido;
                      } else {
                         if (type == CellType.LABEL)
                         {
