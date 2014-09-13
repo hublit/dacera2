@@ -1249,12 +1249,13 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
         list.add("06-01-2014");
         list.add("18-04-2014");
         list.add("01-05-2014");
-        list.add("19-06-2014");
         list.add("15-08-2014");
         list.add("01-11-2014");
         list.add("06-12-2014");
         list.add("08-12-2014");
+        list.add("24-12-2014");
         list.add("25-12-2014");
+        list.add("31-12-2014");        
 
         // Vamos al lunes siguiente si estamos en un fin de semana.
         if (calEnd.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || calEnd.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
