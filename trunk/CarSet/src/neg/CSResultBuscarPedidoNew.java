@@ -199,7 +199,6 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                         if (rs.getString("destino_unido") != null || !rs.getString("pe_num_unido").equals("0")){
                             fMenos = fMenos + iFmenos;
                         }
-
                  //System.out.println("Estado pedido: " + rs.getString("pe_num_unido"));
                         if ((rs.getString("pe_estado").equals("Entregado") || rs.getString("pe_estado").equals("Facturado") || rs.getString("pe_estado").equals("Facturado y Validado"))
 //                            && rs.getString("destino_unido") == null &&
@@ -246,7 +245,8 @@ System.out.println("Total unidos" + totalUnidos);
                 modelo.addRow(datosFila);
 
                 //Para total F y %
-                if(rs.getString("pe_num_unido").equals("0")){
+                if(rs.getString("pe_num_unido").equals("0") &&
+                  (rs.getString("pe_estado").equals("Entregado") || rs.getString("pe_estado").equals("Facturado") || rs.getString("pe_estado").equals("Facturado y Validado"))){
                     totalUnidos++;
                 }
                 totalIncidExced = totalIncidExced - totalDiasExced;

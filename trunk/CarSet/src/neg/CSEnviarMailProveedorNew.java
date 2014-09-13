@@ -112,8 +112,8 @@ public class CSEnviarMailProveedorNew
 //              "<br>" +
                 "<tr><td width='200'><font face='Helvetica'><u><b> Soporte : </b></u></font></td><td><font face='Helvetica'> "+mail.getSoporte()+" </font></td></tr>" +
                 "<tr><td width='200'><font face='Helvetica'><u><b> Fecha aprox. de recogida : </b></u></font></td><td><font face='Helvetica'> "+mail.getFechaRecogida()+" </font></td></tr>" +
-                "<tr><td width='200'><font face='Helvetica'><u><b> Fecha aprox. de entrega : </b></u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>";
-                //"<tr><td width='200'><font face='Helvetica'><u> Estado del vehículo : </u></font></td><td><font face='Helvetica'> "+mail.getVeEstado()+" </font></td></tr>";
+                "<tr><td width='200'><font face='Helvetica'><u><b> Fecha aprox. de entrega : </b></u></font></td><td><font face='Helvetica'> "+mail.getFechaEntrega()+" </font></td></tr>" +
+                "<tr><td width='200'><font face='Helvetica'><u><b> Estado del vehículo : </b></u></font></td><td><font face='Helvetica'> "+mail.getVeEstado()+" </font></td></tr>";
                 htmlText = htmlText + //"<br>" +
                 "<tr><td colspan='2'><table border='1' width='700'>" +
                 "<tr><td width='130' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MARCA</b></font></td><td width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MODELO </b></font></td><td width='285' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;MATRICULA/BASTIDOR</b></font></td>" +
