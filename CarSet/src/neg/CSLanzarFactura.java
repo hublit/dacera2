@@ -98,15 +98,12 @@ public class CSLanzarFactura extends javax.swing.JPanel
             String importeSuplemento="";
             double importeSupD = 0;
             //VARIABLES CAMPA
-            String importeEntradaCampaAux="";
-            String importeDiasCampaAux="";
             String labelCampa1="";
             String labelCampa2="";
             String finalCampaEntrada = "";
             String finalCampaDias = "";
             double importeCampaEntradaD=0;
             double importeCampaDiasD=0;
-            String importeCampaDias="";
             //VARIABLES TOTALES
             double totalAux = 0;
             String importeTotalAuxS="";
@@ -324,7 +321,8 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 obsEnFactura = 1;
             }
             //TOTAL
-            totalAux = importeTrasladoD + importeFc + importeServicioD + importeSupD + importeCampaEntradaD + importeCampaDiasD;
+            //totalAux = importeTrasladoD + importeFc + importeServicioD + importeSupD + importeCampaEntradaD + importeCampaDiasD;
+            totalAux = importeTrasladoD;
             importeTotalAuxS = Double.toString(totalAux);
 
             String query = "INSERT INTO fa_facturas_aux (fa_num, fa_fecha, fa_marca, fa_modelo, fa_matricula, fa_factor, fa_soporte, " +
@@ -1205,10 +1203,12 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
                     // SI EL SOPORTE ES CAMION COMPLETO Y SU NUMERO EN CAMION NO ES 1
                     // EL IMPORTE ES 0 PORQUE SOLO LLEVA IMPORTE EL PRIMERO
-                    if(soporte.equals("Camión completo") && !numCamion.equals("1"))
-                        importeTraslado="0";
+                    //if(soporte.equals("Camión completo") && !numCamion.equals("1"))
+                    //    importeTraslado="0";
+
                     importeTrasladoD = Double.parseDouble(importeTraslado);
                     importeTrasladoD=Utilidades.redondear(importeTrasladoD, 2);
+
                     if(!beanFactura.getServicioEspecial().equals(""))
                     {
                         if(!beanFactura.getServicioEspecial().equals("Otros"))
@@ -1232,7 +1232,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                         }
                     }
                     //SI TIENE IDA Y VUELTA
-                    if(beanFactura.getIdaVuelta().equals("1"))
+/*                    if(beanFactura.getIdaVuelta().equals("1"))
                     {
                         String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
 
@@ -1252,6 +1252,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
 
                         importeIda="- " + String.valueOf(IdaVueltaDF);
                     }
+  */
                     //LINEA DE FACTOR DE CORRECCION
                     ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
                     factorTexto = factorTarifa.get(0).toString();
@@ -1309,7 +1310,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     finalCampaEntrada = "ENTRADA";
                     finalCampaDias = beanFactura.getDiasCampa()+ " DIAS * " + importeDiasCampaAux;
 
-                    importeCampaEntradaD=Double.parseDouble(importeEntradaCampaAux);
+                    //importeCampaEntradaD=Double.parseDouble(importeEntradaCampaAux);
                     importeCampaDiasD=(Double.parseDouble(beanFactura.getDiasCampa()))*(Double.parseDouble(importeDiasCampaAux));
 
                     importeCampaDias=String.valueOf(importeCampaDiasD);
@@ -1343,7 +1344,9 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     }
            }
             //TOTAL
-            totalAux = importeTrasladoD - IdaVueltaDF + importeFc + importeServicioD + importeSupD + importeCampaEntradaD + importeCampaDiasD;
+            //totalAux = importeTrasladoD - IdaVueltaDF + importeFc + importeServicioD + importeSupD + importeCampaEntradaD + importeCampaDiasD;
+            totalAux = importeTrasladoD;
+
             importeTotalAuxS = Double.toString(totalAux);
 
 
