@@ -322,7 +322,7 @@
 				<text><![CDATA[DOMICILIO FISCAL]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="301" y="165" width="94" height="17"/>
+				<reportElement x="301" y="165" width="243" height="17"/>
 				<textElement>
 					<font fontName="Verdana" size="8"/>
 				</textElement>

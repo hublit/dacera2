@@ -282,7 +282,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
                 "pe.pe_descripcion, pe.pe_estado, pe.pe_fecha_origen, pe.pe_fecha_destino, pe.pe_fecha_real_destino, " +
                 "pe.pe_num_unido, destino_unido, real_destino, fecha_destino, estado "+
                 "FROM (carset.pe_pedidos pe, carset.pc_pedidos_clientes pc) "+
-                "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino AS destino_unido , pe_fecha_destino AS fecha_destino, " +
+                "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino AS destino_unido, pe_fecha_destino AS fecha_destino, " +
                 "pe_fecha_real_destino AS real_destino, pe_estado AS estado FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC) " +
                 "pe_unido ON pe.pe_num = pe_unido.num_unido " +
                 " WHERE pc.pe_num = pe.pe_num ";
@@ -303,19 +303,20 @@ public class CSInformeDet1 extends javax.swing.JPanel
 
                         nueva.setNumPedido(rs.getLong("pe_num"));
                         nueva.setFecha(rs.getString("pe_fecha"));
-                        nueva.setProvinciaOrigen(rs.getString("pe_servicio_origen"));
+                        nueva.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
                         if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
                             nueva.setFecha_prevista_entrega(rs.getString("fecha_destino"));
                             nueva.setProvinciaDestino(rs.getString("destino_unido"));
                             nueva.setServicioDestino(rs.getString("destino_unido"));
                             nueva.setFecha_real_entrega(rs.getString("real_destino"));
+                            nueva.setEstado(rs.getString("estado"));
                         }else{
                             nueva.setFecha_prevista_entrega(rs.getString("pe_fecha_destino"));
-                            nueva.setProvinciaDestino(rs.getString("pe_servicio_destino"));
-                            nueva.setServicioDestino(rs.getString("pe_servicio_destino"));
+                            nueva.setProvinciaDestino(rs.getString("pe_provincia_destino"));
+                            nueva.setServicioDestino(rs.getString("pe_provincia_destino"));
                             nueva.setFecha_real_entrega(rs.getString("pe_fecha_real_destino"));
+                            nueva.setEstado(rs.getString("pe_estado"));
                         }
-                        nueva.setEstado(rs.getString("estado"));
                         nueva.setServicio(rs.getString("pe_servicio"));
                         nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
                         nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
@@ -337,7 +338,7 @@ public class CSInformeDet1 extends javax.swing.JPanel
             try {
                 CSLanzarInforme1 informe1=new CSLanzarInforme1();
                 try {
-                    informe1.lanzar(lista, clienteID, cliente,fechaSIni, fechaSFin);
+                    informe1.lanzar(lista, clienteID, cliente, fechaSIni, fechaSFin);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
                 }

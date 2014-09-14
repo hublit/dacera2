@@ -2571,7 +2571,8 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 }//GEN-LAST:event_jCBoxEstadoVehiculoActionPerformed
 
     private void jTextKmFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextKmFocusLost
-        if(!jTextKm.getText().equals("")){
+        if(!jTextKm.getText().equals("") &&
+           (!jComboBoxEstado.getSelectedItem().toString().equals("Facturado") && !jComboBoxEstado.getSelectedItem().toString().equals("Facturado y Validado"))){
             Double kms = Utilidades.redondear((Double.parseDouble(jTextKm.getText()) * precioFa), 2);
             jTextTaEsCli.setText(kms.toString());
         }

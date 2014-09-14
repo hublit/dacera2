@@ -70,22 +70,23 @@ public class CSLanzarInforme1
             String matricula = informe.getMatricula();
             String soporte = informe.getSoporte();
             String servicioEspecial = informe.getServicioEspecial();
-            String sSuplemento = informe.getSuplemento();
-            dSuplemento = (!sSuplemento.equals("")) ? Double.parseDouble(sSuplemento) : dSuplemento;
+
             String numCamion = informe.getNumCamion();
             String observaciones = informe.getDescripcion();
-            String estado = informe.getEstado();
+            String estado = (informe.getEstado() != null) ? informe.getEstado() : "";
             String fechaPrevistaRecogida = informe.getFecha_prevista_recogida();
             String fechaPrevistaEntrega = informe.getFecha_prevista_entrega();
             String fechaRealEntrega = informe.getFecha_real_entrega();
 
             String [] temp = null;
+            String nuevaFechaRealEntrega = "";
+            if(fechaRealEntrega != null){
             temp = fechaRealEntrega.split("\\-");
-            String anyo=temp[0];
-            String mes=temp[1];
-            String dia=temp[2];
-            String nuevaFechaRealEntrega=dia+"/"+mes+"/"+anyo;
-
+                String anyo=temp[0];
+                String mes=temp[1];
+                String dia=temp[2];
+                nuevaFechaRealEntrega = dia+"/"+mes+"/"+anyo;
+            }
             // SE CALCULA EL VALOR DEL SERVICIO ESPECIAL
             String cl_id=String.valueOf(clienteID);
             importeServicioEs=Utilidades.CalcularImporteServicioEspecial(servicioEspecial,cl_id,fecha);
@@ -100,14 +101,14 @@ public class CSLanzarInforme1
             String destino = informe.getProvinciaDestino();
 
             // SI EL ORIGEN Y EL DESTINO SON IGUALES
-            if(origen.equals(destino))
+            if(origen.equals(destino) && !servicio.equals("Selecciona"))
             {
-                finalServicio=origen+" "+ servicio.toUpperCase();
+                finalServicio = origen+" - "+ servicio.toUpperCase();
             }
             // SI SON DISTINTOS
             else
             {
-                finalServicio=origen+" - "+ destino;
+                finalServicio = origen+" - "+ destino;
             }
 
             // SI NO HAY TARIFA ESPECIAL CLIENTE
@@ -166,9 +167,8 @@ public class CSLanzarInforme1
             importeTotalAux=redondear(importeTotalAux, 2);
 
             // SE INTRODUCEN LOS VALORES EN LA TABLA AUXILIAR DE INFORMES
-
             String query = "INSERT INTO fi_informe_aux (fi_num, fi_fecha, fi_soporte, fi_traslado, " +
-                                                        "fi_servicio,fi_importe_servicio,fi_vehiculo, fi_matricula, fi_tarifa, fi_suplemento, " +
+                                                        "fi_servicio, fi_importe_servicio, fi_vehiculo, fi_matricula, fi_tarifa, fi_suplemento, " +
                                                         "fi_descuento, fi_neto, fi_fecha_prevista_recogida, fi_fecha_prevista_entrega, fi_estado, " +
                                                         "fi_fecha_real_entrega, fi_observaciones" +
                                                         " ) VALUES (";
