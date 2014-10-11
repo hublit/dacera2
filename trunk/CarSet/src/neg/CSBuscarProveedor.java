@@ -407,7 +407,7 @@ public class CSBuscarProveedor extends javax.swing.JPanel
             }
             if (!dni.equals(""))
             {
-                query = query + " AND pr.pr_DNI_CIF = '"+dni+"'";
+                query = query + " AND pr.pr_DNI_CIF LIKE '%"+dni+"%'";
             }
             if (!regimen.equals("Selecciona"))
             {

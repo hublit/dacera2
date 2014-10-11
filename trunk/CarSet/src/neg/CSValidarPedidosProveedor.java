@@ -491,8 +491,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jLabelAnyoIva.setText("IVA año");
         jLabelAnyoIva.setName("jLabelAnyoIva"); // NOI18N
 
-        jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2016", "2015", "2014", "2013", "2012", "2011", "2010" }));
-        jComboBoxAnyoIva.setSelectedIndex(2);
+        jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2014", "2013", "2012", "2011", "2010" }));
         jComboBoxAnyoIva.setName("jComboBoxAnyoIva"); // NOI18N
         jComboBoxAnyoIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -649,7 +648,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
