@@ -405,7 +405,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
             }
             if (!dni.equals(""))
             {
-                query = query + " AND cl.cl_DNI_CIF = '"+dni+"'";
+                query = query + " AND cl.cl_DNI_CIF like '%"+dni+"%'";
             }
             if (!codPostal.equals(""))
             {

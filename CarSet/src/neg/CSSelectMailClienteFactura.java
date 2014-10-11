@@ -10,14 +10,12 @@ import data.BeanCorreoCliente;
 import java.io.IOException;
 import javax.mail.MessagingException;
 import utils.TablaModelo;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
 import data.Cliente;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,7 +81,7 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
         initComponents();
         jTable1.setModel(modelo);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(50);
+        columna.setPreferredWidth(200);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(300);
 
@@ -144,6 +142,7 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
         });
         jTable1.setEditingRow(0);
         jTable1.setName("jTable1"); // NOI18N
+        jTable1.setPreferredSize(new java.awt.Dimension(400, 64));
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Cerrar");
@@ -166,16 +165,16 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(101, 101, 101)
-                        .addComponent(jButtonMandar)))
-                .addContainerGap())
+                        .addComponent(jButtonMandar)
+                        .addGap(235, 235, 235))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

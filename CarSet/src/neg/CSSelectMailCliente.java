@@ -7,14 +7,11 @@
 package neg;
 
 import utils.TablaModelo;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
 import data.Cliente;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,22 +78,6 @@ public class CSSelectMailCliente extends javax.swing.JPanel
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(300);
 
-        /*jTable1.addMouseListener(new MouseAdapter()
-        {
-        public void mouseClicked(MouseEvent e)
-        {
-            System.out.println("Estamos en el result");
-            int fila = jTable1.rowAtPoint(e.getPoint());
-            int columna = jTable1.columnAtPoint(e.getPoint());
-              if ((fila > -1) && (columna > -1))
-            {
-               String cliente = ((String)jTable1.getValueAt(fila,1).toString());
-               jTextCli.setText(cliente);              
-               CSDesktop.BuscaCliente.dispose();
-              }                  
-         }
-        });*/
-        //return finalMail;
     }
 
     
