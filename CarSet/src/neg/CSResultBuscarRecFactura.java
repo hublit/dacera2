@@ -150,11 +150,6 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
         jDateFechaFactura.setDate(hoy);
         jTable1.setModel(modelo);
         jTable1.setDefaultRenderer (Object.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.lang.Object.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.util.Date.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.lang.String.class, new MiRender());
-        //jTable1.setDefaultRenderer (java.lang.Double.class, new MiRender());
-
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
         columna.setPreferredWidth(50);
@@ -178,7 +173,6 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
         DefaultTableCellRenderer tcrRight = new DefaultTableCellRenderer();
         tcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
         jTable1.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
-        //jTable1.getTableHeader().setPreferredSize(new Dimension(jTable1.getTableHeader().getWidth(),26));
         jTable1.getTableHeader().setBackground(Color.GRAY);
         jTable1.getTableHeader().setForeground(Color.white);        
 

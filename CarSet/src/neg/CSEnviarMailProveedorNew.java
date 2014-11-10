@@ -48,10 +48,8 @@ public class CSEnviarMailProveedorNew
                       " pe.pe_dias_campa, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula," +
                       " pe.pe_ve_marca, pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, " +
                       " pe.pe_num_en_camion, pe_observaciones_carset, " +
-                      " sr_dias,  pe_ve_estado, pe_kms FROM pe_pedidos pe, pp_pedidos_proveedores pp, " +
-                      " sr_servicios sr " +
-                      " WHERE pe.pe_num = pp.pe_num AND sr.pr_id = pp.pr_id " +
-                      " AND pe.pe_num ="+mail.getNumero();
+                      " pe_ve_estado, pe_kms FROM pe_pedidos pe, pp_pedidos_proveedores pp " +
+                      " WHERE pe.pe_num = pp.pe_num AND pe.pe_num ="+mail.getNumero();
             
             System.out.println(query);
 
@@ -62,12 +60,8 @@ public class CSEnviarMailProveedorNew
                 mail.setServicioEspecial(rs_mail.getString("pe_servicio_especial"));
                 mail.setDiasCampa(rs_mail.getString("pe_dias_campa"));
                 mail.setFactorCorrecccion(rs_mail.getString("fc_id"));
-                //mail.setTarifaEspecialCliente(rs_mail.getString("pe_ta_es_cliente"));
-                //mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
                 mail.setObservaciones(rs_mail.getString("pe_observaciones_carset"));
-                //mail.setTarifa(rs_mail.getString("tp_tarifa"));
-                mail.setCampa(rs_mail.getString("sp_campa"));
                 mail.setVeEstado(rs_mail.getString("pe_ve_estado"));
                 //mail.setKms(rs_mail.getString("pe_kms"));
             }

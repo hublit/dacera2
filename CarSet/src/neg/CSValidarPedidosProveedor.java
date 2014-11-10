@@ -59,6 +59,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     {
         initComponents();
         inicializarTrimestres();
+        jComboBoxAnyoIva.setSelectedItem(anyo);
         consulta = query;
 
         TablaModeloVPedidos modelo = new TablaModeloVPedidos();
@@ -491,7 +492,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jLabelAnyoIva.setText("IVA año");
         jLabelAnyoIva.setName("jLabelAnyoIva"); // NOI18N
 
-        jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2014", "2013", "2012", "2011", "2010" }));
+        jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2015", "2014", "2013", "2012", "2011", "2010" }));
         jComboBoxAnyoIva.setName("jComboBoxAnyoIva"); // NOI18N
         jComboBoxAnyoIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1120,7 +1121,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                                                             "'"+ts.getTr_num_carset()+"', '"+pr_num+"', '"+importeProveedor+"', " +
                                                             "'"+totalIva+"', '"+irpf+"', '"+totalImporte+"', 'PTE', '"+fechaPago+"', " +
                                                             "'"+banco+"', '"+ts.getTr_observaciones()+"', '"+fechaContabilizacion+"')";
-                System.out.println(query);
+//                System.out.println(query);
                 boolean rsIn = CSDesktop.datos.manipuladorDatos(query);
 
                 if(rsIn)
@@ -1163,31 +1164,32 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
      */
       private void inicializarTrimestres() throws SQLException
       {
+        jComboBoxIvaTrimestre.setSelectedIndex(0);
+
         ResultSet rs = CSDesktop.datos.select("SELECT ti_id, ti_anyo, ti_trimestre, ti_estado FROM ti_trimestre_iva WHERE ti_anyo = "+anyo);
         while(rs.next())
         {
+            
             if (rs.getString("ti_trimestre").equals("primero") && rs.getBoolean("ti_estado"))
             {
                 jButtonTriUno.setEnabled(false);
-                jComboBoxIvaTrimestre.setSelectedIndex(0);
-            }
-            else if(rs.getString("ti_trimestre").equals("segundo") && rs.getBoolean("ti_estado"))
-            {
-                jButtonTriDos.setEnabled(false);
                 jComboBoxIvaTrimestre.setSelectedIndex(1);
             }
-            else if(rs.getString("ti_trimestre").equals("tercero") && rs.getBoolean("ti_estado"))
+            if(rs.getString("ti_trimestre").equals("segundo") && rs.getBoolean("ti_estado"))
+            {
+                jButtonTriDos.setEnabled(false);
+                jComboBoxIvaTrimestre.setSelectedIndex(2);
+            }
+            if(rs.getString("ti_trimestre").equals("tercero") && rs.getBoolean("ti_estado"))
             {
                 jButtonTriTres.setEnabled(false);
-                jComboBoxIvaTrimestre.setSelectedIndex(2);
-            }else{
                 jComboBoxIvaTrimestre.setSelectedIndex(3);
             }
             
         }
         rs.close();
         String query = "SELECT ti_id, ti_anyo, ti_trimestre, ti_estado FROM ti_trimestre_iva WHERE ti_trimestre = 'cuarto' AND ti_anyo = "+anyoAnt;
-        System.out.println(query);
+//        System.out.println(query);
         ResultSet rsCuatro = CSDesktop.datos.select("SELECT ti_id, ti_anyo, ti_trimestre, ti_estado FROM ti_trimestre_iva WHERE ti_trimestre = 'cuarto' AND ti_trimestre = ti_anyo = "+anyoAnt);
         while(rsCuatro.next())
         {
@@ -1228,7 +1230,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     {
         String query = "INSERT INTO ti_trimestre_iva (ti_anyo, ti_trimestre, ti_estado)" +
                                              " VALUES ('"+anyo+"', '"+trimestre+"', 1)";
-        System.out.println(query);
+//        System.out.println(query);
         boolean rsIn = CSDesktop.datos.manipuladorDatos(query);
      }
 }

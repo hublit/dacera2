@@ -136,13 +136,15 @@ public class CSLogin extends JFrame
         }
     });
 
-    Icon imagen = new ImageIcon(getClass().getResource("/images/logo_carset_200.jpg"));
+//    Icon imagen = new ImageIcon(getClass().getResource("/images/logo_carset_200.jpg"));
+    Icon imagen = new ImageIcon(getClass().getResource("/images/logo_carset_400.png"));
     jLabel5.setIcon(imagen);
+    jLabel5.setHorizontalAlignment(SwingConstants.CENTER); 
     contentPane.setLayout(null);
     contentPane.setBorder(BorderFactory.createEtchedBorder());
     contentPane.setBackground(Color.white);
     
-    addComponent(contentPane, jLabel5, 250,20,300,215);
+    addComponent(contentPane, jLabel5, 90,20,500,215);
     addComponent(contentPane, jLabel1, 175,260,106,18);
     addComponent(contentPane, jLabel2, 175,307,97,18);
     addComponent(contentPane, jTextField1, 280,260,183,22);
