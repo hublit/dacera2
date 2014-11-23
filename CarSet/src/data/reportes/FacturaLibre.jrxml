@@ -127,8 +127,8 @@
 				<textFieldExpression class="java.lang.String"><![CDATA["CIF: " +$P{CIF}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="14" y="11" width="139" height="80"/>
-				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_200.jpg"))]]></imageExpression>
+				<reportElement x="14" y="11" width="175" height="80"/>
+				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_400.png"))]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="16" y="137" width="252" height="17"/>
