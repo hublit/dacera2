@@ -250,8 +250,8 @@
 				<reportElement x="10" y="119" width="262" height="64" backcolor="#FFFFFF"/>
 			</rectangle>
 			<image>
-				<reportElement x="14" y="11" width="139" height="80"/>
-				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_200.jpg"))]]></imageExpression>
+				<reportElement x="14" y="11" width="175" height="80"/>
+				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_400.png"))]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="16" y="122" width="252" height="15"/>

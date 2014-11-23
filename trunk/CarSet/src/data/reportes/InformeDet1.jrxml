@@ -53,8 +53,8 @@
 	<title>
 		<band height="86" splitType="Stretch">
 			<image>
-				<reportElement x="16" y="1" width="139" height="80"/>
-				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_200.jpg"))]]></imageExpression>
+				<reportElement x="16" y="1" width="175" height="80"/>
+				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_400.png"))]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="189" y="23" width="310" height="35"/>
