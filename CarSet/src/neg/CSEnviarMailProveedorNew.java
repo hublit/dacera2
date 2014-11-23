@@ -90,7 +90,7 @@ public class CSEnviarMailProveedorNew
                     Message.RecipientType.CC,
                     new InternetAddress("carset@carset.es"));
                 message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
-                String imagen ="http://carset.e.telefonica.net/images/logo_carset_trans.gif";
+                String imagen ="http://carset.e.telefonica.net/images/logo_carset_400.png";
 
                 //String htmlText ="<br><br><center><table>";
                 //htmlText = htmlText + "<tr><td><img src=\"http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg\" width='50%></td></tr></table>";
@@ -242,9 +242,9 @@ public class CSEnviarMailProveedorNew
                 htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Para cualquier consulta, no dude en ponerse en contacto con nuestro dpto. de Operaciones. </font></td></tr>";
                 htmlText = htmlText +"<br>";
                 htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Atentamente, </font></td></tr>";
-                htmlText = htmlText +"<br>";
-                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'><b> Departamento de Operaciones<b></font></td></tr>";
-                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>Tlf: 91 268 69 60 - Fax: 91 268 69 64 - www.carset.es</font></td></tr>";
+//                htmlText = htmlText +"<br>";
+                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'><b> Carset Servivios Integrales, S. L.<b> </font></td></tr>";
+                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>C.I.F.: 85750727 - Tlf: 91 268 69 60 - Fax: 91 268 69 64 - www.carset.es</font></td></tr>";
                 htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 10 Bl.B - Pl .4 - Of. 4 - 28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
                 htmlText = htmlText +"</table></body>";
 

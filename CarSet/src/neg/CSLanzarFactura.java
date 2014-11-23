@@ -340,7 +340,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             "'"+labelOtros+"','"+obsEnFactura+"','"+importeServicioOtros+"','"+labelCampa1+"','"+finalCampaEntrada+"','"+importeCampaEntradaD+"'," +
                             "'"+labelCampa2+"','"+finalCampaDias+"','"+importeCampaDiasD+"','"+kms+"','"+att+"','"+importeTotalAuxS+"','"+numCamion+"')";
 
-            System.out.println(query);
+            //System.out.println(query);
             boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
 
             total=total + totalAux;
@@ -518,7 +518,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             "fl_fecha_pago, fl_estado, fl_fecha, fl_importe_total,fl_importe,fl_iva,fl_tipo) VALUES (";
                     query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','2050-01-01','PTE','"+fechaFactura+"', "+totalIva2+","+total+","+iva+",'Factura')";
                    
-                    System.out.println(query);
+                    //System.out.println(query);
 
                      boolean rs = CSDesktop.datos.manipuladorDatos(query);
                      if(rs)

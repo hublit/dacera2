@@ -6,7 +6,6 @@
 
 package neg;
 
-//import utils.TablaModeloPedidos;
 import data.BeanCliente;
 import data.BeanFactura;
 import data.BeanRecFactura;
@@ -112,7 +111,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                         else
                         {
                             datosFila[j] = rs.getObject(k + 1);
-                            System.out.println("Dato" + k + " " + rs.getObject(k + 1));
+//                            System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         }
                         j++;
                     }
@@ -447,7 +446,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                     "AND (pe.pe_estado = 'Facturado' OR pe.pe_estado='Facturado y Validado') " +
                                     "AND '" + recFacturaAux.getFechaHasta() + "' " +
                                     "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
-                        System.out.println(query);
+                        //System.out.println(query);
                         ResultSet rs = CSDesktop.datos.select(query);
                         try
                         {
@@ -559,7 +558,7 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                     "AND (pe.pe_estado = 'Facturado' OR pe.pe_estado='Facturado y Validado') " +
                                     "AND '" + recFacturaAux.getFechaHasta() + "' " +
                                     "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
-                            System.out.println(query);
+                            //System.out.println(query);
                             ResultSet rs = CSDesktop.datos.select(query);
                             try
                             {
@@ -661,30 +660,61 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                         beanCliente = cliente.getDatosFacturaCliente(cl_id);
                         beanCliente.setCl_id(String.valueOf(cl_id));
 
-                        String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio, " +
+                        /*String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio, " +
                         "pe.pe_poblacion_origen, pe.pe_poblacion_destino, pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, " +
                         "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_modelo, pe.pe_ta_es_cliente, " +
                         "pe.pe_ta_es_proveedor, pe.pe_suplemento,pe.pe_num_en_camion, pe.pe_descripcion, pe.pe_ve_estado, pe_ob_cl_mail, pe.pe_kms, cl.cl_email" +
                         " FROM pe_pedidos pe, pc_pedidos_clientes pc, cl_clientes cl " +
                         " WHERE pe.pe_num = pc.pe_num " +
                         "AND pc.cl_id = cl.cl_id " +
+                         */
+                       String query = "SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, " +
+                       "pe.pe_servicio, pe.pe_poblacion_origen, pe.pe_poblacion_destino, pe.pe_servicio_especial, pe.pe_estado, " +
+                       "pe.pe_dias_campa, pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte, pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_estado, " +
+                       "pe.pe_ve_modelo, pe.pe_ta_es_cliente, pe.pe_ta_es_proveedor, pe.pe_suplemento, pe.pe_num_en_camion, pe.pe_ob_cl_mail, " +
+                       "pe.pe_descripcion, pe.pe_num_unido, pe_unido.destino_unido, pe_unido.estado_unido, pe_unido.pob_unido, pe.pe_kms, cl.cl_email  " +
+                       "FROM (pe_pedidos pe, pc_pedidos_clientes pc, cl_clientes cl) " +
+                       "LEFT JOIN (SELECT pe_num_unido AS num_unido, pe_provincia_destino, pe_provincia_destino AS destino_unido, pe_poblacion_destino AS pob_unido, pe_estado AS estado_unido " +
+                       "FROM pe_pedidos WHERE pe_fin_unido = 1 ORDER BY pe_num DESC) " +
+                       "pe_unido ON pe.pe_num = pe_unido.num_unido " +
+                       "WHERE pe.pe_num = pc.pe_num " +
+                       "AND pc.cl_id = cl.cl_id " +
                         " AND (pe.pe_estado = 'Facturado y Validado' OR pe.pe_estado='Facturado') AND pc.cl_id = " + cl_id + " AND pe.pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
-                        System.out.println(query);
+                        //System.out.println(query);
                         ResultSet rs = CSDesktop.datos.select(query);
                         try
                         {
-                                while (rs.next())
+                            while (rs.next())
+                            {
+                                Boolean unidoEstado = true;
+                                if (rs.getString("estado_unido") != null){
+                                    unidoEstado = (rs.getString("estado_unido").equals("Facturado y Validado") || rs.getString("estado_unido").equals("Facturado")) ? true : false;
+                                }
+                                if (rs.getLong("pe_num_unido") == 0 &&
+                                   (rs.getString("pe_estado").equals("") || rs.getString("pe_estado").equals("Facturado y Validado") || rs.getString("pe_estado").equals("Facturado")) &&
+                                   unidoEstado)
                                 {
                                     BeanFactura nueva = new BeanFactura();
+                                    nueva.setNumPedido(rs.getLong("pe_num"));
+
+                                    nueva.setFecha(rs.getString("pe_fecha"));
+                                    nueva.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
+                                    nueva.setPoblacionOrigen(rs.getString("pe_poblacion_origen"));
+                                    if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
+                                        nueva.setProvinciaDestino(rs.getString("destino_unido"));
+                                        nueva.setServicioDestino(rs.getString("destino_unido"));
+                                        nueva.setPoblacionDestino(rs.getString("pob_unido"));
+                                    }else{
+                                        nueva.setProvinciaDestino(rs.getString("pe_provincia_destino"));
+                                        nueva.setServicioDestino(rs.getString("pe_provincia_destino"));
+                                        nueva.setPoblacionDestino(rs.getString("pe_poblacion_destino"));
+                                    }
                                     nueva.setNumPedido(rs.getLong("pe_num"));
                                     nueva.setFecha(rs.getString("pe_fecha"));
                                     nueva.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
                                     nueva.setPoblacionOrigen(rs.getString("pe_poblacion_origen"));
                                     nueva.setServicioOrigen(rs.getString("pe_provincia_origen"));
-                                    nueva.setProvinciaDestino(rs.getString("pe_provincia_destino"));
-                                    nueva.setServicioDestino(rs.getString("pe_provincia_destino"));
-                                    nueva.setPoblacionDestino(rs.getString("pe_poblacion_destino"));
                                     nueva.setServicio(rs.getString("pe_servicio"));
                                     nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
                                     nueva.setDiasCampa(rs.getString("pe_dias_campa"));
@@ -697,7 +727,6 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                     nueva.setTarifaEsProveedor(rs.getString("pe_ta_es_proveedor"));
                                     nueva.setSuplemento(rs.getString("pe_suplemento"));
                                     nueva.setDescripcion(rs.getString("pe_descripcion"));
-                                    //nueva.setTarifa(rs.getString("tc_tarifa"));
                                     nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                                     nueva.setNumCamion(rs.getString("pe_num_en_camion"));
                                     nueva.setObsInFactura(rs.getBoolean("pe_ob_cl_mail"));
@@ -706,8 +735,9 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                     nueva.setVe_estado(rs.getString("pe_ve_estado"));
                                     nueva.setAux(recFacturaAux.getNumFactura());
                                     lista.add(nueva);
-                                    pedidos.add(rs.getLong("pe_num"));
                                 }
+                                pedidos.add(rs.getLong("pe_num"));
+                            }
                         }
                         catch (SQLException ex)
                         {
