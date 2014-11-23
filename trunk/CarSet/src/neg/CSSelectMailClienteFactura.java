@@ -10,9 +10,7 @@ import data.BeanCorreoCliente;
 import java.io.IOException;
 import javax.mail.MessagingException;
 import utils.TablaModelo;
-import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
-import data.Cliente;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -26,8 +24,7 @@ import java.util.logging.Logger;
  */
 public class CSSelectMailClienteFactura extends javax.swing.JPanel
 {
-    private JTextField jTextCli;
-    private int cliID = 0;
+    TablaModelo modelo = new TablaModelo();
     private HashMap datosMail = new HashMap();
     private HashMap nombresMail = new HashMap();
     String nombreF="";
@@ -38,14 +35,12 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
     {
         mailF=mail;
         nombreF=nombre;
-        TablaModelo modelo = new TablaModelo();
-        Cliente client = new Cliente();
         
         ResultSet rs = CSDesktop.datos.select(query);
 
-        modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE"});
+        modelo.setColumnIdentifiers(new String[] {"NOMBRE", "EMAIL"});
 
-       int numeroFila = 0;
+        int numeroFila = 0;
         try {
             int z=0;
             while (rs.next()) {
@@ -56,17 +51,16 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
                     if (k==0)
                     {
                         datosFila[j] = rs.getObject(k + 1);
-                        System.out.println("Dato" + k + " " + rs.getObject(k + 1));
+//                        System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         nombresMail.put(z,rs.getObject(k + 1));
                         j++;
                     }
                     else if ( k == 1)
                     {
                         datosFila[j] = rs.getObject(k + 1);
-                        System.out.println("Dato" + k + " " + rs.getObject(k + 1));
+//                        System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         datosMail.put(z,rs.getObject(k + 1));
                         j++;
-
                     }
                 }
                 modelo.addRow(datosFila);
@@ -85,25 +79,7 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(300);
 
-        /*jTable1.addMouseListener(new MouseAdapter()
-        {
-        public void mouseClicked(MouseEvent e)
-        {
-            System.out.println("Estamos en el result");
-            int fila = jTable1.rowAtPoint(e.getPoint());
-            int columna = jTable1.columnAtPoint(e.getPoint());
-              if ((fila > -1) && (columna > -1))
-            {
-               String cliente = ((String)jTable1.getValueAt(fila,1).toString());
-               jTextCli.setText(cliente);              
-               CSDesktop.BuscaCliente.dispose();
-              }                  
-         }
-        });*/
-        //return finalMail;
     }
-
-    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -142,7 +118,7 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
         });
         jTable1.setEditingRow(0);
         jTable1.setName("jTable1"); // NOI18N
-        jTable1.setPreferredSize(new java.awt.Dimension(400, 64));
+        jTable1.setPreferredSize(new java.awt.Dimension(164, 220));
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Cerrar");
@@ -231,6 +207,5 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
 
 }

@@ -6,7 +6,6 @@
 
 package neg;
 
-//import utils.TablaModeloPedidos;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -80,14 +79,11 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                 this.getComponents()[k].addKeyListener(l);
         }
         addKeyListener(l);
-        //modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO", "D.C.","PROVEEDOR","TAR.CL","TAR.PR", "SE","MG","F.RECOGIDA","F.ENTREGA","F.REAL","ESTADO", "F. CLIENTE", "F. PROVEEDOR","OBSERVACIONES"});
         modelo.setColumnIdentifiers(new String[] {"NUM", "FECHA", "CLIENTE" , "SERVICIO" , "ORIGEN", "DESTINO", "F.CORRECCION", "MATRICULA","MARCA","MODELO", "D.C.","PROVEEDOR","TAR.CL","TAR.PR","MG","F.RECOGIDA","F.ENTREGA","F.REAL","ESTADO", "F. CLIENTE", "F. PROVEEDOR","OBSERVACIONES", "OBSERVACIONES PR"});
 
         int numeroFila = 0;
         double totalCliente = 0;
         double totalProveedor = 0;
-//        double totalSEspecial = 0;
-//        double totalSuplemento = 0;
         double totalMargen = 0;
         int totalDiasCampa = 0;
         DecimalFormat df = new DecimalFormat("0.00");
@@ -98,12 +94,9 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                  double ta_es_cl=0;
                  double ta_es_pr=0;
                  double s_especial=0;
-//                 double importeServicioD = 0;
                  double suple=0;
                  double ganancia=0;
                  int diasCampa = 0;
-//                 String cl_id = rs.getString("cl_id");
-//                 String fechaPe = rs.getString("pe_fecha");
 
                 if (!rs.getString("pe_num_unido").equals("0") || rs.getString("destino_unido") != null){
                     marcaUnidos.add(rs.getInt("pe_num"));
@@ -146,26 +139,7 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                        totalProveedor = Utilidades.redondear(totalProveedor, 2);
 
                     }
-                /*    else if (k==14)
-                    {
-                        if(!rs.getObject(k+1).equals(""))
-                        {
-                            if(!rs.getObject(k+1).equals("Otros"))
-                            {
-                                String servicio = rs.getObject(k+1).toString();
-                                String sEspecial = Utilidades.CalcularImporteServicioEspecial(servicio,cl_id, fechaPe);
-                                if(!servicio.equals(""))
-                                {
-                                    importeServicioD = Double.parseDouble(sEspecial);
-                                    importeServicioD = Utilidades.redondear(importeServicioD, 2);
-                                }
-                            }
-                        }
-                        datosFila[j] = importeServicioD;
-                        totalSEspecial = totalSEspecial + importeServicioD;
-                        totalSEspecial = Utilidades.redondear(totalSEspecial, 2);
-                    }
-                 */
+
                     else if (k==14)
                     {
                         ganancia = ((ta_es_cl + s_especial) + suple) - ta_es_pr;
@@ -206,10 +180,6 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                 {
                     datosFilaTotal[i] = df.format(totalProveedor);
                 }
-                /*if(k==14)
-                {
-                    datosFilaTotal[i] = totalSEspecial;
-                }*/
                 if(k==14)
                 {
                     datosFilaTotal[i] = df.format(totalMargen);
@@ -298,7 +268,6 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
         DefaultTableCellRenderer tcrRight = new DefaultTableCellRenderer();
         tcrRight.setHorizontalAlignment(SwingConstants.RIGHT);
         jTable1.getTableHeader().setFont(new Font(null, Font.BOLD, 12));
-        //jTable1.getTableHeader().setPreferredSize(new Dimension(jTable1.getTableHeader().getWidth(),26));
         jTable1.getTableHeader().setBackground(Color.GRAY);
         jTable1.getTableHeader().setForeground(Color.white);        
 
@@ -335,9 +304,6 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                     (pantalla.width - ventana.width) / 2,
                     (pantalla.height - ventana.height) / 2);
                CSDesktop.EditarPedido.setVisible( true );
-               //CSDesktop.ResultPedido.setVisible(false);
-
-//            System.out.println(jTable1.getValueAt(fila,columna));
          }
         }
         }    );
@@ -889,26 +855,6 @@ public class CSResultBuscarPedido extends javax.swing.JPanel
                         if(!unidos){
                             celda.setCellValue(rs.getDouble("pe_ta_es_proveedor"));
                         }
-                       /* celda = fila.createCell( (short) 14);
-                        style.setDataFormat(format.getFormat("##.00"));
-                        //style.setDataFormat(format.getFormat("00.00"));
-                        celda.setCellStyle(style);
-
-                        if(!rs.getObject("pe_servicio_especial").equals(""))
-                        {
-                            if(!rs.getObject("pe_servicio_especial").equals("Otros"))
-                            {
-                                String servicioEs = rs.getObject("pe_servicio_especial").toString();
-                                String sEspecial = Utilidades.CalcularImporteServicioEspecial(servicioEs,cl_id, fechaPe);
-                                if(!servicioEs.equals(""))
-                                {
-                                    importeServicioD = Double.parseDouble(sEspecial);
-                                    importeServicioD = Utilidades.redondear(importeServicioD, 2);
-                                }
-                            }
-                        }
-                        celda.setCellValue(importeServicioD);
-                        */
 
                         //Columna de MG
                         celda = fila.createCell( (short) 14);

@@ -6,7 +6,6 @@
 
 package neg;
 
-//import utils.TablaModeloPedidos;
 import data.BeanFactura;
 import data.BeanCliente;
 import java.net.UnknownHostException;

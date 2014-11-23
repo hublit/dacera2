@@ -6,10 +6,8 @@
 
 package neg;
 
-//import utils.TablaModeloPedidos;
 import data.BeanFactura;
 import data.BeanCliente;
-import data.Cliente;
 import java.net.UnknownHostException;
 import net.sf.jasperreports.engine.JRException;
 import utils.TablaModelo;
@@ -17,8 +15,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -49,7 +45,6 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
     String fechaSF="";
     int clienteID=0;
     Date hoy = new Date();
-
 
     /** Creates new form ABResultBuscarPedido */
     public CSResultBuscarPedidosLibres(String query,BeanCliente beanCliente, String fechaI,String fechaF)
@@ -95,7 +90,7 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
                     lista.add(campos);
                     pedidos.add(rs.getLong("pe_num"));
 
-                datosFila = new Object[modelo.getColumnCount()];
+                datosFila = new Object[modelo.getColumnCount()]; 
                 int j = 0;
                 for (int k = 0; k < 9; k++) {
                     if (k==0 ||k==1 || k == 2 || k == 6 || k == 7) {
@@ -114,7 +109,7 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
                         else
                         {
                             datosFila[j] = rs.getObject(k + 1);
-                            System.out.println("Dato" + k + " " + rs.getObject(k + 1));
+                            //System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         }
                         j++;
                     } 
@@ -164,16 +159,11 @@ public class CSResultBuscarPedidosLibres extends javax.swing.JPanel
         jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);
         jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
         
-        
-
         bCliente=beanCliente;
         fechaSI=fechaI;
         fechaSF=fechaF;
         String clienteSID=beanCliente.getCl_id();
         clienteID=Integer.parseInt(clienteSID);
-
-        
-       
     }
 
      public Dimension getPreferredSize()

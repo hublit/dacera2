@@ -311,7 +311,7 @@ public class CSRecuperarFacturaCliente extends JPanel
                 }
             }
             query = query + " ORDER BY fl.fl_id ASC";
-            System.out.println(query);
+            //System.out.println(query);
             CSResultBuscarRecFactura resultBuscarCliente = new CSResultBuscarRecFactura(query);
         } catch (UnknownHostException ex) {
             Logger.getLogger(CSRecuperarFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
