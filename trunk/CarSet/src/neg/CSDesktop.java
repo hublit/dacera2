@@ -9,6 +9,7 @@ package neg;
  * Se utilizan botones del tipo creados en el ejemplo java1410, los 
  * cuales indican con im�genes su estado
  */
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
@@ -40,8 +41,10 @@ public class CSDesktop extends JFrame
   public static JInternalFrame EditarContactoCliente;
   public static JInternalFrame NuevoPedido;
   public static JInternalFrame EditarPedido;
+  public static JInternalFrame EditarPedidoArchivo;
   public static JInternalFrame NuevoPedidoArchivo;
   public static JInternalFrame BuscarPedido;
+  public static JInternalFrame ValidarPedidoArchivo;
   public static JInternalFrame NuevoProveedor;
   public static JInternalFrame BuscarProveedor;
   public static JInternalFrame TarifaCliente;
@@ -52,6 +55,7 @@ public class CSDesktop extends JFrame
   public static JInternalFrame ABResultTarifasProveedor;
   public static JInternalFrame EditarCliente;
   public static JInternalFrame ResultPedido;
+  public static JInternalFrame ResultPedidoArchivo;
   public static JInternalFrame ResultRecFactura;
   public static JInternalFrame ResultSPrPedido;
   public static JInternalFrame ResultFacturaPedido;
@@ -109,15 +113,16 @@ public class CSDesktop extends JFrame
   public static JInternalFrame NuevoPedidoPrueba;
   public static JMenuItem menuNuevoPedidoPrueba;
   public static JInternalFrame BuscarPedidoNew;
+  public static JInternalFrame EditarPedidoNew;
   public static JInternalFrame ResultPedidoNew;
   public static JMenuItem menuBuscarPedidoNew;
+  public static JMenuItem menuValidarPedido;
   public static JMenuItem menuNuevoClienteNew;
   public static JInternalFrame NuevoClienteNew;
   public static JInternalFrame EditarClienteNew;
   public static JInternalFrame NuevoProveedorNew;
   public static JInternalFrame EditarProveedorNew;
   public static JMenuItem menuNuevoProveedorNew;
-  public static JInternalFrame EditarPedidoNew;
   /////////////////////////////////////////////
 
   public static JMenuItem menuBuscarPedido;
@@ -387,7 +392,6 @@ public class CSDesktop extends JFrame
                
             }
          });
-
       
       menuProveedores.setMnemonic( 'r' );
 
@@ -548,7 +552,7 @@ public class CSDesktop extends JFrame
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
 
-      menuNuevoPedidoArchivo = new JMenuItem( "Pedido desde Archivo" );
+      menuNuevoPedidoArchivo = new JMenuItem( "Pedidos desde Archivo" );
       menuNuevoPedidoArchivo.setMnemonic( 'a' );
       menuPedidos.add( menuNuevoPedidoArchivo );
       menuNuevoPedidoArchivo.addActionListener(
@@ -588,7 +592,32 @@ public class CSDesktop extends JFrame
          } // fin de la clase interna an�nima
       ); // fin de la llamada a addActionListener
 
-     
+
+      menuValidarPedido = new JMenuItem( "Validar Pedidos de Archivo" );
+      menuValidarPedido.setMnemonic( 'v' );
+      menuPedidos.add( menuValidarPedido );
+      menuValidarPedido.addActionListener(
+
+         new ActionListener() {  // clase interna an�nima
+
+            // mostrar nueva ventana interna
+            public void actionPerformed( ActionEvent evento ) {
+                    CSValidarPedidoArchivo panel = null;
+                try {
+                    panel = new CSValidarPedidoArchivo();
+
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+         } // fin de la clase interna an�nima
+      ); // fin de la llamada a addActionListener
+
+
       menuTarifa.setMnemonic( 'T' );
 
       menuTarifaCliente = new JMenuItem( "Tarifa Cliente" );
@@ -748,7 +777,6 @@ public class CSDesktop extends JFrame
                RecuperarFacturaCliente.setVisible( true );
             }
          });
-
 
 
       menuInforme.setMnemonic( 'I' );
@@ -991,7 +1019,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "CarSet version 4.0.2 (20-06-2014)",
+                  "CarSet version 4.0.3 (08-12-2014)",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
           }  // fin de la clase interna an�nima
@@ -1031,13 +1059,4 @@ public class CSDesktop extends JFrame
       
   }
 
-  /*void confirmarCierre()
-  {
-       int confirmado = JOptionPane.showConfirmDialog(this,"¿Realmente quieres salir de la aplicación?");
-
-                    if (JOptionPane.OK_OPTION == confirmado)
-                    {
-                        CSDesktop.datos.cerrarConexion();
-                    }
-  }*/
 }

@@ -240,8 +240,8 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
 
                     j++;
                 }
-System.out.println("Total incidencias exced: " + totalIncidExced);
-System.out.println("Total unidos" + totalUnidos);
+//System.out.println("Total incidencias exced: " + totalIncidExced);
+//System.out.println("Total unidos" + totalUnidos);
                 modelo.addRow(datosFila);
 
                 //Para total F y %
@@ -251,7 +251,7 @@ System.out.println("Total unidos" + totalUnidos);
                 }
                 totalIncidExced = totalIncidExced - totalDiasExced;
                 numeroFila++;
-System.out.println("Número de filas" + numeroFila);
+//System.out.println("Número de filas" + numeroFila);
             }
             rs.close();
             Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
@@ -1180,7 +1180,7 @@ System.out.println("Número de filas" + numeroFila);
                             }else{
  
                                 if(rs.getBoolean("pe_fin_unido")){
-                                    System.out.println("fechaPeUnido: " + fechaPeUnido);
+                                    //System.out.println("fechaPeUnido: " + fechaPeUnido);
                                     dif = (!fechaPeUnido.equals("") && !nuevaR.equals("")) ? Utilidades.calcularDiasHabiles(fechaPeUnido, nuevaR) : 0;
                                     dif = dif - fMenos;
                                     fechaPeUnido = "";
