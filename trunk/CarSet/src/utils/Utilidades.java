@@ -1223,8 +1223,8 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
         int mesEnd = (Integer.parseInt(dateEnd.substring(3, 5))-1);
         int anyoEnd = Integer.parseInt(dateEnd.substring(6, 10));
 
-        System.out.println(diaIni+"/"+mesIni+"/"+anyoIni);
-        System.out.println(diaEnd+"/"+mesEnd+"/"+anyoEnd);
+        //System.out.println(diaIni+"/"+mesIni+"/"+anyoIni);
+        //System.out.println(diaEnd+"/"+mesEnd+"/"+anyoEnd);
         // Crear 2 instancias de Calendar
         Calendar calIni = new GregorianCalendar();
         Calendar calEnd = new GregorianCalendar();
