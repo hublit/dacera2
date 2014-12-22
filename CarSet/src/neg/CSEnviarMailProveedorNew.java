@@ -100,7 +100,8 @@ public class CSEnviarMailProveedorNew
                 "<table width='700'>" +
                 "<tr><td width='100'><img src=\""+imagen+"\" width='100'></td>" +
                 "<td><b><font face='Helvetica' size='+1'> CONFIRMACI&Oacute;N DE PEDIDO</b></font></td></tr>" +
-                "<tr><td colspan='2'><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
+                "<tr><td colspan='2'><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr>" +
+                "<tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
                 "<tr><td colspan='2'><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font></td></tr>" +
                 "<tr><td colspan='2'><font face='Helvetica'> A continuaci&oacute;n y en contestaci&oacute;n a su solicitud, le remitimos la confirmaci&oacute;n del servicio solicitado:  </font></td></tr>" +
 //              "<br>" +

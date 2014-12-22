@@ -1,6 +1,5 @@
 package neg;
 
-//import utils.TablaModeloPedidos;
 import data.BeanProveedor;
 import data.BeanTesoreriaProveedor;
 import data.Proveedor;
