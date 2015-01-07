@@ -42,7 +42,7 @@ public class BeanPedidoAux
     private Double tarifaPr;
     private Boolean obClMail;
     private Boolean obPrMail;
-    private Integer peNumUnido;
+    private Boolean peNumUnido;
     private Boolean peFinUnido;
     private Integer cliente;
     private Integer proveedor;
@@ -270,11 +270,11 @@ public class BeanPedidoAux
         this.peFinUnido = peFinUnido;
     }
 
-    public Integer getPeNumUnido() {
+    public Boolean isPeNumUnido() {
         return peNumUnido;
     }
 
-    public void setPeNumUnido(Integer peNumUnido) {
+    public void setPeNumUnido(Boolean peNumUnido) {
         this.peNumUnido = peNumUnido;
     }
 
