@@ -47,17 +47,18 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
     /** Creates new form ResultBuscarPedido */
     public CSValidarPedidoArchivo() throws UnknownHostException, FileNotFoundException, IOException
     {
-        query = "SELECT pa_fecha, pa_direccion_origen, pa_poblacion_origen, pa_provincia_origen, pa_cp_origen, " +
-                "pa_nombre_origen, pa_telefono_origen, pa_direccion_destino, pa_poblacion_destino, pa_provincia_destino, " +
-                "pa_cp_destino, pa_nombre_destino, pa_telefono_destino, fc_id, pa_ve_estado, pa_ve_matricula, pa_ve_marca, " +
-                "pa_ve_modelo, pa_soporte, pa_servicio, pa_kms, pa_num_en_camion, pa_dias_campa, pa_descripcion, pa_fecha_origen, " +
-                "pa_fecha_destino, pa_ta_es_cliente, pa_ta_es_proveedor, cl_id, pr_id, pa_observaciones_carset, " +
-                "pa_ob_general, pa_ob_cl_mail, pa_ob_pr_mail, pa_num_unido, pa_fin_unido, pa_estado FROM pa_pedidos_aux";
+        query = "SELECT pa.pa_fecha, pa.pa_direccion_origen, pa.pa_poblacion_origen, pa.pa_provincia_origen, pa.pa_cp_origen, " +
+                "pa.pa_nombre_origen, pa.pa_telefono_origen, pa.pa_direccion_destino, pa.pa_poblacion_destino, pa.pa_provincia_destino, " +
+                "pa.pa_cp_destino, pa.pa_nombre_destino, pa.pa_telefono_destino, pa.fc_id, pa.pa_ve_estado, pa.pa_ve_matricula, pa.pa_ve_marca, " +
+                "pa.pa_ve_modelo, pa.pa_soporte, pa.pa_servicio, pa.pa_kms, pa.pa_num_en_camion, pa.pa_dias_campa, pa.pa_descripcion, pa.pa_fecha_origen, " +
+                "pa.pa_fecha_destino, pa.pa_ta_es_cliente, pa.pa_ta_es_proveedor, cl.cl_nombre, pr.pr_nombre_fiscal, pa.pa_observaciones_carset, " +
+                "pa.pa_ob_general, pa.pa_ob_cl_mail, pa.pa_ob_pr_mail, pa.pa_num_unido, pa.pa_fin_unido, pa.pa_estado, pa.cl_id, pa.pr_id FROM pa_pedidos_aux pa " +
+                "INNER JOIN cl_clientes cl ON pa.cl_id = cl.cl_id INNER JOIN pr_proveedores pr ON pa.pr_id = pr.pr_id";
 
         TablaValidarArchivo modelo = new TablaValidarArchivo();
         modelo.fireTableDataChanged();
         ResultSet rs = CSDesktop.datos.select(query);
-//System.out.println(query);
+System.out.println(query);
         boolean acceso = (CSDesktop.user.equals("9") || CSDesktop.user.equals("10") || CSDesktop.user.equals("11")) ? false : true;
         KeyListener l = new KeyListener()
         {
@@ -99,7 +100,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                 int kms = 0;
                 int diasCampa = 0;
 
-                for (int k = 0; k < 36; k++)
+                for (int k = 0; k < 37; k++)
                 {
                     if((k==0) || (k==24)|| (k==25))
                     {
@@ -115,18 +116,6 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                             String nueva=dia+"-"+mes+"-"+anyo;
                             datosFila[j] = nueva;
                         }
-                    }
-                    else if ((k==28))
-                    {
-                        /*Cliente client = new Cliente();
-                        String cliente = client.getCliente(rs.getInt(k + 1));*/
-                        datosFila[j] = rs.getInt(k + 1);
-                    }
-                    else if ((k==29))
-                    {
-                        /*Proveedor prov = new Proveedor();
-                        String proveedor = prov.getProveedor(rs.getInt(k + 1));*/
-                        datosFila[j] = rs.getInt(k + 1);
                     }
                     else if(k==20)
                     {
@@ -520,7 +509,8 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
             campos.setObClMail(obClMail);
             boolean obPrMail = (jTable1.getValueAt(i, 33).toString().equals("TRUE") ? true : false);
             campos.setObPrMail(obPrMail);
-            campos.setPeNumUnido(Integer.parseInt(jTable1.getValueAt(i, 34).toString()));
+            boolean numUnido = (jTable1.getValueAt(i, 34).toString().equals("TRUE") ? true : false);
+            campos.setPeNumUnido(numUnido);
             boolean finUnido = (jTable1.getValueAt(i, 35).toString().equals("TRUE") ? true : false);
             campos.setPeFinUnido(finUnido);
             
@@ -599,7 +589,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                 pedidoAux.setObsGeneral(rsPAux.getString("pa_ob_general"));
                 pedidoAux.setObClMail(rsPAux.getBoolean("pa_ob_cl_mail"));
                 pedidoAux.setObPrMail(rsPAux.getBoolean("pa_ob_pr_mail"));
-                pedidoAux.setPeNumUnido(rsPAux.getInt("pa_num_unido"));
+                pedidoAux.setPeNumUnido(rsPAux.getBoolean("pa_num_unido"));
                 pedidoAux.setPeFinUnido(rsPAux.getBoolean("pa_fin_unido"));
                 pedidoAux.setEstado(rsPAux.getString("pa_estado"));
 
@@ -702,7 +692,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
             BeanPedidoAux bpa = (BeanPedidoAux)iterator.next();
             int obClmail = (bpa.isObClMail() ? 1 : 0);
             int obPrmail = (bpa.isObPrMail() ? 1 : 0);
-            int numUnido = (bpa.getNumUnido() == null) ? 0 : Integer.parseInt(bpa.getNumUnido());
+            int numUnido = (bpa.isPeNumUnido() ? 1 : 0);
             int finUnido = (bpa.isPeFinUnido() ? 1 : 0);
             
             String query = "INSERT INTO pa_pedidos_aux (pa_fecha, pa_direccion_origen, pa_poblacion_origen, pa_provincia_origen, pa_cp_origen, " +
@@ -734,6 +724,8 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
     public boolean insertarPedidosAux(ArrayList<BeanPedidoAux> listaArchivo) throws SQLException
     {
         boolean resDel = false;
+        int peNum = 0;
+        String pe_num = "";
         Iterator iterator = listaArchivo.listIterator(); //Le solicito a la lista que me devuelva un iterador con todos los el elementos contenidos en ella
         boolean rsPedido = false;
         //Mientras que el iterador tenga un proximo elemento
@@ -741,7 +733,11 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
             BeanPedidoAux bpa = (BeanPedidoAux)iterator.next();
             int obClmail = (bpa.isObClMail() ? 1 : 0);
             int obPrmail = (bpa.isObPrMail() ? 1 : 0);
-            int numUnido = (bpa.getNumUnido() == null) ? 0 : Integer.parseInt(bpa.getNumUnido());
+
+            int numUnido = (bpa.isPeNumUnido() ? 1 : 0);
+            peNum = (bpa.isPeNumUnido()) ? peNum : 0;
+            numUnido = (peNum == 0 && (bpa.isPeFinUnido() || bpa.isPeNumUnido())) ? Integer.valueOf(pe_num) : peNum;
+            //peNum = (numUnido != 0) ? numUnido : peNum;
             int finUnido = (bpa.isPeFinUnido() ? 1 : 0);
             String queryInPe =  "INSERT INTO pe_pedidos (pe_fecha, pe_direccion_origen, pe_poblacion_origen, pe_provincia_origen, " +
                             "pe_servicio_origen, pe_cp_origen, pe_nombre_origen, pe_fecha_origen, pe_telefono_origen, pe_direccion_destino, " +
@@ -757,13 +753,13 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                             "'"+bpa.getModelo()+"', '"+bpa.getSoporte()+"', '"+bpa.getServicio()+"', '"+bpa.getKms()+"','"+bpa.getNumEnCamion()+"', '"+bpa.getDiasCampa()+"', " +
                             "'"+bpa.getDescripcion()+"', '"+bpa.getTarifaCl()+"', '"+bpa.getTarifaPr()+"', '"+bpa.getObsCarset()+"', '"+bpa.getObsGeneral()+"', " +
                             "'"+obClmail+"', '"+obPrmail+"','"+numUnido+"', '"+finUnido+"', '"+bpa.getEstado()+"')";
-            //System.out.println(queryInPe);
+            System.out.println(queryInPe);
             rsPedido = CSDesktop.datos.manipuladorDatos(queryInPe);
-
+            peNum = (bpa.isPeFinUnido() ? 0 : peNum);
             if(!rsPedido)
             {
                 query = "select distinct last_insert_id() from pe_pedidos";
-                String pe_num = "";
+                pe_num = "";
                 ResultSet rs2 = CSDesktop.datos.select(query);
                 try
                 {
