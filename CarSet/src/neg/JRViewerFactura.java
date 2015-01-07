@@ -714,8 +714,6 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
                      }
                      else
                      {
-                        //String cliente = jTextCliente.getText();
-                        //String cliente=mail.getCliente();
 
                         String query = "SELECT cc_nombre,cc_email FROM cc_contactos_cliente where cl_id ="+ finalCliente.getClienteID(mail.getCliente());
 
@@ -731,21 +729,6 @@ public class JRViewerFactura extends javax.swing.JPanel implements JRHyperlinkLi
                         CSDesktop.BuscaMailCliente.setLocation(150, 50);
                         CSDesktop.BuscaMailCliente.setVisible( true );
 
-                        /*int seleccion = JOptionPane.showOptionDialog(
-                                JRViewerFactura.this,
-                                "¿Quieres mandar la factura por mail al cliente "+mail.getCliente()+"?",
-                                "Atención",
-                                JOptionPane.YES_NO_CANCEL_OPTION,
-                                JOptionPane.QUESTION_MESSAGE,
-                                null,    // null para icono por defecto.
-                                new Object[] { "SI", "NO"},   // null para YES, NO y CANCEL
-                                "SI");
-
-                        if (seleccion==0)
-                        {
-                            CSLanzarFactura factura = new CSLanzarFactura();
-                            factura.enviarMail(mail,nombre);
-                        }*/
                      }
                 }
         });

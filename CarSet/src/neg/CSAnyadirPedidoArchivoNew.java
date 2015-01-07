@@ -38,7 +38,7 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
         {
             int confirmado = JOptionPane.showConfirmDialog(this,"¿Cargar pedidos desde el Archivo?");
             String pe_num = "0";
-            String numUnido = "1";
+            int numUnido = 0;
             int finUnido = 0;
             if (JOptionPane.OK_OPTION == confirmado)
             {
@@ -133,8 +133,7 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                          int obPrMail = (!cell.getContents().equals("SI")) ? 0 : 1;
                          query += "'"+ obPrMail + "',";
                      }else if (cell.getColumn() == 35){
-                         numUnido = (cell.getContents().equals("UNIR PEDIDO") && numUnido.equals("0")) ? pe_num : numUnido;
-                         int numeroUnido = (cell.getContents().equals("UNIR PEDIDO") ) ? 1 : 0;
+                         int numeroUnido = (cell.getContents().equals("UNIR PEDIDO") || cell.getContents().equals("FINAL") ) ? 1 : 0;
                          finUnido = (cell.getContents().equals("FINAL")) ? 1 : 0;
                          query += "'"+ numeroUnido + "', '"+ finUnido + "',";
 //                       numUnido = (cell.getContents().equals("FINAL")) ? "0" : numUnido;
