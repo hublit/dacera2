@@ -49,11 +49,12 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
     {
         query = "SELECT pa.pa_fecha, pa.pa_direccion_origen, pa.pa_poblacion_origen, pa.pa_provincia_origen, pa.pa_cp_origen, " +
                 "pa.pa_nombre_origen, pa.pa_telefono_origen, pa.pa_direccion_destino, pa.pa_poblacion_destino, pa.pa_provincia_destino, " +
-                "pa.pa_cp_destino, pa.pa_nombre_destino, pa.pa_telefono_destino, pa.fc_id, pa.pa_ve_estado, pa.pa_ve_matricula, pa.pa_ve_marca, " +
+                "pa.pa_cp_destino, pa.pa_nombre_destino, pa.pa_telefono_destino, fc.fc_nombre, pa.pa_ve_estado, pa.pa_ve_matricula, pa.pa_ve_marca, " +
                 "pa.pa_ve_modelo, pa.pa_soporte, pa.pa_servicio, pa.pa_kms, pa.pa_num_en_camion, pa.pa_dias_campa, pa.pa_descripcion, pa.pa_fecha_origen, " +
                 "pa.pa_fecha_destino, pa.pa_ta_es_cliente, pa.pa_ta_es_proveedor, cl.cl_nombre, pr.pr_nombre_fiscal, pa.pa_observaciones_carset, " +
-                "pa.pa_ob_general, pa.pa_ob_cl_mail, pa.pa_ob_pr_mail, pa.pa_num_unido, pa.pa_fin_unido, pa.pa_estado, pa.cl_id, pa.pr_id FROM pa_pedidos_aux pa " +
-                "INNER JOIN cl_clientes cl ON pa.cl_id = cl.cl_id INNER JOIN pr_proveedores pr ON pa.pr_id = pr.pr_id";
+                "pa.pa_ob_general, pa.pa_ob_cl_mail, pa.pa_ob_pr_mail, pa.pa_num_unido, pa.pa_fin_unido, pa.pa_estado, pa.cl_id, pa.pr_id, pa.fc_id " + 
+                "FROM pa_pedidos_aux pa INNER JOIN cl_clientes cl ON pa.cl_id = cl.cl_id INNER JOIN pr_proveedores pr ON pa.pr_id = pr.pr_id " + 
+                "INNER JOIN fc_factores_correccion fc ON pa.fc_id = fc.fc_id";
 
         TablaValidarArchivo modelo = new TablaValidarArchivo();
         modelo.fireTableDataChanged();
@@ -79,10 +80,10 @@ System.out.println(query);
         }
         addKeyListener(l);
         modelo.setColumnIdentifiers(new String[] {"FECHA", "DIR ORIGEN", "POB ORIGEN", "PROV ORIGEN", "CP ORIGEN", "NOMBRE ORIGEN", "TELEF ORIGEN", 
-                                                  "DIR DESTINO", "POB DESTINO", "PROV DESTINO", "CP DESTINO", "NOMBRE DESTINO", "TELEF DESTINO",
-                                                  "FACTOR", "ESTADO VEHICULO", "MATRICULA", "MARCA", "MODELO", "SOPORTE", "SERVICIO", "KMS", "NUM CAMION", "D.C.",
+                                                  "DIR DESTINO", "POB DESTINO", "PROV DESTINO", "CP DESTINO", "NOMBRE DESTINO", "TELEF DESTINO", "FACTOR", 
+                                                  "ESTADO VEHICULO", "MATRICULA", "MARCA", "MODELO", "SOPORTE", "SERVICIO", "KMS", "NUM CAMION", "D.C.",
                                                   "OBSERVACIONES", "F.RECOGIDA", "F.ENTREGA", "TAR.CL", "TAR.PR", "CLIENTE", "PROVEEDOR", "OBS CARSET", 
-                                                  "OBS GENERALES", "OB CL MAIL", "OB PR MAIL", "NUM UNIDO", "FIN UNIDO", "ESTADO"});
+                                                  "OBS GENERALES", "OB CL MAIL", "OB PR MAIL", "NUM UNIDO", "FIN UNIDO"});
         int totalKms = 0;
         double totalCliente = 0;
         double totalProveedor = 0;
@@ -100,7 +101,7 @@ System.out.println(query);
                 int kms = 0;
                 int diasCampa = 0;
 
-                for (int k = 0; k < 37; k++)
+                for (int k = 0; k < 36; k++)
                 {
                     if((k==0) || (k==24)|| (k==25))
                     {
@@ -148,6 +149,11 @@ System.out.println(query);
 //                        System.out.println("Dato" + k + " " + datosFila[j]);
                         totalProveedor = totalProveedor + ta_es_pr;
                         totalProveedor = Utilidades.redondear(totalProveedor, 2);
+                    }
+                    else if(k==32 || (k==33) || (k==34) || (k==35))
+                    {
+                        String valor = (rs.getInt(k + 1) == 1) ? "SI" : "";
+                        datosFila[j] = valor;
                     }
                     else
                     {
@@ -718,14 +724,14 @@ System.out.println(query);
 
     /**
      * Modifica los campos de la tesorería del proveedor
-     * @param ts
+     * @param BeanPedidoAux
      * @throws SQLException
      */
     public boolean insertarPedidosAux(ArrayList<BeanPedidoAux> listaArchivo) throws SQLException
     {
         boolean resDel = false;
         int peNum = 0;
-        String pe_num = "";
+        int pe_num = 0;
         Iterator iterator = listaArchivo.listIterator(); //Le solicito a la lista que me devuelva un iterador con todos los el elementos contenidos en ella
         boolean rsPedido = false;
         //Mientras que el iterador tenga un proximo elemento
@@ -734,9 +740,9 @@ System.out.println(query);
             int obClmail = (bpa.isObClMail() ? 1 : 0);
             int obPrmail = (bpa.isObPrMail() ? 1 : 0);
 
-            int numUnido = (bpa.isPeNumUnido() ? 1 : 0);
+//            int numUnido = (bpa.isPeNumUnido()) ? 1 : 0;
             peNum = (bpa.isPeNumUnido()) ? peNum : 0;
-            numUnido = (peNum == 0 && (bpa.isPeFinUnido() || bpa.isPeNumUnido())) ? Integer.valueOf(pe_num) : peNum;
+            int numUnido = (peNum == 0 && (bpa.isPeFinUnido() || bpa.isPeNumUnido())) ? pe_num : peNum;
             //peNum = (numUnido != 0) ? numUnido : peNum;
             int finUnido = (bpa.isPeFinUnido() ? 1 : 0);
             String queryInPe =  "INSERT INTO pe_pedidos (pe_fecha, pe_direccion_origen, pe_poblacion_origen, pe_provincia_origen, " +
@@ -759,15 +765,15 @@ System.out.println(query);
             if(!rsPedido)
             {
                 query = "select distinct last_insert_id() from pe_pedidos";
-                pe_num = "";
+                pe_num = 0;
                 ResultSet rs2 = CSDesktop.datos.select(query);
                 try
                 {
                    if (rs2.first())
                     {
-                        pe_num = Integer.valueOf(rs2.getInt("last_insert_id()")).toString();
+                        pe_num = rs2.getInt("last_insert_id()");
                         //System.out.println(rs2.getInt("last_insert_id()"));
-                        String queryCon = "INSERT INTO pc_pedidos_clientes (pe_num,cl_id) VALUES ('"+pe_num+"', '"+bpa.getCliente()+"')";
+                        String queryCon = "INSERT INTO pc_pedidos_clientes (pe_num,cl_id) VALUES ("+pe_num+", '"+bpa.getCliente()+"')";
                         //System.out.println(queryCon);
                         boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
                         if(rsCon)
@@ -775,7 +781,7 @@ System.out.println(query);
                             JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
                             JOptionPane.showMessageDialog(null,errorFields);
                         }
-                        queryCon = "INSERT INTO pp_pedidos_proveedores (pe_num,pr_id) VALUES ('"+pe_num+"','"+bpa.getProveedor()+"')";
+                        queryCon = "INSERT INTO pp_pedidos_proveedores (pe_num,pr_id) VALUES ("+pe_num+",'"+bpa.getProveedor()+"')";
                         //System.out.println(queryCon);
                         rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
                         if(rsCon)
