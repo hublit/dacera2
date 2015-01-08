@@ -132,7 +132,7 @@ System.out.println(query);
                     }
                     else if(k==13)//FACTOR
                     {
-                        datosFila[j] = rs.getInt(k + 1);
+                        datosFila[j] = rs.getString(k + 1);
                     }
                     else if(k==26)
                     {
@@ -300,8 +300,6 @@ System.out.println(query);
         columna34.setPreferredWidth(100);
         TableColumn columna35 = jTable1.getColumnModel().getColumn(35);
         columna35.setPreferredWidth(100);
-        TableColumn columna36 = jTable1.getColumnModel().getColumn(36);
-        columna36.setPreferredWidth(100);
 
         DefaultTableCellRenderer tcrCenter = new DefaultTableCellRenderer();
         tcrCenter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -745,8 +743,8 @@ System.out.println(query);
 
     //            int numUnido = (bpa.isPeNumUnido()) ? 1 : 0;
                 peNum = (bpa.isPeNumUnido()) ? peNum : 0;
-                int numUnido = (peNum == 0 && (bpa.isPeFinUnido() || bpa.isPeNumUnido())) ? pe_num : peNum;
-                //peNum = (numUnido != 0) ? numUnido : peNum;
+                int numUnido = (peNum == 0 && bpa.isPeNumUnido()) ? pe_num : peNum;
+                peNum = (numUnido != 0) ? numUnido : peNum;
                 int finUnido = (bpa.isPeFinUnido() ? 1 : 0);
                 String queryInPe =  "INSERT INTO pe_pedidos (pe_fecha, pe_direccion_origen, pe_poblacion_origen, pe_provincia_origen, " +
                                 "pe_servicio_origen, pe_cp_origen, pe_nombre_origen, pe_fecha_origen, pe_telefono_origen, pe_direccion_destino, " +
