@@ -729,85 +729,89 @@ System.out.println(query);
      */
     public boolean insertarPedidosAux(ArrayList<BeanPedidoAux> listaArchivo) throws SQLException
     {
-        boolean resDel = false;
-        int peNum = 0;
-        int pe_num = 0;
-        Iterator iterator = listaArchivo.listIterator(); //Le solicito a la lista que me devuelva un iterador con todos los el elementos contenidos en ella
-        boolean rsPedido = false;
-        //Mientras que el iterador tenga un proximo elemento
-        while( iterator.hasNext() ) {
-            BeanPedidoAux bpa = (BeanPedidoAux)iterator.next();
-            int obClmail = (bpa.isObClMail() ? 1 : 0);
-            int obPrmail = (bpa.isObPrMail() ? 1 : 0);
+        boolean resDel = false;        
+        int confirmado = JOptionPane.showConfirmDialog(this,"¿Estás seguro de INSERTAR los pedidos?");
+        if (JOptionPane.OK_OPTION == confirmado)
+        {
+            int peNum = 0;
+            int pe_num = 0;
+            Iterator iterator = listaArchivo.listIterator(); //Le solicito a la lista que me devuelva un iterador con todos los el elementos contenidos en ella
+            boolean rsPedido = false;
+            //Mientras que el iterador tenga un proximo elemento
+            while( iterator.hasNext() ) {
+                BeanPedidoAux bpa = (BeanPedidoAux)iterator.next();
+                int obClmail = (bpa.isObClMail() ? 1 : 0);
+                int obPrmail = (bpa.isObPrMail() ? 1 : 0);
 
-//            int numUnido = (bpa.isPeNumUnido()) ? 1 : 0;
-            peNum = (bpa.isPeNumUnido()) ? peNum : 0;
-            int numUnido = (peNum == 0 && (bpa.isPeFinUnido() || bpa.isPeNumUnido())) ? pe_num : peNum;
-            //peNum = (numUnido != 0) ? numUnido : peNum;
-            int finUnido = (bpa.isPeFinUnido() ? 1 : 0);
-            String queryInPe =  "INSERT INTO pe_pedidos (pe_fecha, pe_direccion_origen, pe_poblacion_origen, pe_provincia_origen, " +
-                            "pe_servicio_origen, pe_cp_origen, pe_nombre_origen, pe_fecha_origen, pe_telefono_origen, pe_direccion_destino, " +
-                            "pe_poblacion_destino, pe_provincia_destino, pe_servicio_destino, pe_cp_destino, pe_nombre_destino, pe_fecha_destino, " +
-                            "pe_telefono_destino, fc_id, pe_ve_estado, pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pe_soporte, pe_servicio, " +
-                            "pe_kms, pe_num_en_camion, pe_dias_campa, pe_descripcion, pe_ta_es_cliente, pe_ta_es_proveedor, pe_observaciones_carset, " +
-                            "pe_ob_general, pe_ob_cl_mail, pe_ob_pr_mail, pe_num_unido, pe_fin_unido, pe_estado) VALUES (" +
-                            "'"+bpa.getFecha()+"','"+bpa.getDireccionOrigen()+"','"+bpa.getPoblacionOrigen()+"', '"+bpa.getProvinciaOrigen()+"', " +
-                            "'"+bpa.getProvinciaOrigen()+"','"+bpa.getCpOrigen()+"','"+bpa.getNombreOrigen()+"','"+bpa.getFechaOrigen()+"', " +
-                            "'"+bpa.getTelefonoOrigen()+"', '"+bpa.getDireccionDestino()+"', '"+bpa.getPoblacionDestino()+"', '"+bpa.getProvinciaDestino()+"', " +
-                            "'"+bpa.getProvinciaDestino()+"', '"+bpa.getCpDestino()+"', '"+bpa.getNombreDestino()+"', '"+bpa.getFechaDestino()+"', " +
-                            "'"+bpa.getTelefonoDestino()+"', '"+bpa.getFactor()+"', '"+bpa.getEstado_vehiculo()+"','"+bpa.getMatricula()+"', '"+bpa.getMarca()+"', " +
-                            "'"+bpa.getModelo()+"', '"+bpa.getSoporte()+"', '"+bpa.getServicio()+"', '"+bpa.getKms()+"','"+bpa.getNumEnCamion()+"', '"+bpa.getDiasCampa()+"', " +
-                            "'"+bpa.getDescripcion()+"', '"+bpa.getTarifaCl()+"', '"+bpa.getTarifaPr()+"', '"+bpa.getObsCarset()+"', '"+bpa.getObsGeneral()+"', " +
-                            "'"+obClmail+"', '"+obPrmail+"','"+numUnido+"', '"+finUnido+"', '"+bpa.getEstado()+"')";
-            System.out.println(queryInPe);
-            rsPedido = CSDesktop.datos.manipuladorDatos(queryInPe);
-            peNum = (bpa.isPeFinUnido() ? 0 : peNum);
-            if(!rsPedido)
-            {
-                query = "select distinct last_insert_id() from pe_pedidos";
-                pe_num = 0;
-                ResultSet rs2 = CSDesktop.datos.select(query);
-                try
+    //            int numUnido = (bpa.isPeNumUnido()) ? 1 : 0;
+                peNum = (bpa.isPeNumUnido()) ? peNum : 0;
+                int numUnido = (peNum == 0 && (bpa.isPeFinUnido() || bpa.isPeNumUnido())) ? pe_num : peNum;
+                //peNum = (numUnido != 0) ? numUnido : peNum;
+                int finUnido = (bpa.isPeFinUnido() ? 1 : 0);
+                String queryInPe =  "INSERT INTO pe_pedidos (pe_fecha, pe_direccion_origen, pe_poblacion_origen, pe_provincia_origen, " +
+                                "pe_servicio_origen, pe_cp_origen, pe_nombre_origen, pe_fecha_origen, pe_telefono_origen, pe_direccion_destino, " +
+                                "pe_poblacion_destino, pe_provincia_destino, pe_servicio_destino, pe_cp_destino, pe_nombre_destino, pe_fecha_destino, " +
+                                "pe_telefono_destino, fc_id, pe_ve_estado, pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pe_soporte, pe_servicio, " +
+                                "pe_kms, pe_num_en_camion, pe_dias_campa, pe_descripcion, pe_ta_es_cliente, pe_ta_es_proveedor, pe_observaciones_carset, " +
+                                "pe_ob_general, pe_ob_cl_mail, pe_ob_pr_mail, pe_num_unido, pe_fin_unido, pe_estado) VALUES (" +
+                                "'"+bpa.getFecha()+"','"+bpa.getDireccionOrigen()+"','"+bpa.getPoblacionOrigen()+"', '"+bpa.getProvinciaOrigen()+"', " +
+                                "'"+bpa.getProvinciaOrigen()+"','"+bpa.getCpOrigen()+"','"+bpa.getNombreOrigen()+"','"+bpa.getFechaOrigen()+"', " +
+                                "'"+bpa.getTelefonoOrigen()+"', '"+bpa.getDireccionDestino()+"', '"+bpa.getPoblacionDestino()+"', '"+bpa.getProvinciaDestino()+"', " +
+                                "'"+bpa.getProvinciaDestino()+"', '"+bpa.getCpDestino()+"', '"+bpa.getNombreDestino()+"', '"+bpa.getFechaDestino()+"', " +
+                                "'"+bpa.getTelefonoDestino()+"', '"+bpa.getFactor()+"', '"+bpa.getEstado_vehiculo()+"','"+bpa.getMatricula()+"', '"+bpa.getMarca()+"', " +
+                                "'"+bpa.getModelo()+"', '"+bpa.getSoporte()+"', '"+bpa.getServicio()+"', '"+bpa.getKms()+"','"+bpa.getNumEnCamion()+"', '"+bpa.getDiasCampa()+"', " +
+                                "'"+bpa.getDescripcion()+"', '"+bpa.getTarifaCl()+"', '"+bpa.getTarifaPr()+"', '"+bpa.getObsCarset()+"', '"+bpa.getObsGeneral()+"', " +
+                                "'"+obClmail+"', '"+obPrmail+"','"+numUnido+"', '"+finUnido+"', '"+bpa.getEstado()+"')";
+                System.out.println(queryInPe);
+                rsPedido = CSDesktop.datos.manipuladorDatos(queryInPe);
+                peNum = (bpa.isPeFinUnido() ? 0 : peNum);
+                if(!rsPedido)
                 {
-                   if (rs2.first())
+                    query = "select distinct last_insert_id() from pe_pedidos";
+                    pe_num = 0;
+                    ResultSet rs2 = CSDesktop.datos.select(query);
+                    try
                     {
-                        pe_num = rs2.getInt("last_insert_id()");
-                        //System.out.println(rs2.getInt("last_insert_id()"));
-                        String queryCon = "INSERT INTO pc_pedidos_clientes (pe_num,cl_id) VALUES ("+pe_num+", '"+bpa.getCliente()+"')";
-                        //System.out.println(queryCon);
-                        boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
-                        if(rsCon)
+                       if (rs2.first())
                         {
-                            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-                            JOptionPane.showMessageDialog(null,errorFields);
+                            pe_num = rs2.getInt("last_insert_id()");
+                            //System.out.println(rs2.getInt("last_insert_id()"));
+                            String queryCon = "INSERT INTO pc_pedidos_clientes (pe_num,cl_id) VALUES ("+pe_num+", '"+bpa.getCliente()+"')";
+                            //System.out.println(queryCon);
+                            boolean rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
+                            if(rsCon)
+                            {
+                                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                                JOptionPane.showMessageDialog(null,errorFields);
+                            }
+                            queryCon = "INSERT INTO pp_pedidos_proveedores (pe_num,pr_id) VALUES ("+pe_num+",'"+bpa.getProveedor()+"')";
+                            //System.out.println(queryCon);
+                            rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
+                            if(rsCon)
+                            {
+                                JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
+                                JOptionPane.showMessageDialog(null,errorFields);
+                            }
                         }
-                        queryCon = "INSERT INTO pp_pedidos_proveedores (pe_num,pr_id) VALUES ("+pe_num+",'"+bpa.getProveedor()+"')";
-                        //System.out.println(queryCon);
-                        rsCon = CSDesktop.datos.manipuladorDatos(queryCon);
-                        if(rsCon)
-                        {
-                            JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar en la base de datos</FONT></HTML>");
-                            JOptionPane.showMessageDialog(null,errorFields);
-                        }
+                    } catch (SQLException ex) {
+                        JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar los pedidos en la base de datos</FONT></HTML>");
+                        JOptionPane.showMessageDialog(null,errorFields);
+                        ex.printStackTrace();
                     }
-                } catch (SQLException ex) {
-                    JLabel errorFields = new JLabel("<HTML><FONT COLOR = Blue>Se ha producido un error al guardar los pedidos en la base de datos</FONT></HTML>");
-                    JOptionPane.showMessageDialog(null,errorFields);
-                    ex.printStackTrace();
-                }
-            }// TODO add your handling code here:
-          }
+                }// TODO add your handling code here:
+              }
 
-        if (!rsPedido){
-            // POR ULTIMO SE BORRA LA TABLA AUXILIAR PARA NO VOLVER A GENERAR LOS MISMOS PEDIDOS.
-            String queryDelPa = "DELETE FROM pa_pedidos_aux";
-            resDel = CSDesktop.datos.manipuladorDatos(queryDelPa);
+            if (!rsPedido){
+                // POR ULTIMO SE BORRA LA TABLA AUXILIAR PARA NO VOLVER A GENERAR LOS MISMOS PEDIDOS.
+                String queryDelPa = "DELETE FROM pa_pedidos_aux";
+                resDel = CSDesktop.datos.manipuladorDatos(queryDelPa);
 
-            JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los pedidos se han insertado correctamente.</FONT></HTML>");
-            JOptionPane.showMessageDialog(null, mensaje);
-            jButtonModificar.setEnabled(true);
-            CSDesktop.ValidarPedidoArchivo.dispose();
-            CSDesktop.menuValidarPedido.setEnabled(true);
+                JLabel mensaje = new JLabel("<HTML><FONT COLOR = Blue>Los pedidos se han insertado correctamente.</FONT></HTML>");
+                JOptionPane.showMessageDialog(null, mensaje);
+                jButtonModificar.setEnabled(true);
+                CSDesktop.ValidarPedidoArchivo.dispose();
+                CSDesktop.menuValidarPedido.setEnabled(true);
+            }
         }
         return resDel;
     }
