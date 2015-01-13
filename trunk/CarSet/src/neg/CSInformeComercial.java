@@ -6,25 +6,32 @@
 
 package neg;
 
-import data.BeanFactura;
-import data.Cliente;
+
+import com.mysql.jdbc.Connection;
+import data.DbConnection;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.BorderLayout;
 import java.net.UnknownHostException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import static neg.CSDesktop.InformeComercial;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import utils.Utilidades;
 
 /**
@@ -54,7 +61,7 @@ public class CSInformeComercial extends javax.swing.JPanel
             }
             public void keyReleased(KeyEvent e) {}
         };
-        jTextCliente.addKeyListener(l);
+        jDateAnyo.addKeyListener(l);
         addKeyListener(l);
     }
 
@@ -69,39 +76,19 @@ public class CSInformeComercial extends javax.swing.JPanel
 
         jLabel1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
-        jToggleButtonCliente = new javax.swing.JToggleButton();
-        lCliente = new javax.swing.JLabel();
-        jTextCliente = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         jButtonGenerar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        lFechaIni = new javax.swing.JLabel();
-        jDateFecha = new com.toedter.calendar.JDateChooser();
         lFechaFin = new javax.swing.JLabel();
-        jDateFechaFin = new com.toedter.calendar.JDateChooser();
+        jDateAnyo = new com.toedter.calendar.JDateChooser();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("INFORME CLIENTE 1");
+        jLabel1.setText("INFORME COMERCIAL");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator7.setName("jSeparator7"); // NOI18N
-
-        jToggleButtonCliente.setText("Buscar Cliente");
-        jToggleButtonCliente.setName("jToggleButtonCliente"); // NOI18N
-        jToggleButtonCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonClienteActionPerformed(evt);
-            }
-        });
-
-        lCliente.setForeground(new java.awt.Color(0, 0, 100));
-        lCliente.setText("Cliente");
-        lCliente.setName("lCliente"); // NOI18N
-
-        jTextCliente.setEditable(false);
-        jTextCliente.setName("jTextCliente"); // NOI18N
 
         jSeparator6.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator6.setName("jSeparator6"); // NOI18N
@@ -123,19 +110,12 @@ public class CSInformeComercial extends javax.swing.JPanel
             }
         });
 
-        lFechaIni.setForeground(new java.awt.Color(0, 0, 100));
-        lFechaIni.setText("Fecha Desde");
-        lFechaIni.setName("lFechaIni"); // NOI18N
-
-        jDateFecha.setDateFormatString("dd-MM-yyyy"); // NOI18N
-        jDateFecha.setName("jDateFecha"); // NOI18N
-
         lFechaFin.setForeground(new java.awt.Color(0, 0, 100));
-        lFechaFin.setText("Fecha Hasta");
+        lFechaFin.setText("Año");
         lFechaFin.setName("lFechaFin"); // NOI18N
 
-        jDateFechaFin.setDateFormatString("dd-MM-yyyy"); // NOI18N
-        jDateFechaFin.setName("jDateFechaFin"); // NOI18N
+        jDateAnyo.setDateFormatString("yyyy"); // NOI18N
+        jDateAnyo.setName("jDateFechaAnyo"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,36 +124,27 @@ public class CSInformeComercial extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel1)
+                            .addComponent(jSeparator7))))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(249, 249, 249)
                         .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonCancelar))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel1)
-                            .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lFechaIni)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49)
-                                .addComponent(lFechaFin)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDateFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButtonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap())
+                        .addGap(263, 263, 263)
+                        .addComponent(lFechaFin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDateAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,18 +153,11 @@ public class CSInformeComercial extends javax.swing.JPanel
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lCliente)
-                    .addComponent(jToggleButtonCliente))
-                .addGap(53, 53, 53)
+                .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                    .addComponent(jDateFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                    .addComponent(jDateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                    .addComponent(lFechaIni, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-                .addGap(61, 61, 61)
+                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateAnyo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(98, 98, 98)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -203,21 +167,6 @@ public class CSInformeComercial extends javax.swing.JPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonClienteActionPerformed
-
-        System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
-        CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
-        // adjuntar panel al panel de contenido del marco interno
-        CSSelectCliente panel = new CSSelectCliente(jTextCliente,"",true);
-        CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
-        // establecer tama�o de marco interno en el tama�o de su contenido
-        CSDesktop.BuscaCliente.pack();
-        // adjuntar marco interno al escritorio y mostrarlo
-        CSDesktop.elEscritorio.add( CSDesktop.BuscaCliente );
-        CSDesktop.BuscaCliente.setLocation(150, 50);
-        CSDesktop.BuscaCliente.setVisible( true );
-}//GEN-LAST:event_jToggleButtonClienteActionPerformed
-
     private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarActionPerformed
 
         GenerarInforme();
@@ -226,49 +175,30 @@ public class CSInformeComercial extends javax.swing.JPanel
     public void GenerarInforme(){
 
         //Se comprueba que haya seleccionado un cliente
-        String cliente = new String(jTextCliente.getText());
+        String anyo = new String(jDateAnyo.toString());
 
-        if (!Utilidades.campoObligatorio(cliente, "Cliente").equals("OK"))
+        if (!Utilidades.campoObligatorio(anyo, "Año").equals("OK"))
         {
-                ValidarFormatos(Utilidades.campoObligatorio(cliente, "Cliente"));
+                ValidarFormatos(Utilidades.campoObligatorio(anyo, "Año"));
         }
         else
         {
-            int clienteID = 0;
-            String fechaIni="";
-            String fechaFin="";
+
+
             String fechaSIni="";
             String fechaSFin="";
-            String queryAux="";
-            ArrayList lista=new ArrayList();
 
             //SE RECOGEN LAS FECHAS DE GENERACION DEL INFORME
             
             //FECHA INICIO
-            Calendar fechaCalendar = jDateFecha.getCalendar();
-            if (fechaCalendar!=null)
-            {
-                Date fecha = fechaCalendar.getTime();
-                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-                fechaIni=formatoDeFecha.format(fecha);
-                formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
-                fechaSIni = formatoDeFecha.format(fecha);
-            }
+            String fechaIni="2014-01-01";
 
             //FECHA FIN
-            fechaCalendar = jDateFechaFin.getCalendar();
-            if (fechaCalendar!=null)
-            {
-                Date fecha = fechaCalendar.getTime();
-                SimpleDateFormat formatoDeFecha = new SimpleDateFormat("yyyy-MM-dd");
-                fechaFin=formatoDeFecha.format(fecha);
-                formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
-                fechaSFin = formatoDeFecha.format(fecha);
-            }
-
+            String fechaFin="2014-12-31";
+            
             // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
             // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.
-            String query="SELECT cl.cl_id, cl.cl_nombre, MONTH(pe.pe_fecha) AS mes, SUM(pe.pe_ta_es_cliente), SUM(pe.pe_ta_es_proveedor), " +
+            String query="SELECT cl.cl_id, cl.cl_nombre, MONTH(pe.pe_fecha) AS mes, SUM(pe.pe_ta_es_cliente) ta_cliente, SUM(pe.pe_ta_es_proveedor), " +
                          "SUM(pe.pe_ta_es_cliente - pe.pe_ta_es_proveedor) AS mg " +
                          "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
                          "INNER JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
@@ -279,86 +209,65 @@ public class CSInformeComercial extends javax.swing.JPanel
             query = query + " GROUP BY cl.cl_nombre, mes";
 
             System.out.println(query);
-            ResultSet rs = CSDesktop.datos.select(query);
-            try {
-                while (rs.next()) {
-                    // SE METEN LOS DATOS EN EL BEAN DE FACTURA PARA DESPUES RELLENAR LA TABLA AUXILIAR DE INFORMES
-                    if (rs.getLong("pe_num_unido") == 0 )
-                    {
-                        BeanFactura nueva = new BeanFactura();
+           
+            Map pars = new HashMap();
+            //pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
+            pars.put("Query", query);
+            pars.put("FechaInicio", fechaSIni);
+            pars.put("FechaFin", fechaSFin);
 
-                        nueva.setNumPedido(rs.getLong("pe_num"));
-                        nueva.setFecha(rs.getString("pe_fecha"));
-                        nueva.setProvinciaOrigen(rs.getString("pe_provincia_origen"));
-                        if (rs.getString("destino_unido") != null && !rs.getString("destino_unido").equals("")){
-                            nueva.setFecha_prevista_entrega(rs.getString("fecha_destino"));
-                            nueva.setProvinciaDestino(rs.getString("destino_unido"));
-                            nueva.setServicioDestino(rs.getString("destino_unido"));
-                            nueva.setFecha_real_entrega(rs.getString("real_destino"));
-                            nueva.setEstado(rs.getString("estado"));
-                        }else{
-                            nueva.setFecha_prevista_entrega(rs.getString("pe_fecha_destino"));
-                            nueva.setProvinciaDestino(rs.getString("pe_provincia_destino"));
-                            nueva.setServicioDestino(rs.getString("pe_provincia_destino"));
-                            nueva.setFecha_real_entrega(rs.getString("pe_fecha_real_destino"));
-                            nueva.setEstado(rs.getString("pe_estado"));
-                        }
-                        nueva.setServicio(rs.getString("pe_servicio"));
-                        nueva.setServicioOrigen(rs.getString("pe_servicio_origen"));
-                        nueva.setServicioEspecial(rs.getString("pe_servicio_especial"));
-                        nueva.setDiasCampa(rs.getString("pe_dias_campa"));
-                        nueva.setFactor(rs.getString("fc_id"));
-                        nueva.setSoporte(rs.getString("pe_soporte"));
-                        nueva.setSuplemento(rs.getString("pe_suplemento"));
-                        nueva.setMatricula(rs.getString("pe_ve_matricula"));
-                        nueva.setTarifaEsCliente(rs.getString("pe_ta_es_cliente"));
-                        nueva.setNumCamion(rs.getString("pe_num_en_camion"));
-                        nueva.setDescripcion(rs.getString("pe_descripcion"));
-                        nueva.setFecha_prevista_recogida(rs.getString("pe_fecha_origen"));
-                        lista.add(nueva);
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            JasperReport jasperReport = null;
+            JasperPrint jasperPrint;
+            Connection con = null;
+
             try {
-                CSLanzarInforme1 informe1=new CSLanzarInforme1();
                 try {
-                    informe1.lanzar(lista, clienteID, cliente, fechaSIni, fechaSFin);
-                } catch (UnknownHostException ex) {
-                    Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
+                    Class.forName("com.mysql.jdbc.Driver");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(CSInformeDet1.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JRException ex) {
-                Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
-            }                      
+                 DbConnection conexion = null;
+                try {
+                    conexion = new DbConnection();
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(CSInformeDet2.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    con=(Connection) conexion.getConexion();
+                    //1-Compilamos el archivo XML y lo cargamos en memoria
+                    jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/InformeComercial.jrxml"));
+
+                    //2-Llenamos el reporte con la informaci�n y par�metros necesarios
+                    jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/InformeComercial.jasper"), pars, con);
+
+                    JRViewerDet2 jrViewer = new JRViewerDet2(jasperPrint);
+                    CSDesktop.InformeComercial = new JInternalFrame("Informe Comercial", true, false, false, true );
+                    CSDesktop.InformeComercial.getContentPane().add( jrViewer, BorderLayout.CENTER );
+                    CSDesktop.InformeComercial.pack();
+
+                    CSDesktop.elEscritorio.add( CSDesktop.InformeComercial );
+                    Dimension pantalla = CSDesktop.elEscritorio.getSize();
+                    CSDesktop.InformeComercial.setSize(pantalla);
+                    CSDesktop.InformeComercial.setVisible(true);
+            } catch (JRException e) {
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        CSDesktop.InformeDetallado1.dispose();
-        CSDesktop.menuInformeDetallado1.setEnabled(true);
+        CSDesktop.InformeComercial.dispose();
+        CSDesktop.InformeComercial.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGenerar;
-    private com.toedter.calendar.JDateChooser jDateFecha;
-    private com.toedter.calendar.JDateChooser jDateFechaFin;
+    private com.toedter.calendar.JDateChooser jDateAnyo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    public javax.swing.JTextField jTextCliente;
-    private javax.swing.JToggleButton jToggleButtonCliente;
-    private javax.swing.JLabel lCliente;
     private javax.swing.JLabel lFechaFin;
-    private javax.swing.JLabel lFechaIni;
     // End of variables declaration//GEN-END:variables
 
      public void ValidarFormatos(String accion)
