@@ -19,45 +19,35 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator6" max="32767" attributes="1"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSeparator7" alignment="2" max="32767" attributes="1"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
                       <Component id="jButtonGenerar" min="-2" pref="121" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator6" pref="688" max="32767" attributes="1"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSeparator7" alignment="2" pref="688" max="32767" attributes="1"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lFechaIni" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jDateFecha" min="-2" pref="116" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="lFechaFin" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jDateFechaFin" min="-2" pref="115" max="-2" attributes="1"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="1">
-                              <Component id="lCliente" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextCliente" min="-2" pref="270" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jToggleButtonCliente" max="32767" attributes="1"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
+                      <Component id="lFechaFin" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jDateAnyo" min="-2" pref="115" max="-2" attributes="1"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="257" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,20 +58,12 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator7" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jToggleButtonCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lFechaFin" pref="20" max="32767" attributes="1"/>
-                  <Component id="jDateFechaFin" pref="20" max="32767" attributes="1"/>
-                  <Component id="jDateFecha" pref="20" max="32767" attributes="1"/>
-                  <Component id="lFechaIni" alignment="0" pref="20" max="32767" attributes="1"/>
+                  <Component id="lFechaFin" max="32767" attributes="1"/>
+                  <Component id="jDateAnyo" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
               <Component id="jSeparator6" min="-2" pref="11" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -102,7 +84,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="4" green="10" red="aa" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="INFORME CLIENTE 1"/>
+        <Property name="text" type="java.lang.String" value="INFORME COMERCIAL"/>
         <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
       </Properties>
     </Component>
@@ -113,33 +95,6 @@
         </Property>
         <Property name="name" type="java.lang.String" value="jSeparator7" noResource="true"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButtonCliente">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
-        <Property name="name" type="java.lang.String" value="jToggleButtonCliente" noResource="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonClienteActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lCliente">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="64" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Cliente"/>
-        <Property name="name" type="java.lang.String" value="lCliente" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextCliente">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="name" type="java.lang.String" value="jTextCliente" noResource="true"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator6">
       <Properties>
@@ -170,34 +125,19 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lFechaIni">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="64" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Fecha Desde"/>
-        <Property name="name" type="java.lang.String" value="lFechaIni" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateFecha">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy" noResource="true"/>
-        <Property name="name" type="java.lang.String" value="jDateFecha" noResource="true"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lFechaFin">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Fecha Hasta"/>
+        <Property name="text" type="java.lang.String" value="A&#xf1;o"/>
         <Property name="name" type="java.lang.String" value="lFechaFin" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaFin">
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateAnyo">
       <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy" noResource="true"/>
-        <Property name="name" type="java.lang.String" value="jDateFechaFin" noResource="true"/>
+        <Property name="dateFormatString" type="java.lang.String" value="yyyy" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="jDateFechaAnyo" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
