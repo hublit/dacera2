@@ -1,5 +1,5 @@
 /*
- * CSInformeDet1.java
+ * CSInformeCOmercial.java
  *
  * Created on 10-dic-2009, 8:48:09
  */
@@ -14,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.net.UnknownHostException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -174,6 +175,10 @@ public class CSInformeComercial extends javax.swing.JPanel
 
     public void GenerarInforme(){
 
+         // BORRAR LA TABLA AUXILIAR DE INFORMES
+         String queryDel = "DELETE FROM fo_informe_comercial_aux";
+         boolean resDel = CSDesktop.datos.manipuladorDatos(queryDel);
+
         //Se comprueba que haya seleccionado un cliente
         String anyo = new String(jDateAnyo.toString());
 
@@ -198,8 +203,7 @@ public class CSInformeComercial extends javax.swing.JPanel
             
             // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
             // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.
-            String query="SELECT cl.cl_id, cl.cl_nombre, MONTH(pe.pe_fecha) AS mes, SUM(pe.pe_ta_es_cliente) ta_cliente, SUM(pe.pe_ta_es_proveedor), " +
-                         "SUM(pe.pe_ta_es_cliente - pe.pe_ta_es_proveedor) AS mg " +
+            String query="SELECT cl.cl_id, cl.cl_nombre, MONTH(pe.pe_fecha) AS mes, SUM(pe.pe_ta_es_cliente) AS ta_cliente, " +
                          "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
                          "INNER JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
                          "WHERE cl.cl_estado = 'Activo'";
@@ -209,7 +213,37 @@ public class CSInformeComercial extends javax.swing.JPanel
             query = query + " GROUP BY cl.cl_nombre, mes";
 
             System.out.println(query);
-           
+
+            ResultSet rs = CSDesktop.datos.select(query);
+            try
+            {
+                while (rs.next())
+                {
+                    //TOTAL
+//                    double importeTotalAux = importeTarifa + dSuplemento - IdaVuelta2 + importeServicio;
+//                    importeTotalAux=redondear(importeTotalAux, 2);
+                    
+
+                    // SE INTRODUCEN LOS VALORES EN LA TABLA AUXILIAR DE INFORMES
+                    /*String query = "INSERT INTO fo_informe_comercial_aux (fo_nombre, fo_total, fo_num_pedidos, " +
+                                   "fo_enero, fo_febrero, fo_marzo, fo_abril, fo_mayo, fo_junio, fo_julio, fo_agosto, " +
+                                   "fo_septiembre, fo_octubre, fo_noviembre, fo_dicienbre, fo_anyo) VALUES (";
+                    query = query + "'"+finalNum+"','"+fecha+"','"+soporte+"','"+finalServicio+"', '"+servicioEspecial+"','"+importeServicioEs+"','"+Vehiculo+"','"+matricula+"'," +
+                                    "'"+importeTarifa+"','"+dSuplemento+"','"+IdaVuelta2+"','"+importeTotalAux+"','"+fechaPrevistaRecogida+"','"+fechaPrevistaEntrega+"', " +
+                                    "'"+estado+"','"+nuevaFechaRealEntrega+"','"+observaciones+"')";
+                    */
+                    System.out.println(query);
+                    boolean rs3 = CSDesktop.datos.manipuladorDatos(query);
+
+                    // SE VAN REALIZANDO LAS SUMAS INTERMEDIAS PARA CALCULAR LA SUMA TOTAL
+                   /* traslado=traslado + importeTarifa;
+                    suplemento=suplemento + dSuplemento;
+                    descuento= descuento + IdaVuelta2;
+                    neto = neto + importeTotalAux;*/
+            } // FIN DEL FOR QUE RECORRE LA LISTA
+            } catch (SQLException ex) {
+            Logger.getLogger(CSResultBuscarProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Map pars = new HashMap();
             //pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
             pars.put("Query", query);
