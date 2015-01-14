@@ -123,6 +123,8 @@ public class CSDesktop extends JFrame
   public static JInternalFrame NuevoProveedorNew;
   public static JInternalFrame EditarProveedorNew;
   public static JMenuItem menuNuevoProveedorNew;
+  public static JInternalFrame InformeComercial;
+  public static JMenuItem menuInformeComercial;
   /////////////////////////////////////////////
 
   public static JMenuItem menuBuscarPedido;
@@ -870,6 +872,33 @@ public class CSDesktop extends JFrame
                InformeProveedor2.setVisible( true );
             }
          });
+      
+      menuInforme.setMnemonic( 'I' );
+
+      menuInformeComercial = new JMenuItem( "Informe Comercial" );
+      menuInformeComercial.setMnemonic( 'w' );
+      menuInforme.add( menuInformeComercial );
+      menuInformeComercial.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeComercial = new JInternalFrame("Informe Comercial", true,false,false,true );
+               CSInformeComercial panel=null;
+                try {
+                    panel = panel = new CSInformeComercial();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               InformeComercial.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeComercial.pack();
+               elEscritorio.add( InformeComercial );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeComercial.getSize();
+               InformeComercial.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeComercial.setVisible( true );
+            }
+         });      
 
       //Relación Facturas Tesorería
       menuFacturasTesoreria.setMnemonic( 'N' );
