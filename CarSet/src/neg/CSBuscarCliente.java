@@ -377,6 +377,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
         //Esto hay que quitarlo o no dependiendo de la persona de contacto
         String nombreContacto = new String(jTextNombreCon.getText());
         int comercial = (jComboBoxComercial.getSelectedIndex()+1);
+        String estado = new String(jComboBoxEstado.getSelectedItem().toString());
 
         if (!nombreContacto.equals("") && ((numero != -1) ||
            (!nombre.equals("")) || (!dni.equals("")) || (!poblacion.equals("")) ||
@@ -431,6 +432,10 @@ public class CSBuscarCliente extends javax.swing.JPanel
             if (comercial>1)
             {
                 query = query + " AND co.co_id= '"+comercial+"'";
+            }
+            if (!estado.equals("Selecciona"))
+            {
+                query = query + " AND cl.cl_estado= '"+estado+"'";
             }
             query = query + " ORDER BY cl.cl_nombre ASC";
           System.out.println(query);
