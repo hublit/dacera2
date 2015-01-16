@@ -49,7 +49,7 @@ public class CSResultBuscarCliente extends javax.swing.JPanel
                     if (k==0 ||k == 1 || k == 2 || k == 3 || k == 4 || k == 5 || k == 6 || k == 7 )
                     {
                         datosFila[j] = rs.getObject(k + 1);
-                        System.out.println("Dato" + k + " " + rs.getObject(k + 1));
+//                        System.out.println("Dato" + k + " " + rs.getObject(k + 1));
                         j++;
                     }
                 }
