@@ -125,6 +125,8 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuNuevoProveedorNew;
   public static JInternalFrame InformeComercial;
   public static JMenuItem menuInformeComercial;
+  public static JInternalFrame InformeClienteUnitario;
+  public static JMenuItem menuInformeClienteUnitario;
   /////////////////////////////////////////////
 
   public static JMenuItem menuBuscarPedido;
@@ -873,7 +875,6 @@ public class CSDesktop extends JFrame
             }
          });
       
-      menuInforme.setMnemonic( 'I' );
 
       menuInformeComercial = new JMenuItem( "Informe Comercial" );
       menuInformeComercial.setMnemonic( 'w' );
@@ -898,7 +899,32 @@ public class CSDesktop extends JFrame
                      (pantalla.height - ventana.height) / 2);
                InformeComercial.setVisible( true );
             }
-         });      
+         });
+
+      menuInformeClienteUnitario = new JMenuItem( "Informe Cliente Unitario" );
+      menuInformeClienteUnitario.setMnemonic( 'w' );
+      menuInforme.add( menuInformeClienteUnitario );
+      menuInformeClienteUnitario.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeClienteUnitario = new JInternalFrame("Informe Cliente Unitario", true,false,false,true );
+               CSInformeClienteUnitario panel=null;
+                try {
+                    panel = panel = new CSInformeClienteUnitario();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               InformeClienteUnitario.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeClienteUnitario.pack();
+               elEscritorio.add( InformeClienteUnitario );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeClienteUnitario.getSize();
+               InformeClienteUnitario.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeClienteUnitario.setVisible( true );
+            }
+         });
 
       //Relación Facturas Tesorería
       menuFacturasTesoreria.setMnemonic( 'N' );
