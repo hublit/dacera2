@@ -189,7 +189,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
         // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.
         String query="SELECT cl.cl_id, cl.cl_nombre, " +
-                     "SUM(IF(MONTH(pe.pe_fecha) = 1, CONVERT(pe.pe_ta_es_cliente, CHAR(10)), 0) ) AS enero," +
+                     "SUM(IF(MONTH(pe.pe_fecha) = 1, pe.pe_ta_es_cliente, 0) ) AS enero," +
                      "SUM(IF(MONTH(pe.pe_fecha) = 2, pe.pe_ta_es_cliente, 0) ) AS febrero, " +
                      "SUM(IF(MONTH(pe.pe_fecha) = 3, pe.pe_ta_es_cliente, 0) ) AS marzo, " +
                      "SUM(IF(MONTH(pe.pe_fecha) = 4, pe.pe_ta_es_cliente, 0) ) AS abril, " +
@@ -203,7 +203,7 @@ public class CSInformeComercial extends javax.swing.JPanel
                      "SUM(IF(MONTH(pe.pe_fecha) = 12, pe.pe_ta_es_cliente, 0) ) AS diciembre, " +
                      "SUM(pe.pe_ta_es_cliente) AS ta_cliente " +
                      "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
-                     "INNER JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
+                     "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
                      "WHERE cl.cl_estado = 'Activo'";
         if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
             query = query + " AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
