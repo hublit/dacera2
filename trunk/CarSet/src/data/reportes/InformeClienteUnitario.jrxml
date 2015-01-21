@@ -310,7 +310,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{ta_cliente}.concat( "  € " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{ta_cliente}))).concat( " € " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="703" y="0" width="50" height="18"/>
@@ -324,7 +324,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{diciembre}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{diciembre}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="653" y="0" width="50" height="18"/>
@@ -338,7 +338,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{noviembre}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{noviembre}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="603" y="0" width="50" height="18"/>
@@ -352,7 +352,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{octubre}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{octubre}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="553" y="0" width="50" height="18"/>
@@ -366,7 +366,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{septiembre}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{septiembre}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="503" y="0" width="50" height="18"/>
@@ -380,7 +380,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{agosto}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{agosto}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="453" y="0" width="50" height="18"/>
@@ -394,7 +394,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{julio}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{julio}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="403" y="0" width="50" height="18"/>
@@ -408,7 +408,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{junio}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{junio}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="353" y="0" width="50" height="18"/>
@@ -422,7 +422,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{mayo}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{mayo}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="303" y="0" width="50" height="18"/>
@@ -436,7 +436,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{abril}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{abril}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="253" y="0" width="50" height="18"/>
@@ -450,7 +450,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{marzo}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{marzo}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="153" y="0" width="50" height="18"/>
@@ -464,7 +464,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{enero}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{enero}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="203" y="0" width="50" height="18"/>
@@ -478,7 +478,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{febrero}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{febrero}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="153" y="18" width="50" height="18"/>
@@ -492,7 +492,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[(new Double(Double.parseDouble($F{mg_pe_enero}))).divide((new Integer(Integer.parseInt($F{num_enero}))))]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(((new Double(Double.parseDouble($F{mg_pe_enero})))/(Integer.parseInt($F{enero}))*100))]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="153" y="36" width="50" height="18"/>
