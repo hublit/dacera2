@@ -1,5 +1,5 @@
 /*
- * CSInformeComercial.java
+ * CSInformeClienteUnitario.java
  *
  * Created on 10-dic-2009, 8:48:09
  */
@@ -40,7 +40,7 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
     public CSInformeClienteUnitario() throws SQLException
     {
         initComponents();
-        CSDesktop.menuInformeComercial.setEnabled(false);
+        CSDesktop.menuInformeClienteUnitario.setEnabled(false);
         KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}
