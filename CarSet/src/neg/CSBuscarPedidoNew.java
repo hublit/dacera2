@@ -755,14 +755,14 @@ public class CSBuscarPedidoNew extends javax.swing.JPanel
                 }
   
                 if (!poblacionOrigen.equals("")) {
-                    query = query + " AND p.pe_poblacion_origen='" + poblacionOrigen + "'";
+                    query = query + " AND p.pe_poblacion_origen LIKE '%" + poblacionOrigen + "%'";
                 }
                 if (!provinciaOrigen.equals("Selecciona")) {
                     query = query + " AND p.pe_provincia_origen='" + provinciaOrigen + "'";
                 }
  
                 if (!poblacionDestino.equals("")) {
-                    query = query + " AND p.pe_poblacion_destino='" + poblacionDestino + "'";
+                    query = query + " AND p.pe_poblacion_destino LIKE '%" + poblacionDestino + "%'";
                 }
                 if (!provinciaDestino.equals("Selecciona")) {
                     query = query + " AND p.pe_provincia_destino='" + provinciaDestino + "'";
