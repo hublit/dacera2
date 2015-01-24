@@ -785,6 +785,57 @@ public class CSDesktop extends JFrame
 
       menuInforme.setMnemonic( 'I' );
 
+
+      menuInformeComercial = new JMenuItem( "Informe Comercial" );
+      menuInformeComercial.setMnemonic( 'w' );
+      menuInforme.add( menuInformeComercial );
+      menuInformeComercial.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeComercial = new JInternalFrame("Informe Comercial", true,false,false,true );
+               CSInformeComercial panel=null;
+                try {
+                    panel = panel = new CSInformeComercial();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               InformeComercial.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeComercial.pack();
+               elEscritorio.add( InformeComercial );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeComercial.getSize();
+               InformeComercial.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeComercial.setVisible( true );
+            }
+         });
+
+      menuInformeClienteUnitario = new JMenuItem( "Informe Cliente Unitario" );
+      menuInformeClienteUnitario.setMnemonic( 'w' );
+      menuInforme.add( menuInformeClienteUnitario );
+      menuInformeClienteUnitario.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeClienteUnitario = new JInternalFrame("Informe Cliente Unitario", true,false,false,true );
+               CSInformeClienteUnitario panel=null;
+                try {
+                    panel = panel = new CSInformeClienteUnitario();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               InformeClienteUnitario.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeClienteUnitario.pack();
+               elEscritorio.add( InformeClienteUnitario );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeClienteUnitario.getSize();
+               InformeClienteUnitario.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeClienteUnitario.setVisible( true );
+            }
+         });
+
       menuInformeDetallado1 = new JMenuItem( "Informe Cliente 1" );
       menuInformeDetallado1.setMnemonic( 'w' );
       menuInforme.add( menuInformeDetallado1 );
@@ -875,56 +926,6 @@ public class CSDesktop extends JFrame
             }
          });
       
-
-      menuInformeComercial = new JMenuItem( "Informe Comercial" );
-      menuInformeComercial.setMnemonic( 'w' );
-      menuInforme.add( menuInformeComercial );
-      menuInformeComercial.addActionListener(
-         new ActionListener() {
-            public void actionPerformed( ActionEvent evento ) {
-               InformeComercial = new JInternalFrame("Informe Comercial", true,false,false,true );
-               CSInformeComercial panel=null;
-                try {
-                    panel = panel = new CSInformeComercial();
-                } catch (SQLException ex) {
-                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               InformeComercial.getContentPane().add( panel,BorderLayout.CENTER);
-               InformeComercial.pack();
-               elEscritorio.add( InformeComercial );
-               Dimension pantalla = elEscritorio.getSize();
-               Dimension ventana = InformeComercial.getSize();
-               InformeComercial.setLocation(
-                     (pantalla.width - ventana.width) / 2,
-                     (pantalla.height - ventana.height) / 2);
-               InformeComercial.setVisible( true );
-            }
-         });
-
-      menuInformeClienteUnitario = new JMenuItem( "Informe Cliente Unitario" );
-      menuInformeClienteUnitario.setMnemonic( 'w' );
-      menuInforme.add( menuInformeClienteUnitario );
-      menuInformeClienteUnitario.addActionListener(
-         new ActionListener() {
-            public void actionPerformed( ActionEvent evento ) {
-               InformeClienteUnitario = new JInternalFrame("Informe Cliente Unitario", true,false,false,true );
-               CSInformeClienteUnitario panel=null;
-                try {
-                    panel = panel = new CSInformeClienteUnitario();
-                } catch (SQLException ex) {
-                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               InformeClienteUnitario.getContentPane().add( panel,BorderLayout.CENTER);
-               InformeClienteUnitario.pack();
-               elEscritorio.add( InformeClienteUnitario );
-               Dimension pantalla = elEscritorio.getSize();
-               Dimension ventana = InformeClienteUnitario.getSize();
-               InformeClienteUnitario.setLocation(
-                     (pantalla.width - ventana.width) / 2,
-                     (pantalla.height - ventana.height) / 2);
-               InformeClienteUnitario.setVisible( true );
-            }
-         });
 
       //Relación Facturas Tesorería
       menuFacturasTesoreria.setMnemonic( 'N' );
@@ -1074,7 +1075,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "CarSet version 4.0.3 (08-12-2014)",
+                  "CarSet version 4.0.4 (23-01-2015)",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
           }  // fin de la clase interna an�nima
@@ -1103,7 +1104,17 @@ public class CSDesktop extends JFrame
         barra.add( menuFacturasTesoreria );
         barra.add( menuTesoreria );
       }
-      barra.add( menuInforme );
+
+     if (usuario.equals("2") ||
+          usuario.equals("3") ||
+          usuario.equals("4") ||
+          usuario.equals("5") ||
+          usuario.equals("7") ||
+          usuario.equals("8"))
+      {
+        barra.add( menuInforme );
+      }
+
       barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
