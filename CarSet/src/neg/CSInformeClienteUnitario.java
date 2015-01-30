@@ -209,6 +209,7 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
 
         int anyo = Integer.parseInt(jComboBoxAnyo.getSelectedItem().toString());
         int anyo_post = anyo + 1;
+        int anyo_ant = anyo - 1;        
 
         //SE RECOGEN LAS FECHAS DE GENERACION DEL INFORME
         //FECHA INICIO
@@ -216,7 +217,16 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
 
         //FECHA FIN
         String fechaFin=anyo_post+"-01-01";
+        
+        //FECHA INICIO ANTERIOR
+        String fechaIniAnt=anyo_ant+"-01-01";
+        
+                //Se comprueba que haya seleccionado un cliente
+        if (!cliente.equals("")) {
+            Cliente cliente2 = new Cliente();
+            clienteID = cliente2.getClienteID(cliente);
 
+        }
         // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
         // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.
         String query =  "SELECT cl.cl_id, cl.cl_nombre, " +
@@ -256,18 +266,17 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
                         "SUM(IF(MONTH(pe.pe_fecha) = 9, 1, 0)) AS num_septiembre, " +
                         "SUM(IF(MONTH(pe.pe_fecha) = 10, 1, 0)) AS num_octubre, " +
                         "SUM(IF(MONTH(pe.pe_fecha) = 11, 1, 0)) AS num_noviembre, " +
-                        "SUM(IF(MONTH(pe.pe_fecha) = 12, 1, 0)) AS num_diciembre " +
+                        "SUM(IF(MONTH(pe.pe_fecha) = 12, 1, 0)) AS num_diciembre, " + 
+                        "(SELECT SUM(pe.pe_ta_es_cliente) FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
+                        "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id WHERE pe.pe_fecha BETWEEN '"+fechaIniAnt+"' AND '"+fechaIni+"' " +
+                        "AND pc.cl_id = "+clienteID+" GROUP BY cl.cl_nombre) AS ta_cliente_anterior, " +
+                        "(SELECT SUM(1) FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
+                        "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id WHERE pe.pe_fecha BETWEEN '"+fechaIniAnt+"' AND '"+fechaIni+"' " +
+                        "AND pc.cl_id = "+clienteID+" GROUP BY cl.cl_nombre) AS num_anterior " +
                         "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
                         "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
-                        "WHERE pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
+                        "WHERE pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"' AND pc.cl_id = " + clienteID +" GROUP BY cl.cl_nombre";
 
-        //Se comprueba que haya seleccionado un cliente
-        if (!cliente.equals("")) {
-            Cliente cliente2 = new Cliente();
-            clienteID = cliente2.getClienteID(cliente);
-            query = query + " AND pc.cl_id = " + clienteID;
-        }
-        query = query + " GROUP BY cl.cl_nombre";
 
         System.out.println(query);
 

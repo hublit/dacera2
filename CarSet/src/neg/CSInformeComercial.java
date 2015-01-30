@@ -75,8 +75,10 @@ public class CSInformeComercial extends javax.swing.JPanel
         lFechaFin = new javax.swing.JLabel();
         jComboBoxAnyo = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
+        jLabelOrder = new javax.swing.JLabel();
+        jComboOrden = new javax.swing.JComboBox();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
         jLabel1.setText("INFORME COMERCIAL");
         jLabel1.setName("jLabel1"); // NOI18N
@@ -120,30 +122,53 @@ public class CSInformeComercial extends javax.swing.JPanel
         jLabel2.setText("Informe Comercial anual de pedidos por Clientes");
         jLabel2.setName("jLabel2"); // NOI18N
 
+        jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelOrder.setForeground(new java.awt.Color(170, 16, 4));
+        jLabelOrder.setText("Orden");
+        jLabelOrder.setName("jLabelOrder"); // NOI18N
+
+        jComboOrden.setBackground(new java.awt.Color(255, 255, 102));
+        jComboOrden.setForeground(new java.awt.Color(0, 0, 100));
+        jComboOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre Cliente", "Tarifa Cliente" }));
+        jComboOrden.setName("jComboOrden"); // NOI18N
+        jComboOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboOrdenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.CENTER))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator6)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.CENTER)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(163, 163, 163)
+                                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(92, 92, 92)
+                                .addComponent(jButtonCancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(114, 114, 114)
+                                .addComponent(jLabelOrder)
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lFechaFin)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBoxAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
-                .addComponent(jButtonCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(lFechaFin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,9 +181,13 @@ public class CSInformeComercial extends javax.swing.JPanel
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(99, 99, 99)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelOrder)
+                    .addComponent(jComboOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -209,6 +238,21 @@ public class CSInformeComercial extends javax.swing.JPanel
             query = query + " AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
         }
         query = query + " GROUP BY cl.cl_nombre";
+        
+        //Orden de la query
+        int orden = new Integer(jComboOrden.getSelectedIndex());
+
+        String order = "";
+        switch (orden) {
+            case 0:  order = "cl.cl_nombre";
+                     break;
+            case 1:  order = "ta_cliente";
+                     break;
+            default: order = "cl.cl_nombre";
+                     break;
+        }
+
+        query = query + " ORDER BY " + order + " ASC";
 
        System.out.println(query);
 
@@ -269,13 +313,19 @@ public class CSInformeComercial extends javax.swing.JPanel
         // TODO add your handling code here:
 }//GEN-LAST:event_jComboBoxAnyoActionPerformed
 
+    private void jComboOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboOrdenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboOrdenActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGenerar;
     private javax.swing.JComboBox jComboBoxAnyo;
+    private javax.swing.JComboBox jComboOrden;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelOrder;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel lFechaFin;
