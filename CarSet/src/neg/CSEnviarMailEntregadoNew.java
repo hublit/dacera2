@@ -108,7 +108,7 @@ public class CSEnviarMailEntregadoNew
                 Message.RecipientType.CC,
                 new InternetAddress("carset@carset.es"));
             message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
-            String imagen ="http://carset.e.telefonica.net/images/logo_carset_trans.gif";
+            String imagen ="http://www.amarcos.es/carset/img/logo.png";
             
             //String htmlText ="<br><br><center><table>";
             //htmlText = htmlText + "<tr><td><img src=\"http://www.advillaverdebajo.com/CarSet/logo_carset_200.jpg\" width='50%></td></tr></table>";
@@ -116,8 +116,8 @@ public class CSEnviarMailEntregadoNew
             "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='es'><head>" +
             "<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-15' /></head><body>" +
             "<table width='700'>" +
-            "<tr><td width='130'><img src=\""+imagen+"\" width='100'></td>" +
-            "<td><b><font face='Helvetica' size='+1'> CONFIRMACI&Oacute;N DE ENTREGA</b></font></td></tr>" +
+            "<tr><td width='140'><img src=\""+imagen+"\" width='190'></td></tr>" +
+            "<tr><td colspan='2'><center><b><font face='Helvetica' size='+1'> CONFIRMACI&Oacute;N DE ENTREGA</font></b></center></td></tr>" +
             "<tr><td colspan='2'><table><tr><td width='130'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
             "<tr><td colspan='2'><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font></td></tr>" +
             "<tr><td colspan='2'><font face='Helvetica'> Mediante la presente, le pasamos confirmaci&oacute;n del siguiente servicio realizado por nuestros transportistas: </font></td></tr>";
@@ -146,7 +146,7 @@ public class CSEnviarMailEntregadoNew
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Para cualquier consulta, no dude en ponerse en contacto con nuestro dpto. de Operaciones. </font></td></tr>";
             htmlText = htmlText +"<br>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Atentamente, </font></td></tr>";
-            htmlText = htmlText +"<br>";
+//            htmlText = htmlText +"<br>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'><b> Departamento de Operaciones<b></font></td></tr>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica' color='#088A08'>Tlf: 91 268 69 60 - Fax: 91 268 69 64 - www.carset.es</font></td>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 10 Bl.B - Pl .4 - Of. 4  - 28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
