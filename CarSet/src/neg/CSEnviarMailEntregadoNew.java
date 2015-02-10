@@ -62,14 +62,10 @@ public class CSEnviarMailEntregadoNew
                 mail.setServicioEspecial(rs_mail.getString("pe_servicio_especial"));
                 mail.setDiasCampa(rs_mail.getString("pe_dias_campa"));
                 mail.setFactorCorrecccion(rs_mail.getString("fc_id"));
-                //mail.setTarifaEspecialCliente(rs_mail.getString("pe_ta_es_cliente"));
                 mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
-                //mail.setDescripcion(rs_mail.getString("pe_descripcion"));
-                //mail.setTarifa(rs_mail.getString("tc_tarifa"));
                 mail.setCampa(rs_mail.getString("sc_campa"));
                 mail.setVeEstado(rs_mail.getString("pe_ve_estado"));
-                //mail.setKms(rs_mail.getString("pe_kms"));
             }
              if(rs_mail != null)
             {
@@ -85,12 +81,8 @@ public class CSEnviarMailEntregadoNew
             // Propiedades de la conexión
             Properties props = new Properties();
             props.put("mail.transport.protocol","smtp");
-            //props.put("mail.smtp.host", "smtp.e.telefonica.net");
             props.put("mail.smtp.host", "smtp.office365.com");
-            //props.put("mail.smtp.host", "localhost");
-            //props.put("mail.smtp.starttls.enable", "false");
             props.put("mail.smtp.starttls.enable", "true");
-            //props.put("mail.smtp.port", "25");
             props.put("mail.smtp.port", "587");
             props.put("mail.smtp.auth", "true");
 
@@ -117,7 +109,7 @@ public class CSEnviarMailEntregadoNew
             "<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-15' /></head><body>" +
             "<table width='700'>" +
             "<tr><td width='140'><img src=\""+imagen+"\" width='190'></td></tr>" +
-            "<tr><td colspan='2'><center><b><font face='Helvetica' size='+1'> CONFIRMACI&Oacute;N DE ENTREGA</font></b></center></td></tr>" +
+            "<tr><td colspan='2'><center><b><font face='Helvetica' size='+1'>"+mail.getNumPedido()+" CONFIRMACI&Oacute;N ENTREGA VEH&iacute;CULO</font></b></center></td></tr>" +
             "<tr><td colspan='2'><table><tr><td width='130'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
             "<tr><td colspan='2'><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font></td></tr>" +
             "<tr><td colspan='2'><font face='Helvetica'> Mediante la presente, le pasamos confirmaci&oacute;n del siguiente servicio realizado por nuestros transportistas: </font></td></tr>";
