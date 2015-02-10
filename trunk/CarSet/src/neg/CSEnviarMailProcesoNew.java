@@ -57,13 +57,9 @@ public class CSEnviarMailProcesoNew
                 mail.setServicioEspecial(rs_mail.getString("pe_servicio_especial"));
                 mail.setDiasCampa(rs_mail.getString("pe_dias_campa"));
                 mail.setFactorCorrecccion(rs_mail.getString("fc_id"));
-                //mail.setTarifaEspecialCliente(rs_mail.getString("pe_ta_es_cliente"));
                 mail.setTarifaEspecialProveedor(rs_mail.getString("pe_ta_es_proveedor"));
                 mail.setNumeroEnCamion(rs_mail.getString("pe_num_en_camion"));
-                //mail.setDescripcion(rs_mail.getString("pe_descripcion"));
                 mail.setVeEstado(rs_mail.getString("pe_ve_estado"));
-                //mail.setKms(rs_mail.getString("pe_kms"));
-                //mail.setTarifakmCliente(rs_mail.getString("pe_ta_km_cliente"));
             }
 
             if(rs_mail != null)
@@ -97,7 +93,7 @@ public class CSEnviarMailProcesoNew
                     "<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-15' /></head><body>" +
                     "<table width='700'>" +
                     "<tr><td width='140'><img src=\""+imagen+"\" width='190'></td></tr>" +
-                    "<tr><td colspan='2'><center><font face='Helvetica' size='+1'><b>CONFIRMACI&Oacute;N DE PEDIDO</b></font></td></tr>" +
+                    "<tr><td colspan='2'><center><font face='Helvetica' size='+1'><b>CONFIRMACI&Oacute;N DE PEDIDO "+mail.getNumPedido()+"</b></font></td></tr>" +
                     "<tr><td colspan='2'><table><tr><td width='100'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
                     "<tr><td colspan='2'><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font>" +
                     "<br>" +
