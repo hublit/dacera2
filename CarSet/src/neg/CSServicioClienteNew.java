@@ -176,7 +176,7 @@ public class CSServicioClienteNew extends javax.swing.JPanel
             }
         });
 
-        lFCorrecion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lFCorrecion.setFont(new java.awt.Font("Tahoma", 1, 11));
         lFCorrecion.setForeground(new java.awt.Color(170, 16, 4));
         lFCorrecion.setText("TIPO DE VEHÍCULO");
         lFCorrecion.setName("lFCorrecion"); // NOI18N
@@ -214,7 +214,7 @@ public class CSServicioClienteNew extends javax.swing.JPanel
 
         jTextSuv.setName("jTextSuv"); // NOI18N
 
-        lFCorrecion3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lFCorrecion3.setFont(new java.awt.Font("Tahoma", 1, 11));
         lFCorrecion3.setForeground(new java.awt.Color(170, 16, 4));
         lFCorrecion3.setText("DÍAS HÁBILES MÁXIMOS DE ENTREGA");
         lFCorrecion3.setName("lFCorrecion3"); // NOI18N
@@ -286,7 +286,7 @@ public class CSServicioClienteNew extends javax.swing.JPanel
         });
         jScrollPane2.setViewportView(jTextObservaciones);
 
-        lFCorrecion4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lFCorrecion4.setFont(new java.awt.Font("Tahoma", 1, 11));
         lFCorrecion4.setForeground(new java.awt.Color(170, 16, 4));
         lFCorrecion4.setText("TEXTO OBSERVACIONES PROVEEDOR");
         lFCorrecion4.setName("lFCorrecion4"); // NOI18N
@@ -316,7 +316,7 @@ public class CSServicioClienteNew extends javax.swing.JPanel
         lEuro36.setText("€ / Km.");
         lEuro36.setName("lEuro36"); // NOI18N
 
-        lFCorrecion5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lFCorrecion5.setFont(new java.awt.Font("Tahoma", 1, 11));
         lFCorrecion5.setForeground(new java.awt.Color(170, 16, 4));
         lFCorrecion5.setText("TEXTO OBSERVACIONES GENERALES");
         lFCorrecion5.setName("lFCorrecion5"); // NOI18N
@@ -351,8 +351,8 @@ public class CSServicioClienteNew extends javax.swing.JPanel
                             .addComponent(lFurgoneta)
                             .addComponent(l4x4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lTurismo)
-                            .addComponent(lFLM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lCarroSobre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lFLM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                            .addComponent(lCarroSobre, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -388,44 +388,46 @@ public class CSServicioClienteNew extends javax.swing.JPanel
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lEuro35)))))
                         .addGap(48, 48, 48))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(lFCorrecion5)
+                .addContainerGap(109, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lFCorrecion, javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jTextDias, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lDias)
                         .addGap(120, 120, 120))
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
-                    .addComponent(jSeparator5)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(lFCorrecion3)
+                        .addGap(62, 62, 62))
+                    .addComponent(lFCorrecion, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                    .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lFCorrecion3)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lFCorrecion4)
-                                .addGap(3, 3, 3)))
-                        .addGap(62, 62, 62)))
+                    .addComponent(jSeparator8, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(lFCorrecion4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)))
+                .addGap(36, 36, 36))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                    .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
                 .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(lFCorrecion5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(jSeparator6)
-                    .addGap(26, 26, 26)))
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addGap(36, 36, 36))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTex4x4, jTextCaSo, jTextDias, jTextEspecial, jTextFLM, jTextFurgon, jTextFurgoneta, jTextMoto, jTextSuv, jTextTurismo});
@@ -484,7 +486,7 @@ public class CSServicioClienteNew extends javax.swing.JPanel
                     .addComponent(lMoto)
                     .addComponent(jTextMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lEuro36))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(lFCorrecion3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -492,28 +494,25 @@ public class CSServicioClienteNew extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lDias))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(lFCorrecion4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lFCorrecion5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 8, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar)
                     .addComponent(jButtonModificar))
-                .addGap(24, 24, 24))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(507, 507, 507)
-                    .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                    .addGap(187, 187, 187)))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextDias, jTextFLM, jTextFurgon, jTextFurgoneta, jTextSuv, jTextTurismo});
