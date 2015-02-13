@@ -38,6 +38,7 @@ public class BeanCorreoCliente {
     private String factorCorrecccion;
     private String tarifaEspecialCliente;
     private String tarifaEspecialProveedor;
+    private String cifProveedor;
     private String numeroEnCamion;
     private String entradaCampa="";
     private String campa="";
@@ -283,6 +284,14 @@ public class BeanCorreoCliente {
 
     public void setTarifaEspecialProveedor(String tarifaEspecialProveedor) {
         this.tarifaEspecialProveedor = tarifaEspecialProveedor;
+    }
+
+    public String getCifProveedor() {
+        return cifProveedor;
+    }
+
+    public void setCifProveedor(String cifProveedor) {
+        this.cifProveedor = cifProveedor;
     }
 
     public String getDescripcion() {
