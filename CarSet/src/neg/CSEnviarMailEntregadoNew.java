@@ -99,7 +99,7 @@ public class CSEnviarMailEntregadoNew
              message.addRecipient(
                 Message.RecipientType.CC,
                 new InternetAddress("carset@carset.es"));
-            message.setSubject("Resumen Estado Pedido " + mail.getNumPedido());
+            message.setSubject(mail.getNumPedido()+" Confirmación Entrega Vehículo ");
             String imagen ="http://www.amarcos.es/carset/img/logo.png";
             
             //String htmlText ="<br><br><center><table>";
@@ -109,7 +109,7 @@ public class CSEnviarMailEntregadoNew
             "<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-15' /></head><body>" +
             "<table width='700'>" +
             "<tr><td width='140'><img src=\""+imagen+"\" width='190'></td></tr>" +
-            "<tr><td colspan='2'><center><b><font face='Helvetica' size='+1'>"+mail.getNumPedido()+" CONFIRMACI&Oacute;N ENTREGA VEH&iacute;CULO</font></b></center></td></tr>" +
+            "<tr><td colspan='2'><center><b><font face='Helvetica' size='+1'>CONFIRMACI&Oacute;N ENTREGA VEH&iacute;CULO</font></b></center></td></tr>" +
             "<tr><td colspan='2'><table><tr><td width='130'><font face='Helvetica'>Para:</font></td><td><font face='Helvetica'>"+mail.getCliente()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Fecha:</font></td><td><font face='Helvetica'>"+mail.getFecha()+"</font></td></tr><tr><td width='100'><font face='Helvetica'>Nº Pedido:</font></td><td><font face='Helvetica'>"+mail.getNumPedido()+"</font></td></tr></table></td></tr>" +
             "<tr><td colspan='2'><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font></td></tr>" +
             "<tr><td colspan='2'><font face='Helvetica'> Mediante la presente, le pasamos confirmaci&oacute;n del siguiente servicio realizado por nuestros transportistas: </font></td></tr>";

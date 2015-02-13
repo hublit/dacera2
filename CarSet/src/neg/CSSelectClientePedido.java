@@ -37,10 +37,11 @@ public class CSSelectClientePedido extends javax.swing.JPanel
     private JTextField JTextUrl;
     private JTextField jTextClId;
     private JTextPane jTextObservaciones;
+    private JTextPane jTextObsGeneral;
    
     /** Creates new form BuscaClientesPanel */
     public CSSelectClientePedido(JTextField JTextID, JTextField jTextC, JTextField jTextT, JTextField urlTarifas,
-                                 JTextPane jTextObs, String busqueda, boolean inicial)
+                                 JTextPane jTextObs, JTextPane jTextObsGe, String busqueda, boolean inicial)
     {
         TablaModelo modelo = new TablaModelo();
         this.jTextClId = JTextID;
@@ -48,6 +49,7 @@ public class CSSelectClientePedido extends javax.swing.JPanel
         this.jTextTarifa = jTextT;
         this.JTextUrl = urlTarifas;
         this.jTextObservaciones = jTextObs;
+        this.jTextObsGeneral = jTextObsGe;
         modelo.setColumnIdentifiers(new String[] { "NUMERO", "NOMBRE", "DNI", "TARIFA", "URL"});
 
         int numeroFila = 0;
@@ -132,6 +134,8 @@ public class CSSelectClientePedido extends javax.swing.JPanel
 
         jTable1.addMouseListener(new MouseAdapter()
         {
+
+        @Override
         public void mouseClicked(MouseEvent e)
         {
             System.out.println("Estamos en el result");
@@ -146,11 +150,13 @@ public class CSSelectClientePedido extends javax.swing.JPanel
                //String urlObservaciones = ((String)jTable1.getValueAt(fila,5).toString());
                String clienteID = ((String)jTable1.getValueAt(fila,0).toString());
                String urlObservaciones = cliente.getObservacionesCliente(Integer.parseInt(clienteID));
+               String urlObsGeneral = cliente.getObsGeneralesCliente(Integer.parseInt(clienteID));
                jTextCli.setText(cl);
                jTextTarifa.setText(tarifa);
                JTextUrl.setText(urlTarifas);
                jTextClId.setText(clienteID);
                jTextObservaciones.setText(urlObservaciones);
+               jTextObsGeneral.setText(urlObsGeneral);
                CSDesktop.BuscaCliente.dispose();
               }                  
          }
@@ -277,7 +283,7 @@ public class CSSelectClientePedido extends javax.swing.JPanel
         CSDesktop.BuscaCliente.dispose();
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectClientePedido panel = new CSSelectClientePedido(jTextClId,jTextCli,jTextTarifa,JTextUrl,jTextObservaciones,letras,false);
+        CSSelectClientePedido panel = new CSSelectClientePedido(jTextClId,jTextCli,jTextTarifa,JTextUrl,jTextObservaciones,jTextObsGeneral,letras,false);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();

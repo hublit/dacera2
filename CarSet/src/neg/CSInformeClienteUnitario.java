@@ -255,6 +255,7 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
                         "SUM(IF(MONTH(pe.pe_fecha) = 11, pe.pe_ta_es_cliente - pe.pe_ta_es_proveedor, 0) ) AS mg_pe_noviembre, " +
                         "SUM(IF(MONTH(pe.pe_fecha) = 12, pe.pe_ta_es_cliente - pe.pe_ta_es_proveedor, 0) ) AS mg_pe_diciembre, " +
                         "SUM(pe.pe_ta_es_cliente) AS ta_cliente, " +
+                        "SUM(pe.pe_ta_es_cliente - pe.pe_ta_es_proveedor) AS mg_total_pedidos, " +
                         "SUM(IF(MONTH(pe.pe_fecha) = 1, 1, 0)) AS num_enero, " +
                         "SUM(IF(MONTH(pe.pe_fecha) = 2, 1, 0)) AS num_febrero, " +
                         "SUM(IF(MONTH(pe.pe_fecha) = 3, 1, 0)) AS num_marzo, " +
@@ -270,6 +271,9 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
                         "(SELECT SUM(pe.pe_ta_es_cliente) FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
                         "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id WHERE pe.pe_fecha BETWEEN '"+fechaIniAnt+"' AND '"+fechaIni+"' " +
                         "AND pc.cl_id = "+clienteID+" GROUP BY cl.cl_nombre) AS ta_cliente_anterior, " +
+                        "(SELECT SUM(pe.pe_ta_es_cliente - pe.pe_ta_es_proveedor) FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
+                        "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id WHERE pe.pe_fecha BETWEEN '"+fechaIniAnt+"' AND '"+fechaIni+"' " +
+                        "AND pc.cl_id = "+clienteID+" GROUP BY cl.cl_nombre) AS mg_cliente_anterior, " +
                         "(SELECT SUM(1) FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
                         "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id WHERE pe.pe_fecha BETWEEN '"+fechaIniAnt+"' AND '"+fechaIni+"' " +
                         "AND pc.cl_id = "+clienteID+" GROUP BY cl.cl_nombre) AS num_anterior " +

@@ -2386,7 +2386,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         System.out.println("\nBotón Buscar Cliente en Añadir Pedido.");
         CSDesktop.BuscaCliente = new JInternalFrame("Seleccionar Cliente", true, false, false, true );
         // adjuntar panel al panel de contenido del marco interno
-        CSSelectClientePedido panel = new CSSelectClientePedido(jTextClId, jTextCliente,jTextTarifa,jTextUrl,jTextObservaciones,"",true);
+        CSSelectClientePedido panel = new CSSelectClientePedido(jTextClId, jTextCliente,jTextTarifa,jTextUrl,jTextObservaciones,jTextObsGeneral,"",true);
         CSDesktop.BuscaCliente.getContentPane().add( panel,BorderLayout.CENTER);
         // establecer tama�o de marco interno en el tama�o de su contenido
         CSDesktop.BuscaCliente.pack();
