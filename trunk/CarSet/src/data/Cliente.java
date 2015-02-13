@@ -350,4 +350,32 @@ public class Cliente{
        return observaciones;
    }
 
+      /**
+    * Método para sacar los datos necesarios del cliente en el Pedido
+    * @param clienteID
+    * @return BeanCliente
+    */
+   public String getObsGeneralesCliente(int clienteID)
+   {
+       String obsGeneral = "";
+
+       ResultSet rsClObs = CSDesktop.datos.select("SELECT sv_text_general FROM sv_servicios WHERE cl_id = "+clienteID);
+
+        try
+        {
+            while (rsClObs.next())
+            {
+                obsGeneral = rsClObs.getString("sv_text_general");
+            }
+
+            rsClObs.close();
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       return obsGeneral;
+   }
+
 }
