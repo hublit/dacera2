@@ -207,6 +207,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         //Se comprueba que haya seleccionado un cliente
         int anyo = Integer.parseInt(jComboBoxAnyo.getSelectedItem().toString());
         int anyo_post = anyo + 1;
+        int total = 0;
 
         //SE RECOGEN LAS FECHAS DE GENERACION DEL INFORME
         //FECHA INICIO
@@ -252,17 +253,25 @@ public class CSInformeComercial extends javax.swing.JPanel
                      break;
         }
 
-        query = query + " ORDER BY " + order + " ASC";
+        query = query + " ORDER BY " + order + " DESC";
 
        System.out.println(query);
 
         ResultSet rs = CSDesktop.datos.select(query);
+        
+        //Sacamos el importe toal de los pedidos
+        try {
+            total = this.getImporteTotalPedidos(fechaIni, fechaFin);
+        } catch (SQLException ex) {
+            Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Map pars = new HashMap();
         //pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
         pars.put("Query", query);
         pars.put("FechaInicio", fechaIni);
         pars.put("FechaFin", fechaFin);
+        pars.put("total", total);
 
         JasperReport jasperReport = null;
         JasperPrint jasperPrint;
@@ -337,6 +346,27 @@ public class CSInformeComercial extends javax.swing.JPanel
          JLabel errorFields = new JLabel(accion);
          JOptionPane.showMessageDialog(null,errorFields);
          jButtonGenerar.setEnabled(true);
+    }
+
+    /**
+     *
+     * @param accion
+     */
+    public int getImporteTotalPedidos(String fechaIni, String fechaFin) throws SQLException
+    {
+        int total = 0;
+        String queryPe ="SELECT SUM(pe.pe_ta_es_cliente) AS total FROM carset.pe_pedidos pe " +
+                        "INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
+                        "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id WHERE cl.cl_estado = 'Activo'  " +
+                        "AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
+
+        ResultSet rs = CSDesktop.datos.select(queryPe);
+        while(rs.next())
+        {
+            total = (rs.getInt("total"));
+        }
+
+        return total;
     }
 
 }
