@@ -49,6 +49,8 @@
 	<field name="num_diciembre" class="java.lang.String"/>
 	<field name="ta_cliente_anterior" class="java.lang.String"/>
 	<field name="num_anterior" class="java.lang.String"/>
+	<field name="mg_total_pedidos" class="java.lang.String"/>
+	<field name="mg_cliente_anterior" class="java.lang.String"/>
 	<variable name="mg_enero" class="java.lang.Double">
 		<variableExpression><![CDATA[((new Double(Double.parseDouble($F{mg_pe_enero})))/(Double.parseDouble($F{enero}))*100)]]></variableExpression>
 	</variable>
@@ -56,7 +58,7 @@
 		<variableExpression><![CDATA[((new Double(Double.parseDouble($F{mg_pe_febrero})))/(Double.parseDouble($F{febrero}))*100)]]></variableExpression>
 	</variable>
 	<variable name="mg_marzo" class="java.lang.Double">
-		<variableExpression><![CDATA[((new Double(Double.parseDouble($F{mg_pe_marzo})))/(Double.parseDouble($F{marzo})))*100]]></variableExpression>
+		<variableExpression><![CDATA[new Double(Double.parseDouble($F{mg_pe_marzo}))]]></variableExpression>
 	</variable>
 	<variable name="mg_abril" class="java.lang.Double">
 		<variableExpression><![CDATA[(new Double(Double.parseDouble($F{mg_pe_abril})))/(Double.parseDouble($F{abril}))*100]]></variableExpression>
@@ -351,10 +353,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{ta_cliente}))).concat( " € " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[((new Double(Double.parseDouble($F{ta_cliente}))) < new Double(Double.parseDouble($F{ta_cliente_anterior}))) ? "<style backcolor='#FA5858'>" + new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{ta_cliente}))).concat( " € " ) + "</style>" : new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{ta_cliente}))).concat( " € " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="680" y="0" width="32" height="18"/>
@@ -606,7 +608,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($V{mg_marzo} < $V{mg_febrero}) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format($V{mg_marzo}).concat( "% " ) +"</style>" : new java.text.DecimalFormat("#,##0.0").format($V{mg_marzo}).concat( "% " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($V{mg_marzo} < $V{mg_febrero}) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format($V{mg_marzo}).concat( "% " ) +"</style>" : new java.text.DecimalFormat("#,##0.0").format($V{mg_marzo}).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="224" y="36" width="32" height="18"/>
@@ -1250,7 +1252,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($V{mg_febrero} < $V{mg_enero}) ? "<style backcolor='#FA5858'>"+  new java.text.DecimalFormat("#,##0.0").format($V{mg_febrero}-$V{mg_enero}).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format($V{mg_febrero}-$V{mg_enero}).concat( "% " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[($V{mg_febrero} < $V{mg_enero}) ? "<style backcolor='#FA5858'>"+  new java.text.DecimalFormat("#,##0.0").format((($V{mg_febrero}-$V{mg_enero})/$V{mg_febrero})*100).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format((($V{mg_febrero}-$V{mg_enero})/$V{mg_febrero})*100).concat( "% " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="655" y="18" width="25" height="18"/>
@@ -1653,7 +1655,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$V{ta_total}]]></textFieldExpression>
@@ -1741,6 +1743,62 @@
 					<font fontName="Verdana" size="6"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[((new Double(Double.parseDouble($F{marzo}))) < new Double(Double.parseDouble($F{febrero}))) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{marzo})))-Double.parseDouble($F{febrero}))/(Double.parseDouble($F{febrero}))*100)).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{marzo})))-Double.parseDouble($F{febrero}))/(Double.parseDouble($F{febrero}))*100)).concat( "% " )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="737" y="18" width="40" height="18"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[((new Double(Double.parseDouble($F{mg_total_pedidos}))) < new Double(Double.parseDouble($F{mg_cliente_anterior}))) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{mg_total_pedidos}))).concat( " € " ) + "</style>" : new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{mg_total_pedidos}))).concat( " € " )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="777" y="18" width="25" height="18"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[((new Double(Double.parseDouble($F{mg_total_pedidos}))) < new Double(Double.parseDouble($F{mg_cliente_anterior}))) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format(((new Double(Double.parseDouble($F{mg_total_pedidos})))-Double.parseDouble($F{mg_cliente_anterior}))/(Double.parseDouble($F{mg_total_pedidos}))*100).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format(((new Double(Double.parseDouble($F{mg_total_pedidos})))-Double.parseDouble($F{mg_cliente_anterior}))/(Double.parseDouble($F{mg_total_pedidos}))*100).concat( "% " )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="737" y="36" width="40" height="18"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[((new Double(Double.parseDouble($F{mg_total_pedidos}))) < new Double(Double.parseDouble($F{mg_cliente_anterior}))) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{mg_total_pedidos})) / $V{ta_total}).concat( " € " ) + "</style>" : new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{mg_total_pedidos})) / $V{ta_total}).concat( " € " )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="777" y="36" width="25" height="18"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
+					<font fontName="Verdana" size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[((new Double(Double.parseDouble($F{mg_total_pedidos}))) < new Double(Double.parseDouble($F{mg_cliente_anterior}))) ? "<style backcolor='#FA5858'>" + new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{mg_total_pedidos})))-Double.parseDouble($F{mg_cliente_anterior}))/new Double(Double.parseDouble($F{mg_total_pedidos})))*100).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{mg_total_pedidos})))-Double.parseDouble($F{mg_cliente_anterior}))/new Double(Double.parseDouble($F{mg_total_pedidos})))*100).concat( "% " )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
