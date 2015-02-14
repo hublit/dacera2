@@ -52,17 +52,17 @@
 	</background>
 	<title>
 		<band height="86" splitType="Stretch">
-			<image>
-				<reportElement x="16" y="1" width="175" height="80"/>
-				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_400.png"))]]></imageExpression>
-			</image>
 			<staticText>
-				<reportElement x="189" y="23" width="310" height="35"/>
+				<reportElement x="189" y="23" width="329" height="35"/>
 				<textElement>
 					<font fontName="Verdana" size="22" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[INFORME DETALLADO 1]]></text>
+				<text><![CDATA[INFORME DETALLADO 11]]></text>
 			</staticText>
+			<image>
+				<reportElement x="14" y="6" width="175" height="80"/>
+				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_400.png"))]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

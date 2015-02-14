@@ -68,8 +68,8 @@
 	<title>
 		<band height="91" splitType="Stretch">
 			<image>
-				<reportElement x="38" y="5" width="139" height="80"/>
-				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_200.jpg"))]]></imageExpression>
+				<reportElement x="33" y="11" width="175" height="80"/>
+				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_400.png"))]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="328" y="30" width="310" height="35"/>
