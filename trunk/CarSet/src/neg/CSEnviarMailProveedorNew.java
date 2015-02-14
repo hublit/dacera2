@@ -42,6 +42,7 @@ public class CSEnviarMailProveedorNew
         String tarifa="";
         double importeTotal=0;
         String domicilio="";
+        String domicilioDos="";
         String telefono="";
         
         try{
@@ -49,7 +50,7 @@ public class CSEnviarMailProveedorNew
                       " pe.pe_servicio, pe.pe_servicio_especial, pe.pe_dias_campa, pe.fc_id, pe.pe_soporte," +
                       " pe.pe_ve_matricula, pe.pe_ve_marca, pe.pe_ve_modelo, pe.pe_ta_es_cliente, " +
                       " pe.pe_ta_es_proveedor, pe.pe_num_en_camion, pe_observaciones_carset,pe_ve_estado, pe_kms, "+
-                      " pr.pr_DNI_CIF, pr.pr_direccion, pr.pr_telefono" +
+                      " pr.pr_DNI_CIF, pr.pr_direccion, pr.pr_telefono, pr.pr_poblacion, pr.pr_provincia, pr.pr_cod_postal " +
                       " FROM pe_pedidos pe, pp_pedidos_proveedores pp, pr_proveedores pr " +
                       " WHERE pe.pe_num = pp.pe_num AND pp.pr_id = pr.pr_id AND pe.pe_num ="+mail.getNumero();
             
@@ -67,6 +68,7 @@ public class CSEnviarMailProveedorNew
                 mail.setVeEstado(rs_mail.getString("pe_ve_estado"));
                 mail.setCifProveedor(rs_mail.getString("pr_DNI_CIF"));
                 domicilio = rs_mail.getString("pr_direccion");
+                domicilioDos =  rs_mail.getString("pr_poblacion")+" - "+rs_mail.getString("pr_cod_postal")+" ("+rs_mail.getString("pr_provincia")+")";
                 telefono = rs_mail.getString("pr_telefono");
             }
 
@@ -104,10 +106,10 @@ public class CSEnviarMailProveedorNew
                 "<table width='700'>" +
                 "<tr><td width='140'><img src=\""+imagen+"\" width='190'></td></tr>" +
                 "<tr><td colspan='2'><center><font face='Helvetica' size='+1'><b>CONFIRMACI&Oacute;N PEDIDOS</b></font></td></tr>" +
-                "<tr><td colspan='2'><table><tr><td width='100'><font face='Helvetica'>Para:  <font face='Helvetica'>"+mail.getCliente()+"</font></font></td><td></td></tr>" +
-                "<tr><td width='400'><font face='Helvetica'> CIF: "+mail.getCifProveedor()+"</font></td><td><font face='Helvetica'> Matr&iacute;cula Cami&oacute;n:</font></td></tr>" +
-                "<tr><td width='400'><font face='Helvetica'> Direcci&oacute;n: "+domicilio+"</font></td><td><font face='Helvetica'> Chofer:</font></td></tr>" +
-                "<tr><td width='400'><font face='Helvetica'> Tel&eacute;fono: "+telefono+"</u></font></td><td><font face='Helvetica'> DNI:</font></td></tr>" +
+                "<tr><td colspan='2'><table><tr><td width='100'><font face='Helvetica'>Para:  <font face='Helvetica'>"+mail.getCliente()+" - CIF: "+mail.getCifProveedor()+"</font></font></td><td></td></tr>" +
+                "<tr><td width='400'><font face='Helvetica'> Direcci&oacute;n: "+domicilio+"</font></td><td style='border: 1px solid #999999' width='300'><font face='Helvetica'> Matr&iacute;cula Cami&oacute;n:</font></td></tr>" +
+                "<tr><td width='400'><font face='Helvetica'> "+domicilioDos+"</font></td><td style='border: 1px solid #999999' width='300'><font face='Helvetica'> Chofer:</font></td></tr>" +
+                "<tr><td width='400'><font face='Helvetica'> Tel&eacute;fono: "+telefono+"</u></font></td><td style='border: 1px solid #999999' width='300'><font face='Helvetica'> DNI:</font></td></tr>" +
                 "<tr><td width='100'><font face='Helvetica'>Fecha:  <font face='Helvetica'>"+mail.getFecha()+"</font></font></td><td></td></tr>" +
                 "<tr><td width='100'><font face='Helvetica'>Nº Pedido:  <font face='Helvetica'>"+mail.getNumPedido()+"</font></font></td><td></td></tr></table></td></tr>" +
                 "<tr><td colspan='2'><br><font face='Helvetica'> Estimado Sr./Sra.: "+nombre+"</font></td></tr>" +

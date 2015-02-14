@@ -214,7 +214,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         String fechaIni=anyo+"-01-01";
 
         //FECHA FIN
-        String fechaFin=anyo_post+"-01-01";
+        String fechaFin=anyo+"-12-31";
 
         // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
         // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.

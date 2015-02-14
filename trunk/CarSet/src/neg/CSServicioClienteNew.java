@@ -590,7 +590,8 @@ public class CSServicioClienteNew extends javax.swing.JPanel
 }//GEN-LAST:event_jTextObservacionesFocusLost
 
     private void jTextObservacionesGeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextObservacionesGeFocusLost
-        // TODO add your handling code here:
+        String ObservacionesG = jTextObservacionesGe.getText().toUpperCase();
+        jTextObservacionesGe.setText(ObservacionesG);
     }//GEN-LAST:event_jTextObservacionesGeFocusLost
 
 

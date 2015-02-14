@@ -216,7 +216,7 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
         String fechaIni=anyo+"-01-01";
 
         //FECHA FIN
-        String fechaFin=anyo_post+"-01-01";
+        String fechaFin=anyo+"-12-31";
         
         //FECHA INICIO ANTERIOR
         String fechaIniAnt=anyo_ant+"-01-01";
