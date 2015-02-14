@@ -85,7 +85,7 @@ public class CSEnviarMailProcesoNew
                 message.addRecipient(
                     Message.RecipientType.CC,
                     new InternetAddress("carset@carset.es"));
-                message.setSubject("Confirmación Pedido " + mail.getNumPedido());
+                message.setSubject("Confirmación Pedido " + mail.getMatricula());
                 String imagen ="http://www.amarcos.es/carset/img/logo.png";
 
                 String htmlText = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1//EN' 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'>" +

@@ -51,6 +51,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -74,6 +76,7 @@ import javax.swing.JViewport;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
 
+import javax.swing.text.AbstractDocument.Content;
 import net.sf.jasperreports.engine.JRConstants;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -88,6 +91,7 @@ import net.sf.jasperreports.engine.JRPrintImageAreaHyperlink;
 import net.sf.jasperreports.engine.JRPrintPage;
 import net.sf.jasperreports.engine.JRRenderable;
 import net.sf.jasperreports.engine.JRRuntimeException;
+import net.sf.jasperreports.engine.JasperManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.export.JRGraphics2DExporter;
@@ -100,6 +104,7 @@ import net.sf.jasperreports.engine.util.SimpleFileResolver;
 import net.sf.jasperreports.engine.xml.JRPrintXmlLoader;
 import net.sf.jasperreports.view.JRHyperlinkListener;
 import net.sf.jasperreports.view.JRSaveContributor;
+import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.view.save.JRPrintSaveContributor;
 
 import org.apache.commons.logging.Log;
@@ -608,6 +613,7 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
         btnPrint = new javax.swing.JButton();
         btnReload = new javax.swing.JButton();
         pnlSep01 = new javax.swing.JPanel();
+        btnExcel = new javax.swing.JButton();
         btnFirst = new javax.swing.JButton();
         btnPrevious = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
@@ -692,6 +698,20 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
         tlbToolBar.add(btnReload);
 
         pnlSep01.setMaximumSize(new java.awt.Dimension(10, 10));
+
+        btnExcel.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\lito.TOSHIBA-67FC240\\Mis documentos\\NetBeansProjects\\Carset\\src\\images\\excel.PNG")); // NOI18N
+        btnExcel.setToolTipText(getBundleString("print"));
+        btnExcel.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnExcel.setMaximumSize(new java.awt.Dimension(23, 23));
+        btnExcel.setMinimumSize(new java.awt.Dimension(23, 23));
+        btnExcel.setPreferredSize(new java.awt.Dimension(23, 23));
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        pnlSep01.add(btnExcel);
+
         tlbToolBar.add(pnlSep01);
 
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/net/sf/jasperreports/view/images/first.GIF"))); // NOI18N
@@ -1335,6 +1355,10 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
             CSDesktop.InformeComercial.hide();
             CSDesktop.menuInformeComercial.setEnabled(true);
 }//GEN-LAST:event_jButton1ActionPerformed
+
+        private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+ 
+        }//GEN-LAST:event_btnExcelActionPerformed
 
 
 	/**
@@ -2172,6 +2196,7 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JToggleButton btnActualSize;
+    protected javax.swing.JButton btnExcel;
     protected javax.swing.JButton btnFirst;
     protected javax.swing.JToggleButton btnFitPage;
     protected javax.swing.JToggleButton btnFitWidth;

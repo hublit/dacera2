@@ -99,7 +99,7 @@ public class CSEnviarMailEntregadoNew
              message.addRecipient(
                 Message.RecipientType.CC,
                 new InternetAddress("carset@carset.es"));
-            message.setSubject(mail.getNumPedido()+" Confirmación Entrega Vehículo ");
+            message.setSubject(mail.getMatricula()+" Confirmación Entrega Vehículo ");
             String imagen ="http://www.amarcos.es/carset/img/logo.png";
             
             //String htmlText ="<br><br><center><table>";
