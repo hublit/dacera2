@@ -36,6 +36,7 @@ import net.sf.jasperreports.engine.JasperReport;
  */
 public class CSInformeClienteUnitario extends javax.swing.JPanel
 {
+    String query = "";
     /** Creates new form CSInformeDet1 */
     public CSInformeClienteUnitario() throws SQLException
     {
@@ -229,7 +230,7 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
         }
         // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
         // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.
-        String query =  "SELECT cl.cl_id, cl.cl_nombre, " +
+               query =  "SELECT cl.cl_id, cl.cl_nombre, " +
                         "SUM(IF(MONTH(pe.pe_fecha) = 1, pe.pe_ta_es_cliente, 0) ) AS enero, " +
                         "SUM(IF(MONTH(pe.pe_fecha) = 2, pe.pe_ta_es_cliente, 0) ) AS febrero, " +
                         "SUM(IF(MONTH(pe.pe_fecha) = 3, pe.pe_ta_es_cliente, 0) ) AS marzo, " +
