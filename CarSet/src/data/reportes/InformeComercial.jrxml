@@ -34,11 +34,11 @@
 				<imageExpression class="java.lang.String"><![CDATA[(getClass().getResource("/images/logo_carset_400.png"))]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="328" y="30" width="310" height="35"/>
+				<reportElement x="328" y="30" width="211" height="35"/>
 				<textElement>
 					<font fontName="Verdana" size="22" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[INFORME COMERCIAL]]></text>
+				<text><![CDATA[VENTA CLIENTE]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="473" y="65" width="329" height="20"/>
