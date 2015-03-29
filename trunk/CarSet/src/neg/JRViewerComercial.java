@@ -49,10 +49,10 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.lang.String;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -65,7 +65,9 @@ import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -75,8 +77,6 @@ import javax.swing.JPanel;
 import javax.swing.JViewport;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
-
-import javax.swing.text.AbstractDocument.Content;
 import net.sf.jasperreports.engine.JRConstants;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -91,7 +91,6 @@ import net.sf.jasperreports.engine.JRPrintImageAreaHyperlink;
 import net.sf.jasperreports.engine.JRPrintPage;
 import net.sf.jasperreports.engine.JRRenderable;
 import net.sf.jasperreports.engine.JRRuntimeException;
-import net.sf.jasperreports.engine.JasperManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.export.JRGraphics2DExporter;
@@ -104,11 +103,10 @@ import net.sf.jasperreports.engine.util.SimpleFileResolver;
 import net.sf.jasperreports.engine.xml.JRPrintXmlLoader;
 import net.sf.jasperreports.view.JRHyperlinkListener;
 import net.sf.jasperreports.view.JRSaveContributor;
-import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.view.save.JRPrintSaveContributor;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import utils.Reportes;
 
 
 /**
@@ -206,6 +204,7 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
 	protected List saveContributors = new ArrayList();
 	protected File lastFolder = null;
 	protected JRSaveContributor lastSaveContributor = null;
+    private HttpServletResponse response;
 
 	/** Creates new form JRViewer */
 	public JRViewerComercial(String fileName, boolean isXML) throws JRException
@@ -1357,7 +1356,25 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
 }//GEN-LAST:event_jButton1ActionPerformed
 
         private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
- 
+
+            String queryInf = this.jasperPrint.getProperty("query");
+            System.out.println("Vamoooooos: "+queryInf);
+            
+
+            
+                    HashMap pars = new HashMap();
+        //pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
+        pars.put("Query", queryInf);
+        pars.put("FechaInicio", "2014-01-01");
+        pars.put("FechaFin", "2014-12-31");
+        pars.put("total", "120");
+            Reportes rp = new Reportes();
+            try {
+                rp.exportXls(response, null, pars);
+            } catch (IOException ex) {
+                Logger.getLogger(JRViewerComercial.class.getName()).log(Level.SEVERE, null, ex);
+            }
+   
         }//GEN-LAST:event_btnExcelActionPerformed
 
 
