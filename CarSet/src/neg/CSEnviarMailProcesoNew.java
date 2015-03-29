@@ -140,7 +140,7 @@ public class CSEnviarMailProcesoNew
                         importeTrasladoD=Utilidades.redondear(importeTrasladoD, 2);
                         importeTotal = importeTotal + importeTrasladoD;
                         //Escribimos la linea
-                        htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;TARIFA</font></td><td align='right' width='80'><font face='Helvetica'><b>&nbsp;"+importeTrasladoD+" &euro;</b></font></td></tr>";
+                        htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;TARIFA (No incluye IVA)</font></td><td align='right' width='80'><font face='Helvetica'><b>&nbsp;"+importeTrasladoD+" &euro;</b></font></td></tr>";
 
                         // FACTOR DE CORRECCION
                         //ArrayList factorTarifa = Utilidades.obtenerFactor(mail.getFactorCorrecccion(), mail.getClienteID());
@@ -156,7 +156,7 @@ public class CSEnviarMailProcesoNew
                         importeTrasladoD=Utilidades.redondear(importeTrasladoD, 2);
                         importeTotal = importeTotal + importeTrasladoD;
                          //Escribimos la linea
-                        htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;TARIFA</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeTrasladoD+" &euro;</font></td></tr>";
+                        htmlText = htmlText + "<tr><td><font face='Helvetica'>&nbsp;TARIFA (No incluye IVA)</font></td><td align='right'><font face='Helvetica'>&nbsp;"+importeTrasladoD+" &euro;</font></td></tr>";
 
                         if(!mail.getServicioEspecial().equals(""))
                         {
@@ -212,8 +212,9 @@ public class CSEnviarMailProcesoNew
 
                 //htmlText = htmlText +"<tr><td><font face='Helvetica'><b>&nbsp;TOTAL</b></font></td><td align='right'><font face='Helvetica'><b>&nbsp;"+importeTotal+" &euro;</b></font></td></tr>";
                 htmlText = htmlText +"</table>";
-                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Estos precios no incluyen I.V.A </font></td></tr>";
-                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Para cualquier consulta, no dude en ponerse en contacto con nuestro dpto. de Operaciones. </font></td></tr>";
+                //htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Estos precios no incluyen I.V.A </font></td></tr>";
+                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> La anulación del pedido una vez tramitado incurrirá en gastos de cancelación, asumidos por el cliente, que supondrán como máximo el 75 % del importe. ";
+                htmlText = htmlText +"CarSet no se responsabilizará de los objetos que no estén indicados en la documentación de carga. </font></td></tr>";
                 //htmlText = htmlText +"<br>";
                 htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'>Atentamente, </font></td></tr>";
 //                htmlText = htmlText +"<br>";
