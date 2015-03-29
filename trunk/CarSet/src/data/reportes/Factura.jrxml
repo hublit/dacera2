@@ -233,7 +233,7 @@
 				<text><![CDATA[FECHA VENCIMIENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="378" y="226" width="166" height="20"/>
+				<reportElement x="378" y="226" width="166" height="20" forecolor="#000000"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -241,10 +241,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="Verdana" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[ES23 2100-4024-61-2200077238]]></text>
+				<text><![CDATA[<style forecolor='#FA5858'>ES10 0075-0654-19-0600598849</style>]]></text>
 			</staticText>
 			<rectangle radius="10">
 				<reportElement x="10" y="119" width="262" height="64" backcolor="#FFFFFF"/>
