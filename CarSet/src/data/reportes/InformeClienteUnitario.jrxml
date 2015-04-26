@@ -88,7 +88,7 @@
 		<variableExpression><![CDATA[new Double(Double.parseDouble($F{mg_pe_diciembre}))]]></variableExpression>
 	</variable>
 	<variable name="ta_total" class="java.lang.Double">
-		<variableExpression><![CDATA[((new Double(Double.parseDouble($F{num_enero})))+(new Double(Double.parseDouble($F{num_febrero})))+(new Double(Double.parseDouble($F{num_marzo})))+(new Double(Double.parseDouble($F{num_abril})))+(new Double(Double.parseDouble($F{num_mayo})))+(new Double(Double.parseDouble($F{num_junio})))+(new Double(Double.parseDouble($F{num_julio})))+(new Double(Double.parseDouble($F{num_agosto})))+(new Double(Double.parseDouble($F{num_septiembre})))+(new Double(Double.parseDouble($F{num_octubre})))+(new Double(Double.parseDouble($F{num_noviembre})))+(new Double(Double.parseDouble($F{num_diciembre}))))]]></variableExpression>
+		<variableExpression><![CDATA[Integer.parseInt($F{num_enero})+Integer.parseInt($F{num_febrero})+Integer.parseInt($F{num_marzo})+Integer.parseInt($F{num_abril})+Integer.parseInt($F{num_mayo})+Integer.parseInt($F{num_junio})+Integer.parseInt($F{num_julio})+Integer.parseInt($F{num_agosto})+Integer.parseInt($F{num_septiembre})+Integer.parseInt($F{num_octubre})+Integer.parseInt($F{num_noviembre})+Integer.parseInt($F{num_diciembre})]]></variableExpression>
 	</variable>
 	<variable name="ta_total_ant" class="java.lang.Double">
 		<variableExpression><![CDATA[new Double(Double.parseDouble($F{num_anterior}))]]></variableExpression>
@@ -535,7 +535,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[(new Double(Double.parseDouble($F{mg_pe_febrero})) < Double.parseDouble($F{mg_pe_enero})) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format(new Double(Double.parseDouble($F{mg_pe_febrero}))/(Double.parseDouble($F{num_febrero}))).concat( " " ) +"</style>" : new java.text.DecimalFormat("#,##0.0").format(new Double(Double.parseDouble($F{mg_pe_febrero}))/(Double.parseDouble($F{num_febrero}))).concat( " " )]]></textFieldExpression>
@@ -566,7 +566,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{num_febrero} <  $F{num_enero}) ? "<style backcolor='#FA5858'>"+ $F{num_febrero}.concat( " " ) + "</style>" : $F{num_febrero}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(Integer.parseInt($F{num_febrero}) <  Integer.parseInt($F{num_enero})) ? "<style backcolor='#FA5858'>"+ $F{num_febrero}.concat( " " ) + "</style>" : $F{num_febrero}.concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="167" y="54" width="32" height="18"/>
@@ -577,10 +577,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.0").format((new Double(Double.parseDouble($F{mg_pe_marzo}))/(Double.parseDouble($F{num_marzo})))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(new Double(Double.parseDouble($F{mg_pe_marzo})) < Double.parseDouble($F{mg_pe_febrero})) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format(new Double(Double.parseDouble($F{mg_pe_marzo}))/(Double.parseDouble($F{num_marzo}))).concat( " " ) +"</style>" : new java.text.DecimalFormat("#,##0.0").format(new Double(Double.parseDouble($F{mg_pe_marzo}))/(Double.parseDouble($F{num_marzo}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="167" y="72" width="32" height="18"/>
@@ -594,7 +594,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{num_marzo} <  $F{num_febrero}) ? "<style backcolor='#FA5858'>"+ $F{num_marzo}.concat( " " ) + "</style>" : $F{num_marzo}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(Integer.parseInt($F{num_marzo}) <  Integer.parseInt($F{num_febrero})) ? "<style backcolor='#FA5858'>"+ $F{num_marzo}.concat( " " ) + "</style>" : $F{num_marzo}.concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="167" y="18" width="32" height="18"/>
@@ -619,10 +619,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.0").format((new Double(Double.parseDouble($F{mg_pe_abril}))/(Double.parseDouble($F{num_abril})))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(new Double(Double.parseDouble($F{mg_pe_abril})) < Double.parseDouble($F{mg_pe_marzo})) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format(new Double(Double.parseDouble($F{mg_pe_abril}))/(Double.parseDouble($F{num_abril}))).concat( " " ) +"</style>" : new java.text.DecimalFormat("#,##0.0").format(new Double(Double.parseDouble($F{mg_pe_abril}))/(Double.parseDouble($F{num_abril}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="224" y="72" width="32" height="18"/>
@@ -636,7 +636,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{num_abril} <  $F{num_marzo}) ? "<style backcolor='#FA5858'>"+ $F{num_abril}.concat( " " ) + "</style>" : $F{num_abril}.concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(Integer.parseInt($F{num_abril}) <  Integer.parseInt($F{num_marzo})) ? "<style backcolor='#FA5858'>"+ $F{num_abril}.concat( " " ) + "</style>" : $F{num_abril}.concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="224" y="18" width="32" height="18"/>
@@ -661,7 +661,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.0").format((new Double(Double.parseDouble($F{mg_pe_mayo}))/(Double.parseDouble($F{num_mayo})))).concat( " " )]]></textFieldExpression>
@@ -1504,7 +1504,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{num_abril} <  $F{num_marzo}) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_abril})))-Double.parseDouble($F{num_marzo}))/(Double.parseDouble($F{num_abril}))*100)).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_abril})))-Double.parseDouble($F{num_marzo}))/(Double.parseDouble($F{num_abril}))*100)).concat( "% " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(Integer.parseInt($F{num_abril}) <  Integer.parseInt($F{num_marzo})) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_abril})))-Double.parseDouble($F{num_marzo}))/(Double.parseDouble($F{num_abril}))*100)).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_abril})))-Double.parseDouble($F{num_marzo}))/(Double.parseDouble($F{num_abril}))*100)).concat( "% " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="313" y="72" width="25" height="18"/>
@@ -1574,7 +1574,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{num_febrero} <  $F{num_enero}) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_febrero})))-Double.parseDouble($F{num_enero}))/(Double.parseDouble($F{num_febrero}))*100)).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_febrero})))-Double.parseDouble($F{num_enero}))/(Double.parseDouble($F{num_febrero}))*100)).concat( "% " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(Integer.parseInt($F{num_febrero}) <  Integer.parseInt($F{num_enero})) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_febrero})))-Double.parseDouble($F{num_enero}))/(Double.parseDouble($F{num_febrero}))*100)).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_febrero})))-Double.parseDouble($F{num_enero}))/(Double.parseDouble($F{num_febrero}))*100)).concat( "% " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="655" y="72" width="25" height="18"/>
@@ -1630,7 +1630,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[($F{num_marzo} <  $F{num_febrero}) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_marzo})))-Double.parseDouble($F{num_febrero}))/(Double.parseDouble($F{num_marzo}))*100)).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_marzo})))-Double.parseDouble($F{num_febrero}))/(Double.parseDouble($F{num_marzo}))*100)).concat( "% " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[(Integer.parseInt($F{num_marzo}) <  Integer.parseInt($F{num_febrero})) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_marzo})))-Double.parseDouble($F{num_febrero}))/(Double.parseDouble($F{num_marzo}))*100)).concat( "% " ) + "</style>" : new java.text.DecimalFormat("#,##0.0").format((((new Double(Double.parseDouble($F{num_marzo})))-Double.parseDouble($F{num_febrero}))/(Double.parseDouble($F{num_marzo}))*100)).concat( "% " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="598" y="72" width="25" height="18"/>
@@ -1658,7 +1658,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$V{ta_total}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#").format($V{ta_total}).concat(" ")]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="256" y="0" width="25" height="18"/>
