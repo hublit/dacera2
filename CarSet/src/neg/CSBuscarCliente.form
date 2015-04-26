@@ -87,7 +87,11 @@
                                       <Component id="jTextDireccion" alignment="0" pref="503" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jComboBoxEstado" min="-2" pref="89" max="-2" attributes="1"/>
-                                          <EmptySpace pref="368" max="32767" attributes="0"/>
+                                          <EmptySpace pref="98" max="32767" attributes="0"/>
+                                          <Component id="lServicioFMad2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jComboFactor" min="-2" pref="165" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                                           <Component id="lComercial" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -160,6 +164,8 @@
                       <Component id="lEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBoxComercial" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lComercial" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboFactor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lServicioFMad2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="8" max="-2" attributes="0"/>
@@ -487,6 +493,32 @@
               <Dimension value="[5, 5]"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lServicioFMad2">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Tipo"/>
+            <Property name="name" type="java.lang.String" value="lServicioFMad2" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboFactor">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="e5" red="e4" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="jComboFactor" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboFactorActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

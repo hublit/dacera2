@@ -49,10 +49,14 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.String;
 import java.lang.reflect.Constructor;
+import java.net.UnknownHostException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -67,7 +71,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpServletResponse;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -106,7 +109,15 @@ import net.sf.jasperreports.view.JRSaveContributor;
 import net.sf.jasperreports.view.save.JRPrintSaveContributor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import utils.Reportes;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 
 
 /**
@@ -204,7 +215,6 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
 	protected List saveContributors = new ArrayList();
 	protected File lastFolder = null;
 	protected JRSaveContributor lastSaveContributor = null;
-    private HttpServletResponse response;
 
 	/** Creates new form JRViewer */
 	public JRViewerComercial(String fileName, boolean isXML) throws JRException
@@ -1358,9 +1368,60 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
         private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
 
             String queryInf = this.jasperPrint.getProperty("query");
-            System.out.println("Vamoooooos: "+queryInf);
-            
 
+             try {
+                // Se crea el libro excel
+                HSSFWorkbook libro = new HSSFWorkbook();
+                //Se crea la hoja
+                HSSFSheet hoja = libro.createSheet("Pedidos");
+                //Numero de fila de la hoja Excel
+                int num_fila = 1;
+                crearCabeceraHojaExcel(libro, hoja);
+
+                HSSFCellStyle cs2 = libro.createCellStyle();
+                cs2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+                cs2.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+                cs2.setBottomBorderColor(HSSFColor.BLACK.index);
+                cs2.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+                cs2.setLeftBorderColor(HSSFColor.BLACK.index);
+                cs2.setBorderRight(HSSFCellStyle.BORDER_THIN);
+                cs2.setRightBorderColor(HSSFColor.BLACK.index);
+                cs2.setBorderTop(HSSFCellStyle.BORDER_THIN);
+                cs2.setTopBorderColor(HSSFColor.BLACK.index);
+
+                HSSFCellStyle cs3 = libro.createCellStyle();
+                cs3.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+                cs3.setBottomBorderColor(HSSFColor.BLACK.index);
+                cs3.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+                cs3.setLeftBorderColor(HSSFColor.BLACK.index);
+                cs3.setBorderRight(HSSFCellStyle.BORDER_THIN);
+                cs3.setRightBorderColor(HSSFColor.BLACK.index);
+                cs3.setBorderTop(HSSFCellStyle.BORDER_THIN);
+                cs3.setTopBorderColor(HSSFColor.BLACK.index);
+                ResultSet rs = CSDesktop.datos.select(queryInf);
+
+                crearFilaHojaExcel(libro, hoja, num_fila, rs, cs2,cs3);
+                FileOutputStream elFichero = null;
+                elFichero = new FileOutputStream("c:\\informe_comercial.xls");
+                libro.write(elFichero);
+                elFichero.close();
+                elFichero.flush();
+                String property = "java.io.tmpdir";
+                String tempDir = System.getProperty(property);
+                System.out.println("OS current temporary directory is " + tempDir);
+                String file = new String("C:\\informe_comercial.xls");
+                Process p = Runtime.getRuntime().exec("rundll32 SHELL32.DLL,ShellExec_RunDLL " + file);
+
+            }
+            catch (SQLException ex) {
+                Logger.getLogger(CSResultBuscarPedidoNew.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(CSResultBuscarPedidoNew.class.getName()).log(Level.SEVERE, null, ex);
+            }          catch (IOException ex) {
+                Logger.getLogger(CSResultBuscarPedidoNew.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+            //System.out.println("Vamoooooos: "+queryInf);
             
                     HashMap pars = new HashMap();
         //pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
@@ -1368,15 +1429,288 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
         pars.put("FechaInicio", "2014-01-01");
         pars.put("FechaFin", "2014-12-31");
         pars.put("total", "120");
-            Reportes rp = new Reportes();
-            try {
-                rp.exportXls(response, null, pars);
-            } catch (IOException ex) {
-                Logger.getLogger(JRViewerComercial.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
    
         }//GEN-LAST:event_btnExcelActionPerformed
 
+        private static void crearCabeceraHojaExcel(HSSFWorkbook libro, HSSFSheet hoja){
+            HSSFRow fila = null;
+            HSSFCell celda = null;
+
+            // Modificamos la fuente por defecto para que salga en negrita
+            HSSFCellStyle cs = libro.createCellStyle();
+            HSSFFont f = libro.createFont();
+            f.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+            f.setColor(HSSFColor.WHITE.index);
+            cs.setFont(f);
+            //cs.setFillBackgroundColor(HSSFColor.GREEN.index);
+            cs.setFillForegroundColor(HSSFColor.GREEN.index);
+            cs.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+            cs.setBorderBottom(HSSFCellStyle.BORDER_MEDIUM);
+            cs.setBottomBorderColor(HSSFColor.BLACK.index);
+            cs.setBorderLeft(HSSFCellStyle.BORDER_MEDIUM);
+            cs.setLeftBorderColor(HSSFColor.BLACK.index);
+            cs.setBorderRight(HSSFCellStyle.BORDER_MEDIUM);
+            cs.setRightBorderColor(HSSFColor.BLACK.index);
+            cs.setBorderTop(HSSFCellStyle.BORDER_MEDIUM);
+            cs.setTopBorderColor(HSSFColor.BLACK.index);
+
+            cs.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
+
+            // Creamos la cabecera de las columnas
+            fila = hoja.createRow(0);
+
+            celda = fila.createCell( (short) 0);
+            celda.setCellStyle(cs);
+            HSSFRichTextString texto = new HSSFRichTextString("ENERO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 0, (short) ((60 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 1);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("FEBRERO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 1, (short) ((80 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 2);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("MARZO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 2, (short) ((200 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 3);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("ABRIL");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 3, (short) ((130 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 4);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("MAYO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 4, (short) ((60 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 5);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("JUNIO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 5, (short) ((130 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 6);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("JULIO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 6, (short) ((60 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 7);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("AGOSTO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 7, (short) ((80 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 8);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("SEPTIEMBRE");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 8, (short) ((40 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 9);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("OCTUBRE");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 9, (short) ((120 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 10);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("NOVIEMBRE");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 10, (short) ((110 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 11);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("DICIEMBRE");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 11, (short) ((130 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short)12);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("M.G.");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 12, (short) ((130 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short)13);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("M.G. PEDIDO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 13, (short) ((130 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short)14);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("NUM.PEDIDOS");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 14, (short) ((40 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short) 15);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("IMPORTE");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 15, (short) ((200 * 2) / ((double) 1 / 20)) );
+
+    }
+
+    private static void crearFilaHojaExcel(HSSFWorkbook libro,HSSFSheet hoja, int num_fila, ResultSet rs, HSSFCellStyle cs2,HSSFCellStyle cs3) throws SQLException, UnknownHostException
+    {
+            HSSFRow fila = null;
+            HSSFCell celda = null;
+            HSSFRichTextString texto = null;
+            int num_fila_aux=2;
+            while (rs.next())
+            {
+                // Se crea una fila dentro de la hoja
+                fila = hoja.createRow(num_fila);
+
+                //Celda de enero
+                celda = fila.createCell( (short) 0);
+                celda.setCellStyle(cs2);
+                String enero = rs.getString("enero");
+                texto = new HSSFRichTextString(enero);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de febrero
+                celda = fila.createCell( (short) 1);
+                String febrero = rs.getString("febrero");
+                texto = new HSSFRichTextString(febrero);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de marzo
+                celda = fila.createCell( (short) 2);
+                celda.setCellStyle(cs2);
+                String marzo = rs.getString("marzo");
+                texto = new HSSFRichTextString(marzo);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de abril
+                celda = fila.createCell( (short) 3);
+                String abril = rs.getString("abril");
+                texto = new HSSFRichTextString(abril);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de mayo
+                celda = fila.createCell( (short) 4);
+                celda.setCellStyle(cs2);
+                String mayo = rs.getString("mayo");
+                texto = new HSSFRichTextString(mayo);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de junio
+                celda = fila.createCell( (short) 5);
+                String junio = rs.getString("junio");
+                texto = new HSSFRichTextString(junio);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda del julio
+                celda = fila.createCell( (short) 6);
+                String julio = rs.getString("julio");
+                texto = new HSSFRichTextString(julio);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de agosto
+                celda = fila.createCell( (short) 7);
+                celda.setCellStyle(cs2);
+                String agosto = rs.getString("agosto");
+                texto = new HSSFRichTextString(agosto);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de septiembre
+                celda = fila.createCell( (short) 8);
+                String septiembre = rs.getString("septiembre");
+                texto = new HSSFRichTextString(septiembre);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de octubre
+                celda = fila.createCell( (short) 9);
+                celda.setCellStyle(cs2);
+                String octubre = rs.getString("octubre");
+                texto = new HSSFRichTextString(octubre);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de noviembre
+                celda = fila.createCell( (short) 10);
+                String noviembre = rs.getString("noviembre");
+                texto = new HSSFRichTextString(noviembre);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de diciembre
+                celda = fila.createCell( (short) 11);
+                celda.setCellStyle(cs2);
+                String diciembre = rs.getString("diciembre");
+                texto = new HSSFRichTextString(diciembre);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de MG
+                celda = fila.createCell( (short) 12);
+                double t_cliente = Double.parseDouble(rs.getString("ta_cliente"));
+                double t_proveedor = Double.parseDouble(rs.getString("ta_proveedor"));
+
+                String porCientoPedido = new java.text.DecimalFormat("#,##0").format(((t_cliente-t_proveedor)/t_cliente)*100).concat( "% " );
+                texto = new HSSFRichTextString(porCientoPedido);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda de mg pedido
+                celda = fila.createCell( (short) 13);
+                String mg_pedido = rs.getString("mg_pedido");
+                texto = new HSSFRichTextString(mg_pedido);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda del num. pedido
+                celda = fila.createCell( (short) 14);
+                String num_pedido = rs.getString("num_pedido");
+                texto = new HSSFRichTextString(num_pedido);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda del ta cliente
+                celda = fila.createCell( (short) 15);
+                String ta_cliente = rs.getString("ta_cliente");
+                texto = new HSSFRichTextString(ta_cliente);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+
+                //Celda del Tarifa Cliente
+                HSSFDataFormat format = libro.createDataFormat();
+                HSSFCellStyle style = libro.createCellStyle();
+                style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+                style.setBottomBorderColor(HSSFColor.BLACK.index);
+                style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+                style.setLeftBorderColor(HSSFColor.BLACK.index);
+                style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+                style.setRightBorderColor(HSSFColor.BLACK.index);
+                style.setBorderTop(HSSFCellStyle.BORDER_THIN);
+                style.setTopBorderColor(HSSFColor.BLACK.index);
+
+                style.setDataFormat(format.getFormat("00.00"));
+
+                celda.setCellStyle(style);
+
+                //Se incrementa el numero de fila
+                num_fila++;
+                num_fila_aux++;
+            }
+        }
 
 	/**
 	*/

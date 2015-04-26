@@ -16,6 +16,8 @@ import java.awt.event.KeyListener;
 import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -81,7 +83,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         jComboBoxTipo = new javax.swing.JComboBox();
         lTipo = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
         jLabel1.setText("Informe Comercial");
         jLabel1.setName("jLabel1"); // NOI18N
@@ -125,7 +127,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         jLabel2.setText("Informe Comercial anual de pedidos por Clientes");
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelOrder.setForeground(new java.awt.Color(170, 16, 4));
         jLabelOrder.setText("Orden");
         jLabelOrder.setName("jLabelOrder"); // NOI18N
@@ -142,7 +144,7 @@ public class CSInformeComercial extends javax.swing.JPanel
 
         jComboBoxTipo.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxTipo.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Empresa", "Concesionario", "Renting", "Compraventa", "Particular", "Proveedor", "Fabricante", "Otros" }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Empresa", "Concesionario", "Renting", "Compraventa", "Particular", "Proveedor", "Fabricante", "Asistencia", "Intermediario Renting", "Carrocero", "Otros" }));
         jComboBoxTipo.setName("jComboBoxTipo"); // NOI18N
 
         lTipo.setForeground(new java.awt.Color(0, 0, 100));
@@ -158,9 +160,9 @@ public class CSInformeComercial extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator6)
+                            .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.CENTER)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,10 +252,13 @@ public class CSInformeComercial extends javax.swing.JPanel
                 "SUM(IF(MONTH(pe.pe_fecha) = 10, pe.pe_ta_es_cliente, 0) ) AS octubre," +
                 "SUM(IF(MONTH(pe.pe_fecha) = 11, pe.pe_ta_es_cliente, 0) ) AS noviembre, " +
                 "SUM(IF(MONTH(pe.pe_fecha) = 12, pe.pe_ta_es_cliente, 0) ) AS diciembre, " +
-                "SUM(pe.pe_ta_es_cliente) AS ta_cliente " +
+                "SUM(pe.pe_ta_es_cliente - pe.pe_ta_es_proveedor) AS mg_pedido, " +
+                "SUM(1) AS num_pedido, " +
+                "SUM(pe.pe_ta_es_cliente) AS ta_cliente, " +
+                "SUM(pe.pe_ta_es_proveedor) AS ta_proveedor " +
                 "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
                 "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
-                "WHERE cl.cl_estado = 'Activo'";
+                "WHERE cl.cl_estado = 'Activo' AND pe.pe_incidencia != 'ADMINISTRATIVA'" ;
         if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
             query = query + " AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
         }
@@ -268,9 +273,9 @@ public class CSInformeComercial extends javax.swing.JPanel
 
         String order = "";
         switch (orden) {
-            case 0:  order = "cl.cl_nombre";
+            case 0:  order = "ta_cliente";
                      break;
-            case 1:  order = "ta_cliente";
+            case 1:  order = "cl.cl_nombre";
                      break;
             default: order = "cl.cl_nombre";
                      break;
@@ -284,7 +289,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         
         //Sacamos el importe toal de los pedidos
         try {
-            total = this.getImporteTotalPedidos(fechaIni, fechaFin);
+            total = this.getImporteTotalPedidos(fechaIni, fechaFin, tipoCliente);
         } catch (SQLException ex) {
             Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -342,7 +347,11 @@ public class CSInformeComercial extends javax.swing.JPanel
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jComboBoxAnyoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnyoActionPerformed
-        // TODO add your handling code here:
+        ArrayList<String> years_tmp = new ArrayList<String>();
+        for(int years = 2010 ; years<=Calendar.getInstance().get(Calendar.YEAR);years++){
+        years_tmp.add(years+"");
+       }
+        //jComboBoxAnyo = new jComboBoxAnyo(years_tmp.toArray());
 }//GEN-LAST:event_jComboBoxAnyoActionPerformed
 
     private void jComboOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboOrdenActionPerformed
@@ -377,13 +386,18 @@ public class CSInformeComercial extends javax.swing.JPanel
      *
      * @param accion
      */
-    public int getImporteTotalPedidos(String fechaIni, String fechaFin) throws SQLException
+    public int getImporteTotalPedidos(String fechaIni, String fechaFin, String tipoCliente) throws SQLException
     {
         int total = 0;
         String queryPe ="SELECT SUM(pe.pe_ta_es_cliente) AS total FROM carset.pe_pedidos pe " +
                         "INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
                         "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id WHERE cl.cl_estado = 'Activo'  " +
                         "AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
+
+        if (!tipoCliente.equals("Selecciona"))
+        {
+           queryPe = queryPe + " AND cl.cl_tipo= '"+tipoCliente+"'";
+        }
 
         ResultSet rs = CSDesktop.datos.select(queryPe);
         while(rs.next())
