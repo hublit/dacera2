@@ -96,6 +96,8 @@ public class CSBuscarCliente extends javax.swing.JPanel
         lComercial = new javax.swing.JLabel();
         jComboBoxComercial = new javax.swing.JComboBox();
         jSeparator8 = new javax.swing.JSeparator();
+        lServicioFMad2 = new javax.swing.JLabel();
+        jComboFactor = new javax.swing.JComboBox();
 
         lComercial1.setForeground(new java.awt.Color(0, 0, 100));
         lComercial1.setText("Comercial");
@@ -228,6 +230,19 @@ public class CSBuscarCliente extends javax.swing.JPanel
         jSeparator8.setOpaque(true);
         jSeparator8.setPreferredSize(new java.awt.Dimension(5, 5));
 
+        lServicioFMad2.setForeground(new java.awt.Color(0, 0, 100));
+        lServicioFMad2.setText("Tipo");
+        lServicioFMad2.setName("lServicioFMad2"); // NOI18N
+
+        jComboFactor.setBackground(new java.awt.Color(228, 229, 255));
+        jComboFactor.setForeground(new java.awt.Color(0, 0, 100));
+        jComboFactor.setName("jComboFactor"); // NOI18N
+        jComboFactor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboFactorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -260,7 +275,11 @@ public class CSBuscarCliente extends javax.swing.JPanel
                                     .addComponent(jTextDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                                        .addComponent(lServicioFMad2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(81, 81, 81)
                                         .addComponent(lComercial)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -316,7 +335,9 @@ public class CSBuscarCliente extends javax.swing.JPanel
                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lEstado)
                     .addComponent(jComboBoxComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lComercial))
+                    .addComponent(lComercial)
+                    .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lServicioFMad2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -378,6 +399,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
         String nombreContacto = new String(jTextNombreCon.getText());
         int comercial = (jComboBoxComercial.getSelectedIndex()+1);
         String estado = new String(jComboBoxEstado.getSelectedItem().toString());
+        int factor = new Integer(jComboFactor.getSelectedIndex());
 
         if (!nombreContacto.equals("") && ((numero != -1) ||
            (!nombre.equals("")) || (!dni.equals("")) || (!poblacion.equals("")) ||
@@ -437,6 +459,9 @@ public class CSBuscarCliente extends javax.swing.JPanel
             {
                 query = query + " AND cl.cl_estado= '"+estado+"'";
             }
+            if (factor != 0) {
+                query = query + " AND fc.fc_id='" + factor + "'";
+            }
             query = query + " ORDER BY cl.cl_nombre ASC";
           System.out.println(query);
           CSResultBuscarCliente resultBuscarCliente = new CSResultBuscarCliente(query);
@@ -476,6 +501,10 @@ public class CSBuscarCliente extends javax.swing.JPanel
        jTextNombreCon.setText(NombreConM);
     }//GEN-LAST:event_jTextNombreConFocusLost
 
+    private void jComboFactorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboFactorActionPerformed
+
+}//GEN-LAST:event_jComboFactorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
@@ -483,6 +512,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
     private javax.swing.JComboBox jComboBoxComercial;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxProvincia;
+    private javax.swing.JComboBox jComboFactor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator8;
@@ -505,6 +535,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
     private javax.swing.JLabel lPContacto;
     private javax.swing.JLabel lPoblacion;
     private javax.swing.JLabel lProvincia;
+    private javax.swing.JLabel lServicioFMad2;
     // End of variables declaration//GEN-END:variables
 
     public void ValidarFormatos(String accion)

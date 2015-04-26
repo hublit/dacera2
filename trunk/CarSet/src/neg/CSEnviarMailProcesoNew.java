@@ -213,8 +213,8 @@ public class CSEnviarMailProcesoNew
                 //htmlText = htmlText +"<tr><td><font face='Helvetica'><b>&nbsp;TOTAL</b></font></td><td align='right'><font face='Helvetica'><b>&nbsp;"+importeTotal+" &euro;</b></font></td></tr>";
                 htmlText = htmlText +"</table>";
                 //htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Estos precios no incluyen I.V.A </font></td></tr>";
-                htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> La anulación del pedido una vez tramitado incurrirá en gastos de cancelación, asumidos por el cliente, que supondrán como máximo el 75 % del importe. ";
-                htmlText = htmlText +"CarSet no se responsabilizará de los objetos que no estén indicados en la documentación de carga. </font></td></tr>";
+                htmlText = htmlText +"<tr><td colspan='2'><font size='-1' face='Helvetica' align='justify'><i> La anulación del pedido una vez tramitado incurrirá en gastos de cancelación, asumidos por el cliente, que supondrán como máximo el 75 % del importe. ";
+                htmlText = htmlText +"CarSet no se responsabilizará de los objetos que no estén indicados en la documentación de carga. </i></font></td></tr>";
                 //htmlText = htmlText +"<br>";
                 htmlText = htmlText +"<tr><td colspan='2'><br><font face='Helvetica'>Atentamente, </font></td></tr>";
 //                htmlText = htmlText +"<br>";

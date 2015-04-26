@@ -2250,7 +2250,7 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="8">
             <StringItem index="0" value="Selecciona"/>
             <StringItem index="1" value="I"/>
             <StringItem index="2" value="IM"/>
@@ -2258,6 +2258,7 @@
             <StringItem index="4" value="RFL"/>
             <StringItem index="5" value="RP"/>
             <StringItem index="6" value="RC"/>
+            <StringItem index="7" value="ADMINISTRATIVA"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxIncidencias" noResource="true"/>

@@ -1035,7 +1035,7 @@ public class CSResultBuscarTesoreriaCliente extends javax.swing.JPanel
                 comboBoxBc.addItem("");
                 comboBoxBc.addItem("LC");
                 comboBoxBc.addItem("OB");
-                comboBoxBc.addItem("3");
+                comboBoxBc.addItem("PP");
                 comboBoxBc.addItem("4");
                 comboBoxBc.addItem("5");
                 comboBoxBc.addItem("6");

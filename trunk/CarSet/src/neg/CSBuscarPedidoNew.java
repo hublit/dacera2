@@ -390,7 +390,7 @@ public class CSBuscarPedidoNew extends javax.swing.JPanel
 
         jComboBoxIncidencias.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxIncidencias.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxIncidencias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Todas", "I", "IM", "IRD", "RFL", "RP", "RC" }));
+        jComboBoxIncidencias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Todas", "I", "IM", "IRD", "RFL", "RP", "RC", "ADMINISTRATIVA" }));
         jComboBoxIncidencias.setName("jComboBoxIncidencias"); // NOI18N
         jComboBoxIncidencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
