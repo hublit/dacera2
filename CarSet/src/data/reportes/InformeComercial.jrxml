@@ -23,6 +23,9 @@
 	<field name="noviembre" class="java.lang.String"/>
 	<field name="diciembre" class="java.lang.String"/>
 	<field name="ta_cliente" class="java.lang.String"/>
+	<field name="mg_pedido" class="java.lang.String"/>
+	<field name="num_pedido" class="java.lang.String"/>
+	<field name="ta_proveedor" class="java.lang.String"/>
 	<variable name="variable1" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -62,7 +65,7 @@
 	<columnHeader>
 		<band height="39" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="708" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="598" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -71,12 +74,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="6"/>
+					<font fontName="Verdana" size="5"/>
 				</textElement>
 				<text><![CDATA[DICIEMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="658" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="558" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -85,12 +88,12 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="6"/>
+					<font fontName="Verdana" size="5"/>
 				</textElement>
 				<text><![CDATA[NOVIEMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="753" y="0" width="49" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="758" y="0" width="44" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -104,7 +107,7 @@
 				<text><![CDATA[IMPORTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="608" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="518" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="0.0"/>
@@ -118,7 +121,7 @@
 				<text><![CDATA[OCTUBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="308" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="278" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -132,7 +135,7 @@
 				<text><![CDATA[ABRIL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="258" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="238" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -146,7 +149,7 @@
 				<text><![CDATA[MARZO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="358" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="318" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -160,7 +163,7 @@
 				<text><![CDATA[MAYO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="208" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="198" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -174,7 +177,7 @@
 				<text><![CDATA[FEBRERO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="158" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="158" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -188,7 +191,7 @@
 				<text><![CDATA[ENERO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="408" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="358" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -202,7 +205,7 @@
 				<text><![CDATA[JUNIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="458" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="398" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -216,7 +219,7 @@
 				<text><![CDATA[JULIO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="508" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="438" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -230,7 +233,7 @@
 				<text><![CDATA[AGOSTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="558" y="0" width="50" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<reportElement mode="Opaque" x="478" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -239,7 +242,7 @@
 					<rightPen lineWidth="1.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="6"/>
+					<font fontName="Verdana" size="5"/>
 				</textElement>
 				<text><![CDATA[SEPTIEMBRE]]></text>
 			</staticText>
@@ -257,12 +260,54 @@
 				</textElement>
 				<text><![CDATA[CLIENTE]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="638" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[MG %]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="678" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[MG PEDIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="718" y="0" width="40" height="39" forecolor="#FFFFFF" backcolor="#006600"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<text><![CDATA[Nº PEDIDO]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="18" splitType="Stretch">
 			<textField>
-				<reportElement x="708" y="0" width="45" height="18"/>
+				<reportElement x="598" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -273,10 +318,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{diciembre}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{diciembre}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="658" y="0" width="50" height="18"/>
+				<reportElement x="558" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -287,10 +332,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{noviembre}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{noviembre}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="608" y="0" width="50" height="18"/>
+				<reportElement x="518" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -301,10 +346,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{octubre}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{octubre}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="558" y="0" width="50" height="18"/>
+				<reportElement x="478" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -315,10 +360,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{septiembre}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{septiembre}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="508" y="0" width="50" height="18"/>
+				<reportElement x="438" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -329,10 +374,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{agosto}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{agosto}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="458" y="0" width="50" height="18"/>
+				<reportElement x="398" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -343,10 +388,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{julio}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{julio}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="408" y="0" width="50" height="18"/>
+				<reportElement x="358" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -357,10 +402,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{junio}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{junio}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="358" y="0" width="50" height="18"/>
+				<reportElement x="318" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -371,10 +416,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{mayo}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{mayo}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="308" y="0" width="50" height="18"/>
+				<reportElement x="278" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -385,10 +430,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{abril}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{abril}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="258" y="0" width="50" height="18"/>
+				<reportElement x="238" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -399,10 +444,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{marzo}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{marzo}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="158" y="0" width="50" height="18"/>
+				<reportElement x="158" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -413,10 +458,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{enero}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{enero}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="208" y="0" width="50" height="18"/>
+				<reportElement x="198" y="0" width="40" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -427,7 +472,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{febrero}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{febrero}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="0" width="158" height="18"/>
@@ -444,7 +489,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cl_nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="753" y="0" width="48" height="18"/>
+				<reportElement x="758" y="0" width="43" height="18"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -456,6 +501,48 @@
 					<font fontName="Verdana" size="6" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.00").format(new Double(Double.parseDouble($F{ta_cliente}))).concat( " € " )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="638" y="0" width="40" height="18"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{ta_cliente})-Double.parseDouble($F{ta_proveedor})/(Double.parseDouble($F{ta_cliente}))*100)).concat( "% " )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="678" y="0" width="40" height="18"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{mg_pedido}))).concat( " " )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="718" y="0" width="40" height="18"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{num_pedido}).concat( " " )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
