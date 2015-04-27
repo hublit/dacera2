@@ -1419,7 +1419,7 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
                 Logger.getLogger(CSResultBuscarPedidoNew.class.getName()).log(Level.SEVERE, null, ex);
             }          catch (IOException ex) {
                 Logger.getLogger(CSResultBuscarPedidoNew.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }
 
             //System.out.println("Vamoooooos: "+queryInf);
    
@@ -1526,27 +1526,33 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
 
             celda = fila.createCell( (short)12);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("M.G.");
+            texto = new HSSFRichTextString("IMPORTE");
             celda.setCellValue(texto);
             hoja.setColumnWidth((short) 12, (short) ((130 * 2) / ((double) 1 / 20)) );
-
+            
             celda = fila.createCell( (short)13);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("M.G. PEDIDO");
+            texto = new HSSFRichTextString("MARGEN");
             celda.setCellValue(texto);
             hoja.setColumnWidth((short) 13, (short) ((130 * 2) / ((double) 1 / 20)) );
+            
+            celda = fila.createCell( (short)13);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("MARGEN %");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 13, (short) ((130 * 2) / ((double) 1 / 20)) );               
 
             celda = fila.createCell( (short)14);
             celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("M.G. PEDIDO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 14, (short) ((130 * 2) / ((double) 1 / 20)) );         
+
+            celda = fila.createCell( (short)15);
+            celda.setCellStyle(cs);
             texto = new HSSFRichTextString("NUM.PEDIDOS");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 14, (short) ((40 * 2) / ((double) 1 / 20)) );
-
-            celda = fila.createCell( (short) 15);
-            celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("IMPORTE");
-            celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 15, (short) ((200 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 15, (short) ((40 * 2) / ((double) 1 / 20)) );
 
     }
 
@@ -1650,35 +1656,41 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
                 texto = new HSSFRichTextString(diciembre);
                 celda.setCellStyle(cs3);
                 celda.setCellValue(texto);
-
-                //Celda de MG
+                
+                //Celda de la tarifa de cliente
                 celda = fila.createCell( (short) 12);
+                String ta_cliente = rs.getString("ta_cliente");
+                texto = new HSSFRichTextString(ta_cliente);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);
+                
+                //Celda de margen
+                celda = fila.createCell( (short) 13);
                 double t_cliente = Double.parseDouble(rs.getString("ta_cliente"));
                 double t_proveedor = Double.parseDouble(rs.getString("ta_proveedor"));
+                String margen = new java.text.DecimalFormat("#,##0").format(t_cliente-t_proveedor);
+                texto = new HSSFRichTextString(margen);
+                celda.setCellStyle(cs3);
+                celda.setCellValue(texto);                
 
+                //Celda de MG
+                celda = fila.createCell( (short) 14);
                 String porCientoPedido = new java.text.DecimalFormat("#,##0").format(((t_cliente-t_proveedor)/t_cliente)*100).concat( "% " );
                 texto = new HSSFRichTextString(porCientoPedido);
                 celda.setCellStyle(cs3);
                 celda.setCellValue(texto);
 
                 //Celda de mg pedido
-                celda = fila.createCell( (short) 13);
+                celda = fila.createCell( (short) 15);
                 String mg_pedido = rs.getString("mg_pedido");
                 texto = new HSSFRichTextString(mg_pedido);
                 celda.setCellStyle(cs3);
                 celda.setCellValue(texto);
 
                 //Celda del num. pedido
-                celda = fila.createCell( (short) 14);
+                celda = fila.createCell( (short) 16);
                 String num_pedido = rs.getString("num_pedido");
                 texto = new HSSFRichTextString(num_pedido);
-                celda.setCellStyle(cs3);
-                celda.setCellValue(texto);
-
-                //Celda del ta cliente
-                celda = fila.createCell( (short) 15);
-                String ta_cliente = rs.getString("ta_cliente");
-                texto = new HSSFRichTextString(ta_cliente);
                 celda.setCellStyle(cs3);
                 celda.setCellValue(texto);
 
