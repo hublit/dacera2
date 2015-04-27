@@ -97,7 +97,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
         jComboBoxComercial = new javax.swing.JComboBox();
         jSeparator8 = new javax.swing.JSeparator();
         lServicioFMad2 = new javax.swing.JLabel();
-        jComboFactor = new javax.swing.JComboBox();
+        jComboBoxTipo = new javax.swing.JComboBox();
 
         lComercial1.setForeground(new java.awt.Color(0, 0, 100));
         lComercial1.setText("Comercial");
@@ -182,7 +182,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
 
         jTextNumero.setName("jTextNumero"); // NOI18N
 
-        lPContacto.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lPContacto.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lPContacto.setForeground(new java.awt.Color(170, 16, 4));
         lPContacto.setText("PERSONA DE CONTACTO");
         lPContacto.setName("lPContacto"); // NOI18N
@@ -234,12 +234,13 @@ public class CSBuscarCliente extends javax.swing.JPanel
         lServicioFMad2.setText("Tipo");
         lServicioFMad2.setName("lServicioFMad2"); // NOI18N
 
-        jComboFactor.setBackground(new java.awt.Color(228, 229, 255));
-        jComboFactor.setForeground(new java.awt.Color(0, 0, 100));
-        jComboFactor.setName("jComboFactor"); // NOI18N
-        jComboFactor.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxTipo.setBackground(new java.awt.Color(228, 229, 255));
+        jComboBoxTipo.setForeground(new java.awt.Color(0, 0, 100));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Empresa", "Concesionario", "Renting", "Compraventa", "Particular", "Proveedor", "Fabricante", "Asistencia", "Rent a car", "Intermediario Renting", "Carrocero", "Otros" }));
+        jComboBoxTipo.setName("jComboBoxTipo"); // NOI18N
+        jComboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboFactorActionPerformed(evt);
+                jComboBoxTipoActionPerformed(evt);
             }
         });
 
@@ -278,23 +279,24 @@ public class CSBuscarCliente extends javax.swing.JPanel
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                                         .addComponent(lServicioFMad2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(81, 81, 81)
                                         .addComponent(lComercial)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(lDNI)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
                             .addComponent(jComboBoxProvincia, 0, 141, Short.MAX_VALUE)
+                            .addComponent(jComboBoxComercial, 0, 141, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(lCodPostal)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                                .addComponent(jTextCodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBoxComercial, 0, 141, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lDNI)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lCodPostal)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                                        .addComponent(jTextCodPostal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lNombreCon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -336,7 +338,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
                     .addComponent(lEstado)
                     .addComponent(jComboBoxComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lComercial)
-                    .addComponent(jComboFactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lServicioFMad2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -399,7 +401,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
         String nombreContacto = new String(jTextNombreCon.getText());
         int comercial = (jComboBoxComercial.getSelectedIndex()+1);
         String estado = new String(jComboBoxEstado.getSelectedItem().toString());
-        int factor = new Integer(jComboFactor.getSelectedIndex());
+        String tipoCliente = new String(jComboBoxTipo.getSelectedItem().toString());
 
         if (!nombreContacto.equals("") && ((numero != -1) ||
            (!nombre.equals("")) || (!dni.equals("")) || (!poblacion.equals("")) ||
@@ -459,8 +461,9 @@ public class CSBuscarCliente extends javax.swing.JPanel
             {
                 query = query + " AND cl.cl_estado= '"+estado+"'";
             }
-            if (factor != 0) {
-                query = query + " AND fc.fc_id='" + factor + "'";
+            if (!tipoCliente.equals("Selecciona"))
+            {
+                query = query + " AND cl.cl_tipo='" + tipoCliente + "'";
             }
             query = query + " ORDER BY cl.cl_nombre ASC";
           System.out.println(query);
@@ -501,9 +504,9 @@ public class CSBuscarCliente extends javax.swing.JPanel
        jTextNombreCon.setText(NombreConM);
     }//GEN-LAST:event_jTextNombreConFocusLost
 
-    private void jComboFactorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboFactorActionPerformed
+    private void jComboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoActionPerformed
 
-}//GEN-LAST:event_jComboFactorActionPerformed
+}//GEN-LAST:event_jComboBoxTipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -512,7 +515,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
     private javax.swing.JComboBox jComboBoxComercial;
     private javax.swing.JComboBox jComboBoxEstado;
     private javax.swing.JComboBox jComboBoxProvincia;
-    private javax.swing.JComboBox jComboFactor;
+    private javax.swing.JComboBox jComboBoxTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator8;

@@ -1373,7 +1373,7 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
                 // Se crea el libro excel
                 HSSFWorkbook libro = new HSSFWorkbook();
                 //Se crea la hoja
-                HSSFSheet hoja = libro.createSheet("Pedidos");
+                HSSFSheet hoja = libro.createSheet("Informe");
                 //Numero de fila de la hoja Excel
                 int num_fila = 1;
                 crearCabeceraHojaExcel(libro, hoja);
@@ -1419,17 +1419,9 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
                 Logger.getLogger(CSResultBuscarPedidoNew.class.getName()).log(Level.SEVERE, null, ex);
             }          catch (IOException ex) {
                 Logger.getLogger(CSResultBuscarPedidoNew.class.getName()).log(Level.SEVERE, null, ex);
-    }
+            }
 
             //System.out.println("Vamoooooos: "+queryInf);
-            
-                    HashMap pars = new HashMap();
-        //pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
-        pars.put("Query", queryInf);
-        pars.put("FechaInicio", "2014-01-01");
-        pars.put("FechaFin", "2014-12-31");
-        pars.put("total", "120");
-
    
         }//GEN-LAST:event_btnExcelActionPerformed
 
@@ -1702,7 +1694,7 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
                 style.setBorderTop(HSSFCellStyle.BORDER_THIN);
                 style.setTopBorderColor(HSSFColor.BLACK.index);
 
-                style.setDataFormat(format.getFormat("00.00"));
+                style.setDataFormat(format.getFormat("00"));
 
                 celda.setCellStyle(style);
 
