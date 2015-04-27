@@ -48,7 +48,7 @@
         <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
       </Properties>
       <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="jPanel1"/>
         </Property>
       </AccessibilityProperties>
@@ -90,7 +90,7 @@
                                           <EmptySpace pref="98" max="32767" attributes="0"/>
                                           <Component id="lServicioFMad2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jComboFactor" min="-2" pref="165" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxTipo" min="-2" pref="165" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                                           <Component id="lComercial" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -99,20 +99,23 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="lDNI" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextDNI" pref="80" max="32767" attributes="0"/>
-                              </Group>
                               <Component id="jComboBoxProvincia" alignment="1" pref="141" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="lCodPostal" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="19" max="32767" attributes="0"/>
-                                  <Component id="jTextCodPostal" min="-2" pref="45" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="jComboBoxComercial" alignment="1" pref="141" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lDNI" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jTextDNI" pref="80" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lCodPostal" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                                          <Component id="jTextCodPostal" min="-2" pref="45" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="1">
@@ -164,7 +167,7 @@
                       <Component id="lEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBoxComercial" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lComercial" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboFactor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lServicioFMad2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -503,7 +506,7 @@
             <Property name="name" type="java.lang.String" value="lServicioFMad2" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboFactor">
+        <Component class="javax.swing.JComboBox" name="jComboBoxTipo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="e5" red="e4" type="rgb"/>
@@ -512,12 +515,26 @@
               <Color blue="64" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
+              <StringArray count="13">
+                <StringItem index="0" value="Selecciona"/>
+                <StringItem index="1" value="Empresa"/>
+                <StringItem index="2" value="Concesionario"/>
+                <StringItem index="3" value="Renting"/>
+                <StringItem index="4" value="Compraventa"/>
+                <StringItem index="5" value="Particular"/>
+                <StringItem index="6" value="Proveedor"/>
+                <StringItem index="7" value="Fabricante"/>
+                <StringItem index="8" value="Asistencia"/>
+                <StringItem index="9" value="Rent a car"/>
+                <StringItem index="10" value="Intermediario Renting"/>
+                <StringItem index="11" value="Carrocero"/>
+                <StringItem index="12" value="Otros"/>
+              </StringArray>
             </Property>
-            <Property name="name" type="java.lang.String" value="jComboFactor" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jComboBoxTipo" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboFactorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxTipoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

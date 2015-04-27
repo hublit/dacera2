@@ -187,11 +187,15 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                         totalMargen = totalMargen + gananciaF;
                         totalMargen = Utilidades.redondear((totalMargen), 2);
                     }
-                    else if (k==25 && (!rs.getString("pe_num_unido").equals("0") || rs.getString("destino_unido") != null))
+                    else if (k==25)
                     {
-                        fMenos = fMenos + rs.getInt(k + 1);
-//                        System.out.println("fMenosUno: " + fMenos);
-                        datosFila[j] = rs.getObject(k + 1);
+                        if(!rs.getString("pe_num_unido").equals("0") || rs.getString("destino_unido") != null){
+                            fMenos = fMenos + rs.getInt(k + 1);
+//                          System.out.println("fMenosUno: " + fMenos);
+                            datosFila[j] = rs.getObject(k + 1);
+                        } else{
+                            fMenos = rs.getInt(k + 1);
+                        }
                     }
                     else if (k==26)// && rs.getString("pe_incidencia") != null)
                     {
