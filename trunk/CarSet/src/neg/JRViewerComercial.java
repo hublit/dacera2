@@ -708,7 +708,7 @@ public class JRViewerComercial extends javax.swing.JPanel implements JRHyperlink
 
         pnlSep01.setMaximumSize(new java.awt.Dimension(10, 10));
 
-        btnExcel.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\lito.TOSHIBA-67FC240\\Mis documentos\\NetBeansProjects\\Carset\\src\\images\\excel.PNG")); // NOI18N
+        btnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excel.PNG"))); // NOI18N
         btnExcel.setToolTipText(getBundleString("print"));
         btnExcel.setMargin(new java.awt.Insets(2, 2, 2, 2));
         btnExcel.setMaximumSize(new java.awt.Dimension(23, 23));
