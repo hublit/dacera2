@@ -26,7 +26,18 @@
 	<field name="mg_pedido" class="java.lang.String"/>
 	<field name="num_pedido" class="java.lang.String"/>
 	<field name="ta_proveedor" class="java.lang.String"/>
-	<variable name="variable1" class="java.lang.String"/>
+	<variable name="total_n_pedidos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{num_pedido})]]></variableExpression>
+	</variable>
+	<variable name="total_margen" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[Double.parseDouble($F{mg_pedido})]]></variableExpression>
+	</variable>
+	<variable name="media_mg_pedidos" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[new Double(Double.parseDouble($F{mg_pedido}))/Double.parseDouble($F{num_pedido})]]></variableExpression>
+	</variable>
+	<variable name="media_por_ciento" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[new Double(Double.parseDouble($F{mg_pedido})/Double.parseDouble($F{ta_cliente})*100)]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -530,7 +541,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{ta_cliente})-Double.parseDouble($F{ta_proveedor}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{mg_pedido}))).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="730" y="0" width="37" height="18"/>
@@ -544,7 +555,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{mg_pedido}))).concat( " " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.0").format(new Double(Double.parseDouble($F{mg_pedido}))/Double.parseDouble($F{num_pedido})).concat( " " )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="767" y="0" width="35" height="18"/>
@@ -572,7 +583,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{ta_cliente})-Double.parseDouble($F{ta_proveedor})/(Double.parseDouble($F{ta_cliente}))*100)).concat( "% " )]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(new Double(Double.parseDouble($F{mg_pedido})/Double.parseDouble($F{ta_cliente})*100)).concat( "% " )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -621,7 +632,7 @@ PEDIDOS]]></text>
 	<summary>
 		<band height="47" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="277" y="9" width="335" height="20" backcolor="#999999"/>
+				<reportElement mode="Opaque" x="275" y="9" width="335" height="20" backcolor="#999999"/>
 				<box>
 					<pen lineWidth="1.0" lineColor="#999999"/>
 					<topPen lineWidth="1.0" lineColor="#999999"/>
@@ -635,7 +646,7 @@ PEDIDOS]]></text>
 				<text><![CDATA[ TOTAL]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="664" y="9" width="14" height="20"/>
+				<reportElement x="648" y="9" width="12" height="20"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
@@ -647,7 +658,7 @@ PEDIDOS]]></text>
 				<textFieldExpression class="java.lang.String"><![CDATA[" €"]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="612" y="9" width="51" height="20"/>
+				<reportElement x="611" y="9" width="37" height="20"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -657,7 +668,59 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$P{total}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="766" y="9" width="35" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_pedidos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0" isBlankWhenNull="true">
+				<reportElement x="730" y="9" width="36" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{media_mg_pedidos}/$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0" isBlankWhenNull="true">
+				<reportElement x="695" y="9" width="35" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format($V{media_por_ciento}/$V{REPORT_COUNT}).concat("% ")]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="660" y="9" width="35" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_margen}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
