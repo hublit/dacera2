@@ -1448,99 +1448,105 @@ public class JRViewerInformeUnitario extends javax.swing.JPanel implements JRHyp
 
             celda = fila.createCell( (short) 0);
             celda.setCellStyle(cs);
-            HSSFRichTextString texto = new HSSFRichTextString("ENERO");
+            HSSFRichTextString texto = new HSSFRichTextString("DATOS");
             celda.setCellValue(texto);
             hoja.setColumnWidth((short) 0, (short) ((60 * 2) / ((double) 1 / 20)) );
-
+            
             celda = fila.createCell( (short) 1);
+            celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("ENERO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 1, (short) ((60 * 2) / ((double) 1 / 20)) );            
+            
+            celda = fila.createCell( (short) 2);
             celda.setCellStyle(cs);
             texto = new HSSFRichTextString("FEBRERO");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 1, (short) ((80 * 2) / ((double) 1 / 20)) );
-
-            celda = fila.createCell( (short) 2);
-            celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("MARZO");
-            celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 2, (short) ((200 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 2, (short) ((80 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short) 3);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("ABRIL");
+            texto = new HSSFRichTextString("MARZO");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 3, (short) ((130 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 3, (short) ((200 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short) 4);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("MAYO");
+            texto = new HSSFRichTextString("ABRIL");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 4, (short) ((60 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 4, (short) ((130 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short) 5);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("JUNIO");
+            texto = new HSSFRichTextString("MAYO");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 5, (short) ((130 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 5, (short) ((60 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short) 6);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("JULIO");
+            texto = new HSSFRichTextString("JUNIO");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 6, (short) ((60 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 6, (short) ((130 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short) 7);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("AGOSTO");
+            texto = new HSSFRichTextString("JULIO");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 7, (short) ((80 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 7, (short) ((60 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short) 8);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("SEPTIEMBRE");
+            texto = new HSSFRichTextString("AGOSTO");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 8, (short) ((40 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 8, (short) ((80 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short) 9);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("OCTUBRE");
+            texto = new HSSFRichTextString("SEPTIEMBRE");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 9, (short) ((120 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 9, (short) ((40 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short) 10);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("NOVIEMBRE");
+            texto = new HSSFRichTextString("OCTUBRE");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 10, (short) ((110 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 10, (short) ((120 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short) 11);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("DICIEMBRE");
+            texto = new HSSFRichTextString("NOVIEMBRE");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 11, (short) ((130 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 11, (short) ((110 * 2) / ((double) 1 / 20)) );
 
-            celda = fila.createCell( (short)12);
+            celda = fila.createCell( (short) 12);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("M.G.");
+            texto = new HSSFRichTextString("DICIEMBRE");
             celda.setCellValue(texto);
             hoja.setColumnWidth((short) 12, (short) ((130 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short)13);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("M.G. PEDIDO");
+            texto = new HSSFRichTextString("M.G.");
             celda.setCellValue(texto);
             hoja.setColumnWidth((short) 13, (short) ((130 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short)14);
             celda.setCellStyle(cs);
+            texto = new HSSFRichTextString("M.G. PEDIDO");
+            celda.setCellValue(texto);
+            hoja.setColumnWidth((short) 14, (short) ((130 * 2) / ((double) 1 / 20)) );
+
+            celda = fila.createCell( (short)15);
+            celda.setCellStyle(cs);
             texto = new HSSFRichTextString("NUM.PEDIDOS");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 14, (short) ((40 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 15, (short) ((40 * 2) / ((double) 1 / 20)) );
 
-            celda = fila.createCell( (short) 15);
+            celda = fila.createCell( (short) 16);
             celda.setCellStyle(cs);
             texto = new HSSFRichTextString("IMPORTE");
             celda.setCellValue(texto);
-            hoja.setColumnWidth((short) 15, (short) ((200 * 2) / ((double) 1 / 20)) );
+            hoja.setColumnWidth((short) 16, (short) ((200 * 2) / ((double) 1 / 20)) );
 
     }
 
@@ -1563,7 +1569,7 @@ public class JRViewerInformeUnitario extends javax.swing.JPanel implements JRHyp
                     //Celda de título
                     celda = fila.createCell( (short) 0);
                     celda.setCellStyle(cs2);
-                    texto = new HSSFRichTextString("");
+                    texto = new HSSFRichTextString("Facturación");
                     celda.setCellStyle(cs3);
                     celda.setCellValue(texto);
                     
