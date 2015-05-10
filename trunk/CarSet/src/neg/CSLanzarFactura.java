@@ -636,7 +636,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                         Message.RecipientType.CC,
                         new InternetAddress("operaciones@carset.es"));
                     message.setSubject("CarSet - Factura: " + mail.getNumPedido());
-                    String imagen ="http://carset.e.telefonica.net/images/logo_carset_trans.gif";
+                    String imagen ="http://www.amarcos.es/carset/img/logo.png";
            
                     // Create the message part
                     BodyPart messageBodyPart = new MimeBodyPart();
@@ -699,7 +699,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
             htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Forma de Pago</font></td><td width='200'><font face='Helvetica'>&nbsp;"+mail.getMatricula()+"</font></td>" ;
             if(mail.getMatricula().equals("Transferencia"))
             {
-                htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Nº Cuenta CarSet</font></td><td width='200'><font face='Helvetica'>2100 4024 61 2200077238 (La Caixa)</font></td>" ;
+                htmlText= htmlText + "<tr><td width='200'><font face='Helvetica'>&nbsp;Nº Cuenta CarSet</font></td><td width='200'><font face='Helvetica'>0075-0654-19-0600598849</font></td>" ;
             }
             htmlText = htmlText + "<tr><td width='200' bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td><td width='200'  bgcolor='#BDBDBD'><font face='Helvetica'><b>&nbsp;</b></font></td></table>";
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'> Para cualquier consulta, no dude en ponerse en contacto con nuestro dpto. de Operaciones. </font></td></tr>";

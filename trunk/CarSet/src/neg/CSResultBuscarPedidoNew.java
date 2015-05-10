@@ -208,8 +208,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
 //                            && rs.getString("destino_unido") == null &&
                            &&(rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido"))){
 
-//                            if(rs.getBoolean("pe_fin_unido")){
-                              if(rs.getBoolean("destino_unido")){
+                             if(rs.getBoolean("destino_unido")){
 //                                System.out.println("fechaPeUnido: " + fechaPeUnido);
                                 difDias = (!fechaPeUnido.equals("") && !fechaReal.equals("")) ? Utilidades.calcularDiasHabiles(fechaPeUnido, fechaReal) : 0;
                                 difDias = difDias - fMenos;
@@ -221,7 +220,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                                     difDias = difDias - rs.getInt(k);
                                 }
                             }
-                           datosFila[j] = difDias;
+                            datosFila[j] = difDias;
                             incidencias = (difDias != 0 ) ? incidencias + 1 : incidencias;
                             totalIncidencias = (difDias != 0 ) ? totalIncidencias + difDias : totalIncidencias;
                            // System.out.println("F" + k + " " + difDias + " Incidencias: " + incidencias);

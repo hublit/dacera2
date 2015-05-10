@@ -115,7 +115,8 @@ public class CSInformeComercial extends javax.swing.JPanel
         lFechaFin.setText("Año");
         lFechaFin.setName("lFechaFin"); // NOI18N
 
-        jComboBoxAnyo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2015", "2014", "2013", "2012", "2011", "2010" }));
+        jComboBoxAnyo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010" }));
+        jComboBoxAnyo.setSelectedIndex(5);
         jComboBoxAnyo.setName("jComboBoxAnyo"); // NOI18N
         jComboBoxAnyo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +135,7 @@ public class CSInformeComercial extends javax.swing.JPanel
 
         jComboOrden.setBackground(new java.awt.Color(255, 255, 102));
         jComboOrden.setForeground(new java.awt.Color(0, 0, 100));
-        jComboOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tarifa Cliente", "Nombre Cliente" }));
+        jComboOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tarifa Cliente", "Nombre Cliente", "Margen Pedido", "Número de Pedidos" }));
         jComboOrden.setName("jComboOrden"); // NOI18N
         jComboOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +228,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         //Se comprueba que haya seleccionado un cliente
         int anyo = Integer.parseInt(jComboBoxAnyo.getSelectedItem().toString());
         int anyo_post = anyo + 1;
-        int total = 0;
+        double total = 0;
         String tipoCliente = new String(jComboBoxTipo.getSelectedItem().toString());
         
         //SE RECOGEN LAS FECHAS DE GENERACION DEL INFORME
@@ -256,9 +257,10 @@ public class CSInformeComercial extends javax.swing.JPanel
                 "SUM(1) AS num_pedido, " +
                 "SUM(pe.pe_ta_es_cliente) AS ta_cliente, " +
                 "SUM(pe.pe_ta_es_proveedor) AS ta_proveedor " +
-                "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
-                "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
-                "WHERE cl.cl_estado = 'Activo' AND pe.pe_incidencia != 'ADMINISTRATIVA'" ;
+                "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc " +
+                "INNER JOIN carset.cl_clientes cl " +
+//                "WHERE cl.cl_estado = 'Activo' AND pe.pe_incidencia != 'ADMINISTRATIVA'" ;
+                "WHERE pe.pe_num = pc.pe_num AND pc.cl_id = cl.cl_id ";
         if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
             query = query + " AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
         }
@@ -277,6 +279,10 @@ public class CSInformeComercial extends javax.swing.JPanel
                      break;
             case 1:  order = "cl.cl_nombre";
                      break;
+            case 2:  order = "mg_pedido";
+                     break;
+            case 3:  order = "num_pedido";
+                     break;
             default: order = "cl.cl_nombre";
                      break;
         }
@@ -293,7 +299,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         } catch (SQLException ex) {
             Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         Map pars = new HashMap();
         //pars.put("Mes",Utilidades.LiteralMes(mes)+" "+anyo);
         pars.put("Query", query);
@@ -386,23 +392,24 @@ public class CSInformeComercial extends javax.swing.JPanel
      *
      * @param accion
      */
-    public int getImporteTotalPedidos(String fechaIni, String fechaFin, String tipoCliente) throws SQLException
+    public double getImporteTotalPedidos(String fechaIni, String fechaFin, String tipoCliente) throws SQLException
     {
-        int total = 0;
+        double total = 0;
         String queryPe ="SELECT SUM(pe.pe_ta_es_cliente) AS total FROM carset.pe_pedidos pe " +
                         "INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
-                        "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id WHERE cl.cl_estado = 'Activo'  " +
-                        "AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
+                        "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
+                        "WHERE pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
 
         if (!tipoCliente.equals("Selecciona"))
         {
            queryPe = queryPe + " AND cl.cl_tipo= '"+tipoCliente+"'";
         }
 
+        System.out.println("Total: "+ queryPe);
         ResultSet rs = CSDesktop.datos.select(queryPe);
         while(rs.next())
         {
-            total = (rs.getInt("total"));
+            total = (rs.getDouble("total"));
         }
 
         return total;
