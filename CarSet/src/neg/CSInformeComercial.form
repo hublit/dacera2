@@ -154,14 +154,22 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxAnyo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="2015"/>
-            <StringItem index="1" value="2014"/>
-            <StringItem index="2" value="2013"/>
-            <StringItem index="3" value="2012"/>
-            <StringItem index="4" value="2011"/>
-            <StringItem index="5" value="2010"/>
+          <StringArray count="11">
+            <StringItem index="0" value="2020"/>
+            <StringItem index="1" value="2019"/>
+            <StringItem index="2" value="2018"/>
+            <StringItem index="3" value="2017"/>
+            <StringItem index="4" value="2016"/>
+            <StringItem index="5" value="2015"/>
+            <StringItem index="6" value="2014"/>
+            <StringItem index="7" value="2013"/>
+            <StringItem index="8" value="2012"/>
+            <StringItem index="9" value="2011"/>
+            <StringItem index="10" value="2010"/>
           </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="5" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxAnyo" noResource="true"/>
       </Properties>
@@ -199,9 +207,11 @@
           <Color blue="64" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="4">
             <StringItem index="0" value="Tarifa Cliente"/>
             <StringItem index="1" value="Nombre Cliente"/>
+            <StringItem index="2" value="Margen Pedido"/>
+            <StringItem index="3" value="N&#xfa;mero de Pedidos"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboOrden" noResource="true"/>
