@@ -1259,10 +1259,13 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
         
         list.add("01-01-2015");
         list.add("06-01-2015");
+        list.add("02-04-2015");        
         list.add("03-04-2015");
         list.add("01-05-2015");
         list.add("15-08-2015");
         list.add("12-10-2015");
+        list.add("02-11-2015");
+        list.add("07-12-2015");        
         list.add("08-12-2015");
         list.add("24-12-2015");
         list.add("25-12-2015");
