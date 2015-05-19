@@ -1245,7 +1245,7 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
         // Establecer las fechas
         //VALORAR SI CAMBIAR A BASE DE DATOS
         List<String> list = new ArrayList<String>();
-        /*list.add("01-01-2014");
+        list.add("01-01-2014");
         list.add("06-01-2014");
         list.add("18-04-2014");
         list.add("01-05-2014");
@@ -1255,7 +1255,7 @@ public static ArrayList obtenerFactor(String factor, String cliente) throws SQLE
         list.add("08-12-2014");
         list.add("24-12-2014");
         list.add("25-12-2014");
-        list.add("31-12-2014");*/
+        list.add("31-12-2014");
         
         list.add("01-01-2015");
         list.add("06-01-2015");
