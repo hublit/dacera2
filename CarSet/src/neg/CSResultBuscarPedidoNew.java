@@ -98,6 +98,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         int totalIncidencias = 0;
         int totalDiasExced =0;
         String fechaPeUnido = "";
+        int difDiasPrimero = 0;
 
         DecimalFormat df = new DecimalFormat("0.00");
         DecimalFormat dfTotal = new DecimalFormat("#,###.### ¤");
@@ -196,9 +197,20 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                         } else{
                             fMenos = rs.getInt(k + 1);
                         }
+                        //nuevo
+                        if(rs.getString("pe_num_unido").equals("0") && rs.getString("pe_fin_unido").equals("0")){
+                            difDiasPrimero = rs.getInt(k + 1);
+                        }
                     }
                     else if (k==26)// && rs.getString("pe_incidencia") != null)
                     {
+                        /*difDias = (!fechaPeUnido.equals("") && !fechaReal.equals("")) ? Utilidades.calcularDiasHabiles(fechaPeUnido, fechaReal) : 0;
+                        System.out.println("Vamooooos: "+rs.getBoolean("pe_fin_unido"));
+                        if(rs.getString("pe_num_unido").equals("0") && !rs.getBoolean("pe_fin_unido")){
+                            System.out.println("Entra: "+ difDias+ "int" + rs.getInt(k));
+                            difDias = difDias - rs.getInt(k);
+                            System.out.println("difDias: "+ difDias);
+                        }*/
                         int iFmenos = (!rs.getString("pe_in_f_menos").equals("")) ? Integer.parseInt(rs.getString("pe_in_f_menos")) : 0;
                         if (rs.getString("destino_unido") != null || !rs.getString("pe_num_unido").equals("0")){
                             fMenos = fMenos + iFmenos;
@@ -214,12 +226,18 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                                 difDias = difDias - fMenos;
                                 fechaPeUnido = "";
                                 fMenos = 0;
-                            }else{
+                                //nuevo
+                                difDiasPrimero = 0;
+                            }
+                            else{
                                 if(rs.getString("destino_unido") == null){
                                     difDias = (!fechaPe.equals("") && !fechaReal.equals("")) ? Utilidades.calcularDiasHabiles(fechaPe, fechaReal) : 0;
                                     difDias = difDias - rs.getInt(k);
                                 }
                             }
+                             //nuevo
+                             difDias = (!fechaPe.equals("") && !fechaReal.equals("")) ? Utilidades.calcularDiasHabiles(fechaPe, fechaReal) : 0;
+                             difDias = difDias - difDiasPrimero;
                             datosFila[j] = difDias;
                             incidencias = (difDias != 0 ) ? incidencias + 1 : incidencias;
                             totalIncidencias = (difDias != 0 ) ? totalIncidencias + difDias : totalIncidencias;
