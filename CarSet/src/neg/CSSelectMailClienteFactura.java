@@ -118,7 +118,7 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
         });
         jTable1.setEditingRow(0);
         jTable1.setName("jTable1"); // NOI18N
-        jTable1.setPreferredSize(new java.awt.Dimension(264, 340));
+        jTable1.setPreferredSize(new java.awt.Dimension(264, 375));
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Cerrar");
@@ -143,21 +143,21 @@ public class CSSelectMailClienteFactura extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(230, 230, 230)
                         .addComponent(jButton1)
                         .addGap(101, 101, 101)
-                        .addComponent(jButtonMandar)))
+                        .addComponent(jButtonMandar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButtonMandar))

@@ -220,6 +220,7 @@ public class CSEditarClienteNew extends javax.swing.JPanel
         });
 
         Eliminar.setText("Eliminar");
+        Eliminar.setEnabled(false);
         Eliminar.setName("Eliminar"); // NOI18N
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

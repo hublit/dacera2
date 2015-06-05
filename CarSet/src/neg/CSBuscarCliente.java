@@ -182,7 +182,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
 
         jTextNumero.setName("jTextNumero"); // NOI18N
 
-        lPContacto.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lPContacto.setFont(new java.awt.Font("Tahoma", 1, 11));
         lPContacto.setForeground(new java.awt.Color(170, 16, 4));
         lPContacto.setText("PERSONA DE CONTACTO");
         lPContacto.setName("lPContacto"); // NOI18N
@@ -202,7 +202,7 @@ public class CSBuscarCliente extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Activo", "Inactivo" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
 
         jSeparator1.setForeground(new java.awt.Color(170, 16, 4));

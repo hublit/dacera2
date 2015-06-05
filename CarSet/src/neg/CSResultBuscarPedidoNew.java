@@ -238,7 +238,9 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                              //nuevo
                              difDias = (!fechaPe.equals("") && !fechaReal.equals("")) ? Utilidades.calcularDiasHabiles(fechaPe, fechaReal) : 0;
                              difDias = difDias - difDiasPrimero;
-                            datosFila[j] = difDias;
+                             if (rs.getString("destino_unido") == null || rs.getBoolean("pe_fin_unido")){
+                                datosFila[j] = difDias;
+                             }
                             incidencias = (difDias != 0 ) ? incidencias + 1 : incidencias;
                             totalIncidencias = (difDias != 0 ) ? totalIncidencias + difDias : totalIncidencias;
                            // System.out.println("F" + k + " " + difDias + " Incidencias: " + incidencias);
@@ -1216,7 +1218,8 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
 
                             fDif = (dif != 0) ? String.valueOf(dif) : "";
                         }
-                        
+
+
                         //Celda de diferencia de días en la incidencia
                         celda = fila.createCell( (short) 26);
                         texto = new HSSFRichTextString(fDif);
