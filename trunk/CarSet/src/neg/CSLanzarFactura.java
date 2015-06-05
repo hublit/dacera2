@@ -1134,6 +1134,12 @@ public class CSLanzarFactura extends javax.swing.JPanel
             String servicioEspecial = beanFactura.getServicioEspecial();
             String numCamion=beanFactura.getNumCamion();
             numFacturaRec=beanFactura.getAux();
+            String kms = "";
+            if (beanFactura.getKms() != null){
+                kms = (!beanFactura.getKms().equals("0")) ? beanFactura.getKms() + " KMS." : "";
+            }
+            String att = beanFactura.getAtt();
+            String veEstado = beanFactura.getVe_estado();
 
             //NUEVA LOGICA DE FACTURACION
 
@@ -1231,28 +1237,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             }
                         }
                     }
-                    //SI TIENE IDA Y VUELTA
-/*                    if(beanFactura.getIdaVuelta().equals("1"))
-                    {
-                        String queryIv = "SELECT sc_ida_vuelta FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
-
-                        ResultSet rsIv = CSDesktop.datos.select(queryIv);
-                        while (rsIv.next())
-                        {
-                            IdaVuelta = rsIv.getString("sc_ida_vuelta");
-                        }
-
-                        labelIda="DESCUENTO";
-                        textoIda="IDA-VUELTA ("+IdaVuelta+"%)";
-
-                        IdaVueltaD=Double.parseDouble(IdaVuelta);
-
-                        IdaVueltaDF=(importeTrasladoD*IdaVueltaD)/100;
-                        IdaVueltaDF = Utilidades.redondear(IdaVueltaDF, 2);
-
-                        importeIda="- " + String.valueOf(IdaVueltaDF);
-                    }
-  */
+ 
                     //LINEA DE FACTOR DE CORRECCION
                     ArrayList factorTarifa = Utilidades.obtenerFactor(factor, cl_id);
                     factorTexto = factorTarifa.get(0).toString();
@@ -1357,14 +1342,18 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                                         "fa_texto_factor_correccion, fa_importe_factor_correccion, " +
                                                         "fa_suplemento, fa_texto_suplemento, fa_importe_suplemento, " +
                                                         "fa_servicio_adicional, fa_texto_servicio_adicional, " +
-                                                        "fa_importe_servicio_adicional, fa_servicio_otro,fa_importe_servicio_otro,fa_campa,fa_texto_campa, fa_importe_campa, " +
-                                                        "fa_campa2, fa_texto_campa2, fa_importe_campa2,fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total, fa_num_en_camion) " +
+                                                        "fa_importe_servicio_adicional, fa_servicio_otro,fa_importe_servicio_otro,fa_campa, " +
+                                                        "fa_texto_campa, fa_importe_campa,fa_campa2, fa_texto_campa2, fa_importe_campa2, " +
+                                                        "fa_label_ida,fa_texto_ida,fa_importe_ida, fa_importe_total, " +
+                                                        "fa_num_en_camion,fa_kms, fa_att, fa_ve_estado) " +
                                                         "VALUES (";
             query = query + "'"+finalNum+"','"+fecha+"','"+marca+"','"+modelo+"','"+matricula+"','"+factorTexto+"'," +
                             "'"+soporte+"','"+labelTraslado+"','"+finalServicio+"','"+importeTrasladoD+"','"+labelFactor+"'," +
                             "'"+factorTexto2+"','"+importeFactor+"','"+labelSuplemento+"','"+ServicioSuplemento+"','"+importeSupD+"'," +
-                            "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioD+"','"+labelOtros+"','"+importeServicioOtros+"','"+labelCampa1+"','"+finalCampaEntrada+"'," +
-                            "'"+importeCampaEntradaD+"','"+labelCampa2+"','"+finalCampaDias+"','"+importeCampaDiasD+"','"+labelIda+"','"+textoIda+"','"+IdaVueltaDF+"','"+importeTotalAuxS+"','"+numCamion+"')";
+                            "'"+labelServicioEspecial+"','"+servicioEspecial+"','"+importeServicioD+"','"+labelOtros+"','"+importeServicioOtros+"'," +
+                            "'"+labelCampa1+"','"+finalCampaEntrada+"','"+importeCampaEntradaD+"','"+labelCampa2+"','"+finalCampaDias+"'," +
+                            "'"+importeCampaDiasD+"','"+labelIda+"','"+textoIda+"','"+IdaVueltaDF+"','"+importeTotalAuxS+"'," +
+                            "'"+numCamion+"','"+kms+"','"+att+"','"+veEstado+"')";
 
             System.out.println(query);
             boolean rs3 = CSDesktop.datos.manipuladorDatos(query);

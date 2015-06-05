@@ -1075,7 +1075,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "CarSet version 4.0.6 (24-04-2015)",
+                  "CarSet version 4.0.9 (28-05-2015)",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
           }  // fin de la clase interna an�nima
@@ -1110,7 +1110,8 @@ public class CSDesktop extends JFrame
           usuario.equals("4") ||
           usuario.equals("5") ||
           usuario.equals("7") ||
-          usuario.equals("8"))
+          usuario.equals("8") ||
+          usuario.equals("11"))
       {
         barra.add( menuInforme );
       }
