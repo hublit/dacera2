@@ -242,10 +242,10 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="8"/>
 				</textElement>
-				<text><![CDATA[ES23 2100-4024-61-2200077238]]></text>
+				<text><![CDATA[<style forecolor='#FA5858'>ES10 0075-0654-19-0600598849</style>]]></text>
 			</staticText>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="13" y="266" width="527" height="20"/>
