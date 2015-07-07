@@ -2880,6 +2880,10 @@ public class CSAnyadirPedidoNew extends JPanel
     {
        LimitadorDeDocumento limitadorDescripcion= new LimitadorDeDocumento(255);
        jTextDescripcion.setDocument(limitadorDescripcion);
+       LimitadorDeDocumento limitadorDescProveedor= new LimitadorDeDocumento(255);
+       jTextObservaciones.setDocument(limitadorDescProveedor);
+       LimitadorDeDocumento limitadorDescGeneral= new LimitadorDeDocumento(255);
+       jTextObsGeneral.setDocument(limitadorDescGeneral);
        LimitadorDeDocumento limitadorDireccionOrigen= new LimitadorDeDocumento(255);
        jTextDireccionOrigen.setDocument(limitadorDireccionOrigen);
        LimitadorDeDocumento limitadorPoblacionOrigen= new LimitadorDeDocumento(50);
