@@ -82,6 +82,8 @@ public class CSInformeComercial extends javax.swing.JPanel
         jComboOrden = new javax.swing.JComboBox();
         jComboBoxTipo = new javax.swing.JComboBox();
         lTipo = new javax.swing.JLabel();
+        lFechaMes = new javax.swing.JLabel();
+        jComboBoxMes = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
@@ -152,6 +154,14 @@ public class CSInformeComercial extends javax.swing.JPanel
         lTipo.setText("    Tipo");
         lTipo.setName("lTipo"); // NOI18N
 
+        lFechaMes.setForeground(new java.awt.Color(0, 0, 100));
+        lFechaMes.setText("Mes");
+        lFechaMes.setName("lFechaMes"); // NOI18N
+
+        jComboBoxMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        jComboBoxMes.setSelectedIndex(0);
+        jComboBoxMes.setName("jComboBoxMes"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,7 +176,7 @@ public class CSInformeComercial extends javax.swing.JPanel
                             .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.CENTER)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(163, 163, 163)
                                 .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,15 +187,20 @@ public class CSInformeComercial extends javax.swing.JPanel
                                 .addComponent(jLabelOrder)
                                 .addGap(33, 33, 33)
                                 .addComponent(jComboOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
                                 .addComponent(lFechaFin)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lFechaMes, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lTipo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -200,10 +215,13 @@ public class CSInformeComercial extends javax.swing.JPanel
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lTipo))
+                    .addComponent(lTipo)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lFechaMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelOrder)
@@ -228,6 +246,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         //Se comprueba que haya seleccionado un cliente
         int anyo = Integer.parseInt(jComboBoxAnyo.getSelectedItem().toString());
         int anyo_post = anyo + 1;
+        int mes = jComboBoxMes.getSelectedIndex();
         double total = 0;
         String tipoCliente = new String(jComboBoxTipo.getSelectedItem().toString());
         
@@ -268,6 +287,10 @@ public class CSInformeComercial extends javax.swing.JPanel
         {
            query = query + " AND cl.cl_tipo= '"+tipoCliente+"'";
         }
+        if (mes != 0)
+        {
+            query = query + " AND MONTH(pe.pe_fecha) = "+mes+"";
+        }
         query = query + " GROUP BY cl.cl_nombre";
         
         //Orden de la query
@@ -295,7 +318,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         
         //Sacamos el importe toal de los pedidos
         try {
-            total = this.getImporteTotalPedidos(fechaIni, fechaFin, tipoCliente);
+            total = this.getImporteTotalPedidos(fechaIni, fechaFin, tipoCliente, mes);
         } catch (SQLException ex) {
             Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -369,6 +392,7 @@ public class CSInformeComercial extends javax.swing.JPanel
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGenerar;
     private javax.swing.JComboBox jComboBoxAnyo;
+    private javax.swing.JComboBox jComboBoxMes;
     private javax.swing.JComboBox jComboBoxTipo;
     private javax.swing.JComboBox jComboOrden;
     private javax.swing.JLabel jLabel1;
@@ -377,6 +401,7 @@ public class CSInformeComercial extends javax.swing.JPanel
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel lFechaFin;
+    private javax.swing.JLabel lFechaMes;
     private javax.swing.JLabel lTipo;
     // End of variables declaration//GEN-END:variables
 
@@ -392,7 +417,7 @@ public class CSInformeComercial extends javax.swing.JPanel
      *
      * @param accion
      */
-    public double getImporteTotalPedidos(String fechaIni, String fechaFin, String tipoCliente) throws SQLException
+    public double getImporteTotalPedidos(String fechaIni, String fechaFin, String tipoCliente, int mes) throws SQLException
     {
         double total = 0;
         String queryPe ="SELECT SUM(pe.pe_ta_es_cliente) AS total FROM carset.pe_pedidos pe " +
@@ -403,6 +428,10 @@ public class CSInformeComercial extends javax.swing.JPanel
         if (!tipoCliente.equals("Selecciona"))
         {
            queryPe = queryPe + " AND cl.cl_tipo= '"+tipoCliente+"'";
+        }
+        if (mes != 0)
+        {
+            queryPe = queryPe + " AND MONTH(pe.pe_fecha) = "+mes+"";
         }
 
         System.out.println("Total: "+ queryPe);
