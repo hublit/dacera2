@@ -699,6 +699,8 @@ System.out.println(query);
             int numUnido = (bpa.isPeNumUnido() ? 1 : 0);
             int finUnido = (bpa.isPeFinUnido() ? 1 : 0);
             
+            //mint factor = getFactorCorrecion(bpa.getFactor());
+            
             String query = "INSERT INTO pa_pedidos_aux (pa_fecha, pa_direccion_origen, pa_poblacion_origen, pa_provincia_origen, pa_cp_origen, " +
                            "pa_fecha_origen, pa_nombre_origen, pa_telefono_origen, pa_direccion_destino, pa_poblacion_destino, pa_provincia_destino, " +
                            "pa_cp_destino, pa_fecha_destino, pa_nombre_destino, pa_telefono_destino, fc_id, pa_ve_estado, pa_ve_matricula, " +
@@ -813,4 +815,21 @@ System.out.println(query);
         }
         return resDel;
     }
+    
+    /**
+     * 
+     * @throws SQLException 
+     */
+     private int getFactorCorrecion(String factor) throws SQLException
+    {
+        ResultSet rs = CSDesktop.datos.select("SELECT fc_id FROM fc_factores_correccion WHERE fc_nombre = '"+factor+"'");
+        int j = 0;
+        int valor = 0;
+        while(rs.next())
+        {
+            valor = rs.getInt("fc_id");
+        }
+        return valor;
+     }
+
 }
