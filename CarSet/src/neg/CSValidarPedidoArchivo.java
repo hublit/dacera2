@@ -7,6 +7,8 @@
 package neg;
 
 import data.BeanPedidoAux;
+import data.Cliente;
+import data.Proveedor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -43,6 +45,8 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
     ArrayList pedidos=new ArrayList();
     private String query = "";
     int numeroFila = 0;
+    Cliente client = new Cliente();
+    Proveedor proveedor = new Proveedor();
 
     /** Creates new form ResultBuscarPedido */
     public CSValidarPedidoArchivo() throws UnknownHostException, FileNotFoundException, IOException
@@ -472,7 +476,13 @@ System.out.println(query);
             campos.setCpDestino(jTable1.getValueAt(i, 10).toString());
             campos.setNombreDestino(jTable1.getValueAt(i, 11).toString());
             campos.setTelefonoDestino(jTable1.getValueAt(i, 12).toString());
-            campos.setFactor(Integer.parseInt(jTable1.getValueAt(i, 13).toString()));
+            int factor = 0;
+            try {
+                factor = getFactorCorrecion(jTable1.getValueAt(i, 13).toString());
+            } catch (SQLException ex) {
+                Logger.getLogger(CSValidarPedidoArchivo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            campos.setFactor(factor);
             campos.setEstado_vehiculo(jTable1.getValueAt(i, 14).toString());
             campos.setMatricula(jTable1.getValueAt(i, 15).toString());
             campos.setMarca(jTable1.getValueAt(i, 16).toString());
@@ -505,8 +515,11 @@ System.out.println(query);
             campos.setFechaDestino(fecha);
             campos.setTarifaCl(Double.valueOf(Utilidades.validarDecimal(jTable1.getValueAt(i, 26).toString())));
             campos.setTarifaPr(Double.valueOf(Utilidades.validarDecimal(jTable1.getValueAt(i, 27).toString())));
-            campos.setCliente(Integer.parseInt(jTable1.getValueAt(i, 28).toString()));
-            campos.setProveedor(Integer.parseInt(jTable1.getValueAt(i, 29).toString()));
+            int cl_id = client.getClienteID(jTable1.getValueAt(i, 28).toString());
+            campos.setCliente(cl_id);
+            int pr_id = proveedor.getProveedorID(jTable1.getValueAt(i, 29).toString());
+            campos.setProveedor(pr_id);
+
             campos.setObsCarset(jTable1.getValueAt(i, 30).toString());
             campos.setObsGeneral(jTable1.getValueAt(i, 31).toString());
             boolean obClMail = (jTable1.getValueAt(i, 32).toString().equals("TRUE") ? true : false);
