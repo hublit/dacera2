@@ -62,7 +62,8 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         consulta = query;
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = CSDesktop.datos.select(query);
-        boolean acceso = (CSDesktop.user.equals("9") || CSDesktop.user.equals("10") || CSDesktop.user.equals("11")) ? false : true;
+        //boolean acceso = (CSDesktop.user.equals("9") || CSDesktop.user.equals("10") || CSDesktop.user.equals("11")) ? false : true;
+        boolean acceso = (CSDesktop.group == 1 || CSDesktop.group == 2) ? true : false;
         KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}

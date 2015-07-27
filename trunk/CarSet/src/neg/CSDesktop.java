@@ -151,6 +151,7 @@ public class CSDesktop extends JFrame
   public static HashMap nombreCliente = new HashMap();
   public static HashMap nombreProveedor = new HashMap();
   public static String user;
+  public static Integer group;
   
   public  CSDesktop(String usuario, Integer grupo) throws UnknownHostException
   {
@@ -163,6 +164,7 @@ public class CSDesktop extends JFrame
         }
         });*/
       user = usuario;
+      group = grupo;
 
       elEscritorio = new DesktopConFondo("/images/fondo_desktop.jpg");
       getContentPane().add( elEscritorio );
@@ -1089,12 +1091,12 @@ public class CSDesktop extends JFrame
       barra.add( menuPedidos );
       //barra.add( menuTarifa );
       
-      if(grupo == 1){
+      if(group == 1){
         barra.add( menuFactura );
         barra.add( menuFacturasTesoreria );
         barra.add( menuTesoreria );        
         barra.add( menuInforme );
-      }else if(grupo == 2){
+      }else if(group == 2){
         barra.add( menuInforme );          
       }else{
           System.out.println("Operaciones");
