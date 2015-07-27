@@ -200,13 +200,16 @@ public class CSLogin extends JFrame
             jLabel6.setIcon(imagen);
                                                 
             DbConnection datos = new DbConnection();
-            ResultSet rs = datos.select("SELECT usr_id FROM usr_usuarios u WHERE usr_nombre = '"+username+"' AND usr_password = '"+password+"'");
+            ResultSet rs = datos.select("SELECT usr_id, gr_id FROM usr_usuarios u WHERE usr_nombre = '"+username+"' AND usr_password = '"+password+"'");
 
             String usuario = "";
+            Integer grupo = 0;
             while(rs.next())
             {
                     usuario = rs.getString("usr_id");
-                    System.out.println(usuario);
+                    grupo = rs.getInt("gr_id");
+                    
+                    System.out.println(grupo);
             }
             if (usuario.equals(""))
             {              
@@ -226,8 +229,8 @@ public class CSLogin extends JFrame
                 try
                 {                  
                     this.setVisible(false);
-                    CSDesktop ventana = new CSDesktop(usuario);
-                   ventana.addWindowListener( new WindowAdapter() {
+                    CSDesktop ventana = new CSDesktop(usuario, grupo);
+                    ventana.addWindowListener( new WindowAdapter() {
                       public void windowClosing( WindowEvent evt ) {
                         confirmarCierre();
                       }

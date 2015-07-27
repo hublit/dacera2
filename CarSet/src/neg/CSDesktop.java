@@ -152,7 +152,7 @@ public class CSDesktop extends JFrame
   public static HashMap nombreProveedor = new HashMap();
   public static String user;
   
-  public  CSDesktop(String usuario) throws UnknownHostException
+  public  CSDesktop(String usuario, Integer grupo) throws UnknownHostException
   {
       datos = new DbConnection();
       /*setDefaultCloseOperation(CSDesktop.DO_NOTHING_ON_CLOSE);
@@ -1088,33 +1088,18 @@ public class CSDesktop extends JFrame
       barra.add( menuProveedores );
       barra.add( menuPedidos );
       //barra.add( menuTarifa );
-      if (usuario.equals("2") ||
-          usuario.equals("3") ||
-          usuario.equals("4") ||
-          usuario.equals("5") ||
-          usuario.equals("7") ||
-          usuario.equals("8"))
-      {
+      
+      if(grupo == 1){
         barra.add( menuFactura );
-      }
-      if (usuario.equals("2") || 
-          usuario.equals("4") ||
-          usuario.equals("8"))
-      {
         barra.add( menuFacturasTesoreria );
-        barra.add( menuTesoreria );
-      }
-
-     if (usuario.equals("2") ||
-          usuario.equals("3") ||
-          usuario.equals("4") ||
-          usuario.equals("5") ||
-          usuario.equals("7") ||
-          usuario.equals("8") ||
-          usuario.equals("11"))
-      {
+        barra.add( menuTesoreria );        
         barra.add( menuInforme );
+      }else if(grupo == 2){
+        barra.add( menuInforme );          
+      }else{
+          System.out.println("Operaciones");
       }
+      
 
       barra.add( menuAyuda );
   
