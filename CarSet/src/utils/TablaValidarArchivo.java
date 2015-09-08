@@ -15,7 +15,8 @@ public class TablaValidarArchivo extends DefaultTableModel {
 
     public boolean isCellEditable (int row, int column)
     {
-        if (column == 3 || column == 9 || column == 14 || column == 18 || column == 19 || column == 28 || column == 29|| column == 32 || column == 33 || column == 34)
+        if (column == 3 || column == 9 || column == 13 || column == 14 || column == 18 || column == 19 ||
+            column == 28 || column == 29|| column == 32 || column == 33 || column == 34 || column == 35)
         {
             return false;
         }
