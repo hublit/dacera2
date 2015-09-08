@@ -489,14 +489,14 @@ public class CSResultBuscarTesoreriaProveedorInf extends javax.swing.JPanel
 
             crearFilaHojaExcel(libro, hoja, num_fila, cs2,cs3);
             FileOutputStream elFichero = null;
-            elFichero = new FileOutputStream("c:\\TesoreriaProveedorInforme.xls");
+            elFichero = new FileOutputStream("c:\\AplicacionCarSet\\TesoreriaProveedorInforme.xls");
             libro.write(elFichero);
             elFichero.close();
             elFichero.flush();
             String property = "java.io.tmpdir";
             String tempDir = System.getProperty(property);
             System.out.println("OS current temporary directory is " + tempDir);
-            String file = new String("C:\\TesoreriaProveedorInforme.xls");
+            String file = new String("C:\\AplicacionCarSet\\TesoreriaProveedorInforme.xls");
             Process p = Runtime.getRuntime().exec("rundll32 SHELL32.DLL,ShellExec_RunDLL " + file);
 
     }//GEN-LAST:event_jButtonExportarActionPerformed

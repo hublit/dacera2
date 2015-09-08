@@ -255,14 +255,8 @@ public class CSInformeDetPr2 extends javax.swing.JPanel
             String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_ve_matricula, pe.pe_direccion_origen," +
                 " pe.pe_cp_origen, pe.pe_fecha_origen, pe.pe_hora_origen, pe.pe_nombre_origen, pe.pe_direccion_destino,"+
                 " pe.pe_cp_destino, pe.pe_fecha_destino, pe.pe_hora_destino, pe.pe_nombre_destino"+
-                " FROM pe_pedidos pe, pp_pedidos_proveedores pp, tp_tarifas_proveedores tp"+
+                " FROM pe_pedidos pe, pp_pedidos_proveedores pp"+
                 " WHERE pe.pe_num = pp.pe_num"+
-                " AND tp.tp_servicio = pe.pe_servicio"+
-                " AND tp.pr_id = pp.pr_id"+
-                " AND tp.tp_fecha_hasta = '2050-01-01'"+
-                " AND (tp.tp_servicio_origen = pe.pe_servicio_origen  OR tp.tp_servicio_origen = pe.pe_servicio_destino)"+
-                " AND (tp.tp_servicio_destino = pe.pe_servicio_destino  OR tp.tp_servicio_destino = pe.pe_servicio_origen)"+
-                " AND tp.tp_soporte = pe.pe_soporte"+
                 " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
                     /* " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC
             String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_ve_matricula, pe.pe_direccion_origen," +

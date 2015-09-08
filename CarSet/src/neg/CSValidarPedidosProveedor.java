@@ -47,6 +47,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
     int anyoAnt = (Integer.parseInt(anyo) - 1);
     private  String consulta = "";
     ArrayList pedidos = new ArrayList();
+    ArrayList estados = new ArrayList();
     ArrayList importe = new ArrayList();
     String regimen = "";
     String pr_id = "";
@@ -99,6 +100,8 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                 regimen = rs.getString("pr_regimen");
 
                 pedidos.add(rs.getLong("pe_num"));
+                estados.add(rs.getString("pe_estado"));
+
                 Object[] datosFila = new Object[modelo.getColumnCount()];
 
                  int j = 1;
@@ -857,8 +860,17 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
                         {
                             for(int i = 0; i < longitud; i++)
                             {
-                                String queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado', pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(celdas[i])+"'";
-                                rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
+                                String queryUpdate = "";
+
+                                System.out.println("Estado: "+estados.get(celdas[i]));
+
+                               if (estados.get(celdas[i]).equals("Facturado")){
+                                    queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Facturado y Validado', pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(celdas[i])+"'";    
+                               }else if (estados.get(celdas[i]).equals("Entregado")){
+                                    queryUpdate = "UPDATE pe_pedidos SET pe_estado = 'Validado', pe_num_fa_pr = '"+numFa+"' WHERE pe_num = '"+pedidos.get(celdas[i])+"'";    
+                               }
+                               rsUp = CSDesktop.datos.manipuladorDatos(queryUpdate);
+
                             }
                             if(rsUp)
                             {

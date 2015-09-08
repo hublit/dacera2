@@ -280,14 +280,8 @@ public class CSInformeDet2 extends javax.swing.JPanel
             String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_ve_matricula, pe.pe_direccion_origen," +
                 " pe.pe_cp_origen, pe.pe_fecha_origen, pe.pe_hora_origen, pe.pe_nombre_origen, pe.pe_direccion_destino,"+
                 " pe.pe_cp_destino, pe.pe_fecha_destino, pe.pe_hora_destino, pe.pe_nombre_destino"+
-                " FROM pe_pedidos pe, pc_pedidos_clientes pc, tc_tarifas_clientes tc"+
+                " FROM pe_pedidos pe, pc_pedidos_clientes pc "+
                 " WHERE pe.pe_num = pc.pe_num"+
-                " AND tc.tc_servicio = pe.pe_servicio"+
-                " AND tc.cl_id = pc.cl_id"+
-                " AND tc.tc_fecha_hasta = '2050-01-01'"+
-                " AND (tc.tc_servicio_origen = pe.pe_servicio_origen  OR tc.tc_servicio_origen = pe.pe_servicio_destino)"+
-                " AND (tc.tc_servicio_destino = pe.pe_servicio_destino  OR tc.tc_servicio_destino = pe.pe_servicio_origen)"+
-                " AND tc.tc_soporte = pe.pe_soporte"+
                 " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
                    
             if(!cliente.equals(""))

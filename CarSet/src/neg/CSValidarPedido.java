@@ -263,7 +263,7 @@ public class CSValidarPedido extends JPanel
                            "FROM pe_pedidos p, pc_pedidos_clientes pc, pp_pedidos_proveedores pp, " +
                            "fc_factores_correccion fc  INNER JOIN cl_clientes cl INNER JOIN pr_proveedores pr  " +
                            "WHERE pc.cl_id = cl.cl_id AND pp.pr_id = pr.pr_id  AND p.pe_num = pc.pe_num " +
-                           "AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id AND p.pe_estado = 'Facturado'";
+                           "AND p.pe_num = pp.pe_num AND p.fc_id = fc.fc_id AND (p.pe_estado = 'Facturado' OR p.pe_estado = 'Entregado')";
 
             if (proveedor.equals("") && (fechaI.equals("") && fechaF.equals("")))
             {

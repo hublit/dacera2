@@ -400,7 +400,7 @@ public class CSFacturaCliente extends JPanel
                "pe_unido ON pe.pe_num = pe_unido.num_unido " +
                "WHERE pe.pe_num = pc.pe_num " +
                "AND pc.cl_id = cl.cl_id " +
-               "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido') "  +
+               "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido' OR pe.pe_estado = 'Validado') "  +
                "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
                "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
@@ -411,10 +411,11 @@ public class CSFacturaCliente extends JPanel
                 while (rs.next()) {
                     Boolean unidoEstado = true;
                     if (rs.getString("estado_unido") != null){
-                        unidoEstado = (rs.getString("estado_unido").equals("Entregado")) ? true : false;
+                        unidoEstado = (rs.getString("estado_unido").equals("Entregado") || rs.getString("estado_unido").equals("Validado")) ? true : false;
                     }
                     if (rs.getLong("pe_num_unido") == 0 &&
-                       (rs.getString("pe_estado").equals("") || rs.getString("pe_estado").equals("Entregado") || rs.getString("pe_estado").equals("Fallido")) &&
+                       (rs.getString("pe_estado").equals("") || rs.getString("pe_estado").equals("Entregado")
+                        || rs.getString("pe_estado").equals("Validado") || rs.getString("pe_estado").equals("Fallido")) &&
                        unidoEstado)
                     {
                         BeanFactura nueva = new BeanFactura();

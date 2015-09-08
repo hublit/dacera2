@@ -63,7 +63,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
         TablaValidarArchivo modelo = new TablaValidarArchivo();
         modelo.fireTableDataChanged();
         ResultSet rs = CSDesktop.datos.select(query);
-System.out.println(query);
+//System.out.println(query);
         boolean acceso = (CSDesktop.user.equals("9") || CSDesktop.user.equals("10") || CSDesktop.user.equals("11")) ? false : true;
         KeyListener l = new KeyListener()
         {

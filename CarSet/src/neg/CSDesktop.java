@@ -788,13 +788,15 @@ public class CSDesktop extends JFrame
       menuInforme.setMnemonic( 'I' );
 
 
-      menuInformeComercial = new JMenuItem( "Informe Comercial" );
+      menuInformeComercial = new JMenuItem( "Informe Cliente Comercial" );
       menuInformeComercial.setMnemonic( 'w' );
-      menuInforme.add( menuInformeComercial );
+      if(group != 3){
+        menuInforme.add( menuInformeComercial );
+      }
       menuInformeComercial.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
-               InformeComercial = new JInternalFrame("Informe Comercial", true,false,false,true );
+               InformeComercial = new JInternalFrame("Informe Cliente Comercial", true,false,false,true );
                CSInformeComercial panel=null;
                 try {
                     panel = panel = new CSInformeComercial();
@@ -815,7 +817,10 @@ public class CSDesktop extends JFrame
 
       menuInformeClienteUnitario = new JMenuItem( "Informe Cliente Unitario" );
       menuInformeClienteUnitario.setMnemonic( 'w' );
-      menuInforme.add( menuInformeClienteUnitario );
+
+      if(group != 3){
+        menuInforme.add( menuInformeClienteUnitario );
+      }
       menuInformeClienteUnitario.addActionListener(
          new ActionListener() {
             public void actionPerformed( ActionEvent evento ) {
@@ -1077,7 +1082,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "CarSet version 4.0.9 (28-05-2015)",
+                  "CarSet version 4.0.11 (28-08-2015)",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
           }  // fin de la clase interna an�nima
@@ -1089,19 +1094,13 @@ public class CSDesktop extends JFrame
       barra.add( menuClientes );
       barra.add( menuProveedores );
       barra.add( menuPedidos );
-      //barra.add( menuTarifa );
-      
+      barra.add( menuInforme );
+  
       if(group == 1){
         barra.add( menuFactura );
         barra.add( menuFacturasTesoreria );
         barra.add( menuTesoreria );        
-        barra.add( menuInforme );
-      }else if(group == 2){
-        barra.add( menuInforme );          
-      }else{
-          System.out.println("Operaciones");
       }
-      
 
       barra.add( menuAyuda );
   

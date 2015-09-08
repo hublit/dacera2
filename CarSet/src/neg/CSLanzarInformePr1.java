@@ -70,7 +70,7 @@ public class CSLanzarInformePr1
         String servicioEspecial = otro.getServicioEspecial();
         String sSuplemento=otro.getSuplemento();
         
-        dSuplemento = (sSuplemento.equals("")) ? 0 : Double.parseDouble(sSuplemento);
+//        dSuplemento = (sSuplemento.equals("") || sSuplemento == null) ? 0 : Double.parseDouble(sSuplemento);
         String numCamion=otro.getNumCamion();
 
         String cl_id=String.valueOf(proveedorID);

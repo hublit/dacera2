@@ -283,6 +283,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         jLabel9.setName("jLabel9"); // NOI18N
 
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.setEnabled(false);
         jButtonEliminar.setName("jButtonEliminar"); // NOI18N
         jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,7 +421,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
         jComboBoxEstado.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxEstado.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Facturado y Validado", "Anulado", "Pedido Libre", "Fallido" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "En Proceso", "Entregado", "Facturado", "Validado", "Facturado y Validado", "Anulado", "Pedido Libre", "Fallido" }));
         jComboBoxEstado.setName("jComboBoxEstado"); // NOI18N
         jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

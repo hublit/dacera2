@@ -255,17 +255,10 @@ public class CSInformeDetPr1 extends javax.swing.JPanel
             String query="SELECT DISTINCT pe.pe_num, pe.pe_fecha, pe.pe_provincia_origen, pe.pe_provincia_destino, pe.pe_servicio,"+
                 " pe.pe_servicio_origen, pe.pe_servicio_destino, pe.pe_servicio_especial, pe.pe_dias_campa, pe.pe_num_en_camion, "+
                 " pe.pe_ida_vuelta, pe.fc_id, pe.pe_soporte,pe.pe_ve_matricula, pe.pe_ta_es_proveedor, pe.pe_suplemento,"+
-                " tp.tp_tarifa, sp.sp_ida_vuelta"+
-                " FROM pe_pedidos pe, pp_pedidos_proveedores pp, tp_tarifas_proveedores tp,"+
-                " sp_servicios_proveedores sp"+
+                " pe.pe_ta_es_cliente, sp.sp_ida_vuelta"+
+                " FROM pe_pedidos pe, pp_pedidos_proveedores pp, sp_servicios_proveedores sp"+
                 " WHERE pp.pe_num = pe.pe_num"+
                 " AND sp.pr_id = pp.pr_id"+
-                " AND tp.tp_fecha_hasta > pe.pe_fecha"+
-                " AND tp.tp_servicio = pe.pe_servicio"+
-                " AND tp.pr_id = pp.pr_id"+
-                " AND (tp.tp_servicio_origen = pe.pe_servicio_origen OR tp.tp_servicio_origen = pe.pe_servicio_destino)"+
-                " AND (tp.tp_servicio_destino = pe.pe_servicio_destino OR tp.tp_servicio_destino = pe.pe_servicio_origen)"+
-                " AND tp.tp_soporte = pe.pe_soporte"+
                 " AND pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'" +
                 " AND pp.pr_id = "+proveedorID+" " +
                 " GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
@@ -288,9 +281,9 @@ public class CSInformeDetPr1 extends javax.swing.JPanel
                     nueva.setFactor(rs.getString("fc_id"));
                     nueva.setSoporte(rs.getString("pe_soporte"));
                     nueva.setMatricula(rs.getString("pe_ve_matricula"));                   
-                    nueva.setTarifaEsCliente(rs.getString("pe_ta_es_proveedor"));
+                    nueva.setTarifaEsCliente(rs.getString("pe.pe_ta_es_cliente"));
                     nueva.setSuplemento(rs.getString("pe_suplemento"));                
-                    nueva.setTarifa(rs.getString("tp_tarifa"));
+                    nueva.setTarifa(rs.getString("pe_ta_es_proveedor"));
                     nueva.setIdaVuelta(rs.getString("pe_ida_vuelta"));
                     nueva.setNumCamion(rs.getString("pe_num_en_camion"));
                     lista.add(nueva);

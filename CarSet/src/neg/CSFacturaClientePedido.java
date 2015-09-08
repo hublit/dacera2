@@ -366,7 +366,7 @@ public class CSFacturaClientePedido extends JPanel
                        "pe_unido ON pe.pe_num = pe_unido.num_unido " +
                        "WHERE pe.pe_num = pc.pe_num " +
                        "AND pc.cl_id = cl.cl_id " +
-                       "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido' OR pe.pe_estado = 'Pedido Libre') "  +
+                       "AND (pe.pe_estado = 'Entregado' OR pe.pe_estado = 'Fallido' OR pe.pe_estado = 'Validado' OR pe.pe_estado = 'Pedido Libre') "  +
                        "AND pe_fecha BETWEEN '"+fechaI+"' AND '"+fechaF+"' " +
                        "AND pc.cl_id = "+clienteID+"  GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
 
