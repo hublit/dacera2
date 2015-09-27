@@ -549,7 +549,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($V{mg_febrero} < $V{mg_enero}) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format($V{mg_febrero}).concat( " " ) +"</style>" : new java.text.DecimalFormat("#,##0.0").format($V{mg_febrero}).concat( " " )]]></textFieldExpression>
@@ -2075,7 +2075,7 @@
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="styled">
 					<font fontName="Verdana" size="6"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[($V{mg_febrero} < $V{mg_enero}) ? "<style backcolor='#FA5858'>"+ new java.text.DecimalFormat("#,##0.0").format(($V{mg_febrero}/new Double(Double.parseDouble($F{febrero})))*100).concat( "% " ) +"</style>" : new java.text.DecimalFormat("#,##0.0").format(($V{mg_febrero}/new Double(Double.parseDouble($F{febrero})))*100).concat( "% " )]]></textFieldExpression>
