@@ -198,6 +198,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                         } else{
                             fMenos = rs.getInt(k + 1);
                         }
+                        
                         //nuevo
                         if(rs.getString("pe_num_unido").equals("0") && rs.getString("pe_fin_unido").equals("0")){
                             difDiasPrimero = rs.getInt(k + 1);
@@ -354,7 +355,7 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         jTable1.setDefaultRenderer (Object.class, new MiRender());
 
         TableColumn columna = jTable1.getColumnModel().getColumn(0);
-        columna.setPreferredWidth(80);
+        columna.setPreferredWidth(70);
         TableColumn columna1 = jTable1.getColumnModel().getColumn(1);
         columna1.setPreferredWidth(120);
         TableColumn columna2 = jTable1.getColumnModel().getColumn(2);
@@ -370,19 +371,19 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         TableColumn columna7 = jTable1.getColumnModel().getColumn(7);
         columna7.setPreferredWidth(80);
         TableColumn columna8 = jTable1.getColumnModel().getColumn(8);
-        columna8.setPreferredWidth(70);
+        columna8.setPreferredWidth(50);
         TableColumn columna9 = jTable1.getColumnModel().getColumn(9);
         columna9.setPreferredWidth(80);
         TableColumn columna10 = jTable1.getColumnModel().getColumn(10);
         columna10.setPreferredWidth(60);
         TableColumn columna11 = jTable1.getColumnModel().getColumn(11);
-        columna11.setPreferredWidth(200);
+        columna11.setPreferredWidth(120);
         TableColumn columna12 = jTable1.getColumnModel().getColumn(12);
         columna12.setPreferredWidth(60);
         TableColumn columna13 = jTable1.getColumnModel().getColumn(13);
         columna13.setPreferredWidth(60);
         TableColumn columna14 = jTable1.getColumnModel().getColumn(14);
-        columna14.setPreferredWidth(60);
+        columna14.setPreferredWidth(50);
         TableColumn columna15 = jTable1.getColumnModel().getColumn(15);
         columna15.setPreferredWidth(120);
         TableColumn columna16 = jTable1.getColumnModel().getColumn(16);
@@ -400,19 +401,19 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
         TableColumn columna22 = jTable1.getColumnModel().getColumn(22);
         columna22.setPreferredWidth(100);
         TableColumn columna23 = jTable1.getColumnModel().getColumn(23);
-        columna23.setPreferredWidth(50);
+        columna23.setPreferredWidth(40);
         TableColumn columna24 = jTable1.getColumnModel().getColumn(24);
-        columna24.setPreferredWidth(50);
+        columna24.setPreferredWidth(40);
         TableColumn columna25 = jTable1.getColumnModel().getColumn(25);
-        columna25.setPreferredWidth(50);
+        columna25.setPreferredWidth(40);
         TableColumn columna26 = jTable1.getColumnModel().getColumn(26);
-        columna26.setPreferredWidth(50);
+        columna26.setPreferredWidth(40);
         TableColumn columna27 = jTable1.getColumnModel().getColumn(27);
-        columna27.setPreferredWidth(100);
+        columna27.setPreferredWidth(120);
         TableColumn columna28 = jTable1.getColumnModel().getColumn(28);
-        columna28.setPreferredWidth(100);
+        columna28.setPreferredWidth(120);
         TableColumn columna29 = jTable1.getColumnModel().getColumn(29);
-        columna29.setPreferredWidth(100);
+        columna29.setPreferredWidth(120);
         TableColumn columna30 = jTable1.getColumnModel().getColumn(30);
         columna30.setPreferredWidth(40);
         TableColumn columna31 = jTable1.getColumnModel().getColumn(31);
