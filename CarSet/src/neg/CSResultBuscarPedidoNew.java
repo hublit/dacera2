@@ -55,15 +55,15 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
     private static int difDias;
     ArrayList<Integer> marcaUnidos = new ArrayList<Integer>();
     ArrayList<Integer> peMaxFecha = new ArrayList<Integer>();
-
+    boolean acceso = (CSDesktop.group == 1 || CSDesktop.group == 2) ? true : false;
+    
     /** Creates new form ResultBuscarPedido */
     public CSResultBuscarPedidoNew(String query) throws UnknownHostException, FileNotFoundException, IOException
     {
         consulta = query;
         TablaModelo modelo = new TablaModelo();
         ResultSet rs = CSDesktop.datos.select(query);
-        //boolean acceso = (CSDesktop.user.equals("9") || CSDesktop.user.equals("10") || CSDesktop.user.equals("11")) ? false : true;
-        boolean acceso = (CSDesktop.group == 1 || CSDesktop.group == 2) ? true : false;
+
         KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}
@@ -836,25 +836,26 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                 texto = new HSSFRichTextString("PROVEEDOR");
                 celda.setCellValue(texto);
                 hoja.setColumnWidth((short) 15, (short) ((200 * 2) / ((double) 1 / 20)) );
+                
+                if(CSDesktop.group != 3){
+                    celda = fila.createCell( (short) 16);
+                    celda.setCellStyle(cs);
+                    texto = new HSSFRichTextString("TAR.CL");
+                    celda.setCellValue(texto);
+                    hoja.setColumnWidth((short) 16, (short) ((50 * 2) / ((double) 1 / 20)) );
 
-                celda = fila.createCell( (short) 16);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("TAR.CL");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 16, (short) ((50 * 2) / ((double) 1 / 20)) );
+                    celda = fila.createCell( (short) 17);
+                    celda.setCellStyle(cs);
+                    texto = new HSSFRichTextString("TAR.PR");
+                    celda.setCellValue(texto);
+                    hoja.setColumnWidth((short) 17, (short) ((50 * 2) / ((double) 1 / 20)) );
 
-                celda = fila.createCell( (short) 17);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("TAR.PR");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 17, (short) ((50 * 2) / ((double) 1 / 20)) );
-
-                celda = fila.createCell( (short) 18);
-                celda.setCellStyle(cs);
-                texto = new HSSFRichTextString("MG");
-                celda.setCellValue(texto);
-                hoja.setColumnWidth((short) 18, (short) ((50 * 2) / ((double) 1 / 20)) );
-
+                    celda = fila.createCell( (short) 18);
+                    celda.setCellStyle(cs);
+                    texto = new HSSFRichTextString("MG");
+                    celda.setCellValue(texto);
+                    hoja.setColumnWidth((short) 18, (short) ((50 * 2) / ((double) 1 / 20)) );
+                }
                 celda = fila.createCell( (short) 19);
                 celda.setCellStyle(cs);
                 texto = new HSSFRichTextString("F.RECOGIDA");
@@ -1089,31 +1090,32 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                         style.setTopBorderColor(HSSFColor.BLACK.index);
 
                         style.setDataFormat(format.getFormat("00.00"));
+                        
+                        if(CSDesktop.group != 3){
+                            celda.setCellStyle(style);
+                            celda.setCellValue(rs.getDouble("pe_ta_es_cliente"));
 
-                        celda.setCellStyle(style);
-                        celda.setCellValue(rs.getDouble("pe_ta_es_cliente"));
+                            celda = fila.createCell( (short) 17);
+                            style.setDataFormat(format.getFormat("00.00"));
+                            celda.setCellStyle(style);
+                            if(peUnidos){
+                                double tfProvUnido = rs.getDouble("pe_ta_es_proveedor") + rs.getDouble("ta_pr_unido");
+                                celda.setCellValue(tfProvUnido);
+                            }else{
+                                celda.setCellValue(rs.getDouble("pe_ta_es_proveedor"));
+                            }
 
-                        celda = fila.createCell( (short) 17);
-                        style.setDataFormat(format.getFormat("00.00"));
-                        celda.setCellStyle(style);
-                        if(peUnidos){
-                            double tfProvUnido = rs.getDouble("pe_ta_es_proveedor") + rs.getDouble("ta_pr_unido");
-                            celda.setCellValue(tfProvUnido);
-                        }else{
-                            celda.setCellValue(rs.getDouble("pe_ta_es_proveedor"));
+                            //Columna de MG
+                            celda = fila.createCell( (short) 18);
+                            style.setDataFormat(format.getFormat("00.00"));
+                            if(!unidos){
+                                //celda.setCellFormula("L"+num_fila_aux+"-M"+num_fila_aux+"+N"+num_fila_aux+"+O"+num_fila_aux+"");
+                                celda.setCellFormula("Q"+num_fila_aux+"-R"+num_fila_aux+"");
+                            }else{
+                                celda.setCellFormula("Q"+num_fila_aux+"-R"+num_fila_aux+"");
+                            }
+                            celda.setCellStyle(style);
                         }
-
-                        //Columna de MG
-                        celda = fila.createCell( (short) 18);
-                        style.setDataFormat(format.getFormat("00.00"));
-                        if(!unidos){
-                            //celda.setCellFormula("L"+num_fila_aux+"-M"+num_fila_aux+"+N"+num_fila_aux+"+O"+num_fila_aux+"");
-                            celda.setCellFormula("Q"+num_fila_aux+"-R"+num_fila_aux+"");
-                        }else{
-                            celda.setCellFormula("Q"+num_fila_aux+"-R"+num_fila_aux+"");
-                        }
-                        celda.setCellStyle(style);
-
                         //Celda de la fecha del pedido
                         celda = fila.createCell( (short) 19);
                         String fechaRecogida=(rs.getObject("pe_fecha_origen")).toString();

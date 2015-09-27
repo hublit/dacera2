@@ -273,6 +273,34 @@ public class CSInformeComercial extends javax.swing.JPanel
                 "SUM(IF(MONTH(pe.pe_fecha) = 10, pe.pe_ta_es_cliente, 0) ) AS octubre," +
                 "SUM(IF(MONTH(pe.pe_fecha) = 11, pe.pe_ta_es_cliente, 0) ) AS noviembre, " +
                 "SUM(IF(MONTH(pe.pe_fecha) = 12, pe.pe_ta_es_cliente, 0) ) AS diciembre, " +
+                
+                "SUM(IF(MONTH(pe.pe_fecha) = 1, pe.pe_ta_es_proveedor, 0) ) AS enero_pr," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 2, pe.pe_ta_es_proveedor, 0) ) AS febrero_pr, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 3, pe.pe_ta_es_proveedor, 0) ) AS marzo_pr, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 4, pe.pe_ta_es_proveedor, 0) ) AS abril_pr, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 5, pe.pe_ta_es_proveedor, 0) ) AS mayo_pr, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 6, pe.pe_ta_es_proveedor, 0) ) AS junio_pr, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 7, pe.pe_ta_es_proveedor, 0) ) AS julio_pr, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 8, pe.pe_ta_es_proveedor, 0) ) AS agosto_pr, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 9, pe.pe_ta_es_proveedor, 0) ) AS septiembre_pr, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 10, pe.pe_ta_es_proveedor, 0) ) AS octubre_pr," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 11, pe.pe_ta_es_proveedor, 0) ) AS noviembre_pr, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 12, pe.pe_ta_es_proveedor, 0) ) AS diciembre_pr, " +
+                
+                "SUM(IF(MONTH(pe.pe_fecha) = 1, 1, 0) ) AS num_enero," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 2, 1, 0) ) AS num_febrero, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 3, 1, 0) ) AS num_marzo, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 4, 1, 0) ) AS num_abril, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 5, 1, 0) ) AS num_mayo, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 6, 1, 0) ) AS num_junio, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 7, 1, 0) ) AS num_julio, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 8, 1, 0) ) AS num_agosto, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 9, 1, 0) ) AS num_septiembre, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 10, 1, 0) ) AS num_octubre," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 11, 1, 0) ) AS num_noviembre, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 12, 1, 0) ) AS num_diciembre, " +                
+                 
+                
                 "SUM(pe.pe_ta_es_cliente - pe.pe_ta_es_proveedor) AS mg_pedido, " +
                 "SUM(1) AS num_pedido, " +
                 "SUM(pe.pe_ta_es_cliente) AS ta_cliente, " +

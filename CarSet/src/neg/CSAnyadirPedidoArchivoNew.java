@@ -94,7 +94,7 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                            if(!cell.toString().equals(""))
                            {
                                 String[] fecha = cell.getContents().split("/");
-                                sFecha = "20"+fecha[2]+"-"+fecha[1]+"-"+fecha[0];
+                                sFecha = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
                                 //System.out.println("fecha hoy: "+sFecha);
                                 query += "'"+sFecha + "', ";
                             }else{

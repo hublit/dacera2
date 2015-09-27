@@ -1082,7 +1082,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "CarSet version 4.0.11 (28-08-2015)",
+                  "CarSet version 4.0.12 (28-09-2015)",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
           }  // fin de la clase interna an�nima
@@ -1094,14 +1094,13 @@ public class CSDesktop extends JFrame
       barra.add( menuClientes );
       barra.add( menuProveedores );
       barra.add( menuPedidos );
-      barra.add( menuInforme );
   
       if(group == 1){
         barra.add( menuFactura );
         barra.add( menuFacturasTesoreria );
         barra.add( menuTesoreria );        
       }
-
+      barra.add( menuInforme );
       barra.add( menuAyuda );
   
       Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
