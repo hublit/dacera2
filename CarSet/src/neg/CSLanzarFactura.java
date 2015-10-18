@@ -571,9 +571,19 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-                                    if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
-                                    {
-                                        CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                    BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
+                                    if (beanFacturaPe.getEstado().equals("Validado")){
+                                        System.out.println("V: "+ beanFacturaPe.getEstado());
+                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                        {
+                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                        }                                        
+                                    }else{
+                                        System.out.println("F: "+ beanFacturaPe.getEstado());
+                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                        {
+                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                        }
                                     }
                                 }
                                 if(codigo==1)
@@ -1033,9 +1043,19 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
-                                    {
-                                        CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                    BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
+                                    if (beanFacturaPe.getEstado().equals("Validado")){
+                                        System.out.println("V: "+ beanFacturaPe.getEstado());
+                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                        {
+                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                        }                                        
+                                    }else{
+                                        System.out.println("F: "+ beanFacturaPe.getEstado());
+                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                        {
+                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                        }
                                     }
                                 }
                                 if(codigo==1)
@@ -1584,10 +1604,26 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Entregado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                    BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
+                                    if (beanFacturaPe.getEstado().equals("Validado")){
+                                        System.out.println("V: "+ beanFacturaPe.getEstado());
+                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                        {
+                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                        }                                        
+                                    }else{
+                                        System.out.println("F: "+ beanFacturaPe.getEstado());
+                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                        {
+                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                        }
+                                    }                                    
+                                    
+/*                                    if(CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Entregado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
                                     {
                                         CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
                                     }
+*/        
                                 }
                                 if(codigo==1)
                                 {

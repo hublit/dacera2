@@ -49,6 +49,10 @@ public class CSEditarProveedorNew extends javax.swing.JPanel
         getFPagoProveedores();
         this.datosProveedor(proveedor);
         this.ABResultBuscarContactos(proveedor);
+        
+        if(CSDesktop.group == 3){
+            jTextNombre.setEditable(false);
+        }
 
         KeyListener l = new KeyListener()
         {

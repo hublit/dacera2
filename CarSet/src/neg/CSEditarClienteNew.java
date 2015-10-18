@@ -48,6 +48,10 @@ public class CSEditarClienteNew extends javax.swing.JPanel
         getComercial();
         this.datosCliente(cliente);
         this.ABResultBuscarContactos(cliente);
+        
+        if(CSDesktop.group == 3){
+            jTextNombre.setEditable(false);
+        }
 
         //getDepartamentoContacto();r
 

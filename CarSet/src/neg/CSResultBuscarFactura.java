@@ -385,7 +385,6 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
                     Logger.getLogger(CSFacturaCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 try {
-                    System.out.println("Voy por aqui");
                     int longitud=jTable1.getSelectedRow();
 
                     Calendar fechaCalendar = jDateFechaFactura.getCalendar();

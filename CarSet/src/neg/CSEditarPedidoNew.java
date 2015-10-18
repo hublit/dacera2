@@ -260,7 +260,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         setMaximumSize(new java.awt.Dimension(1130, 820));
         setPreferredSize(new java.awt.Dimension(1130, 820));
 
-        jButtonModificar.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButtonModificar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonModificar.setText("MODIFICAR");
         jButtonModificar.setName("jButtonModificar"); // NOI18N
         jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -342,7 +342,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         lTarifaEsProv.setText("Proveedor");
         lTarifaEsProv.setName("lTarifaEsProv"); // NOI18N
 
-        lTarifaEspecial.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lTarifaEspecial.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lTarifaEspecial.setForeground(new java.awt.Color(170, 16, 4));
         lTarifaEspecial.setText(" TARIFA");
         lTarifaEspecial.setName("lTarifaEspecial"); // NOI18N
@@ -381,7 +381,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         jLabel25.setText("*");
         jLabel25.setName("jLabel25"); // NOI18N
 
-        lPeUnidos.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lPeUnidos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lPeUnidos.setForeground(new java.awt.Color(170, 16, 4));
         lPeUnidos.setText("PEDIDOS UNIDOS");
         lPeUnidos.setName("lPeUnidos"); // NOI18N
@@ -439,7 +439,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         jSeparator11.setForeground(new java.awt.Color(170, 16, 4));
         jSeparator11.setName("jSeparator11"); // NOI18N
 
-        lTarifaEspecial1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lTarifaEspecial1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lTarifaEspecial1.setForeground(new java.awt.Color(170, 16, 4));
         lTarifaEspecial1.setText("ENTREGA REAL");
         lTarifaEspecial1.setName("lTarifaEspecial1"); // NOI18N
@@ -731,7 +731,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
             }
         });
 
-        lDestino.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lDestino.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lDestino.setForeground(new java.awt.Color(170, 16, 4));
         lDestino.setText("DATOS DEL DESTINO");
         lDestino.setName("lDestino"); // NOI18N
@@ -744,7 +744,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         lProvinciaDestino.setText("Provincia");
         lProvinciaDestino.setName("lProvinciaDestino"); // NOI18N
 
-        lOrigen.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lOrigen.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lOrigen.setForeground(new java.awt.Color(170, 16, 4));
         lOrigen.setText("DATOS DEL ORIGEN");
         lOrigen.setName("lOrigen"); // NOI18N
@@ -912,7 +912,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
             }
         });
 
-        lServicio.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lServicio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lServicio.setForeground(new java.awt.Color(170, 16, 4));
         lServicio.setText("OBSERVACIONES");
         lServicio.setName("lServicio"); // NOI18N
@@ -1015,7 +1015,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         lincidencias.setText("Incidencias");
         lincidencias.setName("lincidencias"); // NOI18N
 
-        lServicio1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lServicio1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lServicio1.setForeground(new java.awt.Color(170, 16, 4));
         lServicio1.setText("PROVEEDOR");
         lServicio1.setName("lServicio1"); // NOI18N
@@ -1055,7 +1055,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
             }
         });
 
-        lVehiculo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        lVehiculo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lVehiculo.setForeground(new java.awt.Color(170, 16, 4));
         lVehiculo.setText("DATOS DEL VEHÍCULO");
         lVehiculo.setName("lVehiculo"); // NOI18N
@@ -1101,7 +1101,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                                 .addComponent(lTarifaEsProv)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jTextTaEsProv, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(lPeUnidos, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jButtonUnirPedido)
@@ -1110,8 +1110,8 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                                 .addGap(27, 27, 27)
                                                 .addComponent(jTextPeUnido, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(13, 13, 13))
-                                            .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)
-                                            .addComponent(jSeparator11, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE)))
+                                            .addComponent(jSeparator7)
+                                            .addComponent(jSeparator11)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lEstado3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1128,28 +1128,27 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                         .addComponent(lFechaRealDestino)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jDateFechaRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lHoraRealDestino)
                                         .addGap(18, 18, 18)
                                         .addComponent(jTextHoraRealDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(2, 2, 2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+                                    .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(28, 28, 28)
                                         .addComponent(jButtonMailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButtonMailProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(83, 83, 83)
                                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(5, 5, 5)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -1180,16 +1179,15 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                             .addComponent(jTextDireccionDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextNombreOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextDireccionOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lPoblacionDestino))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lPoblacionOrigen)))
@@ -1220,9 +1218,9 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lCodPostalDestino)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextCodPostalDestino, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))))
+                                        .addComponent(jTextCodPostalDestino))))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel8)
@@ -1252,10 +1250,6 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                         .addComponent(jDateFechaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(44, 44, 44))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lOrigen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 956, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(275, 275, 275)
@@ -1267,7 +1261,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(160, 160, 160)
                                 .addComponent(lOProveedor)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lOGeneralText1)
                                 .addGap(153, 153, 153))
                             .addGroup(layout.createSequentialGroup()
@@ -1287,7 +1281,6 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                         .addComponent(lServicioFMad2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabelNcamion)
@@ -1300,21 +1293,20 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                             .addComponent(jTextDiasCampa)
                             .addComponent(jTextNumCamion, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextKm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel23)
                                 .addGap(3, 3, 3)
                                 .addComponent(lProveedor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextUrlPr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                            .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.TRAILING, 0, 1, Short.MAX_VALUE)
                             .addComponent(jToggleButtonProveedor, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(36, 36, 36))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -1334,7 +1326,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lMatricula)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextMatricula, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                        .addComponent(jTextMatricula)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel21)
                         .addGap(4, 4, 4)
@@ -1348,21 +1340,13 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                         .addGap(2, 2, 2)
                         .addComponent(jTextModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lVehiculo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 943, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lDestino)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 950, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lNumero)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1386,13 +1370,13 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                 .addComponent(jToggleButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
-                            .addComponent(jSeparator9, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+                            .addComponent(jSeparator4)
+                            .addComponent(jSeparator9)
+                            .addComponent(jSeparator3)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1057, Short.MAX_VALUE)
+                                    .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
@@ -1413,11 +1397,18 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                         .addGap(18, 18, 18)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE))
-                        .addGap(12, 12, 12)))
+                            .addComponent(jSeparator5))
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lOrigen)
+                            .addComponent(lVehiculo)
+                            .addComponent(lDestino))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGap(1016, 1016, 1016))
         );
         layout.setVerticalGroup(
@@ -1544,7 +1535,6 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                 .addComponent(lMatricula)))
                         .addGap(10, 10, 10)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
@@ -1593,22 +1583,20 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                     .addComponent(lincidencias))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jTextFMas)
-                                            .addComponent(jComboBoxIncidencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(8, 8, 8))
-                                    .addComponent(jTextFMenos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextFMas)
+                                        .addComponent(jComboBoxIncidencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFMenos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lOCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lOProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lOGeneralText1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane3)
+                                    .addComponent(jScrollPane2)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1622,7 +1610,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                                 .addComponent(lTarifaEspecial)
                                 .addGap(17, 17, 17))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLTarifaCKm)
                                     .addComponent(jTextTaEsClKm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1683,6 +1671,9 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
+        int grupo = CSDesktop.group;
+        System.out.println("Grupo: "+ grupo);
+     
         int cerradoN = 0;
         int finUnidoN=0;
         int diasCampaN = 0;
@@ -1831,6 +1822,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
         //ENTREGA REAL
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
+                System.out.println("Estado: "+ estado);   
         String horaRealOrigen = new String(jTextHoraRealOrigen.getText());
         String horaRealDestino = new String(jTextHoraRealDestino.getText());
         // CONVERSION DE LA FECHA REAL ORIGEN
@@ -1975,6 +1967,9 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         }
         else if(soporte.equals("Selecciona")){
             ValidarFormatos("Seleccione Soporte del Proveedor");
+        }
+        else if(grupo ==3 && (estado.equals("Facturado") || estado.equals("Validado") || estado.equals("Facturado y Validado"))){
+            ValidarFormatos("No tiene permisos para modificar un pedido es estado Facturado o Validado");
         }
         else
         {                          

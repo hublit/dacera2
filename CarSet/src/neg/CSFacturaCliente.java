@@ -452,6 +452,7 @@ public class CSFacturaCliente extends JPanel
                         nueva.setKms(rs.getString("pe_kms"));
                         nueva.setAtt(rs.getString("cl_email"));
                         nueva.setVe_estado(rs.getString("pe_ve_estado"));
+                        nueva.setEstado(rs.getString("pe_estado"));
                         
                         lista.add(nueva);
                     }

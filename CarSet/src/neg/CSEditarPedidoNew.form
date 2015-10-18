@@ -59,7 +59,7 @@
                                               <Component id="lTarifaEsProv" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jTextTaEsProv" min="-2" pref="77" max="-2" attributes="0"/>
-                                              <EmptySpace pref="30" max="32767" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Component id="lPeUnidos" min="-2" pref="102" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jButtonUnirPedido" min="-2" max="-2" attributes="0"/>
@@ -69,8 +69,8 @@
                                               <Component id="jTextPeUnido" min="-2" pref="53" max="-2" attributes="1"/>
                                               <EmptySpace min="13" pref="13" max="13" attributes="0"/>
                                           </Group>
-                                          <Component id="jSeparator7" alignment="0" pref="1066" max="32767" attributes="1"/>
-                                          <Component id="jSeparator11" alignment="0" pref="1066" max="32767" attributes="1"/>
+                                          <Component id="jSeparator7" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="jSeparator11" alignment="0" max="32767" attributes="1"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -89,7 +89,7 @@
                                       <Component id="lFechaRealDestino" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jDateFechaRealDestino" min="-2" pref="133" max="-2" attributes="0"/>
-                                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="lHoraRealDestino" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jTextHoraRealDestino" min="-2" pref="53" max="-2" attributes="1"/>
@@ -99,16 +99,16 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jSeparator8" alignment="0" pref="1068" max="32767" attributes="1"/>
+                                  <Component id="jSeparator8" alignment="0" max="32767" attributes="1"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Component id="jButtonMailCliente" min="-2" pref="115" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButtonMailProveedor" min="-2" pref="137" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                                       <Component id="jButtonModificar" min="-2" pref="182" max="-2" attributes="0"/>
-                                      <EmptySpace pref="211" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jButtonEliminar" min="-2" pref="113" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" max="-2" attributes="0"/>
                                       <Component id="jButtonCancelar" min="-2" pref="94" max="-2" attributes="0"/>
@@ -117,7 +117,6 @@
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="1013" max="-2" attributes="1"/>
                   </Group>
               </Group>
@@ -157,17 +156,16 @@
                           <Component id="jTextNombreOrigen" alignment="0" min="-2" pref="284" max="-2" attributes="0"/>
                           <Component id="jTextDireccionOrigen" alignment="0" min="-2" pref="288" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="lPoblacionDestino" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="lPoblacionOrigen" min="-2" max="-2" attributes="0"/>
@@ -206,12 +204,12 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="lCodPostalDestino" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextCodPostalDestino" pref="64" max="32767" attributes="1"/>
+                                      <Component id="jTextCodPostalDestino" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace pref="186" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
@@ -251,11 +249,6 @@
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="lOrigen" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="956" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
@@ -270,7 +263,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
                               <Component id="lOProveedor" min="-2" max="-2" attributes="1"/>
-                              <EmptySpace pref="181" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="lOGeneralText1" min="-2" max="-2" attributes="1"/>
                               <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                           </Group>
@@ -296,7 +289,6 @@
                       <Component id="lServicioFMad2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxServicio" min="-2" pref="97" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="jLabelNcamion" alignment="1" min="-2" max="-2" attributes="1"/>
@@ -313,18 +305,17 @@
                           <Component id="jTextNumCamion" alignment="1" max="32767" attributes="1"/>
                           <Component id="jTextKm" alignment="1" min="-2" pref="50" max="-2" attributes="1"/>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel23" min="-2" max="-2" attributes="1"/>
                               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                               <Component id="lProveedor" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jTextProveedor" min="-2" pref="311" max="-2" attributes="0"/>
-                              <EmptySpace pref="11" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jTextUrlPr" min="-2" max="-2" attributes="1"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           </Group>
@@ -352,7 +343,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lMatricula" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextMatricula" pref="125" max="32767" attributes="0"/>
+                      <Component id="jTextMatricula" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel21" min="-2" max="-2" attributes="1"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -367,23 +358,13 @@
                       <Component id="jTextModelo" min="-2" pref="163" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="lVehiculo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="943" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="lDestino" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="950" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="lNumero" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jTextNumero" min="-2" pref="60" max="-2" attributes="0"/>
-                              <EmptySpace pref="43" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lFecha" min="-2" pref="35" max="-2" attributes="0"/>
@@ -408,13 +389,13 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jTextUrl" min="-2" max="-2" attributes="1"/>
                           </Group>
-                          <Component id="jSeparator4" alignment="1" pref="1068" max="32767" attributes="1"/>
-                          <Component id="jSeparator9" alignment="1" pref="1068" max="32767" attributes="1"/>
-                          <Component id="jSeparator3" alignment="1" pref="1068" max="32767" attributes="1"/>
+                          <Component id="jSeparator4" alignment="1" max="32767" attributes="1"/>
+                          <Component id="jSeparator9" alignment="1" max="32767" attributes="1"/>
+                          <Component id="jSeparator3" alignment="1" max="32767" attributes="1"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jSeparator6" alignment="1" pref="1057" max="32767" attributes="1"/>
+                                  <Component id="jSeparator6" alignment="1" max="32767" attributes="1"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
@@ -441,15 +422,24 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jScrollPane1" min="-2" pref="281" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane2" pref="248" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane2" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane3" min="-2" pref="279" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="jSeparator5" alignment="1" pref="1068" max="32767" attributes="1"/>
+                          <Component id="jSeparator5" alignment="1" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lOrigen" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lVehiculo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lDestino" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="1016" max="-2" attributes="0"/>
@@ -603,7 +593,6 @@
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="jSeparator3" min="-2" pref="7" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -664,18 +653,15 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jTextFMas" linkSize="14" alignment="3" max="32767" attributes="1"/>
-                                          <Component id="jComboBoxIncidencias" linkSize="14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jTextFMas" linkSize="14" alignment="3" max="32767" attributes="1"/>
+                                      <Component id="jComboBoxIncidencias" linkSize="14" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jTextFMenos" linkSize="14" min="-2" max="-2" attributes="1"/>
                               </Group>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lOCliente" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
                                   <Component id="lOProveedor" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
@@ -683,8 +669,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane3" pref="128" max="32767" attributes="1"/>
-                                  <Component id="jScrollPane2" pref="128" max="32767" attributes="1"/>
+                                  <Component id="jScrollPane3" max="32767" attributes="1"/>
+                                  <Component id="jScrollPane2" max="32767" attributes="1"/>
                                   <Component id="jScrollPane1" min="-2" pref="128" max="-2" attributes="1"/>
                               </Group>
                           </Group>
@@ -703,7 +689,7 @@
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="8" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLTarifaCKm" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextTaEsClKm" alignment="3" min="-2" max="-2" attributes="0"/>
