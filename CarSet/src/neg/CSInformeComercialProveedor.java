@@ -35,11 +35,11 @@ import net.sf.jasperreports.engine.JasperReport;
  *
  * @author depr102
  */
-public class CSInformeComercial extends javax.swing.JPanel
+public class CSInformeComercialProveedor extends javax.swing.JPanel
 {
     public String query = "";
     /** Creates new form CSInformeDet1 */
-    public CSInformeComercial() throws SQLException
+    public CSInformeComercialProveedor() throws SQLException
     {
         initComponents();
         CSDesktop.menuInformeComercial.setEnabled(false);
@@ -85,9 +85,9 @@ public class CSInformeComercial extends javax.swing.JPanel
         lFechaMes = new javax.swing.JLabel();
         jComboBoxMes = new javax.swing.JComboBox();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
-        jLabel1.setText("Informe Comercial");
+        jLabel1.setText("Informe Comercial Proveedor");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jSeparator7.setForeground(new java.awt.Color(170, 16, 4));
@@ -127,17 +127,17 @@ public class CSInformeComercial extends javax.swing.JPanel
         });
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel2.setText("Informe Comercial anual de pedidos por Clientes");
+        jLabel2.setText("Informe Comercial anual de pedidos por Proveedor");
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelOrder.setForeground(new java.awt.Color(170, 16, 4));
         jLabelOrder.setText("Orden");
         jLabelOrder.setName("jLabelOrder"); // NOI18N
 
         jComboOrden.setBackground(new java.awt.Color(255, 255, 102));
         jComboOrden.setForeground(new java.awt.Color(0, 0, 100));
-        jComboOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tarifa Cliente", "Nombre Cliente", "Margen Pedido", "Número de Pedidos" }));
+        jComboOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tarifa Proveedor", "Nombre Proveedor", "Margen Pedido", "Número de Pedidos" }));
         jComboOrden.setName("jComboOrden"); // NOI18N
         jComboOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class CSInformeComercial extends javax.swing.JPanel
 
         jComboBoxTipo.setBackground(new java.awt.Color(228, 229, 255));
         jComboBoxTipo.setForeground(new java.awt.Color(0, 0, 100));
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Empresa", "Concesionario", "Renting", "Compraventa", "Particular", "Proveedor", "Fabricante", "Asistencia", "Intermediario Renting", "Carrocero", "Otros" }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona", "Provincial", "Larga Distancia", "Otros" }));
         jComboBoxTipo.setName("jComboBoxTipo"); // NOI18N
 
         lTipo.setForeground(new java.awt.Color(0, 0, 100));
@@ -171,9 +171,9 @@ public class CSInformeComercial extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                            .addComponent(jSeparator6)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.CENTER)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -260,7 +260,7 @@ public class CSInformeComercial extends javax.swing.JPanel
 
         // SE EJECUTA LA QUERY NECEARIA PARA RECOGER LOS DATOS NECESARIOS PARA REALIZAR EL INFORME
         // POR LO QUE PARECE, EL CLIENTE SIEMPRE TIENE QUE APARECER PORQUE EN LA QUERY ESTA.
-        query = "SELECT cl.cl_id, cl.cl_nombre, " +
+        query = "SELECT pr.pr_id, pr.pr_nombre_fiscal, " +
                 "SUM(IF(MONTH(pe.pe_fecha) = 1, pe.pe_ta_es_cliente, 0) ) AS enero," +
                 "SUM(IF(MONTH(pe.pe_fecha) = 2, pe.pe_ta_es_cliente, 0) ) AS febrero, " +
                 "SUM(IF(MONTH(pe.pe_fecha) = 3, pe.pe_ta_es_cliente, 0) ) AS marzo, " +
@@ -300,41 +300,42 @@ public class CSInformeComercial extends javax.swing.JPanel
                 "SUM(IF(MONTH(pe.pe_fecha) = 11, 1, 0) ) AS num_noviembre, " +
                 "SUM(IF(MONTH(pe.pe_fecha) = 12, 1, 0) ) AS num_diciembre, " +                
                  
-                "SUM(pe.pe_ta_es_cliente - pe.pe_ta_es_proveedor) AS mg_pedido, " +
+                "SUM(IF (pe.fc_id = 1, 1, 0 ) ) AS factor, " +
+                "SUM(IF (pe.pe_ve_estado = 'Funciona', 1, 0 ) ) AS estado_ve, " +
+                "SUM(IF (pe.pe_soporte = 'Grúa Unitaria', 1, 0 ) ) AS soporte, " +                
+                
                 "SUM(1) AS num_pedido, " +
                 "SUM(pe.pe_ta_es_cliente) AS ta_cliente, " +
                 "SUM(pe.pe_ta_es_proveedor) AS ta_proveedor " +
-                "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc " +
-                "INNER JOIN carset.cl_clientes cl " +
+                "FROM carset.pe_pedidos pe INNER JOIN carset.pp_pedidos_proveedores pp " +
+                "INNER JOIN carset.pr_proveedores pr " +
                 "WHERE pe.pe_estado != 'Anulado' AND pe.pe_incidencia != 'ADMINISTRATIVA' " +
-                "AND pe.pe_num = pc.pe_num AND pc.cl_id = cl.cl_id ";
+                "AND pe.pe_num = pp.pe_num AND pp.pr_id = pr.pr_id ";
         if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
             query = query + " AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
         }
         if (!tipoCliente.equals("Selecciona"))
         {
-           query = query + " AND cl.cl_tipo= '"+tipoCliente+"'";
+           query = query + " AND pr.pr_tipo= '"+tipoCliente+"'";
         }
         if (mes != 0)
         {
             query = query + " AND MONTH(pe.pe_fecha) = "+mes+"";
         }
-        query = query + " GROUP BY cl.cl_nombre";
+        query = query + " GROUP BY pr.pr_nombre_fiscal";
         
         //Orden de la query
         int orden = new Integer(jComboOrden.getSelectedIndex());
 
         String order = "";
         switch (orden) {
-            case 0:  order = "ta_cliente";
+            case 0:  order = "ta_proveedor";
                      break;
-            case 1:  order = "cl.cl_nombre";
-                     break;
-            case 2:  order = "mg_pedido";
+            case 1:  order = "pr.pr_nombre_fiscal";
                      break;
             case 3:  order = "num_pedido";
                      break;
-            default: order = "cl.cl_nombre";
+            default: order = "pr.pr_nombre_fiscal";
                      break;
         }
 
@@ -348,7 +349,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         try {
             total = this.getImporteTotalPedidos(fechaIni, fechaFin, tipoCliente, mes);
         } catch (SQLException ex) {
-            Logger.getLogger(CSInformeComercial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CSInformeComercialProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         Map pars = new HashMap();
@@ -376,31 +377,31 @@ public class CSInformeComercial extends javax.swing.JPanel
             }
                 con=(Connection) conexion.getConexion();
 
-                CSDesktop.InformeComercial.dispose();
+                CSDesktop.InformeComercialProveedor.dispose();
 
                 //1-Compilamos el archivo XML y lo cargamos en memoria
-                jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/InformeComercial.jrxml"));
+                jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/data/reportes/InformeComercialProveedor.jrxml"));
 
                 //2-Llenamos el reporte con la informaci�n y par�metros necesarios
-                jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/InformeComercial.jasper"), pars, con);
+                jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/InformeComercialProveedor.jasper"), pars, con);
                 jasperPrint.setProperty("query", query);
-                JRViewerComercial jrViewer = new JRViewerComercial(jasperPrint);
-                CSDesktop.InformeComercial = new JInternalFrame("Informe Comercial", true, false, false, true );
-                CSDesktop.InformeComercial.getContentPane().add( jrViewer, BorderLayout.CENTER );
-                CSDesktop.InformeComercial.pack();
+                JRViewerComercialProveedor jrViewer = new JRViewerComercialProveedor(jasperPrint);
+                CSDesktop.InformeComercialProveedor = new JInternalFrame("Informe Comercial Proveedor", true, false, false, true );
+                CSDesktop.InformeComercialProveedor.getContentPane().add( jrViewer, BorderLayout.CENTER );
+                CSDesktop.InformeComercialProveedor.pack();
 
-                CSDesktop.elEscritorio.add( CSDesktop.InformeComercial );
+                CSDesktop.elEscritorio.add( CSDesktop.InformeComercialProveedor );
                 Dimension pantalla = CSDesktop.elEscritorio.getSize();
-                CSDesktop.InformeComercial.setSize(pantalla);
-                CSDesktop.InformeComercial.setVisible(true);
+                CSDesktop.InformeComercialProveedor.setSize(pantalla);
+                CSDesktop.InformeComercialProveedor.setVisible(true);
         } catch (JRException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        CSDesktop.InformeComercial.dispose();
-        CSDesktop.menuInformeComercial.setEnabled(true);
+        CSDesktop.InformeComercialProveedor.dispose();
+        CSDesktop.menuInformeComercialProveedor.setEnabled(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jComboBoxAnyoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAnyoActionPerformed

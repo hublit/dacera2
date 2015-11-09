@@ -55,8 +55,8 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                 "pa.pa_nombre_origen, pa.pa_telefono_origen, pa.pa_direccion_destino, pa.pa_poblacion_destino, pa.pa_provincia_destino, " +
                 "pa.pa_cp_destino, pa.pa_nombre_destino, pa.pa_telefono_destino, fc.fc_nombre, pa.pa_ve_estado, pa.pa_ve_matricula, pa.pa_ve_marca, " +
                 "pa.pa_ve_modelo, pa.pa_soporte, pa.pa_servicio, pa.pa_kms, pa.pa_num_en_camion, pa.pa_dias_campa, pa.pa_descripcion, pa.pa_fecha_origen, " +
-                "pa.pa_fecha_destino, pa.pa_ta_es_cliente, pa.pa_ta_es_proveedor, cl.cl_nombre, pr.pr_nombre_fiscal, pa.pa_observaciones_carset, " +
-                "pa.pa_ob_general, pa.pa_ob_cl_mail, pa.pa_ob_pr_mail, pa.pa_num_unido, pa.pa_fin_unido, pa.pa_estado, pa.cl_id, pa.pr_id, pa.fc_id " + 
+                "pa.pa_fecha_destino, pa.pa_fecha_real_destino, pa.pa_ta_es_cliente, pa.pa_ta_es_proveedor, cl.cl_nombre, pr.pr_nombre_fiscal, pa.pa_observaciones_carset, " +
+                "pa.pa_ob_general, pa.pa_ob_cl_mail, pa.pa_ob_pr_mail, pa.pa_num_unido, pa.pa_fin_unido, pa.pa_estado, pa.cl_id, pa.pr_id, pa.fc_id, pa.pa_estado " + 
                 "FROM pa_pedidos_aux pa INNER JOIN cl_clientes cl ON pa.cl_id = cl.cl_id INNER JOIN pr_proveedores pr ON pa.pr_id = pr.pr_id " + 
                 "INNER JOIN fc_factores_correccion fc ON pa.fc_id = fc.fc_id";
 
@@ -86,8 +86,8 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
         modelo.setColumnIdentifiers(new String[] {"FECHA", "DIR ORIGEN", "POB ORIGEN", "PROV ORIGEN", "CP ORIGEN", "NOMBRE ORIGEN", "TELEF ORIGEN", 
                                                   "DIR DESTINO", "POB DESTINO", "PROV DESTINO", "CP DESTINO", "NOMBRE DESTINO", "TELEF DESTINO", "FACTOR", 
                                                   "ESTADO VEHICULO", "MATRICULA", "MARCA", "MODELO", "SOPORTE", "SERVICIO", "KMS", "NUM CAMION", "D.C.",
-                                                  "OBSERVACIONES", "F.RECOGIDA", "F.ENTREGA", "TAR.CL", "TAR.PR", "CLIENTE", "PROVEEDOR", "OBS CARSET", 
-                                                  "OBS GENERALES", "OB CL MAIL", "OB PR MAIL", "NUM UNIDO", "FIN UNIDO"});
+                                                  "OBSERVACIONES", "F.RECOGIDA", "F.ENTREGA", "F. REAL ENTREGA", "TAR.CL", "TAR.PR", "CLIENTE", "PROVEEDOR", "OBS CARSET", 
+                                                  "OBS GENERALES", "OB CL MAIL", "OB PR MAIL", "NUM UNIDO", "FIN UNIDO", "ESTADO"});
         int totalKms = 0;
         double totalCliente = 0;
         double totalProveedor = 0;
@@ -105,9 +105,9 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                 int kms = 0;
                 int diasCampa = 0;
 
-                for (int k = 0; k < 36; k++)
+                for (int k = 0; k < 38; k++)
                 {
-                    if((k==0) || (k==24)|| (k==25))
+                    if((k==0) || (k==24) || (k==25)|| (k==26))
                     {
                         if(rs.getObject(k+1)!=null && rs.getObject(k+1)!="")
                         {
@@ -138,7 +138,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                     {
                         datosFila[j] = rs.getString(k + 1);
                     }
-                    else if(k==26)
+                    else if(k==27)
                     {
                          ta_es_cl=rs.getDouble(k+1);
                          datosFila[j] = df.format(rs.getDouble(k + 1));
@@ -146,7 +146,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                          totalCliente = totalCliente + ta_es_cl;
                          totalCliente = Utilidades.redondear(totalCliente, 2);
                     }
-                    else if(k==27)
+                    else if(k==28)
                     {
                         ta_es_pr=rs.getDouble(k+1);
                         datosFila[j] = df.format(rs.getDouble(k + 1));
@@ -154,7 +154,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                         totalProveedor = totalProveedor + ta_es_pr;
                         totalProveedor = Utilidades.redondear(totalProveedor, 2);
                     }
-                    else if(k==32 || (k==33) || (k==34) || (k==35))
+                    else if(k==33 || (k==34) || (k==35) || (k==36))
                     {
                         String valor = (rs.getInt(k + 1) == 1) ? "SI" : "";
                         datosFila[j] = valor;
@@ -173,7 +173,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
             rs.close();
             Object[] datosFilaTotal = new Object[modelo.getColumnCount()];
             int i = 0;
-            for (int k = 0; k < 36; k++)
+            for (int k = 0; k < 38; k++)
             {
                 if(k==0)
                 {
@@ -191,13 +191,13 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                 {
                     datosFilaTotal[i] = totalDiasCampa;
                 }
-                if(k==26)
+                if(k==28)
                 {
                     if(acceso){
                         datosFilaTotal[i] = dfTotal.format(Utilidades.redondear(totalCliente, 2));
                     }
                 }
-                if(k==27)
+                if(k==29)
                 {
                     if(acceso){
                         datosFilaTotal[i] = dfTotal.format(totalProveedor);
@@ -512,24 +512,36 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                  String dia = temp[0];
                  fecha = anyo+"-"+mes+"-"+dia;
             }
-            campos.setFechaDestino(fecha);
-            campos.setTarifaCl(Double.valueOf(Utilidades.validarDecimal(jTable1.getValueAt(i, 26).toString())));
-            campos.setTarifaPr(Double.valueOf(Utilidades.validarDecimal(jTable1.getValueAt(i, 27).toString())));
-            int cl_id = client.getClienteID(jTable1.getValueAt(i, 28).toString());
+            campos.setFechaDestino(fecha);            
+            String fechaRealDestino = (jTable1.getValueAt(i, 26)) != null ? jTable1.getValueAt(i, 26).toString() : "";
+
+            if (fechaRealDestino != null && !fechaRealDestino.equals("")){
+                 String [] temp = null;
+                 temp = fechaRealDestino.split("\\-");
+                 String anyo = temp[2];
+                 String mes = temp[1];
+                 String dia = temp[0];
+                 fecha = anyo+"-"+mes+"-"+dia;
+            }            
+            campos.setFechaRealDestino(fecha);
+            campos.setTarifaCl(Double.valueOf(Utilidades.validarDecimal(jTable1.getValueAt(i, 27).toString())));
+            campos.setTarifaPr(Double.valueOf(Utilidades.validarDecimal(jTable1.getValueAt(i, 28).toString())));
+            int cl_id = client.getClienteID(jTable1.getValueAt(i, 29).toString());
             campos.setCliente(cl_id);
-            int pr_id = proveedor.getProveedorID(jTable1.getValueAt(i, 29).toString());
+            int pr_id = proveedor.getProveedorID(jTable1.getValueAt(i, 30).toString());
             campos.setProveedor(pr_id);
 
-            campos.setObsCarset(jTable1.getValueAt(i, 30).toString());
-            campos.setObsGeneral(jTable1.getValueAt(i, 31).toString());
-            boolean obClMail = (jTable1.getValueAt(i, 32).toString().equals("TRUE") ? true : false);
+            campos.setObsCarset(jTable1.getValueAt(i, 31).toString());
+            campos.setObsGeneral(jTable1.getValueAt(i, 32).toString());
+            boolean obClMail = (jTable1.getValueAt(i, 33).toString().equals("TRUE") ? true : false);
             campos.setObClMail(obClMail);
-            boolean obPrMail = (jTable1.getValueAt(i, 33).toString().equals("TRUE") ? true : false);
+            boolean obPrMail = (jTable1.getValueAt(i, 34).toString().equals("TRUE") ? true : false);
             campos.setObPrMail(obPrMail);
-            boolean numUnido = (jTable1.getValueAt(i, 34).toString().equals("TRUE") ? true : false);
+            boolean numUnido = (jTable1.getValueAt(i, 35).toString().equals("TRUE") ? true : false);
             campos.setPeNumUnido(numUnido);
-            boolean finUnido = (jTable1.getValueAt(i, 35).toString().equals("TRUE") ? true : false);
+            boolean finUnido = (jTable1.getValueAt(i, 36).toString().equals("TRUE") ? true : false);
             campos.setPeFinUnido(finUnido);
+            campos.setEstado(jTable1.getValueAt(i, 37).toString());            
             
             listaArchivo.add(campos);
         }
@@ -609,6 +621,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                 pedidoAux.setPeNumUnido(rsPAux.getBoolean("pa_num_unido"));
                 pedidoAux.setPeFinUnido(rsPAux.getBoolean("pa_fin_unido"));
                 pedidoAux.setEstado(rsPAux.getString("pa_estado"));
+                pedidoAux.setFechaRealDestino(rsPAux.getString("pa_fecha_real_destino"));                
 
                 listaArchivo.add(pedidoAux);
             }
@@ -650,7 +663,7 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
             jTable1.setRowHeight(20);
 
             if (column == 0 || column == 8 || column == 14 || column == 16 || column == 17 ||
-                column == 18 || column == 23 || column == 24 || column == 25 || column == 26)
+                column == 18 || column == 23 || column == 24 || column == 26 || column == 27 || column == 28)
             {
                 this. setHorizontalAlignment(SwingConstants.RIGHT);
             }
@@ -719,14 +732,14 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                            "pa_cp_destino, pa_fecha_destino, pa_nombre_destino, pa_telefono_destino, fc_id, pa_ve_estado, pa_ve_matricula, " +
                            "pa_ve_marca, pa_ve_modelo, pa_soporte, pa_servicio, pa_kms, pa_num_en_camion, pa_dias_campa, pa_descripcion, " +
                            "pa_ta_es_cliente, pa_ta_es_proveedor, cl_id, pr_id, pa_observaciones_carset, pa_ob_general, pa_ob_cl_mail, pa_ob_pr_mail, " +
-                           "pa_num_unido, pa_fin_unido, pa_estado) VALUES ('"+bpa.getFecha()+"','"+bpa.getDireccionOrigen()+"','"+bpa.getPoblacionOrigen()+"', " +
+                           "pa_num_unido, pa_fin_unido, pa_estado, pa_fecha_real_destino) VALUES ('"+bpa.getFecha()+"','"+bpa.getDireccionOrigen()+"','"+bpa.getPoblacionOrigen()+"', " +
                            "'"+bpa.getProvinciaOrigen()+"', '"+bpa.getCpOrigen()+"', '"+bpa.getFechaOrigen()+"', '"+bpa.getNombreOrigen()+"', '"+bpa.getTelefonoOrigen()+"'," +
                            "'"+bpa.getDireccionDestino()+"', '"+bpa.getPoblacionDestino()+"', '"+bpa.getProvinciaDestino()+"', '"+bpa.getCpDestino()+"', " +
                            "'"+bpa.getFechaDestino()+"', '"+bpa.getNombreDestino()+"', '"+bpa.getTelefonoDestino()+"', '"+bpa.getFactor()+"', '"+bpa.getEstado_vehiculo()+"', " +
                            "'"+bpa.getMatricula()+"', '"+bpa.getMarca()+"', '"+bpa.getModelo()+"', '"+bpa.getSoporte()+"', '"+bpa.getServicio()+"', '"+bpa.getKms()+"', " +
                            "'"+bpa.getNumEnCamion()+"', '"+bpa.getDiasCampa()+"', '"+bpa.getDescripcion()+"', '"+bpa.getTarifaCl()+"', '"+bpa.getTarifaPr()+"'," +
                            "'"+bpa.getCliente()+"', '"+bpa.getProveedor()+"', '"+bpa.getObsCarset()+"', '"+bpa.getObsGeneral()+"', '"+obClmail+"', " +
-                           "'"+obPrmail+"','"+numUnido+"', '"+finUnido+"', 'En Proceso')";
+                           "'"+obPrmail+"','"+numUnido+"', '"+finUnido+"', '"+bpa.getEstado()+"', '"+bpa.getFechaRealDestino()+"')";
             //System.out.println(query);
             rsInsert = CSDesktop.datos.manipuladorDatos(query);
 
@@ -761,12 +774,15 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                 int numUnido = (peNum == 0 && bpa.isPeNumUnido()) ? pe_num : peNum;
                 peNum = (numUnido != 0) ? numUnido : peNum;
                 int finUnido = (bpa.isPeFinUnido() ? 1 : 0);
+                System.out.println(bpa.getFechaRealDestino());
+                //String fRealDestino = bpa.getFechaRealDestino().substring(0, 1);
+                
                 String queryInPe =  "INSERT INTO pe_pedidos (pe_fecha, pe_direccion_origen, pe_poblacion_origen, pe_provincia_origen, " +
                                 "pe_servicio_origen, pe_cp_origen, pe_nombre_origen, pe_fecha_origen, pe_telefono_origen, pe_direccion_destino, " +
                                 "pe_poblacion_destino, pe_provincia_destino, pe_servicio_destino, pe_cp_destino, pe_nombre_destino, pe_fecha_destino, " +
                                 "pe_telefono_destino, fc_id, pe_ve_estado, pe_ve_matricula, pe_ve_marca, pe_ve_modelo, pe_soporte, pe_servicio, " +
                                 "pe_kms, pe_num_en_camion, pe_dias_campa, pe_descripcion, pe_ta_es_cliente, pe_ta_es_proveedor, pe_observaciones_carset, " +
-                                "pe_ob_general, pe_ob_cl_mail, pe_ob_pr_mail, pe_num_unido, pe_fin_unido, pe_estado) VALUES (" +
+                                "pe_ob_general, pe_ob_cl_mail, pe_ob_pr_mail, pe_num_unido, pe_fin_unido, pe_estado, pe_fecha_real_destino) VALUES (" +
                                 "'"+bpa.getFecha()+"','"+bpa.getDireccionOrigen()+"','"+bpa.getPoblacionOrigen()+"', '"+bpa.getProvinciaOrigen()+"', " +
                                 "'"+bpa.getProvinciaOrigen()+"','"+bpa.getCpOrigen()+"','"+bpa.getNombreOrigen()+"','"+bpa.getFechaOrigen()+"', " +
                                 "'"+bpa.getTelefonoOrigen()+"', '"+bpa.getDireccionDestino()+"', '"+bpa.getPoblacionDestino()+"', '"+bpa.getProvinciaDestino()+"', " +
@@ -774,7 +790,13 @@ public class CSValidarPedidoArchivo extends javax.swing.JPanel
                                 "'"+bpa.getTelefonoDestino()+"', '"+bpa.getFactor()+"', '"+bpa.getEstado_vehiculo()+"','"+bpa.getMatricula()+"', '"+bpa.getMarca()+"', " +
                                 "'"+bpa.getModelo()+"', '"+bpa.getSoporte()+"', '"+bpa.getServicio()+"', '"+bpa.getKms()+"','"+bpa.getNumEnCamion()+"', '"+bpa.getDiasCampa()+"', " +
                                 "'"+bpa.getDescripcion()+"', '"+bpa.getTarifaCl()+"', '"+bpa.getTarifaPr()+"', '"+bpa.getObsCarset()+"', '"+bpa.getObsGeneral()+"', " +
-                                "'"+obClmail+"', '"+obPrmail+"','"+numUnido+"', '"+finUnido+"', '"+bpa.getEstado()+"')";
+                                "'"+obClmail+"', '"+obPrmail+"','"+numUnido+"', '"+finUnido+"', '"+bpa.getEstado()+"', ";
+               if(bpa.getFechaRealDestino() == null){
+                   queryInPe = queryInPe + bpa.getFechaRealDestino()+")";
+               }else{
+                   queryInPe = queryInPe + "'"+bpa.getFechaRealDestino()+"')";
+               }
+
                 System.out.println(queryInPe);
                 rsPedido = CSDesktop.datos.manipuladorDatos(queryInPe);
                 peNum = (bpa.isPeFinUnido() ? 0 : peNum);

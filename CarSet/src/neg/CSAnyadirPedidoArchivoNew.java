@@ -64,8 +64,8 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                                "pa_cp_origen, pa_nombre_origen, pa_telefono_origen, pa_direccion_destino, pa_poblacion_destino, " +
                                "pa_provincia_destino, pa_cp_destino, pa_nombre_destino, pa_telefono_destino, fc_id, pa_ve_estado, " +
                                "pa_ve_matricula, pa_ve_marca, pa_ve_modelo, pa_soporte, pa_servicio, pa_kms, pa_num_en_camion, pa_dias_campa, " +
-                               "pa_descripcion, pa_fecha_origen, pa_fecha_destino, pa_ta_es_cliente, pa_ta_es_proveedor, cl_id, pr_id, " +
-                               "pa_observaciones_carset, pa_ob_general, pa_ob_cl_mail, pa_ob_pr_mail, pa_num_unido, pa_fin_unido, pa_estado) " +
+                               "pa_descripcion, pa_estado, pa_fecha_origen, pa_fecha_destino, pa_fecha_real_destino, pa_ta_es_cliente, pa_ta_es_proveedor, " +
+                               "cl_id, pr_id, pa_observaciones_carset, pa_ob_general, pa_ob_cl_mail, pa_ob_pr_mail, pa_num_unido, pa_fin_unido) " +
                                "VALUES (";
 
                 for (int j = 0; j < sheet.getColumns(); j++)
@@ -93,12 +93,12 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                           else{column = 0;}
                           query += ""+column + ", ";
 
-                    }else if(cell.getColumn() == 0 || cell.getColumn() == 25 || cell.getColumn() == 26){
+                    }else if(cell.getColumn() == 0 || cell.getColumn() == 26 || cell.getColumn() == 27|| cell.getColumn() == 28){
                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                            String sFecha = "";
                            Date hoy = new Date();
                             //System.out.println("fecha: "+cell.getContents());
-                           if(!cell.toString().equals(""))
+                           if(!cell.toString().equals("") && !cell.getContents().isEmpty())
                            {
                                 String[] fecha = cell.getContents().split("/");
                                 sFecha = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
@@ -106,9 +106,11 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                                 query += "'"+sFecha + "', ";
                             }else{
                                 sFecha = sdf.format(hoy);
-                                query += "'', ";
+                                query += "NULL, ";
                             }
-                     }else if(cell.getColumn() == 27 || cell.getColumn() == 28){
+//                     } else if (cell.getColumn() == 25){
+                    
+                     }else if(cell.getColumn() == 29 || cell.getColumn() == 30){
                         String importe = cell.getContents().replace(",", ".");
                          query += "'"+ importe + "',";
                      }else if(cell.getColumn() == 19){
@@ -123,26 +125,26 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                      }else if(cell.getColumn() == 22){
                          String diasCampa = (!cell.getContents().equals("")) ? cell.getContents() : "0";
                          query += "'"+ diasCampa + "',";
-                     }else if(cell.getColumn() == 23 || cell.getColumn() == 31 || cell.getColumn() == 32){
+                     }else if(cell.getColumn() == 23 || cell.getColumn() == 33 || cell.getColumn() == 34){
                          String observaciones = (!cell.getContents().equals("") || cell.getContents() != null) ? cell.getContents().toUpperCase() : "";
                          //System.out.println("Observaciones: "+ j +observaciones);
                          query += "'"+ observaciones + "',";
-                     }else if(cell.getColumn() == 28){
+                     }else if(cell.getColumn() == 30){
                         clientID = Integer.parseInt(cell.getContents());
                          query += "'"+ clientID + "',";
-                     }else if(cell.getColumn() == 29){
+                     }else if(cell.getColumn() == 31){
                         proveedorID = Integer.parseInt(cell.getContents());
                          query += "'"+ proveedorID + "',";
-                     }else if (cell.getColumn() == 33){
+                     }else if (cell.getColumn() == 35){
                          int obClMail = (!cell.getContents().equals("SI")) ? 0 : 1;
                          query += "'"+ obClMail + "',";
-                     }else if (cell.getColumn() == 34){
+                     }else if (cell.getColumn() == 36){
                          int obPrMail = (!cell.getContents().equals("SI")) ? 0 : 1;
                          query += "'"+ obPrMail + "',";
-                     }else if (cell.getColumn() == 35){
+                     }else if (cell.getColumn() == 37){
                          int numeroUnido = (cell.getContents().equals("UNIR PEDIDO") || cell.getContents().equals("FINAL") ) ? 1 : 0;
                          finUnido = (cell.getContents().equals("FINAL")) ? 1 : 0;
-                         query += "'"+ numeroUnido + "', '"+ finUnido + "',";
+                         query += "'"+ numeroUnido + "', '"+ finUnido + "')";
 //                       numUnido = (cell.getContents().equals("FINAL")) ? "0" : numUnido;
                      } else {
                         if (type == CellType.LABEL)
@@ -157,16 +159,15 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                         }
                      }
                    }
-                    query += "'En Proceso')";
-                    //System.out.println(query);
+                    //query += "'En Proceso')";
+                    System.out.println(query);
 
-                    String sentencia = CSDesktop.datos.manipuladorDatosArchico(query);
+                    String sentencia = CSDesktop.datos.manipuladorDatosArchivo(query);
                     
                     if (!sentencia.equals("")){
                         errores.add("Error en el campo " + sentencia + " - Línea: " + (i+1));
                         
                     }
-
               }
               
               if (errores.size() > 0) {

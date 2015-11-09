@@ -125,6 +125,8 @@ public class CSDesktop extends JFrame
   public static JMenuItem menuNuevoProveedorNew;
   public static JInternalFrame InformeComercial;
   public static JMenuItem menuInformeComercial;
+  public static JInternalFrame InformeComercialProveedor;
+  public static JMenuItem menuInformeComercialProveedor;  
   public static JInternalFrame InformeClienteUnitario;
   public static JMenuItem menuInformeClienteUnitario;
   /////////////////////////////////////////////
@@ -815,6 +817,34 @@ public class CSDesktop extends JFrame
             }
          });
 
+      menuInformeComercialProveedor = new JMenuItem( "Informe Proveedor Comercial" );
+      menuInformeComercial.setMnemonic( 'l' );
+      if(group != 3){
+        menuInforme.add( menuInformeComercialProveedor );
+      }
+      menuInformeComercialProveedor.addActionListener(
+         new ActionListener() {
+            public void actionPerformed( ActionEvent evento ) {
+               InformeComercialProveedor = new JInternalFrame("Informe Proveedor Comercial", true,false,false,true );
+               CSInformeComercialProveedor panel=null;
+                try {
+                    panel = panel = new CSInformeComercialProveedor();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CSDesktop.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               InformeComercialProveedor.getContentPane().add( panel,BorderLayout.CENTER);
+               InformeComercialProveedor.pack();
+               elEscritorio.add( InformeComercialProveedor );
+               Dimension pantalla = elEscritorio.getSize();
+               Dimension ventana = InformeComercialProveedor.getSize();
+               InformeComercialProveedor.setLocation(
+                     (pantalla.width - ventana.width) / 2,
+                     (pantalla.height - ventana.height) / 2);
+               InformeComercialProveedor.setVisible( true );
+            }
+         });
+      
+      
       menuInformeClienteUnitario = new JMenuItem( "Informe Cliente Unitario" );
       menuInformeClienteUnitario.setMnemonic( 'w' );
 
@@ -1082,7 +1112,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "CarSet version 4.0.12 (28-09-2015)",
+                  "CarSet version 4.0.15 (01-11-2015)",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
           }  // fin de la clase interna an�nima
