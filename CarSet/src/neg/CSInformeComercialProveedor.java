@@ -249,7 +249,7 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
         int anyo_post = anyo + 1;
         int mes = jComboBoxMes.getSelectedIndex();
         double total = 0;
-        String tipoCliente = new String(jComboBoxTipo.getSelectedItem().toString());
+        String tipoProveedor = new String(jComboBoxTipo.getSelectedItem().toString());
         
         //SE RECOGEN LAS FECHAS DE GENERACION DEL INFORME
         //FECHA INICIO
@@ -314,9 +314,9 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
         if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
             query = query + " AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
         }
-        if (!tipoCliente.equals("Selecciona"))
+        if (!tipoProveedor.equals("Selecciona"))
         {
-           query = query + " AND pr.pr_tipo= '"+tipoCliente+"'";
+           query = query + " AND pr.pr_tipo= '"+tipoProveedor+"'";
         }
         if (mes != 0)
         {
@@ -347,7 +347,7 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
         
         //Sacamos el importe toal de los pedidos
         try {
-            total = this.getImporteTotalPedidos(fechaIni, fechaFin, tipoCliente, mes);
+            total = this.getImporteTotalPedidos(fechaIni, fechaFin, tipoProveedor, mes);
         } catch (SQLException ex) {
             Logger.getLogger(CSInformeComercialProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -446,24 +446,23 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
      *
      * @param accion
      */
-    public double getImporteTotalPedidos(String fechaIni, String fechaFin, String tipoCliente, int mes) throws SQLException
+    public double getImporteTotalPedidos(String fechaIni, String fechaFin, String tipoProveedor, int mes) throws SQLException
     {
         double total = 0;
-        String queryPe ="SELECT SUM(pe.pe_ta_es_cliente) AS total FROM carset.pe_pedidos pe " +
-                        "INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
-                        "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
+        String queryPe ="SELECT SUM(pe.pe_ta_es_proveedor) AS total FROM carset.pe_pedidos pe " +
+                        "INNER JOIN carset.pp_pedidos_proveedores pc ON pe.pe_num = pp.pe_num " +
+                        "RIGHT JOIN carset.pr_proveedores cl ON pp.pr_id = pr.pr_id " +
                         "WHERE pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
 
-        if (!tipoCliente.equals("Selecciona"))
+        if (!tipoProveedor.equals("Selecciona"))
         {
-           queryPe = queryPe + " AND cl.cl_tipo= '"+tipoCliente+"'";
+           queryPe = queryPe + " AND cl.cl_tipo= '"+tipoProveedor+"'";
         }
         if (mes != 0)
         {
             queryPe = queryPe + " AND MONTH(pe.pe_fecha) = "+mes+"";
         }
 
-        System.out.println("Total: "+ queryPe);
         ResultSet rs = CSDesktop.datos.select(queryPe);
         while(rs.next())
         {
