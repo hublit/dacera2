@@ -46,7 +46,7 @@ public class BeanPedidoAux
     private Boolean peFinUnido;
     private Integer cliente;
     private Integer proveedor;
-
+    private String fechaRealDestino;
 
     public String getNum() {
         return num;
@@ -372,6 +372,14 @@ public class BeanPedidoAux
 
     public void setCpOrigen(String cpOrigen) {
         this.cpOrigen = cpOrigen;
+    }
+
+    public String getFechaRealDestino() {
+        return fechaRealDestino;
+    }
+
+    public void setFechaRealDestino(String fechaRealDestino) {
+        this.fechaRealDestino = fechaRealDestino;
     }
     
 }
