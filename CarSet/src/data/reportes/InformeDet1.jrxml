@@ -57,7 +57,7 @@
 				<textElement>
 					<font fontName="Verdana" size="22" isBold="true" isUnderline="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[INFORME DETALLADO 11]]></text>
+				<text><![CDATA[INFORME DETALLADO 1]]></text>
 			</staticText>
 			<image>
 				<reportElement x="14" y="6" width="175" height="80"/>
@@ -461,7 +461,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[Avda. Puente Cultural 5, Bloque A, Planta 3ª, Oficina 2]]></text>
+				<text><![CDATA[Avda. Puente Cultural 10, Bloque B, Planta 4ª, Oficina 4]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="147" y="38" width="262" height="14"/>

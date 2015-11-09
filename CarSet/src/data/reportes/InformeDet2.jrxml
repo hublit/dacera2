@@ -652,7 +652,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[Avda. Puente Cultural 5, Bloque A, Planta 3ª, Oficina 2]]></text>
+				<text><![CDATA[Avda. Puente Cultural 10, Bloque B, Planta 4ª, Oficina 4]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="282" y="74" width="262" height="14" forecolor="#006600"/>
