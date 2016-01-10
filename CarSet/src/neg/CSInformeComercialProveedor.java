@@ -298,8 +298,47 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
                 "SUM(IF(MONTH(pe.pe_fecha) = 9, 1, 0) ) AS num_septiembre, " +
                 "SUM(IF(MONTH(pe.pe_fecha) = 10, 1, 0) ) AS num_octubre," +
                 "SUM(IF(MONTH(pe.pe_fecha) = 11, 1, 0) ) AS num_noviembre, " +
-                "SUM(IF(MONTH(pe.pe_fecha) = 12, 1, 0) ) AS num_diciembre, " +                
-                 
+                "SUM(IF(MONTH(pe.pe_fecha) = 12, 1, 0) ) AS num_diciembre, " +    
+                
+                "SUM(IF(MONTH(pe.pe_fecha) = 1 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_enero," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 2 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_febrero, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 3 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_marzo, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 4 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_abril, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 5 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_mayo, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 6 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_junio, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 7 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_julio, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 8 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_agosto, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 9 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_septiembre, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 10 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_octubre," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 11 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_noviembre, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 12 AND pe.pe_ve_estado = 'Funciona', 1, 0) ) AS funciona_diciembre, " +    
+
+                "SUM(IF(MONTH(pe.pe_fecha) = 1 AND pe.fc_id = 1, 1, 0) ) AS factor_enero," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 2 AND pe.fc_id = 1, 1, 0) ) AS factor_febrero, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 3 AND pe.fc_id = 1, 1, 0) ) AS factor_marzo, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 4 AND pe.fc_id = 1, 1, 0) ) AS factor_abril, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 5 AND pe.fc_id = 1, 1, 0) ) AS factor_mayo, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 6 AND pe.fc_id = 1, 1, 0) ) AS factor_junio, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 7 AND pe.fc_id = 1, 1, 0) ) AS factor_julio, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 8 AND pe.fc_id = 1, 1, 0) ) AS factor_agosto, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 9 AND pe.fc_id = 1, 1, 0) ) AS factor_septiembre, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 10 AND pe.fc_id = 1, 1, 0) ) AS factor_octubre," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 11 AND pe.fc_id = 1, 1, 0) ) AS factor_noviembre, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 12 AND pe.fc_id = 1, 1, 0) ) AS factor_diciembre, " +                 
+
+                "SUM(IF(MONTH(pe.pe_fecha) = 1 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_enero," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 2 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_febrero, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 3 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_marzo, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 4 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_abril, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 5 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_mayo, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 6 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_junio, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 7 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_julio, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 8 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_agosto, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 9 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_septiembre, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 10 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_octubre," +
+                "SUM(IF(MONTH(pe.pe_fecha) = 11 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_noviembre, " +
+                "SUM(IF(MONTH(pe.pe_fecha) = 12 AND pe.pe_soporte = 'Grúa Unitaria', 1, 0) ) AS soporte_diciembre, " +                    
+                
                 "SUM(IF (pe.fc_id = 1, 1, 0 ) ) AS factor, " +
                 "SUM(IF (pe.pe_ve_estado = 'Funciona', 1, 0 ) ) AS estado_ve, " +
                 "SUM(IF (pe.pe_soporte = 'Grúa Unitaria', 1, 0 ) ) AS soporte, " +                
@@ -450,8 +489,8 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
     {
         double total = 0;
         String queryPe ="SELECT SUM(pe.pe_ta_es_proveedor) AS total FROM carset.pe_pedidos pe " +
-                        "INNER JOIN carset.pp_pedidos_proveedores pc ON pe.pe_num = pp.pe_num " +
-                        "RIGHT JOIN carset.pr_proveedores cl ON pp.pr_id = pr.pr_id " +
+                        "INNER JOIN carset.pp_pedidos_proveedores pp ON pe.pe_num = pp.pe_num " +
+                        "RIGHT JOIN carset.pr_proveedores cl ON pp.pr_id = pp.pr_id " +
                         "WHERE pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
 
         if (!tipoProveedor.equals("Selecciona"))

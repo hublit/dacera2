@@ -45,9 +45,12 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
     public String factor = null;
     public float precioFa = 0;
     Cliente cliente = new Cliente();
+    int grupo = CSDesktop.group;    
+
     /** Creates new form EditarPedido */
     public CSEditarPedidoNew(int pedido,String sql) throws SQLException
     {
+        System.out.println("Grupo: "+ grupo);
         consulta=sql;
 
         CSDesktop.mailCliente.clear();
@@ -1671,8 +1674,6 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         System.out.println("\njButtonGuardar_actionPerformed(ActionEvent e) called.");
-        int grupo = CSDesktop.group;
-        System.out.println("Grupo: "+ grupo);
      
         int cerradoN = 0;
         int finUnidoN=0;
@@ -1822,7 +1823,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
         //ENTREGA REAL
         String estado=new String(jComboBoxEstado.getSelectedItem().toString());
-                System.out.println("Estado: "+ estado);   
+          //      System.out.println("Estado: "+ estado);   
         String horaRealOrigen = new String(jTextHoraRealOrigen.getText());
         String horaRealDestino = new String(jTextHoraRealDestino.getText());
         // CONVERSION DE LA FECHA REAL ORIGEN
@@ -1968,9 +1969,9 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         else if(soporte.equals("Selecciona")){
             ValidarFormatos("Seleccione Soporte del Proveedor");
         }
-        else if(grupo ==3 && (estado.equals("Facturado") || estado.equals("Validado") || estado.equals("Facturado y Validado"))){
+      /*  else if(grupo ==3 && (estado.equals("Facturado") || estado.equals("Validado") || estado.equals("Facturado y Validado"))){
             ValidarFormatos("No tiene permisos para modificar un pedido es estado Facturado o Validado");
-        }
+        }*/
         else
         {                          
             finUnidoN = (!finUnido) ? 0 : 1;
@@ -2335,6 +2336,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
     private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
         // TODO add your handling code here:
+
 }//GEN-LAST:event_jComboBoxEstadoActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -2811,13 +2813,17 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                 if(rs.getString("pe_estado").equals("Facturado"))
                 {
                     jTextTaEsCli.setEditable(false);
-                    //jTextTaEsProv.setEditable(false);
                 }
                 if(rs.getString("pe_estado").equals("Facturado y Validado"))
                 {
                     jTextTaEsCli.setEditable(false);
                     jTextTaEsProv.setEditable(false);
                 }
+
+                if(rs.getString("pe_estado").equals("Validado"))
+                {
+                    jTextTaEsProv.setEditable(false);
+                }                
                 jTextNumero.setText(rs.getString("pe_num"));
                 jTextDireccionOrigen.setText(rs.getString("pe_direccion_origen"));
                 jTextPoblacionOrigen.setText(rs.getString("pe_poblacion_origen"));
@@ -2860,7 +2866,17 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
                 }
                 jTextTaEsProv.setText(String.valueOf(rs.getDouble("pe_ta_es_proveedor")));
                 jComboFactor.setSelectedIndex(rs.getInt("fc_id"));
+                
                 jComboBoxEstado.setSelectedItem(rs.getString("pe_estado"));
+                
+                if(grupo == 3 && (rs.getString("pe_estado").equals("Facturado") || 
+                                 rs.getString("pe_estado").equals("Validado") || 
+                                 rs.getString("pe_estado").equals("Facturado y Validado")))
+                {
+                    //jComboBoxEstado.setEditable(false);
+                    jComboBoxEstado.setEnabled(false);
+                }
+                
                 jTextHoraRealOrigen.setText(rs.getString("pe_hora_real_origen"));
                 jTextHoraRealDestino.setText(rs.getString("pe_hora_real_destino"));
                 jTextNumCamion.setText(rs.getString("pe_num_en_camion"));               

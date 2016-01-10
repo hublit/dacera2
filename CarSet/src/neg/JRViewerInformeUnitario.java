@@ -1558,7 +1558,7 @@ public class JRViewerInformeUnitario extends javax.swing.JPanel implements JRHyp
             int num_fila_aux=2;
             
             for(int i = 0; i < 4; i++ ){
-                System.out.println();
+                //System.out.println();
             /*}
             while (rs.next())
             {*/

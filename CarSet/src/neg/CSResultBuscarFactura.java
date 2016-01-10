@@ -83,10 +83,11 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
 
                 Boolean unidoEstado = true;
                 if (rs.getString("estado") != null){
-                    unidoEstado = (rs.getString("estado").equals("Entregado")) ? true : false;
+                    unidoEstado = (rs.getString("estado").equals("Entregado") || rs.getString("estado").equals("Validado") || rs.getString("estado").equals("Fallido")) ? true : false;
                 }
                 if (rs.getLong("pe_num_unido") == 0 &&
-                   (rs.getString("pe_estado").equals("") || rs.getString("pe_estado").equals("Entregado")) &&
+                   (rs.getString("pe_estado").equals("") || rs.getString("pe_estado").equals("Entregado") || 
+                    rs.getString("pe_estado").equals("Validado") || rs.getString("pe_estado").equals("Fallido")) &&
                    unidoEstado)
                 {
 
@@ -123,6 +124,7 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
                     campos.setKms(rs.getString("pe_kms"));
                     campos.setAtt(rs.getString("cl_email"));
                     campos.setVe_estado(rs.getString("pe_ve_estado"));
+                    campos.setEstado(rs.getString("pe_estado"));
 
                     lista.add(campos);
                     pedidos.add(rs.getLong("pe_num"));

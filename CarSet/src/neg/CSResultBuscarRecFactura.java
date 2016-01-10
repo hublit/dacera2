@@ -459,9 +459,9 @@ public class CSResultBuscarRecFactura extends javax.swing.JPanel
                                    "WHERE pe.pe_num = pc.pe_num " +
                                    "AND pc.cl_id = cl.cl_id " +
                                     "AND (pe.pe_estado = 'Facturado' OR pe.pe_estado='Facturado y Validado') " +
-                                    "AND '" + recFacturaAux.getFechaHasta() + "' " +
+                                    "AND pe.pe_fecha = '" + recFacturaAux.getFechaHasta() + "' " +
                                     "AND pc.cl_id = " + cl_id + " AND pe_num_fa_cl='" + recFacturaAux.getNumFactura() + "' GROUP BY pe.pe_num ORDER BY pe.pe_num ASC";
-                        //System.out.println(query);
+                        System.out.println(query);
                         ResultSet rs = CSDesktop.datos.select(query);
                         try
                         {

@@ -218,7 +218,9 @@ public class CSResultBuscarPedidoNew extends javax.swing.JPanel
                             fMenos = fMenos + iFmenos;
                         }
                  //System.out.println("Estado pedido: " + rs.getString("pe_num_unido"));
-                        if ((rs.getString("pe_estado").equals("Entregado") || rs.getString("pe_estado").equals("Facturado") || rs.getString("pe_estado").equals("Facturado y Validado"))
+                        if ((rs.getString("pe_estado").equals("Entregado") || rs.getString("pe_estado").equals("Facturado") || 
+                             rs.getString("pe_estado").equals("Facturado y Validado") || rs.getString("pe_estado").equals("Validado") ||
+                             rs.getString("pe_estado").equals("Fallido"))
 //                            && rs.getString("destino_unido") == null &&
                            &&(rs.getString("pe_num_unido").equals("0") || rs.getBoolean("pe_fin_unido"))){
 

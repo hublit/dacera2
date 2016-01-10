@@ -439,7 +439,6 @@
                           <Component id="lVehiculo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lDestino" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="1016" max="-2" attributes="0"/>
@@ -688,23 +687,20 @@
                               <Component id="lTarifaEspecial" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLTarifaCKm" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextTaEsClKm" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLTarifaCKm1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lTarifaEsProv" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextTaEsProv" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lTarifaCli" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextTaEsCli" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextPeUnido" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lPeUnidos" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButtonUnirPedido" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckFinUnido" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="jLTarifaCKm" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextTaEsClKm" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLTarifaCKm1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lTarifaEsProv" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextTaEsProv" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lTarifaCli" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextTaEsCli" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextPeUnido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lPeUnidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonUnirPedido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckFinUnido" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>

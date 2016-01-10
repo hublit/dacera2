@@ -1456,7 +1456,7 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
 
             celda = fila.createCell( (short) 0);
             celda.setCellStyle(cs);
-            HSSFRichTextString texto = new HSSFRichTextString("CLIENTE");
+            HSSFRichTextString texto = new HSSFRichTextString("PROVEEDOR");
             celda.setCellValue(texto);
             hoja.setColumnWidth((short) 0, (short) ((220 * 2) / ((double) 1 / 20)) );
 
@@ -1540,19 +1540,19 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
             
             celda = fila.createCell( (short)14);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("MARGEN");
+            texto = new HSSFRichTextString("% TURISMOS");
             celda.setCellValue(texto);
             hoja.setColumnWidth((short) 14, (short) ((90 * 2) / ((double) 1 / 20)) );
             
             celda = fila.createCell( (short)15);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("MARGEN %");
+            texto = new HSSFRichTextString("% FUNCIONAN");
             celda.setCellValue(texto);
             hoja.setColumnWidth((short) 15, (short) ((90 * 2) / ((double) 1 / 20)) );
 
             celda = fila.createCell( (short)16);
             celda.setCellStyle(cs);
-            texto = new HSSFRichTextString("M.G. PEDIDO");
+            texto = new HSSFRichTextString("%GRÚA UNITARIA");
             celda.setCellValue(texto);
             hoja.setColumnWidth((short) 16, (short) ((90 * 2) / ((double) 1 / 20)) );
 
@@ -1593,8 +1593,8 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
                 //Celda de cliente
                 celda = fila.createCell( (short) 0);
                 celda.setCellStyle(cs2);
-                String cliente = rs.getString("cl_nombre");
-                texto = new HSSFRichTextString(cliente);
+                String proveedor = rs.getString("pr_nombre_fiscal");
+                texto = new HSSFRichTextString(proveedor);
                 celda.setCellStyle(cs3);
                 celda.setCellValue(texto);
 
@@ -1690,34 +1690,40 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
                 
                 //Celda de la tarifa de cliente
                 celda = fila.createCell( (short) 13);
-                celda.setCellValue(rs.getDouble("ta_cliente"));
+                celda.setCellValue(rs.getDouble("ta_proveedor"));
                 
-                //Celda de margen
+                //Celda de % turismo
                 celda = fila.createCell( (short) 14);
-                double t_cliente = Double.parseDouble(rs.getString("ta_cliente"));
+                celda.setCellStyle(cs3);
                 double t_proveedor = Double.parseDouble(rs.getString("ta_proveedor"));
-                double margen = t_cliente-t_proveedor;
+                double factor = Integer.parseInt(rs.getString("factor"));
+                
+                int num_pedido = Integer.parseInt(rs.getString("num_pedido"));                
+                String turismo = (!rs.getString("factor").equals("0")) ? new java.text.DecimalFormat("#,##0").format((factor/num_pedido)*100).concat( " % " ) : "0 % ";
                 style.setDataFormat(format.getFormat("00.00"));
-                celda.setCellValue(margen);
+                celda.setCellValue(turismo);
 
-                //Celda de MG %
+                //Celda de % funciona
                 celda = fila.createCell( (short) 15);
-                String porCientoPedido = (!rs.getString("ta_cliente").equals("0")) ? new java.text.DecimalFormat("#,##0").format(((t_cliente-t_proveedor)/t_cliente)*100).concat( "% " ) : "0% ";
-                texto = new HSSFRichTextString(porCientoPedido);
+                celda.setCellStyle(cs3);                
+                double funciona = Integer.parseInt(rs.getString("estado_ve"));
+                
+                String estado_ve = (!rs.getString("estado_ve").equals("0")) ? new java.text.DecimalFormat("#,##0").format((funciona/num_pedido)*100).concat( " % " ) : "0 % ";
                 celda.setCellStyle(cs3);
-                celda.setCellValue(texto);
+                celda.setCellValue(estado_ve);
 
-                //Celda de mg pedido
+                //Celda % Grúa Unitaria
                 celda = fila.createCell( (short) 16);
-                double num_pedidos = Double.parseDouble(rs.getString("num_pedido"));
-                style.setDataFormat(format.getFormat("00"));
-                double mg_pedido = ((t_cliente-t_proveedor)/num_pedidos);
+                celda.setCellStyle(cs3);                
+                double soporte = Integer.parseInt(rs.getString("soporte"));
+
+                String grua = (!rs.getString("soporte").equals("0")) ? new java.text.DecimalFormat("#,##0").format((soporte/num_pedido)*100).concat( " % " ) : "0 % ";                
+                
                 celda.setCellStyle(cs3);
-                celda.setCellValue(mg_pedido);
+                celda.setCellValue(grua);
 
                 //Celda del num. pedido
                 celda = fila.createCell( (short) 17);
-                int num_pedido = rs.getInt("num_pedido");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(num_pedido);
 
