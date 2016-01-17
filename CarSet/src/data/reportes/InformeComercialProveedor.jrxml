@@ -52,6 +52,42 @@
 	<field name="num_diciembre" class="java.lang.String"/>
 	<field name="estado_ve" class="java.lang.String"/>
 	<field name="soporte" class="java.lang.String"/>
+	<field name="funciona_enero" class="java.lang.String"/>
+	<field name="funciona_febrero" class="java.lang.String"/>
+	<field name="funciona_marzo" class="java.lang.String"/>
+	<field name="funciona_abril" class="java.lang.String"/>
+	<field name="funciona_mayo" class="java.lang.String"/>
+	<field name="funciona_junio" class="java.lang.String"/>
+	<field name="funciona_julio" class="java.lang.String"/>
+	<field name="funciona_agosto" class="java.lang.String"/>
+	<field name="funciona_septiembre" class="java.lang.String"/>
+	<field name="funciona_octubre" class="java.lang.String"/>
+	<field name="funciona_noviembre" class="java.lang.String"/>
+	<field name="funciona_diciembre" class="java.lang.String"/>
+	<field name="factor_enero" class="java.lang.String"/>
+	<field name="factor_febrero" class="java.lang.String"/>
+	<field name="factor_marzo" class="java.lang.String"/>
+	<field name="factor_abril" class="java.lang.String"/>
+	<field name="factor_mayo" class="java.lang.String"/>
+	<field name="factor_junio" class="java.lang.String"/>
+	<field name="factor_julio" class="java.lang.String"/>
+	<field name="factor_agosto" class="java.lang.String"/>
+	<field name="factor_septiembre" class="java.lang.String"/>
+	<field name="factor_octubre" class="java.lang.String"/>
+	<field name="factor_noviembre" class="java.lang.String"/>
+	<field name="factor_diciembre" class="java.lang.String"/>
+	<field name="soporte_enero" class="java.lang.String"/>
+	<field name="soporte_febrero" class="java.lang.String"/>
+	<field name="soporte_marzo" class="java.lang.String"/>
+	<field name="soporte_abril" class="java.lang.String"/>
+	<field name="soporte_mayo" class="java.lang.String"/>
+	<field name="soporte_junio" class="java.lang.String"/>
+	<field name="soporte_julio" class="java.lang.String"/>
+	<field name="soporte_agosto" class="java.lang.String"/>
+	<field name="soporte_septiembre" class="java.lang.String"/>
+	<field name="soporte_octubre" class="java.lang.String"/>
+	<field name="soporte_noviembre" class="java.lang.String"/>
+	<field name="soporte_diciembre" class="java.lang.String"/>
 	<variable name="total_n_pedidos" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[Integer.parseInt($F{num_pedido})]]></variableExpression>
 	</variable>
@@ -171,6 +207,120 @@
 	</variable>
 	<variable name="total_n_diciembre" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[Integer.parseInt($F{num_diciembre})]]></variableExpression>
+	</variable>
+	<variable name="total_soporte" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[Double.parseDouble($F{soporte})]]></variableExpression>
+	</variable>
+	<variable name="total_estado_ve" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[Double.parseDouble($F{estado_ve})]]></variableExpression>
+	</variable>
+	<variable name="total_enero_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_enero})]]></variableExpression>
+	</variable>
+	<variable name="total_febrero_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_febrero})]]></variableExpression>
+	</variable>
+	<variable name="total_marzo_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_enero})]]></variableExpression>
+	</variable>
+	<variable name="total_abril_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_abril})]]></variableExpression>
+	</variable>
+	<variable name="total_mayo_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_mayo})]]></variableExpression>
+	</variable>
+	<variable name="total_junio_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_junio})]]></variableExpression>
+	</variable>
+	<variable name="total_julio_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_julio})]]></variableExpression>
+	</variable>
+	<variable name="total_agosto_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_agosto})]]></variableExpression>
+	</variable>
+	<variable name="total_septiembre_funciona" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_septiembre})]]></variableExpression>
+	</variable>
+	<variable name="total_octubre_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_octubre})]]></variableExpression>
+	</variable>
+	<variable name="total_noviembre_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_noviembre})]]></variableExpression>
+	</variable>
+	<variable name="total_diciembre_funciona" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_diciembre})]]></variableExpression>
+	</variable>
+	<variable name="total_enero_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_enero})]]></variableExpression>
+	</variable>
+	<variable name="total_febrero_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_febrero})]]></variableExpression>
+	</variable>
+	<variable name="total_marzo_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_marzo})]]></variableExpression>
+	</variable>
+	<variable name="total_abril_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_abril})]]></variableExpression>
+	</variable>
+	<variable name="total_mayo_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_mayo})]]></variableExpression>
+	</variable>
+	<variable name="total_junio_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_junio})]]></variableExpression>
+	</variable>
+	<variable name="total_julio_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_julio})]]></variableExpression>
+	</variable>
+	<variable name="total_agosto_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_agosto})]]></variableExpression>
+	</variable>
+	<variable name="total_septiembre_factor" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_septiembre})]]></variableExpression>
+	</variable>
+	<variable name="total_octubre_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_octubre})]]></variableExpression>
+	</variable>
+	<variable name="total_noviembre_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_noviembre})]]></variableExpression>
+	</variable>
+	<variable name="total_diciembre_factor" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{factor_diciembre})]]></variableExpression>
+	</variable>
+	<variable name="total_enero_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_enero})]]></variableExpression>
+	</variable>
+	<variable name="total_febrero_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_febrero})]]></variableExpression>
+	</variable>
+	<variable name="total_marzo_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_marzo})]]></variableExpression>
+	</variable>
+	<variable name="total_abril_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_abril})]]></variableExpression>
+	</variable>
+	<variable name="total_mayo_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_mayo})]]></variableExpression>
+	</variable>
+	<variable name="total_junio_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_junio})]]></variableExpression>
+	</variable>
+	<variable name="total_julio_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_julio})]]></variableExpression>
+	</variable>
+	<variable name="total_agosto_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_agosto})]]></variableExpression>
+	</variable>
+	<variable name="total_septiembre_soporte" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_septiembre})]]></variableExpression>
+	</variable>
+	<variable name="total_octubre_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_octubre})]]></variableExpression>
+	</variable>
+	<variable name="total_noviembre_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_noviembre})]]></variableExpression>
+	</variable>
+	<variable name="total_diciembre_soporte" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{soporte_diciembre})]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -763,7 +913,7 @@ PEDIDOS]]></text>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="95" splitType="Stretch">
+		<band height="94" splitType="Stretch">
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="4" width="156" height="20" backcolor="#999999"/>
 				<box>
@@ -818,7 +968,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Double"><![CDATA[$V{total_factor}/$V{total_n_pedidos}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Double"><![CDATA[($V{total_soporte}/$V{total_n_pedidos})*100]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0" isBlankWhenNull="true">
 				<reportElement x="693" y="4" width="37" height="20"/>
@@ -832,7 +982,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0").format(($V{total_factor}/$P{total})*100).concat("%")]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.text.DecimalFormat("#,##0.0").format(new Double(($V{total_estado_ve}/$V{total_n_pedidos})*100)).concat( " % " )]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="656" y="4" width="37" height="20"/>
@@ -846,7 +996,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_factor}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_factor}/$V{total_n_pedidos})*100]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="156" y="4" width="38" height="20"/>
@@ -1084,77 +1234,36 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_enero} - $V{total_enero_pr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero_factor} > 0 ) ? ($V{total_enero_factor}/$V{total_n_enero})*100 : 0]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="157" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_enero} - $V{total_enero_pr})/$V{total_enero})*100 : 0]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="157" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero}-$V{total_enero_pr})/$V{total_n_enero}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="157" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_enero}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement mode="Transparent" x="157" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
 			<staticText>
-				<reportElement x="183" y="45" width="11" height="15"/>
+				<reportElement x="681" y="4" width="12" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ % ]]></text>
 			</staticText>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="195" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
+			<staticText>
+				<reportElement x="755" y="4" width="12" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_febrero}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="30" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="30" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="195" y="30" width="38" height="15"/>
 				<box>
@@ -1167,63 +1276,15 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_febrero} - $V{total_febrero_pr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_febrero_factor} > 0 ) ? ($V{total_febrero_factor}/$V{total_n_febrero})*100 : 0]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="221" y="45" width="11" height="15"/>
+				<reportElement x="259" y="30" width="12" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ % ]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement mode="Transparent" x="195" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="195" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_febrero} - $V{total_febrero_pr})/$V{total_febrero})*100 : 0]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="195" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_febrero}-$V{total_febrero_pr})/$V{total_n_febrero}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="233" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_marzo}]]></textFieldExpression>
-			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="233" y="30" width="38" height="15"/>
 				<box>
@@ -1236,69 +1297,15 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_marzo} - $V{total_marzo_pr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_marzo_factor} > 0 ) ? ($V{total_marzo_factor}/$V{total_n_marzo})*100 : 0]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="259" y="45" width="11" height="15"/>
+				<reportElement x="297" y="30" width="12" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ % ]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement mode="Transparent" x="233" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="233" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_marzo} - $V{total_marzo_pr})/$V{total_marzo})*100 : 0]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="233" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_marzo}-$V{total_marzo_pr})/$V{total_n_marzo}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="271" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_abril}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement mode="Transparent" x="271" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="271" y="30" width="38" height="15"/>
 				<box>
@@ -1311,98 +1318,15 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_abril} - $V{total_abril_pr}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="271" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_abril} - $V{total_abril_pr})/$V{total_abril})*100 : 0]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="271" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_abril}-$V{total_abril_pr})/$V{total_n_abril}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_abril_factor} > 0 ) ? ($V{total_abril_factor}/$V{total_n_abril})*100 : 0]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="297" y="45" width="11" height="15"/>
+				<reportElement x="335" y="30" width="12" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ % ]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement mode="Transparent" x="309" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="309" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_mayo}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="309" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_mayo}-$V{total_mayo_pr})/$V{total_n_mayo}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="334" y="45" width="11" height="15"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ % ]]></text>
-			</staticText>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="308" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_mayo} - $V{total_mayo_pr})/$V{total_mayo})*100 : 0]]></textFieldExpression>
-			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="309" y="30" width="38" height="15"/>
 				<box>
@@ -1415,28 +1339,15 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_mayo} - $V{total_mayo_pr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_mayo_factor} > 0 ) ? ($V{total_mayo_factor}/$V{total_n_mayo})*100 : 0]]></textFieldExpression>
 			</textField>
-			<rectangle>
-				<reportElement mode="Transparent" x="347" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="346" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
+			<staticText>
+				<reportElement x="373" y="30" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_junio} - $V{total_junio_pr})/$V{total_junio})*100 : 0]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="347" y="30" width="38" height="15"/>
 				<box>
@@ -1449,57 +1360,15 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_junio} - $V{total_junio_pr}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="347" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_junio}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="347" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_junio}-$V{total_junio_pr})/$V{total_n_junio}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_junio_factor} > 0 ) ? ($V{total_junio_factor}/$V{total_n_junio})*100 : 0]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="372" y="45" width="11" height="15"/>
+				<reportElement x="411" y="30" width="12" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ % ]]></text>
 			</staticText>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="385" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_julio}]]></textFieldExpression>
-			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="385" y="30" width="38" height="15"/>
 				<box>
@@ -1512,90 +1381,15 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_julio} - $V{total_julio_pr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_julio_factor} > 0 ) ? ($V{total_julio_factor}/$V{total_n_julio})*100 : 0]]></textFieldExpression>
 			</textField>
-			<rectangle>
-				<reportElement mode="Transparent" x="385" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
 			<staticText>
-				<reportElement x="410" y="45" width="11" height="15"/>
+				<reportElement x="449" y="30" width="12" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ % ]]></text>
 			</staticText>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="385" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_julio}-$V{total_julio_pr})/$V{total_n_julio}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="384" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_julio} - $V{total_julio_pr})/$V{total_julio})*100 : 0]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="448" y="45" width="11" height="15"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ % ]]></text>
-			</staticText>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="422" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_agosto} - $V{total_agosto_pr})/$V{total_agosto})*100 : 0]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement mode="Transparent" x="423" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="423" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_agosto}-$V{total_agosto_pr})/$V{total_n_agosto}]]></textFieldExpression>
-			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="423" y="30" width="38" height="15"/>
 				<box>
@@ -1608,44 +1402,10 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_agosto} - $V{total_agosto_pr}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="423" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_agosto}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement mode="Transparent" x="461" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="461" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_septiembre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_agosto_factor} > 0 ) ? ($V{total_agosto_factor}/$V{total_n_agosto})*100 : 0]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="486" y="45" width="11" height="15"/>
+				<reportElement x="487" y="30" width="12" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
@@ -1663,36 +1423,15 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_septiembre} - $V{total_septiembre_pr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_septiembre_factor} > 0 ) ? ($V{total_septiembre_factor}/$V{total_n_septiembre})*100 : 0]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="461" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
+			<staticText>
+				<reportElement x="525" y="30" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_septiembre}-$V{total_septiembre_pr})/$V{total_n_septiembre}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="461" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_septiembre} - $V{total_septiembre_pr})/$V{total_septiembre})*100 : 0]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="499" y="30" width="38" height="15"/>
 				<box>
@@ -1705,118 +1444,15 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_octubre} - $V{total_octubre_pr}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="499" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_octubre} - $V{total_octubre_pr})/$V{total_octubre})*100 : 0]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="499" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_octubre}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement mode="Transparent" x="499" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="499" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_octubre}-$V{total_octubre_pr})/$V{total_n_octubre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_octubre_factor} > 0 ) ? ($V{total_octubre_factor}/$V{total_n_octubre})*100 : 0]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="524" y="45" width="11" height="15"/>
+				<reportElement x="563" y="30" width="12" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ % ]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="562" y="45" width="11" height="15"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ % ]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement mode="Transparent" x="537" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="537" y="45" width="26" height="15"/>
-				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_noviembre} - $V{total_noviembre_pr})/$V{total_noviembre})*100 : 0]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="537" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_noviembre}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="537" y="60" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_noviembre}-$V{total_noviembre_pr})/$V{total_n_noviembre}]]></textFieldExpression>
-			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="537" y="30" width="38" height="15"/>
 				<box>
@@ -1829,30 +1465,10 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_noviembre} - $V{total_noviembre_pr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_noviembre_factor} > 0 ) ? ($V{total_noviembre_factor}/$V{total_n_noviembre})*100 : 0]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="575" y="75" width="38" height="15"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_diciembre}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement mode="Transparent" x="575" y="45" width="38" height="15"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
 			<staticText>
-				<reportElement x="600" y="45" width="11" height="15"/>
+				<reportElement x="601" y="30" width="12" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
@@ -1870,24 +1486,528 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_diciembre} - $V{total_diciembre_pr}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_diciembre_factor} > 0 ) ? ($V{total_diciembre_factor}/$V{total_n_diciembre})*100 : 0]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="487" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
 			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="575" y="45" width="26" height="15"/>
+				<reportElement x="195" y="45" width="38" height="15"/>
 				<box>
-					<pen lineWidth="0.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0" lineColor="#000000"/>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero} > 0) ? (($V{total_diciembre} - $V{total_diciembre_pr})/$V{total_diciembre})*100 : 0]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_febrero_funciona} > 0 ) ? ($V{total_febrero_funciona}/$V{total_n_febrero})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="537" y="45" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_noviembre_funciona} > 0 ) ? ($V{total_noviembre_funciona}/$V{total_n_noviembre})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="347" y="45" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_junio_funciona} > 0 ) ? ($V{total_junio_funciona}/$V{total_n_junio})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="157" y="45" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero_funciona} > 0 ) ? ($V{total_enero_funciona}/$V{total_n_enero})*100 : 0]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="259" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="271" y="45" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_abril_funciona} > 0 ) ? ($V{total_abril_funciona}/$V{total_n_abril})*100 : 0]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="601" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="461" y="45" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_septiembre_funciona} > 0 ) ? ($V{total_septiembre_funciona}/$V{total_n_septiembre})*100 : 0]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="525" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="309" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_mayo_soporte} > 0 ) ? ($V{total_mayo_soporte}/$V{total_n_mayo})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="423" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_agosto_soporte} > 0 ) ? ($V{total_agosto_soporte}/$V{total_n_agosto})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="195" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_febrero_soporte} > 0 ) ? ($V{total_febrero_soporte}/$V{total_n_febrero})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="385" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_julio_soporte} > 0 ) ? ($V{total_julio_soporte}/$V{total_n_julio})*100 : 0]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="575" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_diciembre_soporte} > 0 ) ? ($V{total_diciembre_soporte}/$V{total_n_diciembre})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="233" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_marzo_soporte} > 0 ) ? ($V{total_marzo_soporte}/$V{total_n_marzo})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="347" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_junio_soporte} > 0 ) ? ($V{total_junio_soporte}/$V{total_n_junio})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="157" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_enero_soporte} > 0 ) ? ($V{total_enero_soporte}/$V{total_n_enero})*100 : 0]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="259" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="271" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_abril_soporte} > 0 ) ? ($V{total_abril_soporte}/$V{total_n_abril})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="537" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_noviembre_soporte} > 0 ) ? ($V{total_noviembre_soporte}/$V{total_n_noviembre})*100 : 0]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="525" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="461" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_septiembre_soporte} > 0 ) ? ($V{total_septiembre_soporte}/$V{total_n_septiembre})*100 : 0]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="499" y="60" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_octubre_soporte} > 0 ) ? ($V{total_octubre_soporte}/$V{total_n_octubre})*100 : 0]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="183" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="563" y="45" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="563" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="601" y="60" width="12" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ % ]]></text>
+			</staticText>
+			<elementGroup>
+				<elementGroup>
+					<textField pattern="#,##0" isBlankWhenNull="true">
+						<reportElement x="233" y="45" width="38" height="15"/>
+						<box>
+							<pen lineWidth="0.5"/>
+							<topPen lineWidth="0.5"/>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+							<rightPen lineWidth="0.5"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+							<font size="8" isBold="true"/>
+						</textElement>
+						<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_marzo_funciona} > 0 ) ? ($V{total_marzo_funciona}/$V{total_n_marzo})*100 : 0]]></textFieldExpression>
+					</textField>
+				</elementGroup>
+			</elementGroup>
+			<elementGroup>
+				<textField pattern="#,##0" isBlankWhenNull="true">
+					<reportElement x="309" y="45" width="38" height="15"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_mayo_funciona} > 0 ) ? ($V{total_mayo_funciona}/$V{total_n_mayo})*100 : 0]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<textField pattern="#,##0" isBlankWhenNull="true">
+					<reportElement x="385" y="45" width="38" height="15"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_julio_funciona} > 0 ) ? ($V{total_julio_funciona}/$V{total_n_julio})*100 : 0]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<textField pattern="#,##0" isBlankWhenNull="true">
+					<reportElement x="423" y="45" width="38" height="15"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_agosto_funciona} > 0 ) ? ($V{total_agosto_funciona}/$V{total_n_agosto})*100 : 0]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<textField pattern="#,##0" isBlankWhenNull="true">
+					<reportElement x="499" y="45" width="38" height="15"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_octubre_funciona} > 0 ) ? ($V{total_octubre_funciona}/$V{total_n_octubre})*100 : 0]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<textField pattern="#,##0" isBlankWhenNull="true">
+					<reportElement x="575" y="45" width="38" height="15"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_diciembre_funciona} > 0 ) ? ($V{total_diciembre_funciona}/$V{total_n_diciembre})*100 : 0]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="385" y="75" width="38" height="15"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -1898,7 +2018,161 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[($V{total_diciembre}-$V{total_diciembre_pr})/$V{total_n_diciembre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_julio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="157" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_enero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="537" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_noviembre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="233" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_marzo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="423" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_agosto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="499" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_octubre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="271" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_abril}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="575" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_diciembre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="195" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_febrero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="461" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_septiembre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="347" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_junio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="309" y="75" width="38" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_n_mayo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
