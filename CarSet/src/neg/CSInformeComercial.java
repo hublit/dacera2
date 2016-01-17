@@ -306,7 +306,7 @@ public class CSInformeComercial extends javax.swing.JPanel
                 "SUM(pe.pe_ta_es_proveedor) AS ta_proveedor " +
                 "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc " +
                 "INNER JOIN carset.cl_clientes cl " +
-                "WHERE pe.pe_estado != 'Anulado' AND pe.pe_incidencia != 'ADMINISTRATIVA' " +
+                "WHERE pe.pe_estado != 'Anulado' " + // AND pe.pe_incidencia != 'ADMINISTRATIVA' " +
                 "AND pe.pe_num = pc.pe_num AND pc.cl_id = cl.cl_id ";
         if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
             query = query + " AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
