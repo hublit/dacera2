@@ -571,13 +571,13 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-                                    String estadoPe = "";
+/**                                    String estadoPe = "";
                                     if ((BeanFactura)lista.get(i) != null){
                                         BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
                                         estadoPe = beanFacturaPe.getEstado();
-                                    }else{
-                                        estadoPe = getPedidoUnido(pedidos.get(i));
-                                    }
+                                    }else{*/
+                                    String estadoPe = getPedidoUnido(pedidos.get(i));
+                                    //}
                                     
                                     if (estadoPe.equals("Validado")){
                                         System.out.println("V: "+ estadoPe);
@@ -1050,13 +1050,13 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-                                    String estadoPe = "";
+ /**                                   String estadoPe = "";
                                     if ((BeanFactura)lista.get(i) != null){
                                         BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
                                         estadoPe = beanFacturaPe.getEstado();
-                                    }else{
-                                        estadoPe = getPedidoUnido(pedidos.get(i));
-                                    }
+                                    }else{*/
+                                    String estadoPe = getPedidoUnido(pedidos.get(i));
+//                                    }
                                     
                                     if (estadoPe.equals("Validado")){
                                         System.out.println("V: "+ estadoPe);
@@ -1618,13 +1618,13 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-                                    String estadoPe = "";
+/**                                    String estadoPe = "";
                                     if ((BeanFactura)lista.get(i) != null){
                                         BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
                                         estadoPe = beanFacturaPe.getEstado();
-                                    }else{
-                                        estadoPe = getPedidoUnido(pedidos.get(i));
-                                    }
+                                    }else{*/
+                                    String estadoPe = getPedidoUnido(pedidos.get(i));
+//                                    }
                                     
                                     if (estadoPe.equals("Validado")){
                                         System.out.println("V: "+ estadoPe);

@@ -9,7 +9,6 @@ package neg;
 import data.BeanCliente;
 import data.Cliente;
 import data.BeanFactura;
-import data.BeanPedido;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -351,7 +350,6 @@ public class CSFacturaCliente extends JPanel
         String fechaF="";
         String fechaFac="";
         ArrayList lista=new ArrayList();
-        ArrayList listaEstado=new ArrayList();
       
         String cliente = new String(jTextCliente.getText());
         Cliente oCliente = new Cliente();
@@ -460,10 +458,6 @@ public class CSFacturaCliente extends JPanel
                     }
                     pedidos.add(rs.getLong("pe_num"));
                     
-                    BeanFactura facturaEstado = new BeanFactura();
-                    facturaEstado.setNumPedido(rs.getLong("pe_num"));
-                    facturaEstado.setEstado(rs.getString("pe_estado"));
-                    listaEstado.add(facturaEstado);
                 } 
 
             } catch (SQLException ex) {
