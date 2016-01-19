@@ -576,7 +576,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                         BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
                                         estadoPe = beanFacturaPe.getEstado();
                                     }else{*/
-                                    String estadoPe = getPedidoUnido(pedidos.get(i));
+                                    String estadoPe = getEstadoPedido(pedidos.get(i));
                                     //}
                                     
                                     if (estadoPe.equals("Validado")){
@@ -1055,7 +1055,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                         BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
                                         estadoPe = beanFacturaPe.getEstado();
                                     }else{*/
-                                    String estadoPe = getPedidoUnido(pedidos.get(i));
+                                    String estadoPe = getEstadoPedido(pedidos.get(i));
 //                                    }
                                     
                                     if (estadoPe.equals("Validado")){
@@ -1623,7 +1623,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                         BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
                                         estadoPe = beanFacturaPe.getEstado();
                                     }else{*/
-                                    String estadoPe = getPedidoUnido(pedidos.get(i));
+                                    String estadoPe = getEstadoPedido(pedidos.get(i));
 //                                    }
                                     
                                     if (estadoPe.equals("Validado")){
@@ -1668,7 +1668,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
      * Buscamos el estado del pedido unido original
      * @throws SQLException
      */
-    private String getPedidoUnido(Object pe_num) throws SQLException
+    private String getEstadoPedido(Object pe_num) throws SQLException
     {
         ResultSet rs = CSDesktop.datos.select("SELECT pe_estado FROM pe_pedidos WHERE pe_num = '"+pe_num+"'");
         

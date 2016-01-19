@@ -462,7 +462,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             }
         });
 
-        jButtonValidar.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jButtonValidar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButtonValidar.setForeground(new java.awt.Color(0, 0, 100));
         jButtonValidar.setText("Validar Pedidos");
         jButtonValidar.setName("jButtonValidar"); // NOI18N
@@ -494,7 +494,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
         jLabelAnyoIva.setText("IVA año");
         jLabelAnyoIva.setName("jLabelAnyoIva"); // NOI18N
 
-        jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2015", "2014", "2013", "2012", "2011", "2010" }));
+        jComboBoxAnyoIva.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2016", "2015", "2014", "2013", "2012", "2011", "2010" }));
         jComboBoxAnyoIva.setName("jComboBoxAnyoIva"); // NOI18N
         jComboBoxAnyoIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -574,7 +574,7 @@ public class CSValidarPedidosProveedor extends javax.swing.JPanel
             }
         });
 
-        ltrimestre.setFont(new java.awt.Font("Tahoma", 1, 11));
+        ltrimestre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         ltrimestre.setForeground(new java.awt.Color(170, 16, 4));
         ltrimestre.setText("Deshabilitar trimestres");
         ltrimestre.setName("ltrimestre"); // NOI18N

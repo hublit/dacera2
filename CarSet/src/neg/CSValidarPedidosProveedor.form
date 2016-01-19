@@ -221,7 +221,7 @@
         <Property name="name" type="java.lang.String" value="jButtonCerrar" noResource="true"/>
       </Properties>
       <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.RADVisualComponent$AccessibleParentEditor">
+        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="jScrollPane1"/>
         </Property>
       </AccessibilityProperties>
@@ -288,13 +288,14 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxAnyoIva">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="2015"/>
-            <StringItem index="1" value="2014"/>
-            <StringItem index="2" value="2013"/>
-            <StringItem index="3" value="2012"/>
-            <StringItem index="4" value="2011"/>
-            <StringItem index="5" value="2010"/>
+          <StringArray count="7">
+            <StringItem index="0" value="2016"/>
+            <StringItem index="1" value="2015"/>
+            <StringItem index="2" value="2014"/>
+            <StringItem index="3" value="2013"/>
+            <StringItem index="4" value="2012"/>
+            <StringItem index="5" value="2011"/>
+            <StringItem index="6" value="2010"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxAnyoIva" noResource="true"/>
