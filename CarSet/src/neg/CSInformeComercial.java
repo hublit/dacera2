@@ -85,7 +85,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         lFechaMes = new javax.swing.JLabel();
         jComboBoxMes = new javax.swing.JComboBox();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
         jLabel1.setText("Informe Comercial");
         jLabel1.setName("jLabel1"); // NOI18N
@@ -118,7 +118,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         lFechaFin.setName("lFechaFin"); // NOI18N
 
         jComboBoxAnyo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010" }));
-        jComboBoxAnyo.setSelectedIndex(5);
+        jComboBoxAnyo.setSelectedIndex(4);
         jComboBoxAnyo.setName("jComboBoxAnyo"); // NOI18N
         jComboBoxAnyo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +130,7 @@ public class CSInformeComercial extends javax.swing.JPanel
         jLabel2.setText("Informe Comercial anual de pedidos por Clientes");
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabelOrder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelOrder.setForeground(new java.awt.Color(170, 16, 4));
         jLabelOrder.setText("Orden");
         jLabelOrder.setName("jLabelOrder"); // NOI18N
@@ -171,9 +171,9 @@ public class CSInformeComercial extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                            .addComponent(jSeparator6)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.CENTER)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)

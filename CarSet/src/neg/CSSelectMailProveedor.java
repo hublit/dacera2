@@ -138,7 +138,7 @@ public class CSSelectMailProveedor extends javax.swing.JPanel
         });
         jTable1.setEditingRow(0);
         jTable1.setName("jTable1"); // NOI18N
-        jTable1.setPreferredSize(new java.awt.Dimension(300, 264));
+        jTable1.setPreferredSize(new java.awt.Dimension(300, 700));
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Cerrar");

@@ -76,7 +76,7 @@
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lFechaFin" alignment="3" pref="20" max="32767" attributes="1"/>
+                  <Component id="lFechaFin" alignment="3" max="32767" attributes="1"/>
                   <Component id="jComboBoxAnyo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
@@ -153,14 +153,22 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxAnyo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="2015"/>
-            <StringItem index="1" value="2014"/>
-            <StringItem index="2" value="2013"/>
-            <StringItem index="3" value="2012"/>
-            <StringItem index="4" value="2011"/>
-            <StringItem index="5" value="2010"/>
+          <StringArray count="11">
+            <StringItem index="0" value="2020"/>
+            <StringItem index="1" value="2019"/>
+            <StringItem index="2" value="2018"/>
+            <StringItem index="3" value="2017"/>
+            <StringItem index="4" value="2016"/>
+            <StringItem index="5" value="2015"/>
+            <StringItem index="6" value="2014"/>
+            <StringItem index="7" value="2013"/>
+            <StringItem index="8" value="2012"/>
+            <StringItem index="9" value="2011"/>
+            <StringItem index="10" value="2010"/>
           </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="4" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="jComboBoxAnyo" noResource="true"/>
       </Properties>

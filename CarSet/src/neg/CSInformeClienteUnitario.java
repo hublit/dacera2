@@ -80,7 +80,7 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
         jTextCliente = new javax.swing.JTextField();
         jToggleButtonCliente = new javax.swing.JToggleButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 16, 4));
         jLabel1.setText("INFORME CLIENTE UNITARIO");
         jLabel1.setName("jLabel1"); // NOI18N
@@ -112,7 +112,8 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
         lFechaFin.setText("Año");
         lFechaFin.setName("lFechaFin"); // NOI18N
 
-        jComboBoxAnyo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2015", "2014", "2013", "2012", "2011", "2010" }));
+        jComboBoxAnyo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010" }));
+        jComboBoxAnyo.setSelectedIndex(4);
         jComboBoxAnyo.setName("jComboBoxAnyo"); // NOI18N
         jComboBoxAnyo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +187,7 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
                     .addComponent(lCliente))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(lFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxAnyo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(101, 101, 101)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,7 +281,7 @@ public class CSInformeClienteUnitario extends javax.swing.JPanel
                         "AND pc.cl_id = "+clienteID+" GROUP BY cl.cl_nombre) AS num_anterior " +
                         "FROM carset.pe_pedidos pe INNER JOIN carset.pc_pedidos_clientes pc ON pe.pe_num = pc.pe_num " +
                         "RIGHT JOIN carset.cl_clientes cl ON pc.cl_id = cl.cl_id " +
-                        "WHERE pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"' AND pc.cl_id = " + clienteID +" GROUP BY cl.cl_nombre";
+                        "WHERE pe.pe_estado != 'Anulado' AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"' AND pc.cl_id = " + clienteID +" GROUP BY cl.cl_nombre";
 
 
         System.out.println(query);
