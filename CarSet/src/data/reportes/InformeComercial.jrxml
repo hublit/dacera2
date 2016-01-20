@@ -132,7 +132,7 @@
 		<variableExpression><![CDATA[Double.parseDouble($F{noviembre_pr})]]></variableExpression>
 	</variable>
 	<variable name="total_diciembre_pr" class="java.lang.Double" calculation="Sum">
-		<variableExpression><![CDATA[Double.parseDouble($F{diciembre})]]></variableExpression>
+		<variableExpression><![CDATA[Double.parseDouble($F{diciembre_pr})]]></variableExpression>
 	</variable>
 	<variable name="total_n_enero" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[Integer.parseInt($F{num_enero})]]></variableExpression>
