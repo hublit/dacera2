@@ -1605,7 +1605,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                         {
                             int seleccion = JOptionPane.showOptionDialog(
                                 CSLanzarFactura.this,
-                                "¿Quieres cambiar el estado de los envíos a 'Entregado'?",
+                                "¿Quieres cambiar el estado de los envíos a 'Entregado' y 'Validado'?",
                                 "Atención",
                                 JOptionPane.YES_NO_CANCEL_OPTION,
                                 JOptionPane.QUESTION_MESSAGE,
@@ -1626,17 +1626,17 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                     String estadoPe = getEstadoPedido(pedidos.get(i));
 //                                    }
                                     
-                                    if (estadoPe.equals("Validado")){
+                                    if (estadoPe.equals("Facturado y Validado")){
 //                                        System.out.println("V: "+ estadoPe);
-                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
                                         {
-                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
                                         }                                        
                                     }else{
 //                                        System.out.println("F: "+ estadoPe);
-                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
+                                        if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Entregado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
                                         {
-                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
+                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Entregado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
                                         }
                                     }                                    
                                     
