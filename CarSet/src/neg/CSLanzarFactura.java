@@ -572,10 +572,10 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                 for (int i=0;i<pedidos.size();i++)
                                 {
                                     String estadoPe = "";
-                                    if ((BeanFactura)lista.get(i) != null){
+                                    /*if ((BeanFactura)lista.get(i) != null){
                                         BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
                                         estadoPe = beanFacturaPe.getEstado();
-                                    }
+                                    }*/
                                     //}else{
                                     estadoPe = getEstadoPedido(pedidos.get(i));
                                     //}
@@ -586,7 +586,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                         {
                                             CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
                                         }                                        
-                                    }else if(estadoPe.equals("Facturado")){
+                                    }else if(estadoPe.equals("Entregado")){
 //                                        System.out.println("F: "+ estadoPe);
                                         if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
                                         {
@@ -1065,7 +1065,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                         {
                                             CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
                                         }                                        
-                                    }else if(estadoPe.equals("Facturado")){
+                                    }else if(estadoPe.equals("Entregado")){
  //                                       System.out.println("F: "+ estadoPe);
                                         if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
                                         {
@@ -1671,7 +1671,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
      */
     private String getEstadoPedido(Object pe_num) throws SQLException
     {
-        ResultSet rsEstado = CSDesktop.datos.select("SELECT pe_estado, pe_num unido FROM pe_pedidos WHERE pe_num = '"+pe_num+"'");
+        ResultSet rsEstado = CSDesktop.datos.select("SELECT pe_estado, pe_num_unido FROM pe_pedidos WHERE pe_num = '"+pe_num+"'");
         
         String estado = "";
         int num_unido = 0;
@@ -1692,7 +1692,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
         
         while(rsUnido.next())
         {
-            if(!rsUnido.getString("pe_estado").equals("Entregado") || !rsUnido.getString("pe_estado").equals("Validado")){
+            if(!rsUnido.getString("pe_estado").equals("Entregado") && !rsUnido.getString("pe_estado").equals("Validado")){
                 estado = "Pendiente";
             }
         }
