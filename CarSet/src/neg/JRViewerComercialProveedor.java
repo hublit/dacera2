@@ -1590,7 +1590,7 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
 
                 style.setDataFormat(format.getFormat("#,##0"));
 
-                //Celda de cliente
+                //Celda de Proveedor
                 celda = fila.createCell( (short) 0);
                 celda.setCellStyle(cs2);
                 String proveedor = rs.getString("pr_nombre_fiscal");
@@ -1688,7 +1688,7 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
                 celda.setCellValue(diciembre);
                 style.setDataFormat(format.getFormat("00"));
                 
-                //Celda de la tarifa de cliente
+                //Celda de la tarifa de Proveedor
                 celda = fila.createCell( (short) 13);
                 celda.setCellValue(rs.getDouble("ta_proveedor"));
                 
