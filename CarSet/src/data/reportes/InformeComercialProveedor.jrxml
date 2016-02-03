@@ -1010,7 +1010,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_enero}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_enero_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="194" y="4" width="38" height="20"/>
@@ -1024,7 +1024,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_febrero}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_febrero_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="232" y="4" width="38" height="20"/>
@@ -1038,7 +1038,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_marzo}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_marzo_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="270" y="4" width="38" height="20"/>
@@ -1052,7 +1052,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_abril}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_abril_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="308" y="4" width="38" height="20"/>
@@ -1066,7 +1066,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_mayo}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_mayo_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="346" y="4" width="38" height="20"/>
@@ -1080,7 +1080,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_junio}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_junio_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="384" y="4" width="38" height="20"/>
@@ -1094,7 +1094,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_julio}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_julio_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="422" y="4" width="38" height="20"/>
@@ -1108,7 +1108,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_agosto}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_agosto_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="460" y="4" width="38" height="20"/>
@@ -1122,7 +1122,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_septiembre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_septiembre_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="498" y="4" width="38" height="20"/>
@@ -1136,7 +1136,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_octubre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_octubre_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="536" y="4" width="38" height="20"/>
@@ -1150,7 +1150,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_noviembre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_noviembre_pr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
 				<reportElement x="574" y="4" width="38" height="20"/>
@@ -1164,7 +1164,7 @@ PEDIDOS]]></text>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_diciembre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total_diciembre_pr}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="1" y="75" width="156" height="15" backcolor="#CCCCCC"/>
