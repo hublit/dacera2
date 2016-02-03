@@ -1,5 +1,5 @@
 /*
- * CSInformeComercial.java
+ * CSInformeComercialProveedor.java
  *
  * Created on 10-dic-2009, 8:48:09
  */
@@ -244,7 +244,7 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
 
     public void GenerarInforme()
     {
-        //Se comprueba que haya seleccionado un cliente
+        //Se comprueba que haya seleccionado un proveedor
         int anyo = Integer.parseInt(jComboBoxAnyo.getSelectedItem().toString());
         int anyo_post = anyo + 1;
         int mes = jComboBoxMes.getSelectedIndex();
@@ -348,7 +348,7 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
                 "SUM(pe.pe_ta_es_proveedor) AS ta_proveedor " +
                 "FROM carset.pe_pedidos pe INNER JOIN carset.pp_pedidos_proveedores pp " +
                 "INNER JOIN carset.pr_proveedores pr " +
-                "WHERE pe.pe_estado != 'Anulado' AND pe.pe_incidencia != 'ADMINISTRATIVA' " +
+                "WHERE pe.pe_estado != 'Anulado' " + // AND pe.pe_incidencia != 'ADMINISTRATIVA' " +
                 "AND pe.pe_num = pp.pe_num AND pp.pr_id = pr.pr_id ";
         if ((!fechaIni.equals("")) && (!fechaFin.equals(""))) {
             query = query + " AND pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
@@ -490,12 +490,12 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
         double total = 0;
         String queryPe ="SELECT SUM(pe.pe_ta_es_proveedor) AS total FROM carset.pe_pedidos pe " +
                         "INNER JOIN carset.pp_pedidos_proveedores pp ON pe.pe_num = pp.pe_num " +
-                        "RIGHT JOIN carset.pr_proveedores cl ON pp.pr_id = pp.pr_id " +
+                        "RIGHT JOIN carset.pr_proveedores pr ON pr.pr_id = pp.pr_id " +
                         "WHERE pe.pe_fecha BETWEEN '"+fechaIni+"' AND '"+fechaFin+"'";
 
         if (!tipoProveedor.equals("Selecciona"))
         {
-           queryPe = queryPe + " AND cl.cl_tipo= '"+tipoProveedor+"'";
+           queryPe = queryPe + " AND pr.pr_tipo= '"+tipoProveedor+"'";
         }
         if (mes != 0)
         {
