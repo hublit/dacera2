@@ -818,7 +818,7 @@ public class CSDesktop extends JFrame
          });
 
       menuInformeComercialProveedor = new JMenuItem( "Informe Proveedor Comercial" );
-      menuInformeComercial.setMnemonic( 'l' );
+      menuInformeComercialProveedor.setMnemonic( 'l' );
       if(group != 3){
         menuInforme.add( menuInformeComercialProveedor );
       }

@@ -587,7 +587,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                         {
                                             CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
                                         } */                                       
-                                    }else if(estadoPe.equals("Entregado")){
+                                    }else if(estadoPe.equals("Entregado") || estadoPe.equals("Fallido")){
 //                                        System.out.println("F: "+ estadoPe);
                                         CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i));
                                         /*if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
@@ -1068,7 +1068,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                         {
                                             CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
                                         } */                                       
-                                    }else if(estadoPe.equals("Entregado")){
+                                    }else if(estadoPe.equals("Entregado")  || estadoPe.equals("Fallido")){
  //                                       System.out.println("F: "+ estadoPe);
                                         CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i));
                                         /*if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))

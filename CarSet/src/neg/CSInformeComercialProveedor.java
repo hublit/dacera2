@@ -42,7 +42,7 @@ public class CSInformeComercialProveedor extends javax.swing.JPanel
     public CSInformeComercialProveedor() throws SQLException
     {
         initComponents();
-        CSDesktop.menuInformeComercial.setEnabled(false);
+        CSDesktop.menuInformeComercialProveedor.setEnabled(false);
         KeyListener l = new KeyListener()
         {
             public void keyTyped(KeyEvent e) {}

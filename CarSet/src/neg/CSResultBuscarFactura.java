@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -399,9 +400,21 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
 
                     BeanFactura factura=new BeanFactura();
                     factura=(BeanFactura)lista.get(longitud);
-                    long pedido=(Long)pedidos.get(longitud);
+                    long pedido=(Long)pedidos.get(longitud);                    
+                    
                     ArrayList listaPedidos=new ArrayList();
                     listaPedidos.add(pedido);
+            
+                    //Buscamos los pedidos unidos para poder cambiarles el estado
+                    try {
+                        ArrayList<Integer> peUnidosList = getPedidosUnidos(pedido);
+                        for (int i = 0; i < peUnidosList.size(); i++){
+                            listaPedidos.add(peUnidosList.get(i));
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CSResultBuscarFactura.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                     ArrayList listaFacturas=new ArrayList();
                     listaFacturas.add(factura);
                     CSLanzarFactura facturaFinal = new CSLanzarFactura();
@@ -464,8 +477,10 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
             BeanFactura factura=new BeanFactura();
             factura=(BeanFactura)lista.get(longitud);
             long pedido=(Long)pedidos.get(longitud);
+            
             ArrayList listaPedidos=new ArrayList();
             listaPedidos.add(pedido);
+            
             ArrayList listaFacturas=new ArrayList();
             listaFacturas.add(factura);
             CSLanzarFactura facturaFinal = new CSLanzarFactura();
@@ -484,6 +499,28 @@ public class CSResultBuscarFactura extends javax.swing.JPanel
 }//GEN-LAST:event_jButtonPrevActionPerformed
 
 
+    /**
+     * Buscamos los pedidos unidos
+     * @throws SQLException
+     */
+    private ArrayList<Integer> getPedidosUnidos(long pe_num) throws SQLException
+    {
+        ArrayList<Integer> peUnidos = new ArrayList<Integer>();
+        
+        ResultSet rsPeUnidos = CSDesktop.datos.select("SELECT pe_num FROM pe_pedidos WHERE pe_num_unido = '"+pe_num+"'");
+        
+        int num_unido = 0;
+                
+        while(rsPeUnidos.next())
+        {
+            num_unido = rsPeUnidos.getInt("pe_num");
+            peUnidos.add(num_unido);
+        }
+        rsPeUnidos.close();
+
+        return peUnidos;
+     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonGenerar;
