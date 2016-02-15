@@ -1603,14 +1603,14 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
                 //Celda de enero
                 celda = fila.createCell( (short) 1);
                 celda.setCellStyle(cs3);
-                double enero = rs.getDouble("enero");
+                double enero = rs.getDouble("enero_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(enero);
                 style.setDataFormat(format.getFormat("00"));
 
                 //Celda de febrero
                 celda = fila.createCell( (short) 2);
-                double febrero = rs.getDouble("febrero");
+                double febrero = rs.getDouble("febrero_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(febrero);
                 style.setDataFormat(format.getFormat("00"));
@@ -1618,34 +1618,34 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
                 //Celda de marzo
                 celda = fila.createCell( (short) 3);
                 celda.setCellStyle(cs2);
-                double marzo = rs.getDouble("marzo");
+                double marzo = rs.getDouble("marzo_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(marzo);
                 style.setDataFormat(format.getFormat("00"));
 
                 //Celda de abril
                 celda = fila.createCell( (short) 4);
-                double abril = rs.getDouble("abril");
+                double abril = rs.getDouble("abril_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(abril);
                 style.setDataFormat(format.getFormat("00"));
 
                 //Celda de mayo
                 celda = fila.createCell( (short) 5);
-                double mayo = rs.getDouble("mayo");
+                double mayo = rs.getDouble("mayo_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(mayo);
                 style.setDataFormat(format.getFormat("00"));
 
                 //Celda de junio
                 celda = fila.createCell( (short) 6);
-                double junio = rs.getDouble("junio");
+                double junio = rs.getDouble("junio_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(junio);
 
                 //Celda del julio
                 celda = fila.createCell( (short) 7);
-                double julio = rs.getDouble("julio");
+                double julio = rs.getDouble("julio_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(julio);
                 style.setDataFormat(format.getFormat("00"));
@@ -1653,14 +1653,14 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
                 //Celda de agosto
                 celda = fila.createCell( (short) 8);
                 celda.setCellStyle(cs2);
-                double agosto = rs.getDouble("agosto");
+                double agosto = rs.getDouble("agosto_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(agosto);
                 style.setDataFormat(format.getFormat("00"));
 
                 //Celda de septiembre
                 celda = fila.createCell( (short) 9);
-                double septiembre = rs.getDouble("septiembre");
+                double septiembre = rs.getDouble("septiembre_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(septiembre);
                 style.setDataFormat(format.getFormat("00"));
@@ -1668,14 +1668,14 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
                 //Celda de octubre
                 celda = fila.createCell( (short) 10);
                 celda.setCellStyle(cs2);
-                double octubre = rs.getDouble("octubre");
+                double octubre = rs.getDouble("octubre_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(octubre);
                 style.setDataFormat(format.getFormat("00"));
 
                 //Celda de noviembre
                 celda = fila.createCell( (short) 11);
-                double noviembre = rs.getDouble("noviembre");
+                double noviembre = rs.getDouble("noviembre_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(noviembre);
                 style.setDataFormat(format.getFormat("00"));
@@ -1683,7 +1683,7 @@ public class JRViewerComercialProveedor extends javax.swing.JPanel implements JR
                 //Celda de diciembre
                 celda = fila.createCell( (short) 12);
                 celda.setCellStyle(cs2);
-                double diciembre = rs.getDouble("diciembre");
+                double diciembre = rs.getDouble("diciembre_pr");
                 celda.setCellStyle(cs3);
                 celda.setCellValue(diciembre);
                 style.setDataFormat(format.getFormat("00"));
