@@ -159,7 +159,7 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                      }
                    }
                     //query += "'En Proceso')";
-                    System.out.println(query);
+                    //System.out.println(query);
 
                     String sentencia = CSDesktop.datos.manipuladorDatosArchivo(query);
                     

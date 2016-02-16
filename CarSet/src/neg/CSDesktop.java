@@ -1112,7 +1112,7 @@ public class CSDesktop extends JFrame
             public void actionPerformed( ActionEvent evento )
             {
                JOptionPane.showMessageDialog(CSDesktop.this,
-                  "CarSet version 4.0.18 (18-01-2016)",
+                  "CarSet version 4.0.19 (16-02-2016)",
                   "Versión", JOptionPane.PLAIN_MESSAGE );
             }
           }  // fin de la clase interna an�nima
