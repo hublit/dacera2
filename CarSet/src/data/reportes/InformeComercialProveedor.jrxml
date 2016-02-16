@@ -221,7 +221,7 @@
 		<variableExpression><![CDATA[Integer.parseInt($F{funciona_febrero})]]></variableExpression>
 	</variable>
 	<variable name="total_marzo_funciona" class="java.lang.Integer" calculation="Sum">
-		<variableExpression><![CDATA[Integer.parseInt($F{funciona_enero})]]></variableExpression>
+		<variableExpression><![CDATA[Integer.parseInt($F{funciona_marzo})]]></variableExpression>
 	</variable>
 	<variable name="total_abril_funciona" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[Integer.parseInt($F{funciona_abril})]]></variableExpression>
