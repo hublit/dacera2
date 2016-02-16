@@ -4,7 +4,6 @@ import data.BeanPedido;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,7 +57,7 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
               //System.out.println("columnas: "+sheet.getColumns());
               //System.out.println("filas: "+sheet.getRows());
 
-              for (int i = 0; i < sheet.getRows(); i++)
+              for (int i = 0; i < (sheet.getRows()-1); i++)
               {
                 String query = "INSERT INTO pa_pedidos_aux (pa_fecha, pa_direccion_origen, pa_poblacion_origen, pa_provincia_origen, " +
                                "pa_cp_origen, pa_nombre_origen, pa_telefono_origen, pa_direccion_destino, pa_poblacion_destino, " +
@@ -129,11 +128,11 @@ public class CSAnyadirPedidoArchivoNew extends JPanel
                          String observaciones = (!cell.getContents().equals("") || cell.getContents() != null) ? cell.getContents().toUpperCase() : "";
                          //System.out.println("Observaciones: "+ j +observaciones);
                          query += "'"+ observaciones + "',";
-                     }else if(cell.getColumn() == 30){
-                        clientID = Integer.parseInt(cell.getContents());
-                         query += "'"+ clientID + "',";
                      }else if(cell.getColumn() == 31){
-                        proveedorID = Integer.parseInt(cell.getContents());
+                        clientID = (!cell.getContents().equals("")) ? Integer.parseInt(cell.getContents()) : 0;
+                         query += "'"+ clientID + "',";
+                     }else if(cell.getColumn() == 32){
+                        proveedorID = (!cell.getContents().equals("")) ? Integer.parseInt(cell.getContents()) : 0;
                          query += "'"+ proveedorID + "',";
                      }else if (cell.getColumn() == 35){
                          int obClMail = (!cell.getContents().equals("SI")) ? 0 : 1;

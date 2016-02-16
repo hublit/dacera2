@@ -50,7 +50,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
     /** Creates new form EditarPedido */
     public CSEditarPedidoNew(int pedido,String sql) throws SQLException
     {
-        System.out.println("Grupo: "+ grupo);
+//        System.out.println("Grupo: "+ grupo);
         consulta=sql;
 
         CSDesktop.mailCliente.clear();
@@ -64,8 +64,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
         jTextClId.setVisible(false);
         limitacionesCampos();
         getFactorCorrecion();
-        this.datosPedidos(pedido);
-        
+        this.datosPedidos(pedido);      
 
         KeyListener l = new KeyListener()
         {
@@ -2226,7 +2225,7 @@ public class CSEditarPedidoNew extends javax.swing.JPanel
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         CSDesktop.EditarPedidoNew.dispose();
-        CSDesktop.ResultPedidoNew.setVisible(true);
+//        CSDesktop.ResultPedidoNew.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonMailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMailClienteActionPerformed

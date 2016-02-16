@@ -266,14 +266,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 }
                 else
                 {
-                    /*String queryCampa = "SELECT sc_entrada_campa,sc_campa FROM sc_servicios_clientes WHERE cl_id = "+cl_id;
-
-                    ResultSet rsCampa = CSDesktop.datos.select(queryCampa);
-                    while (rsCampa.next())
-                    {
-                        importeEntradaCampaAux = rsCampa.getString("sc_entrada_campa");
-                        importeDiasCampaAux = rsCampa.getString("sc_campa");
-                    }*/
                     soporte = "Custodia";
                     labelCampa1 = "Custodia";
                     labelCampa2 = "Custodia";
@@ -282,10 +274,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     finalCampaDias = beanFactura.getDiasCampa()+ " DIAS";
                     importeCampaEntradaD = Double.parseDouble(beanFactura.getTarifaEsCliente());
                     importeTrasladoD = Double.parseDouble(beanFactura.getTarifaEsCliente());
-                    //importeCampaEntradaD=Double.parseDouble(importeEntradaCampaAux);
-                    //importeCampaDiasD=(Double.parseDouble(beanFactura.getDiasCampa()))*(Double.parseDouble(importeDiasCampaAux));
-
-                    //importeCampaDias=String.valueOf(importeCampaDiasD);
                    
                 }
                  //LINEA DE FACTOR DE CORRECCION
@@ -572,28 +560,13 @@ public class CSLanzarFactura extends javax.swing.JPanel
                                 for (int i=0;i<pedidos.size();i++)
                                 {
                                     String estadoPe = "";
-                                    /*if ((BeanFactura)lista.get(i) != null){
-                                        BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
-                                        estadoPe = beanFacturaPe.getEstado();
-                                    }*/
-                                    //}else{
                                     estadoPe = getEstadoPedido(pedidos.get(i));
-                                    //}
-                                    
+
                                     if (estadoPe.equals("Validado")){
-//                                        System.out.println("V: "+ estadoPe);
                                         CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i));
-                                        /*if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
-                                        {
-                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
-                                        } */                                       
+                                    
                                     }else if(estadoPe.equals("Entregado") || estadoPe.equals("Fallido")){
-//                                        System.out.println("F: "+ estadoPe);
                                         CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i));
-                                        /*if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
-                                        {
-                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
-                                        }*/
                                     }
                                 }
                                 if(codigo==1)
@@ -731,15 +704,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
             htmlText = htmlText +"<tr><td colspan='2'><font face='Helvetica'>Avda. Puente Cultural, 10 Bl.B - Pl .4 - Of. 4  - 28700 San Sebasti&aacute;n de los Reyes</font></td></tr>";
             htmlText = htmlText +"</table></body>";
 
-            /* BufferedWriter bw2 = null;
-                bw2 = new BufferedWriter(new FileWriter("c://mailFactura.html", false));
-                try {
-                    bw2.write(htmlText);
-                } catch (IOException ex) {
-                    Logger.getLogger(CSLanzarFactura.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                bw2.close();*/
-
             // Fill the message
             messageBodyPart.setContent(htmlText, "text/html");
 
@@ -778,8 +742,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 e.printStackTrace();
 
             }
-    
-
+   
     }
 
     private static class SMTPAuthenticator extends javax.mail.Authenticator {
@@ -962,11 +925,6 @@ public class CSLanzarFactura extends javax.swing.JPanel
                 pars.put("NumFactura",finalNumFactura);
             }
 
-            //ESTOS CAMPOS DE MOMENTO LOS VOY A COMENTAR PORQUE NO SE SI SIRVEN O NO
-            /*pars.put("TipoServicio","Probanso");
-            pars.put("Servicio","Prueba");
-            pars.put("Importe","Dinero");*/
-
             // LLENAMOS EL REPORTE CON LA INFORMACION Y PARAMETROS NECESARIOS
             jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/data/reportes/FacturaLibre.jasper"), pars, con);
 
@@ -997,9 +955,7 @@ public class CSLanzarFactura extends javax.swing.JPanel
                     String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
                             "fl_fecha_pago, fl_estado, fl_fecha, fl_importe_total,fl_importe,fl_iva,fl_tipo) VALUES (";
                     query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','2050-01-01','PTE','"+fechaFactura+"', "+importeTotal+","+Iniciald+","+importeIva+",'Factura')";
-                    //String query="INSERT INTO fl_factura_cliente (fl_num,fl_fecha_desde,fl_fecha_hasta,cl_id, " +
-                    //        "fl_fecha_pago, fl_pagado) VALUES (";
-                    //query = query + "'"+finalNumFactura+"','"+fechaIni+"','"+fechaFin+"','"+clienteID+"','0000-00-00','0')";
+
                     System.out.println(query);
 
                      boolean rs = CSDesktop.datos.manipuladorDatos(query);
@@ -1053,37 +1009,21 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
- /**                                   String estadoPe = "";
-                                    if ((BeanFactura)lista.get(i) != null){
-                                        BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
-                                        estadoPe = beanFacturaPe.getEstado();
-                                    }else{*/
                                     String estadoPe = getEstadoPedido(pedidos.get(i));
-//                                    }
                                     
                                     if (estadoPe.equals("Validado")){
- //                                       System.out.println("V: "+ estadoPe);
-                                        CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i));
-                                        /*if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
-                                        {
-                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
-                                        } */                                       
-                                    }else if(estadoPe.equals("Entregado")  || estadoPe.equals("Fallido")){
- //                                       System.out.println("F: "+ estadoPe);
+                                        CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado y Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i));                                   
+                                    }else if(estadoPe.equals("Entregado")  || estadoPe.equals("Fallido") || estadoPe.equals("Pedido Libre")){
                                         CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i));
-                                        /*if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
-                                        {
-                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Facturado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
-                                        }*/
                                     }
                                 }
                                 if(codigo==1)
                                 {
                                     CSDesktop.ResultFacturaPedido.dispose();
-                                    CSFacturaClientePedido facturaCliente = new CSFacturaClientePedido(beanCliente.getNombre(),fechaIni,fechaFin,true);
-                                    CSDesktop.ResultFacturaPedido.toBack();
-                                    CSDesktop.FacturaClientePedido.toBack();
-                                    CSDesktop.NuevaFactura.toFront();
+//                                    CSFacturaClientePedido facturaCliente = new CSFacturaClientePedido(beanCliente.getNombre(),fechaIni,fechaFin,true);
+//                                    CSDesktop.ResultFacturaPedido.toBack();
+//                                    CSDesktop.FacturaClientePedido.toBack();
+//                                    CSDesktop.NuevaFactura.toFront();
                                 }
                             }
                         }
@@ -1623,28 +1563,13 @@ public class CSLanzarFactura extends javax.swing.JPanel
                             {
                                 for (int i=0;i<pedidos.size();i++)
                                 {
-/**                                    String estadoPe = "";
-                                    if ((BeanFactura)lista.get(i) != null){
-                                        BeanFactura beanFacturaPe = (BeanFactura)lista.get(i);
-                                        estadoPe = beanFacturaPe.getEstado();
-                                    }else{*/
                                     String estadoPe = getEstadoPedido(pedidos.get(i));
-//                                    }
                                     
                                     if (estadoPe.equals("Facturado y Validado")){
-//                                        System.out.println("V: "+ estadoPe);
                                         CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i));
-                                        /*if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
-                                        {
-                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Validado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
-                                        } */                                       
+                                    
                                     }else if(estadoPe.equals("Facturado")){
-//                                        System.out.println("F: "+ estadoPe);
                                         CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Entregado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i));
-                                        /*if(!CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Entregado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num="+ pedidos.get(i)))
-                                        {
-                                            CSDesktop.datos.manipuladorDatos("UPDATE pe_pedidos SET pe_estado='Entregado', pe_num_fa_cl='"+ finalNumFactura +"' WHERE pe_num_unido="+ pedidos.get(i));
-                                        }*/
                                     }                                    
                                     
                                 }
